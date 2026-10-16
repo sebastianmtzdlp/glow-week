@@ -633,7 +633,8 @@
   const srt = l => sortM==="pa" ? [...l].sort((a,b)=>a.price-b.price) : sortM==="pd" ? [...l].sort((a,b)=>b.price-a.price) : sortM==="dd" ? [...l].sort((a,b)=>pct(b)-pct(a)) : l;
   function renderCatalog(){
     let groups;
-    if (filter==="Todo") {
+    if (filter==="Todo" && sortM) groups = [["Todo", products]];
+    else if (filter==="Todo") {
       groups = realCats.map(c=>[c, products.filter(p=>p.cat===c)]);
       ["Nuevos","Flash sale","Más pedidos"].forEach(k => { const l = products.filter(SPECIAL[k]); if (l.length) groups.unshift([k, l]); });
     }
