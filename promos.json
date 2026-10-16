@@ -881,9 +881,10 @@
   }
  ],
  "membresia": {
-  "_nota": "Descuento de socia (%) sobre el precio que ve la clienta. por_producto gana sobre por_categoria.",
+  "_nota": "Descuento de socia (%) sobre el precio que ve la clienta. por_producto gana sobre por_categoria. meta_monto = producto a precio de socia para envío gratis y regalos.",
   "mostrar": true,
   "costo": 499,
+  "meta_monto": 2000,
   "desc_default": 30,
   "por_categoria": {
    "Skincare": 50,
@@ -899,5 +900,10 @@
   },
   "kits": "Al entrar hay kits de inicio a precio muy reducido.",
   "nota": ""
- }
+ },
+ "tema": "noche",
+ "referidas": [
+  "Elda",
+  "Viri"
+ ]
 }

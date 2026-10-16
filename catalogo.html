@@ -130,6 +130,14 @@
   .form .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .addr{display:grid;gap:10px} .addr.hide{display:none}
   .totals{display:grid;gap:4px;font-size:14px;margin:14px 0 4px}
+  .refchips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+  .refchip{border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:7px 14px;font:600 13px var(--sans)}
+  .refchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .socia{background:var(--tint,#FDEEF0);border-radius:14px;padding:12px 14px;margin:10px 0 4px;font-size:13px;line-height:1.4}
+  .socia b{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
+  .socia span{color:var(--muted);display:block}
+  .socia label{display:flex;gap:10px;align-items:center;font-size:14px;margin-top:10px;cursor:pointer}
+  .socia label input{width:20px;height:20px;accent-color:var(--accent,#DB414C)}
   .totals div{display:flex;justify-content:space-between}
   .totals .g{color:var(--good)} .totals .T{font-size:18px;font-weight:700;padding-top:4px}
   .err{font-size:13px;color:var(--bad);text-align:center;margin-top:8px;display:none}
@@ -194,6 +202,16 @@
   let C = {meta:{monto:3000, regalo:"el regalo del mes", regalo_items:[]}};
   try { C = await (await fetch("promos.json?v=" + Date.now(), {cache:"no-store"})).json(); } catch(e) {}
   const GOAL = C.meta.monto, GIFT = C.meta.regalo, GIFT_ITEMS = C.meta.regalo_items || [];
+  // Membresía: 50% en Dr. C. Tuna (páginas de skincare y masaje), 30% en lo demás; se aplica sobre el precio que ve la clienta
+  const M = Object.assign({mostrar:true, meta_monto:2000, costo:499}, C.membresia || {});
+  const pageOf = {}; (D.productos || []).forEach((items, i) => (items || []).forEach(([c]) => { if (!(c in pageOf)) pageOf[c] = i + 1; }));
+  const mPct = c => (C.membresia && C.membresia.por_producto && C.membresia.por_producto[c]) ?? ((/Dr\.? ?C\.? ?Tuna/i.test(P[c][0]) || (pageOf[c] >= 66 && pageOf[c] <= 113)) ? 50 : 30);
+  const mCalc = () => { let m = 0, t = 0; for (const [c,q] of Object.entries(cart)) { t += q*P[c][1]; m += q*Math.round(P[c][1]*(1-mPct(c)/100)*100)/100; } return {t, m, withFee: m + M.costo, save: t - m - M.costo, metaOk: m >= M.meta_monto}; };
+  const REFS = C.referidas || [];
+  const cleanRef = r => (r||"").replace(/[^\p{L}\p{N} .'-]/gu,"").trim().slice(0,40);
+  let refInit = "";
+  try { const de = cleanRef(new URLSearchParams(location.search).get("de")); if (de) localStorage.setItem("glow_de", de); refInit = de || cleanRef(localStorage.getItem("glow_de")); } catch(_){}
+  const curRef = () => cleanRef($("cRef") ? $("cRef").value : refInit);
   const cart = {};
   const plus = '<svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
   const minus = '<svg class="i" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>';
@@ -325,7 +343,10 @@
     let ent = `Entrega: ${v("cDel")}`;
     if (isShip()) ent += `\nDirección: ${v("aStreet")}, Col. ${v("aCol")}, C.P. ${v("aCP")}, ${v("aCity")}` + (v("aRef") ? `\nReferencias: ${v("aRef")}` : "");
     const meta = t >= GOAL ? `Mi pedido pasa de ${money(GOAL)}: envío gratis y ${GIFT} de regalo.` : `Me faltan ${money(GOAL - t)} para el envío gratis.`;
-    const msg = `Hola ${SELLER}${v("cName") ? ", soy " + v("cName") : ""}. Quiero este pedido del catálogo:\n\n${items.join("\n")}\n\nTotal: ${money(t)}${s>0 ? " (ahorro " + money(s) + ")" : ""}\n${meta}\n\n${ent}`;
+    const mc = mCalc();
+    const msg = `Hola ${SELLER}${v("cName") ? ", soy " + v("cName") : ""}${curRef() ? `, vengo de parte de ${curRef()},` : "."} ${curRef() ? "q" : "Q"}uiero este pedido del catálogo:\n\n${items.join("\n")}\n\nTotal: ${money(t)}${s>0 ? " (ahorro " + money(s) + ")" : ""}\n${meta}\n\n${ent}`
+      + ($("mWant")?.checked ? `\n\nTambién me interesa la membresía: como socia este pedido serían unos ${money(mc.withFee)} ya con la inscripción, ¿me explicas?` : "")
+      ;
     return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
   }
   function orderSheet(){
@@ -348,14 +369,21 @@
           <div><label for="aCity">Alcaldía o municipio, estado</label><input id="aCity" autocomplete="address-level2" value="${saved.aCity||""}"></div>
           <div><label for="aRef">Referencias (opcional)</label><textarea id="aRef">${saved.aRef||""}</textarea></div>
         </div>
+        <div><label for="cRef">¿Vienes de parte de alguien? (opcional)</label>
+          <input id="cRef" maxlength="40" placeholder="Nombre de quien te recomendó" value="${refInit}">
+          <div class="refchips">${REFS.map(r=>`<button type="button" class="refchip" data-ref="${r}">${r}</button>`).join("")}</div></div>
       </div>
       <div class="totals"><div><span>Precio normal</span><span class="num">${money(r)}</span></div>${s>0?`<div class="g"><span>Ahorras</span><span class="num">−${money(s)}</span></div>`:""}<div class="T"><span>Total</span><span class="num">${money(t)}</span></div></div>
+      ${M.mostrar !== false ? (() => { const mc = mCalc(); return `<div class="socia"><b>${mc.save > 0 ? `Como socia te ahorras ${money(mc.save).replace(".00","")} hoy` : `Como socia pagarías ${money(mc.withFee)} hoy`}</b><span>${mc.save > 0 ? `pagarías ${money(mc.withFee)} en vez de ${money(t)}, ya con ${money(M.costo).replace(".00","")} de inscripción` : `ya con ${money(M.costo).replace(".00","")} de inscripción; en los siguientes pedidos, ${money(t - mc.m).replace(".00","")} menos`}${mc.metaOk ? ` · y ya tendrías envío gratis y ${GIFT}` : ""}</span><label><input type="checkbox" id="mWant"> Me interesa la membresía</label></div>`; })() : ""}
       <a class="cta" id="sendWA" href="#" target="_blank" rel="noopener" style="margin-top:8px">Enviar por WhatsApp</a>
       <p class="err" id="err">Escribe tu nombre y apellido y tu dirección para enviarlo.</p>
       <p class="note" style="text-align:center;margin-top:8px">${t >= GOAL ? "Tu envío es gratis." : "El envío se cotiza aparte."} Te confirmo existencias antes de pagar.</p>`);
     const sync = () => { $("addr").classList.toggle("hide", !isShip()); $("sendWA").href = waLink(); if (valid()) $("err").style.display = "none";
       try { fields.forEach(f => localStorage.setItem("glow_" + f, v(f))); } catch(_){} };
-    fields.forEach(f => $(f).addEventListener("input", sync)); $("cDel").addEventListener("change", sync); sync();
+    const paintRefChips = () => document.querySelectorAll(".refchip").forEach(b => b.classList.toggle("on", b.dataset.ref.toLowerCase() === curRef().toLowerCase()));
+    document.querySelectorAll(".refchip").forEach(b => b.addEventListener("click", () => { $("cRef").value = b.classList.contains("on") ? "" : b.dataset.ref; $("cRef").dispatchEvent(new Event("input")); }));
+    $("cRef").addEventListener("input", () => { paintRefChips(); try { localStorage.setItem("glow_de", curRef()); } catch(_){} sync(); }); paintRefChips();
+    fields.forEach(f => $(f).addEventListener("input", sync)); $("cDel").addEventListener("change", sync); $("mWant")?.addEventListener("change", sync); sync();
     $("sendWA").addEventListener("click", e => { if (!valid()) { e.preventDefault(); $("err").style.display = "block"; (fullName() ? $(["aStreet","aCol","aCP","aCity"].find(f => !v(f))) : $("cName"))?.focus(); } });
   }
   $("cbOpen").onclick = orderSheet;
