@@ -20,7 +20,7 @@ jobs:
         env:
           GC_TOKEN: ${{ secrets.GC_TOKEN }}
         run: |
-          if [ -z "$GC_TOKEN" ]; then echo "Falta el secreto GC_TOKEN"; exit 1; fi
+          if [ -z "$GC_TOKEN" ]; then echo "::notice::Falta el secreto GC_TOKEN; no hay nada que hacer"; exit 0; fi
           python3 scripts/stats.py
       - name: Publicar si hay cambios
         env:
