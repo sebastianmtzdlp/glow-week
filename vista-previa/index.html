@@ -126,24 +126,24 @@
   .form label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
   .form input,.form select{width:100%;margin-top:4px;height:44px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font:inherit;color:var(--ink);background:var(--card)}
   .form input:focus,.form select:focus{outline:2px solid var(--ink);outline-offset:1px}
-  .socia{margin:4px 22px 14px;border:1.5px dashed var(--line);border-radius:16px;padding:14px;background:var(--card)}
-  .socia h4{margin:0 0 4px;font-size:15px;display:flex;gap:8px;align-items:center}
-  .socia h4 svg{color:var(--accent-text);flex:none}
-  .socia p{margin:0;font-size:13px;color:var(--muted);line-height:1.45}
-  .socia .cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 10px}
-  .socia .cmp div{background:var(--soft);border-radius:12px;padding:10px}
-  .socia .cmp .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
-  .socia .cmp .v{font-size:17px;font-weight:700;margin-top:2px}
-  .socia .cmp .s{font-size:12px;color:var(--muted)}
-  .socia .cmp .best{outline:2px solid var(--good)}
-  .socia .verdict{font-size:14px;font-weight:600;margin-bottom:8px}
-  .socia .verdict.g{color:var(--good)}
-  .socia .mmeta{font-size:13px;line-height:1.45;background:var(--tint);border-radius:12px;padding:10px 12px;margin-bottom:6px}
-  .socia .mmeta b{font-weight:600}
-  .socia .mmeta.ok{outline:1.5px solid var(--good)}
-  .socia label.chk{display:flex;gap:10px;align-items:center;font-size:14px;margin-top:10px;cursor:pointer}
+  .socia{margin:4px 22px 14px;border-radius:16px;background:var(--tint);padding:0 14px}
+  .socia summary{list-style:none;display:flex;gap:12px;align-items:center;padding:12px 0;cursor:pointer}
+  .socia summary::-webkit-details-marker{display:none}
+  .socia summary svg{flex:none;color:var(--accent-text)}
+  .socia .grow{flex:1;min-width:0}
+  .socia .t1{font-weight:600;font-size:15px}
+  .socia .t2{font-size:13px;color:var(--muted)}
+  .socia .more{flex:none;color:var(--accent-text);transition:transform .2s var(--ease);transform-box:fill-box;transform-origin:center}
+  .socia[open] .more{transform:rotate(90deg)}
+  .socia .det{padding:2px 0 14px;font-size:14px}
+  .socia .row{display:flex;justify-content:space-between;gap:12px;padding:5px 0;color:var(--muted)}
+  .socia .row b{color:var(--ink);font-weight:600}
+  .socia .row.T{border-top:1px solid var(--line);margin-top:4px;padding-top:9px;color:var(--ink);font-weight:600}
+  .socia .mmeta{margin:10px 0 0;font-size:13px;line-height:1.45;background:var(--card);border-radius:12px;padding:10px 12px}
+  .socia .mmeta.ok{color:var(--good);font-weight:600}
+  .socia label.chk{display:flex;gap:10px;align-items:center;font-size:14px;margin-top:12px;cursor:pointer}
   .socia label.chk input{width:20px;height:20px;accent-color:var(--accent)}
-  .socia .fine{font-size:11px;margin-top:8px}
+  .socia .fine{font-size:11px;color:var(--muted);margin:8px 0 0}
   .sociacard{margin-top:12px;max-width:560px;border:1.5px solid var(--line);border-radius:14px;background:var(--card);padding:0 14px}
   .sociacard summary{list-style:none;display:flex;gap:12px;align-items:center;padding:12px 0;cursor:pointer}
   .sociacard summary::-webkit-details-marker{display:none}
@@ -418,17 +418,22 @@
       <div class="g"><span>Ahorras</span><span class="num" id="tSave"></span></div>
       <div class="T"><span>Total</span><span class="num" id="tTotal"></span></div>
     </div>
-    <div class="socia" id="socia">
-      <h4><svg class="i" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>¿Y si te haces socia?</h4>
-      <p id="sociaIntro"></p>
-      <div class="cmp">
-        <div id="cmpNo"><div class="k">Sin membresía</div><div class="v num" id="mNo"></div><div class="s">tu pedido de hoy</div></div>
-        <div id="cmpSi"><div class="k">Con membresía</div><div class="v num" id="mSi"></div><div class="s" id="mSiS"></div></div>
+    <details class="socia" id="socia">
+      <summary>
+        <svg class="i" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>
+        <span class="grow"><span class="t1" id="mHead"></span><br><span class="t2" id="mSub"></span></span>
+        <svg class="i more" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
+      </summary>
+      <div class="det">
+        <div class="row"><span>Tu pedido como clienta</span><b class="num" id="mNo"></b></div>
+        <div class="row"><span>Como socia (50% Dr. C. Tuna, 30% maquillaje)</span><b class="num" id="mSiProd"></b></div>
+        <div class="row"><span>Inscripción, una sola vez</span><b class="num" id="mFee"></b></div>
+        <div class="row T"><span>Pagarías hoy</span><b class="num" id="mSi"></b></div>
+        <p class="mmeta" id="mMeta"></p>
+        <label class="chk"><input type="checkbox" id="mWant"> Quiero que me expliques la membresía</label>
+        <p class="fine" id="mFine"></p>
       </div>
-      <div class="verdict" id="mVerdict"></div>
-      <div class="mmeta" id="mMeta"></div>
-      <label class="chk"><input type="checkbox" id="mWant"> Quiero que me expliques la membresía</label>
-      <p class="fine" id="mFine"></p>
+    </details>
     </div>
     </div>
     <div class="actions">
@@ -606,23 +611,15 @@
   const m0 = x => money(x).replace(".00","");
   function paintMember(){
     const {t,m,withFee,save,saveNext,metaOk,metaLeft} = memberCalc();
-    $("sociaIntro").textContent = `Como socia pagas 50% menos en Dr. C. Tuna y 30% menos en maquillaje, incluso sobre las promos. La inscripción cuesta ${m0(M.costo)} una sola vez.`;
-    $("mNo").textContent = money(t);
-    $("mSi").textContent = money(withFee);
-    $("mSiS").textContent = `${money(m)} + ${m0(M.costo)} de inscripción`;
-    const v=$("mVerdict"), good = save>0;
-    v.className = "verdict" + (good?" g":"");
-    v.textContent = good ? `Te ahorrarías ${money(save)} desde este pedido, y en los siguientes ${money(saveNext)}.`
-      : `Con la inscripción hoy sale casi igual, pero en tus siguientes pedidos como este ahorrarías ${money(saveNext)}.`;
-    $("cmpSi").classList.toggle("best", good); $("cmpNo").classList.remove("best");
-    // Meta de socia: con menos producto ya tienen envío gratis y regalos
-    const mm=$("mMeta"), clientOk = t>=GOAL;
+    const good = save>0;
+    $("mHead").textContent = good ? `Como socia te ahorras ${m0(save)} hoy` : `Como socia pagarías ${money(withFee)} hoy`;
+    $("mSub").textContent = good ? `pagarías ${money(withFee)} en vez de ${money(t)}` : `y en cada pedido así, ${m0(saveNext)} menos`;
+    $("mNo").textContent = money(t); $("mSiProd").textContent = money(m); $("mFee").textContent = money(M.costo); $("mSi").textContent = money(withFee);
+    const mm=$("mMeta");
     mm.className = "mmeta" + (metaOk?" ok":"");
-    mm.innerHTML = metaOk
-      ? (clientOk ? `Como socia también tienes envío gratis y ${giftLabel}.`
-                  : `<b>Como socia ya tendrías envío gratis y ${giftLabel}</b>: a socias les pide ${m0(M.meta_monto)} de producto, no ${m0(GOAL)}.`)
-      : `Como socia, el envío gratis y ${giftLabel} son desde ${m0(M.meta_monto)} de producto (te faltarían ${money(metaLeft)}), en vez de ${m0(GOAL)}.`;
-    $("mFine").textContent = `Precios de socia aproximados; algunos kits tienen otro descuento. ${SELLER} te confirma el total exacto${M.nota?". "+M.nota:""}.`;
+    mm.textContent = metaOk ? `Y con este pedido ya tendrías envío gratis y ${giftLabel}: a socias se les pide ${m0(M.meta_monto)} de producto.`
+      : `A socias el envío gratis y ${giftLabel} son desde ${m0(M.meta_monto)} de producto, no ${m0(GOAL)}. Te faltarían ${money(metaLeft)}.`;
+    $("mFine").textContent = `Cálculo aproximado; algunos kits tienen otro descuento. ${SELLER} te confirma el total exacto.`;
   }
   function paintSociaCard(){
     $("sociaList").innerHTML = [
