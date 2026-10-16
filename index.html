@@ -205,6 +205,13 @@
   body.has-badge{padding-bottom:calc(96px + var(--badge-h) + env(safe-area-inset-bottom))}
   body.has-badge .bar{padding-bottom:calc(10px + var(--badge-h) + env(safe-area-inset-bottom))}
   body.has-badge .sheet .actions{padding-bottom:calc(12px + var(--badge-h) + env(safe-area-inset-bottom))}
+  .inc{margin-top:6px;font-size:13px}
+  .inc summary{cursor:pointer;color:var(--accent-text);font-weight:600;list-style:none;display:inline-flex;align-items:center;gap:4px;min-height:28px}
+  .inc summary::-webkit-details-marker{display:none}
+  .inc summary::after{content:"+";font-family:var(--mono);font-weight:700}
+  .inc[open] summary::after{content:"−"}
+  .inc ul{margin:4px 0 0;padding-left:16px;color:var(--muted);line-height:1.35}
+  .inc li+li{margin-top:3px}
   :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -382,6 +389,7 @@
       <div class="body">
         <div class="name">${p.name}</div>
         <div class="shade">${p.shade}</div>
+        ${p.incluye ? `<details class="inc"><summary>Qué incluye</summary><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul></details>` : ""}
         <div class="price"><span class="now">${money(p.price)}</span><span class="was">${money(p.retail)}</span></div>
         ${p.flashEnds ? `<div class="flash-left" data-ends="${p.flashEnds}"></div>` : ""}
         ${q ? `<div class="qty"><button class="step-btn" data-d="-1" data-i="${i}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="step-btn" data-d="1" data-i="${i}" aria-label="Agregar otro">${plus}</button></div>`
@@ -489,7 +497,7 @@
   // ---------- Asistente "Ayúdame a elegir" ----------
   const HQ = [
     {k:"cats", multi:true, q:"¿Qué te gustaría renovar?", o:[
-      ["Labios","Labiales, gloss y lip oil"],["Ojos","Sombras, máscara y cejas"],["Rostro","Base, polvo, iluminador"],["Brochas","Brochas y esponja"]]},
+      ["Kits","Kits de Promos de Miedo","Hasta 50% de descuento"],["Skincare","Limpiadores, tónicos y sueros"],["Labios","Labiales, gloss y lip oil"],["Ojos","Sombras, máscara y cejas"],["Rostro","Base, polvo, iluminador"],["Brochas","Brochas y esponja"]]},
     {k:"tone", q:"¿Cómo es tu tono de piel?", o:[
       ["clara","Clara"],["media","Media"],["morena","Morena"],["nose","No estoy segura"]]},
     {k:"look", q:"¿Qué look buscas?", o:[
