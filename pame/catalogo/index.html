@@ -212,6 +212,7 @@
 </div>
 
 <script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (async () => {
   const $ = id => document.getElementById(id);
@@ -379,7 +380,9 @@
     const g = goalHTML(t); $("cbGoal").classList.toggle("done", g.done);
     $("cbGoal").querySelector(".gm").innerHTML = g.html; $("cbGoal").querySelector("i").style.width = g.w + "%";
   }
-  function setQty(c, q){ if (q > 0) cart[c] = q; else delete cart[c]; paintBar(); try{ localStorage.setItem("cat_cart", JSON.stringify(cart)); }catch(_){} }
+  const gc = (path, title) => { try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({path, title: title||path, event:true}); } catch(_){} };
+  document.addEventListener('click', e=>{ if(e.target.closest('#sendWA')) gc('pedido-catalogo/'+location.pathname.split('/').filter(Boolean)[0], 'Pedido desde catálogo'); });
+  function setQty(c, q){ if (q > 0 && !cart[c]) gc('agregar/'+c, (P[c]&&P[c][0])||c); if (q > 0) cart[c] = q; else delete cart[c]; paintBar(); try{ localStorage.setItem("cat_cart", JSON.stringify(cart)); }catch(_){} }
   try { Object.assign(cart, JSON.parse(localStorage.getItem("cat_cart") || "{}")); for (const c in cart) if (!P[c]) delete cart[c]; } catch(_){}
 
   const v = id => ($(id) ? $(id).value.trim() : "");

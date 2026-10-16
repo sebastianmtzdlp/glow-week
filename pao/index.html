@@ -534,6 +534,7 @@
   </div>
 </div>
 
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (async () => {
   const $ = id => document.getElementById(id);
@@ -587,6 +588,7 @@
   const plus = '<svg class="i" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>';
   const minus = '<svg class="i" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>';
   const cart = {};
+  const gc = (path, title) => { try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({path, title: title||path, event:true}); } catch(_){} };
   let filter = "Todo";
 
   // Ofertas: lo de 40% o más va primero en "Todo"
@@ -759,11 +761,13 @@
     const chip = e.target.closest(".chip");
     if (chip){ filter = chip.dataset.c; renderChips(); renderCatalog(); window.scrollTo({top:$("catalog").offsetTop-70}); return; }
     const add = e.target.closest("[data-add]");
-    if (add){ const i=+add.dataset.add; cart[i]=1; refreshCard(i); update(); return; }
+    if (add){ const i=+add.dataset.add; cart[i]=1; gc('agregar/'+products[i].code, products[i].name); refreshCard(i); update(); return; }
     const st = e.target.closest(".step-btn");
     if (st){ const i=+st.dataset.i; cart[i]=Math.max(0,(cart[i]||0)+(+st.dataset.d)); if(!cart[i]) delete cart[i]; refreshCard(i); update(); return; }
   });
   $("openSheet").onclick = $("review").onclick = openSheet;
+  $("sendBtn").addEventListener("click", ()=>{ if(valid()) gc("pedido-enviado/"+location.pathname.split("/").filter(Boolean)[0], "Pedido enviado"); });
+  $("wafab").addEventListener("click", ()=>gc("wa-flotante","WhatsApp flotante"));
   $("closeSheet").onclick = $("sheetBg").onclick = closeSheet;
   document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSheet(); });
   const syncForm = ()=>{ $("addr").classList.toggle("hide",!isShip()); $("sendBtn").href = waLink(); if(valid()) $("err").style.display="none"; };
