@@ -143,6 +143,26 @@
   .totals .g{color:var(--good)} .totals .T{font-size:18px;font-weight:700;padding-top:4px}
   .err{font-size:13px;color:var(--bad);text-align:center;margin-top:8px;display:none}
   footer{font-size:11px;color:var(--muted);text-align:center;padding:0 16px 6px}
+
+  .tabs{display:flex;gap:6px;max-width:1100px;margin:0 auto;padding:0 16px 10px}
+  .tabs button{flex:1;border:0;border-radius:12px;padding:9px 10px;font:600 14px var(--sans);background:var(--soft);color:var(--muted)}
+  .tabs button[aria-selected="true"]{background:var(--ink);color:#fff}
+  #fuera{width:100%;overflow-x:hidden;max-width:1100px;margin:0 auto;padding:6px 16px 120px}
+  #fuera .gchips{display:flex;gap:8px;overflow-x:auto;padding:4px 0 12px;scrollbar-width:none}
+  #fuera .gchips::-webkit-scrollbar{display:none}
+  #fuera .intro{color:var(--muted);font-size:14px;margin:4px 0 10px;max-width:60ch}
+  #fuera h3{font-size:20px;font-weight:700;margin:22px 0 4px}
+  #fuera .gnote{color:var(--muted);font-size:13px;margin:0 0 10px;max-width:60ch}
+  #fuera .fgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  @media(min-width:700px){#fuera .fgrid{grid-template-columns:repeat(4,minmax(0,1fr))}}
+  .fc{min-width:0;display:flex;flex-direction:column;gap:8px;border:1px solid var(--line);border-radius:18px;background:#fff;padding:10px;text-align:left}
+  .fc .im{aspect-ratio:1;border-radius:12px;background:var(--soft);overflow:hidden;display:grid;place-items:center;color:var(--muted);font-weight:700}
+  .fc .im img{width:100%;height:100%;object-fit:contain}
+  .fc .n{font-size:14px;font-weight:600;line-height:1.25;min-height:2.5em}
+  .fc .pr{font-family:var(--mono);font-weight:700}
+  .fc .add{border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:12px;padding:9px;font:600 14px var(--sans)}
+  .fc .add.in{background:var(--ink);color:#fff}
+  body.vf .stage,body.vf #hint,body.vf .nav,body.vf #idx{display:none!important}
   :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -154,8 +174,10 @@
     <div class="brand"><div class="t"><b>Farmasi</b> · Catálogo</div><div class="s" id="brandSub">Con precios de hoy</div></div>
     <a class="board" href="../">Ver tablero</a>
   </div>
+  <div class="tabs" id="tabs" hidden><button id="tabCat" aria-selected="true">Catálogo</button><button id="tabFuera" aria-selected="false">Fuera del catálogo</button></div>
   <nav class="idx" id="idx" aria-label="Secciones"></nav>
 </div>
+<section id="fuera" hidden></section>
 
 <div class="stage">
   <div class="book-wrap"><div id="book"><p class="hint" style="padding:40px 0">Cargando catálogo…</p></div></div>
@@ -249,13 +271,23 @@
   flip.loadFromHTML(book.querySelectorAll(".page"));
 
   // Índice
-  $("idx").innerHTML = SECTIONS.map(([t,p]) => `<button class="chip" data-p="${p}">${t}</button>`).join("") + (FUERA.length ? '<button class="chip" id="chipFuera">Fuera del catálogo</button>' : "");
-  function fueraSheet(){
-    openSheet("Fuera del catálogo", `<p class="hint" style="margin:0 0 6px;text-align:left">Productos que hoy están en la tienda de Farmasi pero no salen en el catálogo impreso. Toca uno para verlo y agregarlo.</p>` +
-      FUERA.map(g => `<h4 style="margin:18px 0 4px;font-size:15px">${g.titulo}</h4>${g.nota ? `<p class="hint" style="margin:0 0 6px;text-align:left">${g.nota}</p>` : ""}<div class="list">${g.items.map(([c,n,pr]) =>
-        `<button class="it" data-code="${c}"><div><div class="n">${n}</div><div class="c">${c}</div></div><div class="p"><span>${money(pr)}</span></div></button>`).join("")}</div>`).join(""));
+  $("idx").innerHTML = SECTIONS.map(([t,p]) => `<button class="chip" data-p="${p}">${t}</button>`).join("");
+
+
+  // ---------- Fuera del catálogo (pestaña) ----------
+  if (FUERA.length) {
+    $("tabs").hidden = false;
+    const imgSrc = c => ["", "_1"].map(x => `https://content.mx.farmasi.com/Product/${c}_250${x}.webp`).concat([`https://content.mx.farmasi.com/Product/${c.toLowerCase()}_250_1.webp`, `https://content.mx.farmasi.com/Product/${c}_250.png`]);
+    window.__fb = (el) => { const l = JSON.parse(el.dataset.l); const n = +el.dataset.i + 1; if (n < l.length) { el.dataset.i = n; el.src = l[n]; } else el.remove(); };
+    const card = ([c,n,pr]) => `<div class="fc" data-code="${c}"><div class="im"><img loading="lazy" alt="" src="${imgSrc(c)[0]}" data-i="0" data-l='${JSON.stringify(imgSrc(c))}' onerror="__fb(this)"></div><div class="n">${shortName(n)}</div><div class="pr">${money(pr)}</div><button class="add" data-addc="${c}">${plus} Agregar</button></div>`;
+    $("fuera").innerHTML = `<p class="intro">Productos que hoy están en la tienda de Farmasi pero no salen en el catálogo impreso. Toca uno para ver el detalle.</p>
+      <div class="gchips">${FUERA.map((g,i) => `<button class="chip" data-g="${i}">${g.titulo}</button>`).join("")}</div>` +
+      FUERA.map((g,i) => `<h3 id="g${i}">${g.titulo}</h3>${g.nota ? `<p class="gnote">${g.nota}</p>` : ""}<div class="fgrid">${g.items.map(card).join("")}</div>`).join("");
+    const show = f => { document.body.classList.toggle("vf", f); $("fuera").hidden = !f; $("tabCat").setAttribute("aria-selected", !f); $("tabFuera").setAttribute("aria-selected", f); window.scrollTo(0, 0); };
+    $("tabCat").onclick = () => show(false); $("tabFuera").onclick = () => show(true);
+    $("fuera").addEventListener("click", e => { const g = e.target.closest("[data-g]"); if (g) { $("g" + g.dataset.g).scrollIntoView({behavior:"smooth", block:"start"}); } });
+    if (new URLSearchParams(location.search).get("v") === "fuera") show(true);
   }
-  if ($("chipFuera")) $("chipFuera").onclick = fueraSheet;
   function current(){ return flip.getCurrentPageIndex() + 1; }
   function visible(){
     const i = current(); const o = flip.getOrientation && flip.getOrientation();
