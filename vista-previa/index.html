@@ -589,40 +589,39 @@
   }
 
   // Membresía (Farmasi Influencer): datos editables en promos.json → "membresia"
-  const M = Object.assign({costo:499, desc_min:30, desc_max:50, nombre:"membresía Farmasi Influencer"}, D.membresia||{});
-  const r0 = x => Math.round(x);
+  // El descuento de socia se aplica sobre el precio que ve la clienta, también en promos.
+  const M = Object.assign({costo:499, por_categoria:{}, por_producto:{}, desc_default:30}, D.membresia||{});
+  const r0 = x => Math.round(x*100)/100;
+  const mPct = p => p.desc_miembro ?? M.por_producto[p.code] ?? M.por_categoria[p.cat] ?? M.desc_default;
+  const mPrice = p => r0(p.price*(1-mPct(p)/100));
   function memberCalc(){
-    let lo=0, hi=0, t=0;
-    products.forEach((p,i)=>{const q=cart[i]||0; if(!q) return; t+=q*p.price;
-      const dmin=(p.desc_miembro??M.desc_min)/100, dmax=(p.desc_miembro??M.desc_max)/100;
-      // el descuento de socia se aplica encima del precio que ve la clienta (también en promos)
-      hi += q*p.price*(1-dmin); lo += q*p.price*(1-dmax); });
-    return {t, lo:lo+M.costo, hi:hi+M.costo, saveLo:t-(hi+M.costo), saveHi:t-(lo+M.costo)};
+    let m=0, t=0;
+    products.forEach((p,i)=>{const q=cart[i]||0; if(!q) return; t+=q*p.price; m+=q*mPrice(p);});
+    return {t, m, withFee:m+M.costo, save:t-(m+M.costo), saveNext:t-m};
   }
-  const rng = (a,b) => r0(a)===r0(b) ? money(r0(a)) : `${money(r0(a)).replace(".00","")} a ${money(r0(b)).replace(".00","")}`;
+  const m0 = x => money(x).replace(".00","");
   function paintMember(){
-    const {t,lo,hi,saveLo,saveHi} = memberCalc();
-    $("sociaIntro").textContent = `Como socia pagas ${M.desc_min===M.desc_max?M.desc_min+"%":M.desc_min+"% a "+M.desc_max+"%"} menos que el precio que ves aquí, incluso en promos (depende del producto). La inscripción cuesta ${money(M.costo).replace(".00","")} una sola vez.`;
+    const {t,m,withFee,save,saveNext} = memberCalc();
+    $("sociaIntro").textContent = `Como socia pagas 50% menos en Dr. C. Tuna y 30% menos en maquillaje, incluso sobre las promos. La inscripción cuesta ${m0(M.costo)} una sola vez.`;
     $("mNo").textContent = money(t);
-    $("mSi").textContent = rng(lo,hi);
-    $("mSiS").textContent = `aprox., ya con ${money(M.costo).replace(".00","")} de inscripción`;
-    const v=$("mVerdict"), good = saveLo>0, maybe = !good && saveHi>0;
+    $("mSi").textContent = money(withFee);
+    $("mSiS").textContent = `${money(m)} + ${m0(M.costo)} de inscripción`;
+    const v=$("mVerdict"), good = save>0;
     v.className = "verdict" + (good?" g":"");
-    v.textContent = good ? `Te ahorrarías ${rng(saveLo,saveHi)} desde este pedido.`
-      : maybe ? `Podrías ahorrar hasta ${money(r0(saveHi)).replace(".00","")}; conviene más si compras seguido.`
-      : `Hoy te conviene sin membresía. Vale la pena si compras seguido o quieres vender.`;
-    $("cmpSi").classList.toggle("best", good); $("cmpNo").classList.toggle("best", !good && !maybe);
-    $("mFine").textContent = `Cálculo aproximado. ${SELLER} te confirma el precio exacto de socia${M.nota?". "+M.nota:""}.`;
+    v.textContent = good ? `Te ahorrarías ${money(save)} desde este pedido, y en los siguientes ${money(saveNext)}.`
+      : `Con la inscripción hoy sale casi igual, pero en tus siguientes pedidos como este ahorrarías ${money(saveNext)}.`;
+    $("cmpSi").classList.toggle("best", good); $("cmpNo").classList.remove("best");
+    $("mFine").textContent = `Precios de socia aproximados; algunos kits tienen otro descuento. ${SELLER} te confirma el total exacto${M.nota?". "+M.nota:""}.`;
   }
   function paintSociaCard(){
-    const ex = 1000, a=r0(ex*(1-M.desc_max/100)), b=r0(ex*(1-M.desc_min/100));
     $("sociaList").innerHTML = [
-      `Pagas ${M.desc_min}% a ${M.desc_max}% menos que el precio de clienta, según el producto. También en promos.`,
-      `Inscripción de ${money(M.costo).replace(".00","")}, una sola vez.`,
+      `50% menos en Dr. C. Tuna y 30% menos en maquillaje.`,
+      `El descuento se suma a las promos: un kit de ${m0(1032.5)} te sale en unos ${m0(516.25)}.`,
+      `Inscripción de ${m0(M.costo)}, una sola vez.`,
       `Si quieres, puedes vender y ganar comisión. Si no, solo compras más barato.`,
       M.kits ? M.kits : `Al entrar hay kits de inicio a precio muy reducido.`
     ].map(x=>`<li>${x}</li>`).join("");
-    $("sociaEx").textContent = `Ejemplo: un producto de ${money(ex).replace(".00","")} te sale entre ${money(a).replace(".00","")} y ${money(b).replace(".00","")} como socia.`;
+    $("sociaEx").textContent = `Ejemplo: la Aqua Crema Hidratante de $1,000 te sale en $500. La máscara Double Lash de $410, en $287.`;
     $("sociaWa").href = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola ${SELLER}, quiero información de la membresía de Farmasi.`)}`;
   }
   if (M.mostrar===false){ $("socia").remove(); $("sociaCard").remove(); } else paintSociaCard();

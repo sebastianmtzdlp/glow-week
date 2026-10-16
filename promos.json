@@ -881,10 +881,22 @@
   }
  ],
  "membresia": {
+  "_nota": "Descuento de socia (%) sobre el precio que ve la clienta. por_producto gana sobre por_categoria.",
   "mostrar": true,
   "costo": 499,
-  "desc_min": 30,
-  "desc_max": 50,
+  "desc_default": 30,
+  "por_categoria": {
+   "Skincare": 50,
+   "Rostro": 30,
+   "Labios": 30,
+   "Ojos": 30,
+   "Brochas": 30,
+   "Kits": 30
+  },
+  "por_producto": {
+   "PK102730": 50,
+   "PK102727": 37.5
+  },
   "kits": "Al entrar hay kits de inicio a precio muy reducido.",
   "nota": ""
  }
