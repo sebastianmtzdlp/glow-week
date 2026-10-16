@@ -6,7 +6,7 @@
 <meta name="color-scheme" content="light">
 <title>Glow Week con Selene</title>
 <meta name="description" content="Venta especial de maquillaje con Selene. Elige tus productos y manda tu pedido por WhatsApp.">
-<meta property="og:title" content="Glow Week con Selene">
+<meta property="og:title" content="Farmasi con Selene">
 <meta property="og:description" content="Maquillaje con hasta 50% de descuento, del 16 al 25 de octubre. Arma tu pedido y mándalo por WhatsApp.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -551,7 +551,11 @@
   try { const de = cleanRef(new URLSearchParams(location.search).get("de")); if (de) localStorage.setItem("glow_de", de); refInit = de || cleanRef(localStorage.getItem("glow_de")); } catch(_){}
   const curRef = () => cleanRef($("cRef") ? $("cRef").value : refInit);
   const REF = () => curRef() ? `Vengo de parte de ${curRef()}.` : "";
-  const SALE = D.venta.nombre;
+  // Tema: con tema de temporada se usa el nombre de la venta (p. ej. Noche de Brujas); sin tema (colores Farmasi) siempre dice Farmasi
+  const temaQ = new URLSearchParams(location.search).get("tema");
+  const tema = temaQ === null ? (D.tema || "") : (temaQ === "normal" ? "" : temaQ);
+  const SALE = tema ? D.venta.nombre : "Farmasi";
+  const TITULO = tema ? D.venta.titulo : "Farmasi";
   const IMG = "https://content.mx.farmasi.com/Product/";
   const END = new Date(D.venta.termina);
   const GOAL = D.meta.monto;
@@ -769,14 +773,14 @@
       const idx = Math.max(0, Math.min(total-1, Math.floor((now - start)/864e5)));
       $("cdDots").innerHTML = Array.from({length:total}, (_,i) => `<i class="${ms<=0 || i<idx ? "on" : i===idx ? "now" : ""}"></i>`).join("");
       let n, u, l;
-      if (ms <= 0) { n = "0"; u = "días"; l = `${SALE} ya terminó. Escríbeme y vemos qué sigue.`; }
-      else if (ms < 864e5) { const h = Math.max(1, Math.ceil(ms/36e5)); n = h; u = h === 1 ? "hora" : "horas"; l = `Último día de ${SALE}`; }
-      else { n = Math.ceil(ms/864e5); u = n === 1 ? "día" : "días"; l = `para que termine ${SALE}`; }
+      if (ms <= 0) { n = "0"; u = "días"; l = tema ? `${SALE} ya terminó. Escríbeme y vemos qué sigue.` : "Las promociones ya terminaron. Escríbeme y vemos qué sigue."; }
+      else if (ms < 864e5) { const h = Math.max(1, Math.ceil(ms/36e5)); n = h; u = h === 1 ? "hora" : "horas"; l = tema ? `Último día de ${SALE}` : "Último día de las promociones"; }
+      else { n = Math.ceil(ms/864e5); u = n === 1 ? "día" : "días"; l = tema ? `para que termine ${SALE}` : "para que terminen las promociones"; }
       $("cdN").textContent = n; $("cdU").textContent = u; $("cdL").textContent = l;
     }
     tick(); setInterval(tick, 60000);
     $("shareBtn").addEventListener("click", async () => {
-      const url = location.origin + location.pathname, text = `Mira mi tablero de ${SALE} con Farmasi: elige tus productos y me llega tu pedido por WhatsApp.`;
+      const url = location.origin + location.pathname, text = `Mira mi tablero ${tema ? "de " + SALE + " " : ""}con Farmasi: elige tus productos y me llega tu pedido por WhatsApp.`;
       try { if (navigator.share) { await navigator.share({title: `${SALE} con ${SELLER}`, text, url}); return; } } catch(_) { return; }
       try { await navigator.clipboard.writeText(`${text} ${url}`); $("shareBtn").lastChild.textContent = "Link copiado"; setTimeout(()=>{ $("shareBtn").lastChild.textContent = "Compartir"; }, 2000); } catch(_) { }
     });
@@ -905,18 +909,16 @@
     bruja: `<svg viewBox="0 0 150 120" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M150 0L60 0M150 0L80 50M150 0L120 70M150 0L150 90"/><path d="M128 0q-6 10 -8 20M104 0q4 14 -6 24M84 0q8 12 -2 22" /><path d="M140 16q-12 4 -20 4q-10 6 -22 4" /><path d="M146 36q-14 2 -26 16q-14 0 -26 4" /><path d="M150 58q-14 0 -30 12" /><path d="M108 60v22"/><circle cx="108" cy="88" r="6" fill="currentColor"/><path d="M102 86l-6-3M102 90l-6 2M114 86l6-3M114 90l6 2"/></svg>`
   };
   // ?tema=noche fuerza un tema; ?tema=normal fuerza el diseño normal; sin parámetro manda promos.json
-  const temaQ = new URLSearchParams(location.search).get("tema");
-  const tema = temaQ === null ? (D.tema || "") : (temaQ === "normal" ? "" : temaQ);
   if (temaQ === "normal") document.documentElement.classList.add("notrans");
   if (location.search) document.querySelector(".catlink").href = "catalogo/" + location.search;
   if (tema) { document.documentElement.dataset.tema = tema; if (DECO[tema]) $("deco").innerHTML = DECO[tema]; }
   requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.remove("notrans")));
   // Portada desde promos.json
-  document.title = `${D.venta.titulo} ${D.venta.subtitulo}`.trim();
+  document.title = `${TITULO} ${D.venta.subtitulo}`.trim();
   $("bName").textContent = SALE; $("bSeller").textContent = SELLER;
   if (D.instagram) { $("ig").textContent = "@" + D.instagram; $("ig").href = "https://instagram.com/" + D.instagram; } else $("ig").hidden = true;
-  $("vLabel").textContent = "Venta especial · " + D.venta.fechas;
-  $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who"; who.textContent = D.venta.subtitulo; $("vTitle").append(D.venta.titulo, document.createElement("br"), who); }
+  $("vLabel").textContent = (tema ? "Venta especial" : "Promociones") + " · " + D.venta.fechas;
+  $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who"; who.textContent = D.venta.subtitulo; $("vTitle").append(TITULO, document.createElement("br"), who); }
   $("vWelcome").textContent = D.venta.bienvenida;
   $("nProds").textContent = products.length;
   $("maxOff").textContent = "−" + Math.max(...products.map(pct)) + "%";
