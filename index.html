@@ -201,6 +201,10 @@
   .tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:#fff;color:var(--ink);border:1px solid var(--line)}
   .tag.flash{background:var(--accent);color:#fff;border-color:var(--accent)}
   .flash-left{font-family:var(--mono);font-size:12px;color:var(--accent-text);font-weight:500;margin-top:4px}
+  /* Netlify pone un globito fijo abajo a la derecha: dejamos espacio para que no tape los botones */
+  body.has-badge{padding-bottom:calc(96px + var(--badge-h) + env(safe-area-inset-bottom))}
+  body.has-badge .bar{padding-bottom:calc(10px + var(--badge-h) + env(safe-area-inset-bottom))}
+  body.has-badge .sheet .actions{padding-bottom:calc(12px + var(--badge-h) + env(safe-area-inset-bottom))}
   :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
@@ -611,6 +615,16 @@
   }
   setInterval(tick, 30000);
   new MutationObserver(tick).observe($("catalog"), {childList:true, subtree:true});
+
+  // Detecta el globito de Netlify (se inyecta después de cargar) y reserva su alto
+  function fitBadge(){
+    const f = document.getElementById("nl-badge-frame");
+    const h = f && getComputedStyle(f).display !== "none" ? Math.ceil(f.getBoundingClientRect().height) : 0;
+    document.body.classList.toggle("has-badge", h > 0);
+    document.body.style.setProperty("--badge-h", h + "px");
+  }
+  new MutationObserver(fitBadge).observe(document.body, {childList:true});
+  addEventListener("resize", fitBadge); fitBadge();
 
   renderChips(); renderCatalog(); syncForm(); update(); tick();
 })();
