@@ -202,7 +202,7 @@
     if (C.base) { const B = await (await fetch("../" + C.base + "?v=" + Date.now(), {cache:"no-store"})).json(); C = Object.assign({}, B, C, {meta: Object.assign({}, B.meta, C.meta||{}), membresia: Object.assign({}, B.membresia, C.membresia||{})}); }
   } catch(e) {}
   WA = C.whatsapp || ""; SELLER = C.consultora || "";
-  if (SELLER) { document.title = "Catálogo Farmasi con " + SELLER; $("brandSub").textContent = "Con precios de hoy · pedidos con " + SELLER; $("foot").textContent = `Catálogo oficial Farmasi México 2026. Compartido por ${SELLER}, consultora independiente. Precios sujetos a existencias.`; }
+  if (SELLER) { document.title = "Catálogo Farmasi con " + SELLER; $("brandSub").textContent = "Con precios de hoy · pedidos con " + SELLER; $("foot").textContent = `Catálogo oficial Farmasi México 2026. Compartido por ${SELLER}, ${C.genero==="m"?"consultor":"consultora"} independiente. Precios sujetos a existencias.`; }
   const GOAL = C.meta.monto, GIFT = C.meta.regalo, GIFT_ITEMS = C.meta.regalo_items || [];
   // Membresía: 50% en Dr. C. Tuna (páginas de skincare y masaje), 30% en lo demás; se aplica sobre el precio que ve la clienta
   const M = Object.assign({mostrar:true, meta_monto:2000, costo:499}, C.membresia || {});

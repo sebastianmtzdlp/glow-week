@@ -116,13 +116,13 @@
   const ini = n => n.split(/\s+/).map(w => w[0]).slice(0,2).join("").toUpperCase();
   const card = c => `<article class="card${c.lider?" lead":""}">
     <div class="who"><div class="av">${ini(c.nombre)}<img src="fotos/${c.slug}.jpg" alt="" loading="lazy" onerror="this.remove()"></div>
-    <div><div class="nm">${c.nombre}</div><div class="role">${c.lider?"Líder de equipo · ":""}Consultora Farmasi</div>${c.ig?`<a class="ig" href="https://instagram.com/${c.ig}" target="_blank" rel="noopener">@${c.ig}</a>`:""}</div></div>
+    <div><div class="nm">${c.nombre}</div><div class="role">${c.lider?(c.genero==="m"?"Líder de equipo · ":"Líder de equipo · "):""}${c.genero==="m"?"Consultor":"Consultora"} Farmasi</div>${c.ig?`<a class="ig" href="https://instagram.com/${c.ig}" target="_blank" rel="noopener">@${c.ig}</a>`:""}</div></div>
     <div class="btns"><a class="btn p" href="${c.slug}/${qs}">Ver promos</a><a class="btn s" href="${c.slug}/catalogo/${qs}">Catálogo</a></div></article>`;
   const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
   function paint(){
     const q = norm($("q").value.trim());
     const list = E.consultoras.filter(c => !q || norm(c.nombre).includes(q) || norm(c.ig||"").includes(q));
-    const lead = list.filter(c => c.lider), rest = list.filter(c => !c.lider);
+    const srt = (a,b) => a.nombre.localeCompare(b.nombre,"es"); const lead = list.filter(c => c.lider).sort(srt), rest = list.filter(c => !c.lider).sort(srt);
     $("lead").innerHTML = lead.map(card).join(""); $("all").innerHTML = rest.map(card).join("");
     $("hLead").hidden = !lead.length; $("hAll").hidden = !rest.length; $("none").hidden = !!list.length;
     $("cnt").textContent = rest.length + " en el equipo";

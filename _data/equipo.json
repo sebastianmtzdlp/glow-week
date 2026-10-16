@@ -1,5 +1,5 @@
 {
- "_nota": "Lista del equipo. Cada entrada crea la carpeta /<slug> al correr build.py y aparece en la portada. 'ig' puede ir vacío. Foto: sube fotos/<slug>.jpg (cuadrada) y aparece sola; si no hay, se ven las iniciales.",
+ "_nota": "Lista del equipo. Cada entrada crea la carpeta /<slug> al correr build.py y aparece en la portada. 'ig' puede ir vacío. Foto: sube fotos/<slug>.jpg (cuadrada) y aparece sola; si no hay, se ven las iniciales. 'genero':'m' muestra Consultor. La portada ordena alfabéticamente sola.",
  "equipo": "Team Nancy y Selene",
  "consultoras": [
   {
@@ -20,7 +20,8 @@
    "slug": "sebas",
    "nombre": "Sebas",
    "whatsapp": "525543506136",
-   "ig": ""
+   "ig": "",
+   "genero": "m"
   },
   {
    "slug": "silvia",
@@ -92,6 +93,12 @@
    "slug": "anagomez",
    "nombre": "Ana Gómez",
    "whatsapp": "525574867366",
+   "ig": ""
+  },
+  {
+   "slug": "viri",
+   "nombre": "Viri",
+   "whatsapp": "525517970538",
    "ig": ""
   }
  ]
