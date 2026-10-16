@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-16",
- "hora": "17:24",
+ "hora": "17:45",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 5,
+  "visitas": 11,
   "agregados": 0,
   "pedidos": 0,
   "wa": 0
@@ -15,10 +15,17 @@
   },
   {
    "d": "2026-10-16",
-   "v": 5
+   "v": 11
   }
  ],
  "consultoras": [
+  {
+   "slug": "viri",
+   "nombre": "Viri",
+   "visitas": 4,
+   "catalogo": 0,
+   "pedidos": 0
+  },
   {
    "slug": "moni",
    "nombre": "Moni",
@@ -27,9 +34,9 @@
    "pedidos": 0
   },
   {
-   "slug": "viri",
-   "nombre": "Viri",
-   "visitas": 1,
+   "slug": "sel",
+   "nombre": "Selene",
+   "visitas": 2,
    "catalogo": 0,
    "pedidos": 0
   },
@@ -113,13 +120,6 @@
   {
    "slug": "sebas",
    "nombre": "Sebas",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "sel",
-   "nombre": "Selene",
    "visitas": 0,
    "catalogo": 0,
    "pedidos": 0
