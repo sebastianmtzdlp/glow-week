@@ -1,0 +1,9 @@
+# Sitio estático: no hay build. Netlify publica la carpeta tal cual.
+[build]
+  publish = "."
+
+# Que promos.json nunca se quede guardado en caché: los cambios se ven al recargar.
+[[headers]]
+  for = "/promos.json"
+  [headers.values]
+    Cache-Control = "no-cache"

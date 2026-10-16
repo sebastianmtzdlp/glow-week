@@ -1,0 +1,387 @@
+{
+ "_nota": "Datos del tablero. Para cambiar promos, precios o fechas edita SOLO este archivo. Precios en pesos. 'retail' = precio base (catálogo), 'price' = precio con promo.",
+ "actualizado": "2026-10-16",
+ "consultora": "Selene",
+ "whatsapp": "525541456984",
+ "instagram": "selene.vehe",
+ "venta": {
+  "nombre": "Glow Week",
+  "titulo": "Glow Week",
+  "subtitulo": "con Selene",
+  "fechas": "16 al 25 de octubre",
+  "termina": "2026-10-25T23:59:59-06:00",
+  "bienvenida": "Elegí mis favoritos de maquillaje que hoy tienen descuento. Arma tu pedido aquí y me llega directo a WhatsApp. Gracias por tu apoyo."
+ },
+ "aviso": {
+  "texto": "",
+  "desde": null,
+  "hasta": null
+ },
+ "meta": {
+  "monto": 3000,
+  "regalo": "el set Complete Care",
+  "regalo_items": [
+   {
+    "name": "Gel de Masaje Pimentón y Chile",
+    "retail": 290,
+    "img": "1000305_250"
+   },
+   {
+    "name": "Paprika Massage Soap",
+    "retail": 250,
+    "img": "1002855_250_1"
+   },
+   {
+    "name": "Flaunt It! Body Sculpting Gel",
+    "retail": 725,
+    "img": "1000866_250"
+   }
+  ]
+ },
+ "productos": [
+  {
+   "cat": "Labios",
+   "name": "Royal Cherry Lip Gloss",
+   "shade": "Cranberry Pie",
+   "code": "1002548",
+   "retail": 370,
+   "price": 222,
+   "img": "1002548_250_1",
+   "look": [
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Labios",
+   "name": "Latina Lip Liquor",
+   "shade": "03 Coqueta",
+   "code": "1001963",
+   "retail": 375,
+   "price": 225,
+   "img": "1001963_250",
+   "look": [
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Labios",
+   "name": "Lip Oil",
+   "shade": "Transparent",
+   "code": "1002515",
+   "retail": 345,
+   "price": 207,
+   "img": "1002515_250",
+   "look": [
+    "natural"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Labios",
+   "name": "Labial Líquido Matte",
+   "shade": "Chocolate 218",
+   "code": "1001801",
+   "retail": 345,
+   "price": 241.5,
+   "img": "1001801_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Labios",
+   "name": "Labial Líquido Matte",
+   "shade": "Rich Mocha",
+   "code": "1001923",
+   "retail": 345,
+   "price": 241.5,
+   "img": "1001923_250",
+   "look": [
+    "natural"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Labios",
+   "name": "Tinted Lip Plumper",
+   "shade": "Fiery",
+   "code": "1001497",
+   "retail": 400,
+   "price": 280,
+   "img": "1001497_250",
+   "look": [
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Labios",
+   "name": "Ultimate Shine Gloss",
+   "shade": "Crystal Sparkle",
+   "code": "1001405",
+   "retail": 370,
+   "price": 259,
+   "img": "1001405_250",
+   "look": [
+    "natural"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Labios",
+   "name": "Creamy Lipstick",
+   "shade": "Country Rose 01",
+   "code": "1001387",
+   "retail": 225,
+   "price": 180,
+   "img": "1001387_250",
+   "look": [
+    "natural"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Ojos",
+   "name": "Royal Cherry Eyeshadow",
+   "shade": "Paleta de sombras",
+   "code": "1002547",
+   "retail": 690,
+   "price": 345,
+   "img": "1002547_250_1",
+   "look": [
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Ojos",
+   "name": "Full Blast Volume Mascara",
+   "shade": "Negro",
+   "code": "1001504",
+   "retail": 565,
+   "price": 282.5,
+   "img": "1001504_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Ojos",
+   "name": "Lost Lagoon Eyeshadow",
+   "shade": "Oasis Collection",
+   "code": "1002352",
+   "retail": 690,
+   "price": 483,
+   "img": "1002352_250",
+   "look": [
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Ojos",
+   "name": "Precision Brow Pencil",
+   "shade": "Soft Brown",
+   "code": "1002598",
+   "retail": 237.63,
+   "price": 166.34,
+   "img": "1002598_250",
+   "look": [
+    "natural"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Rostro",
+   "name": "Glow Beauty Box",
+   "shade": "Set",
+   "code": "1000395",
+   "retail": 1025,
+   "price": 820,
+   "img": "1000395_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Rostro",
+   "name": "All in One Palette",
+   "shade": "Fair-Medium",
+   "code": "1002157",
+   "retail": 570,
+   "price": 456,
+   "img": "1002157_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "tone": [
+    "clara",
+    "media"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Rostro",
+   "name": "Effortless Glow Palette",
+   "shade": "Iluminadores",
+   "code": "1002163",
+   "retail": 570,
+   "price": 456,
+   "img": "1002163_250",
+   "look": [
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Rostro",
+   "name": "VFX Pro Foundation",
+   "shade": "01 Cool Ivory",
+   "code": "1002024",
+   "retail": 560,
+   "price": 448,
+   "img": "1002024_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "tone": [
+    "clara"
+   ],
+   "role": "base",
+   "nuevo": false
+  },
+  {
+   "cat": "Rostro",
+   "name": "VFX Pro Liquid Concealer",
+   "shade": "N01",
+   "code": "1001375",
+   "retail": 275,
+   "price": 220,
+   "img": "1001375_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "tone": [
+    "clara"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Rostro",
+   "name": "VFX Pro Illuminating Primer",
+   "shade": "Primer",
+   "code": "1001517",
+   "retail": 370,
+   "price": 259,
+   "img": "1001517_250_1",
+   "look": [
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Rostro",
+   "name": "BB Powder",
+   "shade": "01 Cool Light",
+   "code": "1001346",
+   "retail": 490,
+   "price": 392,
+   "img": "1001346_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "tone": [
+    "clara"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Rostro",
+   "name": "BB Cream",
+   "shade": "01 Light",
+   "code": "1001485",
+   "retail": 275,
+   "price": 220,
+   "img": "1001485_250",
+   "look": [
+    "natural"
+   ],
+   "tone": [
+    "clara"
+   ],
+   "role": "base",
+   "nuevo": false
+  },
+  {
+   "cat": "Rostro",
+   "name": "CC Cream",
+   "shade": "01 Light",
+   "code": "1001491",
+   "retail": 320,
+   "price": 224,
+   "img": "1001491_250_1",
+   "look": [
+    "natural"
+   ],
+   "tone": [
+    "clara"
+   ],
+   "role": "base",
+   "nuevo": false
+  },
+  {
+   "cat": "Brochas",
+   "name": "Blush and Powder Brush",
+   "shade": "Brocha",
+   "code": "9000935",
+   "retail": 330,
+   "price": 231,
+   "img": "9000935_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Brochas",
+   "name": "Blending Brush",
+   "shade": "Brocha",
+   "code": "9000939",
+   "retail": 255,
+   "price": 153,
+   "img": "9000939_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "nuevo": false
+  },
+  {
+   "cat": "Brochas",
+   "name": "Makeup Blending Sponge",
+   "shade": "Esponja",
+   "code": "9000942",
+   "retail": 215,
+   "price": 150.5,
+   "img": "9000942_250",
+   "look": [
+    "natural",
+    "glam"
+   ],
+   "nuevo": false
+  }
+ ]
+}

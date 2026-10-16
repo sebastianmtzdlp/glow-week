@@ -1,0 +1,987 @@
+{
+ "_nota": "Precios base (precio público Farmasi México 2026). Fuente: catálogo de Sebas. Los descuentos del tablero se calculan contra estos precios.",
+ "productos": [
+  {
+   "nombre": "Matte Liquid Lipstick",
+   "codigos": [
+    "1001409",
+    "1001414",
+    "1001801",
+    "1001923",
+    "1001922"
+   ],
+   "precio": 345
+  },
+  {
+   "nombre": "Creamy Lipstick",
+   "codigos": [
+    "1001387",
+    "1001393"
+   ],
+   "precio": 225
+  },
+  {
+   "nombre": "Tinted Lip Plumper",
+   "codigos": [
+    "1001521",
+    "1001497"
+   ],
+   "precio": 400
+  },
+  {
+   "nombre": "Ultimate Shine Lip Gloss",
+   "codigos": [
+    "1001405",
+    "1001406"
+   ],
+   "precio": 370
+  },
+  {
+   "nombre": "Lip Liner",
+   "codigos": [
+    "1001461",
+    "1001462"
+   ],
+   "precio": 170
+  },
+  {
+   "nombre": "Glowy Peptide Lip Balm",
+   "codigos": [
+    "1002605",
+    "1002603"
+   ],
+   "precio": 340
+  },
+  {
+   "nombre": "Intense Lift Mascara",
+   "codigos": [
+    "1002596"
+   ],
+   "precio": 550
+  },
+  {
+   "nombre": "Double Lash Extended Mascara",
+   "codigos": [
+    "1301518"
+   ],
+   "precio": 410
+  },
+  {
+   "nombre": "Zen Mascara",
+   "codigos": [
+    "1301322"
+   ],
+   "precio": 230
+  },
+  {
+   "nombre": "Infinilash Mascara",
+   "codigos": [
+    "1002705"
+   ],
+   "precio": 520
+  },
+  {
+   "nombre": "Eye Pencil",
+   "codigos": [
+    "1001451",
+    "1001456"
+   ],
+   "precio": 220
+  },
+  {
+   "nombre": "Ink Liner",
+   "codigos": [
+    "1002537"
+   ],
+   "precio": 400
+  },
+  {
+   "nombre": "Oasis Collection - Desert Sands / Rose Dune",
+   "codigos": [
+    "1002483",
+    "1002484"
+   ],
+   "precio": 690
+  },
+  {
+   "nombre": "Mirage Palette",
+   "codigos": [
+    "1002442"
+   ],
+   "precio": 690
+  },
+  {
+   "nombre": "Lost Lagoon Palette",
+   "codigos": [
+    "1002352"
+   ],
+   "precio": 690
+  },
+  {
+   "nombre": "Violet Skies Palette",
+   "codigos": [
+    "1002353"
+   ],
+   "precio": 690
+  },
+  {
+   "nombre": "Velvet Dusk Palette",
+   "codigos": [
+    "1002354"
+   ],
+   "precio": 690
+  },
+  {
+   "nombre": "Precision Brow Pencil",
+   "codigos": [
+    "1002598",
+    "1002599"
+   ],
+   "precio": 237.63
+  },
+  {
+   "nombre": "Brow Setting Wax",
+   "codigos": [
+    "1000930"
+   ],
+   "precio": 485
+  },
+  {
+   "nombre": "Eyebrow & Lash Capixyl Serum",
+   "codigos": [
+    "1301292"
+   ],
+   "precio": 550
+  },
+  {
+   "nombre": "VFX PRO Blur Primer",
+   "codigos": [
+    "1001516"
+   ],
+   "precio": 370
+  },
+  {
+   "nombre": "VFX PRO Illuminating Primer",
+   "codigos": [
+    "1001517"
+   ],
+   "precio": 370
+  },
+  {
+   "nombre": "VFX PRO Liquid Concealer",
+   "codigos": [
+    "1001375"
+   ],
+   "precio": 275
+  },
+  {
+   "nombre": "VFX PRO Camera Ready Foundation",
+   "codigos": [
+    "1002024",
+    "1002025"
+   ],
+   "precio": 560
+  },
+  {
+   "nombre": "CC Cream Color Control",
+   "codigos": [
+    "1001491",
+    "1001492"
+   ],
+   "precio": 320
+  },
+  {
+   "nombre": "BB Cream Beauty Balm",
+   "codigos": [
+    "1001485",
+    "1001486"
+   ],
+   "precio": 275
+  },
+  {
+   "nombre": "BB Powder",
+   "codigos": [
+    "1001346",
+    "1001347"
+   ],
+   "precio": 490
+  },
+  {
+   "nombre": "Contour Stick (Smize / Wink)",
+   "codigos": [
+    "1001710",
+    "1001709"
+   ],
+   "precio": 400
+  },
+  {
+   "nombre": "Blush Stick",
+   "codigos": [
+    "1001705",
+    "1001706"
+   ],
+   "precio": 400
+  },
+  {
+   "nombre": "All In One Palette (Fair to Medium / Medium to Deep)",
+   "codigos": [
+    "1002157",
+    "1002161"
+   ],
+   "precio": 570
+  },
+  {
+   "nombre": "Peach Perfect Palette",
+   "codigos": [
+    "1002156"
+   ],
+   "precio": 570
+  },
+  {
+   "nombre": "Effortless Glow Palette",
+   "codigos": [
+    "1002163"
+   ],
+   "precio": 570
+  },
+  {
+   "nombre": "VFX PRO Time Locker Fixing Spray",
+   "codigos": [
+    "1001519"
+   ],
+   "precio": 215
+  },
+  {
+   "nombre": "Brocha para delinear",
+   "codigos": [
+    "9000940"
+   ],
+   "precio": 185
+  },
+  {
+   "nombre": "Brocha plana para definir",
+   "codigos": [
+    "9000941"
+   ],
+   "precio": 185
+  },
+  {
+   "nombre": "Brocha para difuminar",
+   "codigos": [
+    "9000939"
+   ],
+   "precio": 255
+  },
+  {
+   "nombre": "Brocha para sombras",
+   "codigos": [
+    "9000938"
+   ],
+   "precio": 185
+  },
+  {
+   "nombre": "Brocha diagonal",
+   "codigos": [
+    "9000937"
+   ],
+   "precio": 185
+  },
+  {
+   "nombre": "Brocha para corrector",
+   "codigos": [
+    "9000936"
+   ],
+   "precio": 255
+  },
+  {
+   "nombre": "Brocha para iluminador",
+   "codigos": [
+    "9000933"
+   ],
+   "precio": 330
+  },
+  {
+   "nombre": "Brocha para base de maquillaje",
+   "codigos": [
+    "9000934"
+   ],
+   "precio": 330
+  },
+  {
+   "nombre": "Brocha para polvo y/o rubor",
+   "codigos": [
+    "9000935"
+   ],
+   "precio": 330
+  },
+  {
+   "nombre": "Esponja para maquillaje",
+   "codigos": [
+    "9000942"
+   ],
+   "precio": 215
+  },
+  {
+   "nombre": "Reina Eau de Parfum (45 ml)",
+   "codigos": [
+    "1000874"
+   ],
+   "precio": 600
+  },
+  {
+   "nombre": "Hera Eau de Parfum (65 ml)",
+   "codigos": [
+    "1107491"
+   ],
+   "precio": 650
+  },
+  {
+   "nombre": "Her Passion Eau de Parfum (60 ml)",
+   "codigos": [
+    "1000490"
+   ],
+   "precio": 800
+  },
+  {
+   "nombre": "Baoli Eau de Parfum (90 ml)",
+   "codigos": [
+    "1107522"
+   ],
+   "precio": 715
+  },
+  {
+   "nombre": "His Power Eau de Parfum (100 ml)",
+   "codigos": [
+    "1000489"
+   ],
+   "precio": 800
+  },
+  {
+   "nombre": "Shooter's Man Eau de Parfum (100 ml)",
+   "codigos": [
+    "1000674"
+   ],
+   "precio": 715
+  },
+  {
+   "nombre": "Masculine Eau de Parfum (100 ml)",
+   "codigos": [
+    "1001834"
+   ],
+   "precio": 780
+  },
+  {
+   "nombre": "Masculine Shampoo & Body Wash (100 ml)",
+   "codigos": [
+    "1001832"
+   ],
+   "precio": 215
+  },
+  {
+   "nombre": "Masculine After Shave Balm (100 g)",
+   "codigos": [
+    "1001835"
+   ],
+   "precio": 185
+  },
+  {
+   "nombre": "Masculine Hand Wash (325 ml)",
+   "codigos": [
+    "1001830"
+   ],
+   "precio": 195
+  },
+  {
+   "nombre": "Masculine Massage Oil (225 ml)",
+   "codigos": [
+    "1001874"
+   ],
+   "precio": 370
+  },
+  {
+   "nombre": "Masculine Hair Wax (100 g)",
+   "codigos": [
+    "1002510"
+   ],
+   "precio": 255
+  },
+  {
+   "nombre": "Masculine Roll-On (50 ml)",
+   "codigos": [
+    "1001833"
+   ],
+   "precio": 170
+  },
+  {
+   "nombre": "Whitening Toothpaste (112 g)",
+   "codigos": [
+    "1000390"
+   ],
+   "precio": 285
+  },
+  {
+   "nombre": "Calendula Soap (125 g)",
+   "codigos": [
+    "1000329"
+   ],
+   "precio": 150
+  },
+  {
+   "nombre": "Tea Tree Soap (125 g)",
+   "codigos": [
+    "1000330"
+   ],
+   "precio": 150
+  },
+  {
+   "nombre": "Stay Fresh Deo Roll On (Varios)",
+   "codigos": [
+    "1000790",
+    "1000789"
+   ],
+   "precio": 155
+  },
+  {
+   "nombre": "Dr. C. Tuna Resurface Refining Cleanser (100 ml)",
+   "codigos": [
+    "1000277"
+   ],
+   "precio": 790
+  },
+  {
+   "nombre": "Dr. C. Tuna Resurface Hydrasooth Essence (100 ml)",
+   "codigos": [
+    "1000278"
+   ],
+   "precio": 900
+  },
+  {
+   "nombre": "Dr. C. Tuna Resurface Advanced Eye Cream (15 ml)",
+   "codigos": [
+    "1000282"
+   ],
+   "precio": 790
+  },
+  {
+   "nombre": "Dr. C. Tuna Resurface Essential Day Cream (50 ml)",
+   "codigos": [
+    "1000280"
+   ],
+   "precio": 1449
+  },
+  {
+   "nombre": "Dr. C. Tuna Resurface Retinol Reviving Serum (30 ml)",
+   "codigos": [
+    "1000279"
+   ],
+   "precio": 1564
+  },
+  {
+   "nombre": "Dr. C. Tuna Resurface Reset Night Cream (50 ml)",
+   "codigos": [
+    "1000551"
+   ],
+   "precio": 1449
+  },
+  {
+   "nombre": "Dr. C. Tuna Age Reversist Exfoliating Cleanser (80 ml)",
+   "codigos": [
+    "1000276"
+   ],
+   "precio": 725
+  },
+  {
+   "nombre": "Dr. C. Tuna Age Reversist Beauty Essence Tonic (100 ml)",
+   "codigos": [
+    "1000270"
+   ],
+   "precio": 790
+  },
+  {
+   "nombre": "Dr. C. Tuna Age Reversist Eye Cream (15 ml)",
+   "codigos": [
+    "1000273"
+   ],
+   "precio": 725
+  },
+  {
+   "nombre": "Dr. C. Tuna Age Reversist Serum (30 ml)",
+   "codigos": [
+    "1000272"
+   ],
+   "precio": 1400
+  },
+  {
+   "nombre": "Dr. C. Tuna Age Reversist Rich Moisturizer (30 ml)",
+   "codigos": [
+    "1000271"
+   ],
+   "precio": 900
+  },
+  {
+   "nombre": "Dr. C. Tuna Age Reversist All Night Beauty Mask (50 ml)",
+   "codigos": [
+    "1000269"
+   ],
+   "precio": 1300
+  },
+  {
+   "nombre": "Dr. C. Tuna Age Reversist Instant Perfecting Cream (30 Sachets)",
+   "codigos": [
+    "1000275"
+   ],
+   "precio": 1400
+  },
+  {
+   "nombre": "Dr. C. Tuna Lumi Radiance Gel Cleanser (100 ml)",
+   "codigos": [
+    "1000300"
+   ],
+   "precio": 480
+  },
+  {
+   "nombre": "Dr. C. Tuna Lumi Radiance Brightening Toner (125 ml)",
+   "codigos": [
+    "1000295"
+   ],
+   "precio": 550
+  },
+  {
+   "nombre": "Dr. C. Tuna Lumi Radiance Eye Balm (20 ml)",
+   "codigos": [
+    "1000299"
+   ],
+   "precio": 400
+  },
+  {
+   "nombre": "Dr. C. Tuna Lumi Radiance Brightening Serum (30 ml)",
+   "codigos": [
+    "1000298"
+   ],
+   "precio": 900
+  },
+  {
+   "nombre": "Dr. C. Tuna Lumi Radiance Brightening Cream (50 ml)",
+   "codigos": [
+    "1000297"
+   ],
+   "precio": 850
+  },
+  {
+   "nombre": "Dr. C. Tuna Aqua Restoring Gel Cleanser (100 ml)",
+   "codigos": [
+    "1000265"
+   ],
+   "precio": 450
+  },
+  {
+   "nombre": "Dr. C. Tuna Aqua Boosting Hydra Drops (30 ml)",
+   "codigos": [
+    "1000266"
+   ],
+   "precio": 900
+  },
+  {
+   "nombre": "Dr. C. Tuna Aqua Revitalizing Eye Cream (20 ml)",
+   "codigos": [
+    "1000268"
+   ],
+   "precio": 400
+  },
+  {
+   "nombre": "Dr. C. Tuna Aqua Hydrating Cream (50 ml)",
+   "codigos": [
+    "1000267"
+   ],
+   "precio": 1000
+  },
+  {
+   "nombre": "Dr. C. Tuna Calendula Face Wash (100 ml)",
+   "codigos": [
+    "1000283"
+   ],
+   "precio": 300
+  },
+  {
+   "nombre": "Dr. C. Tuna Calendula Face Toner (125 ml)",
+   "codigos": [
+    "1000284"
+   ],
+   "precio": 300
+  },
+  {
+   "nombre": "Dr. C. Tuna Calendula Oil (30 ml)",
+   "codigos": [
+    "1000287"
+   ],
+   "precio": 725
+  },
+  {
+   "nombre": "Dr. C. Tuna Calendula Face Cream (50 ml)",
+   "codigos": [
+    "1000285"
+   ],
+   "precio": 400
+  },
+  {
+   "nombre": "Dr. C. Tuna Calendula Cream Balsam (80 ml)",
+   "codigos": [
+    "1000286"
+   ],
+   "precio": 515
+  },
+  {
+   "nombre": "Dr. C. Tuna Tea Tree Face Wash (100 ml)",
+   "codigos": [
+    "1000288"
+   ],
+   "precio": 300
+  },
+  {
+   "nombre": "Dr. C. Tuna Tea Tree Face Toner (125 ml)",
+   "codigos": [
+    "1000289"
+   ],
+   "precio": 300
+  },
+  {
+   "nombre": "Dr. C. Tuna Tea Tree Face Cream (50 ml)",
+   "codigos": [
+    "1000290"
+   ],
+   "precio": 400
+  },
+  {
+   "nombre": "Dr. C. Tuna Tea Tree Cream Balsam (80 ml)",
+   "codigos": [
+    "1000291"
+   ],
+   "precio": 515
+  },
+  {
+   "nombre": "Dr. C. Tuna Tea Tree Serum (10 ml)",
+   "codigos": [
+    "1000292"
+   ],
+   "precio": 425
+  },
+  {
+   "nombre": "Dr. C. Tuna Micellar Water (225 ml)",
+   "codigos": [
+    "1002189"
+   ],
+   "precio": 290
+  },
+  {
+   "nombre": "Dr. C. Tuna Absolute Super Elixir (25 ml)",
+   "codigos": [
+    "1000991"
+   ],
+   "precio": 1450
+  },
+  {
+   "nombre": "Dr. C. Tuna Vitamin C Glow Serum (30 ml)",
+   "codigos": [
+    "1002167"
+   ],
+   "precio": 1100
+  },
+  {
+   "nombre": "Dr. C. Tuna Paprika & Chili Balsam (150 ml)",
+   "codigos": [
+    "1000305"
+   ],
+   "precio": 290
+  },
+  {
+   "nombre": "Dr. C. Tuna Pferde Horse Chestnut Balsam (150 ml)",
+   "codigos": [
+    "1000304"
+   ],
+   "precio": 290
+  },
+  {
+   "nombre": "Dr. C. Tuna Reviving Hair Oil (30 ml)",
+   "codigos": [
+    "1000311"
+   ],
+   "precio": 425
+  },
+  {
+   "nombre": "Dr. C. Tuna Reviving Shampoo (225 ml)",
+   "codigos": [
+    "1000309"
+   ],
+   "precio": 600
+  },
+  {
+   "nombre": "Dr. C. Tuna Reviving Hair Mask (200 ml)",
+   "codigos": [
+    "1000310"
+   ],
+   "precio": 480
+  },
+  {
+   "nombre": "Dr. C. Tuna Intensive Repair Shampoo (225 ml)",
+   "codigos": [
+    "1000885"
+   ],
+   "precio": 480
+  },
+  {
+   "nombre": "Dr. C. Tuna Intensive Repair Leave-in-Conditioner (125 ml)",
+   "codigos": [
+    "1000887"
+   ],
+   "precio": 480
+  },
+  {
+   "nombre": "Dr. C. Tuna Intensive Repair Hair Mask (200 ml)",
+   "codigos": [
+    "1000886"
+   ],
+   "precio": 480
+  },
+  {
+   "nombre": "Nutriplus Pre-Workout (200 g)",
+   "codigos": [
+    "1002732"
+   ],
+   "precio": 800
+  },
+  {
+   "nombre": "Nutriplus Creatina (153 g)",
+   "codigos": [
+    "1002724"
+   ],
+   "precio": 550
+  },
+  {
+   "nombre": "Nutriplus Gummies Apple Cider Vinegar (60 gomitas)",
+   "codigos": [
+    "1001900"
+   ],
+   "precio": 625
+  },
+  {
+   "nombre": "Nutriplus Gummies Focuscore (60 gomitas)",
+   "codigos": [
+    "1001902"
+   ],
+   "precio": 625
+  },
+  {
+   "nombre": "Nutriplus Gummies Red & Green (60 gomitas)",
+   "codigos": [
+    "1001901"
+   ],
+   "precio": 625
+  },
+  {
+   "nombre": "Nutriplus Gummies Deligomy Kids (60 gomitas)",
+   "codigos": [
+    "1001974"
+   ],
+   "precio": 625
+  },
+  {
+   "nombre": "Nutriplus Cycle+ Gummies (60 gomitas)",
+   "codigos": [
+    "1002326"
+   ],
+   "precio": 625
+  },
+  {
+   "nombre": "Nutriplus Guarana & Taurine (210 g)",
+   "codigos": [
+    "1001862"
+   ],
+   "precio": 920
+  },
+  {
+   "nombre": "Nutriplus Citrus & Mineral (240 g)",
+   "codigos": [
+    "1001898"
+   ],
+   "precio": 920
+  },
+  {
+   "nombre": "Nutriplus Complete Blend (Cream Caramel / Cookie Crunch)",
+   "codigos": [
+    "1002691",
+    "1002690"
+   ],
+   "precio": 990
+  },
+  {
+   "nombre": "Nutriplus Complete Blend (Chocolate / Vainilla / Fresa)",
+   "codigos": [
+    "1001962",
+    "1001960"
+   ],
+   "precio": 990
+  },
+  {
+   "nombre": "Nutriplus Lily Shaker (400 ml)",
+   "codigos": [
+    "9000689"
+   ],
+   "precio": 365
+  },
+  {
+   "nombre": "Aloe Glow (Mango / Mandarina 450 ml)",
+   "codigos": [
+    "1001319",
+    "1002302"
+   ],
+   "precio": 690
+  },
+  {
+   "nombre": "Nutriplus Collagen Shot (15 botellas x 50 ml)",
+   "codigos": [
+    "1001038"
+   ],
+   "precio": 1250
+  },
+  {
+   "nombre": "Nutriplus Collagen Tablets (30 tabletas)",
+   "codigos": [
+    "1000904"
+   ],
+   "precio": 450
+  },
+  {
+   "nombre": "Nutriplus CA-MG + Collagen II Tablets (30 tabletas)",
+   "codigos": [
+    "1002177"
+   ],
+   "precio": 325
+  },
+  {
+   "nombre": "Nutriplus Electrolyte Drink Mix (14 tabletas)",
+   "codigos": [
+    "1002179"
+   ],
+   "precio": 275
+  },
+  {
+   "nombre": "Nutriplus Sambucus Effervescent Tablets (15 tabletas)",
+   "codigos": [
+    "1001046"
+   ],
+   "precio": 450
+  },
+  {
+   "nombre": "Nutriplus Spirulina (60 tabletas)",
+   "codigos": [
+    "1000997"
+   ],
+   "precio": 690
+  },
+  {
+   "nombre": "Nutriplus Omega-3 (30 cápsulas)",
+   "codigos": [
+    "1000996"
+   ],
+   "precio": 800
+  },
+  {
+   "nombre": "Nutriplus Turmeric (30 cápsulas)",
+   "codigos": [
+    "1001894"
+   ],
+   "precio": 625
+  },
+  {
+   "nombre": "Nutriplus Matcha Tea (100 g)",
+   "codigos": [
+    "1001892"
+   ],
+   "precio": 575
+  },
+  {
+   "nombre": "Nutriplus Delish Café (Hongos y Achicoria 105 g)",
+   "codigos": [
+    "1002736"
+   ],
+   "precio": 495
+  },
+  {
+   "nombre": "Nutriplus Delish Café (Fibra 100 g)",
+   "codigos": [
+    "9000851"
+   ],
+   "precio": 450
+  },
+  {
+   "nombre": "Nutriplus Delish Café (Achicoria 100 g)",
+   "codigos": [
+    "9000850"
+   ],
+   "precio": 450
+  },
+  {
+   "nombre": "Nutriplus Delish Café (Achicoria con Colágeno 100 g)",
+   "codigos": [
+    "9000852"
+   ],
+   "precio": 550
+  },
+  {
+   "nombre": "Royal Cherry Lip Gloss",
+   "codigos": [
+    "1002548"
+   ],
+   "precio": 370
+  },
+  {
+   "nombre": "Latina Lip Liquor",
+   "codigos": [
+    "1001963"
+   ],
+   "precio": 375
+  },
+  {
+   "nombre": "Lip Oil",
+   "codigos": [
+    "1002515"
+   ],
+   "precio": 345
+  },
+  {
+   "nombre": "Royal Cherry Eyeshadow Palette",
+   "codigos": [
+    "1002547"
+   ],
+   "precio": 690
+  },
+  {
+   "nombre": "Full Blast Volume Mascara",
+   "codigos": [
+    "1001504"
+   ],
+   "precio": 565
+  },
+  {
+   "nombre": "Glow Beauty Box",
+   "codigos": [
+    "1000395"
+   ],
+   "precio": 1025
+  },
+  {
+   "nombre": "Paprika Massage Soap",
+   "codigos": [
+    "1002855"
+   ],
+   "precio": 250
+  },
+  {
+   "nombre": "Flaunt It! Body Sculpting Gel",
+   "codigos": [
+    "1000866"
+   ],
+   "precio": 725
+  }
+ ]
+}
