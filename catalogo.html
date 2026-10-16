@@ -207,6 +207,7 @@
   const pageOf = {}; (D.productos || []).forEach((items, i) => (items || []).forEach(([c]) => { if (!(c in pageOf)) pageOf[c] = i + 1; }));
   const mPct = c => (C.membresia && C.membresia.por_producto && C.membresia.por_producto[c]) ?? ((/Dr\.? ?C\.? ?Tuna/i.test(P[c][0]) || (pageOf[c] >= 66 && pageOf[c] <= 113)) ? 50 : 30);
   const mCalc = () => { let m = 0, t = 0; for (const [c,q] of Object.entries(cart)) { t += q*P[c][1]; m += q*Math.round(P[c][1]*(1-mPct(c)/100)*100)/100; } return {t, m, withFee: m + M.costo, save: t - m - M.costo, metaOk: m >= M.meta_monto}; };
+  if (location.search) document.querySelector("a.board").href = "./" + location.search;
   const REFS = C.referidas || [];
   const cleanRef = r => (r||"").replace(/[^\p{L}\p{N} .'-]/gu,"").trim().slice(0,40);
   let refInit = "";

@@ -809,7 +809,11 @@
     pocima: `<svg viewBox="0 0 150 126"><circle cx="78" cy="22" r="7" fill="none" stroke="#8BE04E" stroke-width="2"/><circle cx="100" cy="10" r="4" fill="#8BE04E" opacity=".7"/><circle cx="118" cy="30" r="5" fill="none" stroke="#B78CFF" stroke-width="2"/><circle cx="92" cy="40" r="3" fill="#B78CFF"/><path d="M52 60c0 30 18 52 46 52s46-22 46-52z" fill="#0A140F" stroke="#3E5C47" stroke-width="2"/><ellipse cx="98" cy="60" rx="50" ry="12" fill="#8BE04E"/><ellipse cx="98" cy="58" rx="40" ry="7" fill="#B6F28A"/><circle cx="82" cy="54" r="5" fill="#8BE04E" stroke="#0A140F" stroke-width="1.5"/><circle cx="110" cy="52" r="4" fill="#8BE04E" stroke="#0A140F" stroke-width="1.5"/><path d="M70 110l-6 12M126 110l6 12" stroke="#3E5C47" stroke-width="4" stroke-linecap="round"/></svg>`,
     bruja: `<svg viewBox="0 0 150 120" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M150 0L60 0M150 0L80 50M150 0L120 70M150 0L150 90"/><path d="M128 0q-6 10 -8 20M104 0q4 14 -6 24M84 0q8 12 -2 22" /><path d="M140 16q-12 4 -20 4q-10 6 -22 4" /><path d="M146 36q-14 2 -26 16q-14 0 -26 4" /><path d="M150 58q-14 0 -30 12" /><path d="M108 60v22"/><circle cx="108" cy="88" r="6" fill="currentColor"/><path d="M102 86l-6-3M102 90l-6 2M114 86l6-3M114 90l6 2"/></svg>`
   };
-  const tema = new URLSearchParams(location.search).get("tema") || D.tema || "";
+  // ?tema=noche fuerza un tema; ?tema=normal fuerza el diseño normal; sin parámetro manda promos.json
+  const temaQ = new URLSearchParams(location.search).get("tema");
+  const tema = temaQ === null ? (D.tema || "") : (temaQ === "normal" ? "" : temaQ);
+  if (temaQ === "normal") document.documentElement.classList.add("notrans");
+  if (location.search) document.querySelector(".catlink").href = "catalogo" + location.search;
   if (tema) { document.documentElement.dataset.tema = tema; if (DECO[tema]) $("deco").innerHTML = DECO[tema]; }
   requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.remove("notrans")));
   // Portada desde promos.json
