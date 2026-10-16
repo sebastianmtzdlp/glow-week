@@ -51,6 +51,11 @@
   .pc.lead .nm{font-size:34px}
   .crown{position:absolute!important;left:14px;top:14px;font-size:12px;font-weight:600;background:rgba(255,255,255,.92);color:var(--ink);border-radius:99px;padding:4px 10px}
   .empty{color:var(--muted);padding:18px 0}
+  .join{margin:40px 0 0;background:var(--ink);color:#fff;border-radius:22px;padding:24px 20px}
+  .join h2{display:block;margin:0 0 6px;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-.02em;color:#fff}
+  .join p{margin:0 0 16px;opacity:.85;max-width:46ch}
+  .join .btns{display:flex;gap:8px;flex-wrap:wrap}
+  .join a{background:var(--accent);color:#fff;border-radius:14px;padding:13px 18px;font-weight:700}
   footer{margin-top:44px;padding:26px 0 34px;background:var(--soft);font-size:12.5px;color:var(--muted)}
   footer b{display:block;color:var(--ink);letter-spacing:.3em;text-transform:uppercase;font-size:13px;margin-bottom:8px}
   :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
@@ -71,6 +76,7 @@
   <h2 id="hAll">Todo el equipo, de la A a la Z</h2>
   <div class="grid" id="all"></div>
   <p class="empty" id="none" hidden>No encontré a nadie con ese nombre.</p>
+  <section class="join" id="unete"><h2>¿Quieres unirte al equipo?</h2><p>Si te gusta Farmasi y quieres vender o ganar con tus propios pedidos, escríbele a una de nuestras líderes y te explica cómo empezar.</p><div class="btns" id="joinBtns"></div></section>
 </main>
 <footer><div class="wrap"><b>Farmasi</b>Consultoras independientes de Farmasi México. Tu consultora confirma precios y disponibilidad contigo por WhatsApp.</div></footer>
 <script>
@@ -100,6 +106,7 @@
     $("lead").innerHTML = lead.map(card).join(""); $("all").innerHTML = rest.map(card).join("");
     $("hLead").hidden = !lead.length; $("hAll").hidden = !rest.length; $("none").hidden = !!list.length;
   }
+  $("joinBtns").innerHTML = E.consultoras.filter(c => c.lider).sort(srt).map(c => `<a href="https://wa.me/${c.whatsapp}?text=${encodeURIComponent("Hola "+c.nombre+", vi el sitio del equipo y quiero saber cómo trabajar con ustedes en Farmasi.")}" target="_blank" rel="noopener">Escribir a ${c.nombre}</a>`).join("");
   $("q").addEventListener("input", paint); paint();
 })();
 </script>

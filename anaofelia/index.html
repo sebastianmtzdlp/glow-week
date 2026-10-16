@@ -317,12 +317,14 @@
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
   /* ---- rediseño: identidad de la consultora, datos en una línea, invitación a trabajar juntas ---- */
-  .who-row{display:flex;align-items:center;gap:14px;margin:20px 0 14px}
+  .who-row{display:flex;align-items:center;gap:14px;margin:28px 0 16px}
   .who-av{position:relative;flex:none;width:64px;height:64px;border-radius:50%;overflow:hidden;background:var(--accent);color:var(--on-accent,#fff);display:grid;place-items:center;font-weight:800;font-size:24px;box-shadow:0 0 0 3px var(--bg,#fff),0 0 0 5px var(--accent)}
   .who-av img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
   .who-row .t1{font-size:13px;color:var(--muted)}.who-row .t2{font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1.1}
   .facts{grid-template-columns:1fr 1fr 1.5fr}
   .fact .v{font-size:19px;white-space:nowrap}
+  .top .wrap{gap:14px}.top .brand{letter-spacing:.1em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;flex:1}.top .ig{white-space:nowrap}
+  @media(max-width:440px){.top:has(#ig:not([hidden])) #bName,.top:has(#ig:not([hidden])) .dot{display:none}}
   .join{margin:34px 0 0;border-radius:22px;padding:22px 20px;background:var(--ink);color:var(--on-ink)}
   .join h2{margin:0 0 6px;font-size:26px;line-height:1.05;font-weight:800;letter-spacing:-.02em}
   .join p{margin:0 0 16px;opacity:.85;max-width:44ch}
@@ -332,8 +334,8 @@
 <body>
 
 <div class="top"><div class="wrap">
-  <div class="brand"><span id="bName">Glow Week</span> · <b id="bSeller">Ana Ofelia</b></div>
-  <a class="ig" id="ig" href="#" target="_blank" rel="noopener"></a>
+  <div class="brand"><span id="bName">Glow Week</span><span class="dot"> · </span><b id="bSeller">Ana Ofelia</b></div>
+  <a class="ig" id="ig" href="#" target="_blank" rel="noopener"></a><a class="ig" id="joinTop" href="#join">Únete</a>
 </div></div>
 
 <main>

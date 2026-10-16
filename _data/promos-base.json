@@ -2,8 +2,8 @@
  "_nota": "Datos COMPARTIDOS de todos los tableros: productos, precios, promos, aviso, fechas, meta, regalo, membresía y tema. 'retail' = precio base, 'price' = precio con promo. Lo de cada consultora va en <carpeta>/promos.json.",
  "actualizado": "2026-10-16",
  "venta": {
-  "nombre": "Glow Week",
-  "titulo": "Glow Week",
+  "nombre": "Noche de Brujas",
+  "titulo": "Noche de Brujas",
   "subtitulo": "con {consultora}",
   "fechas": "16 al 25 de octubre",
   "termina": "2026-10-25T23:59:59-06:00",
