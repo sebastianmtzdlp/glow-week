@@ -15,7 +15,8 @@
  "aviso": {
   "texto": "Promos de Miedo: kits con hasta 50% de descuento",
   "desde": null,
-  "hasta": null
+  "hasta": null,
+  "filtro": "Kits"
  },
  "meta": {
   "monto": 3000,

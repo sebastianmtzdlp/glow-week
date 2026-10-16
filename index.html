@@ -197,6 +197,10 @@
   .hnote{margin:10px 16px 0;padding:10px 12px;border-radius:12px;background:var(--soft);font-size:13px;color:var(--ink)}
   .hnote a{color:var(--ink);font-weight:600}
   .empty{padding:20px 16px;color:var(--muted);font-size:14px}
+  button.banner{width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font:inherit;font-weight:600;transition:transform .12s var(--ease)}
+  button.banner[hidden]{display:none}
+  button.banner:active{transform:scale(.98)}
+  button.banner svg{flex:none}
   .banner{background:var(--ink);color:#fff;border-radius:14px;padding:10px 14px;font-weight:600;font-size:15px;margin-bottom:16px}
   .tags{position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
   .tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:#fff;color:var(--ink);border:1px solid var(--line)}
@@ -227,7 +231,7 @@
 
 <main>
   <div class="wrap hero">
-    <div class="banner" id="banner" hidden></div>
+    <button class="banner" id="banner" hidden><span id="bannerTxt"></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     <div class="label" id="vLabel"></div>
     <h1 id="vTitle"></h1>
     <p id="vWelcome"></p>
@@ -616,7 +620,16 @@
   $("maxOff").textContent = "−" + Math.max(...products.map(pct)) + "%";
   $("giftName").textContent = D.meta.regalo;
   if (!$("days").textContent) $("days").textContent = END.toLocaleDateString("es-MX",{day:"numeric",month:"short"}).replace(".","");
-  if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta)) { $("banner").textContent = D.aviso.texto; $("banner").hidden = false; }
+  if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta)) {
+    $("bannerTxt").textContent = D.aviso.texto; $("banner").hidden = false;
+    // Al tocar el aviso: filtra la sección indicada (p. ej. "Kits") o abre un link
+    $("banner").onclick = () => {
+      if (D.aviso.link) { location.href = D.aviso.link; return; }
+      const f = D.aviso.filtro && cats.includes(D.aviso.filtro) ? D.aviso.filtro : "Todo";
+      filter = f; renderChips(); renderCatalog();
+      window.scrollTo({top: $("catalog").offsetTop - 70, behavior: "smooth"});
+    };
+  }
 
   // Contador de flash sales
   function tick(){
