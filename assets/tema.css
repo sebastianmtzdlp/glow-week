@@ -1,0 +1,27 @@
+/* Generado por build.py desde _template/index.html */
+:root{
+    color-scheme: light;
+    --bg:#FAF7F5; --pink:#D6457A; --card:#FFFFFF; --on-ink:#FFFFFF; --ink:#262A4A; --muted:#6C7090; --line:#E6E8F0; --soft:#EEF0F8;
+    --accent:#DB414C; --accent-text:#C8323F; --tint:#FDEEF0; --good:#1B8A5A;
+    --sans:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --ease:cubic-bezier(.2,.8,.2,1);
+  }
+:root{--on-accent:#fff;--disp:var(--sans);--dw:600;--case:none;--track:0}
+[data-tema="noche"]{color-scheme:dark;--bg:#17121F;--card:#221A2E;--ink:#F6EFE6;--on-ink:#17121F;--muted:#B9AFC4;--line:#3A2F4A;--soft:#2C2238;
+    --accent:#FF7A1A;--accent-text:#FF9A4D;--tint:#3A2516;--good:#5FD39A;--pink:#FF8A3D}
+[data-tema="calabaza"]{--bg:#FFF5EA;--card:#FFFFFF;--ink:#2A1E3A;--muted:#75677F;--line:#F1E0CC;--soft:#FCE8D2;
+    --accent:#E8621A;--accent-text:#B9480B;--tint:#FFE7D3;--pink:#E8621A}
+[data-tema="bruja"]{--bg:#FFF1F3;--card:#FFFFFF;--ink:#1C1A22;--muted:#6E6068;--line:#F3D6DC;--soft:#FCE3E8;
+    --accent:#FF5A68;--accent-text:#D2303F;--tint:#FFE0E5;--pink:#FF5A68}
+[data-tema="pocima"]{color-scheme:dark;--bg:#0F1D17;--card:#16281F;--ink:#EAF4E4;--on-ink:#0F1D17;--muted:#A6BBA8;--line:#26402F;--soft:#1D3328;
+    --accent:#8BE04E;--accent-text:#A7EB76;--tint:#1F3A22;--good:#8BE04E;--pink:#B78CFF}
+[data-tema="blancoynegro"]{color-scheme:light;--bg:#FFFFFF;--card:#FFFFFF;--ink:#0A0A0A;--on-ink:#FFFFFF;--muted:#6B6B6B;--line:#E3E3E3;--soft:#F4F4F4;--accent:#0A0A0A;--accent-text:#0A0A0A;--tint:#F4F4F4;--on-accent:#FFFFFF;--pink:#0A0A0A;--good:#0A0A0A;--disp:"Jost",Georgia,serif;--dw:400;--case:uppercase;--track:.08em}
+[data-tema="marfil"]{color-scheme:light;--bg:#F7F1E6;--card:#FCF8F0;--ink:#231D15;--on-ink:#F7F1E6;--muted:#7B705F;--line:#E4D9C4;--soft:#EFE6D5;--accent:#A98443;--accent-text:#8C6A2B;--tint:#F0E6D0;--on-accent:#FFFFFF;--pink:#8C6A2B;--good:#8C6A2B;--disp:"Cormorant Garamond",Georgia,serif;--dw:500;--case:none;--track:0}
+[data-tema="rose"]{color-scheme:light;--bg:#FCF3F1;--card:#FFFFFF;--ink:#2B1219;--on-ink:#FFF6F2;--muted:#85606A;--line:#F0D9D6;--soft:#F8E6E3;--accent:#9B2C4F;--accent-text:#8B2445;--tint:#FAE3E5;--on-accent:#FFFFFF;--pink:#8B2445;--good:#8B2445;--disp:"Playfair Display",Georgia,serif;--dw:500;--case:none;--track:0}
+[data-tema="arquitectura"]{color-scheme:light;--bg:#ECEBE8;--card:#F6F5F2;--ink:#101010;--on-ink:#F6F5F2;--muted:#5E5E5A;--line:#D6D5D0;--soft:#E0DFDA;--accent:#17422F;--accent-text:#17422F;--tint:#DDE5DF;--on-accent:#FFFFFF;--pink:#17422F;--good:#17422F;--disp:"Archivo",Georgia,serif;--dw:600;--case:uppercase;--track:.02em}
+[data-tema="noir"]{color-scheme:dark;--bg:#0B0A09;--card:#151311;--ink:#F2EADB;--on-ink:#0B0A09;--muted:#A59B88;--line:#2A2620;--soft:#1C1915;--accent:#C9A24B;--accent-text:#D9B965;--tint:#2A2314;--on-accent:#0B0A09;--pink:#D9B965;--good:#D9B965;--disp:"Bodoni Moda",Georgia,serif;--dw:500;--case:none;--track:0}
+[data-tema="marino"]{color-scheme:dark;--bg:#0D1830;--card:#14233F;--ink:#EDF0F6;--on-ink:#0D1830;--muted:#9FAAC0;--line:#243656;--soft:#192B4B;--accent:#C3CCDA;--accent-text:#D3DAE6;--tint:#1B2D4D;--on-accent:#0D1830;--pink:#D3DAE6;--good:#D3DAE6;--disp:"Cormorant Garamond",Georgia,serif;--dw:600;--case:none;--track:0}
+[data-tema="heritage"]{color-scheme:light;--bg:#F4EEDF;--card:#FBF7EC;--ink:#12261C;--on-ink:#F4EEDF;--muted:#6A7568;--line:#DED5BD;--soft:#EAE2CC;--accent:#0F4D2F;--accent-text:#0F4D2F;--tint:#E2E6D3;--on-accent:#FFFFFF;--pink:#0F4D2F;--good:#0F4D2F;--disp:"DM Serif Display",Georgia,serif;--dw:400;--case:none;--track:0}
+[data-tema="naranja"]{color-scheme:light;--bg:#FBF5EC;--card:#FFFDF8;--ink:#2B1B12;--on-ink:#FBF5EC;--muted:#80695A;--line:#EDDFCB;--soft:#F4E8D6;--accent:#E4580B;--accent-text:#C94A05;--tint:#FBE3CF;--on-accent:#FFFFFF;--pink:#C94A05;--good:#C94A05;--disp:"Cormorant Garamond",Georgia,serif;--dw:600;--case:none;--track:0}
+[data-tema="arquitectura"]{--bw:2px}

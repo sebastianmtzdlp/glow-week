@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="es" data-base="../" data-page="tienda">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Producto · Farmasi con Danny</title>
+<meta name="description" content="Producto Farmasi con Danny.">
+<meta property="og:title" content="Producto · Farmasi con Danny">
+<meta property="og:description" content="Producto Farmasi con Danny.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/tema.css">
+<link rel="stylesheet" href="../../assets/tienda.css">
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div id="hdr"></div>
+<main id="main"><div class="empty">Cargando…</div></main>
+<div id="ftr"></div>
+<script src="../../assets/tienda.js"></script>
+<script>
+T.ready.then(t => {
+  const { D, products, SALE, me } = t, { money, pct, esc, link, IMG } = T;
+  const code = T.Q.get("c");
+  const p = products.find(x => x.code === code);
+  const main = document.getElementById("main");
+  if (!p) { main.innerHTML = `<div class="wrap"><div class="empty"><p>No encontré ese producto.</p><p style="margin-top:14px"><a class="btn" href="${link("tienda/")}">Ir a la tienda</a></p></div></div>`; return; }
+  document.title = `${p.name} · ${SALE} con ${me}`;
+  const M = Object.assign({ por_categoria: {}, por_producto: {}, desc_default: 30, costo: 499 }, D.membresia || {});
+  const mPct = p.desc_miembro ?? M.por_producto[p.code] ?? M.por_categoria[p.cat] ?? M.desc_default;
+  const mPrice = Math.round(p.price * (1 - mPct / 100) * 100) / 100;
+  const related = products.filter(x => x.cat === p.cat && x.code !== p.code).slice(0, 8);
+  const card = x => `<a class="pc" href="${link("producto/") + (T.qs ? "&" : "?") + "c=" + encodeURIComponent(x.code)}"><div class="pic"><img src="${IMG}${x.img}.webp" alt="${esc(x.name)}" loading="lazy"><span class="off">-${pct(x)}%</span></div><div class="nm">${esc(x.name)}</div><div class="sh">${esc(x.shade || "")}</div><div class="pr"><b>${money(x.price)}</b><s>${money(x.retail)}</s></div></a>`;
+  let q = 1;
+  main.innerHTML = `<div class="wrap">
+    <div class="crumbs"><a href="${link("")}">Inicio</a> / <a href="${link("tienda/")}">Tienda</a> / <a href="${link("tienda/", "#cat=" + encodeURIComponent(p.cat))}">${esc(p.cat)}</a></div>
+    <div class="pd">
+      <div class="big"><img src="${IMG}${p.img}.webp" alt="${esc(p.name + " " + (p.shade || ""))}" onerror="this.style.visibility='hidden'"></div>
+      <div>
+        <div class="eyebrow">${esc(p.cat)}${p.nuevo ? " · Nuevo" : ""}</div>
+        <h1>${esc(p.name)}</h1><div class="sh">${esc(p.shade || "")}</div>
+        <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="off">-${pct(p)}%</span></div>
+        <div class="buy"><div class="qty"><button type="button" id="mn" aria-label="Quitar uno">−</button><output class="num" id="qv">1</output><button type="button" id="pl" aria-label="Agregar otro">+</button></div><button class="btn" id="add" type="button">Agregar al pedido</button></div>
+        <div class="added" id="added" hidden>Agregado. <a href="${link("tienda/", "#pedido")}" style="text-decoration:underline">Ver mi pedido</a> o <a href="${link("tienda/")}" style="text-decoration:underline">seguir comprando</a></div>
+        ${p.incluye ? `<div class="box"><h3>Qué incluye</h3><ul>${p.incluye.map(i => `<li>${esc(i)}</li>`).join("")}</ul></div>` : ""}
+        <div class="box socia"><h3>Precio de socia</h3><p>Como socia lo pagas en <b>${money(mPrice)}</b> (${mPct}% menos). <a href="${link("conoce/", "#socia")}">Cómo funciona</a></p></div>
+        <div class="box"><h3>¿Dudas?</h3><p style="color:var(--muted);font-size:14.5px">Pregúntame por tonos o existencias. <a href="${t.wa(`Hola ${me}, tengo una duda sobre ${p.name} (${p.code}).`)}" target="_blank" rel="noopener" style="color:var(--accent-text);font-weight:600">Escríbeme por WhatsApp</a></p></div>
+      </div>
+    </div>
+    ${related.length ? `<section class="sec related"><div class="sec-h"><h2>También te puede gustar</h2></div><div class="rail">${related.map(card).join("")}</div></section>` : ""}
+  </div>`;
+  const qv = document.getElementById("qv");
+  document.getElementById("mn").onclick = () => { q = Math.max(1, q - 1); qv.textContent = q; };
+  document.getElementById("pl").onclick = () => { q = Math.min(20, q + 1); qv.textContent = q; };
+  document.getElementById("add").onclick = () => {
+    const c = T.getCart(); c[p.code] = Math.min(20, (+c[p.code] || 0) + q); T.setCart(c); T.paintBag();
+    document.getElementById("added").hidden = false; T.gc("agregar/" + p.code, "Agregar " + p.name);
+  };
+  T.gc("vista/producto/" + p.code, p.name);
+});
+</script>
+</body></html>

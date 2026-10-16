@@ -541,7 +541,7 @@
 
 <div class="top"><div class="wrap">
   <div class="brand"><span id="bName">Glow Week</span><span class="dot"> · </span><b id="bSeller">{{NOMBRE}}</b></div>
-  <a class="ig" id="ig" href="#" target="_blank" rel="noopener"></a><a class="ig" id="joinTop" href="#join">Únete</a>
+  <a class="ig" id="ig" href="#" target="_blank" rel="noopener"></a><a class="ig" href="../">Inicio</a><a class="ig" id="joinTop" href="#join">Únete</a>
 </div></div>
 
 <main>
@@ -759,6 +759,7 @@
     "Mejores descuentos": p => pct(p) >= 40,
   };
   const cats = ["Todo", ...Object.keys(SPECIAL).filter(k => products.some(SPECIAL[k])), ...realCats];
+  try { const h = decodeURIComponent((location.hash.match(/cat=([^&]*)/)||[])[1]||""); if (h && cats.includes(h)) filter = h; } catch(_){}
 
   function renderChips(){
     $("chips").innerHTML = cats.map(c=>{
@@ -1144,6 +1145,7 @@
   try{ const o=JSON.parse(localStorage.getItem(CK)||"{}"); products.forEach((p,i)=>{ if(o[p.code]>0) cart[i]=Math.min(20,+o[p.code]); }); cartAge = Date.now() - (+localStorage.getItem(CK+"_t")||Date.now()); }catch(_){}
   try{ const L = new URLSearchParams(location.search).get("lista"); if (L) { const m = {}; L.split("~").forEach(x=>{ const [c,q]=x.split("."); if(c && +q>0) m[c]=Math.min(20,+q); }); const idx = {}; products.forEach((p,i)=>idx[p.code]=i); let any=false; Object.keys(m).forEach(c=>{ if(c in idx){ if(!any){ Object.keys(cart).forEach(k=>delete cart[k]); any=true; } cart[idx[c]]=m[c]; } }); fromList = any; } }catch(_){}
   $("sort").addEventListener("change", e=>{ sortM=e.target.value; renderCatalog(); });
+  if (location.hash === "#pedido") setTimeout(()=>openSheet(), 300);
   $("wafab").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola "+SELLER+", tengo una duda sobre tu tablero.")}`;
   renderChips(); renderCatalog(); syncForm(); update(); tick();
   (function(){ const {n,t} = totals(); if (!n) return;

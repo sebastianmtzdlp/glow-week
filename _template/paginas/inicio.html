@@ -1,0 +1,55 @@
+<main id="main"><div class="empty">Cargando…</div></main>
+<div id="ftr"></div>
+<script src="{{A}}tienda.js"></script>
+<script>
+T.ready.then(t => {
+  const { D, products, MAS, SALE, me, maxOff, seasonal, boutique } = t, { money, pct, esc, link, IMG } = T;
+  const img = (p, cls) => `<img src="${IMG}${p.img}.webp" alt="${esc(p.name)}" loading="lazy" onerror="this.style.visibility='hidden'">`;
+  const byOff = [...products].sort((a, b) => pct(b) - pct(a));
+  const kits = products.filter(p => p.cat === "Kits");
+  const hero = [...kits].sort((a, b) => b.retail - a.retail).slice(0, 1).concat(byOff.filter(p => p.cat !== "Kits").slice(0, 2));
+  const cats = [...new Set(products.map(p => p.cat))];
+  const best = cat => products.filter(p => p.cat === cat && (cat === "Kits" || !/box/i.test(p.name))).sort((a, b) => b.retail - a.retail)[0];
+  const card = p => `<a class="pc" href="${link("producto/") + (T.qs ? "&" : "?") + "c=" + encodeURIComponent(p.code)}"><div class="pic">${img(p)}<span class="off">-${pct(p)}%</span></div><div class="nm">${esc(p.name)}</div><div class="sh">${esc(p.shade || "")}</div><div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s></div></a>`;
+  const masList = products.filter(p => MAS.has(p.code));
+  const pop = masList.length >= 3 ? masList : byOff.slice(0, 8);
+  const popTitle = masList.length >= 3 ? "Los más pedidos" : "Los mejores descuentos";
+  const title = seasonal ? esc(D.venta.titulo) : `Belleza Farmasi,<br><em>con ${esc(me)}</em>`;
+  const lead = esc(D.venta.bienvenida || "Elige tus favoritos y mándame tu pedido por WhatsApp.");
+  const ini = me.trim()[0] || "";
+  const wa = t.wa(`Hola ${me}, vi tu tienda y quiero información.`);
+  const gift = D.meta && D.meta.regalo ? `<div class="gift"><div class="eyebrow" style="color:var(--on-ink);opacity:.7">Regalo en tu pedido</div><h2>Compra desde ${money(D.meta.monto)} y llévate ${esc(D.meta.regalo)}</h2><p>Además el envío es gratis al llegar a esa meta. Lo ves avanzar mientras eliges.</p><a class="btn" href="${link("tienda/")}">Armar mi pedido</a></div>` : "";
+  document.getElementById("main").innerHTML = `
+  <section class="hero"><div class="wrap hero-in">
+    <div><div class="eyebrow">${seasonal ? "Venta especial" : boutique ? "Colección" : "Promociones"} · ${esc(D.venta.fechas || "")}</div>
+      <h1>${title}</h1>
+      <p class="lead">${lead}</p>
+      <div class="cta"><a class="btn" href="${link("tienda/")}">Comprar ahora</a><a class="btn ghost" href="${link("catalogo/")}">Ver catálogo</a></div>
+      <div class="stats"><div><b class="num">${maxOff}%</b><span>Hasta de descuento</span></div><div><b class="num">${products.length}</b><span>Productos</span></div><div><b class="num">${t.days}</b><span>${t.days === 1 ? "Día" : "Días"} restantes</span></div></div></div>
+    <div class="collage" aria-hidden="true">${hero.map((p, i) => `<div class="ph ${"abc"[i]}">${img(p)}</div>`).join("")}<div class="badge"><span>hasta</span><b class="num">-${maxOff}%</b></div></div>
+  </div></section>
+
+  <div class="wrap">
+  <section class="sec"><div class="sec-h"><h2>Compra por categoría</h2><a href="${link("tienda/")}">Ver todo</a></div>
+    <div class="cats">${cats.map(c => { const p = best(c); return `<a class="cat" href="${link("tienda/", "#cat=" + encodeURIComponent(c))}">${img(p)}<div class="lb"><b>${esc(c)}</b><span>${products.filter(x => x.cat === c).length} productos</span></div></a>`; }).join("")}</div></section>
+
+  <section class="sec"><div class="sec-h"><h2>${popTitle}</h2><a href="${link("tienda/")}">Ver tienda</a></div><div class="rail">${pop.slice(0, 10).map(card).join("")}</div></section>
+
+  ${kits.length ? `<section class="sec"><div class="sec-h"><h2>Kits de temporada</h2><a href="${link("tienda/", "#cat=Kits")}">Ver kits</a></div><div class="rail">${kits.map(card).join("")}</div></section>` : ""}
+
+  <div class="vals" style="margin-inline:-20px">
+    <div><svg class="i" viewBox="0 0 24 24"><path d="M21 12a8 8 0 0 1-11.7 7L3 21l2-6.2A8 8 0 1 1 21 12z"/></svg><b>Pides por WhatsApp</b><span>Sin cuentas ni tarjetas aquí</span></div>
+    <div><svg class="i" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg><b>Hasta ${maxOff}% menos</b><span>Precios de la venta vigente</span></div>
+    <div><svg class="i" viewBox="0 0 24 24"><path d="M12 3l2.6 5.600 6 .8-4.400 4.200 1.100 6L12 16.700 6.700 19.600l1.100-6L3.400 9.400l6-.8z"/></svg><b>Precio de socia</b><span>Compra aún más barato</span></div>
+    <div><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 21c1-4 4-6 8-6s7 2 8 6"/></svg><b>Te atiende ${esc(me)}</b><span>Te confirmo existencias</span></div>
+  </div>
+  ${gift}
+
+  <div class="about"><div class="av">${esc(ini)}</div><div><div class="eyebrow">Tu consultora</div><h2>Hola, soy ${esc(me)}</h2>
+    <p>Soy consultora independiente Farmasi del Team Nancy y Selene. Elige lo que te guste, mándame tu pedido y yo me encargo del resto: te confirmo existencias, forma de pago y entrega.</p>
+    <div class="row"><a class="btn wa" href="${wa}" target="_blank" rel="noopener">Escríbeme</a><a class="btn ghost" href="${link("conoce/")}">Conóceme</a>${t.ig ? `<a class="btn ghost" href="https://instagram.com/${esc(t.ig)}" target="_blank" rel="noopener">@${esc(t.ig)}</a>` : ""}</div></div></div>
+  </div>`;
+  T.gc("vista/inicio", "Portada tienda");
+});
+</script>
+</body></html>
