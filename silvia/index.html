@@ -152,6 +152,9 @@
   .socia label.chk input{width:20px;height:20px;accent-color:var(--accent)}
   .socia .fine{font-size:11px;color:var(--muted);margin:8px 0 0}
   .sociacard{margin-top:12px;max-width:560px;border:1.5px solid var(--line);border-radius:14px;background:var(--card);padding:0 14px}
+  .sociacard{transition:transform .12s var(--ease),background .15s var(--ease)}
+  .sociacard:has(summary:active){transform:scale(.97)}
+  @media(hover:hover){.sociacard:hover{background:var(--soft)}}
   .sociacard summary{list-style:none;display:flex;gap:12px;align-items:center;padding:12px 0;cursor:pointer}
   .sociacard summary::-webkit-details-marker{display:none}
   .sociacard summary svg{flex:none;color:var(--accent-text)}
@@ -200,6 +203,21 @@
   .err{font-size:13px;color:#B42318;text-align:center;margin-top:8px;display:none}
   .sheet .goal{padding:12px 16px 0;margin:0}
   .notrans *{transition:none!important}
+  .open #sheetRoot .sheet-bg,.hopen #helpRoot .sheet-bg,.popen #prodRoot .sheet-bg{opacity:1;pointer-events:auto}
+  .popen #prodRoot .sheet{transform:none}
+  .pd-pic{background:#fff;border-radius:14px;margin:4px 22px 0;aspect-ratio:1/1;max-height:42vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+  .pd-pic img{width:100%;height:100%;object-fit:contain;padding:10px}
+  .pd-body{padding:14px 22px 8px;overflow:auto}
+  .pd-body .eyebrow{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);font-weight:600}
+  .pd-body h4{font-size:22px;line-height:1.15;margin:4px 0 2px}
+  .pd-body .sh{color:var(--muted);font-size:14px}
+  .pd-body .pr{display:flex;gap:10px;align-items:baseline;margin:10px 0 4px;flex-wrap:wrap}
+  .pd-body .pr b{font-size:26px;font-family:var(--mono)}
+  .pd-body .pr s{color:var(--muted);font-family:var(--mono)}
+  .pd-body .pr .pill{background:var(--accent);color:var(--on-accent,#fff);font-weight:700;font-size:12px;padding:3px 9px;border-radius:999px}
+  .pd-body ul{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--muted);line-height:1.5}
+  .pd-body .note{margin-top:10px;font-size:13.5px;color:var(--muted);background:var(--tint);border-radius:12px;padding:10px 12px}
+  .card .pic,.card .name,.gift-item{cursor:pointer}
   .helpcta{margin-top:12px;max-width:560px;width:100%;display:flex;align-items:center;gap:12px;border:1.5px solid var(--ink);border-radius:14px;padding:12px 14px;text-align:left;transition:transform .12s var(--ease),background .15s var(--ease)}
   .helpcta:active{transform:scale(.97)}
   @media(hover:hover){.helpcta:hover{background:var(--soft)}}
@@ -523,6 +541,17 @@
   </div>
 </div>
 
+<div id="prodRoot">
+  <div class="sheet-bg" id="prodBg"></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="prodName">
+    <header><h3 id="prodHead">Producto</h3>
+      <button class="x" id="closeProd" aria-label="Cerrar"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </header>
+    <div class="scroll" id="prodBody"></div>
+    <div class="actions" id="prodAct"></div>
+  </div>
+</div>
+
 <div id="helpRoot">
   <div class="sheet-bg" id="helpBg"></div>
   <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
@@ -818,7 +847,7 @@
   else if (left <= 0) $("days").textContent = "terminó";
 
   $("goalTxt").textContent = money(GOAL).replace(".00","");
-  $("giftItems").innerHTML = GIFT_ITEMS.map(g=>`<div class="gift-item"><img src="${IMG}${g.img}.webp" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>${g.name[0]}</div>'">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
+  $("giftItems").innerHTML = GIFT_ITEMS.map((g,gi)=>`<div class="gift-item" data-gift="${gi}" role="button" tabindex="0"><img src="${IMG}${g.img}.webp" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>${g.name[0]}</div>'">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
   $("giftVal").textContent = money(GIFT_ITEMS.reduce((a,g)=>a+g.retail,0));
   // ---------- Asistente "Ayúdame a elegir" ----------
   const HQ = [
@@ -922,8 +951,40 @@
       hrecs.filter(r=>hpick.has(r.i)).forEach(r=>{ cart[r.i]=(cart[r.i]||0)+r.q; });
       renderCatalog(); update(); closeHelp(); openSheet(); return; }
   });
+  // Ficha de producto: clic en foto o nombre (y en los productos de regalo)
+  function openProd(html, act){ $("prodBody").innerHTML = html; $("prodAct").innerHTML = act; document.body.classList.add("popen"); }
+  function closeProd(){ document.body.classList.remove("popen"); }
+  function showProduct(i){
+    const p = products[i], d = pct(p), q = cart[i]||0;
+    gc("ver/"+p.code, p.name);
+    $("prodHead").textContent = p.cat;
+    openProd(`<div class="pd-pic"><img src="${IMG}${p.img}.webp" alt="${p.name}" onerror="this.style.visibility='hidden'"></div>
+      <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
+      <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="pill">-${d}%</span></div>
+      ${p.incluye ? `<ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}</div>`,
+      q ? `<button class="send" data-pclose>Listo, ya está en tu pedido (${q})</button>` : `<button class="send" data-padd="${i}">Agregar al pedido</button>`);
+  }
+  function showGift(gi){
+    const g = GIFT_ITEMS[gi]; if(!g) return;
+    gc("ver/regalo", g.name);
+    $("prodHead").textContent = "Regalo del mes";
+    openProd(`<div class="pd-pic"><img src="${IMG}${g.img}.webp" alt="${g.name}" onerror="this.style.visibility='hidden'"></div>
+      <div class="pd-body"><div class="eyebrow">Regalo</div><h4 id="prodName">${g.name}</h4>
+      <div class="pr"><b>Gratis</b><s>${money(g.retail)}</s></div>
+      <div class="note">Te lo llevas sin pagar al llegar a ${money(GOAL)} en tu pedido (${GIFT}).</div></div>`,
+      `<button class="send" data-pclose>Entendido</button>`);
+  }
+  document.addEventListener("click", e=>{
+    const pc = e.target.closest(".card .pic, .card .name");
+    if (pc){ const c = pc.closest(".card"); if (c) { showProduct(+c.dataset.i); return; } }
+    const gi = e.target.closest("[data-gift]"); if (gi){ showGift(+gi.dataset.gift); return; }
+    const pa = e.target.closest("[data-padd]");
+    if (pa){ const i=+pa.dataset.padd; cart[i]=1; gc("agregar/"+products[i].code, products[i].name); refreshCard(i); update(); showProduct(i); return; }
+    if (e.target.closest("[data-pclose]")) closeProd();
+  });
+  $("closeProd").onclick = $("prodBg").onclick = closeProd;
   $("closeHelp").onclick = $("helpBg").onclick = closeHelp;
-  document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeHelp(); });
+  document.addEventListener("keydown", e=>{ if(e.key==="Escape"){ closeHelp(); closeProd(); } });
 
 
   // Adornos por tema (solo decoración, en línea con el color del tema)
