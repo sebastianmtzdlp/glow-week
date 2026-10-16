@@ -391,6 +391,41 @@
   .join h2{margin:0 0 6px;font-size:26px;line-height:1.05;font-weight:800;letter-spacing:-.02em}
   .join p{margin:0 0 16px;opacity:.85;max-width:44ch}
   .join a{display:inline-flex;background:var(--accent);color:#fff;border-radius:14px;padding:13px 18px;font-weight:700;text-decoration:none}
+  /* ===== Boutique: temas de lujo (inspirados en casas de moda y belleza, sin logos ni nombres) ===== */
+  [data-tema="blancoynegro"]{color-scheme:light;--bg:#FFFFFF;--card:#FFFFFF;--ink:#0A0A0A;--on-ink:#FFFFFF;--muted:#6B6B6B;--line:#E3E3E3;--soft:#F4F4F4;--accent:#0A0A0A;--accent-text:#0A0A0A;--tint:#F4F4F4;--on-accent:#FFFFFF;--pink:#0A0A0A;--good:#0A0A0A;--disp:"Jost",Georgia,serif;--dw:400;--case:uppercase;--track:.08em}
+  [data-tema="marfil"]{color-scheme:light;--bg:#F7F1E6;--card:#FCF8F0;--ink:#231D15;--on-ink:#F7F1E6;--muted:#7B705F;--line:#E4D9C4;--soft:#EFE6D5;--accent:#A98443;--accent-text:#8C6A2B;--tint:#F0E6D0;--on-accent:#FFFFFF;--pink:#8C6A2B;--good:#8C6A2B;--disp:"Cormorant Garamond",Georgia,serif;--dw:500;--case:none;--track:0}
+  [data-tema="rose"]{color-scheme:light;--bg:#FCF3F1;--card:#FFFFFF;--ink:#2B1219;--on-ink:#FFF6F2;--muted:#85606A;--line:#F0D9D6;--soft:#F8E6E3;--accent:#9B2C4F;--accent-text:#8B2445;--tint:#FAE3E5;--on-accent:#FFFFFF;--pink:#8B2445;--good:#8B2445;--disp:"Playfair Display",Georgia,serif;--dw:500;--case:none;--track:0}
+  [data-tema="arquitectura"]{color-scheme:light;--bg:#ECEBE8;--card:#F6F5F2;--ink:#101010;--on-ink:#F6F5F2;--muted:#5E5E5A;--line:#D6D5D0;--soft:#E0DFDA;--accent:#17422F;--accent-text:#17422F;--tint:#DDE5DF;--on-accent:#FFFFFF;--pink:#17422F;--good:#17422F;--disp:"Archivo",Georgia,serif;--dw:600;--case:uppercase;--track:.02em}
+  [data-tema="noir"]{color-scheme:dark;--bg:#0B0A09;--card:#151311;--ink:#F2EADB;--on-ink:#0B0A09;--muted:#A59B88;--line:#2A2620;--soft:#1C1915;--accent:#C9A24B;--accent-text:#D9B965;--tint:#2A2314;--on-accent:#0B0A09;--pink:#D9B965;--good:#D9B965;--disp:"Bodoni Moda",Georgia,serif;--dw:500;--case:none;--track:0}
+  [data-tema="marino"]{color-scheme:dark;--bg:#0D1830;--card:#14233F;--ink:#EDF0F6;--on-ink:#0D1830;--muted:#9FAAC0;--line:#243656;--soft:#192B4B;--accent:#C3CCDA;--accent-text:#D3DAE6;--tint:#1B2D4D;--on-accent:#0D1830;--pink:#D3DAE6;--good:#D3DAE6;--disp:"Cormorant Garamond",Georgia,serif;--dw:600;--case:none;--track:0}
+  [data-tema="heritage"]{color-scheme:light;--bg:#F4EEDF;--card:#FBF7EC;--ink:#12261C;--on-ink:#F4EEDF;--muted:#6A7568;--line:#DED5BD;--soft:#EAE2CC;--accent:#0F4D2F;--accent-text:#0F4D2F;--tint:#E2E6D3;--on-accent:#FFFFFF;--pink:#0F4D2F;--good:#0F4D2F;--disp:"DM Serif Display",Georgia,serif;--dw:400;--case:none;--track:0}
+  [data-tema="naranja"]{color-scheme:light;--bg:#FBF5EC;--card:#FFFDF8;--ink:#2B1B12;--on-ink:#FBF5EC;--muted:#80695A;--line:#EDDFCB;--soft:#F4E8D6;--accent:#E4580B;--accent-text:#C94A05;--tint:#FBE3CF;--on-accent:#FFFFFF;--pink:#C94A05;--good:#C94A05;--disp:"Cormorant Garamond",Georgia,serif;--dw:600;--case:none;--track:0}
+  [data-boutique] body{background:var(--bg)}
+  [data-boutique] .card,[data-boutique] .gift,[data-boutique] .cd,[data-boutique] .tile,[data-boutique] .sheet{border-radius:2px}
+  [data-boutique] .card{box-shadow:0 0 0 1px var(--line)}
+  [data-boutique] .pic{background:#fff;border-radius:0}
+  [data-boutique] .pic img{mix-blend-mode:normal}
+  [data-boutique] .add,[data-boutique] .send,[data-boutique] .chip,[data-boutique] .go,[data-boutique] .ghost,[data-boutique] .share,[data-boutique] .banner{border-radius:0}
+  [data-boutique] .add{height:44px;letter-spacing:.06em;text-transform:uppercase;font-size:12.5px;font-weight:600}
+  [data-boutique] .send,[data-boutique] .off,[data-boutique] .tag.flash,[data-boutique] .resume .go{color:var(--on-accent)}
+  [data-boutique] .off{border-radius:0;font-family:var(--sans);font-weight:500;letter-spacing:.04em}
+  [data-boutique] .tag{border-radius:0}[data-boutique] .tag.lim{background:var(--ink);color:var(--on-ink)}
+  [data-boutique] .chip{background:transparent;box-shadow:inset 0 0 0 1px var(--line);font-size:13px;letter-spacing:.04em}
+  [data-boutique] .chip[aria-pressed="true"]{background:var(--ink);color:var(--on-ink);box-shadow:none}
+  [data-boutique] h1,[data-boutique] h2,[data-boutique] h3,[data-boutique] .who-row .t2,[data-boutique] .name,[data-boutique] .cd-n b,[data-boutique] .price .now{font-family:var(--disp);font-weight:var(--dw);letter-spacing:var(--track);text-transform:var(--case)}
+  [data-boutique] .hero h1{font-size:clamp(34px,9vw,60px);line-height:1.04;letter-spacing:var(--track)}
+  [data-boutique] .hero h1 .who{font-style:italic;text-transform:none;color:var(--accent-text)}
+  [data-boutique] .label,[data-boutique] .t1{letter-spacing:.18em;font-size:11px}
+  [data-boutique] .brand{letter-spacing:.32em}
+  [data-boutique] .name{font-size:17px;text-transform:none}
+  [data-boutique] .price .now{font-size:19px}
+  [data-boutique] .price .now,[data-boutique] .cd-n b,[data-boutique] .name{font-variant-numeric:lining-nums tabular-nums}
+  [data-boutique] .banner{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink);font-weight:500;letter-spacing:.04em}
+  [data-boutique] .who-av{border-radius:50%}
+  [data-boutique] .deco{display:none}
+  [data-boutique] .top{background:var(--bg);border-bottom:1px solid var(--line)}
+  [data-boutique] .filters{background:color-mix(in srgb,var(--bg) 94%,transparent)}
+
 </style>
 </head>
 <body>
@@ -576,8 +611,11 @@
   // Tema: con tema de temporada se usa el nombre de la venta (p. ej. Noche de Brujas); sin tema (colores Farmasi) siempre dice Farmasi
   const temaQ = new URLSearchParams(location.search).get("tema");
   const tema = temaQ === null ? (D.tema || "") : (temaQ === "normal" ? "" : temaQ);
-  const SALE = tema ? D.venta.nombre : "Farmasi";
-  const TITULO = tema ? D.venta.titulo : "Farmasi";
+  const BOUT = ["blancoynegro","marfil","rose","arquitectura","noir","marino","heritage","naranja"];
+  const boutique = BOUT.includes(tema), seasonal = !!tema && !boutique;
+  if (boutique) { document.documentElement.setAttribute("data-boutique", ""); const l = document.createElement("link"); l.rel = "stylesheet"; l.href = "https://fonts.googleapis.com/css2?family=Archivo:wght@500;600&family=Bodoni+Moda:wght@500&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=DM+Serif+Display&family=Jost:wght@400;500&family=Playfair+Display:ital,wght@0,500;1,500&display=swap"; document.head.appendChild(l); }
+  const SALE = seasonal ? D.venta.nombre : "Farmasi";
+  const TITULO = seasonal ? D.venta.titulo : "Farmasi";
   const IMG = "https://content.mx.farmasi.com/Product/";
   const END = new Date(D.venta.termina);
   const GOAL = D.meta.monto;
@@ -807,15 +845,15 @@
       const idx = Math.max(0, Math.min(total-1, Math.floor((now - start)/864e5)));
       $("cdDots").innerHTML = Array.from({length:total}, (_,i) => `<i class="${ms<=0 || i<idx ? "on" : i===idx ? "now" : ""}"></i>`).join("");
       let n, u, l;
-      if (ms <= 0) { n = "0"; u = "días"; l = tema ? `${SALE} ya terminó. Escríbeme y vemos qué sigue.` : "Las promociones ya terminaron. Escríbeme y vemos qué sigue."; }
-      else if (ms < 864e5) { const h = Math.max(1, Math.ceil(ms/36e5)); n = h; u = h === 1 ? "hora" : "horas"; l = tema ? `Último día de ${SALE}` : "Último día de las promociones"; }
-      else { n = Math.ceil(ms/864e5); u = n === 1 ? "día" : "días"; l = tema ? `para que termine ${SALE}` : "para que terminen las promociones"; }
+      if (ms <= 0) { n = "0"; u = "días"; l = seasonal ? `${SALE} ya terminó. Escríbeme y vemos qué sigue.` : "Las promociones ya terminaron. Escríbeme y vemos qué sigue."; }
+      else if (ms < 864e5) { const h = Math.max(1, Math.ceil(ms/36e5)); n = h; u = h === 1 ? "hora" : "horas"; l = seasonal ? `Último día de ${SALE}` : "Último día de las promociones"; }
+      else { n = Math.ceil(ms/864e5); u = n === 1 ? "día" : "días"; l = seasonal ? `para que termine ${SALE}` : "para que terminen las promociones"; }
       const hot = ms > 0 && ms <= 1728e5; $("cd").classList.toggle("hot", hot);
       $("cdN").textContent = n; $("cdU").textContent = u; $("cdL").innerHTML = (hot ? "<small>Últimos días</small>" : "") + l;
     }
     tick(); setInterval(tick, 60000);
     $("shareBtn").addEventListener("click", async () => {
-      const url = location.origin + location.pathname, text = `Mira mi tablero ${tema ? "de " + SALE + " " : ""}con Farmasi: elige tus productos y me llega tu pedido por WhatsApp.`;
+      const url = location.origin + location.pathname, text = `Mira mi tablero ${seasonal ? "de " + SALE + " " : ""}con Farmasi: elige tus productos y me llega tu pedido por WhatsApp.`;
       try { if (navigator.share) { await navigator.share({title: `${SALE} con ${SELLER}`, text, url}); return; } } catch(_) { return; }
       try { await navigator.clipboard.writeText(`${text} ${url}`); $("shareBtn").lastChild.textContent = "Link copiado"; setTimeout(()=>{ $("shareBtn").lastChild.textContent = "Compartir"; }, 2000); } catch(_) { }
     });
@@ -953,7 +991,7 @@
   $("bName").textContent = SALE; $("bSeller").textContent = SELLER;
   if (D.instagram) { $("ig").textContent = "@" + D.instagram; $("ig").href = "https://instagram.com/" + D.instagram; } else $("ig").hidden = true;
   if (D.instagram) $("soc").innerHTML = `<a href="https://instagram.com/${D.instagram}" target="_blank" rel="noopener">@${D.instagram}</a>`;
-  $("vLabel").textContent = (tema ? "Venta especial" : "Promociones") + " · " + D.venta.fechas;
+  $("vLabel").textContent = (seasonal ? "Venta especial" : boutique ? "Colección" : "Promociones") + " · " + D.venta.fechas;
   $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who"; who.textContent = D.venta.subtitulo; $("vTitle").append(TITULO, document.createElement("br"), who); }
   $("vWelcome").textContent = D.venta.bienvenida;
   $("nProds").textContent = products.length;
@@ -961,7 +999,7 @@
   $("giftName").textContent = D.meta.regalo;
   if (!$("days").textContent) $("days").textContent = END.toLocaleDateString("es-MX",{day:"numeric",month:"short"}).replace(".","");
   if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta)) {
-    $("bannerTxt").textContent = D.aviso.texto; $("banner").hidden = false;
+    $("bannerTxt").textContent = boutique ? "Kits de temporada con hasta 50% de descuento" : D.aviso.texto; $("banner").hidden = false;
     // Al tocar el aviso: filtra la sección indicada (p. ej. "Kits") o abre un link
     $("banner").onclick = () => {
       if (D.aviso.link) { location.href = D.aviso.link; return; }
