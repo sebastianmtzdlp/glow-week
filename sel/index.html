@@ -469,6 +469,12 @@
   try {
     const r = await fetch("promos.json?v=" + Date.now(), {cache:"no-store"});
     D = await r.json();
+    if (D.base) { // datos compartidos del equipo + datos de esta consultora
+      const B = await (await fetch(D.base + "?v=" + Date.now(), {cache:"no-store"})).json();
+      D = Object.assign({}, B, D, {venta: Object.assign({}, B.venta, D.venta||{}), meta: Object.assign({}, B.meta, D.meta||{}), membresia: Object.assign({}, B.membresia, D.membresia||{})});
+      if (D.productos === undefined) D.productos = B.productos;
+    }
+    D.venta.subtitulo = (D.venta.subtitulo||"").replace("{consultora}", D.consultora);
   } catch (e) {
     $("catalog").innerHTML = '<p class="empty">No pude cargar los productos. Recarga la página o escríbeme por WhatsApp.</p>';
     return;
@@ -818,7 +824,7 @@
   // Portada desde promos.json
   document.title = `${D.venta.titulo} ${D.venta.subtitulo}`.trim();
   $("bName").textContent = SALE; $("bSeller").textContent = SELLER;
-  $("ig").textContent = "@" + D.instagram; $("ig").href = "https://instagram.com/" + D.instagram;
+  if (D.instagram) { $("ig").textContent = "@" + D.instagram; $("ig").href = "https://instagram.com/" + D.instagram; } else $("ig").hidden = true;
   $("vLabel").textContent = "Venta especial · " + D.venta.fechas;
   $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who"; who.textContent = D.venta.subtitulo; $("vTitle").append(D.venta.titulo, document.createElement("br"), who); }
   $("vWelcome").textContent = D.venta.bienvenida;

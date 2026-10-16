@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>Catálogo Farmasi con Selene</title>
-<meta name="description" content="Catálogo Farmasi México 2026 con los precios y promociones de hoy. Toca un producto para comprarlo en la tienda de Selene.">
-<meta property="og:title" content="Catálogo Farmasi con Selene">
+<title>Catálogo Farmasi</title>
+<meta name="description" content="Catálogo Farmasi México 2026 con los precios y promociones de hoy. Toca un producto para pedirlo por WhatsApp.">
+<meta property="og:title" content="Catálogo Farmasi con precios">
 <meta property="og:description" content="Hojea el catálogo con precios y promos de hoy. Toca un producto para comprarlo.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -150,8 +150,8 @@
 
 <div class="top">
   <div class="row">
-    <div class="brand"><div class="t">Catálogo Farmasi 2026</div><div class="s">Con precios de hoy · tienda de Selene</div></div>
-    <a class="board" href="../">Ver Glow Week</a>
+    <div class="brand"><div class="t">Catálogo Farmasi 2026</div><div class="s" id="brandSub">Con precios de hoy</div></div>
+    <a class="board" href="../">Ver tablero</a>
   </div>
   <nav class="idx" id="idx" aria-label="Secciones"></nav>
 </div>
@@ -172,7 +172,7 @@
   <button class="ghost" id="pagePrices" style="padding:0 14px"><svg class="i" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>Precios</button>
   <button class="arrow" id="next" aria-label="Página siguiente"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
 </div>
-<footer>Catálogo oficial Farmasi México 2026. Compartido por Selene, consultora independiente. Precios sujetos a existencias.</footer>
+<footer id="foot">Catálogo oficial Farmasi México 2026. Precios sujetos a existencias.</footer>
 
 <div class="zoom" id="zoom" hidden><button class="x zx" id="zclose" aria-label="Cerrar"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="zsc" id="zsc"></div></div>
 <div id="sheetRoot">
@@ -187,20 +187,22 @@
 <script>
 (async () => {
   const $ = id => document.getElementById(id);
-  const STORE = "https://mx.farmasi.com/selenevehe";
-  const WA = "525541456984";
-  const SELLER = "Selene";
+  let WA = "", SELLER = "";
   const IMG = n => `https://farmasix-farpaper.s3.us-east-2.amazonaws.com/catalogs/29a75afd-b059-4689-b6d8-02838b8a0b49/pages/page_${n}_zoom.jpg`;
   const SECTIONS = [["Portada",1],["Labios",8],["Ojos",20],["Rostro",38],["Brochas",55],["Fragancias",56],["Hombre",60],["Cuidado personal",62],["Skincare",66],["Masaje",112],["Cabello",114],["Nutriplus",118]];
   const money = n => "$" + Number(n).toLocaleString("es-MX",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});
   const pct = (p,r) => Math.round((1-p/r)*100);
 
   let D;
-  try { D = await (await fetch("../catalogo-farmasi.json?v=" + Date.now(), {cache:"no-store"})).json(); }
+  try { D = await (await fetch("../../_data/catalogo-farmasi.json?v=" + Date.now(), {cache:"no-store"})).json(); }
   catch(e){ $("book").innerHTML = '<p class="hint" style="padding:40px 0">No pude cargar el catálogo. Recarga la página.</p>'; return; }
   const P = D.precios, N = D.paginas;
   let C = {meta:{monto:3000, regalo:"el regalo del mes", regalo_items:[]}};
-  try { C = await (await fetch("../promos.json?v=" + Date.now(), {cache:"no-store"})).json(); } catch(e) {}
+  try { C = await (await fetch("../promos.json?v=" + Date.now(), {cache:"no-store"})).json();
+    if (C.base) { const B = await (await fetch("../" + C.base + "?v=" + Date.now(), {cache:"no-store"})).json(); C = Object.assign({}, B, C, {meta: Object.assign({}, B.meta, C.meta||{}), membresia: Object.assign({}, B.membresia, C.membresia||{})}); }
+  } catch(e) {}
+  WA = C.whatsapp || ""; SELLER = C.consultora || "";
+  if (SELLER) { document.title = "Catálogo Farmasi con " + SELLER; $("brandSub").textContent = "Con precios de hoy · pedidos con " + SELLER; $("foot").textContent = `Catálogo oficial Farmasi México 2026. Compartido por ${SELLER}, consultora independiente. Precios sujetos a existencias.`; }
   const GOAL = C.meta.monto, GIFT = C.meta.regalo, GIFT_ITEMS = C.meta.regalo_items || [];
   // Membresía: 50% en Dr. C. Tuna (páginas de skincare y masaje), 30% en lo demás; se aplica sobre el precio que ve la clienta
   const M = Object.assign({mostrar:true, meta_monto:2000, costo:499}, C.membresia || {});

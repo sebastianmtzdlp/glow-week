@@ -1,6 +1,88 @@
 <!doctype html>
-<html lang="es"><head><meta charset="utf-8"><title>Tableros Farmasi</title>
-<meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex">
-<script>location.replace("sel/" + location.search + location.hash);</script>
-<meta http-equiv="refresh" content="0;url=sel/">
-</head><body style="font-family:system-ui;padding:24px"><a href="sel/">Ir al tablero de Selene</a></body></html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Team Nancy y Selene · Farmasi</title>
+<meta name="description" content="Tableros de venta del equipo. Elige a tu consultora y arma tu pedido por WhatsApp.">
+<meta property="og:title" content="Team Nancy y Selene · Farmasi">
+<meta property="og:description" content="Elige a tu consultora y arma tu pedido por WhatsApp.">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{color-scheme:light;--bg:#FFFFFF;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;--accent-text:#C8323F;--tint:#FDEEF0;
+    --sans:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--ease:cubic-bezier(.2,.7,.2,1)}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px}
+  @media(min-width:900px){.wrap{max-width:960px}}
+  .top{background:var(--soft);padding:14px 0}
+  .top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{font-weight:300;letter-spacing:.14em;text-transform:uppercase;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand b{font-weight:700;letter-spacing:.06em}
+  .tag{font-size:11px;letter-spacing:.07em;text-transform:uppercase;color:var(--accent-text);font-weight:600}
+  .hero{padding:28px 0 16px}
+  h1{margin:6px 0 8px;font-size:34px;line-height:1.05;font-weight:800;letter-spacing:-.01em}
+  h1 span{color:var(--accent-text)}
+  .hero p{margin:0;color:var(--muted);max-width:46ch}
+  .search{position:relative;margin:18px 0 6px}
+  .search input{width:100%;border:1px solid var(--line);border-radius:12px;padding:12px 14px 12px 42px;font:16px var(--sans);color:var(--ink);background:#fff;outline:none}
+  .search input:focus{border-color:var(--ink)}
+  .search svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);width:20px;height:20px;color:var(--muted);fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+  h2{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px;font-weight:600}
+  .grid{display:grid;gap:10px}
+  @media(min-width:900px){.grid{grid-template-columns:1fr 1fr}}
+  .card{display:flex;align-items:center;gap:14px;border:1px solid var(--line);border-radius:18px;padding:14px;background:#fff;color:inherit;text-decoration:none;transition:transform .12s var(--ease)}
+  .card:active{transform:scale(.97)}
+  @media(hover:hover){.card:hover{border-color:var(--ink)}}
+  .av{flex:none;width:46px;height:46px;border-radius:50%;background:var(--tint);color:var(--accent-text);display:grid;place-items:center;font-weight:700;font-size:17px}
+  .card.lead .av{background:var(--accent);color:#fff}
+  .nm{font-weight:600;font-size:17px}
+  .ig{font-size:13px;color:var(--muted)}
+  .go{margin-left:auto;flex:none;display:flex;align-items:center;gap:4px;font-size:14px;font-weight:600;color:var(--accent-text)}
+  .go svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+  .empty{color:var(--muted);padding:18px 0}
+  footer{margin:36px 0 28px;font-size:12px;color:var(--muted)}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><div class="brand"><b id="eqName">Farmasi</b></div><span class="tag">Farmasi</span></div></header>
+<main class="wrap">
+  <section class="hero">
+    <div class="tag" id="saleTag"></div>
+    <h1>Elige a tu <span>consultora</span></h1>
+    <p>Cada una tiene su tablero con los productos en promoción. Arma tu pedido y le llega directo a su WhatsApp.</p>
+    <label class="search"><svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Busca por nombre" autocomplete="off"></label>
+  </section>
+  <h2 id="hLead">Líderes del equipo</h2>
+  <div class="grid" id="lead"></div>
+  <h2 id="hAll">Consultoras</h2>
+  <div class="grid" id="all"></div>
+  <p class="empty" id="none" hidden>No encontré a nadie con ese nombre.</p>
+  <footer>Consultoras independientes de Farmasi México. Los precios y promociones se confirman por WhatsApp.</footer>
+</main>
+<script>
+(async () => {
+  const $ = id => document.getElementById(id);
+  let E = {consultoras: []};
+  try { E = await (await fetch("_data/equipo.json?v=" + Date.now(), {cache:"no-store"})).json(); } catch(e) {}
+  try { const B = await (await fetch("_data/promos-base.json?v=" + Date.now(), {cache:"no-store"})).json(); $("saleTag").textContent = `${B.venta.nombre} · ${B.venta.fechas}`; } catch(e) {}
+  $("eqName").textContent = E.equipo || "Farmasi";
+  const qs = location.search; // conserva ?de= y ?tema= al entrar a un tablero
+  const ini = n => n.split(/\s+/).map(w => w[0]).slice(0,2).join("").toUpperCase();
+  const card = c => `<a class="card${c.lider?" lead":""}" href="${c.slug}/${qs}"><div class="av">${ini(c.nombre)}</div><div><div class="nm">${c.nombre}</div>${c.ig?`<div class="ig">@${c.ig}</div>`:""}</div><span class="go">Ver tablero <svg viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></span></a>`;
+  const norm = s => s.normalize("NFD").replace(/[̀-ͯ]/g,"").toLowerCase();
+  function paint(){
+    const q = norm($("q").value.trim());
+    const list = E.consultoras.filter(c => !q || norm(c.nombre).includes(q) || norm(c.ig||"").includes(q));
+    const lead = list.filter(c => c.lider), rest = list.filter(c => !c.lider);
+    $("lead").innerHTML = lead.map(card).join(""); $("all").innerHTML = rest.map(card).join("");
+    $("hLead").hidden = !lead.length; $("hAll").hidden = !rest.length; $("none").hidden = !!list.length;
+  }
+  $("q").addEventListener("input", paint); paint();
+})();
+</script>
+</body>
+</html>

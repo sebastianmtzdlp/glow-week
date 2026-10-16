@@ -2,16 +2,17 @@
 
 Un tablero por consultora, cada una en su carpeta. Se publica solo (GitHub Pages en mitienda.beauty; Netlify en glow-week.netlify.app como respaldo) cada vez que cambia este repositorio.
 
-- `mitienda.beauty/sel` — Selene
-- (próximas: `/silvia`, `/elda`)
+- `mitienda.beauty` — portada del equipo: lista de consultoras.
+- `mitienda.beauty/<slug>` — tablero de cada una (`/sel`, `/nancy`, `/silvia`, `/elda`, `/pao`, …). Cada tablero tiene su `catalogo/`.
 
-## Archivos de cada carpeta
-- `index.html` — diseño y funcionamiento del tablero. Casi nunca hay que tocarlo.
-- `promos.json` — **todo lo que cambia**: datos de la consultora, productos, precios, flash sales, aviso, meta, regalo, membresía, referidas y tema.
-- `catalogo/` — catálogo completo con precios y carrito (`catalogo-farmasi.json` son sus precios).
-- `catalogo.json` — precios base (precio público).
+## Dónde se cambia cada cosa
+- `_data/promos-base.json` — **lo compartido**: productos, precios, flash sales, aviso, fechas, meta, regalo, membresía y tema. Un cambio aquí sale en todos los tableros.
+- `_data/equipo.json` — la lista del equipo (nombre, WhatsApp, Instagram, quién es líder). Agregar una consultora = agregar una línea y correr `python3 build.py`.
+- `<slug>/promos.json` — datos de esa consultora (nombre, WhatsApp, Instagram, referidas). Puede sobreescribir cualquier campo compartido, p. ej. `"tema": "normal"`.
+- `_template/` — el diseño del tablero y del catálogo. `build.py` lo copia a cada carpeta; nunca edites el `index.html` de una carpeta directamente.
+- `_data/catalogo-farmasi.json` — precios del catálogo; `_data/catalogo.json` — precios base.
 
-Raíz: `CNAME` (dominio), `netlify.toml` (respaldo), `index.html` (manda a `/sel`).
+Raíz: `index.html` (portada), `CNAME` (dominio), `netlify.toml` (respaldo en glow-week.netlify.app).
 
 ## Cómo se marca cada cosa en `promos.json`
 - **Precio con promo:** `"retail"` = precio base, `"price"` = precio con descuento.
