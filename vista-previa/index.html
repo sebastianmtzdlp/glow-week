@@ -595,14 +595,14 @@
     let lo=0, hi=0, t=0;
     products.forEach((p,i)=>{const q=cart[i]||0; if(!q) return; t+=q*p.price;
       const dmin=(p.desc_miembro??M.desc_min)/100, dmax=(p.desc_miembro??M.desc_max)/100;
-      // con membresía pagas el precio de socia o el de promo, el que sea más bajo
-      hi += q*Math.min(p.price, p.retail*(1-dmin)); lo += q*Math.min(p.price, p.retail*(1-dmax)); });
+      // el descuento de socia se aplica encima del precio que ve la clienta (también en promos)
+      hi += q*p.price*(1-dmin); lo += q*p.price*(1-dmax); });
     return {t, lo:lo+M.costo, hi:hi+M.costo, saveLo:t-(hi+M.costo), saveHi:t-(lo+M.costo)};
   }
   const rng = (a,b) => r0(a)===r0(b) ? money(r0(a)) : `${money(r0(a)).replace(".00","")} a ${money(r0(b)).replace(".00","")}`;
   function paintMember(){
     const {t,lo,hi,saveLo,saveHi} = memberCalc();
-    $("sociaIntro").textContent = `Como socia pagas ${M.desc_min===M.desc_max?M.desc_min+"%":M.desc_min+"% a "+M.desc_max+"%"} menos que el precio de catálogo (depende del producto). La inscripción cuesta ${money(M.costo).replace(".00","")} una sola vez.`;
+    $("sociaIntro").textContent = `Como socia pagas ${M.desc_min===M.desc_max?M.desc_min+"%":M.desc_min+"% a "+M.desc_max+"%"} menos que el precio que ves aquí, incluso en promos (depende del producto). La inscripción cuesta ${money(M.costo).replace(".00","")} una sola vez.`;
     $("mNo").textContent = money(t);
     $("mSi").textContent = rng(lo,hi);
     $("mSiS").textContent = `aprox., ya con ${money(M.costo).replace(".00","")} de inscripción`;
@@ -617,7 +617,7 @@
   function paintSociaCard(){
     const ex = 1000, a=r0(ex*(1-M.desc_max/100)), b=r0(ex*(1-M.desc_min/100));
     $("sociaList").innerHTML = [
-      `Pagas ${M.desc_min}% a ${M.desc_max}% menos que el precio de catálogo, según el producto.`,
+      `Pagas ${M.desc_min}% a ${M.desc_max}% menos que el precio de clienta, según el producto. También en promos.`,
       `Inscripción de ${money(M.costo).replace(".00","")}, una sola vez.`,
       `Si quieres, puedes vender y ganar comisión. Si no, solo compras más barato.`,
       M.kits ? M.kits : `Al entrar hay kits de inicio a precio muy reducido.`
