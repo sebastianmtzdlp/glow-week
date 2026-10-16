@@ -879,5 +879,13 @@
    "nuevo": false,
    "miedo": true
   }
- ]
+ ],
+ "membresia": {
+  "mostrar": true,
+  "costo": 499,
+  "desc_min": 30,
+  "desc_max": 50,
+  "kits": "Al entrar hay kits de inicio a precio muy reducido.",
+  "nota": ""
+ }
 }

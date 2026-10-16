@@ -126,6 +126,31 @@
   .form label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
   .form input,.form select{width:100%;margin-top:4px;height:44px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font:inherit;color:var(--ink);background:var(--card)}
   .form input:focus,.form select:focus{outline:2px solid var(--ink);outline-offset:1px}
+  .socia{margin:4px 22px 14px;border:1.5px dashed var(--line);border-radius:16px;padding:14px;background:var(--card)}
+  .socia h4{margin:0 0 4px;font-size:15px;display:flex;gap:8px;align-items:center}
+  .socia h4 svg{color:var(--accent-text);flex:none}
+  .socia p{margin:0;font-size:13px;color:var(--muted);line-height:1.45}
+  .socia .cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:12px 0 10px}
+  .socia .cmp div{background:var(--soft);border-radius:12px;padding:10px}
+  .socia .cmp .k{font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+  .socia .cmp .v{font-size:17px;font-weight:700;margin-top:2px}
+  .socia .cmp .s{font-size:12px;color:var(--muted)}
+  .socia .cmp .best{outline:2px solid var(--good)}
+  .socia .verdict{font-size:14px;font-weight:600;margin-bottom:8px}
+  .socia .verdict.g{color:var(--good)}
+  .socia label.chk{display:flex;gap:10px;align-items:center;font-size:14px;margin-top:10px;cursor:pointer}
+  .socia label.chk input{width:20px;height:20px;accent-color:var(--accent)}
+  .socia .fine{font-size:11px;margin-top:8px}
+  .sociacard{margin-top:12px;max-width:560px;border:1.5px solid var(--line);border-radius:14px;background:var(--card);padding:0 14px}
+  .sociacard summary{list-style:none;display:flex;gap:12px;align-items:center;padding:12px 0;cursor:pointer}
+  .sociacard summary::-webkit-details-marker{display:none}
+  .sociacard summary svg{flex:none;color:var(--accent-text)}
+  .sociacard summary .chev{transition:transform .2s var(--ease)}
+  .sociacard[open] summary .chev{transform:rotate(90deg)}
+  .sociacard .t1{font-weight:600}.sociacard .t2{font-size:13px;color:var(--muted)}
+  .sociacard ul{margin:0 0 10px;padding-left:18px;font-size:14px;line-height:1.5}
+  .sociacard .ex{font-size:13px;color:var(--muted);margin:0 0 10px}
+  .sociacard a.mini{display:inline-flex;margin:0 0 14px;padding:10px 14px;border-radius:999px;background:var(--ink);color:var(--on-ink);text-decoration:none;font-weight:600;font-size:14px}
   .totals{padding:14px 22px;display:grid;gap:4px;font-size:14px}
   .totals div{display:flex;justify-content:space-between}
   .totals .g{color:var(--good)}
@@ -320,6 +345,14 @@
       <span class="grow"><span class="t1">Catálogo completo con precios</span><br><span class="t2">Hojea las 152 páginas y compra en un toque</span></span>
       <svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg>
     </a>
+    <details class="sociacard" id="sociaCard">
+      <summary><svg class="i" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>
+        <span style="flex:1"><span class="t1">¿Compras seguido? Hazte socia</span><br><span class="t2">Precio de socia y puedes vender si quieres</span></span>
+        <svg class="i chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></summary>
+      <ul id="sociaList"></ul>
+      <p class="ex" id="sociaEx"></p>
+      <a class="mini" id="sociaWa" target="_blank" rel="noopener" href="#">Quiero info por WhatsApp</a>
+    </details>
     <div class="gift">
       <div class="gift-head"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S9 8 12 8zm0 0c2-4 6-4 6-1.5S15 8 12 8z"/></svg>
         <div>Con <b class="num" id="goalTxt">$3,000</b> o más, el envío es gratis y te llevas de regalo <b id="giftName"></b>.</div></div>
@@ -381,6 +414,17 @@
       <div><span>Precio normal</span><span class="num" id="tRetail"></span></div>
       <div class="g"><span>Ahorras</span><span class="num" id="tSave"></span></div>
       <div class="T"><span>Total</span><span class="num" id="tTotal"></span></div>
+    </div>
+    <div class="socia" id="socia">
+      <h4><svg class="i" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>¿Y si te haces socia?</h4>
+      <p id="sociaIntro"></p>
+      <div class="cmp">
+        <div id="cmpNo"><div class="k">Sin membresía</div><div class="v num" id="mNo"></div><div class="s">tu pedido de hoy</div></div>
+        <div id="cmpSi"><div class="k">Con membresía</div><div class="v num" id="mSi"></div><div class="s" id="mSiS"></div></div>
+      </div>
+      <div class="verdict" id="mVerdict"></div>
+      <label class="chk"><input type="checkbox" id="mWant"> Quiero que me expliques la membresía</label>
+      <p class="fine" id="mFine"></p>
     </div>
     </div>
     <div class="actions">
@@ -540,9 +584,49 @@
     let entrega = `Entrega: ${$("cDel").value}`;
     if (isShip()) entrega += `\nDirección: ${v("aStreet")}, Col. ${v("aCol")}, C.P. ${v("aCP")}, ${v("aCity")}` + (v("aRef")?`\nReferencias: ${v("aRef")}`:"");
     const meta = t>=GOAL ? `Mi pedido pasa de ${money(GOAL)}: envío gratis y ${giftLabel}.` : `Me faltan ${money(GOAL-t)} para el envío gratis.`;
-    const msg = `Hola ${SELLER}${name?", soy "+name:""}. Quiero este pedido de ${SALE}:\n\n${items.join("\n")}\n\nTotal: ${money(t)} (ahorro ${money(s)})\n${meta}\n\n${entrega}`;
+    const msg = `Hola ${SELLER}${name?", soy "+name:""}. Quiero este pedido de ${SALE}:\n\n${items.join("\n")}\n\nTotal: ${money(t)} (ahorro ${money(s)})\n${meta}\n\n${entrega}` + ($("mWant")?.checked ? `\n\nTambién me interesa la membresía, ¿me explicas?` : "");
     return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
   }
+
+  // Membresía (Farmasi Influencer): datos editables en promos.json → "membresia"
+  const M = Object.assign({costo:499, desc_min:30, desc_max:50, nombre:"membresía Farmasi Influencer"}, D.membresia||{});
+  const r0 = x => Math.round(x);
+  function memberCalc(){
+    let lo=0, hi=0, t=0;
+    products.forEach((p,i)=>{const q=cart[i]||0; if(!q) return; t+=q*p.price;
+      const dmin=(p.desc_miembro??M.desc_min)/100, dmax=(p.desc_miembro??M.desc_max)/100;
+      // con membresía pagas el precio de socia o el de promo, el que sea más bajo
+      hi += q*Math.min(p.price, p.retail*(1-dmin)); lo += q*Math.min(p.price, p.retail*(1-dmax)); });
+    return {t, lo:lo+M.costo, hi:hi+M.costo, saveLo:t-(hi+M.costo), saveHi:t-(lo+M.costo)};
+  }
+  const rng = (a,b) => r0(a)===r0(b) ? money(r0(a)) : `${money(r0(a)).replace(".00","")} a ${money(r0(b)).replace(".00","")}`;
+  function paintMember(){
+    const {t,lo,hi,saveLo,saveHi} = memberCalc();
+    $("sociaIntro").textContent = `Como socia pagas ${M.desc_min===M.desc_max?M.desc_min+"%":M.desc_min+"% a "+M.desc_max+"%"} menos que el precio de catálogo (depende del producto). La inscripción cuesta ${money(M.costo).replace(".00","")} una sola vez.`;
+    $("mNo").textContent = money(t);
+    $("mSi").textContent = rng(lo,hi);
+    $("mSiS").textContent = `aprox., ya con ${money(M.costo).replace(".00","")} de inscripción`;
+    const v=$("mVerdict"), good = saveLo>0, maybe = !good && saveHi>0;
+    v.className = "verdict" + (good?" g":"");
+    v.textContent = good ? `Te ahorrarías ${rng(saveLo,saveHi)} desde este pedido.`
+      : maybe ? `Podrías ahorrar hasta ${money(r0(saveHi)).replace(".00","")}; conviene más si compras seguido.`
+      : `Hoy te conviene sin membresía. Vale la pena si compras seguido o quieres vender.`;
+    $("cmpSi").classList.toggle("best", good); $("cmpNo").classList.toggle("best", !good && !maybe);
+    $("mFine").textContent = `Cálculo aproximado. ${SELLER} te confirma el precio exacto de socia${M.nota?". "+M.nota:""}.`;
+  }
+  function paintSociaCard(){
+    const ex = 1000, a=r0(ex*(1-M.desc_max/100)), b=r0(ex*(1-M.desc_min/100));
+    $("sociaList").innerHTML = [
+      `Pagas ${M.desc_min}% a ${M.desc_max}% menos que el precio de catálogo, según el producto.`,
+      `Inscripción de ${money(M.costo).replace(".00","")}, una sola vez.`,
+      `Si quieres, puedes vender y ganar comisión. Si no, solo compras más barato.`,
+      M.kits ? M.kits : `Al entrar hay kits de inicio a precio muy reducido.`
+    ].map(x=>`<li>${x}</li>`).join("");
+    $("sociaEx").textContent = `Ejemplo: un producto de ${money(ex).replace(".00","")} te sale entre ${money(a).replace(".00","")} y ${money(b).replace(".00","")} como socia.`;
+    $("sociaWa").href = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola ${SELLER}, quiero información de la membresía de Farmasi.`)}`;
+  }
+  if (M.mostrar===false){ $("socia").remove(); $("sociaCard").remove(); } else paintSociaCard();
+  const _upd = update; update = function(){ _upd(); if($("socia")) paintMember(); };
 
   function openSheet(){ document.body.classList.add("open"); }
   function closeSheet(){ document.body.classList.remove("open"); }
@@ -561,6 +645,7 @@
   const syncForm = ()=>{ $("addr").classList.toggle("hide",!isShip()); $("sendBtn").href = waLink(); if(valid()) $("err").style.display="none"; };
   ["cName",...addrIds].forEach(id=>$(id).addEventListener("input",syncForm));
   $("cDel").addEventListener("change",syncForm);
+  $("mWant")?.addEventListener("change",()=>{ $("sendBtn").href = waLink(); });
   $("sendBtn").addEventListener("click",e=>{ if(!valid()){ e.preventDefault(); $("err").style.display="block"; const first=!fullName()?"cName":["aStreet","aCol","aCP","aCity"].find(id=>!v(id)); if(first) $(first).focus(); }});
   // Recordar nombre y dirección solo en el teléfono de la clienta
   try{ ["cName",...addrIds].forEach(id=>{const s=localStorage.getItem("glow_"+id); if(s) $(id).value=s; $(id).addEventListener("change",()=>{try{localStorage.setItem("glow_"+id,$(id).value)}catch(_){}});}); }catch(_){}
