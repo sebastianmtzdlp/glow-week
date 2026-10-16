@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Catálogo Farmasi con Selene</title>
+<meta name="description" content="Catálogo Farmasi México 2026 con los precios y promociones de hoy. Toca un producto para comprarlo en la tienda de Selene.">
+<meta property="og:title" content="Catálogo Farmasi con Selene">
+<meta property="og:description" content="Hojea el catálogo con precios y promos de hoy. Toca un producto para comprarlo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    color-scheme: light;
+    --bg:#FFFFFF; --ink:#262A4A; --muted:#6C7090; --line:#E6E8F0; --soft:#EEF0F8;
+    --accent:#DB414C; --accent-text:#C8323F; --tint:#FDEEF0; --good:#1B8A5A; --bad:#B42318;
+    --sans:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;
+    --mono:"IBM Plex Mono",ui-monospace,monospace;
+    --ease:cubic-bezier(.2,.8,.2,1);
+    --badge-h:0px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--soft);color:var(--ink);font-family:var(--sans);-webkit-text-size-adjust:100%}
+  body{min-height:100dvh;display:flex;flex-direction:column}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  svg.i{width:20px;height:20px;stroke:currentColor;stroke-width:1.75;fill:none;stroke-linecap:round;stroke-linejoin:round}
+
+  /* Cabecera */
+  .top{background:#fff;border-bottom:1px solid var(--line)}
+  .top .row{max-width:1100px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px}
+  .brand{flex:1;min-width:0}
+  .brand .t{font-weight:700;font-size:16px;line-height:1.15}
+  .brand .s{font-size:12px;color:var(--muted)}
+  .board{font-size:13px;font-weight:600;color:var(--accent-text);text-decoration:none;white-space:nowrap}
+  .idx{max-width:1100px;margin:0 auto;display:flex;gap:6px;overflow-x:auto;padding:0 16px 10px;scrollbar-width:none}
+  .idx::-webkit-scrollbar{display:none}
+  .chip{flex:none;padding:7px 12px;border-radius:999px;background:var(--soft);font-size:13px;font-weight:500;color:var(--muted)}
+  .chip[aria-current="true"]{background:var(--ink);color:#fff}
+
+  /* Libro */
+  .stage{flex:1;display:flex;align-items:center;justify-content:center;padding:14px 8px 8px;position:relative}
+  .book-wrap{width:100%;max-width:1100px}
+  #book{margin:0 auto}
+  .page{background:#fff;overflow:hidden}
+  .page .pg{position:relative;width:100%;height:100%}
+  .page img{width:100%;height:100%;object-fit:contain;display:block;user-select:none;-webkit-user-drag:none;pointer-events:none}
+  .hs{position:absolute;transform:translate(-10%,-50%);min-width:26px;height:22px;padding:0 6px;border-radius:999px;
+      background:var(--ink);color:#fff;font-family:var(--mono);font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 1px 3px rgba(38,42,74,.35);z-index:3;white-space:nowrap}
+  .hs.promo{background:var(--accent)}
+  .hs.out{background:#9aa0b8}
+  .hs::after{content:"";position:absolute;inset:-8px}  /* área de toque más grande */
+  .hs.dot{min-width:0;width:15px;height:15px;padding:0;font-size:0;border:2px solid #fff;transform:translate(-50%,-50%)}
+  .hs.dot::after{inset:-10px}
+  .pbadge{position:absolute;top:8px;right:8px;z-index:3;background:var(--accent);color:#fff;font-size:11px;font-weight:700;padding:4px 9px;border-radius:999px}
+
+  /* Navegación */
+  .nav{max-width:560px;margin:0 auto;width:100%;display:flex;align-items:center;gap:10px;padding:8px 16px calc(12px + var(--badge-h) + env(safe-area-inset-bottom))}
+  .arrow{width:44px;height:44px;border-radius:14px;background:#fff;border:1px solid var(--line);display:grid;place-items:center;flex:none;transition:transform .12s var(--ease)}
+  .arrow:active,.cta:active,.ghost:active{transform:scale(.97)}
+  .arrow[disabled]{opacity:.35}
+  .count{flex:1;text-align:center;font-size:13px;color:var(--muted)}
+  .count b{color:var(--ink)}
+  .cta{height:44px;padding:0 16px;border-radius:14px;background:var(--accent);color:#fff;font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;justify-content:center;text-decoration:none;transition:transform .12s var(--ease)}
+  .ghost{height:44px;padding:0 16px;border-radius:14px;border:1.5px solid var(--ink);font-weight:600;font-size:15px;display:flex;align-items:center;gap:8px;justify-content:center;text-decoration:none;color:var(--ink);transition:transform .12s var(--ease)}
+  .hint{text-align:center;font-size:12px;color:var(--muted);padding:0 16px}
+
+  /* Hojas */
+  .sheet-bg{position:fixed;inset:0;background:rgba(38,42,74,.45);z-index:45;opacity:0;pointer-events:none;transition:opacity .2s var(--ease)}
+  .sheet{position:fixed;left:0;right:0;bottom:0;z-index:46;background:#fff;border-radius:18px 18px 0 0;max-height:86dvh;display:flex;flex-direction:column;
+         transform:translateY(100%);transition:transform .25s var(--ease);max-width:560px;margin:0 auto}
+  .open .sheet-bg{opacity:1;pointer-events:auto}
+  .open .sheet{transform:none}
+  .sheet header{display:flex;justify-content:space-between;align-items:center;padding:16px 16px 6px;gap:12px}
+  .sheet h3{font-size:19px;font-weight:700;line-height:1.2}
+  .x{width:36px;height:36px;border-radius:10px;background:var(--soft);display:grid;place-items:center;flex:none}
+  .sc{overflow-y:auto;padding:0 16px calc(16px + var(--badge-h) + env(safe-area-inset-bottom))}
+  .prod{padding:6px 0 4px}
+  .prod .code{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .prices{display:flex;align-items:baseline;gap:10px;margin:12px 0 4px;flex-wrap:wrap}
+  .prices .now{font-family:var(--mono);font-weight:700;font-size:30px;font-variant-numeric:tabular-nums}
+  .prices .was{font-family:var(--mono);font-size:15px;color:var(--muted);text-decoration:line-through}
+  .off{background:var(--accent);color:#fff;font-family:var(--mono);font-weight:700;font-size:13px;padding:3px 8px;border-radius:999px}
+  .note{font-size:13px;color:var(--muted)}
+  .note.bad{color:var(--bad);font-weight:600}
+  .actions{display:grid;gap:8px;margin-top:16px}
+  .list .it{display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+  .list .n{font-size:14px;font-weight:600;line-height:1.25}
+  .list .c{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .list .p{text-align:right;font-family:var(--mono);font-weight:700;font-size:15px}
+  .list .p small{display:block;font-weight:400;font-size:12px;color:var(--muted);text-decoration:line-through}
+  .list .p .promo{color:var(--accent-text)}
+  .list button.it{width:100%;text-align:left}
+  .empty{padding:20px 0;color:var(--muted);font-size:14px}
+  .zoom{position:fixed;inset:0;z-index:40;background:#fff}
+  .zsc{position:absolute;inset:0;overflow:auto;-webkit-overflow-scrolling:touch}
+  .zsc .pg{position:relative;width:max(200vw,1100px)}
+  .zsc img{width:100%;display:block}
+  .zsc .hs{transform:translate(-10%,-50%) scale(1.15)}
+  .zsc .hs.dot{transform:translate(-50%,-50%) scale(1.3)}
+  .zx{position:fixed;top:12px;right:12px;z-index:41;background:#fff;box-shadow:0 1px 6px rgba(38,42,74,.25)}
+  footer{font-size:11px;color:var(--muted);text-align:center;padding:0 16px 6px}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="top">
+  <div class="row">
+    <div class="brand"><div class="t">Catálogo Farmasi 2026</div><div class="s">Con precios de hoy · tienda de Selene</div></div>
+    <a class="board" href="./">Ver Glow Week</a>
+  </div>
+  <nav class="idx" id="idx" aria-label="Secciones"></nav>
+</div>
+
+<div class="stage">
+  <div class="book-wrap"><div id="book"><p class="hint" style="padding:40px 0">Cargando catálogo…</p></div></div>
+</div>
+
+<p class="hint">Desliza para pasar página. Toca la página para ampliarla y un punto o etiqueta para ver precio: <b style="color:var(--accent-text)">rojo</b> = en promo.</p>
+<div class="nav">
+  <button class="arrow" id="prev" aria-label="Página anterior"><svg class="i" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6"/></svg></button>
+  <div class="count" id="count"></div>
+  <button class="cta" id="pagePrices"><svg class="i" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.5"/></svg>Precios</button>
+  <button class="arrow" id="next" aria-label="Página siguiente"><svg class="i" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>
+</div>
+<footer>Catálogo oficial Farmasi México 2026. Compartido por Selene, consultora independiente. Precios sujetos a existencias.</footer>
+
+<div class="zoom" id="zoom" hidden><button class="x zx" id="zclose" aria-label="Cerrar"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button><div class="zsc" id="zsc"></div></div>
+<div id="sheetRoot">
+  <div class="sheet-bg" id="bg"></div>
+  <div class="sheet" role="dialog" aria-modal="true" aria-labelledby="sTitle">
+    <header><h3 id="sTitle"></h3><button class="x" id="close" aria-label="Cerrar"><svg class="i" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></header>
+    <div class="sc" id="sBody"></div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/page-flip@2.0.7/dist/js/page-flip.browser.js"></script>
+<script>
+(async () => {
+  const $ = id => document.getElementById(id);
+  const STORE = "https://mx.farmasi.com/selenevehe";
+  const WA = "525541456984";
+  const SELLER = "Selene";
+  const IMG = n => `https://farmasix-farpaper.s3.us-east-2.amazonaws.com/catalogs/29a75afd-b059-4689-b6d8-02838b8a0b49/pages/page_${n}_zoom.jpg`;
+  const SECTIONS = [["Portada",1],["Labios",8],["Ojos",20],["Rostro",38],["Brochas",55],["Fragancias",56],["Hombre",60],["Cuidado personal",62],["Skincare",66],["Masaje",112],["Cabello",114],["Nutriplus",118]];
+  const money = n => "$" + Number(n).toLocaleString("es-MX",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});
+  const pct = (p,r) => Math.round((1-p/r)*100);
+
+  let D;
+  try { D = await (await fetch("catalogo-farmasi.json?v=" + Date.now(), {cache:"no-store"})).json(); }
+  catch(e){ $("book").innerHTML = '<p class="hint" style="padding:40px 0">No pude cargar el catálogo. Recarga la página.</p>'; return; }
+  const P = D.precios, N = D.paginas;
+
+  // Construye las páginas con sus etiquetas de precio
+  const book = $("book"); book.innerHTML = "";
+  for (let i = 1; i <= N; i++){
+    const items = (D.productos[i-1] || []).filter(([c]) => P[c]);
+    const promos = items.filter(([c]) => P[c][1] < P[c][2]).length;
+    const el = document.createElement("div");
+    el.className = "page"; el.dataset.density = i === 1 || i === N ? "hard" : "soft";
+    el.innerHTML = `<div class="pg"><img alt="Página ${i} del catálogo" ${i>3?'loading="lazy"':''} src="${IMG(i)}">` +
+      (promos ? `<span class="pbadge">${promos} en promo</span>` : "") +
+      items.map(([c,x,y]) => { const [n,p,r,s] = P[c]; const d = p < r; const dense = items.length > 3;
+        return `<button class="hs${dense?" dot":""}${d?" promo":""}${s?"":" out"}" style="left:${x}%;top:${y}%" data-code="${c}" aria-label="${n}, ${money(p)}">${s ? (d ? "-"+pct(p,r)+"%" : money(p)) : "Agotado"}</button>`; }).join("") +
+      `</div>`;
+    book.appendChild(el);
+  }
+
+  const flip = new St.PageFlip(book, {
+    width: 600, height: 579, size: "stretch",
+    minWidth: 260, maxWidth: 900, minHeight: 251, maxHeight: 869,
+    showCover: true, usePortrait: true, mobileScrollSupport: false,
+    maxShadowOpacity: .35, flippingTime: 650, disableFlipByClick: true, clickEventForward: true,
+    swipeDistance: 20
+  });
+  flip.loadFromHTML(book.querySelectorAll(".page"));
+
+  // Índice
+  $("idx").innerHTML = SECTIONS.map(([t,p]) => `<button class="chip" data-p="${p}">${t}</button>`).join("");
+  function current(){ return flip.getCurrentPageIndex() + 1; }
+  function visible(){
+    const i = current(); const o = flip.getOrientation && flip.getOrientation();
+    if (o === "landscape" && i > 1) { const l = i % 2 === 0 ? i : i - 1; return [l, Math.min(N, l+1)]; }
+    return [i];
+  }
+  function paint(){
+    const v = visible();
+    $("count").innerHTML = `Pág. <b class="num">${v.join("–")}</b> de <span class="num">${N}</span>`;
+    $("prev").disabled = current() <= 1; $("next").disabled = current() >= N;
+    let sec = SECTIONS[0][0]; for (const [t,p] of SECTIONS) if (v[0] >= p) sec = t;
+    document.querySelectorAll(".chip").forEach(c => c.setAttribute("aria-current", c.textContent === sec));
+    const n = v.reduce((a,pg) => a + (D.productos[pg-1]||[]).filter(([c]) => P[c]).length, 0);
+    $("pagePrices").disabled = !n; $("pagePrices").style.opacity = n ? 1 : .45;
+  }
+  flip.on("flip", paint); flip.on("changeOrientation", paint); paint();
+  $("prev").onclick = () => flip.flipPrev();
+  $("next").onclick = () => flip.flipNext();
+  document.addEventListener("keydown", e => { if (e.key === "ArrowLeft") flip.flipPrev(); if (e.key === "ArrowRight") flip.flipNext(); if (e.key === "Escape") { closeSheet(); $("zoom").hidden = true; } });
+
+  // Hojas
+  function openSheet(title, html){ $("sTitle").textContent = title; $("sBody").innerHTML = html; $("sBody").scrollTop = 0; document.body.classList.add("open"); }
+  function closeSheet(){ document.body.classList.remove("open"); }
+  $("close").onclick = $("bg").onclick = closeSheet;
+
+  function productSheet(c){
+    const [n,p,r,s] = P[c]; const d = p < r;
+    const buy = `${STORE}/product-detail/producto?pid=${c}`;
+    const wa = `https://wa.me/${WA}?text=${encodeURIComponent(`Hola ${SELLER}, me interesa ${n} (${c}) del catálogo. ¿Me ayudas con mi pedido?`)}`;
+    openSheet(n, `<div class="prod">
+      <div class="code">Código ${c}</div>
+      <div class="prices"><span class="now">${money(p)}</span>${d ? `<span class="was">${money(r)}</span><span class="off">-${pct(p,r)}%</span>` : ""}</div>
+      <p class="note${s?"":" bad"}">${s ? (d ? "Precio con la promoción de hoy." : "Precio público.") : "Agotado por ahora. Pregúntale a " + SELLER + " cuándo regresa."}</p>
+      <div class="actions">
+        <a class="cta" href="${buy}" target="_blank" rel="noopener">Comprar en línea</a>
+        <a class="ghost" href="${wa}" target="_blank" rel="noopener">Pedir por WhatsApp</a>
+      </div></div>`);
+  }
+  function pageSheet(){
+    const v = visible();
+    const items = v.flatMap(pg => (D.productos[pg-1]||[]).map(x => x[0])).filter((c,i,a) => P[c] && a.indexOf(c) === i);
+    openSheet(`Precios · pág. ${v.join("–")}`, items.length ? `<div class="list">${items.map(c => { const [n,p,r,s] = P[c]; const d = p < r;
+      return `<button class="it" data-code="${c}"><div><div class="n">${n}</div><div class="c">${c}${s ? "" : " · agotado"}</div></div><div class="p"><span class="${d?"promo":""}">${money(p)}</span>${d ? `<small>${money(r)}</small>` : ""}</div></button>`; }).join("")}</div>`
+      : '<p class="empty">En esta página no hay productos con precio.</p>');
+  }
+  $("pagePrices").onclick = pageSheet;
+  // Ampliar: toca la página (fuera de una etiqueta) para verla grande y hacer scroll
+  function openZoom(pg){
+    const src = book.querySelectorAll(".page")[pg-1]; if (!src) return;
+    $("zsc").innerHTML = src.querySelector(".pg").outerHTML;
+    const img = $("zsc").querySelector("img"); img.removeAttribute("loading");
+    $("zoom").hidden = false; const sc = $("zsc"); sc.scrollLeft = 0; sc.scrollTop = 0;
+  }
+  $("zclose").onclick = () => { $("zoom").hidden = true; };
+  book.addEventListener("click", e => {
+    if (e.target.closest("[data-code]")) return;
+    const pageEl = e.target.closest(".page"); if (!pageEl) return;
+    const idx = [...book.querySelectorAll(".page")].indexOf(pageEl); if (idx >= 0) openZoom(idx + 1);
+  });
+  document.addEventListener("click", e => {
+    const h = e.target.closest("[data-code]"); if (h) { e.stopPropagation(); productSheet(h.dataset.code); return; }
+    const ch = e.target.closest(".chip"); if (ch) flip.flip(+ch.dataset.p - 1);
+  }, true);
+
+  // Deja espacio al globito de Netlify para que no tape los botones
+  function fitBadge(){ const f = document.getElementById("nl-badge-frame"); const h = f ? Math.ceil(f.getBoundingClientRect().height) : 0; document.documentElement.style.setProperty("--badge-h", h + "px"); }
+  new MutationObserver(fitBadge).observe(document.body, {childList:true}); fitBadge();
+
+  // Abre en la página del link (#p=40)
+  const m = location.hash.match(/p=(\d+)/); if (m) flip.turnToPage(Math.min(N, +m[1]) - 1), paint();
+  flip.on("flip", () => history.replaceState(null, "", "#p=" + current()));
+})();
+</script>
+</body>
+</html>
