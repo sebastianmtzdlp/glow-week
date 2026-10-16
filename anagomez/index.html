@@ -244,9 +244,13 @@
   button.banner:active{transform:scale(.98)}
   button.banner svg{flex:none}
   .banner{background:var(--ink);color:var(--on-ink);border-radius:14px;padding:10px 14px;font-weight:600;font-size:15px;margin-bottom:16px}
+  .sortrow{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);padding:0 0 10px}.sortrow select{font:600 13px var(--sans);color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:6px 8px}
+  .wafab{position:fixed;right:14px;bottom:18px;z-index:19;width:52px;height:52px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.28);transition:bottom .25s var(--ease)}.wafab svg{width:28px;height:28px;fill:#fff}
+  body:has(.bar.show) .wafab{bottom:calc(var(--barh,100px) + 14px)}body.open .wafab{display:none}
   .tags{position:absolute;top:8px;right:8px;display:flex;flex-direction:column;gap:4px;align-items:flex-end}
   .tag{font-size:11px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;padding:3px 8px;border-radius:999px;background:var(--card);color:var(--ink);border:1px solid var(--line)}
   .tag.flash{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .tag.lim{position:absolute;left:8px;bottom:8px;font-size:10px;background:var(--ink);color:var(--on-ink);border-color:var(--ink)}
   .flash-left{font-family:var(--mono);font-size:12px;color:var(--accent-text);font-weight:500;margin-top:4px}
   /* Netlify pone un globito fijo abajo a la derecha: dejamos espacio para que no tape los botones */
   body.has-badge{padding-bottom:calc(96px + var(--badge-h) + env(safe-area-inset-bottom))}
@@ -435,7 +439,7 @@
     </div>
   </div>
 
-  <nav class="filters" aria-label="Categorías"><div class="wrap"><div class="chips" id="chips"></div></div></nav>
+  <nav class="filters" aria-label="Categorías"><div class="wrap"><div class="chips" id="chips"></div><label class="sortrow">Ordenar <select id="sort" aria-label="Ordenar productos"><option value="">Recomendado</option><option value="pa">Precio: menor a mayor</option><option value="pd">Precio: mayor a menor</option><option value="dd">Mayor descuento</option></select></label></div></nav>
 
   <div class="wrap" id="catalog"><p class="empty">Cargando productos…</p></div>
 
@@ -446,6 +450,7 @@
   </footer></div>
 </main>
 
+<a class="wafab" id="wafab" target="_blank" rel="noopener" aria-label="Escribir por WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm5.2 14.1c-.2.6-1.300 1.200-1.800 1.200-.5.100-1 .2-3.300-.7-2.800-1.100-4.600-4-4.700-4.200-.1-.2-1.100-1.500-1.100-2.800s.7-2 1-2.300c.2-.3.500-.3.700-.3h.5c.2 0 .4 0 .6.500l.8 2c.1.2.1.300 0 .5l-.3.500-.4.400c-.1.100-.3.300-.1.600.2.300.8 1.300 1.700 2.100 1.200 1 2.200 1.300 2.500 1.500.3.100.4.100.6-.1l.8-1c.2-.3.400-.2.600-.1l1.900.9c.3.100.4.200.5.300.1.300.1.800-.1 1.400z"/></svg></a>
 <div class="bar" id="bar"><div class="wrap">
   <div class="goal" id="goalBar"><div class="msg"><span class="gm"></span><span class="num gp"></span></div><div class="track"><i></i></div></div>
   <button class="sum" id="openSheet" aria-label="Revisar pedido">
@@ -606,7 +611,7 @@
       <div class="pic">
         <img src="${IMG}${p.img}.webp" alt="${p.name} ${p.shade}" loading="lazy" onerror="this.outerHTML='<div class=ph>${initials(p)}</div>'">
         <span class="off${d>=40?" big":""}">-${d}%</span>
-        ${(p.flashEnds||p.nuevo) ? `<span class="tags">${p.flashEnds?'<span class="tag flash">Flash</span>':""}${p.nuevo?'<span class="tag">Nuevo</span>':""}</span>` : ""}
+        ${(p.flashEnds||p.nuevo||p.cat==="Kits") ? `<span class="tags">${p.flashEnds?'<span class="tag flash">Flash</span>':""}${p.nuevo?'<span class="tag">Nuevo</span>':""}</span>` : ""}${p.cat==="Kits"?'<span class="tag lim">Tiempo limitado</span>':""}
       </div>
       <div class="body">
         <div class="name">${p.name}</div>
@@ -619,6 +624,8 @@
       </div></article>`;
   }
 
+  let sortM = "";
+  const srt = l => sortM==="pa" ? [...l].sort((a,b)=>a.price-b.price) : sortM==="pd" ? [...l].sort((a,b)=>b.price-a.price) : sortM==="dd" ? [...l].sort((a,b)=>pct(b)-pct(a)) : l;
   function renderCatalog(){
     let groups;
     if (filter==="Todo") {
@@ -627,7 +634,7 @@
     }
     else if (SPECIAL[filter]) groups = [[filter, products.filter(SPECIAL[filter]).sort((a,b)=>pct(b)-pct(a))]];
     else groups = [[filter, products.filter(p=>p.cat===filter)]];
-    $("catalog").innerHTML = groups.map(([c,list])=>`<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2><div class="grid">${list.map(card).join("")}</div></section>`).join("");
+    $("catalog").innerHTML = groups.map(([c,list])=>`<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2><div class="grid">${srt(list).map(card).join("")}</div></section>`).join("");
   }
 
   function totals(){
@@ -663,11 +670,15 @@
   const fullName = () => v("cName").split(/\s+/).filter(w=>w.length>=2).length>=2;
   function valid(){ return fullName() && (!isShip() || (v("aStreet") && v("aCol") && v("aCP") && v("aCity"))); }
 
+  const CK = "glow_cart_" + location.pathname.split("/").filter(Boolean)[0];
+  function saveCart(){ try{ const o={}; Object.keys(cart).forEach(i=>{ if(cart[i]) o[products[i].code]=cart[i]; }); localStorage.setItem(CK, JSON.stringify(o)); }catch(_){} }
   function update(){
+    saveCart();
     const {n,t,r,s} = totals();
     paintGoal("goalBar",t); paintGoal("goalSheet",t);
     $("shipNote").textContent = t>=GOAL ? "Tu envío es gratis. Te confirmo existencias antes de pagar." : "El envío se cotiza aparte. Te confirmo existencias antes de pagar.";
     $("bar").classList.toggle("show", n>0);
+    document.body.style.setProperty("--barh", $("bar").offsetHeight + "px");
     $("barTotal").textContent = money(t);
     $("barCount").textContent = n + (n===1?" producto":" productos");
     $("barSave").textContent = money(s);
@@ -964,6 +975,9 @@
   new MutationObserver(fitBadge).observe(document.body, {childList:true});
   addEventListener("resize", fitBadge); fitBadge();
 
+  try{ const o=JSON.parse(localStorage.getItem(CK)||"{}"); products.forEach((p,i)=>{ if(o[p.code]>0) cart[i]=Math.min(20,+o[p.code]); }); }catch(_){}
+  $("sort").addEventListener("change", e=>{ sortM=e.target.value; renderCatalog(); });
+  $("wafab").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola "+SELLER+", tengo una duda sobre tu tablero.")}`;
   renderChips(); renderCatalog(); syncForm(); update(); tick();
 })();
 </script>
