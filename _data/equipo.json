@@ -1,105 +1,111 @@
 {
- "_nota": "Lista del equipo. Cada entrada crea la carpeta /<slug> al correr build.py y aparece en la portada. 'ig' puede ir vacío. Foto: sube fotos/<slug>.jpg (cuadrada) y aparece sola; si no hay, se ven las iniciales. 'genero':'m' muestra Consultor. La portada ordena alfabéticamente sola.",
- "equipo": "Team Nancy y Selene",
- "consultoras": [
-  {
-   "slug": "sel",
-   "nombre": "Selene",
-   "whatsapp": "525541456984",
-   "ig": "selene.vehe",
-   "lider": true
-  },
-  {
-   "slug": "nancy",
-   "nombre": "Nancy",
-   "whatsapp": "525541352371",
-   "ig": "",
-   "lider": true
-  },
-  {
-   "slug": "sebas",
-   "nombre": "Sebas",
-   "whatsapp": "525543506136",
-   "ig": "",
-   "genero": "m"
-  },
-  {
-   "slug": "silvia",
-   "nombre": "Silvia",
-   "whatsapp": "525520735575",
-   "ig": ""
-  },
-  {
-   "slug": "elda",
-   "nombre": "Elda",
-   "whatsapp": "522221893823",
-   "ig": ""
-  },
-  {
-   "slug": "pao",
-   "nombre": "Pao",
-   "whatsapp": "527712011157",
-   "ig": ""
-  },
-  {
-   "slug": "danny",
-   "nombre": "Danny",
-   "whatsapp": "527715660747",
-   "ig": ""
-  },
-  {
-   "slug": "andrea",
-   "nombre": "Andrea",
-   "whatsapp": "525641401111",
-   "ig": ""
-  },
-  {
-   "slug": "yazmin",
-   "nombre": "Yazmin",
-   "whatsapp": "525585317162",
-   "ig": ""
-  },
-  {
-   "slug": "laura",
-   "nombre": "Laura",
-   "whatsapp": "525549978628",
-   "ig": ""
-  },
-  {
-   "slug": "pame",
-   "nombre": "Pame",
-   "whatsapp": "525521865420",
-   "ig": ""
-  },
-  {
-   "slug": "mar",
-   "nombre": "Mar",
-   "whatsapp": "525518802615",
-   "ig": ""
-  },
-  {
-   "slug": "anaofelia",
-   "nombre": "Ana Ofelia",
-   "whatsapp": "525585810079",
-   "ig": ""
-  },
-  {
-   "slug": "andi",
-   "nombre": "Andi",
-   "whatsapp": "525529097789",
-   "ig": ""
-  },
-  {
-   "slug": "anagomez",
-   "nombre": "Ana Gómez",
-   "whatsapp": "525574867366",
-   "ig": ""
-  },
-  {
-   "slug": "viri",
-   "nombre": "Viri",
-   "whatsapp": "525517970538",
-   "ig": ""
-  }
- ]
+  "_nota": "Lista del equipo. Cada entrada crea la carpeta /<slug> al correr build.py y aparece en la portada. 'ig' puede ir vacío. Foto: sube fotos/<slug>.jpg (cuadrada) y aparece sola; si no hay, se ven las iniciales. 'genero':'m' muestra Consultor. La portada ordena alfabéticamente sola.",
+  "equipo": "Team Nancy y Selene",
+  "consultoras": [
+    {
+      "slug": "sel",
+      "nombre": "Selene",
+      "whatsapp": "525541456984",
+      "ig": "selene.vehe",
+      "lider": true
+    },
+    {
+      "slug": "nancy",
+      "nombre": "Nancy",
+      "whatsapp": "525541352371",
+      "ig": "",
+      "lider": true
+    },
+    {
+      "slug": "sebas",
+      "nombre": "Sebas",
+      "whatsapp": "525543506136",
+      "ig": "",
+      "genero": "m"
+    },
+    {
+      "slug": "silvia",
+      "nombre": "Silvia",
+      "whatsapp": "525520735575",
+      "ig": ""
+    },
+    {
+      "slug": "elda",
+      "nombre": "Elda",
+      "whatsapp": "522221893823",
+      "ig": ""
+    },
+    {
+      "slug": "pao",
+      "nombre": "Pao",
+      "whatsapp": "527712011157",
+      "ig": ""
+    },
+    {
+      "slug": "danny",
+      "nombre": "Danny",
+      "whatsapp": "527715660747",
+      "ig": ""
+    },
+    {
+      "slug": "andrea",
+      "nombre": "Andrea",
+      "whatsapp": "525641401111",
+      "ig": ""
+    },
+    {
+      "slug": "yazmin",
+      "nombre": "Yazmin",
+      "whatsapp": "525585317162",
+      "ig": ""
+    },
+    {
+      "slug": "laura",
+      "nombre": "Laura",
+      "whatsapp": "525549978628",
+      "ig": ""
+    },
+    {
+      "slug": "pame",
+      "nombre": "Pame",
+      "whatsapp": "525521865420",
+      "ig": ""
+    },
+    {
+      "slug": "mar",
+      "nombre": "Mar",
+      "whatsapp": "525518802615",
+      "ig": ""
+    },
+    {
+      "slug": "anaofelia",
+      "nombre": "Ana Ofelia",
+      "whatsapp": "525585810079",
+      "ig": ""
+    },
+    {
+      "slug": "andi",
+      "nombre": "Andi",
+      "whatsapp": "525529097789",
+      "ig": ""
+    },
+    {
+      "slug": "anagomez",
+      "nombre": "Ana Gómez",
+      "whatsapp": "525574867366",
+      "ig": ""
+    },
+    {
+      "slug": "viri",
+      "nombre": "Viri",
+      "whatsapp": "525517970538",
+      "ig": ""
+    },
+    {
+      "slug": "moni",
+      "nombre": "Moni",
+      "whatsapp": "525549252272",
+      "ig": ""
+    }
+  ]
 }
