@@ -190,7 +190,7 @@
   const $ = id => document.getElementById(id);
   let WA = "", SELLER = "";
   const IMG = n => `https://farmasix-farpaper.s3.us-east-2.amazonaws.com/catalogs/29a75afd-b059-4689-b6d8-02838b8a0b49/pages/page_${n}_zoom.jpg`;
-  const SECTIONS = [["Portada",1],["Labios",8],["Ojos",20],["Rostro",38],["Brochas",55],["Fragancias",56],["Hombre",60],["Cuidado personal",62],["Skincare",66],["Masaje",112],["Cabello",114],["Nutriplus",118]];
+  const SECTIONS = [["Portada",1],["Labios",8],["Ojos",20],["Rostro",38],["Brochas",55],["Fragancias mujer",56],["Hombre",58],["Cuidado personal",62],["Skincare",66],["Masaje",112],["Cabello",114],["Nutriplus",118]];
   const money = n => "$" + Number(n).toLocaleString("es-MX",{minimumFractionDigits:n%1?2:0,maximumFractionDigits:2});
   const pct = (p,r) => Math.round((1-p/r)*100);
 
@@ -198,6 +198,9 @@
   try { D = await (await fetch("../../_data/catalogo-farmasi.json?v=" + Date.now(), {cache:"no-store"})).json(); }
   catch(e){ $("book").innerHTML = '<p class="hint" style="padding:40px 0">No pude cargar el catálogo. Recarga la página.</p>'; return; }
   const P = D.precios, N = D.paginas;
+  let FUERA = [];
+  try { const F = await (await fetch("../../_data/fuera-de-catalogo.json?v=" + Date.now(), {cache:"no-store"})).json(); FUERA = F.grupos || [];
+    FUERA.forEach(g => g.items.forEach(([c,n,pr]) => { P[c] = [n, pr, pr, 1]; })); } catch(e) {}
   let C = {meta:{monto:3000, regalo:"el regalo del mes", regalo_items:[]}};
   try { C = await (await fetch("../promos.json?v=" + Date.now(), {cache:"no-store"})).json();
     if (C.base) { const B = await (await fetch("../" + C.base + "?v=" + Date.now(), {cache:"no-store"})).json(); C = Object.assign({}, B, C, {meta: Object.assign({}, B.meta, C.meta||{}), membresia: Object.assign({}, B.membresia, C.membresia||{})}); }
@@ -246,7 +249,13 @@
   flip.loadFromHTML(book.querySelectorAll(".page"));
 
   // Índice
-  $("idx").innerHTML = SECTIONS.map(([t,p]) => `<button class="chip" data-p="${p}">${t}</button>`).join("");
+  $("idx").innerHTML = SECTIONS.map(([t,p]) => `<button class="chip" data-p="${p}">${t}</button>`).join("") + (FUERA.length ? '<button class="chip" id="chipFuera">Fuera del catálogo</button>' : "");
+  function fueraSheet(){
+    openSheet("Fuera del catálogo", `<p class="hint" style="margin:0 0 6px;text-align:left">Productos que hoy están en la tienda de Farmasi pero no salen en el catálogo impreso. Toca uno para verlo y agregarlo.</p>` +
+      FUERA.map(g => `<h4 style="margin:18px 0 4px;font-size:15px">${g.titulo}</h4>${g.nota ? `<p class="hint" style="margin:0 0 6px;text-align:left">${g.nota}</p>` : ""}<div class="list">${g.items.map(([c,n,pr]) =>
+        `<button class="it" data-code="${c}"><div><div class="n">${n}</div><div class="c">${c}</div></div><div class="p"><span>${money(pr)}</span></div></button>`).join("")}</div>`).join(""));
+  }
+  if ($("chipFuera")) $("chipFuera").onclick = fueraSheet;
   function current(){ return flip.getCurrentPageIndex() + 1; }
   function visible(){
     const i = current(); const o = flip.getOrientation && flip.getOrientation();
@@ -418,7 +427,7 @@
   });
   document.addEventListener("click", e => {
     const h = e.target.closest("[data-code]"); if (h) { e.stopPropagation(); productSheet(h.dataset.code); return; }
-    const ch = e.target.closest(".chip"); if (ch) flip.flip(+ch.dataset.p - 1);
+    const ch = e.target.closest(".chip"); if (ch && ch.dataset.p) flip.flip(+ch.dataset.p - 1);
   }, true);
 
   // Deja espacio al globito de Netlify para que no tape los botones

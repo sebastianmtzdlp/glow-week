@@ -1,0 +1,579 @@
+{
+ "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
+ "actualizado": "2026-10-16",
+ "grupos": [
+  {
+   "titulo": "Edición limitada y de temporada",
+   "nota": "Piezas de temporada o por tiempo limitado. Las pedimos bajo encargo y se confirman por WhatsApp.",
+   "items": [
+    [
+     "1000395",
+     "Glow Beauty Box",
+     820.0
+    ],
+    [
+     "1000901",
+     "FARMASI Blackout Set",
+     553.0
+    ],
+    [
+     "1002993",
+     "Advent Calendar 2026",
+     3600.0
+    ],
+    [
+     "PK11112",
+     "4x3 Glowy Peptide Lip Balm",
+     1020.0
+    ]
+   ]
+  },
+  {
+   "titulo": "Tarjetas de regalo",
+   "nota": "",
+   "items": [
+    [
+     "QW100251",
+     "Tarjeta de Regalo $1,000",
+     1000.0
+    ],
+    [
+     "QW100252",
+     "Tarjeta de Regalo 1500 pesos",
+     1500.0
+    ],
+    [
+     "QW100267",
+     "Tarjeta de Regalo 2000 pesos",
+     2000.0
+    ]
+   ]
+  },
+  {
+   "titulo": "Sistemas Nutriplus",
+   "nota": "Programas completos de nutrición.",
+   "items": [
+    [
+     "PK102556",
+     "Body System",
+     3857.14
+    ],
+    [
+     "PK102551",
+     "Morning Glow System",
+     2685.71
+    ],
+    [
+     "PK102552",
+     "Beautiful System",
+     3094.59
+    ],
+    [
+     "PK102553",
+     "Inner System",
+     1264.29
+    ],
+    [
+     "PK102554",
+     "Calm System",
+     3770.39
+    ],
+    [
+     "PK102555",
+     "Clear System",
+     2785.71
+    ],
+    [
+     "PK102557",
+     "Women’s System",
+     3857.14
+    ]
+   ]
+  },
+  {
+   "titulo": "Nuevos productos",
+   "nota": "Lanzamientos que todavía no salen en el catálogo impreso.",
+   "items": [
+    [
+     "1002341",
+     "Shea&Almond. Crema de Ducha",
+     230.0
+    ],
+    [
+     "1002346",
+     "Shea&Almond. Crema Sólida Extra Hidratante",
+     575.0
+    ],
+    [
+     "1002347",
+     "Shea&Almond. Exfoliante Corporal",
+     460.0
+    ],
+    [
+     "1002355",
+     "Loose Powder",
+     550.0
+    ],
+    [
+     "1002500",
+     "Royal Cherry Body Butter",
+     350.0
+    ],
+    [
+     "1002505",
+     "Royal Cherry Body Wash",
+     133.0
+    ],
+    [
+     "1002569",
+     "Infinit Face Palette Talc Free",
+     690.0
+    ],
+    [
+     "1002590",
+     "Rich Lip Oil Stick - Red Flag",
+     285.0
+    ],
+    [
+     "1002770",
+     "Nutriplus L-Carnitine Manzana - Durazno",
+     620.0
+    ],
+    [
+     "1002775",
+     "Sunkiss Drop",
+     450.0
+    ],
+    [
+     "1002795",
+     "Nutriplus L-Carnitine Naranja - Maracuyá",
+     620.0
+    ],
+    [
+     "1002839",
+     "Complete Blend Strawberry Supreme 540 G",
+     990.0
+    ],
+    [
+     "1002871",
+     "Dr. C. Tuna Glow Face Mist",
+     750.0
+    ],
+    [
+     "1002877",
+     "FRM CC BODY LOTION LIGHT 110ML",
+     1500.0
+    ],
+    [
+     "1002907",
+     "Nutriplus Shake - Strawberry Supreme 27 g",
+     50.0
+    ],
+    [
+     "1002915",
+     "Complete Blend Velvet Chocolate 540 g",
+     990.0
+    ]
+   ]
+  },
+  {
+   "titulo": "Kits y sets",
+   "nota": "",
+   "items": [
+    [
+     "PK102681",
+     "Horizonte V Achicoria + Fibra",
+     765.0
+    ],
+    [
+     "PK102682",
+     "Horizonte V Fibra + Colageno",
+     800.0
+    ],
+    [
+     "PK102683",
+     "Horizonte V Colageno + Achicoria",
+     850.0
+    ],
+    [
+     "PK102684",
+     "Horizonte V 2 Achicoria",
+     720.0
+    ],
+    [
+     "PK102685",
+     "Horizonte V 2 Fibra",
+     765.0
+    ],
+    [
+     "PK102686",
+     "Horizonte V 2 Colageno",
+     935.0
+    ],
+    [
+     "PK102687",
+     "Horizonte V 2 Matcha",
+     977.5
+    ],
+    [
+     "PK11109",
+     "Set CC Body Lotion",
+     2400.0
+    ],
+    [
+     "PK101942",
+     "Set Relajante Paprika Gel de Masaje + Jabon",
+     540.0
+    ],
+    [
+     "PK101572",
+     "Set Hand Cream",
+     396.0
+    ],
+    [
+     "PK1015479",
+     "Set Rich Oil Lip Stick",
+     1540.0
+    ],
+    [
+     "PK101667",
+     "Set Lip Stylo",
+     2280.0
+    ],
+    [
+     "PK95206",
+     "Set Resurface",
+     5554.0
+    ],
+    [
+     "PK95207",
+     "Set Aqua",
+     2200.0
+    ],
+    [
+     "PK99905",
+     "Set Lumi Radiance",
+     2544.0
+    ],
+    [
+     "PK95211",
+     "Set Árbol de Té",
+     1552.0
+    ],
+    [
+     "PK95208",
+     "Set Age Reversist",
+     5160.0
+    ],
+    [
+     "PK95212",
+     "Set Caléndula",
+     1792.0
+    ],
+    [
+     "PK102392",
+     "Set Morning Glow C",
+     2700.0
+    ],
+    [
+     "PK98022",
+     "Set Reviving",
+     1204.0
+    ]
+   ]
+  },
+  {
+   "titulo": "Maquillaje",
+   "nota": "",
+   "items": [
+    [
+     "1000241",
+     "Bálsamo Hidratante Arándanos",
+     80.5
+    ],
+    [
+     "1000242",
+     "Perfecting Balm Aloe Pleasure",
+     80.5
+    ],
+    [
+     "1000303",
+     "Dr. C. Tuna Sun Bronzing Oil SPF 6",
+     264.0
+    ],
+    [
+     "1000649",
+     "Dr. C. Tuna Cleansing Balm",
+     800.0
+    ],
+    [
+     "1001356",
+     "Vfx Pro Foundation W04",
+     560.0
+    ],
+    [
+     "1001369",
+     "Vfx Pro Foundation N17",
+     343.0
+    ],
+    [
+     "1001425",
+     "BB Glaze Lipstick 03 Black Cherry",
+     285.0
+    ],
+    [
+     "1001504",
+     "Full Blast Volume Mascara New",
+     282.5
+    ],
+    [
+     "1001535",
+     "Midnight Touch Highlighter",
+     400.0
+    ],
+    [
+     "1001537",
+     "Midnight Touch Blush",
+     400.0
+    ],
+    [
+     "1001576",
+     "Sachet Beauty Balm",
+     60.0
+    ],
+    [
+     "1001801",
+     "Labial Líquido Matte Chocolate 218",
+     241.5
+    ],
+    [
+     "1001923",
+     "Labial Líquido Matte Rich Mocha",
+     241.5
+    ],
+    [
+     "1001963",
+     "LATINA LIP LQR 03 COQUETA",
+     225.0
+    ],
+    [
+     "1002351",
+     "Glam Up Eyeshadow Palette",
+     690.0
+    ],
+    [
+     "1002515",
+     "Lip oil transparent",
+     207.0
+    ],
+    [
+     "1002545",
+     "Royal Cherry Mascara",
+     515.0
+    ],
+    [
+     "1002547",
+     "Royal Cherry Eyeshadow",
+     345.0
+    ],
+    [
+     "1002548",
+     "Royal Cherry Lip Gloss Cranberry Pie",
+     222.0
+    ],
+    [
+     "1002551",
+     "Lip Stylo 01 Reddish Brwn",
+     285.0
+    ],
+    [
+     "1002552",
+     "Lip Stylo 02 Beige Rose",
+     199.5
+    ],
+    [
+     "1302712",
+     "Desmaquillante Bifásico",
+     240.0
+    ]
+   ]
+  },
+  {
+   "titulo": "Piel, cuerpo y fragancias",
+   "nota": "",
+   "items": [
+    [
+     "1000159",
+     "Dr. C. Tuna Sun Butter SPF 15",
+     420.0
+    ],
+    [
+     "1000301",
+     "Dr. C. Tuna Sun Aloe Soothing Gel After Sun",
+     315.0
+    ],
+    [
+     "1000306",
+     "Crema Depilatoria",
+     315.0
+    ],
+    [
+     "1000331",
+     "Jabón Madreselva",
+     56.0
+    ],
+    [
+     "1000332",
+     "Lavanta Jabón",
+     56.0
+    ],
+    [
+     "1000333",
+     "Jabón Moringa",
+     56.0
+    ],
+    [
+     "1000594",
+     "Farmasi Pearl Powder Soap",
+     150.0
+    ],
+    [
+     "1000635",
+     "Crema para Manos Cereza y Manteca de Karité",
+     110.0
+    ],
+    [
+     "1000696",
+     "Dr. C. Tuna Autobronceador para Cuerpo",
+     560.0
+    ],
+    [
+     "1000812",
+     "Dr. C. Tuna Gel para Masaje Alaska",
+     350.0
+    ],
+    [
+     "1000856",
+     "Shooter's Man Black",
+     715.0
+    ],
+    [
+     "1000866",
+     "Flaunt It! Body Sculpting Gel",
+     725.0
+    ],
+    [
+     "1000867",
+     "Flaunt It! Body Sculpting Scrub",
+     925.0
+    ],
+    [
+     "1000946",
+     "Dr. C Tuna Set de 8 Aceites Esenciales",
+     3000.0
+    ],
+    [
+     "1001330",
+     "Dr. C. Tuna Sun Face Cream SPF 50+",
+     430.0
+    ],
+    [
+     "1001333",
+     "Dr. C. Tuna Sun Body Lotion SPF 50",
+     650.0
+    ],
+    [
+     "1001762",
+     "Lavender Essential Oil",
+     400.0
+    ],
+    [
+     "1001789",
+     "Velvet Blossom",
+     345.0
+    ],
+    [
+     "1001790",
+     "Midnight Muse",
+     575.0
+    ],
+    [
+     "1001791",
+     "Vibrant Aura",
+     402.5
+    ],
+    [
+     "1001792",
+     "Noir Temptation",
+     402.5
+    ],
+    [
+     "1001990",
+     "Crema de masaje con Glucosamina",
+     530.0
+    ],
+    [
+     "1002343",
+     "Shea&Almond. Crema de Manos",
+     100.0
+    ],
+    [
+     "1002796",
+     "Hand Cream Mediterranean Breeze",
+     66.0
+    ],
+    [
+     "1002855",
+     "Paprika Massage Soap",
+     250.0
+    ],
+    [
+     "1107541",
+     "Bliss",
+     500.5
+    ],
+    [
+     "1109234",
+     "Crema para Manos Coco & Vainilla",
+     110.0
+    ],
+    [
+     "1109235",
+     "Crema para manos Moringa y Manteca de Karité",
+     110.0
+    ],
+    [
+     "1119097",
+     "Jabón Tradicional Hammam",
+     105.0
+    ]
+   ]
+  },
+  {
+   "titulo": "Nutriplus",
+   "nota": "",
+   "items": [
+    [
+     "1000957",
+     "Nutriplus Serenity Durazno",
+     315.0
+    ],
+    [
+     "1000958",
+     "Nutriplus Serenity Limón",
+     315.0
+    ],
+    [
+     "1000960",
+     "Nutriplus Serenity Negro",
+     450.0
+    ],
+    [
+     "9000700",
+     "Delish Café Mezcla de Achicoria en Sobres",
+     450.0
+    ]
+   ]
+  }
+ ]
+}
