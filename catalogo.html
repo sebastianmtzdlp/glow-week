@@ -199,10 +199,28 @@
   }
   flip.on("flip", paint); flip.on("changeOrientation", paint); paint();
   // Regresar: flipPrev falla en modo de una página; vamos directo a la página anterior visible
+  // Regresar con animación: en modo de una página la librería no anima hacia atrás,
+  // así que simulamos el gesto de arrastrar la hoja desde la orilla izquierda.
+  let busy = false;
   function goPrev(){
-    const v = visible(); const target = Math.max(1, v[0] - 1);
-    if (flip.getOrientation() === "portrait") { flip.turnToPage(target - 1); paint(); history.replaceState(null, "", "#p=" + current()); }
-    else flip.flip(target - 1);
+    if (busy || current() <= 1) return;
+    if (flip.getOrientation() !== "portrait") { flip.flipPrev(); return; }
+    busy = true;
+    const el = book.querySelector(".stf__block") || book;
+    const r = el.getBoundingClientRect(), y = r.top + r.height * .88, x0 = r.left + 6, x1 = r.right - 6;
+    const before = current(), steps = 18;
+    el.dispatchEvent(new MouseEvent("mousedown", {clientX:x0, clientY:y, bubbles:true, cancelable:true, view:window}));
+    let i = 0;
+    (function step(){
+      i++;
+      window.dispatchEvent(new MouseEvent("mousemove", {clientX:x0 + (x1-x0)*i/steps, clientY:y, bubbles:true}));
+      if (i < steps) return requestAnimationFrame(step);
+      window.dispatchEvent(new MouseEvent("mouseup", {clientX:x1, clientY:y, bubbles:true}));
+      setTimeout(() => {               // si por algo no giró, salta sin animación
+        if (current() === before) flip.turnToPage(before - 2);
+        paint(); history.replaceState(null, "", "#p=" + current()); busy = false;
+      }, 900);
+    })();
   }
   function goNext(){ flip.flipNext(); }
   $("prev").onclick = goPrev;
