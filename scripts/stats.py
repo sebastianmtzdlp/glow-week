@@ -59,8 +59,16 @@ now = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None) - dt.timedelta(hours
 out = {"actualizado": now.strftime("%Y-%m-%d"), "hora": now.strftime("%H:%M"), "desde": START[:10],
        "totales": {"visitas": tot.get("total", 0), "agregados": sum(adds.values()), "pedidos": sum(orders.values()), "wa": wa},
        "dias": dias, "consultoras": cons, "productos": productos}
-json.dump(out, open(os.path.join(ROOT, "_data/estadisticas.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
+def guardar(ruta, nuevo, ignorar=()):
+    """Escribe solo si cambió algo (sin contar fecha/hora), para no llenar el historial de commits."""
+    f = os.path.join(ROOT, ruta)
+    try:
+        viejo = json.load(open(f, encoding="utf-8"))
+        if {k: v for k, v in viejo.items() if k not in ignorar} == {k: v for k, v in nuevo.items() if k not in ignorar}: return False
+    except Exception: pass
+    json.dump(nuevo, open(f, "w", encoding="utf-8"), ensure_ascii=False, indent=1); return True
+ch1 = guardar("_data/estadisticas.json", out, ("actualizado", "hora"))
 # Ranking para los tableros: solo cuando ya hay datos suficientes (>=20 agregados en total, >=3 el producto)
 codes = [c for c, n in top if n >= 3][:6] if sum(adds.values()) >= 20 else []
-json.dump({"codes": codes, "nota": "Se llena solo con scripts/stats.py cuando hay datos suficientes."}, open(os.path.join(ROOT, "_data/mas-pedidos.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
-print("ok", out["totales"], "mas pedidos:", codes)
+ch2 = guardar("_data/mas-pedidos.json", {"codes": codes, "nota": "Se llena solo con scripts/stats.py cuando hay datos suficientes."})
+print("ok", out["totales"], "mas pedidos:", codes, "cambios:", ch1 or ch2)

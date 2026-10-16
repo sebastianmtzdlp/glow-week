@@ -1,0 +1,36 @@
+name: Estadísticas
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+permissions:
+  contents: write
+  pages: write
+concurrency:
+  group: estadisticas
+  cancel-in-progress: false
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - name: Leer GoatCounter
+        env:
+          GC_TOKEN: ${{ secrets.GC_TOKEN }}
+        run: |
+          if [ -z "$GC_TOKEN" ]; then echo "Falta el secreto GC_TOKEN"; exit 1; fi
+          python3 scripts/stats.py
+      - name: Publicar si hay cambios
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if git diff --quiet -- _data/estadisticas.json _data/mas-pedidos.json; then echo "Sin cambios"; exit 0; fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add _data/estadisticas.json _data/mas-pedidos.json
+          git commit -m "Estadísticas $(date -u +%Y-%m-%d\ %H:%M) UTC"
+          git pull --rebase -q origin main
+          git push origin HEAD:main
+          gh api -X POST "repos/${{ github.repository }}/pages/builds" >/dev/null || true
