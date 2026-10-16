@@ -1,9 +1,20 @@
 # Sitio estático: no hay build. Netlify publica la carpeta tal cual.
+# Dominio principal: mitienda.beauty (GitHub Pages). Netlify queda como respaldo.
 [build]
   publish = "."
 
-# Que promos.json nunca se quede guardado en caché: los cambios se ven al recargar.
+# promos.json nunca se queda en caché: los cambios se ven al recargar.
 [[headers]]
-  for = "/promos.json"
+  for = "/*/promos.json"
   [headers.values]
     Cache-Control = "no-cache"
+
+# Links viejos
+[[redirects]]
+  from = "/catalogo"
+  to = "/sel/catalogo/"
+  status = 301
+[[redirects]]
+  from = "/catalogo.html"
+  to = "/sel/catalogo/"
+  status = 301

@@ -151,7 +151,7 @@
 <div class="top">
   <div class="row">
     <div class="brand"><div class="t">Catálogo Farmasi 2026</div><div class="s">Con precios de hoy · tienda de Selene</div></div>
-    <a class="board" href="./">Ver Glow Week</a>
+    <a class="board" href="../">Ver Glow Week</a>
   </div>
   <nav class="idx" id="idx" aria-label="Secciones"></nav>
 </div>
@@ -196,18 +196,18 @@
   const pct = (p,r) => Math.round((1-p/r)*100);
 
   let D;
-  try { D = await (await fetch("catalogo-farmasi.json?v=" + Date.now(), {cache:"no-store"})).json(); }
+  try { D = await (await fetch("../catalogo-farmasi.json?v=" + Date.now(), {cache:"no-store"})).json(); }
   catch(e){ $("book").innerHTML = '<p class="hint" style="padding:40px 0">No pude cargar el catálogo. Recarga la página.</p>'; return; }
   const P = D.precios, N = D.paginas;
   let C = {meta:{monto:3000, regalo:"el regalo del mes", regalo_items:[]}};
-  try { C = await (await fetch("promos.json?v=" + Date.now(), {cache:"no-store"})).json(); } catch(e) {}
+  try { C = await (await fetch("../promos.json?v=" + Date.now(), {cache:"no-store"})).json(); } catch(e) {}
   const GOAL = C.meta.monto, GIFT = C.meta.regalo, GIFT_ITEMS = C.meta.regalo_items || [];
   // Membresía: 50% en Dr. C. Tuna (páginas de skincare y masaje), 30% en lo demás; se aplica sobre el precio que ve la clienta
   const M = Object.assign({mostrar:true, meta_monto:2000, costo:499}, C.membresia || {});
   const pageOf = {}; (D.productos || []).forEach((items, i) => (items || []).forEach(([c]) => { if (!(c in pageOf)) pageOf[c] = i + 1; }));
   const mPct = c => (C.membresia && C.membresia.por_producto && C.membresia.por_producto[c]) ?? ((/Dr\.? ?C\.? ?Tuna/i.test(P[c][0]) || (pageOf[c] >= 66 && pageOf[c] <= 113)) ? 50 : 30);
   const mCalc = () => { let m = 0, t = 0; for (const [c,q] of Object.entries(cart)) { t += q*P[c][1]; m += q*Math.round(P[c][1]*(1-mPct(c)/100)*100)/100; } return {t, m, withFee: m + M.costo, save: t - m - M.costo, metaOk: m >= M.meta_monto}; };
-  if (location.search) document.querySelector("a.board").href = "./" + location.search;
+  if (location.search) document.querySelector("a.board").href = "../" + location.search;
   const REFS = C.referidas || [];
   const cleanRef = r => (r||"").replace(/[^\p{L}\p{N} .'-]/gu,"").trim().slice(0,40);
   let refInit = "";

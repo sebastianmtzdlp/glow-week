@@ -1,12 +1,17 @@
-# Glow Week · Tablero de ventas de Selene
+# mitienda.beauty · Tableros de ventas Farmasi
 
-Tablero de productos Farmasi con pedido por WhatsApp. Se publica solo en Netlify cada vez que cambia este repositorio.
+Un tablero por consultora, cada una en su carpeta. Se publica solo (GitHub Pages en mitienda.beauty; Netlify en glow-week.netlify.app como respaldo) cada vez que cambia este repositorio.
 
-## Archivos
+- `mitienda.beauty/sel` — Selene
+- (próximas: `/silvia`, `/elda`)
+
+## Archivos de cada carpeta
 - `index.html` — diseño y funcionamiento del tablero. Casi nunca hay que tocarlo.
-- `promos.json` — **todo lo que cambia**: productos, precios, flash sales, lanzamientos, aviso, fechas, meta y regalo.
-- `catalogo.json` — precios base (precio público). Los descuentos se calculan contra estos precios.
-- `netlify.toml` — configuración de Netlify.
+- `promos.json` — **todo lo que cambia**: datos de la consultora, productos, precios, flash sales, aviso, meta, regalo, membresía, referidas y tema.
+- `catalogo/` — catálogo completo con precios y carrito (`catalogo-farmasi.json` son sus precios).
+- `catalogo.json` — precios base (precio público).
+
+Raíz: `CNAME` (dominio), `netlify.toml` (respaldo), `index.html` (manda a `/sel`).
 
 ## Cómo se marca cada cosa en `promos.json`
 - **Precio con promo:** `"retail"` = precio base, `"price"` = precio con descuento.
