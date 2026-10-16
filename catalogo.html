@@ -198,9 +198,16 @@
     $("pagePrices").disabled = !n; $("pagePrices").style.opacity = n ? 1 : .45;
   }
   flip.on("flip", paint); flip.on("changeOrientation", paint); paint();
-  $("prev").onclick = () => flip.flipPrev();
-  $("next").onclick = () => flip.flipNext();
-  document.addEventListener("keydown", e => { if (e.key === "ArrowLeft") flip.flipPrev(); if (e.key === "ArrowRight") flip.flipNext(); if (e.key === "Escape") { closeSheet(); $("zoom").hidden = true; } });
+  // Regresar: flipPrev falla en modo de una página; vamos directo a la página anterior visible
+  function goPrev(){
+    const v = visible(); const target = Math.max(1, v[0] - 1);
+    if (flip.getOrientation() === "portrait") { flip.turnToPage(target - 1); paint(); history.replaceState(null, "", "#p=" + current()); }
+    else flip.flip(target - 1);
+  }
+  function goNext(){ flip.flipNext(); }
+  $("prev").onclick = goPrev;
+  $("next").onclick = goNext;
+  document.addEventListener("keydown", e => { if (e.key === "ArrowLeft") goPrev(); if (e.key === "ArrowRight") goNext(); if (e.key === "Escape") { closeSheet(); $("zoom").hidden = true; } });
 
   // Hojas
   function openSheet(title, html){ $("sTitle").textContent = title; $("sBody").innerHTML = html; $("sBody").scrollTop = 0; document.body.classList.add("open"); }
@@ -236,8 +243,13 @@
     $("zoom").hidden = false; const sc = $("zsc"); sc.scrollLeft = 0; sc.scrollTop = 0;
   }
   $("zclose").onclick = () => { $("zoom").hidden = true; };
+  // Solo amplía con un toque quieto, no al deslizar para pasar página
+  let down = null;
+  book.addEventListener("pointerdown", e => { down = {x:e.clientX, y:e.clientY, t:Date.now()}; }, true);
   book.addEventListener("click", e => {
     if (e.target.closest("[data-code]")) return;
+    if (!down || Math.hypot(e.clientX-down.x, e.clientY-down.y) > 10 || Date.now()-down.t > 500) return;
+    if (flip.getState && flip.getState() !== "read") return;
     const pageEl = e.target.closest(".page"); if (!pageEl) return;
     const idx = [...book.querySelectorAll(".page")].indexOf(pageEl); if (idx >= 0) openZoom(idx + 1);
   });
