@@ -138,6 +138,9 @@
   .socia .cmp .best{outline:2px solid var(--good)}
   .socia .verdict{font-size:14px;font-weight:600;margin-bottom:8px}
   .socia .verdict.g{color:var(--good)}
+  .socia .mmeta{font-size:13px;line-height:1.45;background:var(--tint);border-radius:12px;padding:10px 12px;margin-bottom:6px}
+  .socia .mmeta b{font-weight:600}
+  .socia .mmeta.ok{outline:1.5px solid var(--good)}
   .socia label.chk{display:flex;gap:10px;align-items:center;font-size:14px;margin-top:10px;cursor:pointer}
   .socia label.chk input{width:20px;height:20px;accent-color:var(--accent)}
   .socia .fine{font-size:11px;margin-top:8px}
@@ -423,6 +426,7 @@
         <div id="cmpSi"><div class="k">Con membresía</div><div class="v num" id="mSi"></div><div class="s" id="mSiS"></div></div>
       </div>
       <div class="verdict" id="mVerdict"></div>
+      <div class="mmeta" id="mMeta"></div>
       <label class="chk"><input type="checkbox" id="mWant"> Quiero que me expliques la membresía</label>
       <p class="fine" id="mFine"></p>
     </div>
@@ -590,18 +594,18 @@
 
   // Membresía (Farmasi Influencer): datos editables en promos.json → "membresia"
   // El descuento de socia se aplica sobre el precio que ve la clienta, también en promos.
-  const M = Object.assign({costo:499, por_categoria:{}, por_producto:{}, desc_default:30}, D.membresia||{});
+  const M = Object.assign({meta_monto:2000, costo:499, por_categoria:{}, por_producto:{}, desc_default:30}, D.membresia||{});
   const r0 = x => Math.round(x*100)/100;
   const mPct = p => p.desc_miembro ?? M.por_producto[p.code] ?? M.por_categoria[p.cat] ?? M.desc_default;
   const mPrice = p => r0(p.price*(1-mPct(p)/100));
   function memberCalc(){
     let m=0, t=0;
     products.forEach((p,i)=>{const q=cart[i]||0; if(!q) return; t+=q*p.price; m+=q*mPrice(p);});
-    return {t, m, withFee:m+M.costo, save:t-(m+M.costo), saveNext:t-m};
+    return {t, m, withFee:m+M.costo, save:t-(m+M.costo), saveNext:t-m, metaOk: m>=M.meta_monto, metaLeft: M.meta_monto-m};
   }
   const m0 = x => money(x).replace(".00","");
   function paintMember(){
-    const {t,m,withFee,save,saveNext} = memberCalc();
+    const {t,m,withFee,save,saveNext,metaOk,metaLeft} = memberCalc();
     $("sociaIntro").textContent = `Como socia pagas 50% menos en Dr. C. Tuna y 30% menos en maquillaje, incluso sobre las promos. La inscripción cuesta ${m0(M.costo)} una sola vez.`;
     $("mNo").textContent = money(t);
     $("mSi").textContent = money(withFee);
@@ -611,12 +615,20 @@
     v.textContent = good ? `Te ahorrarías ${money(save)} desde este pedido, y en los siguientes ${money(saveNext)}.`
       : `Con la inscripción hoy sale casi igual, pero en tus siguientes pedidos como este ahorrarías ${money(saveNext)}.`;
     $("cmpSi").classList.toggle("best", good); $("cmpNo").classList.remove("best");
+    // Meta de socia: con menos producto ya tienen envío gratis y regalos
+    const mm=$("mMeta"), clientOk = t>=GOAL;
+    mm.className = "mmeta" + (metaOk?" ok":"");
+    mm.innerHTML = metaOk
+      ? (clientOk ? `Como socia también tienes envío gratis y ${giftLabel}.`
+                  : `<b>Como socia ya tendrías envío gratis y ${giftLabel}</b>: a socias les pide ${m0(M.meta_monto)} de producto, no ${m0(GOAL)}.`)
+      : `Como socia, el envío gratis y ${giftLabel} son desde ${m0(M.meta_monto)} de producto (te faltarían ${money(metaLeft)}), en vez de ${m0(GOAL)}.`;
     $("mFine").textContent = `Precios de socia aproximados; algunos kits tienen otro descuento. ${SELLER} te confirma el total exacto${M.nota?". "+M.nota:""}.`;
   }
   function paintSociaCard(){
     $("sociaList").innerHTML = [
       `50% menos en Dr. C. Tuna y 30% menos en maquillaje.`,
       `El descuento se suma a las promos: un kit de ${m0(1032.5)} te sale en unos ${m0(516.25)}.`,
+      `Envío gratis y regalos del mes desde ${m0(M.meta_monto)} de producto (a clientas se les pide ${m0(GOAL)}).`,
       `Inscripción de ${m0(M.costo)}, una sola vez.`,
       `Si quieres, puedes vender y ganar comisión. Si no, solo compras más barato.`,
       M.kits ? M.kits : `Al entrar hay kits de inicio a precio muy reducido.`
