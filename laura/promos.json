@@ -1,7 +1,7 @@
 {
  "_nota": "Datos de esta consultora. Lo compartido está en ../_data/promos-base.json. Puedes sobreescribir cualquier campo aquí (p. ej. \"tema\").",
  "base": "../_data/promos-base.json",
- "consultora": "Laurinha",
+ "consultora": "Laura",
  "whatsapp": "525549978628",
  "instagram": "",
  "referidas": []
