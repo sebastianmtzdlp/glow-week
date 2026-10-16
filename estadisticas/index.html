@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow">
+<title>Estadísticas · Team Nancy y Selene</title>
+<meta name="theme-color" content="#EEF0F8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{color-scheme:light;--bg:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;--ac:#C8323F;--tint:#FDEEF0;--good:#1B8A5A;
+    --sans:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;--ease:cubic-bezier(.2,.7,.2,1)}
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.5 var(--sans);-webkit-font-smoothing:antialiased}
+  .wrap{max-width:560px;margin:0 auto;padding:0 16px}
+  @media(min-width:900px){.wrap{max-width:1040px}}
+  header.top{background:var(--soft)}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;height:52px;gap:12px}
+  .logo{font-weight:300;letter-spacing:.3em;font-size:14px;text-transform:uppercase;white-space:nowrap}.logo b{font-weight:800}
+  .upd{font-size:12.5px;color:var(--muted);font-family:var(--mono);white-space:nowrap}
+  h1{font-size:clamp(32px,8vw,52px);line-height:1;font-weight:300;letter-spacing:-.03em;margin:26px 0 8px}h1 b{font-weight:800}
+  .lede{color:var(--muted);margin:0 0 18px;max-width:52ch}
+  .label{font-size:11.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--muted);font-weight:500}
+  .tabs{display:flex;gap:4px;background:var(--soft);padding:4px;border-radius:999px;width:fit-content;max-width:100%;overflow-x:auto;margin:4px 0 20px}
+  .tab{border:0;background:transparent;font:600 14px var(--sans);color:var(--muted);padding:9px 16px;border-radius:999px;white-space:nowrap;cursor:pointer;transition:background .15s var(--ease),color .15s var(--ease)}
+  .tab[aria-selected="true"]{background:#fff;color:var(--ac)}
+  .tab:active{transform:scale(.97)}
+  .tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  @media(min-width:900px){.tiles{grid-template-columns:repeat(4,1fr)}}
+  .tile{background:var(--soft);border-radius:14px;padding:14px}
+  .tile .n{font:800 34px/1.05 var(--mono);letter-spacing:-.03em;margin:6px 0 2px;font-variant-numeric:tabular-nums}
+  .tile .n.hl{color:var(--accent)}
+  .tile .d{font-size:13px;color:var(--muted);line-height:1.35}
+  .card{border:1px solid var(--line);border-radius:18px;padding:18px;margin-top:14px;background:#fff}
+  .card h2{margin:0 0 2px;font-size:19px;font-weight:700;letter-spacing:-.01em}
+  .card .sub{margin:0 0 14px;color:var(--muted);font-size:14px}
+  .chart{display:flex;align-items:flex-end;gap:6px;height:150px;padding-top:8px}
+  .col{flex:1;min-width:0;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;gap:6px}
+  .bar{width:100%;max-width:38px;background:var(--soft);border-radius:8px 8px 3px 3px;min-height:3px;position:relative}
+  .bar.today{background:var(--accent)}
+  .bar span{position:absolute;left:50%;top:-20px;transform:translateX(-50%);font:500 11.5px var(--mono);color:var(--ink)}
+  .col small{font:400 11px var(--mono);color:var(--muted)}
+  .row{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+  .row:first-of-type{border-top:0}
+  .rk{font:500 13px var(--mono);color:var(--muted);text-align:center}
+  .rk.top{color:#fff;background:var(--accent);border-radius:8px;padding:3px 0}
+  .nm{font-weight:600;line-height:1.25;overflow-wrap:anywhere}
+  .meta{font-size:12.5px;color:var(--muted);margin-top:2px}
+  .track{height:7px;background:var(--soft);border-radius:99px;margin-top:8px;overflow:hidden}
+  .track i{display:block;height:100%;background:var(--accent);border-radius:99px;transform-origin:left;animation:fill .5s var(--ease) both}
+  @keyframes fill{from{transform:scaleX(0)}}
+  .val{font:800 20px var(--mono);text-align:right;font-variant-numeric:tabular-nums}
+  .val small{display:block;font:400 11px var(--sans);color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+  .pill{display:inline-block;font-size:12px;font-weight:600;background:var(--tint);color:var(--ac);border-radius:99px;padding:2px 9px;margin-left:6px;vertical-align:1px}
+  .empty{background:var(--soft);border-radius:14px;padding:18px;color:var(--muted)}
+  .empty b{color:var(--ink);display:block;margin-bottom:4px}
+  .help{margin-top:14px;font-size:14px;color:var(--muted)}
+  .help summary{cursor:pointer;font-weight:600;color:var(--ink)}
+  .help p{margin:8px 0 0}
+  .grid2{display:grid;gap:14px}@media(min-width:900px){.grid2{grid-template-columns:1.2fr 1fr}}
+  .pane[hidden]{display:none}
+  footer{margin:40px 0 0;background:var(--soft);padding:22px 0 30px;font-size:12.5px;color:var(--muted)}
+  footer b{display:block;color:var(--ink);letter-spacing:.3em;text-transform:uppercase;font-size:13px;margin-bottom:6px}
+  :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+  @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<header class="top"><div class="wrap"><div class="logo"><b>Farmasi</b> · Estadísticas</div><div class="upd" id="upd">…</div></div></header>
+<main class="wrap">
+  <h1>Cómo va <b>el equipo</b></h1>
+  <p class="lede" id="lede">Cargando tus cifras…</p>
+  <div class="tabs" role="tablist" aria-label="Secciones">
+    <button class="tab" role="tab" aria-selected="true" data-p="resumen">Resumen</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="cons">Consultoras</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="prod">Productos</button>
+  </div>
+
+  <section class="pane" id="p-resumen">
+    <div class="tiles" id="tiles"></div>
+    <div class="grid2">
+      <div class="card"><h2>Visitas por día</h2><p class="sub" id="chartSub"></p><div class="chart" id="chart"></div></div>
+      <div class="card"><h2>Del tablero al pedido</h2><p class="sub">Cuántas clientas avanzan en cada paso.</p><div id="funnel"></div></div>
+    </div>
+    <details class="help"><summary>¿Qué significa cada número?</summary>
+      <p><b>Visitas:</b> veces que se abrió la portada, un tablero o un catálogo.</p>
+      <p><b>Agregaron:</b> veces que alguien agregó un producto al pedido.</p>
+      <p><b>Pedidos enviados:</b> veces que alguien tocó "Enviar por WhatsApp" con el formulario completo. Eso no confirma la compra, es la intención de pedir.</p>
+      <p>No guardamos nombres ni teléfonos de las clientas, solo conteos.</p></details>
+  </section>
+
+  <section class="pane" id="p-cons" hidden>
+    <div class="card"><h2>Por consultora</h2><p class="sub">Visitas a su tablero y catálogo, y pedidos que salieron de ahí.</p><div id="consList"></div></div>
+  </section>
+
+  <section class="pane" id="p-prod" hidden>
+    <div class="card"><h2>Lo que más agregan</h2><p class="sub" id="prodSub"></p><div id="prodList"></div></div>
+  </section>
+</main>
+<footer><div class="wrap"><b>Farmasi</b>Herramienta interna del equipo. Se actualiza sola cada día. Consultoras independientes de Farmasi México.</div></footer>
+<script>
+(async () => {
+  const $ = id => document.getElementById(id);
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const fmt = n => n.toLocaleString("es-MX");
+  const MES = ["ene","feb","mar","abr","may","jun","jul","ago","sep","oct","nov","dic"];
+  const dia = s => { const [y,m,d] = s.split("-").map(Number); return `${d} ${MES[m-1]}`; };
+  let D;
+  try { D = await (await fetch("../_data/estadisticas.json?v=" + Date.now(), {cache:"no-store"})).json(); }
+  catch(e){ $("lede").textContent = "No pude cargar las cifras. Intenta de nuevo en unos minutos."; return; }
+  const T = D.totales, hay = T.visitas > 0;
+  $("upd").textContent = `${dia(D.actualizado)} · ${D.hora}`;
+  $("lede").textContent = hay
+    ? `Llevas ${fmt(T.visitas)} ${T.visitas===1?"visita":"visitas"} desde el ${dia(D.desde)}${T.pedidos?` y ${fmt(T.pedidos)} ${T.pedidos===1?"pedido enviado":"pedidos enviados"}`:""}.`
+    : "Aún no hay visitas. Comparte los tableros y aquí verás cómo avanzan.";
+
+  // Tabs
+  document.querySelectorAll(".tab").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".tab").forEach(x => x.setAttribute("aria-selected", x === b));
+    document.querySelectorAll(".pane").forEach(p => p.hidden = p.id !== "p-" + b.dataset.p);
+  }));
+
+  // Tiles
+  const conv = T.visitas ? Math.round(T.pedidos / T.visitas * 1000) / 10 : 0;
+  $("tiles").innerHTML = [
+    ["Visitas", fmt(T.visitas), "a portada, tableros y catálogos", false],
+    ["Agregaron", fmt(T.agregados), "productos al pedido", false],
+    ["Pedidos enviados", fmt(T.pedidos), "por WhatsApp", true],
+    ["De visita a pedido", conv.toLocaleString("es-MX") + "%", "de cada 100 visitas, " + Math.round(conv) + " piden", false],
+  ].map(([l,n,d,h]) => `<div class="tile"><div class="label">${l}</div><div class="n${h?" hl":""}">${n}</div><div class="d">${d}</div></div>`).join("");
+
+  // Chart
+  const dias = D.dias.slice(-14), max = Math.max(1, ...dias.map(x => x.v));
+  $("chartSub").textContent = dias.length > 1 ? `Últimos ${dias.length} días.` : "Aquí aparecerá la tendencia con los días.";
+  $("chart").innerHTML = dias.map((x,i) => `<div class="col"><div class="bar${i===dias.length-1?" today":""}" style="height:${Math.max(3, x.v/max*100)}%"><span>${x.v}</span></div><small>${dia(x.d).split(" ")[0]}</small></div>`).join("");
+
+  // Funnel
+  const steps = [["Visitaron", T.visitas],["Agregaron algo", T.agregados],["Enviaron pedido", T.pedidos]], top = Math.max(1, ...steps.map(s => s[1]));
+  $("funnel").innerHTML = steps.map(([l,n]) => `<div class="row" style="grid-template-columns:1fr auto"><div><div class="nm">${l}</div><div class="track"><i style="width:${n/top*100}%"></i></div></div><div class="val">${fmt(n)}</div></div>`).join("");
+
+  // Consultoras
+  const cs = D.consultoras, cmax = Math.max(1, ...cs.map(c => c.visitas + c.catalogo));
+  $("consList").innerHTML = cs.some(c => c.visitas + c.catalogo + c.pedidos) ? cs.map((c,i) => {
+    const v = c.visitas + c.catalogo;
+    return `<div class="row"><div class="rk${i<3&&v?" top":""}">${i+1}</div><div><div class="nm">${esc(c.nombre)}${c.pedidos?`<span class="pill">${c.pedidos} ${c.pedidos===1?"pedido":"pedidos"}</span>`:""}</div><div class="meta">${c.visitas} en tablero · ${c.catalogo} en catálogo</div><div class="track"><i style="width:${v/cmax*100}%"></i></div></div><div class="val">${fmt(v)}<small>visitas</small></div></div>`;
+  }).join("") : `<div class="empty"><b>Todavía no hay visitas por consultora.</b>Cuando cada una comparta su link, aquí verás quién recibe más visitas.</div>`;
+
+  // Productos
+  const ps = D.productos, pmax = Math.max(1, ...ps.map(p => p.agregados));
+  $("prodSub").textContent = ps.length ? "Los 10 productos que más se agregan al pedido." : "";
+  $("prodList").innerHTML = ps.length ? ps.slice(0,10).map((p,i) => `<div class="row"><div class="rk${i<3?" top":""}">${i+1}</div><div><div class="nm">${esc(p.name)}</div><div class="meta">${esc(p.code)}</div><div class="track"><i style="width:${p.agregados/pmax*100}%"></i></div></div><div class="val">${fmt(p.agregados)}<small>veces</small></div></div>`).join("")
+    : `<div class="empty"><b>Aún no hay productos agregados.</b>Cuando las clientas empiecen a armar pedidos, verás aquí los favoritos. Con 20 agregados en total, los 6 más pedidos aparecen también en los tableros.</div>`;
+})();
+</script>
+</body>
+</html>

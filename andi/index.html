@@ -575,6 +575,8 @@
   const GIFT_ITEMS = D.meta.regalo_items || [];
 
   // Productos activos. Flash sale: mientras esté vigente usa su precio; al terminar regresa al precio normal.
+  let MAS = new Set();
+  try { const m = await (await fetch("../_data/mas-pedidos.json?v=" + Date.now(), {cache:"no-store"})).json(); MAS = new Set(m.codes || []); } catch(_){}
   const products = D.productos
     .filter(p => inWindow(p.desde, p.hasta))
     .map(p => {
@@ -595,6 +597,7 @@
   const realCats = [...new Set(products.map(p=>p.cat))];
   const SPECIAL = {
     "Flash sale": p => !!p.flashEnds,
+    "Más pedidos": p => MAS.has(p.code),
     "Nuevos": p => !!p.nuevo,
     "Mejores descuentos": p => pct(p) >= 40,
   };
@@ -613,7 +616,7 @@
       <div class="pic">
         <img src="${IMG}${p.img}.webp" alt="${p.name} ${p.shade}" loading="lazy" onerror="this.outerHTML='<div class=ph>${initials(p)}</div>'">
         <span class="off${d>=40?" big":""}">-${d}%</span>
-        ${(p.flashEnds||p.nuevo||p.cat==="Kits") ? `<span class="tags">${p.flashEnds?'<span class="tag flash">Flash</span>':""}${p.nuevo?'<span class="tag">Nuevo</span>':""}</span>` : ""}${p.cat==="Kits"?'<span class="tag lim">Tiempo limitado</span>':""}
+        ${(p.flashEnds||p.nuevo||MAS.has(p.code)||p.cat==="Kits") ? `<span class="tags">${p.flashEnds?'<span class="tag flash">Flash</span>':""}${p.nuevo?'<span class="tag">Nuevo</span>':""}${MAS.has(p.code)?'<span class="tag">Más pedido</span>':""}</span>` : ""}${p.cat==="Kits"?'<span class="tag lim">Tiempo limitado</span>':""}
       </div>
       <div class="body">
         <div class="name">${p.name}</div>
@@ -632,7 +635,7 @@
     let groups;
     if (filter==="Todo") {
       groups = realCats.map(c=>[c, products.filter(p=>p.cat===c)]);
-      ["Nuevos","Flash sale"].forEach(k => { const l = products.filter(SPECIAL[k]); if (l.length) groups.unshift([k, l]); });
+      ["Nuevos","Flash sale","Más pedidos"].forEach(k => { const l = products.filter(SPECIAL[k]); if (l.length) groups.unshift([k, l]); });
     }
     else if (SPECIAL[filter]) groups = [[filter, products.filter(SPECIAL[filter]).sort((a,b)=>pct(b)-pct(a))]];
     else groups = [[filter, products.filter(p=>p.cat===filter)]];

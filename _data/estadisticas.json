@@ -1,0 +1,143 @@
+{
+ "actualizado": "2026-10-16",
+ "hora": "16:52",
+ "desde": "2026-10-16",
+ "totales": {
+  "visitas": 4,
+  "agregados": 0,
+  "pedidos": 0,
+  "wa": 0
+ },
+ "dias": [
+  {
+   "d": "2026-10-15",
+   "v": 0
+  },
+  {
+   "d": "2026-10-16",
+   "v": 4
+  }
+ ],
+ "consultoras": [
+  {
+   "slug": "moni",
+   "nombre": "Moni",
+   "visitas": 2,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "anagomez",
+   "nombre": "Ana Gómez",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "anaofelia",
+   "nombre": "Ana Ofelia",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "andi",
+   "nombre": "Andi",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "andrea",
+   "nombre": "Andrea",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "danny",
+   "nombre": "Danny",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "elda",
+   "nombre": "Elda",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "laura",
+   "nombre": "Laura",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "mar",
+   "nombre": "Mar",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "nancy",
+   "nombre": "Nancy",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "pame",
+   "nombre": "Pame",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "pao",
+   "nombre": "Pao",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "sebas",
+   "nombre": "Sebas",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "sel",
+   "nombre": "Selene",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "silvia",
+   "nombre": "Silvia",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "viri",
+   "nombre": "Viri",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "yazmin",
+   "nombre": "Yazmin",
+   "visitas": 0,
+   "catalogo": 0,
+   "pedidos": 0
+  }
+ ],
+ "productos": []
+}
