@@ -163,6 +163,11 @@
   .fc .add{border:1.5px solid var(--ink);background:#fff;color:var(--ink);border-radius:12px;padding:9px;font:600 14px var(--sans)}
   .fc .add.in{background:var(--ink);color:#fff}
   body.vf .stage,body.vf #hint,body.vf .nav,body.vf #idx{display:none!important}
+
+  /* controles del catálogo */
+  .chip{padding:8px 14px;font-size:14px}
+  .arrow,.ghost{border-radius:999px}
+  .cta{border-radius:999px}
   :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
@@ -220,8 +225,8 @@
   try { D = await (await fetch("../../_data/catalogo-farmasi.json?v=" + Date.now(), {cache:"no-store"})).json(); }
   catch(e){ $("book").innerHTML = '<p class="hint" style="padding:40px 0">No pude cargar el catálogo. Recarga la página.</p>'; return; }
   const P = D.precios, N = D.paginas;
-  let FUERA = [];
-  try { const F = await (await fetch("../../_data/fuera-de-catalogo.json?v=" + Date.now(), {cache:"no-store"})).json(); FUERA = F.grupos || [];
+  let FUERA = [], FUERA_CUANDO = "";
+  try { const F = await (await fetch("../../_data/fuera-de-catalogo.json?v=" + Date.now(), {cache:"no-store"})).json(); FUERA = F.grupos || []; FUERA_CUANDO = F.actualizado ? new Date(F.actualizado + "T12:00:00").toLocaleDateString("es-MX",{day:"numeric",month:"long"}) + (F.hora ? ", " + F.hora : "") : "";
     FUERA.forEach(g => g.items.forEach(([c,n,pr]) => { P[c] = [n, pr, pr, 1]; })); } catch(e) {}
   let C = {meta:{monto:3000, regalo:"el regalo del mes", regalo_items:[]}};
   try { C = await (await fetch("../promos.json?v=" + Date.now(), {cache:"no-store"})).json();
@@ -280,7 +285,7 @@
     const imgSrc = c => ["", "_1"].map(x => `https://content.mx.farmasi.com/Product/${c}_250${x}.webp`).concat([`https://content.mx.farmasi.com/Product/${c.toLowerCase()}_250_1.webp`, `https://content.mx.farmasi.com/Product/${c}_250.png`]);
     window.__fb = (el) => { const l = JSON.parse(el.dataset.l); const n = +el.dataset.i + 1; if (n < l.length) { el.dataset.i = n; el.src = l[n]; } else el.remove(); };
     const card = ([c,n,pr]) => `<div class="fc" data-code="${c}"><div class="im"><img loading="lazy" alt="" src="${imgSrc(c)[0]}" data-i="0" data-l='${JSON.stringify(imgSrc(c))}' onerror="__fb(this)"></div><div class="n">${shortName(n)}</div><div class="pr">${money(pr)}</div><button class="add" data-addc="${c}">${plus} Agregar</button></div>`;
-    $("fuera").innerHTML = `<p class="intro">Productos que hoy están en la tienda de Farmasi pero no salen en el catálogo impreso. Toca uno para ver el detalle.</p>
+    $("fuera").innerHTML = `<p class="intro">Productos que hoy están en la tienda de Farmasi pero no salen en el catálogo impreso. Toca uno para ver el detalle.${FUERA_CUANDO ? ` <b>Disponibilidad revisada el ${FUERA_CUANDO}.</b>` : ""}</p>
       <div class="gchips">${FUERA.map((g,i) => `<button class="chip" data-g="${i}">${g.titulo}</button>`).join("")}</div>` +
       FUERA.map((g,i) => `<h3 id="g${i}">${g.titulo}</h3>${g.nota ? `<p class="gnote">${g.nota}</p>` : ""}<div class="fgrid">${g.items.map(card).join("")}</div>`).join("");
     const show = f => { document.body.classList.toggle("vf", f); $("fuera").hidden = !f; $("tabCat").setAttribute("aria-selected", !f); $("tabFuera").setAttribute("aria-selected", f); window.scrollTo(0, 0); };
