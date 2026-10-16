@@ -145,7 +145,7 @@
   .sociacard summary{list-style:none;display:flex;gap:12px;align-items:center;padding:12px 0;cursor:pointer}
   .sociacard summary::-webkit-details-marker{display:none}
   .sociacard summary svg{flex:none;color:var(--accent-text)}
-  .sociacard summary .chev{transition:transform .2s var(--ease)}
+  .sociacard summary .chev{transition:transform .2s var(--ease);transform-box:fill-box;transform-origin:center}
   .sociacard[open] summary .chev{transform:rotate(90deg)}
   .sociacard .t1{font-weight:600}.sociacard .t2{font-size:13px;color:var(--muted)}
   .sociacard ul{margin:0 0 10px;padding-left:18px;font-size:14px;line-height:1.5}
