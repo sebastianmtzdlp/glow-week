@@ -426,6 +426,115 @@
   [data-boutique] .top{background:var(--bg);border-bottom:1px solid var(--line)}
   [data-boutique] .filters{background:color-mix(in srgb,var(--bg) 94%,transparent)}
 
+
+  /* ===== Boutique: cada tema con su propia composición ===== */
+  /* 1 · blancoynegro: editorial, una columna, fotos grandes, sin cajas */
+  [data-tema="blancoynegro"] .hero{text-align:center}
+  [data-tema="blancoynegro"] .hero h1{font-size:clamp(40px,12vw,76px);letter-spacing:.14em;font-weight:400}
+  [data-tema="blancoynegro"] .hero h1 .who{display:block;font-size:.34em;letter-spacing:.5em;font-style:normal;text-transform:uppercase;margin-top:14px;color:var(--ink)}
+  [data-tema="blancoynegro"] .who-row{justify-content:center;flex-direction:column;text-align:center;gap:8px}
+  [data-tema="blancoynegro"] .share,[data-tema="blancoynegro"] .soc,[data-tema="blancoynegro"] .facts{display:none}
+  [data-tema="blancoynegro"] .cd{background:transparent;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);border-radius:0;justify-content:center;margin-inline:auto}
+  [data-tema="blancoynegro"] section.cat h2{justify-content:center;text-align:center;font-size:14px;letter-spacing:.4em;text-transform:uppercase;border-bottom:1px solid var(--ink);padding-bottom:14px}
+  [data-tema="blancoynegro"] .grid{grid-template-columns:1fr;gap:56px}
+  [data-tema="blancoynegro"] .card{box-shadow:none;background:transparent;text-align:center}
+  [data-tema="blancoynegro"] .pic{aspect-ratio:4/5}
+  [data-tema="blancoynegro"] .pic img{padding:10%}
+  [data-tema="blancoynegro"] .body{align-items:center;padding:18px 0 0}
+  [data-tema="blancoynegro"] .name{font-size:13px;letter-spacing:.22em;text-transform:uppercase;font-weight:400}
+  [data-tema="blancoynegro"] .price{justify-content:center;gap:10px}
+  [data-tema="blancoynegro"] .add{background:transparent;color:var(--ink);border:0;border-bottom:1px solid var(--ink);width:auto;padding:0 4px;height:34px;letter-spacing:.3em}
+  /* 2 · arquitectura: brutalista, filas numeradas con bordes gruesos */
+  [data-tema="arquitectura"]{--bw:2px}
+  [data-tema="arquitectura"] .hero h1{font-size:clamp(46px,15vw,92px);line-height:.88;letter-spacing:-.03em;font-weight:600}
+  [data-tema="arquitectura"] .hero h1 .who{display:block;font-style:normal;text-transform:uppercase;background:var(--ink);color:var(--bg);padding:2px 10px;width:fit-content;margin-top:8px}
+  [data-tema="arquitectura"] .cd,[data-tema="arquitectura"] .fact,[data-tema="arquitectura"] .gift{border:2px solid var(--ink);background:transparent;border-radius:0}
+  [data-tema="arquitectura"] section.cat h2{font-size:30px;text-transform:uppercase;letter-spacing:-.01em;border-top:6px solid var(--ink);padding-top:10px}
+  [data-tema="arquitectura"] .grid{grid-template-columns:1fr;gap:0;counter-reset:n}
+  [data-tema="arquitectura"] .card{display:grid;grid-template-columns:42% 1fr;box-shadow:none;border:2px solid var(--ink);border-bottom-width:0;background:var(--card);counter-increment:n}
+  [data-tema="arquitectura"] .card:last-child{border-bottom-width:2px}
+  [data-tema="arquitectura"] .pic{aspect-ratio:1;border-right:2px solid var(--ink)}
+  [data-tema="arquitectura"] .name::before{content:counter(n,decimal-leading-zero) "  ";font-family:var(--sans);font-size:11px;font-weight:600;color:var(--accent-text);letter-spacing:.1em}
+  [data-tema="arquitectura"] .name{font-size:16px;text-transform:uppercase;font-weight:600}
+  [data-tema="arquitectura"] .add{border-radius:0;background:var(--ink);justify-self:start}
+  /* 3 · marfil: casa de moda clásica, centrado, marcos en arco y filetes dorados */
+  [data-tema="marfil"] .hero,[data-tema="marfil"] .who-row,[data-tema="marfil"] .card .body,[data-tema="marfil"] section.cat h2{text-align:center;align-items:center}
+  [data-tema="marfil"] .who-row{flex-direction:column;gap:6px}[data-tema="marfil"] .share,[data-tema="marfil"] .soc{margin-inline:auto}
+  [data-tema="marfil"] .hero h1{font-style:italic;font-weight:500;font-size:clamp(40px,11vw,68px)}
+  [data-tema="marfil"] .hero h1::after{content:"";display:block;width:64px;height:1px;background:var(--accent);margin:18px auto 0;box-shadow:0 5px 0 var(--accent)}
+  [data-tema="marfil"] .hero h1 .who{display:block;font-size:.5em;margin-top:6px}
+  [data-tema="marfil"] .cd{justify-content:center;border:1px solid var(--accent);background:transparent;margin-inline:auto}
+  [data-tema="marfil"] .facts{margin-inline:auto}
+  [data-tema="marfil"] section.cat h2{justify-content:center;font-style:italic;font-size:28px;gap:14px}
+  [data-tema="marfil"] section.cat h2::before,[data-tema="marfil"] section.cat h2::after{content:"";flex:1;height:1px;background:var(--accent);max-width:60px;opacity:.7}
+  [data-tema="marfil"] .card{box-shadow:inset 0 0 0 1px var(--accent);background:transparent;padding:8px;border-radius:0}
+  [data-tema="marfil"] .pic{border-radius:999px 999px 0 0;box-shadow:inset 0 0 0 1px var(--line)}
+  [data-tema="marfil"] .price{justify-content:center}
+  [data-tema="marfil"] .add{background:transparent;color:var(--accent-text);border:1px solid var(--accent)}
+  /* 4 · heritage: colección con la cinta verde y roja */
+  [data-tema="heritage"] .top{border-bottom:0;box-shadow:0 3px 0 #0F4D2F,0 6px 0 #B3202A,0 9px 0 #0F4D2F}
+  [data-tema="heritage"] .hero{padding-top:34px}
+  [data-tema="heritage"] .hero h1{font-size:clamp(40px,11vw,66px);font-weight:400;letter-spacing:-.01em}
+  [data-tema="heritage"] .hero h1 .who{display:block;font-size:.55em;font-style:italic}
+  [data-tema="heritage"] .hero h1::after{content:"";display:block;height:6px;width:96px;margin-top:16px;background:linear-gradient(#0F4D2F 0 33%,#B3202A 33% 66%,#0F4D2F 66%)}
+  [data-tema="heritage"] .cd,[data-tema="heritage"] .fact{background:#0F4D2F;color:#F4EEDF;border-radius:0}
+  [data-tema="heritage"] .cd *,[data-tema="heritage"] .fact *{color:inherit!important}
+  [data-tema="heritage"] .fact .k{opacity:.75}
+  [data-tema="heritage"] .card{background:var(--card);border-top:7px solid transparent;border-image:linear-gradient(90deg,#0F4D2F 0 40%,#B3202A 40% 60%,#0F4D2F 60%) 1;box-shadow:0 0 0 1px var(--line)}
+  [data-tema="heritage"] section.cat h2{font-size:28px;font-weight:400}
+  [data-tema="heritage"] .add{background:#0F4D2F}
+  /* 5 · rose: glamour, hero degradado, tarjetas altas y suaves */
+  [data-tema="rose"] .hero{background:linear-gradient(145deg,#8B2445,#C07A6B 70%,#D8B47A);color:#fff;border-radius:28px;margin:12px 0 0;padding:28px 22px 26px}
+  [data-tema="rose"] .hero h1,[data-tema="rose"] .hero p,[data-tema="rose"] .hero .label{color:#fff}
+  [data-tema="rose"] .hero h1 .who{color:#FBE3C4}[data-tema="rose"] .hero p{opacity:.92}
+  [data-tema="rose"] .banner{border-radius:999px;box-shadow:inset 0 0 0 1px var(--accent);color:var(--accent-text)}
+  [data-tema="rose"] .card,[data-tema="rose"] .gift,[data-tema="rose"] .cd,[data-tema="rose"] .fact{border-radius:24px}
+  [data-tema="rose"] .card{box-shadow:0 10px 30px -14px rgba(139,36,69,.35);background:#fff}
+  [data-tema="rose"] .pic{aspect-ratio:4/5;border-radius:20px;margin:8px 8px 0}
+  [data-tema="rose"] .add,[data-tema="rose"] .send,[data-tema="rose"] .chip,[data-tema="rose"] .banner{border-radius:999px}
+  [data-tema="rose"] .add{background:linear-gradient(135deg,#8B2445,#B8566B);border:0}
+  [data-tema="rose"] section.cat h2{font-style:italic;font-size:30px;color:var(--accent-text)}
+  [data-tema="rose"] .tag,[data-tema="rose"] .off{border-radius:999px}
+  /* 6 · naranja: caja y cinta, bloque de color */
+  [data-tema="naranja"] .hero{background:var(--accent);color:#FFF6EA;margin:12px 0 0;padding:26px 22px;position:relative}
+  [data-tema="naranja"] .hero h1,[data-tema="naranja"] .hero p,[data-tema="naranja"] .hero .label,[data-tema="naranja"] .hero h1 .who{color:#FFF6EA}
+  [data-tema="naranja"] .hero h1 .who{font-style:italic}
+  [data-tema="naranja"] .card{border-radius:0;box-shadow:0 0 0 1.5px #2B1B12;background:#FFFDF8}
+  [data-tema="naranja"] .card .body{border-top:6px solid var(--accent)}
+  [data-tema="naranja"] .add{background:var(--accent);color:#fff}
+  [data-tema="naranja"] section.cat h2{border-bottom:3px solid var(--accent);padding-bottom:8px;font-size:30px}
+  /* 7 · noir: inmersivo, carrusel horizontal con filetes dorados */
+  [data-tema="noir"] .hero{padding-block:46px 34px;background:radial-gradient(120% 80% at 80% 0%,rgba(201,162,75,.22),transparent 60%)}
+  [data-tema="noir"] .hero h1{font-size:clamp(44px,13vw,80px);font-weight:500;line-height:.98}
+  [data-tema="noir"] .hero h1::after{content:"";display:block;height:1px;width:100%;margin-top:18px;background:linear-gradient(90deg,var(--accent),transparent)}
+  [data-tema="noir"] .cd,[data-tema="noir"] .fact{background:transparent;box-shadow:inset 0 0 0 1px var(--line)}
+  [data-tema="noir"] section.cat h2{border-bottom:1px solid var(--accent);padding-bottom:10px;font-size:24px}
+  [data-tema="noir"] .grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:14px;margin-inline:-16px;padding:2px 16px 14px;scrollbar-width:none}
+  [data-tema="noir"] .grid::-webkit-scrollbar{display:none}
+  [data-tema="noir"] .card{flex:0 0 74%;scroll-snap-align:center;background:var(--card)}
+  [data-tema="noir"] .pic{aspect-ratio:4/5}
+  [data-tema="noir"] .add{background:transparent;color:var(--accent-text);border:1px solid var(--accent)}
+  /* 8 · marino: catálogo en filas, como un relojero */
+  [data-tema="marino"] .hero h1{font-size:clamp(38px,10vw,60px);font-weight:600}
+  [data-tema="marino"] .hero h1::after{content:"";display:block;height:2px;width:42px;background:var(--accent);margin-top:14px}
+  [data-tema="marino"] .cd,[data-tema="marino"] .fact{background:transparent;border-radius:0;box-shadow:inset 0 0 0 1px var(--line)}
+  [data-tema="marino"] section.cat h2{font-size:22px;letter-spacing:.14em;text-transform:uppercase;font-weight:600;color:var(--accent-text)}
+  [data-tema="marino"] .grid{grid-template-columns:1fr;gap:0}
+  [data-tema="marino"] .card{display:grid;grid-template-columns:104px 1fr;gap:14px;background:transparent;box-shadow:none;border-bottom:1px solid var(--line);padding:14px 0;align-items:center}
+  [data-tema="marino"] .pic{aspect-ratio:1}
+  [data-tema="marino"] .body{padding:0;flex:initial}
+  [data-tema="marino"] .price{padding-top:6px}
+  [data-tema="marino"] .add{height:36px;background:transparent;color:var(--accent-text);border:1px solid var(--accent);justify-self:start;padding:0 14px;width:auto}
+  [data-tema="marino"] .inc{display:none}
+
+  /* hero de color (rose y naranja): lo que va dentro conserva su legibilidad */
+  [data-tema="rose"] .hero .cd,[data-tema="rose"] .hero .fact,[data-tema="naranja"] .hero .cd,[data-tema="naranja"] .hero .fact{background:rgba(255,255,255,.16);box-shadow:none;color:#fff}
+  [data-tema="rose"] .hero .cd *,[data-tema="rose"] .hero .fact *,[data-tema="naranja"] .hero .cd *,[data-tema="naranja"] .hero .fact *{color:#fff!important}
+  [data-tema="rose"] .hero .cd-dots i,[data-tema="naranja"] .hero .cd-dots i{background:rgba(255,255,255,.35)}
+  [data-tema="rose"] .hero .cd-dots i.on,[data-tema="rose"] .hero .cd-dots i.now,[data-tema="naranja"] .hero .cd-dots i.on,[data-tema="naranja"] .hero .cd-dots i.now{background:#fff}
+  [data-tema="rose"] .hero .banner,[data-tema="naranja"] .hero .banner{color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.7)}
+  [data-tema="rose"] .hero .t1,[data-tema="naranja"] .hero .t1,[data-tema="rose"] .hero .t2,[data-tema="naranja"] .hero .t2{color:#fff}
+  [data-tema="rose"] .hero .grow *,[data-tema="naranja"] .hero .grow *{color:var(--ink)}
 </style>
 </head>
 <body>
