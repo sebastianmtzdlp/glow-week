@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
-<title>Glow Week con Ana Gómez</title>
+<title>Farmasi con Ana Gómez</title>
 <meta name="description" content="Venta especial de maquillaje con Ana Gómez. Elige tus productos y manda tu pedido por WhatsApp.">
 <meta property="og:title" content="Farmasi con Ana Gómez">
 <meta property="og:description" content="Maquillaje con hasta 50% de descuento, del 16 al 25 de octubre. Arma tu pedido y mándalo por WhatsApp.">
@@ -328,6 +328,9 @@
 
   /* ---- rediseño 2: tarjetas, hoja de pedido, cuenta regresiva, compartir ---- */
   .who-row{position:relative}
+  .soc{display:flex;gap:6px;margin-top:6px;flex-wrap:wrap}.soc:empty{display:none}
+  .soc a{font-size:12.5px;font-weight:600;border:1px solid var(--line);border-radius:99px;padding:3px 10px;color:var(--ink);text-decoration:none;background:var(--bg)}
+  .soc a:hover{border-color:var(--ink)}
   .share{margin-left:auto;flex:none;display:flex;align-items:center;gap:6px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);border-radius:999px;padding:8px 14px;font:600 13px var(--sans)}
   .share svg{width:16px;height:16px;color:var(--accent-text)}
   .cd{display:flex;align-items:center;gap:16px;margin-top:20px;max-width:560px;border-radius:18px;background:var(--soft);padding:14px 16px}
@@ -385,7 +388,7 @@
 <main>
   <div class="wrap hero">
     <button class="banner" id="banner" hidden><span id="bannerTxt"></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
-    <div class="who-row"><div class="who-av" id="whoAv"><span id="whoIni"></span></div><div><div class="t1">Tu consultora</div><div class="t2" id="whoName"></div></div><button class="share" id="shareBtn" type="button"><svg class="i" viewBox="0 0 24 24"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v14"/></svg>Compartir</button></div>
+    <div class="who-row"><div class="who-av" id="whoAv"><span id="whoIni"></span></div><div><div class="t1">Tu consultora</div><div class="t2" id="whoName"></div><div class="soc" id="soc"></div></div><button class="share" id="shareBtn" type="button"><svg class="i" viewBox="0 0 24 24"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v14"/></svg>Compartir</button></div>
     <div class="titlewrap">
       <div class="deco" id="deco" aria-hidden="true"></div>
       <div class="label" id="vLabel"></div>
@@ -917,6 +920,7 @@
   document.title = `${TITULO} ${D.venta.subtitulo}`.trim();
   $("bName").textContent = SALE; $("bSeller").textContent = SELLER;
   if (D.instagram) { $("ig").textContent = "@" + D.instagram; $("ig").href = "https://instagram.com/" + D.instagram; } else $("ig").hidden = true;
+  if (D.instagram) $("soc").innerHTML = `<a href="https://instagram.com/${D.instagram}" target="_blank" rel="noopener">@${D.instagram}</a>`;
   $("vLabel").textContent = (tema ? "Venta especial" : "Promociones") + " · " + D.venta.fechas;
   $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who"; who.textContent = D.venta.subtitulo; $("vTitle").append(TITULO, document.createElement("br"), who); }
   $("vWelcome").textContent = D.venta.bienvenida;
