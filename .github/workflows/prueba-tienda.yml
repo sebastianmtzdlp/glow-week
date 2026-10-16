@@ -1,0 +1,14 @@
+name: Prueba tienda
+on:
+  push:
+    branches: [prueba-tienda]
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: ¿Se puede leer la tienda Farmasi desde GitHub?
+        run: |
+          code=$(curl -sSL -m 30 -o /tmp/t.html -w "%{http_code}" -A "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 Chrome/124 Safari/537.36" https://mx.farmasi.com/selenevehe || echo 000)
+          echo "HTTP $code, bytes $(wc -c < /tmp/t.html)"
+          grep -o '"buildId":"[^"]*"' /tmp/t.html | head -1
+          test "$code" = "200" && grep -q '"buildId"' /tmp/t.html
