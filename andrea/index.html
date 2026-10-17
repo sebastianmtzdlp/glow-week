@@ -620,11 +620,14 @@
   let D;
   try {
     const r = await fetch("promos.json?v=" + Date.now(), {cache:"no-store"});
-    D = await r.json();
+    D = await r.json(); const OWN = D.tema;
+    function temaVigente(own, B){ const now = Date.now(); let cal = null; (B.temas||[]).filter(e => new Date(e.desde+"T00:00:00-06:00").getTime() <= now).sort((a,b) => a.desde < b.desde ? -1 : 1).forEach(e => cal = e);
+    if (cal && cal.forzar) return cal.tema; if (own !== undefined) return own; return cal ? cal.tema : (B.tema||""); }
     if (D.base) { // datos compartidos del equipo + datos de esta consultora
       const B = await (await fetch(D.base + "?v=" + Date.now(), {cache:"no-store"})).json();
       D = Object.assign({}, B, D, {venta: Object.assign({}, B.venta, D.venta||{}), meta: Object.assign({}, B.meta, D.meta||{}), membresia: Object.assign({}, B.membresia, D.membresia||{})});
       if (D.productos === undefined) D.productos = B.productos;
+      D.tema = temaVigente(OWN, B);
     }
     D.venta.subtitulo = (D.venta.subtitulo||"").replace("{consultora}", D.consultora);
   } catch (e) {

@@ -10,11 +10,12 @@ const T={normal:{bg:'#FAF7F5',ink:'#262A4A',accent:'#DB414C',soft:'#FDEEF0',mute
  bruja:{bg:'#FFF1F3',ink:'#1C1A22',accent:'#FF5A68',soft:'#FCE3E8',muted:'#6E6068'},
  pocima:{bg:'#0F1D17',ink:'#EAF4E4',accent:'#8BE04E',soft:'#1D3328',muted:'#A6BBA8'}};
 const eq=JSON.parse(fs.readFileSync(R+'/_data/equipo.json','utf8')), base=JSON.parse(fs.readFileSync(R+'/_data/promos-base.json','utf8'));
+const temaVigente=(own,B)=>{const now=Date.now();let cal=null;(B.temas||[]).filter(e=>new Date(e.desde+'T00:00:00-06:00').getTime()<=now).sort((a,b)=>a.desde<b.desde?-1:1).forEach(e=>cal=e);if(cal&&cal.forzar)return cal.tema;if(own!==undefined)return own;return cal?cal.tema:(B.tema||'');};
 const ff=w=>`@font-face{font-family:O;font-weight:${w};src:url('file://${FD}/outfit-latin-${w}-normal.woff2')}`;
 (async()=>{const b=await chromium.launch({executablePath:process.env.CHROMIUM||'/opt/pw-browsers/chromium'});const pg=await b.newPage({viewport:{width:1200,height:630}});
 for(const c of [...eq.consultoras,{slug:'equipo',nombre:'Team',_team:1}]){
   let pr={};try{pr=JSON.parse(fs.readFileSync(`${R}/${c.slug}/promos.json`,'utf8'))}catch(_){}
-  const tn=c._team?'normal':('tema' in pr)?pr.tema:base.tema; const t=T[tn]||T.normal;
+  const tn=c._team?'normal':temaVigente(pr.tema,base); const t=T[tn]||T.normal;
   const foto=fs.existsSync(`${R}/fotos/${c.slug}.jpg`)?`file://${R}/fotos/${c.slug}.jpg`:'';
   const ini=c._team?'♡':c.nombre[0];
   const html=`<style>${ff(400)}${ff(600)}${ff(800)}*{box-sizing:border-box;margin:0}body{width:1200px;height:630px;background:${t.bg};color:${t.ink};font-family:O,sans-serif;position:relative;overflow:hidden}

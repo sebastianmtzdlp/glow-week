@@ -54,8 +54,10 @@
     bruja:{bg:"#FFF1F3",ink:"#1C1A22",accent:"#FF5A68",soft:"#FCE3E8",muted:"#6E6068",on:"#FFFFFF"},
     pocima:{bg:"#0F1D17",ink:"#EAF4E4",accent:"#8BE04E",soft:"#1D3328",muted:"#A6BBA8",on:"#0F1D17"}};
   let P={}, B={}; try{ P=await (await fetch("../promos.json?v="+Date.now())).json(); B=await (await fetch("../"+P.base+"?v="+Date.now())).json(); }catch(_){}
+  function temaVigente(own, B){ const now = Date.now(); let cal = null; (B.temas||[]).filter(e => new Date(e.desde+"T00:00:00-06:00").getTime() <= now).sort((a,b) => a.desde < b.desde ? -1 : 1).forEach(e => cal = e);
+    if (cal && cal.forzar) return cal.tema; if (own !== undefined) return own; return cal ? cal.tema : (B.tema||""); }
   const tq=new URLSearchParams(location.search).get("tema");
-  const tn = tq!==null ? (tq==="normal"?"":tq) : ("tema" in P ? P.tema : (B.tema||""));
+  const tn = tq!==null ? (tq==="normal"?"":tq) : temaVigente(P.tema, B);
   const pal = PAL[tn] || PAL.normal;
   Object.entries({bg:pal.bg,ink:pal.ink,accent:pal.accent,soft:pal.soft,muted:pal.muted,on:pal.on}).forEach(([k,v])=>document.documentElement.style.setProperty("--"+k,v));
   const nombre = P.consultora||"Laura", ig = (P.instagram||"").replace(/^@/,"");

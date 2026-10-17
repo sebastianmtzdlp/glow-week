@@ -909,5 +909,17 @@
   "extra": [
    "Para apartar tu pedido se deja el 50 % por adelantado y el resto se liquida antes de la entrega."
   ]
- }
+ },
+ "temas": [
+  {
+   "desde": "2026-10-16",
+   "tema": "noche"
+  },
+  {
+   "desde": "2026-11-01",
+   "tema": "",
+   "forzar": true
+  }
+ ],
+ "_temas_nota": "Calendario de temas: cada entrada rige desde su fecha (hora México). 'forzar': true pisa el tema propio de cada consultora. tema '' = colores Farmasi. Sin entrada vigente se usa 'tema'."
 }
