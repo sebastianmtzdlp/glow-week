@@ -283,7 +283,7 @@
   // ---------- Fuera del catálogo (pestaña) ----------
   if (FUERA.length) {
     $("tabs").hidden = false;
-    const imgSrc = c => ["", "_1"].map(x => `https://content.mx.farmasi.com/Product/${c}_250${x}.webp`).concat([`https://content.mx.farmasi.com/Product/${c.toLowerCase()}_250_1.webp`, `https://content.mx.farmasi.com/Product/${c}_250.png`]);
+    const imgSrc = c => ["_400", "_400_1", "_250", "_250_1"].map(x => `https://content.mx.farmasi.com/Product/${c}${x}.webp`).concat([`https://content.mx.farmasi.com/Product/${c.toLowerCase()}_250_1.webp`, `https://content.mx.farmasi.com/Product/${c}_250.png`]);
     window.__fb = (el) => { const l = JSON.parse(el.dataset.l); const n = +el.dataset.i + 1; if (n < l.length) { el.dataset.i = n; el.src = l[n]; } else el.remove(); };
     const card = ([c,n,pr]) => `<div class="fc" data-code="${c}"><div class="im"><img loading="lazy" alt="" src="${imgSrc(c)[0]}" data-i="0" data-l='${JSON.stringify(imgSrc(c))}' onerror="__fb(this)"></div><div class="n">${shortName(n)}</div><div class="pr">${money(pr)}</div><button class="add" data-addc="${c}">${plus} Agregar</button></div>`;
     $("fuera").innerHTML = `<p class="intro">Productos que hoy están en la tienda de Farmasi pero no salen en el catálogo impreso. Toca uno para ver el detalle.${FUERA_CUANDO ? ` <b>Disponibilidad revisada el ${FUERA_CUANDO}.</b>` : ""}</p>

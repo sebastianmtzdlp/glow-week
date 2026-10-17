@@ -609,6 +609,7 @@
   const SALE = tema ? D.venta.nombre : "Farmasi";
   const TITULO = tema ? D.venta.titulo : "Farmasi";
   const IMG = "https://content.mx.farmasi.com/Product/";
+  const hd = s => String(s).replace("_250","_400"); // Farmasi solo publica 250 y 400 px: usamos la más nítida
   const END = new Date(D.venta.termina);
   const GOAL = D.meta.monto;
   const GIFT = D.meta.regalo + " de regalo";
@@ -654,7 +655,7 @@
     const i = products.indexOf(p), q = cart[i]||0, d = pct(p);
     return `<article class="card${q?" in":""}" data-i="${i}">
       <div class="pic">
-        <img src="${IMG}${p.img}.webp" alt="${p.name} ${p.shade}" loading="lazy" onerror="this.outerHTML='<div class=ph>${initials(p)}</div>'">
+        <img src="${IMG}${hd(p.img)}.webp" alt="${p.name} ${p.shade}" loading="lazy" onerror="this.outerHTML='<div class=ph>${initials(p)}</div>'">
         <span class="off${d>=40?" big":""}">-${d}%</span>
         ${(p.flashEnds||p.nuevo||MAS.has(p.code)||p.cat==="Kits") ? `<span class="tags">${p.flashEnds?'<span class="tag flash">Flash</span>':""}${p.nuevo?'<span class="tag">Nuevo</span>':""}${MAS.has(p.code)?'<span class="tag">Más pedido</span>':""}</span>` : ""}${p.cat==="Kits"?'<span class="tag lim">Tiempo limitado</span>':""}
       </div>
@@ -732,7 +733,7 @@
     $("tSave").textContent = "−" + money(s);
     $("tTotal").textContent = money(t);
     $("lines").innerHTML = products.map((p,i)=>{const q=cart[i]; if(!q) return "";
-      return `<div class="line"><img src="${IMG}${p.img}.webp" alt="" onerror="this.style.visibility='hidden'"><div><div class="n">${p.name}</div><div class="d">${p.shade} · <span class="num">${money(p.price)}</span></div></div>
+      return `<div class="line"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><div class="n">${p.name}</div><div class="d">${p.shade} · <span class="num">${money(p.price)}</span></div></div>
       <div class="q"><button class="step-btn" data-d="-1" data-i="${i}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="step-btn" data-d="1" data-i="${i}" aria-label="Agregar otro">${plus}</button></div></div>`}).join("");
     $("sendBtn").href = waLink();
     if (!n) closeSheet();
@@ -858,7 +859,7 @@
   else if (left <= 0) $("days").textContent = "terminó";
 
   $("goalTxt").textContent = money(GOAL).replace(".00","");
-  $("giftItems").innerHTML = GIFT_ITEMS.map((g,gi)=>`<div class="gift-item" data-gift="${gi}" role="button" tabindex="0"><img src="${IMG}${g.img}.webp" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>${g.name[0]}</div>'">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
+  $("giftItems").innerHTML = GIFT_ITEMS.map((g,gi)=>`<div class="gift-item" data-gift="${gi}" role="button" tabindex="0"><img src="${IMG}${hd(g.img)}.webp" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>${g.name[0]}</div>'">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
   $("giftVal").textContent = money(GIFT_ITEMS.reduce((a,g)=>a+g.retail,0));
   // ---------- Asistente "Ayúdame a elegir" ----------
   const HQ = [
@@ -928,7 +929,7 @@
     }
     body.innerHTML = `<div class="hq"><div class="count">Tu selección</div><h4>Esto te recomiendo</h4></div>
       <div class="lines">${hrecs.map(r=>`<div class="rec">
-        <img src="${IMG}${r.p.img}.webp" alt="" onerror="this.style.visibility='hidden'">
+        <img src="${IMG}${hd(r.p.img)}.webp" alt="" onerror="this.style.visibility='hidden'">
         <div><div class="n">${r.p.name}${r.q>1?` × ${r.q}`:""}</div><div class="d">${r.p.shade} · <span class="num">${money(r.p.price)}</span> <span class="was num">${money(r.p.retail)}</span></div><span class="why">${r.why}</span></div>
         <button class="pick" data-pick="${r.i}" aria-pressed="${hpick.has(r.i)}" aria-label="Incluir">${hpick.has(r.i)?check:""}</button>
       </div>`).join("")}</div>
@@ -973,7 +974,8 @@
       + (x.b ? `<h5>Beneficios</h5><p class="t">${hx(x.b)}</p>` : "")
       + (seals.length ? `<div class="seals">${seals.map(t=>`<span>${hx(t)}</span>`).join("")}</div>` : "")
       + (x.u ? `<details class="dt"><summary>Cómo usarlo</summary><p class="t">${hx(x.u)}</p></details>` : "")
-      + (x.i ? `<details class="dt"><summary>Ingredientes</summary><p class="t">${hx(x.i)}</p></details>` : "");
+      + (x.i ? `<details class="dt"><summary>Ingredientes</summary><p class="t">${hx(x.i)}</p></details>` : "")
+      + (x.n ? `<p class="t" style="font-size:12px;color:var(--muted);margin-top:12px">${hx(x.n)}</p>` : "");
   }
   async function fillDet(code){ const D2 = await loadDet(); const el = $("pdDet"); if (el && D2[code]) el.innerHTML = detHTML(D2[code]); }
   function openProd(html, act){ $("prodBody").innerHTML = html; $("prodAct").innerHTML = act; document.body.classList.add("popen"); }
@@ -982,18 +984,18 @@
     const p = products[i], d = pct(p), q = cart[i]||0;
     gc("ver/"+p.code, p.name);
     $("prodHead").textContent = p.cat;
-    openProd(`<div class="pd-pic"><img src="${IMG}${p.img}.webp" alt="${p.name}" onerror="this.style.visibility='hidden'"></div>
+    openProd(`<div class="pd-pic"><img src="${IMG}${hd(p.img)}.webp" alt="${p.name}" onerror="this.style.visibility='hidden'"></div>
       <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
       <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="pill">-${d}%</span></div>
       ${p.incluye ? `<h5>Qué incluye</h5><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}<div id="pdDet"></div></div>`,
       q ? `<button class="send" data-pclose>Listo, ya está en tu pedido (${q})</button>` : `<button class="send" data-padd="${i}">Agregar al pedido</button>`);
-    if (!p.code.startsWith("PK")) fillDet(p.code);
+    fillDet(p.code);
   }
   function showGift(gi){
     const g = GIFT_ITEMS[gi]; if(!g) return;
     gc("ver/regalo", g.name);
     $("prodHead").textContent = "Regalo del mes";
-    openProd(`<div class="pd-pic"><img src="${IMG}${g.img}.webp" alt="${g.name}" onerror="this.style.visibility='hidden'"></div>
+    openProd(`<div class="pd-pic"><img src="${IMG}${hd(g.img)}.webp" alt="${g.name}" onerror="this.style.visibility='hidden'"></div>
       <div class="pd-body"><div class="eyebrow">Regalo</div><h4 id="prodName">${g.name}</h4>
       <div class="pr"><b>Gratis</b><s>${money(g.retail)}</s></div>
       <div class="note">Te lo llevas sin pagar al llegar a ${money(GOAL)} en tu pedido (${GIFT}).</div><div id="pdDet"></div></div>`,
