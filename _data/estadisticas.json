@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-16",
- "hora": "18:40",
+ "hora": "19:14",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 63,
+  "visitas": 75,
   "agregados": 18,
   "pedidos": 2,
   "wa": 0
@@ -15,21 +15,21 @@
   },
   {
    "d": "2026-10-16",
-   "v": 63
+   "v": 75
   }
  ],
  "consultoras": [
   {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 9,
+   "visitas": 10,
    "catalogo": 1,
    "pedidos": 2
   },
   {
    "slug": "viri",
    "nombre": "Viri",
-   "visitas": 7,
+   "visitas": 8,
    "catalogo": 2,
    "pedidos": 0
   },
@@ -37,6 +37,13 @@
    "slug": "moni",
    "nombre": "Moni",
    "visitas": 2,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "mar",
+   "nombre": "Mar",
+   "visitas": 1,
    "catalogo": 0,
    "pedidos": 0
   },
@@ -99,13 +106,6 @@
   {
    "slug": "laura",
    "nombre": "Laura",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "mar",
-   "nombre": "Mar",
    "visitas": 0,
    "catalogo": 0,
    "pedidos": 0
@@ -190,5 +190,6 @@
    "name": "Creamy Lipstick Country Rose 01",
    "agregados": 1
   }
- ]
+ ],
+ "por_consultora": {}
 }
