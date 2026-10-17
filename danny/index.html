@@ -22,6 +22,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,700;1,500&display=swap" rel="stylesheet">
 <style>
   :root{
     color-scheme: light;
@@ -365,6 +366,17 @@
   [data-tema="bruja"] .banner{background:#3B2152}
   [data-tema="bruja"] .filters{background:rgba(255,241,243,.96)}
   [data-tema="bruja"] .chip[aria-pressed="true"]{background:#3B2152}
+
+  /* Editorial (Equipo GG): crema, berenjena y serif. Se activa con "tema": "editorial" en promos.json */
+  [data-tema="editorial"]{color-scheme:light;--bg:#F7EDE6;--card:#FFFDFB;--ink:#3A1F2B;--on-ink:#FFFDFB;--muted:#7A5A66;--line:#E8D5CC;--soft:#F1C9C3;--accent:#B3375A}
+  [data-tema="editorial"] .top{background:#3A1F2B}
+  [data-tema="editorial"] .top .brand b,[data-tema="editorial"] .top .brand{color:#F1C9C3}
+  [data-tema="editorial"] .filters{background:rgba(247,237,230,.96)}
+  [data-tema="editorial"] .banner{background:#F1C9C3;color:#3A1F2B}
+  [data-tema="editorial"] h1,[data-tema="editorial"] h2,[data-tema="editorial"] .name,[data-tema="editorial"] .hname{font-family:"Fraunces",Georgia,serif;font-weight:700;letter-spacing:-.01em}
+  [data-tema="editorial"] h2{font-style:italic;font-weight:500}
+  [data-tema="editorial"] .card{border-radius:24px}
+
 
 
   /* Calabaza: patrón de calabazas, calabaza junto a cada sección */
