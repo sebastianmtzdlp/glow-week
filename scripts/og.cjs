@@ -8,7 +8,8 @@ const T={normal:{bg:'#FAF7F5',ink:'#262A4A',accent:'#DB414C',soft:'#FDEEF0',mute
  noche:{bg:'#17121F',ink:'#F6EFE6',accent:'#FF7A1A',soft:'#2C2238',muted:'#B9AFC4'},
  calabaza:{bg:'#FFF5EA',ink:'#2A1E3A',accent:'#E8621A',soft:'#FCE8D2',muted:'#75677F'},
  bruja:{bg:'#FFF1F3',ink:'#1C1A22',accent:'#FF5A68',soft:'#FCE3E8',muted:'#6E6068'},
- pocima:{bg:'#0F1D17',ink:'#EAF4E4',accent:'#8BE04E',soft:'#1D3328',muted:'#A6BBA8'}};
+ pocima:{bg:'#0F1D17',ink:'#EAF4E4',accent:'#8BE04E',soft:'#1D3328',muted:'#A6BBA8'},
+ editorial:{bg:'#F7EDE6',ink:'#3A1F2B',accent:'#B3375A',soft:'#F1C9C3',muted:'#7A5A66'}};
 const eq=JSON.parse(fs.readFileSync(R+'/_data/equipo.json','utf8')), base=JSON.parse(fs.readFileSync(R+'/_data/promos-base.json','utf8'));
 const temaVigente=(own,B)=>{const now=Date.now();let cal=null;(B.temas||[]).filter(e=>new Date(e.desde+'T00:00:00-06:00').getTime()<=now).sort((a,b)=>a.desde<b.desde?-1:1).forEach(e=>cal=e);if(cal&&cal.forzar)return cal.tema;if(own!==undefined)return own;return cal?cal.tema:(B.tema||'');};
 const ff=w=>`@font-face{font-family:O;font-weight:${w};src:url('file://${FD}/outfit-latin-${w}-normal.woff2')}`;
