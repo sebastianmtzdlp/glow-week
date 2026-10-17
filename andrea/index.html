@@ -383,6 +383,28 @@
   @media(min-width:640px){.deco{width:220px;height:170px}}
   :focus-visible{outline:2px solid var(--ink);outline-offset:2px}
 
+  /* Computadora: aprovecha el ancho */
+  .hmain,.hside{display:contents}
+  @media(min-width:1000px){
+    .wrap{max-width:1240px;padding:0 40px}
+    .hero{display:grid;grid-template-columns:minmax(0,1fr) 440px;column-gap:64px;align-items:start;padding-top:34px}
+    .hero>.banner{grid-column:1/-1}
+    .hmain{display:block;grid-column:1}
+    .hside{display:flex;flex-direction:column;gap:2px;grid-column:2;position:sticky;top:78px;padding-top:6px}
+    .hside>*{max-width:none!important;width:100%;margin-top:12px}.hside>:first-child{margin-top:0}
+    .hmain h1{font-size:clamp(60px,5.6vw,96px)}
+    .hero p,.hmain .cd,.hmain .facts{max-width:640px}
+    .hero p{font-size:19px}
+    .grid{grid-template-columns:repeat(5,1fr);gap:16px}
+    #prodRoot .sheet{max-width:900px;border-radius:20px 20px 0 0}
+    #prodBody{display:grid;grid-template-columns:400px minmax(0,1fr);align-items:start;column-gap:6px}
+    #prodBody .pd-pic{grid-column:1;grid-row:1;max-height:none}
+    #prodBody .pd-thumbs{grid-column:1;grid-row:2;padding-left:22px}
+    #prodBody .pd-body{grid-column:2;grid-row:1/span 3;padding-top:4px}
+    .sheet{max-width:620px}
+    #helpRoot .sheet{max-width:640px}
+  }
+  @media(min-width:1500px){.wrap{max-width:1360px}.grid{grid-template-columns:repeat(6,1fr)}}
   @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 
   /* ---- rediseño: identidad de la consultora, datos en una línea, invitación a trabajar juntas ---- */
@@ -460,6 +482,7 @@
 <main>
   <div class="wrap hero">
     <button class="banner" id="banner" hidden><span id="bannerTxt"></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
+    <div class="hmain">
     <div class="who-row"><div class="who-av" id="whoAv"><span id="whoIni"></span></div><div><div class="t1">Tu consultora</div><div class="t2" id="whoName"></div><div class="soc" id="soc"></div></div><button class="share" id="shareBtn" type="button"><svg class="i" viewBox="0 0 24 24"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v14"/></svg>Compartir</button></div>
     <div class="titlewrap">
       <div class="deco" id="deco" aria-hidden="true"></div>
@@ -473,6 +496,8 @@
       <div class="fact"><div class="k">Productos</div><div class="v" id="nProds"></div></div>
       <div class="fact"><div class="k">Termina</div><div class="v" id="days"></div></div>
     </div>
+    </div>
+    <aside class="hside">
     <button class="helpcta" data-help>
       <svg class="i" viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
       <span class="grow"><span class="t1">Ayúdame a elegir</span><br><span class="t2">4 preguntas y te armo una selección</span></span>
@@ -503,6 +528,7 @@
       <div class="step"><b>02</b>Revisa tu pedido y cantidades</div>
       <div class="step"><b>03</b>Envíalo y te confirmo por WhatsApp</div>
     </div>
+    </aside>
   </div>
 
   <nav class="filters" aria-label="Categorías"><div class="wrap"><div class="chips" id="chips"></div><div class="resume" id="resume" hidden></div>
