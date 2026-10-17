@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-17",
- "hora": "06:34",
+ "hora": "09:30",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 126,
+  "visitas": 133,
   "agregados": 22,
   "pedidos": 3,
   "wa": 0
@@ -19,14 +19,14 @@
   },
   {
    "d": "2026-10-17",
-   "v": 2
+   "v": 9
   }
  ],
  "consultoras": [
   {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 15,
+   "visitas": 16,
    "catalogo": 1,
    "pedidos": 3
   },
@@ -226,18 +226,18 @@
    ],
    "vistos": [
     {
-     "code": "1000272",
-     "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
-     "n": 1
-    },
-    {
      "code": "1002161",
      "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
-     "n": 1
+     "n": 2
     },
     {
      "code": "1002157",
      "name": "All in One Palette Fair-Medium",
+     "n": 2
+    },
+    {
+     "code": "1000272",
+     "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
      "n": 1
     }
    ]
