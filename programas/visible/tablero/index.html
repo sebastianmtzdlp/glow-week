@@ -1,0 +1,470 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#faf9f5;color:#141413}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Tablero Visible</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Manrope:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: same identity as the Visible course. Header + two tabs: a horizontal board of columns (one per Visible class) and a 12-week calendar for Sel. Cards open in a reading sheet. */
+:root{
+  --bg:#F3F6F2; --surface:#FFFFFF; --ink:#12221F; --muted:#5D6D69; --line:#DCE5DF;
+  --pine:#1E4D44; --pine-ink:#F3F6F2; --mint:#E3EFE8; --coral:#D9482F; --col:#E9F0EB;
+  --display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --body:"Manrope",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0E1614; --surface:#16211E; --ink:#EAF2EE; --muted:#9DB0A9; --line:#26352F;
+  --pine:#8FD3BE; --pine-ink:#0E1614; --mint:#1D2E29; --coral:#FF7A62; --col:#121C19; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0E1614; --surface:#16211E; --ink:#EAF2EE; --muted:#9DB0A9; --line:#26352F;
+  --pine:#8FD3BE; --pine-ink:#0E1614; --mint:#1D2E29; --coral:#FF7A62; --col:#121C19; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 var(--body)}
+.wrap{padding-inline:16px;padding-block:28px 48px;display:flex;flex-direction:column;gap:22px}
+header{display:flex;flex-direction:column;align-items:center;text-align:center;gap:6px;max-width:760px;margin:0 auto}
+.eyebrow{font:600 11.5px/1 var(--body);letter-spacing:.16em;text-transform:uppercase;color:var(--coral);margin:0}
+h1{font:800 clamp(40px,10vw,76px)/.95 var(--display);margin:0;letter-spacing:.05em;text-transform:uppercase}
+h1 span{color:var(--coral)}
+.sub{margin:6px 0 0;color:var(--muted);max-width:52ch;text-wrap:balance}
+.sub a{color:var(--pine);font-weight:600}
+.tabs{display:flex;gap:4px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:4px;align-self:center;max-width:100%;overflow-x:auto}
+.tab{white-space:nowrap;font:600 13px/1 var(--body);color:var(--muted);background:transparent;border:0;border-radius:999px;padding:11px 16px;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--pine);color:var(--pine-ink)}
+button:focus-visible,input:focus-visible,a:focus-visible{outline:2px solid var(--coral);outline-offset:2px}
+
+/* board */
+.boardbar{display:flex;flex-wrap:wrap;gap:8px;justify-content:center}
+.chip{font:500 13.5px/1.2 var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:8px 14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--pine);color:var(--pine-ink);border-color:var(--pine)}
+.board{display:flex;gap:14px;overflow-x:auto;padding-bottom:12px;scroll-snap-type:x proximity;align-items:flex-start}
+.col{flex:0 0 290px;max-width:85vw;background:var(--col);border:1px solid var(--line);border-radius:18px;padding:12px;display:flex;flex-direction:column;gap:10px;scroll-snap-align:start}
+.colhead{display:flex;flex-direction:column;gap:4px;padding:4px 4px 6px}
+.colhead h2{font:700 18px/1.2 var(--display);margin:0;text-wrap:balance}
+.colhead a{font:600 12px/1.2 var(--body);color:var(--coral);text-decoration:none;letter-spacing:.04em}
+.colhead a:hover{text-decoration:underline}
+.colhead p{margin:0;font-size:13px;color:var(--muted)}
+.card{text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;cursor:pointer;color:var(--ink);font:inherit;display:flex;flex-direction:column;gap:6px}
+.card:hover{border-color:var(--pine)}
+.card b{font:650 15px/1.3 var(--body)}
+.card span{font-size:13px;color:var(--muted);line-height:1.4}
+.tags{display:flex;flex-wrap:wrap;gap:5px}
+.tag{font:600 10.5px/1 var(--body);letter-spacing:.08em;text-transform:uppercase;padding:5px 8px;border-radius:999px;background:var(--mint);color:var(--pine)}
+.tag.pend{background:transparent;border:1px dashed var(--coral);color:var(--coral)}
+
+/* sheet */
+.scrim{position:fixed;inset:0;z-index:6;background:rgba(10,20,16,.5)}
+.sheet{position:fixed;z-index:7;top:0;right:0;bottom:0;width:min(620px,100vw);background:var(--surface);border-left:1px solid var(--line);overflow-y:auto;padding:calc(20px + env(safe-area-inset-top,0px)) clamp(18px,4vw,36px) calc(30px + env(safe-area-inset-bottom,0px))}
+.sheet .x{position:sticky;top:0;float:right;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;font-size:20px;line-height:1}
+.sheet h3{font:800 clamp(26px,5vw,34px)/1.1 var(--display);color:var(--pine);margin:4px 0 12px;text-wrap:balance}
+.sheet h4{font:700 18px/1.25 var(--display);margin:22px 0 8px}
+.sheet p,.sheet li{max-width:62ch}
+.sheet ul,.sheet ol{padding-left:1.3em}
+.sheet li{margin:.35em 0}
+.sheet li::marker{color:var(--coral);font-weight:600}
+.sheet blockquote{margin:16px 0;border-left:3px solid var(--coral);padding:2px 0 2px 16px;font:600 17px/1.4 var(--display);color:var(--pine)}
+.script{background:var(--mint);border-radius:14px;padding:14px 16px;margin:10px 0;white-space:pre-line}
+.golink{display:inline-flex;margin-top:18px;font:600 14px/1 var(--body);border-radius:999px;padding:12px 16px;background:var(--pine);color:var(--pine-ink);text-decoration:none}
+.btn{font:600 13px/1 var(--body);border-radius:999px;padding:10px 14px;cursor:pointer;border:1.5px solid var(--line);background:transparent;color:var(--ink)}
+.check{display:flex;gap:10px;align-items:flex-start;padding:7px 0;border-bottom:1px solid var(--line)}
+.check input{margin-top:4px;width:18px;height:18px;accent-color:var(--pine);flex:none}
+
+/* calendar */
+.cal{max-width:860px;margin:0 auto;width:100%;display:flex;flex-direction:column;gap:16px}
+.calhead{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:end;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.calhead label{display:flex;flex-direction:column;gap:6px;font:600 12px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.calhead input{font:500 15px/1 var(--body);color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.prog{flex:1;min-width:200px;display:flex;flex-direction:column;gap:6px;font-size:13px;color:var(--muted)}
+.pbar{height:8px;border-radius:4px;background:var(--line);overflow:hidden}
+.pbar i{display:block;height:100%;background:var(--coral);width:0}
+.rhythm{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px}
+.rhythm h3{font:700 18px/1.2 var(--display);margin:0 0 10px}
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:8px}
+.day{border:1px solid var(--line);border-radius:12px;padding:10px;font-size:13px;line-height:1.35}
+.day b{display:block;font:700 12px/1 var(--body);letter-spacing:.1em;text-transform:uppercase;color:var(--coral);margin-bottom:5px}
+.week{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:grid;grid-template-columns:64px 1fr;gap:4px 16px}
+.week.now{border-color:var(--coral);box-shadow:0 0 0 1px var(--coral)}
+.wnum{font:800 34px/1 var(--display);color:var(--coral);font-variant-numeric:tabular-nums}
+.wnum small{display:block;font:600 11px/1.3 var(--body);color:var(--muted);letter-spacing:.06em;margin-top:6px;text-transform:uppercase}
+.wbody{min-width:0}
+.wbody h3{font:700 20px/1.2 var(--display);margin:0 0 4px;text-wrap:balance}
+.wbody .dates{font-size:13px;color:var(--muted);margin:0 0 8px;font-variant-numeric:tabular-nums}
+.wbody .links{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 6px}
+.wbody .links a,.wbody .links button{font:600 12px/1.2 var(--body);color:var(--pine);background:var(--mint);border:0;border-radius:999px;padding:6px 10px;text-decoration:none;cursor:pointer}
+.week .check{border-bottom:0;padding:5px 0}
+.week .check.done span{color:var(--muted);text-decoration:line-through}
+.grp{font:700 11px/1 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin:10px 0 2px}
+.iweek{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
+.iweek h3{font:700 20px/1.2 var(--display);margin:0;text-wrap:balance}
+.iweek .dates{font-size:13px;color:var(--muted);margin:-6px 0 0;font-variant-numeric:tabular-nums}
+.igrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px}
+.idea{border:1px solid var(--line);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;min-width:0}
+.idea .top{display:flex;justify-content:space-between;align-items:center;gap:8px}
+.idea .dayl{font:700 11px/1 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--coral)}
+.idea q{quotes:none;font:650 15px/1.35 var(--body)}
+.idea p{margin:0;font-size:13.5px;color:var(--muted);line-height:1.45}
+.idea label{display:flex;gap:6px;align-items:center;font-size:12.5px;color:var(--muted);cursor:pointer}
+.idea label input{accent-color:var(--pine);width:16px;height:16px}
+.idea.used{opacity:.6}
+.series{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:18px 20px;display:grid;gap:10px}
+.series h3{font:800 24px/1.1 var(--display);margin:0;color:var(--pine);text-wrap:balance}
+.series .meta{display:flex;flex-wrap:wrap;gap:6px}
+.series .promise{margin:0;max-width:62ch}
+.series ol{margin:0;padding-left:1.3em;display:grid;gap:4px}
+.series li::marker{color:var(--coral);font-weight:700}
+.series .open{background:var(--mint);border-radius:12px;padding:10px 12px;font-size:14px;margin:0}
+footer{text-align:center;font-size:13px;color:var(--muted)}
+@media (max-width:520px){.week{grid-template-columns:1fr}.wnum{display:flex;gap:10px;align-items:baseline}.wnum small{margin:0}}
+@media (prefers-reduced-motion:no-preference){.sheet:not([hidden]){animation:sl .2s ease-out}@keyframes sl{from{transform:translateX(24px);opacity:.5}}}
+</style>
+
+<div class="wrap">
+  <header>
+    <p class="eyebrow">Material extra del curso Visible</p>
+    <h1>Table<span>r</span>o</h1>
+    <p class="sub">Guiones, plantillas, calendarios y checklists para aplicar cada clase de <a href="/programas/visible/" target="_blank" rel="noopener">Visible</a>. Cada columna dice a qué clase pertenece.</p>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button class="tab" role="tab" id="tabBoard" aria-selected="true" aria-controls="boardView" type="button">Tablero</button>
+    <button class="tab" role="tab" id="tabCal" aria-selected="false" aria-controls="calView" type="button">Calendario de Sel</button>
+    <button class="tab" role="tab" id="tabIdeas" aria-selected="false" aria-controls="ideasView" type="button">Ideas</button>
+  </div>
+
+  <section id="boardView" role="tabpanel" aria-labelledby="tabBoard" style="display:flex;flex-direction:column;gap:14px">
+    <div class="boardbar" id="filters"></div>
+    <div class="board" id="board"></div>
+  </section>
+
+  <section id="calView" role="tabpanel" aria-labelledby="tabCal" hidden>
+    <div class="cal">
+      <div class="calhead">
+        <label for="start">Empiezo el lunes<input type="date" id="start" value="2026-10-12"></label>
+        <div class="prog"><span id="progTxt">0 de 0 pasos</span><div class="pbar"><i id="pfill"></i></div></div>
+      </div>
+      <div class="rhythm">
+        <h3>Tu ritmo de cada semana, desde la semana 4</h3>
+        <div class="days">
+          <div class="day"><b>Lunes</b>Post educativo + historia detrás de cámaras</div>
+          <div class="day"><b>Martes</b>Post inspiración o estilo de vida + mini‑hack en historias</div>
+          <div class="day"><b>Miércoles</b>Historia real en stories</div>
+          <div class="day"><b>Jueves</b>Post de venta + encuesta en stories</div>
+          <div class="day"><b>Viernes</b>Valor gratis en stories</div>
+          <div class="day"><b>Sábado</b>Post de entretenimiento + promoción en stories</div>
+          <div class="day"><b>Domingo</b>Planear la semana siguiente + celebración en stories</div>
+        </div>
+      </div>
+      <div id="weeks" style="display:flex;flex-direction:column;gap:12px"></div>
+    </div>
+  </section>
+
+  <section id="ideasView" role="tabpanel" aria-labelledby="tabIdeas" hidden>
+    <div class="cal">
+      <div class="tabs" role="tablist" style="align-self:center">
+        <button class="tab" type="button" id="subWeeks" aria-selected="true">Ideas por semana</button>
+        <button class="tab" type="button" id="subSeries" aria-selected="false">Series de Reels</button>
+      </div>
+      <p class="sub" id="ideasIntro" style="text-align:center;margin:0 auto"></p>
+      <div id="ideasList" style="display:flex;flex-direction:column;gap:12px"></div>
+    </div>
+  </section>
+
+  <footer>Tablero de Visible · el curso de Sel · hecho para el equipo</footer>
+</div>
+
+<div class="scrim" id="scrim" hidden></div>
+<aside class="sheet" id="sheet" hidden aria-modal="true" role="dialog" aria-labelledby="shTitle">
+  <button class="x" id="shClose" type="button" aria-label="Cerrar">×</button>
+  <p class="eyebrow" id="shKicker"></p>
+  <h3 id="shTitle"></h3>
+  <div id="shBody"></div>
+</aside>
+
+<script>
+var VIS="/programas/visible/";
+function cl(n){return VIS+"#clase-"+n}
+
+var COLS=[
+{id:"parrilla",t:"Parrilla semanal",c:[6],d:"Qué publicar cada día de la semana, con ejemplos listos.",cards:[
+ {t:"Cómo funciona la semana",tags:["Guía"],s:"Cuatro publicaciones, un pilar por día.",b:"<p>La semana tiene cuatro publicaciones fijas. Cada día tiene un trabajo distinto:</p><ul><li><strong>Lunes · educativo:</strong> enseñas algo útil. Te posiciona como alguien que sabe.</li><li><strong>Martes · inspiración y estilo de vida:</strong> tu historia en pedacitos y cómo vives.</li><li><strong>Jueves · venta:</strong> qué ofreces, para quién y cómo se consigue.</li><li><strong>Sábado · entretenimiento:</strong> humor, tests y tendencias adaptadas a tu nicho.</li></ul><p>Cada idea se escribe con cuatro piezas: <strong>tema</strong>, <strong>formato</strong>, <strong>hook</strong> y <strong>descripción con llamado a la acción</strong>. Los ejemplos de esta columna usan belleza y cuidado personal; cambia el tema por el tuyo y conserva la estructura.</p><blockquote>No todos los días vas a vender, pero todos los días construyes percepción.</blockquote>"},
+ {t:"Lunes · 4 ideas educativas",tags:["Carrusel","Educativo"],s:"Errores, mitos, mini guía y la diferencia que nadie explica.",b:"<h4>1. Los errores que no te dejan ver resultados</h4><p><strong>Hook:</strong> “Usas buenos productos y tu piel sigue igual? El error puede estar aquí 👇”</p><ol><li>Cambias de producto cada semana.</li><li>Te saltas el desmaquillado cuando llegas cansada.</li><li>Pones las capas en el orden equivocado.</li><li>Te olvidas del protector solar en días nublados.</li><li>Duermes poco y tomas poca agua.</li></ol><p><strong>Cierre:</strong> “No es tener más productos, es usarlos con constancia.” <strong>Descripción:</strong> “¿En cuál te sentiste identificada? Cuéntame 👇”</p><h4>2. Mitos que tienes que soltar</h4><p><strong>Hook:</strong> “Si crees que la piel grasa no necesita crema, este post es para ti.” Cinco mitos con una ❌ cada uno y la verdad en una línea. Cierra con “Guárdalo para cuando te lo vuelvan a decir”.</p><h4>3. Cómo elegir tu tono</h4><p>Paso a paso en carrusel: dónde probarlo, con qué luz, cómo saber tu subtono. Cierra con “Mándame foto con luz natural y te digo tu tono”.</p><h4>4. La diferencia que nadie te explica</h4><p>Formato “esto o esto”: dos cosas que la gente confunde (hidratar contra nutrir, limpiar contra exfoliar). Una slide por diferencia, una slide final con tu recomendación.</p>"},
+ {t:"Martes · 4 ideas de inspiración",tags:["Reel","Estilo de vida"],s:"Un día real, una frase, tu transformación y tu rutina sin filtro.",b:"<h4>1. Un día normal en mi vida</h4><p><strong>Formato:</strong> mini vlog. <strong>Hook:</strong> “No, no tengo la vida perfecta… pero sí una rutina que me sostiene.” Clips de tu mañana, tu café, empacar pedidos, la tarde con tu familia. <strong>Descripción:</strong> “Emprender no es vivir ocupada, es vivir con intención.”</p><h4>2. Frase reflexiva</h4><p>Imagen limpia con fondo de tu paleta y una frase corta, por ejemplo: “Cuidarte no es un lujo, es tu forma de decirte que importas.” Descripción con una pregunta abierta: “¿Qué es para ti cuidarte hoy?”</p><h4>3. Tu historia de transformación</h4><p><strong>Formato:</strong> reel hablado con escenas de apoyo. <strong>Hook:</strong> “No empecé este negocio por los productos… empecé porque necesitaba volver a creer en mí.” Usa la estructura de la Clase 5: antes, lo que dolía, el giro, hoy.</p><h4>4. Mi rutina real</h4><p><strong>Formato:</strong> “lo que uso en un día normal”, sin extremos. <strong>Hook:</strong> “Mi rutina de 5 minutos para días caóticos.”</p>"},
+ {t:"Jueves · 4 ideas de venta",tags:["Reel","Carrusel","Venta"],s:"Lo que incluye comprarte, un testimonio, un reel con CTA y un carrusel de valor.",b:"<h4>1. Lo que pasa cuando me compras</h4><p><strong>Hook:</strong> “No vendo productos, acompaño procesos.” Muestra fragmentos reales: la asesoría por mensaje, cómo empacas, el seguimiento, la clienta que te manda su foto. <strong>Cierre:</strong> “Escríbeme y armamos tu rutina.”</p><h4>2. La siguiente historia puede ser la tuya</h4><p>Testimonio de una clienta, siempre con su permiso o de forma anónima: el mensaje, el antes y el después, el seguimiento. Descripción: “Esto no se trata del producto, se trata de cómo te sientes.”</p><h4>3. Reel educativo con llamado a la acción</h4><p><strong>Hook:</strong> “Si sientes tu piel cansada todo el día, esto te puede ayudar.” Explica el beneficio en tres puntos y cierra con una sola acción: “Comenta RUTINA y te mando la mía.”</p><h4>4. Carrusel: por qué no es solo un producto</h4><p><strong>Hook:</strong> “Esto es lo que realmente pasa cuando me compras 👇” Slides: asesoría, personalización, seguimiento, comunidad. Última slide: cómo pedirlo.</p>"},
+ {t:"Sábado · 4 ideas de entretenimiento",tags:["Reel","Test","Humor"],s:"Meme, audio en tendencia y dos tests para que comenten.",b:"<h4>1. Meme o frase divertida</h4><p>“Cuando dices ‘solo voy a ver’ y sales con tres labiales 😅”. Descripción: “Etiqueta a tu amiga que siempre dice solo voy a ver.”</p><h4>2. Audio en tendencia</h4><p>Algo tipo “yo prometiéndome que el lunes sí empiezo mi rutina…”. Corto, con humor y sin vender.</p><h4>3. Test: ¿qué tipo de… eres?</h4><p>Carrusel con 4 perfiles, por ejemplo: la que se desmaquilla con agua, la que tiene 20 productos y usa 2, la estricta, la del balance. Descripción: “Comenta cuál eres, sin juicio 😅”.</p><h4>4. Test de fin de semana</h4><p>Carrusel o historias: “¿Qué tipo de fin de semana tienes?” Cuatro opciones con emoji. Sirve también como encuesta en stories.</p>"},
+ {t:"Plantilla vacía de contenido",tags:["Plantilla"],s:"Copia esta estructura para cada publicación.",b:"<div class='script'>CONCEPTO: de qué trata y por qué importa\nFORMATO: reel corto · hablar a cámara · carrusel · tendencia o audio\nHOOK (primeros 3 segundos):\nDESARROLLO: 3 a 5 puntos\nCIERRE: la idea que se queda\nDESCRIPCIÓN: 2 o 3 líneas + un llamado a la acción</div><p>Usa etiquetas de color para el formato: verde para hablar a cámara, amarillo para reel corto, naranja para carrusel y rojo para tendencia o audio en tendencia.</p>"}
+]},
+{id:"hooks",t:"Hooks, open loops y series",c:[8],d:"Cómo detener el scroll y hacer que se queden.",cards:[
+ {t:"5 hooks para esta semana",tags:["Hooks"],s:"Uno por día de contenido.",b:"<ol><li><strong>“Llegó el día de confesarles…”</strong> Para algo personal o una lección que te cambió.</li><li><strong>“Uno de los mejores secretos para…”</strong> Para un tip o una herramienta que te funcionó.</li><li><strong>“Cosas que jamás haría aunque me pagaran…”</strong> Para romper mitos, poner límites o hablar de lo que ya no permites.</li><li><strong>“3 cosas que le agradezco a…”</strong> A tu mamá, a una clienta, a tu versión de hace un año. Muestra evolución.</li><li><strong>“Aquí te digo cómo…”</strong> Para enseñar algo paso a paso.</li></ol>"},
+ {t:"Open loop",tags:["Técnica"],s:"Abrir una idea y no cerrarla de inmediato.",b:"<p>Un open loop es abrir una pregunta, una historia o una promesa y no resolverla en ese momento. El cerebro odia quedarse con algo incompleto, así que la persona se queda. Más retención es más alcance, y más alcance es más ventas.</p><p><strong>Ejemplo:</strong> “El error que veo en casi todas las que ya venden… y por el que no logran crecer…” Abriste el loop. Todavía no dices cuál es el error.</p><h4>El error más común</h4><p>Abrirlo y cerrarlo en dos segundos: “El error es no tener estrategia y te explico…”. Ahí se pierde todo.</p><h4>Cómo hacerlo bien</h4><ol><li>Abres fuerte.</li><li>Sostienes la tensión.</li><li>Das contexto.</li><li>Cierras con valor y un llamado a la acción.</li></ol><div class='script'>“Si sientes que haces TODO en tu negocio y no avanzas, hay una razón que nadie te dice…”\n(sostienes) “Y no, no es falta de disciplina…”\n(tensas) “Es que estás trabajando sin estructura…”\n(empiezas a cerrar)</div>"},
+ {t:"Series de contenido",tags:["Estrategia"],s:"Una estructura que se repite para que regresen.",b:"<p>Una serie es un formato que repites con una promesa clara. Crea expectativa, se reconoce rápido y hace que la gente regrese.</p><h4>Lo que necesita</h4><ul><li><strong>Una promesa:</strong> aprender algo, reflexionar, resolver algo puntual.</li><li><strong>Un formato reconocible:</strong> mismo inicio, mismo tono, mismo ritmo.</li><li><strong>Entrega directa:</strong> hook, desarrollo claro, cierre con intención.</li><li><strong>Continuidad:</strong> que se sienta como episodios.</li></ul><h4>Dos tipos</h4><p><strong>Explícitas:</strong> tienen nombre (“En 1 minuto te explico…”, “Diario de una emprendedora”). <strong>Implícitas:</strong> no tienen nombre, pero repites tu forma de empezar (“Te voy a decir algo que no te va a gustar…”). Las explícitas atraen; las implícitas construyen tu identidad. Usa las dos.</p><h4>Ideas de series</h4><ul><li>“Nadie te va a decir esto, pero…”</li><li>“En 1 minuto te ahorro meses de error”</li><li>“Esto está afectando tus resultados”</li><li>“Si haces esto, estás perdiendo dinero”</li><li>“Lo que no se ve de…”</li></ul>"}
+]},
+{id:"carruseles",t:"Sistema de carruseles",c:[6,8],d:"Ocho slides que enganchan, enseñan y mueven a la acción.",cards:[
+ {t:"El carrusel en 8 pasos",tags:["Carrusel","Método"],s:"Del hook al llamado a la acción, slide por slide.",b:"<ol><li><strong>Verdad incómoda o promesa poderosa.</strong> La primera slide no está para verse bonita, está para que digan “esto es para mí”. Nada de “hoy te quiero compartir”. Ej.: “No te falta disciplina, te falta identidad.”</li><li><strong>Abres un loop.</strong> “Y no, no se arregla publicando más.”</li><li><strong>Contexto para que se vea ahí.</strong> “¿Te ha pasado que un mes vendes bien y al siguiente regresas al caos?”</li><li><strong>La idea central.</strong> Lo que quieres que entienda al terminar. Ej.: “Tu contenido refleja la claridad que tienes sobre tu marca.”</li><li><strong>El valor en puntos simples.</strong> Una idea por slide, fácil de leer, con fondo. Errores, pasos, comparativas, hábitos.</li><li><strong>La slide que cambia la perspectiva.</strong> La que la gente comparte: “No te pareces a tus metas, te pareces a tus hábitos.”</li><li><strong>Cierre con dirección.</strong> Nada de “espero te haya gustado”. Dile qué hacer o entender desde hoy.</li><li><strong>Llamado a la acción con estrategia.</strong> No siempre para vender: conversación (“¿cuál te pegó más?”), comunidad (“mándaselo a una amiga que necesita leer esto”) o venta (“escríbeme MARCA por mensaje”).</li></ol>"},
+ {t:"Plantilla educativa",tags:["Plantilla"],s:"Reglas para usarla sin perder fuerza.",b:"<ul><li><strong>Color:</strong> cámbialo solo si ya tienes tu paleta definida.</li><li><strong>Tipografía:</strong> no la cambies si no dominas combinaciones.</li><li><strong>Estructura:</strong> no la toques, está hecha para educar y convertir.</li><li><strong>Fotos:</strong> cámbialas por fotos tuyas, reales y en acción.</li><li><strong>Música:</strong> usa audio en tendencia. Sin audio no publiques.</li><li><strong>Hook:</strong> una pregunta, una frase retadora o una confesión.</li><li><strong>Cierre:</strong> siempre con llamado a la acción (“guárdalo”, “compártelo con tu socia”, “comenta LISTO”).</li></ul>"},
+ {t:"Plantilla pantalla dividida",tags:["Plantilla","Carrusel"],s:"Dos realidades lado a lado para que elijan.",b:"<p>Sirve para confrontar: lo que te limita contra lo que te expande, cómo pensabas antes contra cómo piensas hoy, lo que nos vendieron contra lo que es.</p><ul><li><strong>Mentalidad:</strong> “Me da pena vender” vs “Me da pena no cumplir mis sueños”.</li><li><strong>Negocio:</strong> “Crear contenido sin estrategia” vs “Crear contenido que convierte”.</li><li><strong>Dinero:</strong> “Esperar a tener dinero para invertir” vs “Invertir para generar dinero”.</li><li><strong>Marca:</strong> “Tener seguidores” vs “Tener comunidad”.</li><li><strong>Transformación:</strong> “Antes me victimizaba” vs “Ahora me lidero”.</li></ul><p>El objetivo es que digan “ay, todavía soy del lado izquierdo” y quieran pasar al derecho.</p>"},
+ {t:"Plantilla “esto ≠ eso”",tags:["Plantilla","Carrusel"],s:"Confusiones comunes que te posicionan.",b:"<p>Una palabra puede sonar igual y significar algo distinto. Este formato provoca el “ouch, pensaba que era lo mismo”.</p><ul><li>Subir contenido ≠ tener marca personal</li><li>Mostrarte ≠ posicionarte</li><li>Vender ≠ rogar</li><li>Tener seguidores ≠ tener clientas</li><li>Estar ocupada ≠ ser productiva</li><li>Tener límites ≠ ser egoísta</li><li>Tener mentora ≠ que lo hagan por ti</li></ul><p><strong>Cierre:</strong> “¿Cuál de estas confusiones has tenido tú?”</p>"},
+ {t:"Plantilla de humor",tags:["Plantilla","Meme"],s:"Imagen fuerte + frase corta que conecta.",b:"<p>El humor engancha, humaniza y se comparte sin pagar anuncios.</p><ul><li><strong>Imagen grande con una emoción clara:</strong> sorpresa, drama, carcajada. Mejor si sales tú actuando el mood.</li><li><strong>Frase directa:</strong> que digan “literal soy yo”. Irónica, honesta, con palabras que usarías con tus amigas.</li><li><strong>Diseño limpio:</strong> una tipografía, nada de mil stickers.</li><li><strong>Llamado ligero:</strong> “¿Te pasó o solo a mí?”, “Guárdalo pa’ cuando andes así”.</li></ul><p>Los memes preparan el terreno para el carrusel educativo o la venta que viene después.</p>"},
+ {t:"Más plantillas de diseño",tags:["Plantilla","Pendiente"],pend:1,s:"Estilo de vida, storytelling, 6 consejos, no negociables y más.",b:"<p>El tablero original tiene unas 15 plantillas de diseño: educativas, estilo de vida, storytelling, 6 consejos, mis no negociables, una semana como…, herida de rechazo y otras.</p><p>Los links de diseño los tiene Sel. Pídeselos para tener tus propias copias.</p>"}
+]},
+{id:"formatos",t:"Formatos de reel",c:[7],d:"Cuatro formatos para probar y elegir el tuyo.",cards:[
+ {t:"Hablar directo a cámara",tags:["Reel"],s:"Tú, una idea y la cámara fija.",b:"<p>El formato que más autoridad da. Cámara trasera, luz de frente, fondo ordenado y un acercamiento cada 5 segundos en la edición. Ideal para tu historia, opiniones y guiones de venta.</p>"},
+ {t:"Voz en off con escenas",tags:["Reel"],s:"Hablas encima de clips de tu vida.",b:"<p>Usa tu banco de escenas (Clase 7) y graba tu voz aparte. Funciona perfecto los días que no quieres salir a cuadro. Pon palabras clave en pantalla.</p>"},
+ {t:"Carrusel paso a paso",tags:["Carrusel"],s:"Un proceso explicado slide por slide.",b:"<p>Una slide por paso, con número y una sola idea. Se guarda mucho porque la gente lo quiere volver a ver. Cierra con “guárdalo para cuando lo necesites”.</p>"},
+ {t:"Mini tutorial",tags:["Reel"],s:"Enseñas algo en menos de 30 segundos.",b:"<p>Muestras el resultado al inicio y luego cómo se hace. Manos, producto y texto con los pasos. Nada de introducciones.</p>"}
+]},
+{id:"angulos",t:"1 idea, 5 ángulos",c:[10],d:"Una sola idea te da contenido para toda la semana.",cards:[
+ {t:"La idea base y sus 5 versiones",tags:["Método"],s:"Identificable, en tendencia, controversial y de temporada.",b:"<p><strong>Idea base:</strong> el mensaje central que quieres que tu audiencia entienda. Ejemplo: “Cómo lucir una piel hidratada todo el día.”</p><h4>Versión identificable</h4><p>Conecta con la realidad de tu comunidad: “No sé tú, pero a medio día mi piel se siente como cartón… así la mantengo hidratada hasta la noche.” Sirve para que respondan “¡literal me pasa!”.</p><h4>Versión en tendencia</h4><p>Súbete a algo que ya buscan: “Probé la rutina viral de la que todas hablan y esto pasó.” Sirve para ganar alcance.</p><h4>Versión controversial</h4><p>Cuestiona lo establecido: “Los sueros no son la solución. El verdadero secreto es otro.” Sirve para que se detengan, opinen y guarden.</p><h4>Versión de temporada</h4><p>Conecta con el ahora: “Con este frío mantener la piel hidratada es un reto. Esta es mi rutina.” Sirve para verte actual y práctica.</p><blockquote>No necesitas mil ideas nuevas al día. Necesitas saber decir lo mismo de distintas formas.</blockquote>"}
+]},
+{id:"historias",t:"Historias de 7 días",c:[13],d:"Un tema por día para tus stories, sin bloquearte.",cards:[
+ {t:"El calendario de stories",tags:["Stories","Semanal"],s:"Detrás de cámaras, hack, historia real, encuesta, valor, venta y celebración.",b:"<ol><li><strong>Lunes · detrás de cámaras.</strong> Cómo te organizas, qué ritual te activa, dónde nacen tus ideas. Mostrar tu proceso inspira más que mostrar resultados.</li><li><strong>Martes · mini hack.</strong> La app que te salva, cómo planeas, cómo grabas sin pasar horas editando. Un buen tip te posiciona sin decirlo.</li><li><strong>Miércoles · historia real.</strong> Un miedo que ya no manda, algo difícil que te enseñó, un paso valiente que todavía te cuesta.</li><li><strong>Jueves · encuesta.</strong> “¿Reels o carruseles?”, “¿Café o caos?”. Sus respuestas te dan ideas y conversaciones.</li><li><strong>Viernes · valor gratis.</strong> Un mini tutorial, un checklist o un paso a paso con voz.</li><li><strong>Sábado · promoción consciente.</strong> A quién ayuda tu producto o tu negocio, qué resuelve y cómo se consigue. Vender también es cuidar.</li><li><strong>Domingo · celebración.</strong> Un logro de la semana, por pequeño que sea. Celebrar en voz alta le da permiso a otras de creer que se puede.</li></ol>"}
+]},
+{id:"guiones",t:"Guiones de venta",c:[12,14],d:"Guiones para reels de venta y anuncios.",cards:[
+ {t:"El método: hook, loop, contexto, CTA",tags:["Método","Anuncios"],s:"Para reels orgánicos, anuncios y videos de autoridad.",b:"<h4>1. Hook · 0 a 3 segundos</h4><p>Detén el scroll. Háblale a una incomodidad real, confronta una creencia o promete una transformación clara. Ej.: “Si ya vendes por redes y aun así no te alcanza…”. Prohibido: “Hola, soy…”, “Hoy quiero hablarte de…”.</p><h4>2. Open loop · 3 a 6 segundos</h4><p>Promete que vale la pena quedarse, sin explicar: “Y no, no tiene que ver con el algoritmo.”</p><h4>3. Contexto y valor · 15 a 30 segundos</h4><p>Qué está haciendo mal, por qué no le funciona y qué debería hacer distinto. Cuéntalo como alguien que ya estuvo ahí, no como maestra.</p><h4>4. Llamado a la acción · 5 a 10 segundos</h4><p>Un solo llamado por video. Para leads: “Comenta CLASE y te mando el acceso”. Para autoridad: “Guárdalo, lo vas a necesitar”.</p><h4>Duración</h4><ul><li>Anuncio a gente que no te conoce: 30 a 45 segundos.</li><li>Orgánico: 20 a 40 segundos.</li><li>Historias: 15 a 30 segundos.</li></ul><blockquote>La gente no compra lo que dices. Compra desde dónde lo dices.</blockquote>"},
+ {t:"Estructura: persona + dolor",tags:["Plantilla"],s:"Cinco partes en orden exacto.",b:"<ol><li><strong>Persona y dolor:</strong> dices exactamente a quién le hablas y qué le duele hoy.</li><li><strong>Contexto:</strong> amplías la situación y la normalizas.</li><li><strong>Valor:</strong> 2 o 3 verdades cortas que hagan pensar “es cierto”.</li><li><strong>Open loop:</strong> una pregunta abierta que no se responde con sí o no.</li><li><strong>Llamado a la acción:</strong> primero nombras tu recurso o programa, después dices exactamente qué hacer (palabra clave, mensaje, responder la historia).</li></ol>"},
+ {t:"Ejemplo · mamá primeriza",tags:["Guion"],s:"Ingresos propios con poco tiempo.",b:"<div class='script'>PERSONA + DOLOR: Si eres mamá primeriza, estás en casa con tu bebé y sientes que dependes de alguien más, que tu mundo se hizo chiquito…\nCONTEXTO: A muchas nos pasa. Nos dijeron que esta etapa es solo sobrevivir, y el “después” casi nunca llega solo.\nVALOR: No es que no puedas crecer ahora, es que no tienes estructura. Tener poco tiempo no es el problema; no usarlo con intención, sí. Tu maternidad no cancela tu ambición, la redefine.\nOPEN LOOP: ¿Cómo sería tu vida si empezaras algo propio con 30 minutos al día?\nCTA: Por eso armé [tu programa], para empezar paso a paso sin descuidar a tu bebé. Escríbeme INFO y te cuento.</div>"},
+ {t:"Ejemplo · profesionista frustrada",tags:["Guion"],s:"Trabaja mucho y no se ve creciendo.",b:"<div class='script'>PERSONA + DOLOR: Si eres profesionista, trabajas todo el día y sientes que tu sueldo no refleja tu esfuerzo…\nCONTEXTO: Nos dijeron que estudiar y trabajar duro era suficiente. Nadie nos habló de lo limitante que es depender de un ingreso que no controlas.\nVALOR: No te falta capacidad, te falta dirección. Tu experiencia vale más si sabes convertirla en algo tuyo. Las mujeres que crecen no trabajan más, trabajan con estrategia.\nOPEN LOOP: ¿Qué pasaría si usaras todo lo que ya sabes para crear algo que te represente?\nCTA: En [tu programa] te enseño cómo. Mándame QUIERO y te explico.</div>"},
+ {t:"Ejemplo · la que no se siente lista",tags:["Guion"],s:"Siempre “cuando tenga tiempo”.",b:"<div class='script'>PERSONA + DOLOR: Si quieres empezar algo propio pero siempre piensas “cuando tenga más tiempo”, “cuando sepa más”, “cuando esté lista”…\nCONTEXTO: Nadie empieza sintiéndose lista. La claridad llega después de la acción, no antes.\nVALOR: Empezar imperfecta es mejor que no empezar. Se aprende haciendo. La seguridad se construye.\nOPEN LOOP: ¿Y si hoy fuera el día en que dejas de pensarlo?\nCTA: En [tu programa] te acompaño paso a paso. Mándame EMPEZAR.</div>"},
+ {t:"Ejemplo · ingresos desde casa",tags:["Guion"],s:"Perdida entre mil opciones.",b:"<div class='script'>PERSONA + DOLOR: Si quieres generar ingresos desde casa pero te sientes perdida y lo pospones todo…\nCONTEXTO: Hay mil opciones en internet. Cuando todo parece posible, lo común es no hacer nada por miedo a equivocarte.\nVALOR: No necesitas hacerlo todo, necesitas foco. La claridad llega con acción. Empezar pequeño es mejor que nunca.\nOPEN LOOP: ¿Dónde estarías en 6 meses si hoy eligieras empezar?\nCTA: En [tu programa] doy tus primeros pasos contigo. Mándame EMPEZAR.</div>"},
+ {t:"Prompt para escribir tu guion con IA",tags:["Prompt","IA"],s:"Cópialo, llénalo y pégalo en Claude.",copy:"pr1",b:"<div class='script' id='pr1'>Actúa como estratega de anuncios digitales. Escríbeme un guion de anuncio con EXACTAMENTE esta estructura:\n1. Hook: una frase que rompa el patrón y genere curiosidad.\n2. Open loop: una pregunta o tensión que se resuelve después.\n3. Contexto: el problema real que vive mi clienta ideal.\n4. Valor: mi método o diferenciador, concreto, no genérico.\n5. CTA: una sola acción clara.\n\nMi negocio:\n– Qué vendo: [ ]\n– Clienta ideal: [ ]\n– Su dolor principal: [ ]\n– Resultado que prometo y en cuánto tiempo: [ ]\n– Lo que hago distinto: [ ]\n– Quién lo va a ver: [gente que no me conoce / gente que ya me sigue]\n– Objetivo: [mensaje / lead / venta / llamada]\n\nReglas: nada de frases motivacionales genéricas, no repetir ideas, no cerrar el loop antes de tiempo, máximo 60 a 90 segundos, lenguaje natural y con autoridad.</div><button class='btn' type='button' data-copy='pr1'>Copiar prompt</button><p style='font-size:13px;color:var(--muted)'>Tip: abre un proyecto o carpeta llamado “Anuncios” para guardar todos tus guiones juntos.</p>"}
+]},
+{id:"equipo",t:"Reels para reclutar",c:[13],d:"Ideas grabadas en equipo para invitar sin perseguir.",cards:[
+ {t:"“Yo también empecé con miedo”",tags:["Reel","Equipo"],s:"Cinco mujeres, una frase cada una.",b:"<div class='script'>[Toma 1 · close up, tono honesto]\nYo también empecé con miedo… pero mis ganas de dejar de depender de alguien más fueron más grandes.\n[Toma 2 · caminando]\nYo también dudé muchísimo… pero mis ganas de darle una mejor vida a mis hijos fueron más grandes.\n[Toma 3 · sentada con café]\nYo también pensé que no era suficiente… pero mis ganas de demostrarme de lo que soy capaz fueron más grandes.\n[Toma 4 · arreglándose frente al espejo]\nYo también sentí que no sabía nada… pero mis ganas de construir algo propio fueron más grandes.\n[Toma 5 · sonrisa, energía alta]\nYo también tenía mil excusas… pero mis ganas de ganar mi propio dinero y ser libre fueron más grandes.\n[Cierre · la líder]\nEl miedo no se va… pero aprendes a moverte con él.</div>"},
+ {t:"“Tienes que… / Mi equipo:”",tags:["Tendencia","Equipo"],s:"Formato de tendencia con humor.",b:"<div class='script'>Texto: “Tienes que creértela…” → Mi equipo: creyéndosela\nTexto: “Tienes que invitar…” → Mi equipo: invitando\nTexto: “Tienes que perder el miedo…” → Mi equipo: perdiendo el miedo</div><p>Grábenlo en un evento o junta, con varias del equipo actuando cada frase.</p>"},
+ {t:"“Especializadas en…”",tags:["Tendencia","Equipo"],s:"Respuesta con humor a un consejo serio.",b:"<div class='script'>Texto 1: “Para ganar más en este país necesitas especializarte.”\nTexto 2: “Nosotras, especializadas en crear contenido:” (escenas del equipo grabando, editando, riendo)</div>"},
+ {t:"“Ve a tu ritmo” vs disciplina",tags:["Tendencia","Equipo"],s:"Contraste entre el consejo cómodo y el real.",b:"<div class='script'>Persona 1: “No te preocupes, ve a tu ritmo, no pasa nada.”\nPersona 2: “Si no eres disciplinada vas a seguir exactamente como estás. ¿No estás harta?”</div><p>Funciona como contraste cómico entre dos del equipo.</p>"},
+ {t:"Logros al centro",tags:["Reel","Equipo"],s:"Varias del equipo mostrando sus reconocimientos.",b:"<p>Varias del equipo en fila y al centro sus reconocimientos o logros del mes. Sin cifras de ingresos: se muestra el avance, no se promete dinero.</p>"},
+ {t:"Transición “emprende con nosotras”",tags:["Reel","Equipo"],s:"Antes y después con transición.",b:"<p>Primera parte: un día cansado, rutina sin rumbo. Transición al ritmo del audio. Segunda parte: arregladas, trabajando juntas. Texto final: “Emprende con nosotras”.</p>"}
+]},
+{id:"meta",t:"Publicidad en Meta",c:[14],d:"Deja tu cuenta lista antes de invertir un peso.",cards:[
+ {t:"Checklist completa",tags:["Checklist","Anuncios"],s:"Ocho pasos, de tu Facebook personal a tu primer anuncio.",checklist:1,b:""}
+]},
+{id:"recursos",t:"Guías en PDF",c:[0],d:"Material descargable del programa original.",cards:[
+ {t:"Guías por agregar",tags:["Pendiente"],pend:1,s:"14 PDFs que faltan pasar al curso.",b:"<p>Estas guías están en el tablero original como PDF y todavía no las tenemos en texto:</p><ul><li>Formatos de contenido</li><li>Cómo configurar tu cuenta</li><li>Ebook de hooks</li><li>Formas de publicar en Instagram</li><li>Redes sociales desde cero</li><li>Auditoría de marca personal</li><li>Ficha de clienta ideal</li><li>Plantilla para definir pilares</li><li>Ejemplos de storytelling</li><li>Hacks para usar IA</li><li>Propósito digital</li><li>Manual del programa</li><li>Test de personalidad</li><li>Tipografías</li></ul><p>Varias ya están cubiertas en Visible (clienta ideal, test de estilo, plantilla de historia, prompts). Las demás se agregan cuando Sel las comparta.</p>"}
+]}
+];
+
+var META=[
+ {t:"1. Prepara lo básico",i:["Una cuenta personal de Facebook activa","Acceso al correo de esa cuenta","Una tarjeta de crédito o débito","Instagram de tu negocio, si ya tienes","Logo o foto de perfil","Sitio web, solo si vas a medir formularios o compras"],n:"Crea todo desde tu cuenta y comparte permisos. Nunca compartas contraseñas."},
+ {t:"2. Verifica tu cuenta personal",i:["Puedes iniciar sesión sin problema","Tienes acceso al correo asociado","Activaste la verificación en dos pasos","Tu nombre y datos son reales y completos"],n:"Meta puede bloquear cuentas con datos incompletos o actividad sospechosa."},
+ {t:"3. Crea tu portafolio comercial (Business Manager)",i:["Entra a business.facebook.com","Crea la cuenta o el negocio","Escribe el nombre de tu negocio","Agrega tu nombre y correo","Confirma el correo cuando te lo pida"],n:"Desde aquí administras páginas, cuentas publicitarias, Instagram, Pixel, pagos y permisos."},
+ {t:"4. Conecta tu página de Facebook",i:["Si ya tienes página, revisa que seas administradora","Si no tienes, crea una para tu negocio","Agrega logo, descripción y WhatsApp","Confirma que la página quede dentro de tu portafolio"],n:"La página es necesaria para anunciar aunque no publiques diario."},
+ {t:"5. Crea tu cuenta publicitaria",i:["Entra a Configuración del negocio","Busca Cuentas → Cuentas publicitarias","Crea una cuenta publicitaria","Elige bien la moneda (pesos mexicanos)","Elige bien la zona horaria (Ciudad de México)"],n:"La moneda y la zona horaria no se pueden cambiar después."},
+ {t:"6. Completa los activos de campaña",i:["Agrega una tarjeta como método de pago","Confirma que Meta la acepte","Conecta el Instagram del negocio","Cambia Instagram a perfil profesional","Si tienes web, pide instalar el Pixel","Configura eventos: visita, formulario o compra","Sin web, empieza con WhatsApp o formularios de Meta"],n:""},
+ {t:"7. Prepara lo que vas a enviar",i:["Logo y nombre de tu negocio","Qué haces y a quién ayudas","Tus productos o servicios principales","Beneficios concretos para la clienta","Testimonios o resultados","Cómo trabajas","Datos de contacto: WhatsApp, correo y redes"],n:"Anunciar sin un portafolio para mandar es como abrir un restaurante sin menú."},
+ {t:"8. Revisión final",i:["Tengo acceso a mi Facebook y a su correo","Tengo la verificación en dos pasos activa","Mi portafolio está creado desde mi cuenta","Mi página está conectada","Mi cuenta publicitaria tiene moneda y zona correctas","Tengo método de pago activo","Mi Instagram está conectado","Tengo Pixel instalado o sé quién lo instala","Todos los activos están a mi nombre","No compartí contraseñas","Si me ayuda alguien, solo tiene permisos, no la propiedad","Tengo mi portafolio listo para mandar"],n:""}
+];
+
+var WEEKS=[
+ {t:"Arranque: tu objetivo y tus planos",cls:[0,1],cards:[],steps:["Toma “Empieza aquí” y la Clase 1","Escribe tu objetivo de 90 días y tus 3 acciones innegociables","Dibuja los planos de tu marca y ponlos a la vista","Agenda dos bloques fijos: uno para el curso y otro para crear"],team:"Comparte tu objetivo en el grupo y pide a tu equipo que comparta el suyo"},
+ {t:"Tu marca y tu clienta ideal",cls:[2,3],cards:["hooks"],steps:["Toma las Clases 2 y 3","Haz el Test de tu estilo y la Ficha de tu clienta ideal","Revisa tus últimas 9 publicaciones: ¿le hablan a ella?","Publica 2 veces usando los 5 hooks de la semana"],team:"Pide a cada una que describa a su clienta ideal en 3 líneas"},
+ {t:"Fuego lento y tu historia",cls:[4,5],cards:["guiones"],steps:["Toma las Clases 4 y 5","Escribe tu historia con la plantilla y cuéntala en un minuto","Graba y publica tu historia en reel hablado a cámara","Publica un carrusel de antes y después"],team:"Comenten el reel de historia de cada compañera"},
+ {t:"Arranca la parrilla semanal",cls:[6],cards:["parrilla","historias"],steps:["Toma la Clase 6 y ponle nombre a tus 4 pilares","Publica lunes, martes, jueves y sábado con la parrilla","Empieza el calendario de stories de 7 días","El domingo planea la semana siguiente"],team:"Compartan sus 4 pilares con nombre"},
+ {t:"Formatos y banco de escenas",cls:[7],cards:["formatos","parrilla"],steps:["Toma la Clase 7","Prueba los 4 formatos de reel y elige tu principal","Graba 2 o 3 clips diarios para tu banco de escenas","Sigue la parrilla y las stories de 7 días"],team:"Cada una dice qué formato va a dominar"},
+ {t:"Tu sistema de contenido",cls:[8],cards:["hooks","carruseles"],steps:["Toma la Clase 8 y arma tu presentación para la IA","Elige 3 a 5 cuentas faro","Haz tu primer carrusel con el método de 8 pasos","Usa un open loop en al menos 2 publicaciones","Elige o inventa tu primera serie de contenido"],team:"Compartan una cuenta faro y qué van a adaptar"},
+ {t:"Edición y una idea en cinco ángulos",cls:[9],cards:["angulos"],steps:["Toma la Clase 9 y edita 2 videos con los 6 pasos","Elige una idea base y escribe sus 5 versiones","Publica 3 de esas versiones esta semana"],team:"Compartan el antes y el después de su edición"},
+ {t:"Creatividad y plantillas",cls:[10],cards:["carruseles","angulos"],steps:["Toma la Clase 10","Haz una lluvia de 20 ideas","Publica un carrusel de pantalla dividida y uno de “esto ≠ eso”","Publica un meme con la plantilla de humor"],team:"Reto del grupo: un reel creativo fuera de su zona cómoda"},
+ {t:"Vender es servir",cls:[11],cards:["guiones"],steps:["Toma la Clase 11","Lee el método de guiones de venta","Escribe tu primer guion con la estructura persona + dolor","Publica tu primer reel de venta un jueves"],team:"Compartan qué les incomoda de vender y lean juntas la clase"},
+ {t:"Conversaciones que cierran",cls:[12],cards:["guiones"],steps:["Toma la Clase 12","Adapta 2 de los 4 guiones de ejemplo a tu negocio","Usa el prompt para escribir un guion con IA","Responde cada mensaje con la estructura de la clase"],team:"Practiquen respuestas a “lo voy a pensar” en parejas"},
+ {t:"Historias que venden y reclutan",cls:[13],cards:["equipo","historias"],steps:["Toma la Clase 13","Graba “Yo también empecé con miedo” con 4 o 5 del equipo","Graba una tendencia de equipo (“Tienes que… / Mi equipo:”)","Haz una secuencia de stories para invitar sin perseguir"],team:"Agenda una grabación grupal de 1 hora"},
+ {t:"Publicidad y cierre de temporada",cls:[14],cards:["meta","guiones"],steps:["Toma la Clase 14","Completa los 8 pasos de la checklist de Meta","Graba tu primer anuncio con el método hook, loop, contexto y CTA","Revisa tus 90 días: qué funcionó, qué repites y qué sueltas","Celebra tus acciones, no tus likes"],team:"Cierre en grupo: cada una comparte su mayor avance"}
+];
+
+var LS="tablero-visible-v1";var state={};
+try{state=JSON.parse(localStorage.getItem(LS)||"{}")||{}}catch(e){state={}}
+function save(){try{localStorage.setItem(LS,JSON.stringify(state))}catch(e){}}
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+
+var $=function(id){return document.getElementById(id)};
+var filter="all";
+function renderFilters(){
+ var h='<button class="chip" type="button" data-f="all" aria-pressed="'+(filter=="all")+'">Todo</button>';
+ COLS.forEach(function(c){h+='<button class="chip" type="button" data-f="'+c.id+'" aria-pressed="'+(filter==c.id)+'">'+esc(c.t)+'</button>'});
+ $("filters").innerHTML=h;
+}
+function clsLabel(c){return c.c.map(function(n){return n===0?'<a href="'+VIS+'" target="_blank" rel="noopener">Ver el curso Visible ↗</a>':'<a href="'+cl(n)+'" target="_blank" rel="noopener">Clase '+n+' de Visible ↗</a>'}).join("")}
+function renderBoard(){
+ var h="";
+ COLS.forEach(function(c){
+  if(filter!="all"&&filter!=c.id)return;
+  h+='<div class="col" id="col-'+c.id+'"><div class="colhead"><h2>'+esc(c.t)+'</h2>'+clsLabel(c)+'<p>'+esc(c.d)+'</p></div>';
+  c.cards.forEach(function(k,i){
+   h+='<button class="card" type="button" data-col="'+c.id+'" data-i="'+i+'"><b>'+esc(k.t)+'</b><span>'+esc(k.s)+'</span><div class="tags">'+k.tags.map(function(t){return '<i class="tag'+(t=="Pendiente"?" pend":"")+'" style="font-style:normal">'+esc(t)+'</i>'}).join("")+'</div></button>';
+  });
+  h+='</div>';
+ });
+ $("board").innerHTML=h;
+}
+function metaHTML(){
+ var h="";
+ META.forEach(function(s,si){
+  h+='<h4>'+esc(s.t)+'</h4>';
+  if(s.n)h+='<p style="color:var(--muted);font-size:14px">'+esc(s.n)+'</p>';
+  s.i.forEach(function(it,ii){var k="m"+si+"_"+ii;h+='<label class="check"><input type="checkbox" data-k="'+k+'"'+(state[k]?" checked":"")+'><span>'+esc(it)+'</span></label>'});
+ });
+ return h+'<p style="font-size:13px;color:var(--muted);margin-top:14px">Tus marcas se guardan en este navegador.</p>';
+}
+var lastFocus=null;
+function openCard(colId,i){
+ var c=COLS.filter(function(x){return x.id==colId})[0],k=c.cards[i];
+ lastFocus=document.activeElement;
+ $("shKicker").textContent=c.t;
+ $("shTitle").textContent=k.t;
+ var links=c.c.map(function(n){return n===0?'':'<a class="golink" href="'+cl(n)+'" target="_blank" rel="noopener">Abrir la Clase '+n+' en Visible ↗</a> '}).join("");
+ $("shBody").innerHTML=(k.checklist?metaHTML():k.b)+'<div style="display:flex;flex-wrap:wrap;gap:8px">'+links+'</div>';
+ $("scrim").hidden=false;$("sheet").hidden=false;$("sheet").scrollTop=0;$("shClose").focus();
+}
+function closeSheet(){$("scrim").hidden=true;$("sheet").hidden=true;if(lastFocus)lastFocus.focus()}
+
+function fmt(d){return d.toLocaleDateString("es-MX",{day:"numeric",month:"short"})}
+function renderCal(){
+ var v=state.start||$("start").value;$("start").value=v;
+ var p=v.split("-"),s=new Date(+p[0],+p[1]-1,+p[2]);
+ var today=new Date();today.setHours(0,0,0,0);
+ var total=0,done=0,h="";
+ WEEKS.forEach(function(w,wi){
+  var a=new Date(s);a.setDate(s.getDate()+wi*7);var b=new Date(a);b.setDate(a.getDate()+6);
+  var now=today>=a&&today<=b;
+  var links=w.cls.map(function(n){return '<a href="'+cl(n)+'" target="_blank" rel="noopener">'+(n===0?"Empieza aquí":"Clase "+n)+' ↗</a>'}).join("");
+  links+=w.cards.map(function(id){var c=COLS.filter(function(x){return x.id==id})[0];return '<button type="button" data-goto="'+id+'">Tablero · '+esc(c.t)+'</button>'}).join("");
+  var items=w.steps.map(function(st,si){var k="w"+wi+"_"+si;total++;if(state[k])done++;return '<label class="check'+(state[k]?" done":"")+'"><input type="checkbox" data-k="'+k+'"'+(state[k]?" checked":"")+'><span>'+esc(st)+'</span></label>'}).join("");
+  var tk="w"+wi+"_t";total++;if(state[tk])done++;
+  h+='<article class="week'+(now?" now":"")+'"><div class="wnum">'+(wi+1)+'<small>semana'+(now?" · hoy":"")+'</small></div><div class="wbody"><h3>'+esc(w.t)+'</h3><p class="dates">'+fmt(a)+' – '+fmt(b)+'</p><div class="links">'+links+'</div><p class="grp">Tú</p>'+items+'<p class="grp">Con el equipo</p><label class="check'+(state[tk]?" done":"")+'"><input type="checkbox" data-k="'+tk+'"'+(state[tk]?" checked":"")+'><span>'+esc(w.team)+'</span></label></div></article>';
+ });
+ $("weeks").innerHTML=h;
+ $("progTxt").textContent=done+" de "+total+" pasos hechos";
+ $("pfill").style.width=(total?Math.round(done/total*100):0)+"%";
+}
+
+var IDEAS=[
+ {t:"Conóceme",i:[
+  ["Carrusel","“5 cosas que nadie sabe de mí (y la 3 explica por qué emprendí)”","Datos tuyos mezclados con tu porqué. La última slide invita a presentarse en comentarios."],
+  ["Reel hablado","“Así era mi vida hace un año”","Tu antes en 30 segundos, con fotos de esa etapa. Cierra con una frase de lo que cambió."],
+  ["Reel","“Lo que vendo, en 15 segundos”","Muestra tus 3 productos favoritos con texto en pantalla y cierra con “escríbeme FAVORITOS”."],
+  ["Meme","“Yo explicándole a mi familia a qué me dedico”","Humor con tu cara de paciencia. Pide que etiqueten a quien no entiende su trabajo."]]},
+ {t:"Tu clienta ideal",i:[
+  ["Carrusel","“¿Te pasa esto en las mañanas?”","Cinco situaciones de tu clienta ideal y una solución corta para cada una."],
+  ["Reel vlog","“Un martes real: trabajo, casa y 10 minutos para mí”","Tu día con escenas cortas. El mensaje: el cuidado propio cabe en días llenos."],
+  ["Carrusel","“¿Para quién es esto? (y para quién no)”","Describe a quién ayudas y a quién no. Filtra y da confianza."],
+  ["Test","“¿Qué tipo de rutina eres?”","Cuatro perfiles con emoji. Comentan su número."]]},
+ {t:"Tu historia",i:[
+  ["Reel hablado","“3 dolores que tenía y hoy ya resolví”","Uno por slide o por escena. Termina con “si estás donde yo estaba, escríbeme”."],
+  ["Reel con storytelling","“El día que decidí empezar”","El momento exacto, qué estabas viviendo y qué decidiste. Sin drama, con aprendizaje."],
+  ["Reel testimonio","“Lo que me escribió una clienta esta semana”","Captura del mensaje (con permiso) y tu reacción. Cierra con cómo pedir lo mismo."],
+  ["Tendencia","“Nadie: / Yo a las 11 pm empacando pedidos feliz”","Audio en tendencia con escenas tuyas trabajando de noche."]]},
+ {t:"Mitos y errores",i:[
+  ["Carrusel","“5 mitos de cuidado de la piel que tienes que soltar”","Una ❌ por mito y la verdad en una línea. Cierra con “guárdalo”."],
+  ["Frase","“Cuidarte no es vanidad, es respeto propio”","Imagen limpia con tu paleta y una pregunta en la descripción."],
+  ["Reel educativo + CTA","“El error que hace que tu maquillaje no dure”","Muestra el error y el cambio. CTA: “Comenta DURA y te mando mi paso a paso”."],
+  ["Meme","“Cuando dices ‘solo voy a ver’ el catálogo”","Humor sobre comprar de más. Pide que etiqueten a su amiga."]]},
+ {t:"Rutinas reales",i:[
+  ["Reel tutorial","“Mi rutina de 5 minutos para días caóticos”","Paso a paso rápido con texto en pantalla."],
+  ["Reel vlog","“Lo que uso en un día normal”","Sin extremos ni perfección. Mañana, tarde y noche."],
+  ["Carrusel venta","“Arma tu rutina según tu tipo de piel”","Tres combinaciones y cómo pedir la tuya."],
+  ["Audio en tendencia","“Yo prometiendo que hoy sí me desmaquillo”","Humor de noche cansada."]]},
+ {t:"Detrás de cámaras",i:[
+  ["Carrusel","“Cómo organizo mi semana de contenido en 1 hora”","Tu método real: domingo, libreta, calendario."],
+  ["Reel","“Así empaco tus pedidos”","ASMR de empaque con música baja. Que se vea el cuidado."],
+  ["Reel hablado","“Lo que incluye comprarme (y por qué no es solo un producto)”","Asesoría, seguimiento y comunidad."],
+  ["Reel","“Expectativa vs realidad de grabar un reel”","Tomas fallidas, niños entrando, la luz que se va."]]},
+ {t:"Una idea, cinco ángulos",i:[
+  ["Carrusel identificable","“A medio día mi piel se siente como cartón”","La idea base contada desde la experiencia de tu clienta."],
+  ["Reel en tendencia","“Probé la rutina viral y esto pasó”","Súbete a algo que ya buscan, con tu opinión honesta."],
+  ["Reel controversial","“No necesitas 10 pasos de skincare”","Cuestiona lo común y da tu versión simple. CTA para pedir la rutina."],
+  ["Reel de temporada","“Cómo cuido mi piel con este frío”","Conecta con la estación o la fecha que viene."]]},
+ {t:"Confianza y autoridad",i:[
+  ["Carrusel “esto ≠ eso”","“Hidratar ≠ nutrir”","Cinco confusiones comunes, una por slide."],
+  ["Reel hablado","“Lo que aprendí después de 100 clientas”","Tres aprendizajes que te volvieron mejor asesora."],
+  ["Carrusel pantalla dividida","“Comprar por impulso vs comprar con asesoría”","Dos lados y tu invitación al final."],
+  ["Meme","“Mi cara cuando me preguntan ‘¿y eso sí sirve?’”","Humor ligero y pide sus dudas en comentarios."]]},
+ {t:"Vender sirviendo",i:[
+  ["Carrusel","“Cómo elegir tu tono sin equivocarte”","Paso a paso con luz natural. CTA: mándame foto y te digo."],
+  ["Frase","“Vender también es cuidar”","Reflexión corta sobre por qué recomiendas lo que usas."],
+  ["Reel guion persona + dolor","“Si eres mamá y no tienes ni 10 minutos para ti…”","Usa la estructura de la columna de guiones de venta."],
+  ["Test","“¿Qué tipo de compradora eres?”","La que compara todo, la impulsiva, la fiel, la que pregunta 20 veces."]]},
+ {t:"Objeciones",i:[
+  ["Carrusel","“¿Es caro? Hagamos cuentas”","Costo por uso contra lo que gastas en otras cosas. Sin presionar."],
+  ["Reel hablado","“Lo que respondo cuando me dicen ‘lo voy a pensar’”","Tu respuesta tranquila, sin perseguir."],
+  ["Reel testimonio","“Ella también dudaba”","Historia de una clienta que tenía la misma duda."],
+  ["Tendencia","“Cuando dices ‘lo voy a pensar’ y yo ya te mandé la info”","Humor sobre el seguimiento, sin burlarse."]]},
+ {t:"Invitar al equipo",i:[
+  ["Carrusel","“Lo que nadie te dice de emprender desde casa”","Verdades honestas: tiempo, constancia, comunidad."],
+  ["Reel en equipo","“Yo también empecé con miedo”","El guion de la columna de reels para reclutar."],
+  ["Reel guion","“Si quieres un ingreso propio y no sabes por dónde empezar…”","Guion de reclutamiento con CTA EMPEZAR."],
+  ["Tendencia en equipo","“Tienes que creértela… / Mi equipo:”","Graben juntas en la junta del mes."]]},
+ {t:"Cierre de temporada",i:[
+  ["Carrusel","“Lo que aprendí en 90 días creando contenido”","Cinco aprendizajes con capturas de tu avance."],
+  ["Reel hablado","“A la que era hace 90 días”","Carta corta a tu yo del inicio."],
+  ["Anuncio","Tu primer anuncio con el método hook, loop, contexto y CTA","Usa la checklist de Meta antes de pagarlo."],
+  ["Reel","“Bloopers de la temporada”","Los mejores errores grabando. Cierra con “gracias por quedarte”."]]}
+];
+var SERIES=[
+ {n:"En 1 minuto te explico",tag:"Educativo",f:"Reel hablado · semanal · lunes",p:"Una duda frecuente resuelta en menos de un minuto.",o:"“En 1 minuto te explico ___. Ve por tu café.”",e:["Cómo saber tu tipo de piel","El orden correcto de tu rutina","Por qué tu base se oxida","Cada cuánto exfoliar","Cómo hacer que tu perfume dure"]},
+ {n:"Nadie te dice esto",tag:"Autoridad",f:"Reel hablado · cada 15 días",p:"Verdades incómodas de tu nicho que te posicionan.",o:"“Nadie te va a decir esto, pero…”",e:["Más productos no es mejor rutina","Lo que el precio no te dice","El error de copiar la rutina de otra","Por qué tu piel cambia con la temporada","Lo que pasa cuando duermes maquillada"]},
+ {n:"Diario de una emprendedora",tag:"Estilo de vida",f:"Reel vlog · semanal · martes",p:"Un episodio de tu semana real, con una enseñanza al final.",o:"“Diario de una emprendedora, día ___.”",e:["Un lunes con todo en contra","Mi primer pedido grande","El día que nadie me compró","Cómo me organizo con los niños","Celebrando mi mes"]},
+ {n:"Lo que no se ve",tag:"Detrás de cámaras",f:"Reel · cada 15 días",p:"El proceso detrás de lo que publicas y vendes.",o:"“Lo que no se ve de ___.”",e:["Empacar 20 pedidos","Grabar un reel (10 intentos)","Una junta de equipo","Planear mi semana","Elegir qué producto recomendar"]},
+ {n:"Esto o esto",tag:"Entretenimiento",f:"Reel o carrusel · semanal · sábado",p:"Dos opciones y tu audiencia elige en comentarios.",o:"“¿Esto o esto? Comenta 1 o 2.”",e:["Labial mate o brillo","Rutina de mañana o de noche","Perfume dulce o fresco","Maquillaje natural o de noche","Café o té antes de grabar"]},
+ {n:"Le respondo a tus preguntas",tag:"Comunidad",f:"Reel con sticker de pregunta · semanal",p:"Respondes una pregunta real de stories o mensajes.",o:"“Me preguntaron ___ y te lo respondo.”",e:["¿Cómo empiezo si no sé nada?","¿Cuánto tiempo le dedicas?","¿Qué uso para piel sensible?","¿Cómo le hago con los niños?","¿Vale la pena?"]},
+ {n:"Antes de comprar",tag:"Venta",f:"Carrusel · cada 15 días · jueves",p:"Lo que tienes que saber antes de elegir un producto.",o:"“Antes de comprar ___, lee esto.”",e:["Tu primera base","Un sérum","Un perfume para regalar","Un kit de rutina","Protector solar"]},
+ {n:"Historias del equipo",tag:"Reclutamiento",f:"Reel · mensual",p:"Una mujer del equipo cuenta su cambio en 30 segundos.",o:"“Ella es ___ y hace un año…”",e:["La mamá que empezó con 30 minutos al día","La profesionista que quería algo propio","La que tenía miedo de grabarse","La que hoy lidera su propio equipo","La más nueva del equipo"]}
+];
+var ideasMode="weeks";
+function renderIdeas(){
+ $("subWeeks").setAttribute("aria-selected",ideasMode=="weeks");$("subSeries").setAttribute("aria-selected",ideasMode=="series");
+ var h="";
+ if(ideasMode=="weeks"){
+  $("ideasIntro").textContent="Cuatro ideas por semana para lunes, martes, jueves y sábado. Usan belleza y cuidado personal de ejemplo; cambia el tema por el tuyo.";
+  var v=state.start||$("start").value,p=v.split("-"),s=new Date(+p[0],+p[1]-1,+p[2]);
+  var D=["Lunes · educativo","Martes · inspiración","Jueves · venta","Sábado · entretenimiento"];
+  IDEAS.forEach(function(w,wi){
+   var a=new Date(s);a.setDate(s.getDate()+wi*7);var b=new Date(a);b.setDate(a.getDate()+6);
+   h+='<article class="iweek"><h3>Semana '+(wi+1)+' · '+esc(w.t)+'</h3><p class="dates">'+fmt(a)+' – '+fmt(b)+'</p><div class="igrid">';
+   w.i.forEach(function(x,xi){var k="i"+wi+"_"+xi;
+    h+='<div class="idea'+(state[k]?" used":"")+'"><div class="top"><span class="dayl">'+D[xi]+'</span><span class="tag">'+esc(x[0])+'</span></div><q>'+esc(x[1])+'</q><p>'+esc(x[2])+'</p><label><input type="checkbox" data-k="'+k+'"'+(state[k]?" checked":"")+'>Ya la publiqué</label></div>'});
+   h+='</div></article>';
+  });
+ }else{
+  $("ideasIntro").textContent="Ocho series para Reels. Elige una o dos, ponles el mismo inicio y publícalas siempre el mismo día.";
+  SERIES.forEach(function(x){
+   h+='<article class="series"><div class="meta"><span class="tag">'+esc(x.tag)+'</span><span class="tag" style="background:transparent;border:1px solid var(--line);color:var(--muted)">'+esc(x.f)+'</span></div><h3>'+esc(x.n)+'</h3><p class="promise">'+esc(x.p)+'</p><p class="open"><strong>Cómo empieza cada episodio:</strong> '+esc(x.o)+'</p><p class="grp" style="margin:4px 0 0">5 episodios</p><ol>'+x.e.map(function(e){return '<li>'+esc(e)+'</li>'}).join("")+'</ol></article>';
+  });
+ }
+ $("ideasList").innerHTML=h;
+}
+function setTab(t){
+ if(t===true)t="cal";if(t===false)t="board";
+ $("tabBoard").setAttribute("aria-selected",t=="board");$("tabCal").setAttribute("aria-selected",t=="cal");$("tabIdeas").setAttribute("aria-selected",t=="ideas");
+ $("boardView").hidden=t!="board";$("calView").hidden=t!="cal";$("ideasView").hidden=t!="ideas";
+ if(t=="ideas")renderIdeas();
+ state.tab=t;save();
+}
+$("tabIdeas").onclick=function(){setTab("ideas")};
+$("subWeeks").onclick=function(){ideasMode="weeks";renderIdeas()};
+$("subSeries").onclick=function(){ideasMode="series";renderIdeas()};
+$("tabBoard").onclick=function(){setTab(false)};
+$("tabCal").onclick=function(){setTab(true)};
+$("filters").onclick=function(e){var b=e.target.closest("[data-f]");if(!b)return;filter=b.dataset.f;renderFilters();renderBoard()};
+$("board").onclick=function(e){var b=e.target.closest(".card");if(b)openCard(b.dataset.col,+b.dataset.i)};
+$("scrim").onclick=closeSheet;$("shClose").onclick=closeSheet;
+document.addEventListener("keydown",function(e){if(e.key=="Escape"&&!$("sheet").hidden)closeSheet()});
+document.addEventListener("change",function(e){
+ var k=e.target.dataset&&e.target.dataset.k;if(!k)return;
+ state[k]=e.target.checked;save();
+ var l=e.target.closest(".check");if(l)l.classList.toggle("done",e.target.checked);
+ if(k.charAt(0)=="w")renderCal();
+ var id=e.target.closest(".idea");if(id)id.classList.toggle("used",e.target.checked);
+});
+$("start").addEventListener("change",function(){state.start=this.value;save();renderCal()});
+document.addEventListener("click",function(e){
+ var g=e.target.closest("[data-goto]");
+ if(g){filter=g.dataset.goto;setTab(false);renderFilters();renderBoard();window.scrollTo({top:0,behavior:"smooth"});return}
+ var c=e.target.closest("[data-copy]");
+ if(c){var t=$(c.dataset.copy).innerText;var done=function(){c.textContent="Copiado"};
+  try{navigator.clipboard.writeText(t).then(done,function(){selectText(c.dataset.copy)})}catch(err){selectText(c.dataset.copy)}}
+});
+function selectText(id){var r=document.createRange();r.selectNodeContents($(id));var s=window.getSelection();s.removeAllRanges();s.addRange(r)}
+
+renderFilters();renderBoard();renderCal();
+var hsh=(location.hash||"").replace("#","");
+if(hsh=="calendario"||(!hsh&&state.tab=="cal"))setTab("cal");
+else if(hsh=="ideas"||(!hsh&&state.tab=="ideas"))setTab("ideas");
+</script>
+
+</body></html>
