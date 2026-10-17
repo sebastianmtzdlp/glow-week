@@ -104,6 +104,14 @@
       "nombre": "Moni",
       "whatsapp": "525549252272",
       "ig": ""
+    },
+    {
+      "slug": "gaby",
+      "nombre": "Gaby",
+      "whatsapp": "525559668110",
+      "ig": "gabygordillomm",
+      "genero": "f",
+      "equipo": "gg"
     }
   ]
 }

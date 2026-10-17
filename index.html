@@ -119,7 +119,7 @@
 (async () => {
   const $ = id => document.getElementById(id);
   let E = {consultoras: []};
-  try { E = await (await fetch("_data/equipo.json?v=" + Date.now(), {cache:"no-store"})).json(); } catch(e) {}
+  try { E = await (await fetch("_data/equipo.json?v=" + Date.now(), {cache:"no-store"})).json(); } catch(e) {} if (E && E.consultoras) E.consultoras = E.consultoras.filter(c => (c.equipo||"") !== "gg");
   try { const B = await (await fetch("_data/promos-base.json?v=" + Date.now(), {cache:"no-store"})).json();
     const dis = p => 1 - p.price/p.retail, seen = new Set(), pics = B.productos.filter(p => p.cat !== "Kits").sort((a,b) => dis(b)-dis(a)).filter(p => !seen.has(p.cat) && seen.add(p.cat)).slice(0,4);
     const fin = B.venta.termina ? new Date(B.venta.termina).getTime() : 0;

@@ -1,0 +1,9 @@
+{
+  "_nota": "Equipos con su propio índice en /equipo/<slug>/. Cada consultora dice a qué equipo pertenece con 'equipo' en equipo.json. Sin 'equipo' aparece en la portada de Mi Tienda Beauty.",
+  "gg": {
+    "nombre": "Equipo GG",
+    "lider": "gaby",
+    "titulo": "Gaby Gordillo",
+    "bienvenida": "Bienvenida al equipo de Gaby. Aquí encuentras a todas las consultoras del equipo."
+  }
+}
