@@ -1,0 +1,235 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Mega Escalera</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=Bungee&family=Gloock&family=Instrument+Serif&family=Anybody:wdth,wght@50..150,900&family=Unbounded:wght@800&family=Chivo:wght@900&family=Syne:wght@800&display=swap">
+<style>
+/* The staircase is the hero: each step is built in its own course's colours, type and emblem, so climbing reads as moving between worlds. The page around it stays a quiet concrete grey so the steps carry the colour. */
+:root{
+  --bg:#EEEDEB; --surface:#FFFFFF; --ink:#18171C; --muted:#5E5C64; --line:#D9D6D1; --accent:#18171C;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"Figtree",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--body)}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:36px 72px;display:flex;flex-direction:column;gap:64px}
+h1,h2,h3{margin:0;text-wrap:balance}
+.hero h1{font:900 clamp(54px,12vw,128px)/.84 var(--display);font-stretch:68%;letter-spacing:-.01em}
+.hero p{margin:14px 0 0;max-width:60ch;font-size:clamp(17px,2.2vw,19px);color:var(--muted)}
+.sec-h{font:800 clamp(32px,5.4vw,52px)/1 var(--display);font-stretch:78%}
+.sec-p{margin:8px 0 22px;color:var(--muted);max-width:60ch}
+.press{transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.press:active{transform:scale(.97)}
+
+/* ---------- the staircase ---------- */
+.stair{position:relative;display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:12px;align-items:end;padding-top:40px}
+.flight{display:flex;flex-direction:column;min-width:0}
+.step{position:relative;text-align:left;border:0;border-radius:18px 18px 0 0;padding:18px 18px 16px;min-height:236px;display:flex;flex-direction:column;gap:10px;cursor:pointer;background:var(--c-bg);color:var(--c-ink);overflow:hidden}
+.riser{height:var(--lift);background:var(--c-riser);border-radius:0}
+.flight:last-child .step{border-radius:18px 18px 0 0}
+.step .lv{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.step .lv span{font:700 13px/1 var(--body);color:var(--c-muted)}
+.step .emb{width:54px;height:54px;flex:none}
+.step h3{font:var(--c-font);color:var(--c-title,var(--c-ink));letter-spacing:var(--c-track,-.01em)}
+.step p{margin:0;font-size:15px;line-height:1.4;color:var(--c-muted)}
+.step .st{margin-top:auto;display:flex;justify-content:space-between;align-items:center;gap:8px;font-size:13.5px;font-weight:700}
+.step .st i{font-style:normal;border-radius:999px;padding:5px 10px;background:var(--c-accent);color:var(--c-accent-ink)}
+.step .st b{font-weight:700;color:var(--c-muted)}
+.step[aria-pressed="true"]{box-shadow:inset 0 0 0 3px var(--c-accent)}
+.step.done .st i{background:transparent;color:var(--c-ink);box-shadow:inset 0 0 0 1.5px currentColor}
+.ground{height:10px;background:var(--ink);border-radius:0 0 6px 6px;grid-column:1/-1}
+.branch{margin-top:14px;display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center;width:100%;text-align:left;border:0;border-radius:18px;padding:14px 18px;cursor:pointer;background:var(--c-bg);color:var(--c-ink)}
+.branch .emb{width:46px;height:46px}
+.branch b{display:block;font:var(--c-font-sm);color:var(--c-title,var(--c-ink))}
+.branch small{display:block;color:var(--c-muted);font-size:14.5px}
+.branch .tag{font-size:13px;font-weight:700;border-radius:999px;padding:5px 10px;background:var(--c-accent);color:var(--c-accent-ink);white-space:nowrap}
+.branch[aria-pressed="true"]{box-shadow:inset 0 0 0 3px var(--c-accent)}
+.legend{margin:14px 0 0;color:var(--muted);font-size:14.5px;max-width:72ch}
+@media (max-width:760px){
+  .stair{grid-template-columns:minmax(0,1fr);gap:10px;padding-top:0}
+  .flight{order:var(--m-order)}
+  .riser{display:none}
+  .step{border-radius:18px;min-height:0;margin-left:var(--m-indent)}
+  .ground{display:none}
+}
+
+/* ---------- ficha ---------- */
+.ficha{border-radius:22px;padding:clamp(20px,4vw,36px);background:var(--c-bg);color:var(--c-ink);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:20px 40px}
+@media (max-width:760px){.ficha{grid-template-columns:minmax(0,1fr)}}
+.ficha .head{display:flex;gap:16px;align-items:center}
+.ficha .emb{width:64px;height:64px;flex:none}
+.ficha h3{font:var(--c-font-lg);color:var(--c-title,var(--c-ink));letter-spacing:var(--c-track,-.01em)}
+.ficha .len{margin:4px 0 0;color:var(--c-muted);font-size:15px}
+.ficha .out{margin:0;font-size:19px;line-height:1.4;font-weight:600}
+.ficha ul{margin:0;padding-left:1.2em;display:grid;gap:6px;font-size:15.5px}
+.ficha li::marker{color:var(--c-accent)}
+.ficha .up{margin:0;padding:14px 16px;border-radius:14px;background:var(--c-soft);font-size:15.5px}
+.ficha .up b{display:block;font-size:13.5px;color:var(--c-muted);margin-bottom:2px}
+.ficha .acts{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid currentColor;background:transparent;border-radius:999px;padding:12px 18px;font-weight:700;font-size:15px;cursor:pointer;text-decoration:none;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn.solid{background:var(--c-accent);border-color:var(--c-accent);color:var(--c-accent-ink)}
+.chk{display:inline-flex;align-items:center;gap:10px;font-weight:600;font-size:15px;cursor:pointer}
+.chk input{width:20px;height:20px;accent-color:var(--c-accent)}
+
+/* ---------- finder ---------- */
+.finder{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media (max-width:760px){.finder{grid-template-columns:minmax(0,1fr)}}
+.qbox{background:var(--surface);border:1px solid var(--line);border-radius:22px;padding:24px;display:grid;gap:18px;min-height:250px;align-content:start}
+.qbox .num{font:700 14px/1 var(--body);color:var(--muted)}
+.qbox .q{margin:0;font:800 clamp(24px,3.6vw,32px)/1.12 var(--display);font-stretch:85%}
+.qbox .ans{display:flex;gap:10px;flex-wrap:wrap}
+.qbox .ans button{border:1.5px solid var(--ink);background:transparent;border-radius:999px;padding:12px 22px;font-weight:700;cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.qbox .ans button:active{transform:scale(.97)}
+.qbox .ans button.y{background:var(--ink);color:var(--surface)}
+.qbox .dots{display:flex;gap:6px}
+.qbox .dots i{width:28px;height:4px;border-radius:2px;background:var(--line)}
+.qbox .dots i.on{background:var(--ink)}
+.qbox .back{justify-self:start;border:0;background:none;padding:0;color:var(--muted);font-weight:600;font-size:14.5px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.result{border-radius:22px;padding:24px;display:grid;gap:12px;align-content:start;min-height:250px;background:var(--c-bg);color:var(--c-ink)}
+.result.empty{background:transparent;border:1.5px dashed var(--line);color:var(--muted)}
+.result .lab{margin:0;font-size:14px;font-weight:700;color:var(--c-muted)}
+.result .cname{display:flex;gap:12px;align-items:center}
+.result .cname .emb{width:44px;height:44px}
+.result .cname b{font:var(--c-font);color:var(--c-title,var(--c-ink))}
+.result .where{margin:0;font-size:18px;font-weight:600}
+.result .extra{margin:0;font-size:15px;color:var(--c-muted)}
+details.sit{margin-top:18px;background:var(--surface);border:1px solid var(--line);border-radius:18px}
+details.sit summary{list-style:none;cursor:pointer;padding:16px 20px;font-weight:700;display:flex;justify-content:space-between;gap:10px}
+details.sit summary::-webkit-details-marker{display:none}
+details.sit summary i{font-style:normal;transition:transform .2s}
+details.sit[open] summary i{transform:rotate(45deg)}
+.sits{display:flex;flex-wrap:wrap;gap:8px;padding:0 16px 16px}
+.sitb{flex:1 1 260px;min-width:0;display:grid;gap:4px;text-align:left;border:1px solid var(--line);background:var(--bg);border-radius:14px;padding:12px 14px;cursor:pointer}
+.sitb b{font-weight:600;font-size:15.5px;line-height:1.3}
+.sitb small{display:flex;gap:8px;align-items:center;font-size:13.5px;color:var(--muted)}
+.sitb small i{width:10px;height:10px;border-radius:50%;background:var(--dot)}
+.care{margin:12px 0 0;color:var(--muted);font-size:14.5px;max-width:72ch}
+
+/* ---------- mentors ---------- */
+.ment{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;counter-reset:s}
+@media (max-width:760px){.ment{grid-template-columns:minmax(0,1fr)}}
+.ment li{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:20px;display:grid;gap:6px}
+.ment li::before{counter-increment:s;content:counter(s);font:900 44px/.8 var(--display);font-stretch:62%}
+.ment span{color:var(--muted);font-size:15px}
+code{font:600 14px/1.4 ui-monospace,Menlo,monospace;background:var(--bg);border-radius:6px;padding:1px 6px}
+.other{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap;background:var(--ink);color:var(--bg);border-radius:22px;padding:22px 24px}
+.other b{display:block;font:800 26px/1.05 var(--display);font-stretch:85%}
+.other span{color:#BDBAC2;font-size:15px}
+.other a{color:var(--ink);background:var(--bg);border-radius:999px;padding:12px 18px;font-weight:700;text-decoration:none}
+@media (prefers-reduced-motion:no-preference){
+  .flight .step,.flight .riser{animation:rise .8s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(var(--k) * 140ms)}
+  @keyframes rise{from{transform:translateY(24px)}}
+}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+.stairblock{display:flex;flex-direction:column}
+.stairblock + .stairblock{margin-top:56px}
+.st-head{margin-bottom:6px}
+@media (max-width:560px){.branch{grid-template-columns:auto minmax(0,1fr)}.branch .tag{grid-column:2;justify-self:start}}
+
+/* Ritmo: a band that runs under every step, not a step itself */
+.railband{margin-top:14px;display:grid;gap:12px;width:100%;text-align:left;border:0;border-radius:18px;padding:16px 18px 18px;cursor:pointer;background:var(--c-bg);color:var(--c-ink);font:inherit}
+.railband[aria-pressed="true"]{box-shadow:inset 0 0 0 3px var(--c-accent)}
+.rb-top{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:14px;align-items:center}
+.rb-top .emb{width:46px;height:46px}
+.rb-top b{display:block;font:var(--c-font-sm);color:var(--c-title,var(--c-ink))}
+.rb-top small{display:block;color:var(--c-muted);font-size:14.5px}
+.rb-top .tag{font-size:13px;font-weight:700;border-radius:999px;padding:5px 10px;background:var(--c-accent);color:var(--c-accent-ink);white-space:nowrap}
+.rb-when{display:block;font-size:15.5px;line-height:1.45;max-width:78ch}
+.rb-when b{display:block;font-size:13.5px;color:var(--c-muted);margin-bottom:2px}
+.rb-track{display:grid;grid-template-columns:repeat(var(--cols),minmax(0,1fr));gap:12px}
+.rb-track i{font-style:normal;font-size:13.5px;font-weight:700;color:var(--c-ink);padding:8px 10px 0;border-top:4px solid var(--c-accent);border-radius:2px}
+@media (max-width:760px){.rb-track{grid-template-columns:minmax(0,1fr);gap:6px}.rb-track i{border-top:0;border-left:4px solid var(--c-accent);padding:4px 10px}}
+@media (max-width:560px){.rb-top{grid-template-columns:auto minmax(0,1fr)}.rb-top .tag{grid-column:2;justify-self:start}}
+
+/* make every course card read as tappable */
+.more{display:inline-flex;align-items:center;gap:4px;font-size:13.5px;font-weight:700;color:var(--c-ink);white-space:nowrap;border-bottom:1.5px solid var(--c-accent);padding-bottom:1px}
+.more span{font-size:18px;line-height:1;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.step:hover .more span,.branch:hover .more span,.railband:hover .more span{transform:translateX(3px)}
+.step,.branch,.railband{transition:transform .14s ease-out}
+.step:active,.branch:active,.railband:active{transform:scale(.985)}
+.step .st{flex-wrap:wrap}
+.branch{grid-template-columns:auto minmax(0,1fr) auto auto}
+.railband .more{justify-self:start}
+@media (max-width:560px){.branch .more{grid-column:2;justify-self:start}}
+
+</style>
+<div class="wrap"><header class="hero"><h1>La mega escalera</h1><p>Los siete cursos en un solo lugar: la ruta de marca, la ruta de redes, Ritmo para acompañarte en cualquier momento y la rama de TikTok Shop. Toca un escalón para ver qué aprendes.</p></header><section aria-label="La escalera"><div id="stair"></div></section><section aria-labelledby="hf"><h2 class="sec-h" id="hf">Qué aprendes en cada escalón</h2><p class="sec-p">Toca un escalón para cambiar de curso. Marca los que ya terminaste y la escalera te dice dónde vas; se guarda solo en este celular.</p><div id="ficha" class="ficha"></div></section><section aria-labelledby="hq"><h2 class="sec-h" id="hq">¿Por dónde empiezo?</h2><p class="sec-p">Responde con sinceridad. En cuanto contestes "todavía no", te decimos el curso y la clase.</p><div class="finder"><div class="qbox" id="qbox"></div><div class="result" id="result" aria-live="polite"></div></div><details class="sit"><summary>Ver situaciones comunes y su clase <i aria-hidden="true">+</i></summary><div class="sits" id="sits"></div></details><p class="care">Si alguien se siente muy cansada, triste o rebasada por varios días, ningún curso sustituye hablar con alguien de confianza o con una profesional.</p></section><section aria-labelledby="hm"><h2 class="sec-h" id="hm">Instala las mentoras</h2><p class="sec-p">Cada curso trae su mentora. Funcionan con la cuenta gratis de claude.ai y puedes tener varias a la vez.</p><ol class="ment"><li><b>Descarga el .zip</b><span>En la página de cada curso, pestaña "Tu mentora". No lo descomprimas.</span></li><li><b>Súbelo a Claude</b><span>Customize → Skills → "+" → Create skill → Upload a skill.</span></li><li><b>Empieza a hablarle</b><span>Abre un chat nuevo y escribe <code>Quiero empezar el curso Encendida</code>.</span></li></ol></section></div>
+<script>
+var PAGE={"title": "Mega Escalera", "h1": "La mega escalera", "key": "escalera-hechos", "lead": "Los siete cursos en un solo lugar: la ruta de marca, la ruta de redes, Ritmo para acompañarte en cualquier momento y la rama de TikTok Shop. Toca un escalón para ver qué aprendes.", "stairs": [{"label": "Ruta de marca", "sub": "De tus redes desde cero a una marca que vende y recluta.", "main": ["encendida", "giro", "visible"], "rail": "ritmo", "branches": ["era"], "lift": 110, "legend": "Ritmo también puedes llevarlo junto con la ruta de redes. Tu era Creator es una rama para vender en TikTok Shop: entra después de Encendida."}, {"label": "Ruta de redes", "sub": "Dos cursos intensivos de un mes para que tus redes atraigan y vendan.", "main": ["trazo", "iman"], "rail": null, "branches": [], "lift": 150, "legend": "Atajo: si tu perfil ya pasa la auditoría y publicas con la mezcla 7-2-1, entra directo a Imán."}], "questions": [{"q": "¿Tu perfil ya está listo? Bio clara, foto y destacadas en orden.", "no": {"c": "encendida", "where": "Clase 4: Configura tu cuenta"}}, {"q": "¿Publicas al menos cuatro veces por semana?", "no": {"c": "encendida", "where": "Clase 7: Los 3 pilares que sí venden", "extra": "Si prefieres un mes intensivo de redes, empieza Trazo con la Clase 1."}}, {"q": "¿Tienes claro tu porqué y un plan de 90 días?", "no": {"c": "giro", "where": "Clase 4: Tu porqué real", "extra": "Si te cuesta sostener lo que empiezas, suma Ritmo en paralelo."}}, {"q": "¿Tienes conversaciones de venta cada semana?", "no": {"c": "visible", "where": "Clase 1: Los planos de tu marca", "extra": "Para atraer en lugar de perseguir, complementa con Imán."}}], "allYes": {"c": "visible", "where": "Clase 13: Historias que venden y reclutan", "extra": "Y si quieres un segundo canal, abre la rama de Tu era Creator."}, "situations": [["Acabo de entrar y no sé qué poner en mi perfil", "encendida", "Clase 4: Configura tu cuenta"], ["Publico el catálogo y nadie me compra", "encendida", "Clase 1: Para qué sirven las redes"], ["No sé a quién venderle", "encendida", "Clase 5: Tu clienta ideal"], ["Subo historias y nadie me escribe", "encendida", "Reto 1: Cuatro historias que abren conversación"], ["No me alcanza el día", "ritmo", "Día 3: Lo urgente grita, y Día 5: Tu agenda habla de ti"], ["Sé lo que tengo que hacer y no lo hago", "ritmo", "Día 26: Salir del bloqueo"], ["Empiezo con todo y a la semana lo dejo", "ritmo", "Día 21: Tres valores para sostenerte"], ["Me siento culpable de dedicarme tiempo", "ritmo", "Día 6: Tiempo sagrado contigo"], ["Llevo meses y sigo igual", "giro", "Clase 1: De la excusa a la responsabilidad"], ["No tengo claro para qué hago esto", "giro", "Clase 4: Tu porqué real"], ["No sé qué metas ponerme", "giro", "Clase 6: Tu mapa de 90 días"], ["Vendo lo mismo que todas", "visible", "Clase 2: Las bases de una marca que vende, y Clase 5: Tu historia"], ["Ya no sé qué subir", "visible", "Clase 6: Tus pilares, y Clase 10: Creatividad y bloqueos"], ["Me dicen “lo voy a pensar” y desaparecen", "visible", "Clase 12: Conversaciones que cierran"], ["Quiero invitar gente a mi equipo sin sentirme intensa", "visible", "Clase 13: Historias que venden y reclutan"], ["Quiero pagar publicidad", "visible", "Clase 14: Publicidad para crecer"], ["Quiero vender en TikTok Shop", "era", "Clase 1: El despertar Creator"], ["Mis videos de TikTok no venden", "era", "Clase 5: El poder del Hook"], ["Me llegó una infracción en TikTok", "era", "Clase 8: Las reglas del juego"], ["Mi perfil no atrae a nadie", "trazo", "Clase 1: Tu perfil en cuatro puntos"], ["Me agobio con las redes", "trazo", "Clase 2: Calma, constancia y cabeza fría"], ["Le hablo a todas y no le vendo a nadie", "trazo", "Clase 3: Hablarle a todas es no venderle a nadie"], ["No sé editar en CapCut", "trazo", "Clase 10: CapCut, lo básico"], ["Canva me cuesta", "trazo", "Clase 12: Canva, diseña desde cero"], ["Me da pena recomendar lo que vendo", "trazo", "Clase 9: Comparte con naturalidad"], ["Siento que persigo a la gente para que me compre", "iman", "Clase 1: Tu nicho eres tú"], ["Publico y nadie me compra", "iman", "Clase 7: Contenido que convierte"], ["Me escriben y no sé cómo seguir la conversación", "iman", "Clase 8: Conversaciones que cierran"], ["Me ponen las mismas excusas para no comprar", "iman", "Clase 10: Tus objeciones como contenido"], ["No sé contar mi historia", "iman", "Clase 11: Tu historia vende"], ["No me siento creativa", "iman", "Clase 12: No necesitas ser creativa"], ["Me da miedo mostrarme", "iman", "Clase 14: Visibilidad sin miedo"]], "courses": {"encendida": {"name": "Encendida", "url": "/programas/encendida/", "emb": "encendida", "bg": "#2A0F1C", "ink": "#FFF1F5", "muted": "#E4BFCD", "accent": "#E3175F", "accentInk": "#FFFFFF", "riser": "#1A0711", "soft": "rgba(255,255,255,.08)", "font": "400 26px/1 'Bungee',Impact,sans-serif", "fontSm": "400 19px/1 'Bungee',Impact,sans-serif", "fontLg": "400 39px/1 'Bungee',Impact,sans-serif", "title": "#FF5C93", "short": "Tus redes desde cero: perfil que atrae, clienta ideal, 3 pilares y tus primeras historias que abren conversación.", "len": "9 clases, 3 retos, 40 días", "out": "Sales con tu perfil listo y tus primeras historias que generan mensajes.", "up": "Tu perfil está listo y publicas 4 veces por semana.", "learn": ["Para qué sirve cada red y por cuál empezar", "Tu perfil como vitrina: bio, link a WhatsApp y destacadas en orden", "Los formatos de Instagram", "Ficha de clienta ideal y tu diferencial", "3 pilares: 40% vida, 40% educativo, 20% venta", "Una semana de contenido lista e historias que retienen", "Retos: 4 historias, tu diferencial y un pensamiento que no dices seguido"]}, "ritmo": {"name": "Ritmo", "url": "/programas/ritmo/", "emb": "ritmo", "bg": "#E4ECE3", "ink": "#10291F", "muted": "#4D675A", "accent": "#E8701F", "accentInk": "#1E0E02", "riser": "#C6D4C8", "soft": "#F6FAF5", "font": "400 34px/1 'Gloock',Georgia,serif", "fontSm": "400 24px/1 'Gloock',Georgia,serif", "fontLg": "400 51px/1 'Gloock',Georgia,serif", "short": "30 días para ordenar tu tiempo, entrenar tu mente y sostener hábitos sin culpa.", "len": "30 días, de 5 a 20 minutos diarios", "out": "Sales con un ritual matutino, tus hábitos clave y una salida para cada bloqueo.", "upLabel": "Termina cuando", "up": "Tienes tu ritual matutino y terminaste los 30 días.", "when": "En cualquier momento, junto con el escalón donde estés: no tienes que terminar otro curso antes. Empiézalo ya si no te alcanza el día, si empiezas cosas y las dejas, o si sabes qué hacer y no lo haces.", "learn": ["Semana 1, tu tiempo: urgente contra importante y tu mapa de energía", "Semana 2, tu mente: tu guion interno y tu manifiesto", "Semana 3, tu claridad: regla de 5 minutos, actividades estrella y hábitos", "Semana 4, tu ritmo: rituales, tu círculo y 5 interruptores contra el bloqueo"]}, "giro": {"name": "El Giro", "url": "/programas/el-giro/", "emb": "giro", "bg": "#F6E7E8", "ink": "#3A0F33", "muted": "#7A5470", "accent": "#5B2149", "accentInk": "#FCEFF0", "riser": "#E6C9CF", "soft": "#FFF8F7", "font": "400 40px/0.95 'Instrument Serif',Georgia,serif", "fontSm": "400 29px/0.95 'Instrument Serif',Georgia,serif", "fontLg": "400 60px/0.95 'Instrument Serif',Georgia,serif", "title": "#5B2149", "short": "Piensa y decide como empresaria: responsabilidad, tu porqué, tus bloqueos y un mapa de 90 días.", "len": "8 clases y 2 herramientas", "out": "Sales con tu porqué, tus bloqueos con nombre y un mapa de 90 días.", "up": "Tienes tu mapa de 90 días y haces tu revisión semanal.", "learn": ["De la excusa a la responsabilidad", "Tu marca personal en una frase", "Primero la empresaria", "Tu porqué real y los bloqueos invisibles", "Tu mapa de 90 días", "Vender con conversación e historia", "Contenido con intención"]}, "visible": {"name": "Visible", "url": "/programas/visible/", "emb": "visible", "bg": "#150D18", "ink": "#F7EEF1", "muted": "#BBA7B4", "accent": "#FFB547", "accentInk": "#2A1606", "riser": "#0B060D", "soft": "#21152A", "font": "900 extra-expanded 24px/0.95 'Anybody',Impact,sans-serif", "fontSm": "900 extra-expanded 17px/0.95 'Anybody',Impact,sans-serif", "fontLg": "900 extra-expanded 36px/0.95 'Anybody',Impact,sans-serif", "track": "-.02em", "short": "Marca personal completa: historia, sistema de contenido, ventas, reclutamiento y publicidad.", "len": "14 clases, temporada de 90 días", "out": "Sales con tu historia, tu sistema de contenido y tus guiones de venta y reclutamiento.", "up": "Tienes conversaciones de venta cada semana.", "learn": ["La raíz: planos de tu marca, propuesta de valor, nicho, fuego lento y tu historia", "Tu contenido: 4 pilares, grabación, sistema con IA, edición y bloqueos creativos", "Tus ventas: vender es servir, conversaciones que cierran, historias que venden y reclutan, publicidad"]}, "era": {"name": "Tu era Creator", "url": "/programas/tu-era-creator/", "emb": "era", "bg": "#0F0F14", "ink": "#F5F3F7", "muted": "#A6A3B2", "accent": "#FF6A3D", "accentInk": "#1A0A04", "riser": "#08080B", "soft": "#1A1A22", "font": "800 22px/1 'Unbounded',sans-serif", "fontSm": "800 16px/1 'Unbounded',sans-serif", "fontLg": "800 33px/1 'Unbounded',sans-serif", "track": "-.04em", "short": "Un canal extra: vender en TikTok Shop como creadora afiliada.", "len": "8 clases y 2 herramientas", "branchTag": "Rama: TikTok Shop", "out": "Sales con tu cuenta activa y un sistema para grabar videos que venden.", "upLabel": "Entra cuando", "up": "Ya terminaste Encendida, grabas con soltura y quieres un segundo canal.", "learn": ["Cómo funciona TikTok Shop para afiliadas", "TikTok Studio y productos ganadores", "El embudo de videos y los hooks", "Grabar con calidad sin perfección, constancia y lives", "Reglas, infracciones y apelaciones"]}, "trazo": {"name": "Trazo", "url": "/programas/trazo/", "emb": "trazo", "bg": "#F3F6F9", "ink": "#172033", "muted": "#566074", "accent": "#0E8C7B", "accentInk": "#FFFFFF", "riser": "#D5DCE5", "soft": "#FFFFFF", "font": "900 38px/0.9 'Chivo',sans-serif", "fontSm": "900 27px/0.9 'Chivo',sans-serif", "fontLg": "900 57px/0.9 'Chivo',sans-serif", "track": "-.04em", "short": "Tu ruta en redes, paso a paso: perfil, contenido 7-2-1, CapCut, Canva y ventas sin rogar.", "len": "19 clases y 5 herramientas, un mes intensivo", "out": "Sales con tu perfil auditado, tu semana 7-2-1 y tus herramientas de edición dominadas.", "up": "Tu perfil pasa la auditoría de cuatro puntos y publicas tu semana 7-2-1.", "learn": ["La base: tu perfil en cuatro puntos, calma y constancia, clienta ideal y marca personal", "Tu contenido: la mezcla 7-2-1, formatos probados, historias limpias y compartir con naturalidad", "Tus herramientas: CapCut, Canva, color para tu marca y tu asistente de IA", "Tus ventas y tu equipo: vender sin vender, tu ecosistema digital y sostener tu visibilidad"]}, "iman": {"name": "Imán", "url": "/programas/iman/", "emb": "iman", "bg": "#E7EAED", "ink": "#121417", "muted": "#58616B", "accent": "#D7263D", "accentInk": "#FFFFFF", "riser": "#CBD1D7", "soft": "#F7F8F9", "font": "800 34px/0.9 'Syne',sans-serif", "fontSm": "800 24px/0.9 'Syne',sans-serif", "fontLg": "800 51px/0.9 'Syne',sans-serif", "track": "-.03em", "short": "De perseguir a atraer: nicho, conexión, venta, mensajes, objeciones y tu historia.", "len": "20 clases y 5 herramientas, treinta días", "out": "Sales con tu nicho en una frase, tus piezas que conectan y convierten, y tu guion para los mensajes.", "upLabel": "Terminas cuando", "up": "Tu nicho cabe en una frase y usas el guion de 8 pasos en tus mensajes.", "learn": ["La base: tu nicho, tu perfil como página de aterrizaje y mentalidad de negocio", "La estrategia: atrae, conecta y convierte, la estructura de 7 pasos y el guion de 8 pasos", "Tu voz: tu historia, un sistema para crear, influencia y visibilidad sin miedo", "Tus herramientas: edición, tu paleta en Canva, IA con criterio e historias limpias"]}}};
+(function(){
+var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+var C=PAGE.courses,done=new Set(store.get(PAGE.key,[]));
+
+/* emblems: one small drawing per course, in its own colours */
+var EMB={
+  encendida:function(){var b="";for(var i=0;i<5;i++)b+='<circle cx="'+(8+i*10)+'" cy="14" r="3.6" fill="#FFC23D"/><circle cx="'+(8+i*10)+'" cy="44" r="3.6" fill="#FFC23D"/>';return '<svg class="emb" viewBox="0 0 56 56" aria-hidden="true"><rect x="2" y="6" width="52" height="44" rx="9" fill="#2A0F1C"/>'+b+'<rect x="10" y="24" width="36" height="8" rx="2" fill="#E3175F"/></svg>';},
+  ritmo:function(){var b="",h=[14,26,18,34,22,40,30];for(var i=0;i<7;i++)b+='<rect x="'+(5+i*7)+'" y="'+(48-h[i])+'" width="4.5" height="'+h[i]+'" rx="2" fill="'+(i<4?"#E8701F":"#10291F")+'"/>';return '<svg class="emb" viewBox="0 0 56 56" aria-hidden="true">'+b+"</svg>";},
+  giro:function(){return '<svg class="emb" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="24" fill="none" stroke="#5B2149" stroke-width="3"/><circle cx="28" cy="28" r="15" fill="none" stroke="#E6C9CF" stroke-width="2"/><line x1="28" y1="28" x2="40" y2="12" stroke="#A0711F" stroke-width="3" stroke-linecap="round"/><circle cx="28" cy="28" r="3.5" fill="#A0711F"/></svg>';},
+  visible:function(){return '<svg class="emb" viewBox="0 0 56 56" aria-hidden="true"><path d="M24 4h8l14 46H10z" fill="#FFB547" opacity=".35"/><rect x="22" y="2" width="12" height="5" rx="2" fill="#FFB547"/><ellipse cx="28" cy="50" rx="18" ry="4" fill="#FFB547" opacity=".6"/></svg>';},
+  era:function(){return '<svg class="emb" viewBox="0 0 56 56" aria-hidden="true"><rect x="15" y="2" width="26" height="52" rx="6" fill="#1A1A22" stroke="#FF6A3D" stroke-width="2"/><rect x="19" y="7" width="5" height="2" rx="1" fill="#F5F3F7"/><rect x="25.5" y="7" width="5" height="2" rx="1" fill="#F5F3F7"/><rect x="32" y="7" width="5" height="2" rx="1" fill="#55546A"/><rect x="19" y="40" width="14" height="7" rx="3" fill="#FF6A3D"/></svg>';},
+  trazo:function(){return '<svg class="emb" viewBox="0 0 56 56" aria-hidden="true"><path d="M6 44 C 16 8, 26 52, 36 22 S 48 10, 50 14" fill="none" stroke="#0E8C7B" stroke-width="4" stroke-linecap="round"/><circle cx="6" cy="44" r="4.5" fill="#172033"/><circle cx="50" cy="14" r="5" fill="#F6E45C" stroke="#172033" stroke-width="2"/></svg>';},
+  iman:function(){return '<svg class="emb" viewBox="0 0 56 56" aria-hidden="true"><circle cx="28" cy="28" r="24" fill="none" stroke="#CBD1D7" stroke-width="1.5"/><circle cx="28" cy="28" r="16" fill="none" stroke="#CBD1D7" stroke-width="1.5"/><circle cx="28" cy="28" r="7" fill="#D7263D"/><circle cx="18" cy="20" r="3" fill="#D7263D"/><circle cx="38" cy="34" r="3" fill="#D7263D"/><circle cx="46" cy="14" r="3" fill="none" stroke="#58616B" stroke-width="1.5"/><circle cx="8" cy="40" r="3" fill="none" stroke="#58616B" stroke-width="1.5"/></svg>';}
+};
+function vars(id){var c=C[id];return "--c-bg:"+c.bg+";--c-ink:"+c.ink+";--c-muted:"+c.muted+";--c-accent:"+c.accent+";--c-accent-ink:"+c.accentInk+";--c-riser:"+c.riser+";--c-soft:"+c.soft+";--c-font:"+c.font+";--c-font-sm:"+c.fontSm+";--c-font-lg:"+c.fontLg+(c.title?";--c-title:"+c.title:"")+(c.track?";--c-track:"+c.track:"");}
+function emb(id){return EMB[C[id].emb]();}
+var STAIRS=PAGE.stairs,ALLMAIN=[];STAIRS.forEach(function(s){ALLMAIN=ALLMAIN.concat(s.main);});
+function firstOf(s){for(var i=0;i<s.main.length;i++)if(!done.has(s.main[i]))return s.main[i];return null;}
+var sel=firstOf(STAIRS[0])||STAIRS[0].main[STAIRS[0].main.length-1];
+function stairHTML(S,si){
+  var n=S.main.length,lift=S.lift||120,firstOpen=firstOf(S),h=(S.label?'<div class="st-head"><h2 class="sec-h">'+esc(S.label)+"</h2>"+(S.sub?'<p class="sec-p">'+esc(S.sub)+"</p>":"")+"</div>":"")+'<div class="stair" style="--cols:'+n+'">';
+  S.main.forEach(function(id,k){var c=C[id],d=done.has(id),here=id===firstOpen;
+    h+='<div class="flight" style="'+vars(id)+";--lift:"+(k*lift)+"px;--k:"+k+";--m-order:"+k+";--m-indent:"+(k*6)+'%"><button type="button" class="step'+(d?" done":"")+'" data-sel="'+id+'" aria-pressed="'+(id===sel)+'">'+
+      '<span class="lv"><span>Escalón '+(k+1)+"</span>"+emb(id)+"</span><h3>"+esc(c.name)+"</h3><p>"+esc(c.short)+'</p><span class="st">'+(d?"<i>Terminado ✓</i>":(here?"<i>Tú estás aquí</i>":"<b>"+esc(c.len)+"</b>"))+'<span class="more">Ver curso <span aria-hidden="true">›</span></span></span></button>'+'<div class="riser" aria-hidden="true"></div></div>';});
+  h+='<div class="ground" aria-hidden="true"></div></div>';
+  if(S.rail){var r2=C[S.rail];h+='<button type="button" class="railband" data-sel="'+S.rail+'" style="'+vars(S.rail)+'" aria-pressed="'+(S.rail===sel)+'"><span class="rb-top">'+emb(S.rail)+'<span><b>'+esc(r2.name)+'</b><small>'+esc(r2.len)+'</small></span><span class="tag">No es un escalón</span></span>'+
+    '<span class="rb-when"><b>Cuándo tomarlo</b>'+esc(r2.when)+'</span><span class="rb-track" style="--cols:'+n+'">'+S.main.map(function(id){return '<i>Junto con '+esc(C[id].name)+'</i>';}).join("")+'</span><span class="more">Ver curso <span aria-hidden="true">›</span></span></button>';}
+  (S.branches||[]).forEach(function(id){var c=C[id];h+='<button type="button" class="branch" data-sel="'+id+'" style="'+vars(id)+'" aria-pressed="'+(id===sel)+'">'+emb(id)+"<span><b>"+esc(c.name)+"</b><small>"+esc(c.short)+'</small></span><span class="tag">'+esc(c.branchTag)+"</span><span class=\"more\">Ver curso <span aria-hidden=\"true\">›</span></span></button>";});
+  if(S.legend)h+='<p class="legend">'+esc(S.legend)+"</p>";
+  return '<div class="stairblock">'+h+"</div>";
+}
+function renderStair(){
+  $("#stair").innerHTML=STAIRS.map(stairHTML).join("");
+  $$("#stair [data-sel]").forEach(function(b){b.onclick=function(){sel=b.getAttribute("data-sel");renderStair();renderFicha();var f=$("#ficha");if(window.innerWidth<760||f.getBoundingClientRect().top>window.innerHeight)f.scrollIntoView({behavior:"smooth",block:"start"});};});
+}
+function renderFicha(){
+  var c=C[sel],d=done.has(sel);
+  $("#ficha").setAttribute("style",vars(sel));
+  $("#ficha").innerHTML='<div style="display:grid;gap:16px;align-content:start"><div class="head">'+emb(sel)+"<div><h3>"+esc(c.name)+'</h3><p class="len">'+esc(c.len)+'</p></div></div><p class="out">'+esc(c.out)+'</p><p class="up"><b>'+esc(c.upLabel||"Sube cuando")+"</b>"+esc(c.up)+'</p><div class="acts"><a class="btn solid" href="'+c.url+'" target="_blank" rel="noopener">Abrir '+esc(c.name)+' ↗</a><label class="chk"><input type="checkbox" id="doneChk"'+(d?" checked":"")+"> Ya lo terminé</label></div></div>"+
+    '<div style="display:grid;gap:10px;align-content:start"><p class="len" style="margin:0;font-weight:700">Qué aprendes</p><ul>'+c.learn.map(function(x){return "<li>"+esc(x)+"</li>";}).join("")+"</ul></div>";
+  $("#doneChk").onchange=function(){this.checked?done.add(sel):done.delete(sel);store.set(PAGE.key,Array.from(done));renderStair();};
+}
+
+/* finder: yes/no questions, stop at the first "no" */
+var qi=0;
+function renderQ(){
+  var Q=PAGE.questions,box=$("#qbox");
+  if(qi>=Q.length){showResult(PAGE.allYes);box.innerHTML='<span class="num">Listo</span><p class="q">Ya cumples todo lo de esta escalera.</p><button type="button" class="back" id="restart">Volver a empezar</button>';$("#restart").onclick=function(){qi=0;renderQ();showResult(null);};return;}
+  var q=Q[qi];
+  box.innerHTML='<div class="dots" aria-hidden="true">'+Q.map(function(_,i){return '<i class="'+(i<=qi?"on":"")+'"></i>';}).join("")+'</div><span class="num">Pregunta '+(qi+1)+" de "+Q.length+'</span><p class="q">'+esc(q.q)+'</p><div class="ans"><button type="button" class="y" id="ay">Sí</button><button type="button" id="an">Todavía no</button></div>'+(qi>0?'<button type="button" class="back" id="qb">Pregunta anterior</button>':"");
+  $("#ay").onclick=function(){qi++;renderQ();};
+  $("#an").onclick=function(){showResult(q.no);};
+  var b=$("#qb");if(b)b.onclick=function(){qi--;renderQ();showResult(null);};
+}
+function showResult(r){
+  var el=$("#result");
+  if(!r){el.className="result empty";el.removeAttribute("style");el.innerHTML='<p class="lab" style="color:inherit">Responde las preguntas y aquí aparece por dónde empezar: el curso y la clase exacta.</p>';return;}
+  var c=C[r.c];el.className="result";el.setAttribute("style",vars(r.c));
+  el.innerHTML='<p class="lab">Empieza aquí</p><div class="cname">'+emb(r.c)+"<b>"+esc(c.name)+'</b></div><p class="where">'+esc(r.where)+"</p>"+(r.extra?'<p class="extra">'+esc(r.extra)+"</p>":"")+'<a class="btn solid" href="'+c.url+'" target="_blank" rel="noopener" style="justify-self:start">Abrir '+esc(c.name)+" ↗</a>";
+}
+function renderSits(){
+  $("#sits").innerHTML=PAGE.situations.map(function(s,i){var c=C[s[1]];return '<button type="button" class="sitb" data-i="'+i+'"><b>'+esc(s[0])+'</b><small><i style="--dot:'+c.accent+'"></i>'+esc(c.name)+": "+esc(s[2])+"</small></button>";}).join("");
+  $$("#sits .sitb").forEach(function(b){b.onclick=function(){var s=PAGE.situations[+b.getAttribute("data-i")];showResult({c:s[1],where:s[2]});$("#result").scrollIntoView({behavior:"smooth",block:"center"});};});
+}
+renderStair();renderFicha();renderQ();showResult(null);renderSits();
+})();
+
+</script>
+
+</body></html>
