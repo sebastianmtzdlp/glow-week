@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-16",
- "hora": "19:14",
+ "hora": "19:43",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 75,
+  "visitas": 78,
   "agregados": 18,
   "pedidos": 2,
   "wa": 0
@@ -15,21 +15,21 @@
   },
   {
    "d": "2026-10-16",
-   "v": 75
+   "v": 78
   }
  ],
  "consultoras": [
   {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 10,
+   "visitas": 11,
    "catalogo": 1,
    "pedidos": 2
   },
   {
    "slug": "viri",
    "nombre": "Viri",
-   "visitas": 8,
+   "visitas": 9,
    "catalogo": 2,
    "pedidos": 0
   },
