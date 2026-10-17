@@ -1,6 +1,6 @@
 {
   "_nota": "Lista del equipo. Cada entrada crea la carpeta /<slug> al correr build.py y aparece en la portada. 'ig' puede ir vacío. Foto: sube fotos/<slug>.jpg (cuadrada) y aparece sola; si no hay, se ven las iniciales. 'genero':'m' muestra Consultor. La portada ordena alfabéticamente sola.",
-  "equipo": "Mi tienda Beauty",
+  "equipo": "Mi Tienda Beauty",
   "consultoras": [
     {
       "slug": "sel",
