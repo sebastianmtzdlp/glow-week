@@ -28,7 +28,8 @@ def tienda(html):
                  ('"../_data/mas-pedidos.json?v="', '"../../_data/mas-pedidos.json?v="'),
                  ('"../fotos/"', '"../../fotos/"'),
                  ('href="catalogo/"', 'href="../catalogo/"'),
-                 ('"catalogo/" + location.search', '"../catalogo/" + location.search')]:
+                 ('"catalogo/" + location.search', '"../catalogo/" + location.search'),
+                 ('fetch("../_data/detalles.json?v="', 'fetch("../../_data/detalles.json?v="')]:
         assert a in html, a
         html = html.replace(a, b)
     return html

@@ -26,6 +26,7 @@ T.ready.then(t => {
         <div class="buy"><div class="qty"><button type="button" id="mn" aria-label="Quitar uno">−</button><output class="num" id="qv">1</output><button type="button" id="pl" aria-label="Agregar otro">+</button></div><button class="btn" id="add" type="button">Agregar al pedido</button></div>
         <div class="added" id="added" hidden>Agregado. <a href="${link("tienda/", "#pedido")}" style="text-decoration:underline">Ver mi pedido</a> o <a href="${link("tienda/")}" style="text-decoration:underline">seguir comprando</a></div>
         ${p.incluye ? `<div class="box"><h3>Qué incluye</h3><ul>${p.incluye.map(i => `<li>${esc(i)}</li>`).join("")}</ul></div>` : ""}
+        <div id="det"></div>
         <div class="box socia"><h3>Precio de socia</h3><p>Como socia lo pagas en <b>${money(mPrice)}</b> (${mPct}% menos). <a href="${link("conoce/", "#socia")}">Cómo funciona</a></p></div>
         <div class="box"><h3>¿Dudas?</h3><p style="color:var(--muted);font-size:14.5px">Pregúntame por tonos o existencias. <a href="${t.wa(`Hola ${me}, tengo una duda sobre ${p.name} (${p.code}).`)}" target="_blank" rel="noopener" style="color:var(--accent-text);font-weight:600">Escríbeme por WhatsApp</a></p></div>
       </div>
@@ -39,6 +40,16 @@ T.ready.then(t => {
     const c = T.getCart(); c[p.code] = Math.min(20, (+c[p.code] || 0) + q); T.setCart(c); T.paintBag();
     document.getElementById("added").hidden = false; T.gc("agregar/" + p.code, "Agregar " + p.name);
   };
+  if (!p.code.startsWith("PK")) fetch(T.BASE + "../_data/detalles.json").then(r => r.json()).then(j => {
+    const x = (j.productos || {})[p.code]; if (!x) return;
+    const hx = t => esc(t).replace(/\n/g, "<br>");
+    const seals = (x.s || "").split(/\.\s*|\s{2,}/).map(t => t.trim()).filter(t => t.length > 2 && t.length < 46).slice(0, 6);
+    document.getElementById("det").innerHTML =
+      (x.r ? `<p style="color:var(--muted);font-size:14px;margin-top:14px">★ <b style="color:var(--ink)">${String(x.r).replace(".", ",")}</b>${x.c ? ` · ${x.c.toLocaleString("es-MX")} opiniones en Farmasi` : ""}</p>` : "") +
+      (x.b ? `<div class="box"><h3>Beneficios</h3><p style="font-size:14.5px">${hx(x.b)}</p>${seals.length ? `<p style="margin-top:10px;display:flex;flex-wrap:wrap;gap:6px">${seals.map(t => `<span style="font-size:12px;background:var(--tint);color:var(--accent-text);border-radius:999px;padding:3px 10px">${esc(t)}</span>`).join("")}</p>` : ""}</div>` : "") +
+      (x.u ? `<div class="box"><h3>Cómo usarlo</h3><p style="font-size:14.5px;color:var(--muted)">${hx(x.u)}</p></div>` : "") +
+      (x.i ? `<details class="box"><summary style="cursor:pointer;font-weight:600">Ingredientes</summary><p style="font-size:13.5px;color:var(--muted);margin-top:8px">${hx(x.i)}</p></details>` : "");
+  }).catch(() => {});
   T.gc("vista/producto/" + p.code, p.name);
 });
 </script>
