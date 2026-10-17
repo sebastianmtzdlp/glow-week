@@ -902,8 +902,12 @@
  "agotados": [],
  "pago": {
   "_nota": "Bloque 'Pago y entrega'. metodos: lista de formas de pago (si va vacía, dice que se las pasas al confirmar). entrega: texto. extra: líneas adicionales.",
-  "metodos": [],
+  "metodos": [
+   "transferencia o depósito"
+  ],
   "entrega": "Al confirmar tu pedido te digo cuándo llega.",
-  "extra": []
+  "extra": [
+   "Para apartar tu pedido se deja el 50 % por adelantado y el resto se liquida antes de la entrega."
+  ]
  }
 }
