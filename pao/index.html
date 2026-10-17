@@ -21,8 +21,9 @@
 <script src="../assets/tienda.js"></script>
 <script>
 T.ready.then(t => {
+  const hd = s => String(s).replace("_250", "_400");
   const { D, products, MAS, SALE, me, maxOff, seasonal, boutique } = t, { money, pct, esc, link, IMG } = T;
-  const img = (p, cls) => `<img src="${IMG}${p.img}.webp" alt="${esc(p.name)}" loading="lazy" onerror="this.style.visibility='hidden'">`;
+  const img = (p, cls) => `<img src="${IMG}${hd(p.img)}.webp" alt="${esc(p.name)}" loading="lazy" onerror="this.style.visibility='hidden'">`;
   const byOff = [...products].sort((a, b) => pct(b) - pct(a));
   const kits = products.filter(p => p.cat === "Kits");
   const hero = [...kits].sort((a, b) => b.retail - a.retail).slice(0, 1).concat(byOff.filter(p => p.cat !== "Kits").slice(0, 2));

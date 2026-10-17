@@ -21,6 +21,7 @@
 <script src="../../assets/tienda.js"></script>
 <script>
 T.ready.then(t => {
+  const hd = s => String(s).replace("_250", "_400");
   const { D, products, SALE, me } = t, { money, pct, esc, link, IMG } = T;
   const code = T.Q.get("c");
   const p = products.find(x => x.code === code);
@@ -31,12 +32,12 @@ T.ready.then(t => {
   const mPct = p.desc_miembro ?? M.por_producto[p.code] ?? M.por_categoria[p.cat] ?? M.desc_default;
   const mPrice = Math.round(p.price * (1 - mPct / 100) * 100) / 100;
   const related = products.filter(x => x.cat === p.cat && x.code !== p.code).slice(0, 8);
-  const card = x => `<a class="pc" href="${link("producto/") + (T.qs ? "&" : "?") + "c=" + encodeURIComponent(x.code)}"><div class="pic"><img src="${IMG}${x.img}.webp" alt="${esc(x.name)}" loading="lazy"><span class="off">-${pct(x)}%</span></div><div class="nm">${esc(x.name)}</div><div class="sh">${esc(x.shade || "")}</div><div class="pr"><b>${money(x.price)}</b><s>${money(x.retail)}</s></div></a>`;
+  const card = x => `<a class="pc" href="${link("producto/") + (T.qs ? "&" : "?") + "c=" + encodeURIComponent(x.code)}"><div class="pic"><img src="${IMG}${hd(x.img)}.webp" alt="${esc(x.name)}" loading="lazy"><span class="off">-${pct(x)}%</span></div><div class="nm">${esc(x.name)}</div><div class="sh">${esc(x.shade || "")}</div><div class="pr"><b>${money(x.price)}</b><s>${money(x.retail)}</s></div></a>`;
   let q = 1;
   main.innerHTML = `<div class="wrap">
     <div class="crumbs"><a href="${link("")}">Inicio</a> / <a href="${link("tienda/")}">Tienda</a> / <a href="${link("tienda/", "#cat=" + encodeURIComponent(p.cat))}">${esc(p.cat)}</a></div>
     <div class="pd">
-      <div class="big"><img src="${IMG}${p.img}.webp" alt="${esc(p.name + " " + (p.shade || ""))}" onerror="this.style.visibility='hidden'"></div>
+      <div class="big"><img src="${IMG}${hd(p.img)}.webp" alt="${esc(p.name + " " + (p.shade || ""))}" onerror="this.style.visibility='hidden'"></div>
       <div>
         <div class="eyebrow">${esc(p.cat)}${p.nuevo ? " · Nuevo" : ""}</div>
         <h1>${esc(p.name)}</h1><div class="sh">${esc(p.shade || "")}</div>
@@ -58,7 +59,7 @@ T.ready.then(t => {
     const c = T.getCart(); c[p.code] = Math.min(20, (+c[p.code] || 0) + q); T.setCart(c); T.paintBag();
     document.getElementById("added").hidden = false; T.gc("agregar/" + p.code, "Agregar " + p.name);
   };
-  if (!p.code.startsWith("PK")) fetch(T.BASE + "../_data/detalles.json").then(r => r.json()).then(j => {
+  fetch(T.BASE + "../_data/detalles.json").then(r => r.json()).then(j => {
     const x = (j.productos || {})[p.code]; if (!x) return;
     const hx = t => esc(t).replace(/\n/g, "<br>");
     const seals = (x.s || "").split(/\.\s*|\s{2,}/).map(t => t.trim()).filter(t => t.length > 2 && t.length < 46).slice(0, 6);
