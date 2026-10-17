@@ -898,5 +898,12 @@
   "kits": "Al entrar hay kits de inicio a precio muy reducido.",
   "nota": ""
  },
- "tema": "noche"
+ "tema": "noche",
+ "agotados": [],
+ "pago": {
+  "_nota": "Bloque 'Pago y entrega'. metodos: lista de formas de pago (si va vacía, dice que se las pasas al confirmar). entrega: texto. extra: líneas adicionales.",
+  "metodos": [],
+  "entrega": "Al confirmar tu pedido te digo cuándo llega.",
+  "extra": []
+ }
 }
