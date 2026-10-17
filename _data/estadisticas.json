@@ -1,10 +1,10 @@
 {
  "actualizado": "2026-10-16",
- "hora": "21:59",
+ "hora": "22:54",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 114,
-  "agregados": 19,
+  "visitas": 123,
+  "agregados": 22,
   "pedidos": 2,
   "wa": 0
  },
@@ -15,14 +15,14 @@
   },
   {
    "d": "2026-10-16",
-   "v": 114
+   "v": 123
   }
  ],
  "consultoras": [
   {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 14,
+   "visitas": 15,
    "catalogo": 1,
    "pedidos": 2
   },
@@ -181,6 +181,21 @@
    "agregados": 2
   },
   {
+   "code": "1000272",
+   "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+   "agregados": 1
+  },
+  {
+   "code": "PK102735",
+   "name": "Dulce Hechizado Kit de labios",
+   "agregados": 1
+  },
+  {
+   "code": "PK102730",
+   "name": "Ritual de Luna Kit de cuerpo",
+   "agregados": 1
+  },
+  {
    "code": "1002547",
    "name": "Royal Cherry Eyeshadow Paleta de sombras",
    "agregados": 1
@@ -195,12 +210,22 @@
   "sel": {
    "agregados": [
     {
+     "code": "1000272",
+     "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+     "n": 1
+    },
+    {
      "code": "1002157",
      "name": "All in One Palette Fair-Medium",
      "n": 1
     }
    ],
    "vistos": [
+    {
+     "code": "1000272",
+     "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+     "n": 1
+    },
     {
      "code": "1002161",
      "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",

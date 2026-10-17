@@ -1,1 +1,6 @@
-{"codes":[],"nota":"Se llena solo con scripts/stats.py cuando hay datos suficientes."}
+{
+ "codes": [
+  "1002157"
+ ],
+ "nota": "Se llena solo con scripts/stats.py cuando hay datos suficientes."
+}
