@@ -84,7 +84,7 @@
   <h2 id="hAll">Todo el equipo, de la A a la Z</h2>
   <div class="grid" id="all"></div>
   <p class="empty" id="none" hidden>No encontré a nadie con ese nombre.</p>
-  <section class="join" id="unete"><h2>¿Quieres unirte al equipo?</h2><p>Si te gusta Farmasi y quieres vender o ganar con tus propios pedidos, escríbele a una de nuestras líderes y te explica cómo empezar.</p><div class="btns" id="joinBtns"></div></section>
+  <section class="join" id="unete"><h2>¿Quieres unirte al equipo?</h2><p>Si te gusta Farmasi y quieres vender o ganar con tus propios pedidos, escríbele a la consultora que te compartió este link o a la que más hables, y te explica cómo empezar. Si no, escríbele a Selene.</p><div class="btns" id="joinBtns"></div></section>
 </main>
 <footer><div class="wrap"><b>Farmasi</b>Consultoras independientes de Farmasi México. Tu consultora confirma precios y disponibilidad contigo por WhatsApp.</div></footer>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -115,7 +115,7 @@
     $("lead").innerHTML = lead.map(card).join(""); $("all").innerHTML = rest.map(card).join("");
     $("hLead").hidden = !lead.length; $("hAll").hidden = !rest.length; $("none").hidden = !!list.length;
   }
-  $("joinBtns").innerHTML = E.consultoras.filter(c => c.lider).sort(srt).map(c => `<a href="https://wa.me/${c.whatsapp}?text=${encodeURIComponent("Hola "+c.nombre+", vi el sitio del equipo y quiero saber cómo trabajar con ustedes en Farmasi.")}" target="_blank" rel="noopener">Escribir a ${c.nombre}</a>`).join("");
+  $("joinBtns").innerHTML = E.consultoras.filter(c => c.slug === "sel").map(c => `<a href="https://wa.me/${c.whatsapp}?text=${encodeURIComponent("Hola "+c.nombre+", vi el sitio del equipo y quiero saber cómo trabajar con ustedes en Farmasi.")}" target="_blank" rel="noopener">Escribir a ${c.nombre}</a>`).join("");
   $("q").addEventListener("input", paint); paint();
 })();
 </script>
