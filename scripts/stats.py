@@ -37,9 +37,13 @@ try:
 except Exception: pass
 
 board, cat, adds, orders, wa = {}, {}, {}, {}, 0
+xc = {}  # por consultora: {slug: {"agregar": {code: n}, "ver": {code: n}}}
 for h in hits:
     p, n = h["path"].strip("/"), h["count"]
     if h.get("event"):
+        m = re.fullmatch(r"c/([a-z0-9]+)/(agregar|ver)/(\d+)", p)
+        if m:
+            d = xc.setdefault(m.group(1), {"agregar": {}, "ver": {}})[m.group(2)]; d[m.group(3)] = d.get(m.group(3), 0) + n; continue
         if p.startswith("agregar/"): adds[p.split("/",1)[1]] = adds.get(p.split("/",1)[1], 0) + n
         elif p.startswith("pedido-enviado/") or p.startswith("pedido-catalogo/"):
             s = p.split("/",1)[1]; orders[s] = orders.get(s, 0) + n
@@ -56,9 +60,11 @@ cons.sort(key=lambda x: (-x["visitas"]-x["catalogo"], x["nombre"]))
 top = sorted(adds.items(), key=lambda x: -x[1])
 productos = [{"code": c, "name": prod.get(c, c), "agregados": n} for c, n in top[:20]]
 now = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None) - dt.timedelta(hours=6)
+def topn(d, k=5): return [{"code": c, "name": prod.get(c, c), "n": n} for c, n in sorted(d.items(), key=lambda x: -x[1])[:k]]
+por = {s: {"agregados": topn(v["agregar"]), "vistos": topn(v["ver"])} for s, v in xc.items()}
 out = {"actualizado": now.strftime("%Y-%m-%d"), "hora": now.strftime("%H:%M"), "desde": START[:10],
        "totales": {"visitas": tot.get("total", 0), "agregados": sum(adds.values()), "pedidos": sum(orders.values()), "wa": wa},
-       "dias": dias, "consultoras": cons, "productos": productos}
+       "dias": dias, "consultoras": cons, "productos": productos, "por_consultora": por}
 def guardar(ruta, nuevo, ignorar=()):
     """Escribe solo si cambió algo (sin contar fecha/hora), para no llenar el historial de commits."""
     f = os.path.join(ROOT, ruta)

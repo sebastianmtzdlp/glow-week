@@ -41,6 +41,7 @@
   .bar.today{background:var(--accent)}
   .bar span{position:absolute;left:50%;top:-20px;transform:translateX(-50%);font:500 11.5px var(--mono);color:var(--ink)}
   .col small{font:400 11px var(--mono);color:var(--muted)}
+  .cdet{padding:0 0 12px 40px;display:grid;gap:8px;font-size:13px}.cdet .dt{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.cdet b{width:100%;font-size:12px;color:var(--muted);font-weight:600}.cdet span{background:var(--soft);border-radius:999px;padding:4px 10px}.cdet em{font-style:normal;font:500 11px var(--mono);color:var(--muted)}
   .row{display:grid;grid-template-columns:28px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
   .row:first-of-type{border-top:0}
   .rk{font:500 13px var(--mono);color:var(--muted);text-align:center}
@@ -140,10 +141,13 @@
   $("funnel").innerHTML = steps.map(([l,n]) => `<div class="row" style="grid-template-columns:1fr auto"><div><div class="nm">${l}</div><div class="track"><i style="width:${n/top*100}%"></i></div></div><div class="val">${fmt(n)}</div></div>`).join("");
 
   // Consultoras
+  const PC = D.por_consultora || {};
+  const lst = (t, a) => a && a.length ? `<div class="dt"><b>${t}</b>${a.map(x => `<span>${esc(x.name)} <em>×${x.n}</em></span>`).join("")}</div>` : "";
+  const det = c => { const x = PC[c.slug]; if (!x || !(x.agregados.length || x.vistos.length)) return ""; return `<div class="cdet">${lst("Lo que más agregan", x.agregados)}${lst("Lo que más ven", x.vistos)}</div>`; };
   const cs = D.consultoras, cmax = Math.max(1, ...cs.map(c => c.visitas + c.catalogo));
   $("consList").innerHTML = cs.some(c => c.visitas + c.catalogo + c.pedidos) ? cs.map((c,i) => {
     const v = c.visitas + c.catalogo;
-    return `<div class="row"><div class="rk${i<3&&v?" top":""}">${i+1}</div><div><div class="nm">${esc(c.nombre)}${c.pedidos?`<span class="pill">${c.pedidos} ${c.pedidos===1?"pedido":"pedidos"}</span>`:""}</div><div class="meta">${c.visitas} en tablero · ${c.catalogo} en catálogo</div><div class="track"><i style="width:${v/cmax*100}%"></i></div></div><div class="val">${fmt(v)}<small>visitas</small></div></div>`;
+    return `<div class="row"><div class="rk${i<3&&v?" top":""}">${i+1}</div><div><div class="nm">${esc(c.nombre)}${c.pedidos?`<span class="pill">${c.pedidos} ${c.pedidos===1?"pedido":"pedidos"}</span>`:""}</div><div class="meta">${c.visitas} en tablero · ${c.catalogo} en catálogo</div><div class="track"><i style="width:${v/cmax*100}%"></i></div></div><div class="val">${fmt(v)}<small>visitas</small></div></div>${det(c)}`;
   }).join("") : `<div class="empty"><b>Todavía no hay visitas por consultora.</b>Cuando cada una comparta su link, aquí verás quién recibe más visitas.</div>`;
 
   // Productos

@@ -680,6 +680,7 @@
   const minus = '<svg class="i" viewBox="0 0 24 24"><path d="M5 12h14"/></svg>';
   const cart = {};
   const gc = (path, title) => { try { window.goatcounter && window.goatcounter.count && window.goatcounter.count({path, title: title||path, event:true}); } catch(_){} };
+  const gcs = (kind, code, title) => gc("c/"+location.pathname.split("/").filter(Boolean)[0]+"/"+kind+"/"+code, title);
   let filter = "Todo";
 
   // Ofertas: lo de 40% o más va primero en "Todo"
@@ -866,7 +867,7 @@
     const chip = e.target.closest(".chip");
     if (chip){ filter = chip.dataset.c; renderChips(); renderCatalog(); window.scrollTo({top:$("catalog").offsetTop-70}); return; }
     const add = e.target.closest("[data-add]");
-    if (add){ const i=+add.dataset.add; if (ALL[i].agotado) return; cart[i]=1; gc('agregar/'+ALL[i].code, ALL[i].name); refreshCard(i); update(); return; }
+    if (add){ const i=+add.dataset.add; if (ALL[i].agotado) return; cart[i]=1; gc('agregar/'+ALL[i].code, ALL[i].name); gcs('agregar', ALL[i].code, ALL[i].name); refreshCard(i); update(); return; }
     const st = e.target.closest(".step-btn");
     if (st){ const i=+st.dataset.i; cart[i]=Math.max(0,(cart[i]||0)+(+st.dataset.d)); if(!cart[i]) delete cart[i]; refreshCard(i); update(); return; }
   });
@@ -1048,7 +1049,7 @@
   function closeProd(){ document.body.classList.remove("popen"); }
   function showProduct(i){
     const p = ALL[i], d = pct(p), q = cart[i]||0, fi = famOf(i), fam = FAM[fi];
-    gc("ver/"+p.code, p.name);
+    gc("ver/"+p.code, p.name); gcs("ver", p.code, p.name);
     $("prodHead").textContent = p.cat;
     openProd(`<div class="pd-pic"><img id="pdMain" src="${IMG}${hd(p.img)}.webp" alt="${p.name}" onerror="this.style.visibility='hidden'"></div><div class="pd-thumbs" id="pdThumbs" hidden></div>
       <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
@@ -1082,7 +1083,7 @@
       if (navigator.share) navigator.share({text:txt, url}).catch(()=>{}); else window.open("https://wa.me/?text="+encodeURIComponent(txt+"\n"+url),"_blank"); return; }
     const pk = e.target.closest("[data-tono-open]"); if (pk){ const k=+pk.dataset.tonoOpen; const f=FAM[k]; showProduct(f.find(x=>cart[x])??f.find(x=>!ALL[x].agotado)??k); return; }
     const pa = e.target.closest("[data-padd]");
-    if (pa){ const i=+pa.dataset.padd; cart[i]=1; gc("agregar/"+ALL[i].code, ALL[i].name); refreshCard(i); update(); showProduct(i); return; }
+    if (pa){ const i=+pa.dataset.padd; cart[i]=1; gc("agregar/"+ALL[i].code, ALL[i].name); gcs("agregar", ALL[i].code, ALL[i].name); refreshCard(i); update(); showProduct(i); return; }
     if (e.target.closest("[data-pclose]")) closeProd();
   });
   $("closeProd").onclick = $("prodBg").onclick = closeProd;
