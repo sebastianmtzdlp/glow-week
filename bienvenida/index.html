@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Bienvenida al Team Nancy y Selene</title>
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Bienvenida al Team Nancy y Selene">
+<meta property="og:description" content="Tu tienda Farmasi lista para compartir: link, tarjeta y cómo funciona.">
+<meta property="og:image" content="https://mitienda.beauty/og/equipo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FAF7F5;--card:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--accent:#DB414C;--tint:#FDEEF0;--navy:#262A4A}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+  .wrap{max-width:560px;margin:0 auto;padding:0 18px 60px}
+  .hero{padding:44px 0 26px}
+  .eb{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:40px;line-height:1.05;font-weight:800;margin:10px 0 12px}
+  .lead{font-size:18px;color:var(--muted)}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:20px;margin-top:16px}
+  h2{font-size:20px;font-weight:800;margin-bottom:6px}
+  .card p{color:var(--muted);font-size:15px}
+  select{width:100%;font:inherit;font-size:16px;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink);margin-top:10px}
+  .link{display:flex;gap:8px;align-items:center;margin-top:12px;background:var(--tint);border-radius:14px;padding:12px 14px;font-weight:700;word-break:break-all}
+  .btn{display:block;width:100%;border:0;border-radius:14px;padding:15px;margin-top:10px;font:inherit;font-size:16px;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;background:var(--accent);color:#fff}
+  .btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--accent)}
+  .btn[hidden]{display:none}
+  ol.steps{list-style:none;padding:0;counter-reset:s;margin-top:10px;display:grid;gap:14px}
+  ol.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:12px;font-size:15px;color:var(--muted)}
+  ol.steps li::before{content:counter(s);width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:grid;place-items:center}
+  ol.steps b{color:var(--ink);display:block;font-size:16px}
+  ul{padding-left:20px;color:var(--muted);font-size:15px;display:grid;gap:6px;margin-top:8px}
+  ul b{color:var(--ink)}
+  .ct{display:grid;gap:8px;margin-top:10px}
+  .ct a{display:flex;justify-content:space-between;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600}
+  .ct a span{color:var(--muted);font-weight:400}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header class="hero">
+    <div class="eb">Team Nancy y Selene</div>
+    <h1 id="hi">¡Bienvenida al equipo!</h1>
+    <p class="lead">Ya tienes tu tienda Farmasi lista: tus clientas arman su pedido y te llega directo a tu WhatsApp.</p>
+  </header>
+
+  <section class="card" id="mine">
+    <h2>Tu tienda</h2>
+    <p id="pick">Elige tu nombre para ver tu link:</p>
+    <select id="sel" aria-label="Tu nombre"></select>
+    <div class="link" id="lnk" hidden></div>
+    <button class="btn" id="cp" hidden>Copiar mi link</button>
+    <a class="btn alt" id="open" hidden target="_blank" rel="noopener">Ver mi tienda</a>
+    <a class="btn alt" id="card" hidden>Hacer mi tarjeta para redes</a>
+  </section>
+
+  <section class="card">
+    <h2>Cómo funciona</h2>
+    <ol class="steps">
+      <li><div><b>Comparte tu link</b>En tus stories, estado de WhatsApp o directo con tus clientas. Tu tarjeta ya trae el espacio para el sticker de enlace.</div></li>
+      <li><div><b>Tu clienta arma su pedido</b>Elige productos y tonos, ve cuánto ahorra y toca enviar. Ahí no paga nada.</div></li>
+      <li><div><b>Te llega a tu WhatsApp</b>Con productos, tonos, códigos, total y datos de entrega ya escritos.</div></li>
+      <li><div><b>Tú confirmas</b>Revisas existencias y total, y le pasas las formas de pago.</div></li>
+    </ol>
+  </section>
+
+  <section class="card">
+    <h2>Pago y entrega</h2>
+    <ul>
+      <li>Se acepta <b>transferencia o depósito</b>.</li>
+      <li>Se aparta el pedido con el <b>50 % por adelantado</b>.</li>
+      <li>Desde <b>$3,000</b> en productos el envío es gratis y lleva el set de regalo del mes.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>Tips rápidos</h2>
+    <ul>
+      <li>La tienda cambia de <b>tema</b> según la temporada; tu tarjeta toma los mismos colores.</li>
+      <li>Si algo se <b>agotó</b>, avisa al equipo y se marca como agotado en todas las tiendas.</li>
+      <li>Tu número de WhatsApp aparece en tu tienda: es por donde te escriben tus clientas.</li>
+    </ul>
+  </section>
+
+  <section class="card">
+    <h2>¿Dudas?</h2>
+    <div class="ct" id="ct"></div>
+  </section>
+</div>
+<script>
+(async()=>{
+  const $=id=>document.getElementById(id);
+  let E={consultoras:[]}; try{ E=await (await fetch("../_data/equipo.json?v="+Date.now())).json(); }catch(_){}
+  const C=E.consultoras.slice().sort((a,b)=>a.nombre.localeCompare(b.nombre,"es"));
+  $("sel").innerHTML='<option value="">— Elige —</option>'+C.map(c=>`<option value="${c.slug}">${c.nombre}</option>`).join("");
+  function pick(slug){
+    const c=C.find(x=>x.slug===slug); const on=!!c;
+    ["lnk","cp","open","card"].forEach(i=>$(i).hidden=!on); if(!on) return;
+    const u="https://mitienda.beauty/"+slug+"/"; $("sel").value=slug; $("lnk").textContent=u;
+    $("open").href="../"+slug+"/"; $("card").href="../"+slug+"/tarjeta/"; $("hi").textContent="¡Bienvenida, "+c.nombre+"!"; $("pick").textContent="Este es tu link:";
+    $("cp").onclick=async()=>{ try{await navigator.clipboard.writeText(u); $("cp").textContent="¡Link copiado!";}catch(_){ $("cp").textContent="Copia el link de arriba"; } setTimeout(()=>$("cp").textContent="Copiar mi link",2200); };
+  }
+  $("sel").onchange=e=>pick(e.target.value);
+  pick(new URLSearchParams(location.search).get("c")||"");
+  const ids=["nancy","sel","sebas"]; $("ct").innerHTML=ids.map(s=>C.find(c=>c.slug===s)).filter(Boolean).map(c=>`<a href="https://wa.me/${c.whatsapp}" target="_blank" rel="noopener">${c.nombre}<span>WhatsApp</span></a>`).join("");
+})();
+</script>
+</body>
+</html>
