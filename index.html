@@ -29,7 +29,7 @@
   .wrap{max-width:560px;margin:0 auto;padding:0 16px}
   @media(min-width:900px){.wrap{max-width:1280px}}
   @media(min-width:900px){.intro{display:flex;gap:56px;align-items:flex-start}.ihead{flex:1.25 1 0;min-width:0}.intro .sale{flex:1 1 0;min-width:0;margin-top:30px}.lede{max-width:none}}
-  .quienes{margin:40px 0 0;background:var(--soft);border-radius:22px;padding:24px 20px}
+  .quienes{margin:22px 0 0;background:var(--soft);border-radius:22px;padding:24px 20px}
   .quienes h2{display:block;margin:0 0 10px;font-size:28px;line-height:1.05;font-weight:800;letter-spacing:-.02em;color:var(--ink)}
   .quienes p{margin:0 0 12px;color:var(--muted);max-width:60ch}
   .quienes p.cierre{margin:0;color:var(--ink);font-weight:700}
@@ -96,6 +96,13 @@
       <h1>Elige a tu <b>consultora</b></h1>
       <p class="lede">Cada una tiene su propio tablero. Tu pedido llega directo a su WhatsApp.</p>
       <label class="search" id="equipo"><input id="q" type="search" placeholder="Busca a tu consultora" autocomplete="off" aria-label="Busca a tu consultora"></label>
+
+    <section class="quienes" id="quienes">
+    <h2>Quiénes somos</h2>
+    <p>Mi Tienda Beauty nació a inicios de enero, cuando Sel decidió crear el equipo. Poco después se unió Nancy, y una a una, las demás chicas confiaron en este proyecto y se sumaron.</p>
+    <p>Nuestro propósito es potenciar el talento de cada una: que cada integrante crezca, venda con confianza y se vea como lo que es, una mujer capaz de construir algo propio.</p>
+    <p class="cierre">Esto es de todas.</p>
+    </section>
     </div>
     <div class="sale" id="sale"></div>
   </section>
@@ -104,12 +111,6 @@
   <h2 id="hAll">Todo el equipo, de la A a la Z</h2>
   <div class="grid" id="all"></div>
   <p class="empty" id="none" hidden>No encontré a nadie con ese nombre.</p>
-  <section class="quienes" id="quienes">
-    <h2>Quiénes somos</h2>
-    <p>Mi Tienda Beauty nació a inicios de enero, cuando Sel decidió crear el equipo. Poco después se unió Nancy, y una a una, las demás chicas confiaron en este proyecto y se sumaron.</p>
-    <p>Nuestro propósito es potenciar el talento de cada una: que cada integrante crezca, venda con confianza y se vea como lo que es, una mujer capaz de construir algo propio.</p>
-    <p class="cierre">Esto es de todas.</p>
-  </section>
   <section class="join" id="unete"><h2>¿Quieres unirte al equipo?</h2><p>Si te gusta Farmasi y quieres vender o ganar con tus propios pedidos, escríbele a la consultora que te compartió este link o a la que más le hables, y te explica cómo empezar. Si no, escríbele a Selene.</p><div class="btns" id="joinBtns"></div></section>
 </main>
 <footer><div class="wrap"><b>Farmasi</b>Consultoras independientes de Farmasi México. Tu consultora confirma precios y disponibilidad contigo por WhatsApp.</div></footer>
