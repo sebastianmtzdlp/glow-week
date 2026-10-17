@@ -27,7 +27,7 @@ for(const c of [...eq.consultoras,{slug:'equipo',nombre:'Team',_team:1}]){
   p{font-size:36px;color:${t.muted};line-height:1.3;max-width:620px}
   .pill{display:inline-block;margin-top:30px;padding:14px 30px;border-radius:999px;background:${t.accent};color:${/^#(0|1)/.test(t.bg)?t.bg:'#fff'};font-size:30px;font-weight:700}
   </style><div class="blob"></div><div class="blob2"></div><div class="w"><div class="ph" style="${foto?`background-image:url('${foto}')`:''}">${foto?'':ini}</div>
-  <div><div class="eb">${c._team?'Farmasi':'Team Nancy y Selene'}</div><h1>${c._team?'Team Nancy<br>y Selene':'Farmasi con '+c.nombre}</h1><p>Maquillaje con hasta 50% de descuento. ${c._team?'Elige a tu consultora, arma tu pedido y mándalo por WhatsApp.':'Arma tu pedido y mándalo por WhatsApp.'}</p><span class="pill">mitienda.beauty${c._team?'':'/'+c.slug}</span></div></div>`;
+  <div><div class="eb">Farmasi</div><h1>${c._team?'Tu tienda<br>de maquillaje':'Farmasi con '+c.nombre}</h1><p>Maquillaje con hasta 50% de descuento. ${c._team?'Elige a tu consultora, arma tu pedido y mándalo por WhatsApp.':'Arma tu pedido y mándalo por WhatsApp.'}</p><span class="pill">mitienda.beauty${c._team?'':'/'+c.slug}</span></div></div>`;
   const tmp=`${R}/og/_tmp.html`;fs.writeFileSync(tmp,html);await pg.goto('file://'+tmp);await pg.evaluate(()=>document.fonts.ready);await pg.waitForTimeout(150);
   await pg.screenshot({path:`${R}/og/${c.slug}.png`});console.log('og',c.slug,tn||'normal');}
 await b.close();fs.unlinkSync(`${R}/og/_tmp.html`);})();
