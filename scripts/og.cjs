@@ -10,6 +10,7 @@ const T={normal:{bg:'#FAF7F5',ink:'#262A4A',accent:'#DB414C',soft:'#FDEEF0',mute
  bruja:{bg:'#FFF1F3',ink:'#1C1A22',accent:'#FF5A68',soft:'#FCE3E8',muted:'#6E6068'},
  pocima:{bg:'#0F1D17',ink:'#EAF4E4',accent:'#8BE04E',soft:'#1D3328',muted:'#A6BBA8'},
  editorial:{bg:'#F7EDE6',ink:'#3A1F2B',accent:'#B3375A',soft:'#F1C9C3',muted:'#7A5A66'}};
+const TX=JSON.parse(fs.readFileSync(R+'/og/textos.json','utf8'));
 const eq=JSON.parse(fs.readFileSync(R+'/_data/equipo.json','utf8')), base=JSON.parse(fs.readFileSync(R+'/_data/promos-base.json','utf8'));
 const temaVigente=(own,B)=>{const now=Date.now();let cal=null;(B.temas||[]).filter(e=>new Date(e.desde+'T00:00:00-06:00').getTime()<=now).sort((a,b)=>a.desde<b.desde?-1:1).forEach(e=>cal=e);if(cal&&cal.forzar)return cal.tema;if(own!==undefined)return own;return cal?cal.tema:(B.tema||'');};
 const ff=w=>`@font-face{font-family:O;font-weight:${w};src:url('file://${FD}/outfit-latin-${w}-normal.woff2')}`;
@@ -29,7 +30,7 @@ for(const c of [...eq.consultoras,{slug:'equipo',nombre:'Team',_team:1}]){
   p{font-size:36px;color:${t.muted};line-height:1.3;max-width:620px}
   .pill{display:inline-block;margin-top:30px;padding:14px 30px;border-radius:999px;background:${t.accent};color:${/^#(0|1)/.test(t.bg)?t.bg:'#fff'};font-size:30px;font-weight:700}
   </style><div class="blob"></div><div class="blob2"></div><div class="w"><div class="ph" style="${foto?`background-image:url('${foto}')`:''}">${foto?'':ini}</div>
-  <div><div class="eb">Farmasi</div><h1>${c._team?'Tu tienda<br>de maquillaje':'Farmasi con '+c.nombre}</h1><p>Maquillaje con hasta 50% de descuento. ${c._team?'Elige a tu consultora, arma tu pedido y mándalo por WhatsApp.':'Arma tu pedido y mándalo por WhatsApp.'}</p><span class="pill">mitienda.beauty${c._team?'':'/'+c.slug}</span></div></div>`;
+  <div><div class="eb">${c._team?'Farmasi':((TX[c.slug]||{}).eyebrow||'Farmasi')}</div><h1>${c._team?'Tu tienda<br>de maquillaje':'Farmasi con '+c.nombre}</h1><p>${c._team?'Maquillaje con hasta 50% de descuento. Elige a tu consultora, arma tu pedido y mándalo por WhatsApp.':((TX[c.slug]||{}).desc||'')}</p><span class="pill">mitienda.beauty${c._team?'':'/'+c.slug}</span></div></div>`;
   const tmp=`${R}/og/_tmp.html`;fs.writeFileSync(tmp,html);await pg.goto('file://'+tmp);await pg.evaluate(()=>document.fonts.ready);await pg.waitForTimeout(150);
   await pg.screenshot({path:`${R}/og/${c.slug}.png`});console.log('og',c.slug,tn||'normal');}
 await b.close();fs.unlinkSync(`${R}/og/_tmp.html`);})();

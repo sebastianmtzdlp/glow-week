@@ -35,8 +35,9 @@ jobs:
           echo "FONTS=$RUNNER_TEMP/og/node_modules/@fontsource/outfit/files" >> "$GITHUB_ENV"
       - name: Generar imágenes y páginas
         run: |
-          node scripts/og.cjs
-          python3 build.py > /dev/null
+          python3 build.py > /dev/null      # escribe los textos (og/textos.json)
+          node scripts/og.cjs                 # imágenes con esos textos
+          python3 build.py > /dev/null      # enlaces con la versión nueva de cada imagen
       - name: Publicar cambios
         run: |
           git config user.name "Claude"

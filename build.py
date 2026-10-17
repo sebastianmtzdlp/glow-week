@@ -8,14 +8,35 @@ except ImportError:
     segno = None
 ROOT = os.path.dirname(os.path.abspath(__file__))
 eq = json.load(open(os.path.join(ROOT, "_data/equipo.json")))
+
+# Textos de vista previa: salen de los datos de la venta (cambian solos cuando cambian las promos)
+from datetime import datetime, timezone, timedelta
+_base = json.load(open(os.path.join(ROOT, "_data/promos-base.json"), encoding="utf-8"))
+_ven = _base.get("venta", {})
+_pcts = [round((1 - p["price"] / p["retail"]) * 100) for p in _base.get("productos", []) if p.get("retail") and p.get("cat") != "Kits"]
+_max = max(_pcts) if _pcts else 0
+_term = _ven.get("termina")
+_activa = True
+if _term:
+    try: _activa = datetime.now(timezone.utc) <= datetime.fromisoformat(_term).astimezone(timezone.utc)
+    except Exception: _activa = True
+def textos(nombre):
+    if _activa and _max:
+        desc = "%s: hasta %d%% de descuento. Arma tu pedido y mándalo por WhatsApp." % (_ven.get("nombre", "Promos"), _max)
+    else:
+        desc = "Pronto nuevas promos. Arma tu pedido y mándalo por WhatsApp."
+    return {"title": "Farmasi con " + nombre, "desc": desc, "eyebrow": _ven.get("nombre", "Farmasi") if _activa else "Farmasi"}
+os.makedirs(os.path.join(ROOT, "og"), exist_ok=True)
+TXT = {}
 tpl = open(os.path.join(ROOT, "_template/index.html"), encoding="utf-8").read()
 cat = open(os.path.join(ROOT, "_template/catalogo/index.html"), encoding="utf-8").read()
 tar = open(os.path.join(ROOT, "_template/tarjeta/index.html"), encoding="utf-8").read()
 for c in eq["consultoras"]:
     d = os.path.join(ROOT, c["slug"]); os.makedirs(os.path.join(d, "catalogo"), exist_ok=True)
     ogp = os.path.join(ROOT, "og", c["slug"] + ".png")  # versión = huella de la imagen: WhatsApp vuelve a leerla al cambiar
+    TXT[c["slug"]] = textos(c["nombre"])
     ogv = hashlib.md5(open(ogp, "rb").read()).hexdigest()[:8] if os.path.exists(ogp) else "1"
-    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(tpl.replace("{{NOMBRE}}", c["nombre"]).replace("{{SLUG}}", c["slug"]).replace("{{OGV}}", ogv))
+    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(tpl.replace("{{NOMBRE}}", c["nombre"]).replace("{{SLUG}}", c["slug"]).replace("{{OGV}}", ogv).replace("{{OGT}}", TXT[c["slug"]]["title"]).replace("{{OGD}}", TXT[c["slug"]]["desc"]))
     open(os.path.join(d, "catalogo/index.html"), "w", encoding="utf-8").write(cat)
     if segno:
         q = segno.make("https://mitienda.beauty/%s/" % c["slug"], error="m", boost_error=False); m = list(q.matrix); qn = len(m)
@@ -41,3 +62,4 @@ if os.path.exists(teams_path):
                       .replace("{{BIENVENIDA}}", t.get("bienvenida", "")))
         open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(html)
         print("ok equipo", slug)
+json.dump(TXT, open(os.path.join(ROOT, "og/textos.json"), "w", encoding="utf-8"), ensure_ascii=False, indent=1)
