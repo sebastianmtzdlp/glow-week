@@ -8,7 +8,7 @@ tpl = open(os.path.join(ROOT, "_template/index.html"), encoding="utf-8").read()
 cat = open(os.path.join(ROOT, "_template/catalogo/index.html"), encoding="utf-8").read()
 for c in eq["consultoras"]:
     d = os.path.join(ROOT, c["slug"]); os.makedirs(os.path.join(d, "catalogo"), exist_ok=True)
-    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(tpl.replace("{{NOMBRE}}", c["nombre"]))
+    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(tpl.replace("{{NOMBRE}}", c["nombre"]).replace("{{SLUG}}", c["slug"]))
     open(os.path.join(d, "catalogo/index.html"), "w", encoding="utf-8").write(cat)
     p = os.path.join(d, "promos.json")
     if not os.path.exists(p):
