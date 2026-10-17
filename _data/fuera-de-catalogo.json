@@ -1,6 +1,6 @@
 {
  "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
- "actualizado": "2026-10-16",
+ "actualizado": "2026-10-17",
  "grupos": [
   {
    "titulo": "Edición limitada y de temporada",
@@ -173,6 +173,11 @@
      "1002915",
      "Complete Blend Velvet Chocolate 540 g",
      990.0
+    ],
+    [
+     "1002887",
+     "FRM CC BODY LOTION DARK 110ML",
+     1500.0
     ]
    ]
   },
@@ -395,6 +400,196 @@
      "1302712",
      "Desmaquillante Bifásico",
      240.0
+    ],
+    [
+     "1001360",
+     "Vfx Pro Foundation W08",
+     560.0
+    ],
+    [
+     "1001389",
+     "Creamy Lipstick 03 Bittersweet",
+     180.0
+    ],
+    [
+     "1001498",
+     "Tinted Lip Plumper 02 Flirt",
+     280.0
+    ],
+    [
+     "1001536",
+     "Midnight Touch Highlighter - Drizzled Bronze",
+     400.0
+    ],
+    [
+     "1001802",
+     "Labial Líquido Matte Warm Brick",
+     241.5
+    ],
+    [
+     "1001804",
+     "Labial Líquido Matte Autumn Vibes",
+     241.5
+    ],
+    [
+     "1001805",
+     "Labial Líquido Matte Bombshell",
+     241.5
+    ],
+    [
+     "1002287",
+     "Labial Líquido Matte Ruby",
+     241.5
+    ],
+    [
+     "1001887",
+     "Labial Líquido Matte Baby Doll 15",
+     241.5
+    ],
+    [
+     "1001925",
+     "Labial Líquido Matte Determined - Nova",
+     241.5
+    ],
+    [
+     "1001928",
+     "Labial Líquido Matte Determined - Terra",
+     241.5
+    ],
+    [
+     "1001964",
+     "LATINA LIP LQR 01 CONFIDENTE",
+     225.0
+    ],
+    [
+     "1001965",
+     "LATINA LIP LQR 02 APASIONADA",
+     225.0
+    ],
+    [
+     "1001967",
+     "LATINA LIP LQR 04 DECIDIDA",
+     225.0
+    ],
+    [
+     "1001968",
+     "LATINA LIP LQR 05 POSITIVA",
+     225.0
+    ],
+    [
+     "1001966",
+     "LATINA LIP LQR 06 ATREVIDA",
+     225.0
+    ],
+    [
+     "1002280",
+     "LATINA LIP LQR 07 EXPRESIVA",
+     225.0
+    ],
+    [
+     "1002281",
+     "LATINA LIP LQR 08 CURIOSA",
+     225.0
+    ],
+    [
+     "1002283",
+     "LATINA LIP LQR 09 INSPIRADORA",
+     225.0
+    ],
+    [
+     "1002284",
+     "LATINA LIP LQR 10 VALIENTE",
+     225.0
+    ],
+    [
+     "1002132",
+     "Blusher 07 Peach Perfect",
+     310.0
+    ],
+    [
+     "1002516",
+     "Lip Oil Pink",
+     207.0
+    ],
+    [
+     "1002517",
+     "Lip Oil Cherry",
+     207.0
+    ],
+    [
+     "1002549",
+     "Royal Cherry Lip Gloss Cherry After Dark",
+     222.0
+    ],
+    [
+     "1002553",
+     "Lip Stylo 03 Nude Pink",
+     285.0
+    ],
+    [
+     "1002554",
+     "Lip Stylo 04 Dusty Rose",
+     285.0
+    ],
+    [
+     "1002555",
+     "Lip Stylo 05 Cool Brown",
+     285.0
+    ],
+    [
+     "1002556",
+     "Lip Stylo 06 Brilliant Red",
+     285.0
+    ],
+    [
+     "1002557",
+     "Lip Stylo 07 Hot Pink",
+     285.0
+    ],
+    [
+     "1002558",
+     "Lip Stylo 08 Wild Cherry",
+     285.0
+    ],
+    [
+     "1002559",
+     "Lip Stylo 09 Rose Shadow",
+     285.0
+    ],
+    [
+     "1002560",
+     "Lip Stylo 10 Spiced Rouge",
+     285.0
+    ],
+    [
+     "1002591",
+     "Rich Lip Oil Stick - Pixel Pink",
+     285.0
+    ],
+    [
+     "1002592",
+     "Rich Lip Oil Stick - Hey You",
+     285.0
+    ],
+    [
+     "1002593",
+     "Rich Lip Oil Stick - Next Level",
+     285.0
+    ],
+    [
+     "1002594",
+     "Rich Lip Oil Stick - Lowkey",
+     285.0
+    ],
+    [
+     "1002595",
+     "Rich Lip Oil Stick - Viral Rush",
+     285.0
+    ],
+    [
+     "1002615",
+     "Air Bronzer Duo Deep Cocoa",
+     550.0
     ]
    ]
   },
@@ -546,6 +741,21 @@
      "1119097",
      "Jabón Tradicional Hammam",
      105.0
+    ],
+    [
+     "1002797",
+     "Hand Cream Verbena Burst",
+     66.0
+    ],
+    [
+     "1002798",
+     "Hand Cream Velvet Fig",
+     66.0
+    ],
+    [
+     "1002799",
+     "Hand Cream Warm Vanilla",
+     66.0
     ]
    ]
   },
@@ -576,5 +786,5 @@
    ]
   }
  ],
- "hora": "14:55"
+ "hora": "09:06"
 }
