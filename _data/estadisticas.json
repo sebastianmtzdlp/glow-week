@@ -1,11 +1,11 @@
 {
  "actualizado": "2026-10-16",
- "hora": "18:02",
+ "hora": "18:40",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 25,
-  "agregados": 2,
-  "pedidos": 0,
+  "visitas": 63,
+  "agregados": 18,
+  "pedidos": 2,
   "wa": 0
  },
  "dias": [
@@ -15,22 +15,22 @@
   },
   {
    "d": "2026-10-16",
-   "v": 25
+   "v": 63
   }
  ],
  "consultoras": [
   {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 7,
-   "catalogo": 0,
-   "pedidos": 0
+   "visitas": 9,
+   "catalogo": 1,
+   "pedidos": 2
   },
   {
    "slug": "viri",
    "nombre": "Viri",
-   "visitas": 5,
-   "catalogo": 1,
+   "visitas": 7,
+   "catalogo": 2,
    "pedidos": 0
   },
   {
@@ -141,8 +141,48 @@
  ],
  "productos": [
   {
+   "code": "1000265",
+   "name": "Dr. C. Tuna Aqua Gel Limpiador Hidratación · 100 ml",
+   "agregados": 2
+  },
+  {
+   "code": "9000942",
+   "name": "Makeup Blending Sponge Esponja",
+   "agregados": 2
+  },
+  {
+   "code": "9000939",
+   "name": "Blending Brush Brocha",
+   "agregados": 2
+  },
+  {
+   "code": "9000935",
+   "name": "Blush and Powder Brush Brocha",
+   "agregados": 2
+  },
+  {
+   "code": "1002157",
+   "name": "All in One Palette Fair-Medium",
+   "agregados": 2
+  },
+  {
+   "code": "1000266",
+   "name": "Dr. C. Tuna Aqua Gotas de Hidratación Hidratación · 30 ml",
+   "agregados": 2
+  },
+  {
+   "code": "PK102734",
+   "name": "Besos de Bruja Kit de labios · 7 tonos",
+   "agregados": 2
+  },
+  {
    "code": "1002598",
    "name": "Precision Brow Pencil Soft Brown",
+   "agregados": 2
+  },
+  {
+   "code": "1002547",
+   "name": "Royal Cherry Eyeshadow Paleta de sombras",
    "agregados": 1
   },
   {
