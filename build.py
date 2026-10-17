@@ -22,9 +22,9 @@ if _term:
     except Exception: _activa = True
 def textos(nombre):
     if _activa and _max:
-        desc = "%s: hasta %d%% de descuento. Siempre hay promos, arma tu pedido y mándalo por WhatsApp." % (_ven.get("nombre", "Promos"), _max)
+        desc = "%s: hasta %d%% de descuento. Siempre hay promos para ti: arma tu pedido y mándalo por WhatsApp." % (_ven.get("nombre", "Promos"), _max)
     else:
-        desc = "Pronto nuevas promos. Siempre hay promos: arma tu pedido y mándalo por WhatsApp."
+        desc = "Pronto llega un nuevo evento, y siempre hay promos para ti. Arma tu pedido y mándalo por WhatsApp."
     return {"title": "Farmasi con " + nombre, "desc": desc, "eyebrow": _ven.get("nombre", "Farmasi") if _activa else "Farmasi"}
 os.makedirs(os.path.join(ROOT, "og"), exist_ok=True)
 TXT = {}
