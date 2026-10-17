@@ -1,11 +1,11 @@
 {
  "actualizado": "2026-10-17",
- "hora": "13:00",
+ "hora": "14:24",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 153,
-  "agregados": 22,
-  "pedidos": 3,
+  "visitas": 166,
+  "agregados": 24,
+  "pedidos": 4,
   "wa": 0
  },
  "dias": [
@@ -19,7 +19,7 @@
   },
   {
    "d": "2026-10-17",
-   "v": 29
+   "v": 42
   }
  ],
  "consultoras": [
@@ -28,7 +28,7 @@
    "nombre": "Selene",
    "visitas": 18,
    "catalogo": 1,
-   "pedidos": 3
+   "pedidos": 4
   },
   {
    "slug": "viri",
@@ -183,6 +183,16 @@
    "code": "1002598",
    "name": "Precision Brow Pencil Soft Brown",
    "agregados": 2
+  },
+  {
+   "code": "PK102736",
+   "name": "Protección Mística Kit de skincare",
+   "agregados": 1
+  },
+  {
+   "code": "PK102732",
+   "name": "Rubor de Bruja Kit de rostro",
+   "agregados": 1
   },
   {
    "code": "1000272",
