@@ -218,6 +218,17 @@
   .pd-body ul{margin:10px 0 0;padding-left:18px;font-size:14px;color:var(--muted);line-height:1.5}
   .pd-body .note{margin-top:10px;font-size:13.5px;color:var(--muted);background:var(--tint);border-radius:12px;padding:10px 12px}
   .card .pic,.card .name,.gift-item{cursor:pointer}
+  .pd-body .rate{font-size:13px;color:var(--muted);margin:2px 0 0}.pd-body .rate b{color:var(--ink)}
+  .pd-body h5{font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-text);margin:16px 0 4px;font-weight:600}
+  .pd-body p.t{font-size:14.5px;line-height:1.5;color:var(--ink);white-space:pre-line}
+  .pd-body details.dt{border-top:1px solid var(--line);margin-top:12px;padding:10px 0 2px}
+  .pd-body details.dt summary{cursor:pointer;font-weight:600;font-size:14.5px;list-style:none;display:flex;justify-content:space-between}
+  .pd-body details.dt summary::-webkit-details-marker{display:none}
+  .pd-body details.dt summary::after{content:"+";color:var(--accent-text);font-size:20px;line-height:1}
+  .pd-body details.dt[open] summary::after{content:"–"}
+  .pd-body details.dt p.t{margin-top:8px;color:var(--muted);font-size:13.5px}
+  .pd-body .seals{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+  .pd-body .seals span{font-size:12px;background:var(--tint);color:var(--accent-text);border-radius:999px;padding:3px 10px}
   .helpcta{margin-top:12px;max-width:560px;width:100%;display:flex;align-items:center;gap:12px;border:1.5px solid var(--ink);border-radius:14px;padding:12px 14px;text-align:left;transition:transform .12s var(--ease),background .15s var(--ease)}
   .helpcta:active{transform:scale(.97)}
   @media(hover:hover){.helpcta:hover{background:var(--soft)}}
@@ -952,6 +963,19 @@
       renderCatalog(); update(); closeHelp(); openSheet(); return; }
   });
   // Ficha de producto: clic en foto o nombre (y en los productos de regalo)
+  const hx = t => String(t==null?"":t).replace(/[&<>]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+  let DET = null;
+  const loadDet = async () => { if (DET) return DET; try { DET = (await (await fetch("../_data/detalles.json?v=" + Date.now())).json()).productos || {}; } catch(_) { DET = {}; } return DET; };
+  function detHTML(x){
+    if (!x) return "";
+    const seals = (x.s||"").split(/\.\s*|\s{2,}/).map(t=>t.trim()).filter(t=>t.length>2 && t.length<46).slice(0,6);
+    return (x.r ? `<div class="rate">★ <b>${x.r.toString().replace(".",",")}</b>${x.c?` · ${x.c.toLocaleString("es-MX")} opiniones en Farmasi`:""}</div>` : "")
+      + (x.b ? `<h5>Beneficios</h5><p class="t">${hx(x.b)}</p>` : "")
+      + (seals.length ? `<div class="seals">${seals.map(t=>`<span>${hx(t)}</span>`).join("")}</div>` : "")
+      + (x.u ? `<details class="dt"><summary>Cómo usarlo</summary><p class="t">${hx(x.u)}</p></details>` : "")
+      + (x.i ? `<details class="dt"><summary>Ingredientes</summary><p class="t">${hx(x.i)}</p></details>` : "");
+  }
+  async function fillDet(code){ const D2 = await loadDet(); const el = $("pdDet"); if (el && D2[code]) el.innerHTML = detHTML(D2[code]); }
   function openProd(html, act){ $("prodBody").innerHTML = html; $("prodAct").innerHTML = act; document.body.classList.add("popen"); }
   function closeProd(){ document.body.classList.remove("popen"); }
   function showProduct(i){
@@ -961,8 +985,9 @@
     openProd(`<div class="pd-pic"><img src="${IMG}${p.img}.webp" alt="${p.name}" onerror="this.style.visibility='hidden'"></div>
       <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
       <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="pill">-${d}%</span></div>
-      ${p.incluye ? `<ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}</div>`,
+      ${p.incluye ? `<h5>Qué incluye</h5><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}<div id="pdDet"></div></div>`,
       q ? `<button class="send" data-pclose>Listo, ya está en tu pedido (${q})</button>` : `<button class="send" data-padd="${i}">Agregar al pedido</button>`);
+    if (!p.code.startsWith("PK")) fillDet(p.code);
   }
   function showGift(gi){
     const g = GIFT_ITEMS[gi]; if(!g) return;
@@ -971,8 +996,9 @@
     openProd(`<div class="pd-pic"><img src="${IMG}${g.img}.webp" alt="${g.name}" onerror="this.style.visibility='hidden'"></div>
       <div class="pd-body"><div class="eyebrow">Regalo</div><h4 id="prodName">${g.name}</h4>
       <div class="pr"><b>Gratis</b><s>${money(g.retail)}</s></div>
-      <div class="note">Te lo llevas sin pagar al llegar a ${money(GOAL)} en tu pedido (${GIFT}).</div></div>`,
+      <div class="note">Te lo llevas sin pagar al llegar a ${money(GOAL)} en tu pedido (${GIFT}).</div><div id="pdDet"></div></div>`,
       `<button class="send" data-pclose>Entendido</button>`);
+    fillDet(g.img.split("_")[0]);
   }
   document.addEventListener("click", e=>{
     const pc = e.target.closest(".card .pic, .card .name");
