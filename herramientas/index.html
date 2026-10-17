@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Herramientas · Mi Tienda Beauty</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FAF7F5;--card:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--accent:#DB414C;--tint:#FDEEF0;--soft:#EEF0F8}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+  .wrap{max-width:560px;margin:0 auto;padding:0 18px 60px}
+  header{padding:34px 0 14px}.eb{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
+  h1{font-size:34px;line-height:1.05;font-weight:800;margin:8px 0}
+  .lead{color:var(--muted);font-size:16px}
+  .tabs{display:flex;gap:6px;background:var(--soft);padding:4px;border-radius:999px;margin:14px 0;position:sticky;top:8px;z-index:2}
+  .tabs button{flex:1;border:0;background:transparent;font:inherit;font-weight:600;font-size:14px;padding:10px 6px;border-radius:999px;color:var(--ink);cursor:pointer}
+  .tabs button[aria-selected=true]{background:var(--accent);color:#fff}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:18px;margin-top:14px}
+  h2{font-size:19px;font-weight:800;margin-bottom:4px}.card>p,.hint{color:var(--muted);font-size:14px}
+  label{display:block;font-size:13px;font-weight:600;margin:14px 0 6px}
+  select,input,textarea{width:100%;font:inherit;font-size:16px;padding:12px 13px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--ink)}
+  textarea{min-height:110px;resize:vertical}
+  .btn{display:block;width:100%;border:0;border-radius:14px;padding:14px;margin-top:10px;font:inherit;font-size:16px;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;background:var(--accent);color:#fff}
+  .btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--accent)}
+  .out{white-space:pre-wrap;background:var(--tint);border-radius:14px;padding:14px;font-size:15px;margin-top:12px;min-height:60px}
+  .ag{display:grid;gap:8px;margin-top:10px}
+  .ag div{display:flex;gap:10px;align-items:center;padding:8px 10px;border:1px solid var(--line);border-radius:12px;font-size:14px}
+  .ag img{width:40px;height:40px;border-radius:8px;background:#fff;object-fit:contain;flex:none}
+  .ag small{display:block;color:var(--muted)}
+  .empty{color:var(--muted);font-size:14px;margin-top:10px}
+  [hidden]{display:none!important}
+  a.back{display:block;margin-top:22px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header><div class="eb">Para el equipo</div><h1>Herramientas</h1><p class="lead">Lo que te ayuda a atender más rápido a tus clientas.</p></header>
+  <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="seg">Seguimiento</button><button role="tab" aria-selected="false" data-t="ago">Agotados</button><button role="tab" aria-selected="false" data-t="mia">Mis links</button></div>
+
+  <section id="t-seg">
+    <div class="card">
+      <h2>Mensaje de seguimiento</h2>
+      <p>Pega el pedido que te llegó por WhatsApp y te armo la respuesta con el total, el 50 % de apartado y tus datos de pago.</p>
+      <label for="ped">Pedido de tu clienta</label>
+      <textarea id="ped" placeholder="Pega aquí el mensaje completo del pedido"></textarea>
+      <label for="pay">Mis datos de pago <span class="hint">(se guardan solo en este celular, no en el sitio)</span></label>
+      <textarea id="pay" placeholder="Banco, titular, CLABE o cuenta, y tu número si es depósito"></textarea>
+      <button class="btn alt" id="mk">Armar mensaje</button>
+      <div id="res" hidden>
+        <div class="out" id="out" contenteditable="true" role="textbox" aria-label="Mensaje"></div>
+        <p class="hint" style="margin-top:6px">Puedes editarlo antes de enviarlo.</p>
+        <button class="btn" id="cp">Copiar mensaje</button>
+        <a class="btn alt" id="wa" target="_blank" rel="noopener">Abrir en WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="t-ago" hidden>
+    <div class="card"><h2>Agotados</h2><p id="agSub">Cargando…</p><div class="ag" id="agList"></div><p class="empty" id="agEmpty" hidden>Por ahora no hay nada agotado.</p>
+      <p class="hint" style="margin-top:12px">¿Ves algo agotado que no está aquí? Avisa al equipo y se marca en todas las tiendas.</p></div>
+  </section>
+
+  <section id="t-mia" hidden>
+    <div class="card"><h2>Mis links</h2><p>Elige tu nombre.</p><select id="who" aria-label="Tu nombre"></select>
+      <div id="mine" hidden>
+        <label>Mi tienda</label><div class="out" id="u1" style="min-height:0;padding:10px 12px"></div>
+        <button class="btn" id="cu">Copiar mi link</button>
+        <a class="btn alt" id="tj">Mi tarjeta para redes</a>
+        <a class="btn alt" id="bv">Guía de bienvenida</a>
+      </div></div>
+  </section>
+  <a class="back" href="../">← Volver a Mi Tienda Beauty</a>
+</div>
+<script>
+(async()=>{
+  const $=id=>document.getElementById(id), LS=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k)||"";localStorage.setItem(k,v)}catch(_){return ""}};
+  const money=n=>"$"+Number(n).toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2});
+  const show=t=>{["seg","ago","mia"].forEach(k=>$("t-"+k).hidden=k!==t);document.querySelectorAll(".tabs button").forEach(b=>b.setAttribute("aria-selected",b.dataset.t===t))};
+  document.querySelectorAll(".tabs button").forEach(b=>b.onclick=()=>{show(b.dataset.t);history.replaceState(null,"","#"+b.dataset.t)});
+  const h=location.hash.slice(1); if(["seg","ago","mia"].includes(h)) show(h);
+
+  // ---- Seguimiento
+  $("pay").value=LS("glow_pay"); $("pay").addEventListener("input",()=>LS("glow_pay",$("pay").value));
+  $("mk").onclick=()=>{
+    const t=$("ped").value; if(!t.trim()){ $("ped").focus(); return; }
+    const items=t.split(/\n/).map(l=>l.trim()).filter(l=>/^[•\-*]\s*\d+\s*x\s/i.test(l)).map(l=>l.replace(/^[•\-*]\s*/,"• ").replace(/\s*\(\d{6,8}\)/,""));
+    const tm=t.match(/Total:\s*\$?\s*([\d.,]+)/i), total=tm?parseFloat(tm[1].replace(/,/g,"")):NaN;
+    const nm=(t.match(/soy\s+([^,\n:]+?)(?:,|\.|\n| quiero)/i)||[])[1]||"";
+    const ent=(t.match(/Entrega:\s*(.+)/i)||[])[1]||"";
+    const pay=$("pay").value.trim();
+    let m=`Hola${nm?" "+nm.trim():""} 💕 ¡Gracias por tu pedido! Ya lo recibí:\n\n`+(items.length?items.join("\n"):"(pega el pedido completo para ver aquí los productos)")+"\n";
+    if(!isNaN(total)){ const ap=Math.round(total*50)/100; m+=`\nTotal: ${money(total)}\nPara apartar tu pedido, el 50 %: ${money(ap)} por transferencia o depósito.\nEl resto (${money(total-ap)}) se liquida antes de la entrega.\n`; }
+    if(ent) m+=`\nEntrega: ${ent.trim()}\n`;
+    m+=`\nTe confirmo existencias; si algo no hay, te aviso y lo cambiamos.\n`;
+    if(pay) m+=`\nMis datos de pago:\n${pay}\n`;
+    m+=`\nCuando hagas tu pago, mándame tu comprobante y te confirmo. ✨`;
+    $("out").textContent=m; $("res").hidden=false;
+    $("wa").href="https://wa.me/?text="+encodeURIComponent(m);
+    $("out").oninput=()=>{ $("wa").href="https://wa.me/?text="+encodeURIComponent($("out").innerText); };
+  };
+  $("cp").onclick=async()=>{ try{ await navigator.clipboard.writeText($("out").innerText); $("cp").textContent="¡Copiado!"; }catch(_){ $("cp").textContent="Selecciona y copia el texto"; } setTimeout(()=>$("cp").textContent="Copiar mensaje",2000); };
+
+  // ---- Agotados
+  let B={},T={},E={consultoras:[]};
+  try{ B=await (await fetch("../_data/promos-base.json?v="+Date.now())).json(); }catch(_){}
+  try{ T=await (await fetch("../_data/tonos.json?v="+Date.now())).json(); }catch(_){}
+  try{ E=await (await fetch("../_data/equipo.json?v="+Date.now())).json(); }catch(_){}
+  const P=Object.fromEntries((B.productos||[]).map(p=>[p.code,p])), IMG="https://content.mx.farmasi.com/Product/";
+  const rows=[];
+  (B.agotados||[]).forEach(c=>{const p=P[c]; if(p) rows.push({img:p.img,n:p.name,s:p.shade||"Producto completo"});});
+  Object.entries(T).forEach(([k,v])=>{const p=P[k]; if(!p) return; v.filter(x=>!x[2]).forEach(x=>rows.push({img:x[0]+"_250",n:p.name,s:"Tono: "+x[1]}));});
+  const f=B.agotados_actualizado; $("agSub").textContent=f?"Actualizado el "+f.split("-").reverse().join("/")+".":"";
+  $("agList").innerHTML=rows.map(r=>`<div><img src="${IMG}${r.img.replace("_250","_400")}.webp" alt="" onerror="this.style.visibility='hidden'"><span>${r.n}<small>${r.s}</small></span></div>`).join("");
+  $("agEmpty").hidden=rows.length>0;
+
+  // ---- Mis links
+  const C=E.consultoras.slice().sort((a,b)=>a.nombre.localeCompare(b.nombre,"es"));
+  $("who").innerHTML='<option value="">— Elige —</option>'+C.map(c=>`<option value="${c.slug}">${c.nombre}</option>`).join("");
+  const pick=s=>{ const c=C.find(x=>x.slug===s); $("mine").hidden=!c; if(!c) return; LS("glow_who",s); $("who").value=s; const u="https://mitienda.beauty/"+s+"/"; $("u1").textContent=u; $("tj").href="../"+s+"/tarjeta/"; $("bv").href="../bienvenida/?c="+s;
+    $("cu").onclick=async()=>{ try{ await navigator.clipboard.writeText(u); $("cu").textContent="¡Link copiado!"; }catch(_){} setTimeout(()=>$("cu").textContent="Copiar mi link",2000); }; };
+  $("who").onchange=e=>pick(e.target.value); pick(LS("glow_who"));
+})();
+</script>
+</body>
+</html>

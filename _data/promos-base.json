@@ -921,5 +921,6 @@
    "forzar": true
   }
  ],
- "_temas_nota": "Calendario de temas: cada entrada rige desde su fecha (hora México). 'forzar': true pisa el tema propio de cada consultora. tema '' = colores Farmasi. Sin entrada vigente se usa 'tema'."
+ "_temas_nota": "Calendario de temas: cada entrada rige desde su fecha (hora México). 'forzar': true pisa el tema propio de cada consultora. tema '' = colores Farmasi. Sin entrada vigente se usa 'tema'.",
+ "agotados_actualizado": "2026-10-16"
 }
