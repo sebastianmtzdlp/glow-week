@@ -738,7 +738,7 @@
     }).join("");
   }
 
-  function card(p){
+  function card(p, hit=""){
     const i = products.indexOf(p), fam = FAM[i]||[i], q = fam.reduce((a,k)=>a+(cart[k]||0),0), d = pct(p);
     const allOut = fam.every(k=>ALL[k].agotado);
     return `<article class="card${q?" in":""}${allOut?" oos":""}" data-i="${i}">
@@ -749,7 +749,7 @@
       </div>
       <div class="body">
         <div class="name">${p.name}</div>
-        <div class="shade">${p.ntonos?p.ntonos+" tonos":p.shade}</div>
+        <div class="shade">${hit ? "Tono: "+hx(hit) : p.ntonos?p.ntonos+" tonos":p.shade}</div>
         ${p.incluye ? `<details class="inc"><summary>Qué incluye</summary><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul></details>` : ""}
         <div class="price"><span class="now">${money(p.price)}</span><span class="was">${money(p.retail)}</span></div>
         ${p.flashEnds ? `<div class="flash-left" data-ends="${p.flashEnds}"></div>` : ""}
@@ -763,11 +763,17 @@
   const norm = t => String(t||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
   const ALIAS = {Labios:"labial labiales labios",Ojos:"ojos sombra sombras",Rostro:"rostro cara maquillaje",Skincare:"skincare piel facial cuidado",Brochas:"brocha brochas",Kits:"kit kits set"};
   const hay = p => norm([p.name,p.shade,p.cat,ALIAS[p.cat],(p.incluye||[]).join(" "), ((FAM[products.indexOf(p)]||[]).map(k=>ALL[k].tonoLbl||ALL[k].shade)).join(" ")].join(" "));
+  // Sinónimos en español para los nombres de tono (que vienen en inglés o por número)
+  const TSYN = {rojo:"red ruby cherry cranberry fiery brick berry",roja:"red ruby cherry cranberry fiery",rosa:"pink rose blush",rosado:"pink rose blush",nude:"nude beige sand almond buff linen cashew",beige:"beige sand natural",cafe:"brown chocolate toffee spice tan",moreno:"brown tan deep",morena:"brown tan deep",canela:"spice tan toffee",chocolate:"chocolate brown",claro:"light ivory porcelain fair",clara:"light ivory porcelain fair",medio:"medium",media:"medium",oscuro:"deep brown",oscura:"deep brown",morado:"violet berry",violeta:"violet",vino:"cranberry berry ruby",fria:"cool",frio:"cool",calido:"warm",calida:"warm",neutro:"neutral",neutra:"neutral"};
+  const alts = t => TSYN[t] ? [t, ...TSYN[t].split(" ")] : [t];
   const srt = l => sortM==="pa" ? [...l].sort((a,b)=>a.price-b.price) : sortM==="pd" ? [...l].sort((a,b)=>b.price-a.price) : sortM==="dd" ? [...l].sort((a,b)=>pct(b)-pct(a)) : l;
   function renderCatalog(){
     let groups;
     const terms = norm(qry).split(/\s+/).filter(Boolean);
-    if (terms.length) { const r = products.filter(p=>{const h=hay(p); return terms.every(t=>h.includes(t));}); groups = [["Resultados", r]]; }
+    const tAlts = terms.map(alts);
+    // tono que coincide con la búsqueda (para mostrarlo en la tarjeta)
+    const tonoHit = p => { if (!terms.length || !p.ntonos) return ""; const all = tAlts.flat(); const labs = [...new Set((FAM[products.indexOf(p)]||[]).map(k=>ALL[k].tonoLbl).filter(l => l && all.some(x => norm(l).includes(x))))]; return labs.slice(0,3).join(", ") + (labs.length>3 ? "…" : ""); };
+    if (terms.length) { const r = products.filter(p=>{const h=hay(p); return tAlts.every(a=>a.some(x=>h.includes(x)));}); groups = [["Resultados", r]]; }
     else if (filter==="Todo" && sortM) groups = [["Todo", products]];
     else if (filter==="Todo") {
       groups = realCats.map(c=>[c, products.filter(p=>p.cat===c)]);
@@ -776,7 +782,7 @@
     else if (SPECIAL[filter]) groups = [[filter, products.filter(SPECIAL[filter]).sort((a,b)=>pct(b)-pct(a))]];
     else groups = [[filter, products.filter(p=>p.cat===filter)]];
     if (terms.length && !groups[0][1].length) { $("catalog").innerHTML = `<p class="empty">No encontré "${hx(qry)}". Prueba con otra palabra (labial, suero, rubor…) o escríbeme por WhatsApp.</p>`; return; }
-    $("catalog").innerHTML = groups.map(([c,list])=>`<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2><div class="grid">${srt(list).map(card).join("")}</div></section>`).join("");
+    $("catalog").innerHTML = groups.map(([c,list])=>`<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2><div class="grid">${srt(list).map(p=>card(p, tonoHit(p))).join("")}</div></section>`).join("");
   }
 
   function totals(){
