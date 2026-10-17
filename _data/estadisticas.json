@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-17",
- "hora": "11:52",
+ "hora": "12:06",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 136,
+  "visitas": 146,
   "agregados": 22,
   "pedidos": 3,
   "wa": 0
@@ -19,7 +19,7 @@
   },
   {
    "d": "2026-10-17",
-   "v": 12
+   "v": 22
   }
  ],
  "consultoras": [
@@ -40,7 +40,7 @@
   {
    "slug": "elda",
    "nombre": "Elda",
-   "visitas": 4,
+   "visitas": 6,
    "catalogo": 0,
    "pedidos": 0
   },
@@ -238,6 +238,21 @@
     {
      "code": "1000272",
      "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+     "n": 1
+    }
+   ]
+  },
+  "elda": {
+   "agregados": [],
+   "vistos": [
+    {
+     "code": "1002515",
+     "name": "Lip Oil Transparent",
+     "n": 1
+    },
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
      "n": 1
     }
    ]
