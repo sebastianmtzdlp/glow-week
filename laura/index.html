@@ -247,6 +247,12 @@
   .fill .fi div{flex:1;min-width:0;font-size:13px;line-height:1.25}.fill .fi b{display:block;font-size:14px}
   .fill .fi button{flex:none;font:inherit;font-weight:700;font-size:13px;border:0;border-radius:10px;padding:8px 12px;background:var(--accent);color:var(--on-ink);cursor:pointer}
   .shr{margin-top:14px;width:100%;font:inherit;font-weight:600;font-size:14px;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:transparent;color:inherit;cursor:pointer}
+  .combo{margin-top:16px;border-top:1px solid var(--line);padding-top:12px}.combo h5{margin:0 0 8px}
+  .cb{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--line)}
+  .cb:last-child{border-bottom:0}.cb img{width:44px;height:44px;border-radius:10px;background:#fff;object-fit:contain;flex:none}
+  .cb div{flex:1;min-width:0;font-size:14px;line-height:1.25}.cb b{display:block}.cb span{font-size:12px;color:var(--muted)}
+  .cb button{flex:none;font:inherit;font-weight:700;font-size:13px;border:0;border-radius:10px;padding:8px 12px;background:var(--accent);color:var(--on-ink);cursor:pointer}
+  .cb button[disabled]{background:var(--soft);color:var(--muted)}
   .tonos{margin:14px 0 4px}.tonos h5{margin:0 0 8px}
   .tchips{display:flex;flex-wrap:wrap;gap:8px}
   .tchip{display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 5px;border-radius:999px;border:1.5px solid var(--line,rgba(128,128,128,.3));background:transparent;color:inherit;font:inherit;font-size:13px;cursor:pointer}
@@ -1079,17 +1085,26 @@
   async function fillDet(code){ const D2 = await loadDet(); const el = $("pdDet"); if (el && D2[code]) el.innerHTML = detHTML(D2[code]); }
   function openProd(html, act){ $("prodBody").innerHTML = html; $("prodAct").innerHTML = act; document.body.classList.add("popen"); }
   function closeProd(){ document.body.classList.remove("popen"); }
+  function fillCombo(p){
+    const el = $("pdCombo"); if (!el) return; const base = p.par!=null ? products[p.par] : p;
+    const ids = (D.combina||{})[base.code] || []; const items = ids.map(c => products.findIndex(x => x.code === c)).filter(k => k >= 0);
+    if (!items.length) { el.innerHTML = ""; return; }
+    el.innerHTML = `<div class="combo"><h5>Combina con</h5>${items.map(k => { const x = products[k], q2 = cart[k]||0, hasT = !!x.ntonos;
+      return `<div class="cb"><img src="${IMG}${hd(x.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><b>${x.name}</b><span>${hx(hasT ? x.ntonos+" tonos" : (x.shade||""))} · <span class="num">${money(x.price)}</span></span></div>${
+        x.agotado ? `<button type="button" disabled>Agotado</button>` : hasT ? `<button type="button" data-showp="${k}">Elegir</button>` : q2 ? `<button type="button" data-showp="${k}">En pedido (${q2})</button>` : `<button type="button" data-fill="${k}">Agregar</button>`}</div>`; }).join("")}</div>`;
+  }
+  let CUR = -1;
   function showProduct(i){
-    const p = ALL[i], d = pct(p), q = cart[i]||0, fi = famOf(i), fam = FAM[fi];
+    CUR = i; const p = ALL[i], d = pct(p), q = cart[i]||0, fi = famOf(i), fam = FAM[fi];
     gc("ver/"+p.code, p.name); gcs("ver", p.code, p.name);
     $("prodHead").textContent = p.cat;
     openProd(`<div class="pd-pic"><img id="pdMain" src="${IMG}${hd(p.img)}.webp" alt="${p.name}" onerror="this.style.visibility='hidden'"></div><div class="pd-thumbs" id="pdThumbs" hidden></div>
       <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
       ${fam ? `<div class="tonos"><h5>Tono · ${fam.length} opciones</h5><div class="tchips">${fam.map(k=>{const v=ALL[k]; return `<button type="button" class="tchip${v.agotado?" out":""}" data-tono="${k}" aria-current="${k===i}" title="${hx(v.shade)}${v.agotado?" · agotado":""}"><img src="https://content.mx.farmasi.com/Variant/${v.code}.png" alt="" onerror="this.style.display='none'"><span>${hx(v.shade)}</span></button>`}).join("")}</div></div>` : ""}
       <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="pill">-${d}%</span></div>
-      ${p.incluye ? `<h5>Qué incluye</h5><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}<button type="button" class="shr" data-share="${i}">Mandar a una amiga</button><div id="pdDet"></div></div>`,
+      ${p.incluye ? `<h5>Qué incluye</h5><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}<button type="button" class="shr" data-share="${i}">Mandar a una amiga</button><div id="pdCombo"></div><div id="pdDet"></div></div>`,
       q ? `<button class="send" data-pclose>Listo, ya está en tu pedido (${q})</button>` : p.agotado ? `<button class="send" disabled>Agotado por ahora</button>` : `<button class="send" data-padd="${i}">Agregar al pedido</button>`);
-    fillDet(p.par!=null?products[p.par].code:p.code); fillGallery(p);
+    fillDet(p.par!=null?products[p.par].code:p.code); fillGallery(p); fillCombo(p);
   }
   function showGift(gi){
     const g = GIFT_ITEMS[gi]; if(!g) return;
@@ -1109,7 +1124,8 @@
     const gl = e.target.closest("[data-gal]");
     if (gl){ $("pdMain").style.visibility = "visible"; $("pdMain").src = gl.dataset.gal; document.querySelectorAll("#pdThumbs button").forEach(b=>b.setAttribute("aria-current", b===gl)); return; }
     const tn = e.target.closest("[data-tono]"); if (tn){ showProduct(+tn.dataset.tono); const c=document.querySelector(".tchip[aria-current=true]"); if(c) c.scrollIntoView({inline:"center",block:"nearest"}); return; }
-    const fl = e.target.closest("[data-fill]"); if (fl){ const i=+fl.dataset.fill; if(ALL[i].agotado) return; cart[i]=1; gc("completar/"+ALL[i].code, ALL[i].name); refreshCard(i); update(); return; }
+    const sp = e.target.closest("[data-showp]"); if (sp){ showProduct(+sp.dataset.showp); return; }
+    const fl = e.target.closest("[data-fill]"); if (fl){ const i=+fl.dataset.fill; if(ALL[i].agotado) return; cart[i]=1; gc("completar/"+ALL[i].code, ALL[i].name); refreshCard(i); update(); if (document.body.classList.contains("popen") && CUR>=0) showProduct(CUR); return; }
     const sh = e.target.closest("[data-share]"); if (sh){ const p=ALL[+sh.dataset.share], par=products[famOf(+sh.dataset.share)], url=location.origin+location.pathname+"?p="+p.code, d=pct(p);
       const txt=`Mira esto de Farmasi: ${p.name}${p.shade?" · "+p.shade:""} a ${money(p.price)} (antes ${money(p.retail)}, -${d}%)`; gc("compartir/"+p.code, p.name);
       if (navigator.share) navigator.share({text:txt, url}).catch(()=>{}); else window.open("https://wa.me/?text="+encodeURIComponent(txt+"\n"+url),"_blank"); return; }
