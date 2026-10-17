@@ -1,0 +1,48 @@
+name: Vistas previas (og)
+
+# Regenera las imágenes de WhatsApp cuando cambian los temas o los datos,
+# y pone una versión nueva en el enlace para que WhatsApp la vuelva a leer.
+on:
+  schedule:
+    - cron: "15 6 * * *"   # diario, 00:15 hora de México
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ["_data/**", "scripts/og.cjs", "_template/**"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: og
+  cancel-in-progress: false
+
+jobs:
+  og:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Instalar Playwright, Chromium y fuentes Outfit
+        run: |
+          mkdir -p "$RUNNER_TEMP/og" && cd "$RUNNER_TEMP/og"
+          npm init -y >/dev/null
+          npm i playwright@1.47.2 @fontsource/outfit@5 >/dev/null
+          npx playwright install --with-deps chromium
+          echo "PW=$RUNNER_TEMP/og/node_modules/playwright" >> "$GITHUB_ENV"
+          echo "FONTS=$RUNNER_TEMP/og/node_modules/@fontsource/outfit/files" >> "$GITHUB_ENV"
+      - name: Generar imágenes y páginas
+        run: |
+          node scripts/og.cjs
+          python3 build.py > /dev/null
+      - name: Publicar cambios
+        run: |
+          git config user.name "Claude"
+          git config user.email "noreply@anthropic.com"
+          git add -A
+          if git diff --cached --quiet; then echo "Sin cambios"; else
+            git commit -m "Vistas previas actualizadas (automático)"
+            git pull -q --rebase origin main && git push -q origin HEAD:main
+          fi

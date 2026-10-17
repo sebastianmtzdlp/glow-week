@@ -13,7 +13,7 @@ const T={normal:{bg:'#FAF7F5',ink:'#262A4A',accent:'#DB414C',soft:'#FDEEF0',mute
 const eq=JSON.parse(fs.readFileSync(R+'/_data/equipo.json','utf8')), base=JSON.parse(fs.readFileSync(R+'/_data/promos-base.json','utf8'));
 const temaVigente=(own,B)=>{const now=Date.now();let cal=null;(B.temas||[]).filter(e=>new Date(e.desde+'T00:00:00-06:00').getTime()<=now).sort((a,b)=>a.desde<b.desde?-1:1).forEach(e=>cal=e);if(cal&&cal.forzar)return cal.tema;if(own!==undefined)return own;return cal?cal.tema:(B.tema||'');};
 const ff=w=>`@font-face{font-family:O;font-weight:${w};src:url('file://${FD}/outfit-latin-${w}-normal.woff2')}`;
-(async()=>{const b=await chromium.launch({executablePath:process.env.CHROMIUM||'/opt/pw-browsers/chromium'});const pg=await b.newPage({viewport:{width:1200,height:630}});
+(async()=>{const b=await chromium.launch({executablePath:process.env.CHROMIUM||(fs.existsSync('/opt/pw-browsers/chromium')?'/opt/pw-browsers/chromium':undefined)});const pg=await b.newPage({viewport:{width:1200,height:630}});
 for(const c of [...eq.consultoras,{slug:'equipo',nombre:'Team',_team:1}]){
   let pr={};try{pr=JSON.parse(fs.readFileSync(`${R}/${c.slug}/promos.json`,'utf8'))}catch(_){}
   const tn=c._team?'normal':temaVigente(pr.tema,base); const t=T[tn]||T.normal;

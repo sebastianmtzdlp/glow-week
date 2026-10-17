@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Genera la carpeta de cada consultora a partir de _template y _data/equipo.json.
 Uso: python3 build.py   (no borra promos.json existentes; solo crea los que falten y renueva los HTML)."""
-import json, os
+import hashlib, json, os
 try:
     import segno
 except ImportError:
@@ -13,7 +13,9 @@ cat = open(os.path.join(ROOT, "_template/catalogo/index.html"), encoding="utf-8"
 tar = open(os.path.join(ROOT, "_template/tarjeta/index.html"), encoding="utf-8").read()
 for c in eq["consultoras"]:
     d = os.path.join(ROOT, c["slug"]); os.makedirs(os.path.join(d, "catalogo"), exist_ok=True)
-    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(tpl.replace("{{NOMBRE}}", c["nombre"]).replace("{{SLUG}}", c["slug"]))
+    ogp = os.path.join(ROOT, "og", c["slug"] + ".png")  # versión = huella de la imagen: WhatsApp vuelve a leerla al cambiar
+    ogv = hashlib.md5(open(ogp, "rb").read()).hexdigest()[:8] if os.path.exists(ogp) else "1"
+    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(tpl.replace("{{NOMBRE}}", c["nombre"]).replace("{{SLUG}}", c["slug"]).replace("{{OGV}}", ogv))
     open(os.path.join(d, "catalogo/index.html"), "w", encoding="utf-8").write(cat)
     if segno:
         q = segno.make("https://mitienda.beauty/%s/" % c["slug"], error="m", boost_error=False); m = list(q.matrix); qn = len(m)
