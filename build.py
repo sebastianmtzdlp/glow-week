@@ -25,3 +25,17 @@ for c in eq["consultoras"]:
                    "base": "../_data/promos-base.json", "consultora": c["nombre"], "whatsapp": c["whatsapp"],
                    "instagram": c.get("ig", ""), "referidas": []}, open(p, "w", encoding="utf-8"), ensure_ascii=False, indent=1)
     print("ok", c["slug"])
+
+# Índices de equipo: /equipo/<slug>/ (ver _data/equipos.json)
+teams_path = os.path.join(ROOT, "_data/equipos.json")
+if os.path.exists(teams_path):
+    eq_tpl = open(os.path.join(ROOT, "_template/equipo/index.html"), encoding="utf-8").read()
+    teams = json.load(open(teams_path, encoding="utf-8"))
+    for slug, t in teams.items():
+        if slug.startswith("_"): continue
+        d = os.path.join(ROOT, "equipo", slug); os.makedirs(d, exist_ok=True)
+        lider = next((c for c in eq["consultoras"] if c["slug"] == t.get("lider")), {})
+        html = (eq_tpl.replace("{{TEAM}}", slug).replace("{{NOMBRE_EQ}}", t["nombre"]).replace("{{TITULO}}", t["titulo"])
+                      .replace("{{BIENVENIDA}}", t.get("bienvenida", "")))
+        open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(html)
+        print("ok equipo", slug)
