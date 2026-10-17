@@ -234,6 +234,16 @@
   .card.oos .pic img{opacity:.4;filter:grayscale(1)}
   .oosb{position:absolute;left:8px;bottom:8px;background:var(--ink);color:var(--on-ink);font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em}
   .add:disabled{opacity:.5;cursor:not-allowed}
+  .resume{display:flex;align-items:center;gap:10px;background:var(--tint);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 10px;font-size:14px}
+  .resume span{flex:1}.resume button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:8px 12px;background:var(--accent);color:var(--on-ink);cursor:pointer}
+  .resume .rx{background:transparent;color:var(--muted);padding:6px 8px;font-size:18px;line-height:1}
+  .fill{margin:10px 0;padding:12px;border:1.5px dashed var(--accent);border-radius:16px}
+  .fill h6{margin:0 0 8px;font-size:14px;font-weight:700}
+  .fill .fi{display:flex;align-items:center;gap:10px;padding:6px 0}
+  .fill .fi img{width:44px;height:44px;border-radius:10px;background:#fff;object-fit:contain;flex:none}
+  .fill .fi div{flex:1;min-width:0;font-size:13px;line-height:1.25}.fill .fi b{display:block;font-size:14px}
+  .fill .fi button{flex:none;font:inherit;font-weight:700;font-size:13px;border:0;border-radius:10px;padding:8px 12px;background:var(--accent);color:var(--on-ink);cursor:pointer}
+  .shr{margin-top:14px;width:100%;font:inherit;font-weight:600;font-size:14px;padding:12px;border-radius:12px;border:1.5px solid var(--line);background:transparent;color:inherit;cursor:pointer}
   .tonos{margin:14px 0 4px}.tonos h5{margin:0 0 8px}
   .tchips{display:flex;flex-wrap:wrap;gap:8px}
   .tchip{display:inline-flex;align-items:center;gap:7px;padding:5px 12px 5px 5px;border-radius:999px;border:1.5px solid var(--line,rgba(128,128,128,.3));background:transparent;color:inherit;font:inherit;font-size:13px;cursor:pointer}
@@ -495,7 +505,8 @@
     </div>
   </div>
 
-  <nav class="filters" aria-label="Categorías"><div class="wrap"><div class="chips" id="chips"></div><div class="srow"><div class="srch"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar…" autocomplete="off" enterkeyhint="search" aria-label="Buscar producto"></div><label class="sortrow"><select id="sort" aria-label="Ordenar productos"><option value="">Recomendado</option><option value="pa">Precio: menor a mayor</option><option value="pd">Precio: mayor a menor</option><option value="dd">Mayor descuento</option></select></label></div></div></nav>
+  <nav class="filters" aria-label="Categorías"><div class="wrap"><div class="chips" id="chips"></div><div class="resume" id="resume" hidden></div>
+    <div class="srow"><div class="srch"><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg><input id="q" type="search" placeholder="Buscar…" autocomplete="off" enterkeyhint="search" aria-label="Buscar producto"></div><label class="sortrow"><select id="sort" aria-label="Ordenar productos"><option value="">Recomendado</option><option value="pa">Precio: menor a mayor</option><option value="pd">Precio: mayor a menor</option><option value="dd">Mayor descuento</option></select></label></div></div></nav>
 
   <div class="wrap" id="catalog"><p class="empty">Cargando productos…</p></div>
 
@@ -526,6 +537,7 @@
     </header>
     <div class="scroll">
     <div class="goal" id="goalSheet"><div class="msg"><span class="gm"></span><span class="num gp"></span></div><div class="track"><i></i></div></div>
+    <div class="fill" id="fillBox" hidden></div>
     <div class="lines" id="lines"></div>
     <div class="form">
       <div><label for="cName">Nombre y apellido</label><input id="cName" autocomplete="name" placeholder="Ej. Ana López" required></div>
@@ -779,6 +791,10 @@
     $("lines").innerHTML = ALL.map((p,i)=>{const q=cart[i]; if(!q) return "";
       return `<div class="line"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><div class="n">${p.name}</div><div class="d">${p.shade} · <span class="num">${money(p.price)}</span></div></div>
       <div class="q"><button class="step-btn" data-d="-1" data-i="${i}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="step-btn" data-d="1" data-i="${i}" aria-label="Agregar otro">${plus}</button></div></div>`}).join("");
+    (function(){ const fb=$("fillBox"), left=GOAL-t; if(!n || left<=0 || left>500){ fb.hidden=true; fb.innerHTML=""; return; }
+      const seen=new Set(), L=products.map((p,i)=>({p,i})).filter(x=>!x.p.agotado && !cart[x.i] && x.p.cat!=="Kits" && x.p.price>=left && !(FAM[x.i]&&FAM[x.i].some(k=>cart[k]))).sort((a,b)=>a.p.price-b.p.price).filter(x=>!seen.has(x.p.cat)&&seen.add(x.p.cat)).slice(0,3);
+      if(!L.length){ fb.hidden=true; return; }
+      fb.hidden=false; fb.innerHTML=`<h6>Te faltan ${money(left)}: con cualquiera de estos llegas al envío gratis</h6>`+L.map(({p,i})=>`<div class="fi"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><b>${p.name}</b>${p.ntonos?p.ntonos+" tonos":hx(p.shade||"")} · <span class="num">${money(p.price)}</span></div><button type="button" ${p.ntonos?`data-tono-open="${i}"`:`data-fill="${i}"`}>${p.ntonos?"Elegir":"Agregar"}</button></div>`).join(""); })();
     $("sendBtn").href = waLink();
     if (!n) closeSheet();
   }
@@ -1038,7 +1054,7 @@
       <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
       ${fam ? `<div class="tonos"><h5>Tono · ${fam.length} opciones</h5><div class="tchips">${fam.map(k=>{const v=ALL[k]; return `<button type="button" class="tchip${v.agotado?" out":""}" data-tono="${k}" aria-current="${k===i}" title="${hx(v.shade)}${v.agotado?" · agotado":""}"><img src="https://content.mx.farmasi.com/Variant/${v.code}.png" alt="" onerror="this.style.display='none'"><span>${hx(v.shade)}</span></button>`}).join("")}</div></div>` : ""}
       <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="pill">-${d}%</span></div>
-      ${p.incluye ? `<h5>Qué incluye</h5><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}<div id="pdDet"></div></div>`,
+      ${p.incluye ? `<h5>Qué incluye</h5><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}<button type="button" class="shr" data-share="${i}">Mandar a una amiga</button><div id="pdDet"></div></div>`,
       q ? `<button class="send" data-pclose>Listo, ya está en tu pedido (${q})</button>` : p.agotado ? `<button class="send" disabled>Agotado por ahora</button>` : `<button class="send" data-padd="${i}">Agregar al pedido</button>`);
     fillDet(p.par!=null?products[p.par].code:p.code); fillGallery(p);
   }
@@ -1060,6 +1076,10 @@
     const gl = e.target.closest("[data-gal]");
     if (gl){ $("pdMain").style.visibility = "visible"; $("pdMain").src = gl.dataset.gal; document.querySelectorAll("#pdThumbs button").forEach(b=>b.setAttribute("aria-current", b===gl)); return; }
     const tn = e.target.closest("[data-tono]"); if (tn){ showProduct(+tn.dataset.tono); const c=document.querySelector(".tchip[aria-current=true]"); if(c) c.scrollIntoView({inline:"center",block:"nearest"}); return; }
+    const fl = e.target.closest("[data-fill]"); if (fl){ const i=+fl.dataset.fill; if(ALL[i].agotado) return; cart[i]=1; gc("completar/"+ALL[i].code, ALL[i].name); refreshCard(i); update(); return; }
+    const sh = e.target.closest("[data-share]"); if (sh){ const p=ALL[+sh.dataset.share], par=products[famOf(+sh.dataset.share)], url=location.origin+location.pathname+"?p="+p.code, d=pct(p);
+      const txt=`Mira esto de Farmasi: ${p.name}${p.shade?" · "+p.shade:""} a ${money(p.price)} (antes ${money(p.retail)}, -${d}%)`; gc("compartir/"+p.code, p.name);
+      if (navigator.share) navigator.share({text:txt, url}).catch(()=>{}); else window.open("https://wa.me/?text="+encodeURIComponent(txt+"\n"+url),"_blank"); return; }
     const pk = e.target.closest("[data-tono-open]"); if (pk){ const k=+pk.dataset.tonoOpen; const f=FAM[k]; showProduct(f.find(x=>cart[x])??f.find(x=>!ALL[x].agotado)??k); return; }
     const pa = e.target.closest("[data-padd]");
     if (pa){ const i=+pa.dataset.padd; cart[i]=1; gc("agregar/"+ALL[i].code, ALL[i].name); refreshCard(i); update(); showProduct(i); return; }
@@ -1128,6 +1148,9 @@
   addEventListener("resize", fitBadge); fitBadge();
 
   try{ const o=JSON.parse(localStorage.getItem(CK)||"{}"); ALL.forEach((p,i)=>{ if(o[p.code]>0 && !p.agotado) cart[i]=Math.min(20,+o[p.code]); }); }catch(_){}
+  (function(){ const n = Object.values(cart).reduce((a,b)=>a+b,0), r=$("resume"); if(!n) return; let hide=false; try{ hide = sessionStorage.getItem("glow_rs")==="1"; }catch(_){}
+    if(hide) return; r.hidden=false; r.innerHTML=`<span>Dejaste <b>${n} ${n===1?"producto":"productos"}</b> en tu pedido.</span><button type="button" id="rsGo">Ver pedido</button><button type="button" class="rx" id="rsX" aria-label="Cerrar">×</button>`;
+    $("rsGo").onclick=()=>{ openSheet(); }; $("rsX").onclick=()=>{ r.hidden=true; try{ sessionStorage.setItem("glow_rs","1"); }catch(_){} }; })();
   $("q").addEventListener("input", e=>{ qry = e.target.value; renderCatalog(); clearTimeout(window.__qt); window.__qt = setTimeout(()=>{ if(qry.trim().length>2) gc("buscar/"+norm(qry).slice(0,30), "Búsqueda"); }, 900); });
   (function(){ const P = Object.assign({metodos:[],entrega:"Al confirmar tu pedido te digo cuándo llega.",extra:[]}, D.pago||{});
     const L = [`Mandas tu pedido por WhatsApp: no pagas nada en esta página.`, `Te confirmo existencias y el total antes de que pagues.`,
@@ -1138,6 +1161,7 @@
   $("sort").addEventListener("change", e=>{ sortM=e.target.value; renderCatalog(); });
   $("wafab").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola "+SELLER+", tengo una duda sobre tu tablero.")}`;
   renderChips(); renderCatalog(); syncForm(); update(); tick();
+  { const pq = new URLSearchParams(location.search).get("p"); if (pq) { const k = ALL.findIndex(x=>x.code===pq); if (k>=0) showProduct(k); } }
 })();
 </script>
 </body>
