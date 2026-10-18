@@ -139,6 +139,8 @@
   .refchips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
   .refchip{border:1.5px solid var(--line);background:#fff;color:var(--ink);border-radius:999px;padding:7px 14px;font:600 13px var(--sans)}
   .refchip.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+  .yasocia{display:block;width:100%;margin:10px 0 4px;border:1.5px dashed var(--ink,#262A4A);background:var(--card,#fff);border-radius:12px;padding:10px;font-weight:600;font-size:14px;font-family:inherit;color:var(--ink,#262A4A);cursor:pointer}
+  .yasocia[aria-pressed="true"]{background:var(--ink,#262A4A);color:#fff;border-style:solid}
   .socia{background:var(--tint,#FDEEF0);border-radius:14px;padding:12px 14px;margin:10px 0 4px;font-size:13px;line-height:1.4}
   .socia b{display:block;font-size:15px;font-weight:600;margin-bottom:2px}
   .socia span{color:var(--muted);display:block}
@@ -240,12 +242,15 @@
   } catch(e) {}
   WA = C.whatsapp || ""; SELLER = C.consultora || "";
   if (SELLER) { document.title = "Catálogo Farmasi con " + SELLER; $("brandSub").textContent = "Con precios de hoy · pedidos con " + SELLER; $("foot").textContent = `Catálogo oficial Farmasi México 2026. Compartido por ${SELLER}, ${C.genero==="m"?"consultor":"consultora"} independiente. Precios sujetos a existencias.`; }
-  const GOAL = C.meta.monto, GIFT = C.meta.regalo, GIFT_ITEMS = C.meta.regalo_items || [];
+  let GOAL = C.meta.monto, GIFT = C.meta.regalo, GIFT_ITEMS = C.meta.regalo_items || [];
   // Membresía: 50% en Dr. C. Tuna (páginas de skincare y masaje), 30% en lo demás; se aplica sobre el precio que ve la clienta
   const M = Object.assign({mostrar:true, meta_monto:2000, costo:499}, C.membresia || {});
+  let yaSocia = false; try { yaSocia = localStorage.getItem("glow_socia") === "1"; } catch(_){}
+  function setGoal(){ GOAL = yaSocia ? M.meta_monto : C.meta.monto; }
+  setGoal();
   const pageOf = {}; (D.productos || []).forEach((items, i) => (items || []).forEach(([c]) => { if (!(c in pageOf)) pageOf[c] = i + 1; }));
   const mPct = c => (C.membresia && C.membresia.por_producto && C.membresia.por_producto[c]) ?? ((/Dr\.? ?C\.? ?Tuna/i.test(P[c][0]) || (pageOf[c] >= 66 && pageOf[c] <= 113)) ? 50 : 30);
-  const mCalc = () => { let m = 0, t = 0; for (const [c,q] of Object.entries(cart)) { t += q*P[c][1]; m += q*Math.round(P[c][1]*(1-mPct(c)/100)*100)/100; } return {t, m, withFee: m + M.costo, save: t - m - M.costo, metaOk: m >= M.meta_monto}; };
+  const mCalc = () => { let m = 0, t = 0; for (const [c,q] of Object.entries(cart)) { t += q*P[c][1]; m += q*Math.round(P[c][1]*(1-mPct(c)/100)*100)/100; } const fee = yaSocia ? 0 : M.costo; return {t, m, withFee: m + fee, save: t - m - fee, metaOk: m >= M.meta_monto}; };
   if (location.search) document.querySelector("a.board").href = "../" + location.search;
   const REFS = C.referidas || [];
   const cleanRef = r => (r||"").replace(/[^\p{L}\p{N} .'-]/gu,"").trim().slice(0,40);
@@ -403,6 +408,7 @@
     const meta = t >= GOAL ? `Mi pedido pasa de ${money(GOAL)}: envío gratis y ${GIFT} de regalo.` : `Me faltan ${money(GOAL - t)} para el envío gratis.`;
     const mc = mCalc();
     const msg = `Hola ${SELLER}${v("cName") ? ", soy " + v("cName") : ""}${curRef() ? `, vengo de parte de ${curRef()},` : "."} ${curRef() ? "q" : "Q"}uiero este pedido del catálogo:\n\n${items.join("\n")}\n\nTotal: ${money(t)}${s>0 ? " (ahorro " + money(s) + ")" : ""}\n${meta}\n\n${ent}`
+      + (yaSocia && !$("mWant")?.checked ? "\n\nYa soy afiliada de Farmasi." : "")
       + ($("mWant")?.checked ? `\n\nTambién me interesa la membresía: como socia este pedido serían unos ${money(mc.withFee)} ya con la inscripción, ¿me explicas?` : "")
       ;
     return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
@@ -432,16 +438,18 @@
           <div class="refchips">${REFS.map(r=>`<button type="button" class="refchip" data-ref="${r}">${r}</button>`).join("")}</div></div>
       </div>
       <div class="totals"><div><span>Precio normal</span><span class="num">${money(r)}</span></div>${s>0?`<div class="g"><span>Ahorras</span><span class="num">−${money(s)}</span></div>`:""}<div class="T"><span>Total</span><span class="num">${money(t)}</span></div></div>
-      ${M.mostrar !== false ? (() => { const mc = mCalc(); return `<div class="socia"><b>${mc.save > 0 ? `Como socia te ahorras ${money(mc.save).replace(".00","")} hoy` : `Como socia pagarías ${money(mc.withFee)} hoy`}</b><span>${mc.save > 0 ? `pagarías ${money(mc.withFee)} en vez de ${money(t)}, ya con ${money(M.costo).replace(".00","")} de inscripción` : `ya con ${money(M.costo).replace(".00","")} de inscripción; en los siguientes pedidos, ${money(t - mc.m).replace(".00","")} menos`}${mc.metaOk ? ` · y ya tendrías envío gratis y ${GIFT}` : ""}</span><label><input type="checkbox" id="mWant"> Me interesa la membresía</label></div>`; })() : ""}
+      <button type="button" class="yasocia" id="yaSocia" aria-pressed="${yaSocia}">${yaSocia ? "✓ Ya soy afiliada: sin inscripción" : "Ya soy afiliada"}</button>
+      ${M.mostrar !== false && !yaSocia ? (() => { const mc = mCalc(); return `<div class="socia"><b>${mc.save > 0 ? `Como socia te ahorras ${money(mc.save).replace(".00","")} hoy` : `Como socia pagarías ${money(mc.withFee)} hoy`}</b><span>${mc.save > 0 ? `pagarías ${money(mc.withFee)} en vez de ${money(t)}, ya con ${money(M.costo).replace(".00","")} de inscripción` : `ya con ${money(M.costo).replace(".00","")} de inscripción; en los siguientes pedidos, ${money(t - mc.m).replace(".00","")} menos`}${mc.metaOk ? ` · y ya tendrías envío gratis y ${GIFT}` : ""}</span><label><input type="checkbox" id="mWant"> Me interesa la membresía</label></div>`; })() : ""}
       <a class="cta" id="sendWA" href="#" target="_blank" rel="noopener" style="margin-top:8px">Enviar por WhatsApp</a>
       <p class="err" id="err">Escribe tu nombre y apellido y tu dirección para enviarlo.</p>
-      <p class="note" style="text-align:center;margin-top:8px">${t >= GOAL ? "Tu envío es gratis." : "Si no llegas a $3,000, el envío cuesta $129."} Te confirmo existencias antes de pagar.</p>`);
+      <p class="note" style="text-align:center;margin-top:8px">${t >= GOAL ? "Tu envío es gratis." : `Si no llegas a ${money(GOAL).replace(".00","")}, el envío cuesta $129.`} Te confirmo existencias antes de pagar.</p>`);
     const sync = () => { $("addr").classList.toggle("hide", !isShip()); $("sendWA").href = waLink(); if (valid()) $("err").style.display = "none";
       try { fields.forEach(f => localStorage.setItem("glow_" + f, v(f))); } catch(_){} };
     const paintRefChips = () => document.querySelectorAll(".refchip").forEach(b => b.classList.toggle("on", b.dataset.ref.toLowerCase() === curRef().toLowerCase()));
     document.querySelectorAll(".refchip").forEach(b => b.addEventListener("click", () => { $("cRef").value = b.classList.contains("on") ? "" : b.dataset.ref; $("cRef").dispatchEvent(new Event("input")); }));
     $("cRef").addEventListener("input", () => { paintRefChips(); try { localStorage.setItem("glow_de", curRef()); } catch(_){} sync(); }); paintRefChips();
     fields.forEach(f => $(f).addEventListener("input", sync)); $("cDel").addEventListener("change", sync); $("mWant")?.addEventListener("change", sync); sync();
+    $("yaSocia").addEventListener("click", () => { yaSocia = !yaSocia; try { localStorage.setItem("glow_socia", yaSocia ? "1" : "0"); } catch(_){} setGoal(); paintBar(); const sc = $("sBody").scrollTop; orderSheet(); $("sBody").scrollTop = sc; });
     $("sendWA").addEventListener("click", e => { if (!valid()) { e.preventDefault(); $("err").style.display = "block"; (fullName() ? $(["aStreet","aCol","aCP","aCity"].find(f => !v(f))) : $("cName"))?.focus(); } });
   }
   $("cbOpen").onclick = orderSheet;
