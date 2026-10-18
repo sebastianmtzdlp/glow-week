@@ -163,6 +163,8 @@
   .socia label.chk{display:flex;gap:10px;align-items:center;font-size:14px;margin-top:12px;cursor:pointer}
   .socia label.chk input{width:20px;height:20px;accent-color:var(--accent)}
   .socia .fine{font-size:11px;color:var(--muted);margin:8px 0 0}
+  .yasocia{display:block;width:calc(100% - 44px);margin:10px 22px 4px;border:1.5px dashed var(--ink);background:var(--card);border-radius:12px;padding:10px;font:600 14px/1.2 var(--sans);color:var(--ink);cursor:pointer}
+  .yasocia[aria-pressed="true"]{background:var(--ink);color:var(--on-ink);border-style:solid}
   .sociacard{margin-top:12px;max-width:560px;border:1.5px solid var(--line);border-radius:14px;background:var(--card);padding:0 14px}
   .sociacard{transition:transform .12s var(--ease),background .15s var(--ease)}
   .sociacard:has(summary:active){transform:scale(.97)}
@@ -609,6 +611,7 @@
       <div class="g"><span>Ahorras</span><span class="num" id="tSave"></span></div>
       <div class="T"><span>Total</span><span class="num" id="tTotal"></span></div>
     </div>
+    <button type="button" class="yasocia" id="yaSocia" aria-pressed="false">Ya soy afiliada</button>
     <details class="socia" id="socia">
       <summary>
         <svg class="i" viewBox="0 0 24 24"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>
@@ -702,7 +705,7 @@
   const IMG = "https://content.mx.farmasi.com/Product/";
   const hd = s => String(s).replace("_250","_400"); // Farmasi solo publica 250 y 400 px: usamos la más nítida
   const END = new Date(D.venta.termina);
-  const GOAL = D.meta.monto;
+  let GOAL = D.meta.monto;
   const GIFT = D.meta.regalo + " de regalo";
   const GIFT_ITEMS = D.meta.regalo_items || [];
 
@@ -838,7 +841,7 @@
     saveCart();
     const {n,t,r,s} = totals();
     paintGoal("goalBar",t); paintGoal("goalSheet",t);
-    $("shipNote").textContent = t>=GOAL ? "Tu envío es gratis. Te confirmo existencias antes de pagar." : "Si no llegas a $3,000, el envío cuesta $129. Te confirmo existencias antes de pagar.";
+    $("shipNote").textContent = t>=GOAL ? "Tu envío es gratis. Te confirmo existencias antes de pagar." : "Si no llegas a "+money(GOAL).replace(".00","")+", el envío cuesta $129. Te confirmo existencias antes de pagar.";
     $("bar").classList.toggle("show", n>0);
     document.body.style.setProperty("--barh", $("bar").offsetHeight + "px");
     $("barTotal").textContent = money(t);
@@ -866,6 +869,7 @@
     if (isShip()) entrega += `\nDirección: ${v("aStreet")}, Col. ${v("aCol")}, C.P. ${v("aCP")}, ${v("aCity")}` + (v("aRef")?`\nReferencias: ${v("aRef")}`:"");
     const meta = t>=GOAL ? `Mi pedido pasa de ${money(GOAL)}: envío gratis y ${giftLabel}.` : `Me faltan ${money(GOAL-t)} para el envío gratis.`;
     const msg = `Hola ${SELLER}${name?", soy "+name:""}${curRef()?`, vengo de parte de ${curRef()},`:"."} ${curRef()?"q":"Q"}uiero este pedido de ${SALE}:\n\n${items.join("\n")}\n\nTotal: ${money(t)} (ahorro ${money(s)})\n${meta}\n\n${entrega}`
+      + (yaSocia && !asSocia ? "\n\nYa soy afiliada de Farmasi." : "")
       + (asSocia ? `\n\nQuiero hacer el pedido como socia (me interesa la membresía): como socia serían ${money(memberCalc().withFee)} ya con la inscripción.` : $("mWant")?.checked ? `\n\nTambién me interesa la membresía, ¿me explicas?` : "")
       ;
     return `https://wa.me/${WA}?text=${encodeURIComponent(msg)}`;
@@ -878,19 +882,21 @@
   const mPct = p => p.desc_miembro ?? M.por_producto[p.code] ?? M.por_categoria[p.cat] ?? M.desc_default;
   const mPrice = p => r0(p.price*(1-mPct(p)/100));
   let asSocia = false;
+  let yaSocia = false; try{ yaSocia = localStorage.getItem("glow_socia")==="1"; }catch(_){}
+  function setGoal(){ GOAL = (yaSocia||asSocia) ? M.meta_monto : D.meta.monto; }
   function memberCalc(){
     let m=0, t=0;
     ALL.forEach((p,i)=>{const q=cart[i]||0; if(!q) return; t+=q*p.price; m+=q*mPrice(p);});
-    return {t, m, withFee:m+M.costo, save:t-(m+M.costo), saveNext:t-m, metaOk: m>=M.meta_monto, metaLeft: M.meta_monto-m};
+    const fee = yaSocia ? 0 : M.costo; return {t, m, fee, withFee:m+fee, save:t-(m+fee), saveNext:t-m, metaOk: m>=M.meta_monto, metaLeft: M.meta_monto-m};
   }
   const m0 = x => money(x).replace(".00","");
   function paintMember(){
     const {t,m,withFee,save,saveNext,metaOk,metaLeft} = memberCalc();
     const good = save>0;
     $("mHead").textContent = asSocia ? `Pedido como socia: ${money(withFee)} hoy` : good ? `Como socia te ahorras ${m0(save)} hoy` : `Como socia pagarías ${money(withFee)} hoy`;
-    $("mSub").textContent = asSocia ? `ya incluye ${m0(M.costo)} de inscripción` : good ? `pagarías ${money(withFee)} en vez de ${money(t)}` : `y en cada pedido así, ${m0(saveNext)} menos`;
+    $("mSub").textContent = asSocia ? (yaSocia ? "ya eres afiliada, sin inscripción" : `ya incluye ${m0(M.costo)} de inscripción`) : good ? `pagarías ${money(withFee)} en vez de ${money(t)}` : `y en cada pedido así, ${m0(saveNext)} menos`;
     $("pkNo").textContent = money(t); $("pkSi").textContent = money(withFee);
-    $("mNo").textContent = money(t); $("mSiProd").textContent = money(m); $("mFee").textContent = money(M.costo); $("mSi").textContent = money(withFee);
+    $("mNo").textContent = money(t); $("mSiProd").textContent = money(m); $("mFee").textContent = yaSocia ? "$0" : money(M.costo); $("mSi").textContent = money(withFee);
     const mm=$("mMeta");
     mm.className = "mmeta" + (metaOk?" ok":"");
     mm.textContent = metaOk ? `Y con este pedido ya tendrías envío gratis y ${giftLabel}: a socias se les pide ${m0(M.meta_monto)} de producto.`
@@ -917,6 +923,11 @@
     if (asSocia) $("mWant").checked = true;
     paintMember(); $("sendBtn").href = waLink();
   }));
+
+  const yb = $("yaSocia");
+  function paintYa(){ yb.setAttribute("aria-pressed", yaSocia?"true":"false"); yb.textContent = yaSocia ? "✓ Ya soy afiliada: sin inscripción" : "Ya soy afiliada"; }
+  paintYa(); setGoal(); $("goalTxt").textContent = money(GOAL).replace(".00","");
+  yb.addEventListener("click",()=>{ yaSocia=!yaSocia; try{localStorage.setItem("glow_socia", yaSocia?"1":"0")}catch(_){} paintYa(); setGoal(); $("goalTxt").textContent = money(GOAL).replace(".00",""); update(); });
 
   function openSheet(){ document.body.classList.add("open"); }
   function closeSheet(){ document.body.classList.remove("open"); }
