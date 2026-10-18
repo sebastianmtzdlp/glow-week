@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-18",
- "hora": "00:09",
+ "hora": "00:43",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 182,
+  "visitas": 183,
   "agregados": 24,
   "pedidos": 4,
   "wa": 0
@@ -23,7 +23,7 @@
   },
   {
    "d": "2026-10-18",
-   "v": 0
+   "v": 1
   }
  ],
  "consultoras": [
@@ -58,7 +58,7 @@
   {
    "slug": "gaby",
    "nombre": "Gaby",
-   "visitas": 1,
+   "visitas": 2,
    "catalogo": 0,
    "pedidos": 0
   },
