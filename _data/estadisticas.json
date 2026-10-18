@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-17",
- "hora": "22:03",
+ "hora": "22:31",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 179,
+  "visitas": 180,
   "agregados": 24,
   "pedidos": 4,
   "wa": 0
@@ -19,7 +19,7 @@
   },
   {
    "d": "2026-10-17",
-   "v": 55
+   "v": 56
   }
  ],
  "consultoras": [
@@ -40,7 +40,7 @@
   {
    "slug": "elda",
    "nombre": "Elda",
-   "visitas": 11,
+   "visitas": 12,
    "catalogo": 0,
    "pedidos": 0
   },
