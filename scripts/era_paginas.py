@@ -13,7 +13,7 @@ BASE = ROOT / "programas" / "tu-era-creator"
 CLASES = BASE / "clases.md"
 N = 8  # clases numeradas; lo demás es bienvenida o herramientas
 
-SLUGS = {0: "empieza-aqui", 9: "checklist", 10: "diccionario"}
+SLUGS = {0: "empieza-aqui", 9: "checklist", 10: "diccionario", 11: "preguntas", 12: "avance", 13: "crecer-cuenta"}
 
 
 def slug(i):
@@ -128,6 +128,9 @@ h1{margin:0;font:800 clamp(32px,7vw,54px)/.98 var(--display);letter-spacing:-.04
 .card.next{border:2px solid var(--accent)}
 .card.next small{color:var(--accent)}
 .card.ph{visibility:hidden}
+.tarea{margin:40px 0 0;padding:22px 22px 8px;border-radius:18px;background:var(--surface);border:2px solid var(--accent)}
+.tarea h2{margin:0 0 10px;font:700 clamp(20px,4vw,24px)/1.1 var(--display);letter-spacing:-.02em}
+.tarea ul{margin:0 0 .8em;padding-left:1.2em}
 .aviso{max-width:760px;margin:40px auto 0;padding:22px 16px 40px;border-top:1px solid var(--line);color:var(--muted);font:500 14px/1.5 var(--body)}
 .aviso strong{color:var(--ink)}
 @media (prefers-reduced-motion:reduce){*{transition-duration:.01ms!important}}
@@ -147,6 +150,8 @@ def card(x, cls, label):
 
 def page(x, prev, nxt):
     i = x["id"]
+    body, _, tarea = x["body"].partition("\n## Tu tarea\n")
+    tarea_html = ('<section class="tarea" aria-labelledby="tarea-h"><h2 id="tarea-h">Tu tarea</h2>' + md(tarea) + "</section>") if tarea.strip() else ""
     step = 1 <= i <= N
     segs = "".join(f'<i data-s="{s}"{" class=cur" if s == i else ""}></i>' for s in range(1, N + 1))
     head = (f'<header class="hero{"" if step else " nonum"}">'
@@ -195,7 +200,8 @@ paint();
 {head}
 <p class="intro">{inline(e(x["intro"]))}</p>
 <article class="body">
-{md(x["body"])}
+{md(body)}
+{tarea_html}
 </article>
 {done}
 {nav}
