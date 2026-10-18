@@ -339,6 +339,7 @@ var ft;fq.addEventListener("input",function(){clearTimeout(ft);ft=setTimeout(ren
 var cur=null;
 function neighbours(id){var k=ORDER.indexOf(id);return {prev:ORDER[k-1],next:ORDER[k+1]};}
 function where(x){if(x.id===0)return CFG.welcomeLabel||"Bienvenida";if(isStep(x.id)){var a=actOf(x.id);return label(x.id)+" de "+N+(a&&a.name!=="Clases"?", "+a.name:"");}return x.kicker;}
+function pageSlug(id){return id===0?"empieza-aqui":id===9?"checklist":id===10?"diccionario":"clase-"+id;}
 function sheetHTML(x){
   var b=lessonBody(x.body),nb=neighbours(x.id),s=seen.has(x.id),nx=nb.next!==undefined?L(nb.next):null;
   var num=isStep(x.id)?(SKIN.readerNum?SKIN.readerNum(x,CTX):String(x.id)):null;
@@ -347,6 +348,7 @@ function sheetHTML(x){
   return '<div class="grab" id="grab"><span class="where">'+esc(where(x))+'</span><button type="button" class="x" id="closeB">Cerrar</button></div><div class="scroll" id="scroll">'+
     '<div class="r-head'+(num?"":" nonum")+'">'+(num?'<span class="r-num" aria-hidden="true">'+esc(num)+"</span>":"")+'<p class="r-k">'+esc(isStep(x.id)?label(x.id):(x.id===0?(CFG.welcomeLabel||"Bienvenida"):x.kicker))+'</p><h1 class="r-title" id="rTitle">'+esc(ttl(x))+'</h1></div><p class="r-topic">'+esc(x.topic)+'</p><p class="r-intro">'+inline(esc(x.intro))+'</p><div class="lesson-body">'+b.html+"</div>"+turn+
     '<div class="r-foot"><div class="nav"><button class="btn" type="button" id="prevB" '+(nb.prev===undefined?"disabled":"")+'>Anterior</button><button class="btn solid" type="button" id="nextB" '+(nb.next===undefined?"disabled":"")+">Siguiente</button></div>"+
+    '<a class="btn" href="./'+pageSlug(x.id)+'/">Abrir como página</a>'+
     (isStep(x.id)?'<button class="btn'+(s?" done":"")+'" type="button" id="seenB" aria-pressed="'+s+'">'+(s?"Completada ✓":"Marcar como completada")+"</button>":"")+
     (nx?'<p class="r-next">Sigue: '+esc(ttl(nx))+"</p>":"")+"</div></div>";
 }
