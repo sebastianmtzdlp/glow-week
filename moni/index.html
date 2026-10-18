@@ -14,11 +14,11 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:url" content="https://mitienda.beauty/moni/">
-<meta property="og:image" content="https://mitienda.beauty/og/moni.png?v=39cd6398">
+<meta property="og:image" content="https://mitienda.beauty/og/moni.png?v=45e507b2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mitienda.beauty/og/moni.png?v=39cd6398">
+<meta name="twitter:image" content="https://mitienda.beauty/og/moni.png?v=45e507b2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -838,7 +838,7 @@
     saveCart();
     const {n,t,r,s} = totals();
     paintGoal("goalBar",t); paintGoal("goalSheet",t);
-    $("shipNote").textContent = t>=GOAL ? "Tu envío es gratis. Te confirmo existencias antes de pagar." : "El envío se cotiza aparte. Te confirmo existencias antes de pagar.";
+    $("shipNote").textContent = t>=GOAL ? "Tu envío es gratis. Te confirmo existencias antes de pagar." : "Si no llegas a $3,000, el envío cuesta $129. Te confirmo existencias antes de pagar.";
     $("bar").classList.toggle("show", n>0);
     document.body.style.setProperty("--barh", $("bar").offsetHeight + "px");
     $("barTotal").textContent = money(t);
@@ -1223,7 +1223,7 @@
   $("q").addEventListener("input", e=>{ qry = e.target.value; renderCatalog(); clearTimeout(window.__qt); window.__qt = setTimeout(()=>{ if(qry.trim().length>2) gc("buscar/"+norm(qry).slice(0,30), "Búsqueda"); }, 900); });
   (function(){ const P = Object.assign({metodos:[],entrega:"Al confirmar tu pedido te digo cuándo llega.",extra:[]}, D.pago||{});
     const L = [`Mandas tu pedido por WhatsApp: no pagas nada en esta página.`, `Te confirmo existencias y el total antes de que pagues.`,
-      `Con ${money(GOAL)} o más en productos el envío es gratis y te llevas ${D.meta.regalo}.`, `Si no llegas a esa meta, el envío se cotiza aparte según tu ciudad.`];
+      `Con ${money(GOAL)} o más en productos el envío es gratis y te llevas ${D.meta.regalo}.`, `Si no llegas a esa meta, el envío cuesta $129.`];
     if (P.metodos.length) L.push(`Formas de pago: ${P.metodos.join(", ")}.`); else L.push("Te paso las formas de pago disponibles cuando confirmes tu pedido.");
     L.push(P.entrega); (P.extra||[]).forEach(x=>L.push(x));
     $("pagoList").innerHTML = L.map(x=>`<li>${hx(x)}</li>`).join(""); })();

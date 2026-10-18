@@ -435,7 +435,7 @@
       ${M.mostrar !== false ? (() => { const mc = mCalc(); return `<div class="socia"><b>${mc.save > 0 ? `Como socia te ahorras ${money(mc.save).replace(".00","")} hoy` : `Como socia pagarías ${money(mc.withFee)} hoy`}</b><span>${mc.save > 0 ? `pagarías ${money(mc.withFee)} en vez de ${money(t)}, ya con ${money(M.costo).replace(".00","")} de inscripción` : `ya con ${money(M.costo).replace(".00","")} de inscripción; en los siguientes pedidos, ${money(t - mc.m).replace(".00","")} menos`}${mc.metaOk ? ` · y ya tendrías envío gratis y ${GIFT}` : ""}</span><label><input type="checkbox" id="mWant"> Me interesa la membresía</label></div>`; })() : ""}
       <a class="cta" id="sendWA" href="#" target="_blank" rel="noopener" style="margin-top:8px">Enviar por WhatsApp</a>
       <p class="err" id="err">Escribe tu nombre y apellido y tu dirección para enviarlo.</p>
-      <p class="note" style="text-align:center;margin-top:8px">${t >= GOAL ? "Tu envío es gratis." : "El envío se cotiza aparte."} Te confirmo existencias antes de pagar.</p>`);
+      <p class="note" style="text-align:center;margin-top:8px">${t >= GOAL ? "Tu envío es gratis." : "Si no llegas a $3,000, el envío cuesta $129."} Te confirmo existencias antes de pagar.</p>`);
     const sync = () => { $("addr").classList.toggle("hide", !isShip()); $("sendWA").href = waLink(); if (valid()) $("err").style.display = "none";
       try { fields.forEach(f => localStorage.setItem("glow_" + f, v(f))); } catch(_){} };
     const paintRefChips = () => document.querySelectorAll(".refchip").forEach(b => b.classList.toggle("on", b.dataset.ref.toLowerCase() === curRef().toLowerCase()));
