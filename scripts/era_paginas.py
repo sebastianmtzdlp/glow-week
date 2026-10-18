@@ -1,18 +1,16 @@
 #!/usr/bin/env python3
 """Genera una página por clase de Tu era Creator (programas/tu-era-creator/<slug>/).
 
-El contenido sale de LESSONS_MD dentro de programas/tu-era-creator/index.html,
-así que la página principal sigue siendo la única fuente. Si cambias una clase
-allá, corre:  python3 scripts/era_paginas.py
+El contenido sale de programas/tu-era-creator/clases.md, que es la única fuente.
+Si cambias una clase, corre:  python3 scripts/era_paginas.py
 """
 import html
-import json
 import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 BASE = ROOT / "programas" / "tu-era-creator"
-MAIN = BASE / "index.html"
+CLASES = BASE / "clases.md"
 N = 8  # clases numeradas; lo demás es bienvenida o herramientas
 
 SLUGS = {0: "empieza-aqui", 9: "checklist", 10: "diccionario"}
@@ -23,8 +21,7 @@ def slug(i):
 
 
 def lessons():
-    src = MAIN.read_text(encoding="utf-8")
-    raw = json.loads(re.search(r'var LESSONS_MD=("(?:[^"\\]|\\.)*")', src).group(1))
+    raw = CLASES.read_text(encoding="utf-8")
     out = []
     for block in re.split(r"^@@ ", raw, flags=re.M):
         if not block.strip():
