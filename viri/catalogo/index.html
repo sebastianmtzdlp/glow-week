@@ -453,7 +453,7 @@
     const SB_URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/pedidos_intencion", SB_KEY = "sb_publishable_ltaNA7nnVozoSCOcZIjg";
       function logIntent(origen, items, t){ try { if (!items.length) return;
         fetch(SB_URL, {method:"POST", keepalive:true, headers:{"Content-Type":"application/json", apikey:SB_KEY, Authorization:"Bearer "+SB_KEY, Prefer:"return=minimal"},
-          body: JSON.stringify({consultora: location.pathname.split("/").filter(Boolean)[0], referida_por: (curRef()||"").slice(0,40) || null, tipo: yaSocia ? "afiliada" : "clienta", origen, items, total: t, envio: isShip() ? "domicilio" : "recoger"})}).catch(()=>{});
+          body: JSON.stringify({consultora: location.pathname.split("/").filter(Boolean)[0], referida_por: (curRef()||"").slice(0,40) || null, cliente: ($("cName")?.value||"").trim().slice(0,80) || null, tipo: yaSocia ? "afiliada" : "clienta", origen, items, total: t, envio: isShip() ? "domicilio" : "recoger"})}).catch(()=>{});
       } catch(_){} }
     $("sendWA").addEventListener("click", () => { if (valid()) logIntent("catalogo", Object.entries(cart).map(([c,q]) => ({codigo:c, nombre:P[c][0], cantidad:q, precio:P[c][1]})), totals().t); });
     $("sendWA").addEventListener("click", e => { if (!valid()) { e.preventDefault(); $("err").style.display = "block"; (fullName() ? $(["aStreet","aCol","aCP","aCity"].find(f => !v(f))) : $("cName"))?.focus(); } });

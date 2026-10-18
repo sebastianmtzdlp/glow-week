@@ -1,10 +1,11 @@
 -- Intención de pedido (cuando la clienta toca "Enviar por WhatsApp").
--- Sin nombre, teléfono ni dirección. Pegar completo en Supabase > SQL Editor > Run.
+-- Nombre (cliente), sin teléfono ni dirección. Pegar completo en Supabase > SQL Editor > Run.
 
 create table if not exists public.pedidos_intencion (
   id           uuid primary key default gen_random_uuid(),
   creado       timestamptz not null default now(),
   consultora   text not null check (consultora ~ '^[a-z0-9]+$'),   -- dueña del tablero (slug)
+  cliente      text check (char_length(cliente) <= 80),          -- nombre que escribe la clienta
   referida_por text check (char_length(referida_por) <= 40),        -- "vengo de parte de"
   tipo         text not null check (tipo in ('clienta','afiliada')),
   origen       text not null check (origen in ('tablero','catalogo')),

@@ -944,7 +944,7 @@
   const SB_URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/pedidos_intencion", SB_KEY = "sb_publishable_ltaNA7nnVozoSCOcZIjg";
   function logIntent(origen, items, t){ try { if (!items.length) return;
     fetch(SB_URL, {method:"POST", keepalive:true, headers:{"Content-Type":"application/json", apikey:SB_KEY, Authorization:"Bearer "+SB_KEY, Prefer:"return=minimal"},
-      body: JSON.stringify({consultora: location.pathname.split("/").filter(Boolean)[0], referida_por: (curRef()||"").slice(0,40) || null, tipo: yaSocia ? "afiliada" : "clienta", origen, items, total: t, envio: isShip() ? "domicilio" : "recoger"})}).catch(()=>{});
+      body: JSON.stringify({consultora: location.pathname.split("/").filter(Boolean)[0], referida_por: (curRef()||"").slice(0,40) || null, cliente: ($("cName")?.value||"").trim().slice(0,80) || null, tipo: yaSocia ? "afiliada" : "clienta", origen, items, total: t, envio: isShip() ? "domicilio" : "recoger"})}).catch(()=>{});
   } catch(_){} }
   $("sendBtn").addEventListener("click", ()=>{ if(valid()){ gc("pedido-enviado/"+location.pathname.split("/").filter(Boolean)[0], "Pedido enviado"); logIntent("tablero", ALL.map((p,i)=>cart[i]?{codigo:p.code,nombre:p.name,cantidad:cart[i],precio:p.price}:null).filter(Boolean), totals().t); } });
   $("wafab").addEventListener("click", ()=>gc("wa-flotante","WhatsApp flotante"));
