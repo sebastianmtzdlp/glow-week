@@ -941,7 +941,12 @@
     if (st){ const i=+st.dataset.i; cart[i]=Math.max(0,(cart[i]||0)+(+st.dataset.d)); if(!cart[i]) delete cart[i]; refreshCard(i); update(); return; }
   });
   $("openSheet").onclick = $("review").onclick = openSheet;
-  $("sendBtn").addEventListener("click", ()=>{ if(valid()) gc("pedido-enviado/"+location.pathname.split("/").filter(Boolean)[0], "Pedido enviado"); });
+  const SB_URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/pedidos_intencion", SB_KEY = "sb_publishable_ltaNA7nnVozoSCOcZIjg";
+  function logIntent(origen, items, t){ try { if (!items.length) return;
+    fetch(SB_URL, {method:"POST", keepalive:true, headers:{"Content-Type":"application/json", apikey:SB_KEY, Authorization:"Bearer "+SB_KEY, Prefer:"return=minimal"},
+      body: JSON.stringify({consultora: location.pathname.split("/").filter(Boolean)[0], referida_por: (curRef()||"").slice(0,40) || null, tipo: yaSocia ? "afiliada" : "clienta", origen, items, total: t, envio: isShip() ? "domicilio" : "recoger"})}).catch(()=>{});
+  } catch(_){} }
+  $("sendBtn").addEventListener("click", ()=>{ if(valid()){ gc("pedido-enviado/"+location.pathname.split("/").filter(Boolean)[0], "Pedido enviado"); logIntent("tablero", ALL.map((p,i)=>cart[i]?{codigo:p.code,nombre:p.name,cantidad:cart[i],precio:p.price}:null).filter(Boolean), totals().t); } });
   $("wafab").addEventListener("click", ()=>gc("wa-flotante","WhatsApp flotante"));
   $("closeSheet").onclick = $("sheetBg").onclick = closeSheet;
   document.addEventListener("keydown", e=>{ if(e.key==="Escape") closeSheet(); });
