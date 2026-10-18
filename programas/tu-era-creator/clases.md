@@ -18,7 +18,6 @@ La gente entra a TikTok a entretenerse, no a comprar. Cuando le aparece tu video
 8. **Cuidar tu cuenta** de infracciones y aprovechar los retos que dan dinero extra.
 
 > La habilidad más importante de todo el curso no es técnica: es la tolerancia a la frustración. Lo que TikTok castiga es la intermitencia; lo que premia es la constancia.
-
 @@ 1 | Clase 1 | El despertar Creator | Qué es TikTok Shop y cómo llegar a 2,000 seguidores
 En esta clase entiendes el modelo de negocio y arrancas con la primera meta: los 2,000 seguidores.
 
@@ -53,6 +52,9 @@ Para llegar a los seguidores no se hacen videos de venta, sino videos cortitos p
 
 Se vale copiar tal cual las frases y la música de otras cuentas; en TikTok copiar ayuda, porque así funcionan las tendencias. Y no importa quién te siga: los videos de venta no se muestran a tus seguidores, sino a las personas interesadas en ese producto. Los 2,000 son solo un requisito.
 
+## Tu tarea
+- Sube hoy 3 videos de b-roll: 6 a 10 segundos, música en tendencia y una frase.
+- Anota qué te falta para llegar a los 2,000 seguidores.
 @@ 2 | Clase 2 | Tu oficina Creator | Activar tu cuenta y moverte en TikTok Studio
 Aquí aprendes a activar tu cuenta y a moverte en el panel donde vive todo lo de TikTok Shop.
 
@@ -100,6 +102,9 @@ Un producto barato con comisión de $5 puede ser buen negocio si se vende mucho:
 
 **Tarea:** explora el mercado de productos, agrega al menos 20 a tu vitrina y pide algunas muestras.
 
+## Tu tarea
+- Entra a TikTok Studio → TikTok Shop para creadores y revisa las palomitas de requisitos.
+- Agrega al menos 20 productos a tu vitrina.
 @@ 3 | Clase 3 | El arte del Winning Product | Cómo elegir productos ganadores
 A partir de aquí TikTok Shop deja de ser teoría. Aprendes a escoger productos con criterio de negocio y a subir tu primer video con carrito.
 
@@ -139,6 +144,9 @@ Nunca sabes cuál va a ser tu producto ganador: a una creadora le pegaron unas t
 - No hacen falta hashtags ni descripción, salvo en desafíos o si la marca lo pide.
 - Si una muestra llega rota o de mala calidad, avísale al vendedor y no le hagas video.
 
+## Tu tarea
+- En el mercado de productos, ordena por "más vendido" y escoge 3 productos.
+- Pásalos por los 6 filtros y escribe cuál pasa y por qué.
 @@ 4 | Clase 4 | El Funnel que vende | Los videos TOFU, MOFU y BOFU
 Esta es la base de todo el marketing aplicada a TikTok, y la razón por la que unas creadoras venden mucho y otras casi nada.
 
@@ -183,6 +191,9 @@ Lo bonito es que **el algoritmo hace el retargeting solo**: tus BOFU se los mues
 ## Siempre, siempre: el carrito naranja
 No asumas que la gente sabe que puede comprar ahí mismo. Muchísimas personas todavía no lo saben. Explícalo: "arriba de mi nombre, donde dice Tienda, hay un carrito naranja; pícale y ahí mismo lo compras y te llega a tu casa". Y si hay descuento, cupones o envío gratis, dilo en ese momento.
 
+## Tu tarea
+- Elige un producto y graba un TOFU, un MOFU y un BOFU en el mismo bloque.
+- Revisa que los tres mandan al carrito naranja.
 @@ 5 | Clase 5 | El poder del Hook | Del scroll a la venta
 Saber qué tipo de video hacer no basta: necesitas que la gente se quede a verlo. Esta clase es sobre los primeros segundos.
 
@@ -233,6 +244,9 @@ Listas de hooks hay miles (ChatGPT te da todas las que quieras). El chiste es c�
 ## Cómo saber si hay descuento
 Nadie te avisa. Antes de grabar, revisa producto por producto: si el precio está en rojo con el original tachado, hay descuento; abajo pueden aparecer cupones rosas o un letrero de oferta relámpago con "termina en X horas".
 
+## Tu tarea
+- Escribe 3 hooks para un producto, uno visual, uno hablado y uno de texto.
+- Recorta el silencio del inicio de tu video más reciente.
 @@ 6 | Clase 6 | Luz, cámara y Sold Out | Cómo grabar con calidad sin perfección
 Un buen producto con un buen guion no sirve si el video está oscuro, no se escucha o no se ve el producto. Esta clase es sobre la parte técnica.
 
@@ -268,6 +282,9 @@ TikTok Shop califica la calidad de tus videos. Así como las infracciones te qui
 - Solo recorta el silencio del inicio y los errores; si acaso, agrega una foto.
 - **Más videos le ganan a la perfección.** Mejor tres videos directos que uno editado durante una hora.
 
+## Tu tarea
+- Graba 3 videos con luz de frente y el producto en los primeros 2 segundos.
+- Publica sin editar más de 10 minutos.
 @@ 7 | Clase 7 | Mindset y la era del Live | Constancia, sistema de trabajo y lives
 Lo difícil de TikTok Shop no es grabar; es sostenerlo. Esta clase habla de cómo organizarte, cómo lidiar con las críticas y cómo vender en vivo.
 
@@ -315,6 +332,9 @@ El algoritmo mide sobre todo tu **primera hora**: si hay ventas y movimiento, te
 - No puedes comprar en tu propia vitrina. Cómprale a otras creadoras: ellas ganan comisión y el favor regresa.
 - Si no sabes qué decir en un live, practica con lives de ejercicio o de lectura usando productos.
 
+## Tu tarea
+- Escribe tu calendario de la semana con tres bloques: investigar, grabar y publicar.
+- Sube tus videos en borradores para los días en que no puedas grabar.
 @@ 8 | Clase 8 | Las reglas del juego | Infracciones, apelaciones y retos
 Las infracciones son parte del juego, como las tarjetas amarillas en el fútbol. Aquí aprendes a evitarlas, a apelarlas y a ganar dinero extra con los retos.
 
@@ -370,6 +390,9 @@ Las metas cambian según tu nivel. Tienes que **unirte** al reto, pero los video
 - Tu tarjeta para cobrar se agrega en Ganancias, en el ícono de tarjeta de arriba a la derecha (tarjeta o Mercado Pago).
 - Espera a tener tu primera cuenta en nivel 5 o 6 antes de abrir una segunda.
 
+## Tu tarea
+- Revisa el estado de tu cuenta en TikTok Studio y anota tus puntos.
+- Si tienes una infracción, redacta la apelación con las capturas. Si no tienes, reescribe un guion sin promesas.
 @@ 9 | Herramientas | Tu checklist antes del Post | Revísalo con cada video
 Revisa esto con cada video de venta. Si no cumple todo, súbelo de todos modos: nunca sabes cuál va a pegar.
 
@@ -391,7 +414,6 @@ Revisa esto con cada video de venta. Si no cumple todo, súbelo de todos modos: 
 - Bloque de edición y publicación dentro de TikTok.
 - Repite tus productos ganadores cada día y mete algunas muestras nuevas cada semana.
 - Revisa el estado de tu cuenta y apela cualquier infracción.
-
 @@ 10 | Herramientas | El diccionario Creator | Las palabras de TikTok Shop
 Las palabras que vas a escuchar todo el tiempo en TikTok Shop.
 
@@ -414,3 +436,82 @@ Las palabras que vas a escuchar todo el tiempo en TikTok Shop.
 - **Estado de la cuenta:** tus puntos (sana arriba de 200).
 - **Apelar:** pedir que una persona revise una infracción.
 - **Faceless, voice over, sketch:** estilos de video: sin cara, con voz grabada después, y mini actuación.
+
+@@ 11 | Herramientas | Preguntas frecuentes | Las dudas que más salen, con la clase que las responde
+Respuestas cortas. Si una no alcanza, la clase que se indica la explica completa.
+
+### ¿Necesito tener seguidores para empezar?
+Sí. Para entrar a TikTok Shop necesitas 2,000 seguidores en México o 5,000 en Estados Unidos. Algunas cuentas entran antes en prueba piloto, desde unos 1,000, pero con límites. Mira la clase 1.
+
+### ¿Cuándo me pagan?
+TikTok deposita los miércoles de madrugada, pero te paga 15 días después de que el producto llega a la casa del cliente, porque puede devolverlo. Mira la clase 2.
+
+### ¿Puedo vender un producto que no tengo?
+No. Tienes que tener el producto físicamente para hacer el video. Mira la clase 3.
+
+### ¿Puedo decir el precio o el descuento exacto en el video?
+No. Los precios y los porcentajes cambian y te pueden reportar. Di algo como "menos de $200" o "trae descuentazo". Mira la clase 3.
+
+### ¿Cuántos videos debo subir al día?
+Empieza con uno o dos a la semana y sube poco a poco hasta 3 o 5 al día. Lo que te hace crecer es la constancia, no una semana con 20 videos. Mira la clase 7.
+
+### ¿Qué hago si me llega una infracción?
+No borres el video, porque ya no puedes apelar. Toma capturas, redacta la apelación y pide revisión manual. Mira la clase 8.
+
+### ¿Puedo usar inteligencia artificial para hacer los videos?
+No. Los videos hechos con IA están prohibidos. Sí puedes usar IA para escribir guiones o hooks. Mira la clase 5.
+
+### ¿Qué pasa si el producto se agota?
+No borres el video. El carrito vuelve cuando el producto se resurte. Mira la clase 7.
+
+### ¿Puedo comprar en mi propia vitrina?
+No. Compra a otras creadoras; ellas ganan comisión y el favor regresa. Mira la clase 7.
+
+### ¿Cómo pido muestras gratis?
+Al principio casi no te las aprueban, porque aún no tienes ventas. Compra tus primeros 3 a 5 productos y luego pide muestras. Cuando te llega una, tienes 14 días para grabar el video. Mira la clase 2.
+
+@@ 12 | Herramientas | Medir tu avance | Una lista semanal con números para saber si vas bien
+Revisa esto cada lunes, con los números de la semana anterior. Anótalos en una hoja aparte para ver la tendencia.
+
+## Qué medir cada semana
+- **Videos subidos:** cuántos publicaste. Meta de la semana: la que te toca según la clase 7.
+- **Minutos grabando:** cuánto tiempo pasaste frente a la cámara.
+- **Productos en tu vitrina:** cuántos tienes. Meta de las primeras semanas: 20.
+- **Productos con video:** cuántos de tu vitrina ya tienen al menos un video.
+- **Ventas (pedidos):** cuántos pedidos salieron de tus videos.
+- **GMV:** tus ventas totales. Es lo que cuenta para subir de nivel.
+- **Comisión estimada:** lo que te toca, no el porcentaje.
+- **Estado de la cuenta:** tus puntos. Si bajan, revisa la clase 8 antes de seguir.
+- **Nivel:** del 1 al 6, según tus ventas del mes.
+- **Muestras pedidas y pendientes:** cuántas tienes y cuántas te faltan por grabar.
+
+## Cómo leer los números
+- Si subes videos y no vendes, repite el hook y cambia la oferta. Mira la clase 5.
+- Si vendes pero no subes, la constancia es lo que falta. Mira la clase 7.
+- Si tu estado de cuenta baja, deja de publicar riesgos y revisa la clase 8.
+
+> Un número solo no dice nada. Compara cada semana con la anterior.
+
+@@ 13 | Herramientas | Crecer tu cuenta | Cómo llegar a los 2,000 seguidores o arrancar desde cero
+Esta herramienta es para antes de TikTok Shop: cómo sumar seguidores con videos cortos que no venden, y cómo arrancar una cuenta nueva sin perder el ritmo.
+
+## Lo que sí funciona para crecer
+1. **Graba momentos de 6 a 10 segundos:** lo que estés haciendo, caminando, tomando café o escribiendo en tu libreta. La luz bonita ayuda, pero no es obligatoria.
+2. **Pon música en tendencia:** toca el audio de un video que te guste y elige "usar audio".
+3. **Agrega una frase** que genere identificación, curiosidad o conversación, con letra blanca sobre fondo negro, más o menos al centro.
+4. **Sube de 1 a 3 videos al día:** es un juego de números. Sube poco a poco: 1 a la semana, luego 1 al día, luego 3.
+5. **Sé constante:** la intermitencia es lo que TikTok castiga. Si subes tres días y luego una semana no, baja tus vistas.
+
+## Lo que no hace falta
+- No necesitas escoger un nicho ni un cliente ideal. Puedes recomendar lo que usas en tu vida diaria.
+- Los seguidores no ven tus videos de venta. Esos llegan a quien le interesa el producto. Los 2,000 solo son un requisito para abrir TikTok Shop.
+
+## Si necesitas un empujón
+- Puedes pagar entre $200 y $400 para promocionar tu video con más vistas. Suele dar un buen impulso.
+- Los lives de 15 o 20 minutos ayudan a conocer gente, pero no te quedes ahí todo el día.
+
+> Cada cuenta avanza a su ritmo. Lo que cuenta es no soltarlo.
+
+## Tu tarea
+- Graba 3 b-rolls hoy con la música y la frase que te gusten.
+- Escribe en tu hoja de avance cuántos videos subiste esta semana.
