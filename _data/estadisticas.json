@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-18",
- "hora": "07:59",
+ "hora": "15:34",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 186,
+  "visitas": 188,
   "agregados": 24,
   "pedidos": 4,
   "wa": 0
@@ -23,7 +23,7 @@
   },
   {
    "d": "2026-10-18",
-   "v": 4
+   "v": 6
   }
  ],
  "consultoras": [
@@ -35,17 +35,17 @@
    "pedidos": 4
   },
   {
+   "slug": "elda",
+   "nombre": "Elda",
+   "visitas": 15,
+   "catalogo": 1,
+   "pedidos": 0
+  },
+  {
    "slug": "viri",
    "nombre": "Viri",
    "visitas": 12,
    "catalogo": 3,
-   "pedidos": 0
-  },
-  {
-   "slug": "elda",
-   "nombre": "Elda",
-   "visitas": 14,
-   "catalogo": 0,
    "pedidos": 0
   },
   {
