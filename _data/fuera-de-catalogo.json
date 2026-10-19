@@ -1,6 +1,6 @@
 {
  "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
- "actualizado": "2026-10-17",
+ "actualizado": "2026-10-19",
  "grupos": [
   {
    "titulo": "Edición limitada y de temporada",
@@ -349,6 +349,11 @@
     [
      "1001801",
      "Labial Líquido Matte Chocolate 218",
+     241.5
+    ],
+    [
+     "1001887",
+     "Labial Líquido Matte Baby Doll",
      241.5
     ],
     [
@@ -774,11 +779,6 @@
      315.0
     ],
     [
-     "1000960",
-     "Nutriplus Serenity Negro",
-     450.0
-    ],
-    [
      "9000700",
      "Delish Café Mezcla de Achicoria en Sobres",
      450.0
@@ -786,5 +786,5 @@
    ]
   }
  ],
- "hora": "09:06"
+ "hora": "09:07"
 }
