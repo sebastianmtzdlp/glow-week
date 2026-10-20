@@ -1,6 +1,6 @@
 {
  "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
- "actualizado": "2026-10-19",
+ "actualizado": "2026-10-20",
  "grupos": [
   {
    "titulo": "Edición limitada y de temporada",
@@ -327,11 +327,6 @@
      285.0
     ],
     [
-     "1001504",
-     "Full Blast Volume Mascara New",
-     282.5
-    ],
-    [
      "1001535",
      "Midnight Touch Highlighter",
      400.0
@@ -595,6 +590,26 @@
      "1002615",
      "Air Bronzer Duo Deep Cocoa",
      550.0
+    ],
+    [
+     "1002614",
+     "Air Bronzer Duo Caramel",
+     550.0
+    ],
+    [
+     "1002616",
+     "Air Blush Duo Coral Pop",
+     550.0
+    ],
+    [
+     "1002617",
+     "Air Blush Duo Plump Passion",
+     550.0
+    ],
+    [
+     "1002618",
+     "Air Blush Duo Pink Bloom",
+     550.0
     ]
    ]
   },
@@ -786,5 +801,5 @@
    ]
   }
  ],
- "hora": "09:07"
+ "hora": "09:06"
 }
