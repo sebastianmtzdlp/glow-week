@@ -80,6 +80,40 @@ code{font-size:.92em;background:var(--bg);padding:1px 6px;border-radius:6px}
 .foot p{margin:0;max-width:75ch}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&family=IBM+Plex+Mono:wght@600&family=Libre+Baskerville&family=Jost:wght@700&family=Crimson+Pro:wght@500&family=Bodoni+Moda:opsz,wght@6..96,900&family=Cormorant+Garamond:wght@600&family=Cinzel:wght@700&family=Montserrat:wght@900&display=swap">
+<style>
+/* ---------- covers: every spine wears its own course's texture, type and drawing ---------- */
+/* one long shelf that grows sideways: it scrolls left and right, the page never does */
+.case{max-width:none}
+.rack{position:relative;margin-inline:-16px}
+.rack::before,.rack::after{content:"";position:absolute;top:0;bottom:16px;width:28px;z-index:2;pointer-events:none;opacity:0;transition:opacity .2s}
+.rack::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.rack::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+.rack.more-l::before,.rack.more-r::after{opacity:1}
+.scroller{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding-inline:24px;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:30px 16px 0}
+.scroller::-webkit-scrollbar{display:none}
+.row{display:flex;gap:clamp(6px,1.2vw,12px);align-items:flex-end;width:max-content;padding:0 clamp(8px,2vw,20px)}
+.row .spine{width:clamp(58px,8.4vw,92px);flex:none;scroll-snap-align:start}
+.row+.plank{width:100%;min-width:100%}
+.shelfbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.shelfbar .hint{margin:0}
+.arrows{display:flex;gap:8px;flex:none}
+.arrows button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;font:700 18px/1 var(--body);display:grid;place-items:center;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.arrows button:active{transform:scale(.94)}
+.arrows button:disabled{opacity:.35;cursor:default}
+.spine{background:var(--s-tex,none),var(--s-bg);box-shadow:inset -7px 0 0 rgba(0,0,0,.16),inset 4px 0 0 rgba(255,255,255,.1),inset 0 -1px 0 rgba(0,0,0,.2)}
+.spine::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.08),transparent 16%,transparent 74%,rgba(0,0,0,.12));border-radius:inherit}
+.spine .t{text-transform:var(--s-tt,none);font-size:calc(clamp(22px,4.6vw,44px)*var(--s-size,1));padding:6px 0}
+.spine .t b{font:inherit;background:var(--s-tbg,none);color:var(--s-tink,inherit);padding:6px 0}
+.spine .mt,.spine .mb{width:74%;display:block;line-height:0}
+.spine .mt svg,.spine .mb svg{width:100%;height:auto;max-height:64px}
+.ficha{border-top:0;padding-top:0;overflow:hidden}
+.cover{grid-column:1/-1;margin:0 calc(-1*clamp(20px,4vw,32px));padding:22px clamp(20px,4vw,32px);min-height:120px;display:flex;align-items:center;justify-content:space-between;gap:16px;background:var(--s-tex,none),var(--s-bg);color:var(--s-ink)}
+.cover b{font:var(--s-font);font-size:clamp(40px,8vw,68px);line-height:1;letter-spacing:var(--s-track,0);text-transform:var(--s-tt,none);background:var(--s-hbg,none);color:var(--s-tink,inherit);padding:0 .12em}
+.cover .mb{width:clamp(56px,10vw,84px);flex:none;line-height:0}
+.cover .mb svg{width:100%;height:auto}
+.ficha h3{display:none}
+</style>
 </head>
 <body>
 <div class="wrap">
@@ -90,10 +124,8 @@ code{font-size:.92em;background:var(--bg);padding:1px 6px;border-radius:6px}
 
   <section aria-labelledby="hs" class="case">
     <h2 class="sec-h" id="hs" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">El librero</h2>
-    <div class="groups" aria-hidden="true"><span>Tú por dentro</span><span>Tu negocio</span></div>
-    <div class="shelf" id="shelf"></div>
-    <div class="plank" aria-hidden="true"></div>
-    <p class="hint">Toca un libro para ver de qué trata. Los que marques como terminados llevan un punto; se guarda solo en este celular.</p>
+    <div class="rack"><div class="scroller" id="shelf"></div><div class="plank" aria-hidden="true"></div></div>
+    <div class="shelfbar"><p class="hint">Desliza el librero y toca un libro para ver de qué trata. Los que marques como terminados llevan un punto.</p><div class="arrows" id="arrows"><button id="prev" aria-label="Libros anteriores">←</button><button id="next" aria-label="Más libros">→</button></div></div>
   </section>
 
   <section aria-labelledby="hf">
@@ -126,8 +158,58 @@ code{font-size:.92em;background:var(--bg);padding:1px 6px;border-radius:6px}
 </div>
 
 <script>
+/* Each book's cover, borrowed from its own course: texture, type and the one drawing that course is built around. Keyed by course id so new books can add theirs without touching the list. */
+window.SKINS=(function(){
+  function noise(c,a){return "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 "+c+" 0 0 0 0 "+c+" 0 0 0 0 "+c+" 0 0 0 "+a+" 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")";}
+  var DARK=noise(0,.13),LIGHT=noise(1,.14);
+  function svg(vb,inner){return '<svg viewBox="'+vb+'" aria-hidden="true">'+inner+"</svg>";}
+  return {
+    "otra-tu":{tex:"radial-gradient(1.2px 1.2px at 22% 14%,#fff 60%,transparent),radial-gradient(1px 1px at 70% 30%,#fff 60%,transparent),radial-gradient(1.4px 1.4px at 38% 52%,#FFB48A 60%,transparent),radial-gradient(1px 1px at 80% 66%,#fff 60%,transparent),radial-gradient(1.2px 1.2px at 30% 82%,#fff 60%,transparent),radial-gradient(1px 1px at 60% 8%,#F29AAE 60%,transparent),"+LIGHT,
+      bot:svg("0 0 40 40",'<circle cx="20" cy="20" r="12" fill="#FFB48A"/><circle cx="26" cy="15" r="11" fill="#0D1022"/>')},
+    "coherencia":{tex:"repeating-linear-gradient(0deg,rgba(255,255,255,.06) 0 1px,transparent 1px 12px),"+LIGHT,
+      bot:svg("0 0 48 24",'<path d="M0 12h12l3-9 5 18 5-15 3 6h20" fill="none" stroke="#BFE3DC" stroke-width="2.4" stroke-linejoin="round" stroke-linecap="round"/>')},
+    "botin":{tex:"repeating-linear-gradient(90deg,rgba(0,0,0,.05) 0 1px,transparent 1px 9px),"+DARK,
+      titleBg:"linear-gradient(90deg,transparent 14%,#FF6FB5 14% 86%,transparent 86%)",
+      top:svg("0 0 40 14",'<rect x="5" y="2" width="30" height="10" fill="#F4F3EF" opacity=".85" transform="rotate(-7 20 7)"/>'),
+      bot:svg("0 0 40 18",'<path d="M4 12c6-8 10 4 16-3s9 5 16-2" fill="none" stroke="#141413" stroke-width="3" stroke-linecap="round"/>')},
+    "tu-palabra":{tex:"repeating-linear-gradient(45deg,rgba(255,255,255,.04) 0 2px,transparent 2px 6px),"+LIGHT,
+      titleBg:"linear-gradient(90deg,transparent 10%,#E1F45A 10% 90%,transparent 90%)",titleInk:"#16181D",
+      bot:svg("0 0 40 12",'<rect x="6" y="4" width="28" height="4" rx="2" fill="#2C41AE"/>')},
+    "el-clic":{tex:"radial-gradient(rgba(255,255,255,.22) 1.1px,transparent 1.6px) 0 0/7px 7px,"+DARK,
+      bot:svg("0 0 40 40",'<path d="M13 6l17 15-8 1 5 10-4 2-5-10-5 6z" fill="#15171E" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>')},
+    "a-la-vista":{tex:DARK,tt:"uppercase",
+      top:svg("0 0 44 14",'<circle cx="7" cy="7" r="5" fill="#E3342A"/><text x="15" y="11" font-family="IBM Plex Mono,monospace" font-weight="600" font-size="10" fill="#111110">REC</text>'),
+      bot:svg("0 0 40 10",'<rect x="4" y="3" width="32" height="4" fill="#111110"/>')},
+    "antena":{tex:"repeating-linear-gradient(0deg,rgba(26,25,22,.045) 0 1px,transparent 1px 3px),repeating-linear-gradient(90deg,rgba(26,25,22,.045) 0 1px,transparent 1px 3px),"+DARK,
+      size:.62,track:".14em",tt:"uppercase",
+      top:svg("0 0 40 10",'<path d="M8 3h24M8 7h24" stroke="#1A1916" stroke-width=".8"/>'),
+      bot:svg("0 0 40 16",'<path d="M20 2v12M14 6l6-4 6 4" fill="none" stroke="#1A1916" stroke-width="1.2"/><circle cx="20" cy="2" r="1.6" fill="#1A1916"/>')},
+    "atomo":{tex:DARK,
+      bot:svg("0 0 40 60",'<circle cx="20" cy="4" r="1.4" fill="#D6D1C3"/><circle cx="20" cy="11" r="2" fill="#E0A21A"/><circle cx="20" cy="20" r="3.2" fill="#E0A21A"/><circle cx="20" cy="33" r="5" fill="#E0A21A"/><circle cx="20" cy="50" r="8" fill="#E0A21A"/>')},
+    "clarito":{tex:DARK,
+      bot:svg("0 0 40 36",'<path d="M10 14v8l8 3V11z" fill="#231F1C"/><path d="M23 12a8 8 0 0 1 0 12M27 8a13 13 0 0 1 0 20M31 4a18 18 0 0 1 0 28" fill="none" stroke="#D8232B" stroke-width="2.4" stroke-linecap="round"/>')},
+    "despacio":{tex:"linear-gradient(90deg,transparent 18%,rgba(110,106,98,.55) 18% calc(18% + 1.5px),transparent calc(18% + 1.5px)),"+DARK,
+      bot:svg("0 0 44 14",'<path d="M2 7h7" stroke="#6E6A62" stroke-width="1.5"/><rect x="10" y="4" width="22" height="6" fill="#F2C12E"/><rect x="32" y="4" width="4" height="6" fill="#E3978B"/><path d="M10 4l-5 3 5 3z" fill="#E8D3A6"/><path d="M6.6 6.2L5 7l1.6.8z" fill="#151412"/>')},
+    "el-si":{tex:DARK,tt:"uppercase",
+      bot:svg("0 0 40 40",'<rect x="4" y="4" width="14" height="14" rx="3" fill="#fff" stroke="#1A1416" stroke-width="1.5"/><rect x="22" y="4" width="14" height="14" rx="3" fill="#C1121F"/><rect x="4" y="22" width="14" height="14" rx="3" fill="#fff" stroke="#1A1416" stroke-width="1.5"/><rect x="22" y="22" width="14" height="14" rx="3" fill="#fff" stroke="#1A1416" stroke-width="1.5"/>')},
+    "pasalo":{tex:DARK,tt:"uppercase",track:".08em",
+      bot:svg("0 0 40 44",'<path d="M20 44V22" stroke="#17110C" stroke-width="1.6"/><g stroke="#FFF6EA" stroke-width="1"><path d="M20 22l-9-9M20 22l9-9M20 22V9M20 22l-12 0M20 22l12 0"/></g><g fill="#FFF6EA"><circle cx="11" cy="13" r="1.8"/><circle cx="29" cy="13" r="1.8"/><circle cx="20" cy="9" r="1.8"/><circle cx="8" cy="22" r="1.8"/><circle cx="32" cy="22" r="1.8"/><circle cx="34" cy="6" r="1.4"/><circle cx="37" cy="12" r="1"/></g>')},
+    "ponte-pro":{tex:"repeating-linear-gradient(90deg,#08121F 0 2px,transparent 2px 11px),repeating-linear-gradient(0deg,#08121F 0 2px,transparent 2px 11px),radial-gradient(circle at 50% 45%,#2B5C93,#13294A 55%,#0D1C33)",
+      bot:svg("0 0 40 20",'<circle cx="20" cy="10" r="7" fill="#7ED957" opacity=".25"/><circle cx="20" cy="10" r="4" fill="#7ED957"/>')},
+    "todavia":{tex:DARK,
+      bot:svg("0 0 40 40",'<path d="M2 8q9-6 18 0t18 0v6q-9 6-18 0t-18 0z" fill="#8CC0DC"/><path d="M2 16q9-6 18 0t18 0v6q-9 6-18 0t-18 0z" fill="#F5C918"/><path d="M2 24q9-6 18 0t18 0v6q-9 6-18 0t-18 0z" fill="#E2378E"/><path d="M2 32q9-6 18 0t18 0v6q-9 6-18 0t-18 0z" fill="#22408F"/>')}
+  };
+})();
+</script>
+<script>
 (function(){
 var BOOKS=[
+  {id:"todavia",name:"Todavía",url:"/programas/todavia/",book:"Mindset, de Carol S. Dweck",
+   len:"10 clases y 4 herramientas",
+   out:"Dejar de preguntarte si eres buena para algo y empezar a preguntarte cómo aprenderlo: ver el error como información, cachar a tu voz de «no puedes» y armar planes con día, hora y lugar.",
+   when:"Te dices «no soy buena para vender», «no sé hablar a cámara» o «no soy de números», y por eso ni lo intentas.",
+   next:"Otra tú, para dejar de ser la de siempre ahora que sabes que todo se aprende.",
+   bg:"#F3F0EA",ink:"#18171A",accent:"#E2378E",font:"900 1em 'Montserrat',system-ui,sans-serif",track:"-.02em",h:94},
   {id:"otra-tu",name:"Otra tú",url:"/programas/otra-tu/",book:"Breaking the Habit of Being Yourself (Deja de ser tú), de Joe Dispenza",
    len:"16 clases: 6 para entender, 6 para practicar en cuatro semanas y 4 herramientas",
    out:"Dejar el hábito de ser la de siempre: nombrar la emoción que te maneja, soltarla y ensayar todos los días a la nueva tú.",
@@ -138,8 +220,26 @@ var BOOKS=[
    len:"10 clases y 3 herramientas",
    out:"Salir del piloto automático, volver al presente y sentir hoy la vida que quieres crear, con meditaciones guiadas y una hoja de intención.",
    when:"Ya decidiste cambiar y quieres una práctica diaria que te dé calma y dirección.",
-   next:"Botín, para pasar de lo que sientes a lo que creas.",
+   next:"Átomo, para que lo que practicas se vuelva hábito.",
    bg:"#17675F",ink:"#F7FAFB",accent:"#BFE3DC",font:"500 1em 'Newsreader',Georgia,serif",h:100},
+  {id:"atomo",name:"Átomo",url:"/programas/atomo/",book:"Hábitos atómicos, de James Clear",
+   len:"12 clases y 4 herramientas",
+   out:"Crear hábitos que se sostengan solos y soltar los que te estorban, con cuatro reglas sencillas: que se vea, que se antoje, que cueste poquito y que se sienta bien.",
+   when:"Sabes lo que te conviene hacer, pero lo dejas a los tres días.",
+   next:"Despacio, para decidir con calma lo que vale la pena volver hábito.",
+   bg:"#FBFAF6",ink:"#141414",accent:"#E0A21A",font:"900 1em 'Archivo','Arial Black',sans-serif",track:"-.02em",h:94},
+  {id:"despacio",name:"Despacio",url:"/programas/despacio/",book:"Pensar rápido, pensar despacio, de Daniel Kahneman",
+   len:"12 clases y 4 herramientas",
+   out:"Entender cómo decide tu cabeza y la de tu clienta: equivocarte menos con tu dinero y tus planes, y vender claro, sin trucos.",
+   when:"Decides con prisa y luego te arrepientes, o quieres vender mejor sin sentir que manipulas.",
+   next:"Antena, para pasar de pensar a crear.",
+   bg:"#F6F3EA",ink:"#151412",accent:"#F2C12E",font:"500 1em 'Crimson Pro',Georgia,serif",track:"-.01em",h:94},
+  {id:"antena",name:"Antena",url:"/programas/antena/",book:"El acto creativo: una forma de ser, de Rick Rubin",
+   len:"12 clases y 4 herramientas",
+   out:"Vivir con la antena prendida: notar lo que te mueve, juntar ideas sin juzgarlas, jugar con ellas, terminarlas y atreverte a compartirlas.",
+   when:"Empiezas mil cosas y no terminas ninguna, o sientes que se te acabaron las ideas.",
+   next:"Botín, para crear con lo que ya te inspira.",
+   bg:"#F1EDE4",ink:"#1A1916",accent:"#1A1916",font:"400 1em 'Libre Baskerville',Baskerville,Georgia,serif",h:94},
   {id:"botin",name:"Botín",url:"/programas/botin/",book:"Roba como un artista, de Austin Kleon",
    len:"10 clases y 3 herramientas",
    out:"Dejar de esperar la idea perfecta y crear con lo que ya te inspira: aprender de quien admiras sin copiarla y publicar con constancia.",
@@ -152,12 +252,6 @@ var BOOKS=[
    when:"Haces buen trabajo, pero casi nadie se entera o te da pena mostrarte.",
    next:"Tu Palabra, para que lo que muestras apunte a un solo lugar.",
    bg:"#FBFAF6",ink:"#111110",accent:"#E3342A",font:"900 1em 'Londrina Solid',Impact,sans-serif",track:".01em",h:88},
-  {id:"antena",name:"Antena",url:"/programas/antena/",book:"El acto creativo: una forma de ser, de Rick Rubin",
-   len:"12 clases y 4 herramientas",
-   out:"Vivir con la antena prendida: notar lo que te mueve, juntar ideas sin juzgarlas, jugar con ellas, terminarlas y atreverte a compartirlas.",
-   when:"Empiezas mil cosas y no terminas ninguna, o sientes que se te acabaron las ideas.",
-   next:"Tu Palabra, para que lo que creas apunte a un solo lugar.",
-   bg:"#F1EDE4",ink:"#1A1916",accent:"#1A1916",font:"400 1em 'Libre Baskerville',Baskerville,Georgia,serif",h:94},
   {id:"tu-palabra",name:"Tu Palabra",url:"/programas/tu-palabra/",book:"Las 22 leyes inmutables del marketing, de Al Ries y Jack Trout",
    len:"10 clases",
    out:"Ser dueña de una sola palabra en la mente de tu clienta: tu categoría, tu escalón y lo que decides dejar fuera.",
@@ -168,8 +262,14 @@ var BOOKS=[
    len:"10 clases y 3 herramientas",
    out:"Que tu clienta sea la protagonista y tú, su guía: armar tu guion de mensaje y usarlo en tu bio, tus publicaciones y tus mensajes.",
    when:"Tu perfil y tus publicaciones no dejan claro qué vendes, o hablas más de ti que de tu clienta.",
-   next:"El Clic, para convertir ese mensaje en ventas.",
+   next:"Pásalo, para que tu mensaje corra de boca en boca.",
    bg:"#FBF9F6",ink:"#D8232B",accent:"#A99B89",font:"700 1em 'Jost',system-ui,sans-serif",track:".04em",h:94},
+  {id:"pasalo",name:"Pásalo",url:"/programas/pasalo/",book:"Contagioso (Contagious), de Jonah Berger",
+   len:"10 clases y 3 herramientas",
+   out:"Que la gente hable de lo que vendes sin rogarle a nadie: las seis semillas que hacen que algo se comparta, con ejemplos de venta directa.",
+   when:"Publicas y nadie comenta, o tus clientas compran pero nunca te recomiendan.",
+   next:"El Clic, para convertir la plática en ventas.",
+   bg:"#F26B1D",ink:"#17110C",accent:"#FFF6EA",font:"500 1em 'Cormorant Garamond',Georgia,serif",h:94},
   {id:"el-clic",name:"El Clic",url:"/programas/el-clic/",book:"Véndele a la mente, no a la gente, de Jürgen Klarić",
    len:"8 lecciones y una bienvenida",
    out:"Entender cómo decide la mente de tu clienta, encontrar la necesidad de fondo y vender sin sonar a discurso, con guiones honestos y seguimiento.",
@@ -180,83 +280,75 @@ var BOOKS=[
    len:"8 clases y 3 herramientas",
    out:"Conocer los seis atajos que hacen que alguien diga que sí, usarlos con señales verdaderas y reconocerlos cuando te los aplican a ti.",
    when:"Te cuesta pedir la venta sin sentir que presionas, o te cuesta decir que no cuando te presionan.",
-   next:"Átomo, para que lo que aprendiste se vuelva hábito.",
-   bg:"#FAF9F8",ink:"#C1121F",accent:"#1A1416",font:"900 1em 'Bodoni Moda',Georgia,serif",track:"-.02em",h:88},
-  {id:"atomo",name:"Átomo",url:"/programas/atomo/",book:"Hábitos atómicos, de James Clear",
-   len:"12 clases y 4 herramientas",
-   out:"Crear hábitos que se sostengan solos y soltar los que te estorban, con cuatro reglas sencillas: que se vea, que se antoje, que cueste poquito y que se sienta bien.",
-   when:"Sabes lo que te conviene hacer, pero lo dejas a los tres días.",
    next:"Ponte Pro, para trabajar tu negocio como una profesión.",
-   bg:"#FBFAF6",ink:"#141414",accent:"#E0A21A",font:"900 1em 'Archivo','Arial Black',sans-serif",track:"-.02em",h:94},
+   bg:"#FAF9F8",ink:"#C1121F",accent:"#1A1416",font:"900 1em 'Bodoni Moda',Georgia,serif",track:"-.02em",h:88},
   {id:"ponte-pro",name:"Ponte Pro",url:"/programas/ponte-pro/",book:"Go Pro, de Eric Worre",
    len:"13 clases y 4 herramientas",
    out:"Dejar de probar suerte con tu negocio de Farmasi y dominar las siete habilidades de una profesional: tu lista, invitar, presentar, dar seguimiento, ayudar a decidir, arrancar a tus nuevas y llenar los eventos.",
    when:"Tu negocio depende de tu ánimo del día, te da pena invitar o tus prospectas dicen \"luego te digo\" y desaparecen.",
-   next:"Terminaste el librero. Regresa a Otra tú cuando sientas que volviste a lo de siempre.",
-   bg:"#08121F",ink:"#EEF2F8",accent:"#7ED957",font:"600 1em 'Cinzel','Times New Roman',serif",track:".04em",h:94},
-  {id:"pasalo",name:"Pásalo",url:"/programas/pasalo/",book:"Contagioso (Contagious), de Jonah Berger",
-   len:"10 clases y 3 herramientas",
-   out:"Que la gente hable de lo que vendes sin rogarle a nadie: las seis semillas que hacen que algo se comparta, con ejemplos de venta directa.",
-   when:"Publicas y nadie comenta, o tus clientas compran pero nunca te recomiendan.",
-   next:"Tu Palabra, para que cuando hablen de ti digan una sola cosa.",
-   bg:"#F26B1D",ink:"#17110C",accent:"#FFF6EA",font:"500 1em 'Cormorant Garamond',Georgia,serif",h:94},
-  {id:"todavia",name:"Todavía",url:"/programas/todavia/",book:"Mindset, de Carol S. Dweck",
-   len:"10 clases y 4 herramientas",
-   out:"Dejar de preguntarte si eres buena para algo y empezar a preguntarte cómo aprenderlo: ver el error como información, cachar a tu voz de «no puedes» y armar planes con día, hora y lugar.",
-   when:"Te dices «no soy buena para vender», «no sé hablar a cámara» o «no soy de números», y por eso ni lo intentas.",
-   next:"Regresa a Otra tú cuando sientas que volviste a lo de siempre.",
-   bg:"#F3F0EA",ink:"#18171A",accent:"#E2378E",font:"900 1em 'Montserrat',system-ui,sans-serif",track:"-.02em",h:94},
-  {id:"despacio",name:"Despacio",url:"/programas/despacio/",book:"Pensar rápido, pensar despacio, de Daniel Kahneman",
-   len:"12 clases y 4 herramientas",
-   out:"Entender cómo decide tu cabeza y la de tu clienta: equivocarte menos con tu dinero y tus planes, y vender claro, sin trucos.",
-   when:"Decides con prisa y luego te arrepientes, o quieres vender mejor sin sentir que manipulas.",
-   next:"Regresa a cualquier libro del librero y usa La Pausa antes de tu próxima decisión grande.",
-   bg:"#F6F3EA",ink:"#151412",accent:"#F2C12E",font:"500 1em 'Crimson Pro',Georgia,serif",track:"-.01em",h:94}
+   next:"Terminaste el librero. Regresa a Todavía cuando algo nuevo te diga «no puedo».",
+   bg:"#08121F",ink:"#EEF2F8",accent:"#7ED957",font:"600 1em 'Cinzel','Times New Roman',serif",track:".04em",h:94}
 ];
 var NEEDS=[
+  ["Me digo que no soy buena para algo","todavia"],
   ["Siento que vivo el mismo día una y otra vez","otra-tu"],
   ["Me cuesta estar tranquila y presente","coherencia"],
+  ["Lo dejo a los tres días","atomo"],
+  ["Decido con prisa y luego me arrepiento","despacio"],
+  ["Empiezo mil cosas y no termino ninguna","antena"],
   ["No sé qué publicar","botin"],
   ["Me da pena mostrar lo que hago","a-la-vista"],
-  ["Empiezo mil cosas y no termino ninguna","antena"],
   ["Nadie me distingue de las demás","tu-palabra"],
   ["No se entiende qué vendo","clarito"],
+  ["Quiero que la gente hable de lo que vendo","pasalo"],
   ["Me preguntan precio y desaparecen","el-clic"],
   ["Me cuesta pedir sin sentir que presiono","el-si"],
-  ["Lo dejo a los tres días","atomo"],
   ["Quiero que mi negocio crezca en serio","ponte-pro"],
-  ["Quiero que la gente hable de lo que vendo","pasalo"],
-  ["Me digo que no soy buena para algo","todavia"],
-  ["Decido con prisa y luego me arrepiento","despacio"],
-  ["Quiero hacerlos todos","otra-tu"]
+  ["Quiero hacerlos todos","todavia"]
 ];
 var K="biblioteca-hechos";
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
 var done=[];try{done=JSON.parse(localStorage.getItem(K)||"[]");}catch(e){}
 function save(){try{localStorage.setItem(K,JSON.stringify(done));}catch(e){}}
 function byId(id){for(var i=0;i<BOOKS.length;i++)if(BOOKS[i].id===id)return BOOKS[i];}
-function vars(b){return "--s-bg:"+b.bg+";--s-ink:"+b.ink+";--s-accent:"+b.accent+";--s-font:"+b.font+";--s-track:"+(b.track||"0");}
+var SK=window.SKINS||{};
+function skin(b){return SK[b.id]||{};}
+function vars(b){var k=skin(b),v="--s-bg:"+b.bg+";--s-ink:"+b.ink+";--s-accent:"+b.accent+";--s-font:"+b.font+";--s-track:"+(k.track||b.track||"0");
+  if(k.tex)v+=";--s-tex:"+k.tex;if(k.tt)v+=";--s-tt:"+k.tt;if(k.size)v+=";--s-size:"+k.size;if(k.titleBg)v+=";--s-tbg:"+k.titleBg+";--s-hbg:"+k.titleBg.replace("90deg","0deg");if(k.titleInk)v+=";--s-tink:"+k.titleInk;
+  return v;}
+function va(b){return vars(b).replace(/"/g,"&quot;");}
+function edges(){var sc=document.getElementById("shelf"),rk=sc.parentNode,m=sc.scrollWidth-sc.clientWidth-2;
+  rk.classList.toggle("more-l",sc.scrollLeft>2);rk.classList.toggle("more-r",sc.scrollLeft<m);
+  document.getElementById("prev").disabled=sc.scrollLeft<=2;document.getElementById("next").disabled=sc.scrollLeft>=m;
+  document.getElementById("arrows").hidden=m<=0;}
 var sel=null;for(var i=0;i<BOOKS.length;i++)if(done.indexOf(BOOKS[i].id)<0){sel=BOOKS[i].id;break;}
 if(!sel)sel=BOOKS[0].id;
 
 function drawShelf(){
-  document.getElementById("shelf").innerHTML=BOOKS.map(function(b,i){
-    return '<button class="spine'+(done.indexOf(b.id)>=0?" is-done":"")+'" style="'+vars(b)+';--h:calc(clamp(260px,62vw,400px)*'+(b.h/100)+')" aria-pressed="'+(b.id===sel)+'" data-id="'+b.id+'" aria-label="'+(i+1)+'. '+esc(b.name)+'"><span class="n">'+(i+1)+'</span><span class="t">'+esc(b.name)+'</span><span class="band"></span><i class="done" aria-hidden="true"></i></button>';
-  }).join("");
+  var h="";
+  {var r=0;
+    h+='<div class="row">'+BOOKS.map(function(b,j){var i=r+j,k=skin(b);
+      return '<button class="spine'+(done.indexOf(b.id)>=0?" is-done":"")+'" style="'+va(b)+';--h:calc(clamp(260px,62vw,400px)*'+(b.h/100)+')" aria-pressed="'+(b.id===sel)+'" data-id="'+b.id+'" aria-label="'+(i+1)+'. '+esc(b.name)+'"><span class="n">'+(i+1)+'</span>'+(k.top?'<span class="mt">'+k.top+'</span>':'')+'<span class="t"><b>'+esc(b.name)+'</b></span>'+(k.bot?'<span class="mb">'+k.bot+'</span>':'<span class="band"></span>')+'<i class="done" aria-hidden="true"></i></button>';
+    }).join("")+'</div>';
+  }
+  var sc=document.getElementById("shelf"),x=sc.scrollLeft;sc.innerHTML=h;sc.scrollLeft=x;edges();
 }
 function drawFicha(){
   var b=byId(sel),n=BOOKS.indexOf(b)+1,d=done.indexOf(b.id)>=0,f=document.getElementById("ficha");
   f.style.cssText=vars(b);
-  f.innerHTML='<div style="display:grid;gap:14px;align-content:start"><div><p class="src">Libro '+n+' de '+BOOKS.length+' · basado en '+esc(b.book)+'</p><h3>'+esc(b.name)+'</h3><p class="len">'+esc(b.len)+'</p></div><p class="out">'+esc(b.out)+'</p><div class="acts"><a class="btn" href="'+b.url+'">Abrir '+esc(b.name)+' →</a><label class="chk"><input type="checkbox" id="doneChk"'+(d?" checked":"")+'> Ya lo terminé</label></div></div><dl><div><dt>Tómalo cuando</dt><dd>'+esc(b.when)+'</dd></div><div><dt>Después sigue</dt><dd>'+esc(b.next)+'</dd></div></dl>';
+  f.innerHTML='<div class="cover"><b>'+esc(b.name)+'</b>'+(skin(b).bot?'<span class="mb">'+skin(b).bot+'</span>':'')+'</div><div style="display:grid;gap:14px;align-content:start"><div><p class="src">Libro '+n+' de '+BOOKS.length+' · basado en '+esc(b.book)+'</p><h3>'+esc(b.name)+'</h3><p class="len">'+esc(b.len)+'</p></div><p class="out">'+esc(b.out)+'</p><div class="acts"><a class="btn" href="'+b.url+'">Abrir '+esc(b.name)+' →</a><label class="chk"><input type="checkbox" id="doneChk"'+(d?" checked":"")+'> Ya lo terminé</label></div></div><dl><div><dt>Tómalo cuando</dt><dd>'+esc(b.when)+'</dd></div><div><dt>Después sigue</dt><dd>'+esc(b.next)+'</dd></div></dl>';
   document.getElementById("doneChk").onchange=function(){
     var k=done.indexOf(b.id);if(this.checked&&k<0)done.push(b.id);if(!this.checked&&k>=0)done.splice(k,1);save();drawShelf();
   };
 }
 function pick(id,scroll){sel=id;drawShelf();drawFicha();if(scroll)document.getElementById("hf").scrollIntoView({behavior:"smooth",block:"start"});}
 document.getElementById("shelf").addEventListener("click",function(e){var t=e.target.closest(".spine");if(t)pick(t.getAttribute("data-id"),false);});
-document.getElementById("needs").innerHTML=NEEDS.map(function(x){var b=byId(x[1]);return '<button class="need" data-id="'+b.id+'" style="'+vars(b)+'"><i aria-hidden="true"></i><span><b>'+esc(x[0])+'</b><span>Empieza con '+esc(b.name)+'</span></span></button>';}).join("");
+document.getElementById("needs").innerHTML=NEEDS.map(function(x){var b=byId(x[1]);return '<button class="need" data-id="'+b.id+'" style="'+va(b)+'"><i aria-hidden="true"></i><span><b>'+esc(x[0])+'</b><span>Empieza con '+esc(b.name)+'</span></span></button>';}).join("");
 document.getElementById("needs").addEventListener("click",function(e){var t=e.target.closest(".need");if(t)pick(t.getAttribute("data-id"),true);});
 drawShelf();drawFicha();
+var SC=document.getElementById("shelf");SC.addEventListener("scroll",edges,{passive:true});window.addEventListener("resize",edges);
+function nudge(d){SC.scrollBy({left:d*SC.clientWidth*.8,behavior:"smooth"});}
+document.getElementById("prev").onclick=function(){nudge(-1);};document.getElementById("next").onclick=function(){nudge(1);};
 })();
 </script>
 </body>
