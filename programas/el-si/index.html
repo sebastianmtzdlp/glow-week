@@ -1,0 +1,442 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>El Sí</title><meta name="description" content="Ocho clases cortas sobre los seis atajos que hacen que alguien diga que sí, usados con honestidad."><meta property="og:title" content="El Sí"><meta property="og:description" content="Los seis atajos de la mente, sin trampa."><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Archivo:wght@400;500;600;700&display=swap">
+<style>
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body)}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.wrap{max-width:var(--maxw,1040px);margin:0 auto;padding-inline:16px;padding-block:0 64px;display:flex;flex-direction:column;gap:var(--gap,28px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.press{transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.press:active{transform:scale(.97)}
+
+/* tabs */
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;justify-content:center;margin-inline:-16px;padding:10px 16px}
+.tabbar::before{content:"";position:absolute;inset:0;background:var(--bg);opacity:.94;z-index:-1}
+.tabs{display:flex;gap:4px;max-width:100%;overflow-x:auto;padding:4px;border-radius:var(--tabs-r,999px);background:var(--surface);border:1px solid var(--line)}
+.tab{white-space:nowrap;border:0;background:transparent;color:var(--muted);font-weight:600;font-size:15px;padding:10px 18px;border-radius:var(--tabs-r,999px);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+
+/* shared buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font-weight:600;font-size:15px;padding:12px 18px;border-radius:var(--btn-r,999px);cursor:pointer;text-decoration:none;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.35;cursor:default}
+
+/* section heads (faq + mentor) */
+.sec-h{margin:0;font:var(--h2-font);letter-spacing:var(--h2-track,-.01em);text-wrap:balance}
+.sec-p{margin:8px 0 0;color:var(--muted);max-width:56ch}
+
+/* faq */
+.faqv{display:flex;flex-direction:column;gap:16px;max-width:780px}
+.f-search{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--field-r,999px);padding:0 18px}
+.f-search svg{width:20px;height:20px;flex:none;color:var(--muted)}
+.f-search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:17px/1.3 var(--body);padding:14px 0}
+.f-search input:focus{outline:none}
+.f-search:focus-within{border-color:var(--accent)}
+.f-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.f-count{margin:0;color:var(--muted);font-size:14px}
+.fgroup h3{margin:18px 0 8px;font:var(--h3-font)}
+details.qa{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);margin-bottom:8px}
+details.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 18px;font-weight:600;font-size:16.5px;line-height:1.35}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa summary i{flex:none;font-style:normal;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--ink);transition:transform .2s cubic-bezier(.23,1,.32,1)}
+details.qa[open] summary i{transform:rotate(45deg);background:var(--accent);color:var(--accent-ink)}
+.ans{padding:0 18px 18px}
+.ans p{margin:0 0 .7em;max-width:64ch}.ans p:last-child{margin:0}
+.ans ul,.ans ol{margin:0 0 .8em;padding-left:1.3em}
+.ans .go{margin-top:10px}
+mark{background:var(--mark,rgba(255,200,0,.35));color:inherit;border-radius:3px;padding:0 2px}
+
+/* mentor */
+.mentorv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 40px;align-items:start}
+@media (max-width:780px){.mentorv{grid-template-columns:minmax(0,1fr)}}
+.m-col{display:flex;flex-direction:column;gap:18px;min-width:0}
+.m-can{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.m-can li{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);padding:14px 16px}
+.m-can b{display:block;font-weight:700}
+.m-can span{color:var(--muted);font-size:15px}
+.m-dl{display:flex;flex-wrap:wrap;gap:10px}
+.m-note{margin:0;color:var(--muted);font-size:14px}
+.m-h{margin:0;font:var(--h3-font)}
+.m-steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.m-steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:baseline}
+.m-steps li::before{counter-increment:s;content:counter(s);font:var(--num-font,700 22px/1 var(--display));color:var(--accent-text,var(--accent))}
+.m-prompts{display:grid;gap:8px}
+.m-prompt{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,14px);padding:10px 12px 10px 16px}
+.m-prompt q{quotes:none;min-width:0;font-size:15.5px}
+.m-prompt .btn{padding:8px 14px;font-size:13.5px;flex:none}
+.m-limits{display:flex;flex-wrap:wrap;gap:8px}
+.m-limits span{font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted)}
+footer.foot{text-align:center;font-size:14px;color:var(--muted);padding-top:20px}
+
+/* ---------- reader sheet (the lights come on) ---------- */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);opacity:0;transition:opacity .45s cubic-bezier(.32,.72,0,1)}
+.scrim.on{opacity:1}
+.sheet{position:fixed;z-index:41;left:0;right:0;bottom:0;top:calc(12px + env(safe-area-inset-top,0px));margin:0 auto;max-width:800px;background:var(--r-bg);color:var(--r-ink);border-radius:22px 22px 0 0;transform:translateY(100%);transition:transform .5s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,.35);font-family:var(--r-body,var(--body))}
+.sheet.on{transform:translateY(0)}
+.sheet.drag{transition:none}
+.grab{flex:none;touch-action:none;cursor:grab;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:10px 14px 10px 20px;border-bottom:1px solid var(--r-line);position:relative}
+.grab::before{content:"";position:absolute;top:6px;left:50%;width:40px;height:5px;margin-left:-20px;border-radius:3px;background:var(--r-line)}
+.grab .where{font-size:14px;font-weight:600;color:var(--r-muted);padding-top:8px}
+.grab .x{border:1px solid var(--r-line);background:transparent;color:var(--r-ink);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer;margin-top:6px}
+.sheet :focus-visible{outline:2px solid var(--r-accent);outline-offset:3px}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:clamp(22px,5vw,48px) clamp(18px,5vw,56px) calc(56px + env(safe-area-inset-bottom,0px))}
+.r-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;align-items:end;margin-bottom:18px}
+.r-head.nonum{grid-template-columns:minmax(0,1fr)}
+.r-num{grid-row:span 2;font:var(--r-num-font,800 96px/.8 var(--display));color:var(--r-accent);font-variant-numeric:tabular-nums}
+.r-k{margin:0;font-size:14.5px;font-weight:600;color:var(--r-accent)}
+.r-title{margin:0;font:var(--r-title-font,700 clamp(32px,6.5vw,48px)/1 var(--display));letter-spacing:var(--r-title-track,-.01em);text-wrap:balance}
+.r-topic{margin:0 0 18px;font-size:20px;line-height:1.35;color:var(--r-muted)}
+.r-intro{font-size:20px;line-height:1.5;margin:0 0 26px;padding-bottom:24px;border-bottom:1px solid var(--r-line)}
+.lesson-body p,.lesson-body li{max-width:66ch}
+.lesson-body p{margin:0 0 .9em}
+.lesson-body ul,.lesson-body ol{margin:0 0 1em;padding-left:1.3em}
+.lesson-body li{margin:.4em 0}
+.lesson-body li::marker{color:var(--r-accent);font-weight:700}
+.lesson-body strong{font-weight:700}
+.lesson-body h3{font:var(--r-h3-font,700 26px/1.15 var(--display));margin:36px 0 10px;text-wrap:balance}
+.callout{margin:28px 0;padding:22px 24px;border-radius:var(--card-r,18px);background:var(--r-callout-bg);color:var(--r-callout-ink)}
+.callout p{margin:0;font:var(--r-callout-font,700 clamp(22px,4.6vw,28px)/1.2 var(--display));max-width:34ch;text-wrap:balance}
+.turn{margin-top:40px;padding-top:26px;border-top:2px solid var(--r-ink);display:grid;gap:12px}
+.turn h3{margin:0;font:var(--r-h3-font,700 26px/1.15 var(--display))}
+.task{background:var(--r-surface);border:1px solid var(--r-line);border-radius:var(--card-r,16px);padding:16px 18px}
+.task h4{margin:0 0 6px;font-size:17px}
+.task p:last-child,.task ul:last-child,.task ol:last-child{margin-bottom:0}
+.nb-l{font-weight:600;font-size:14px;color:var(--r-muted);margin-top:6px}
+.sheet textarea{width:100%;min-height:150px;resize:vertical;font:16px/1.55 var(--r-body,var(--body));color:var(--r-ink);background:var(--r-surface);border:1px solid var(--r-line);border-radius:12px;padding:14px 16px}
+.saved{font-size:13px;color:var(--r-muted);min-height:1.2em}
+.r-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:34px;padding-top:22px;border-top:1px solid var(--r-line)}
+.r-foot .nav{display:flex;gap:8px;flex-wrap:wrap}
+.sheet .btn{border-color:var(--r-line);color:var(--r-ink)}
+.sheet .btn.solid{background:var(--r-ink);border-color:var(--r-ink);color:var(--r-bg)}
+.sheet .btn.done{background:var(--r-accent);border-color:var(--r-accent);color:var(--r-accent-ink,var(--r-bg))}
+.r-next{width:100%;margin:0;font-size:14px;color:var(--r-muted)}
+body.sheet-open{overflow:hidden}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.mentorv .sec-h{font-size:clamp(28px,6.4vw,46px)}
+
+/* El Sí: the book's cover. White paper, one cover red, heavy high-contrast serif caps. The hero is a row of six "click" keys (one per shortcut) that stay pressed as you finish each class; the route reads like the book's table of contents. */
+:root{
+  color-scheme:light;
+  --bg:#FAF9F8; --surface:#FFFFFF; --ink:#1A1416; --muted:#5F5559; --line:#E4DEDF; --accent:#C1121F; --accent-ink:#FFFFFF; --red:#C1121F; --red-soft:#F7E3E4; --focus:#C1121F; --mark:#F6CACD;
+  --key:#FFFFFF; --key-edge:#CFC6C8; --key-shadow:#B9AEB1;
+  --display:"Bodoni Moda","Didot","Bodoni 72",Georgia,serif; --body:"Archivo",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --h2-font:800 clamp(38px,7.6vw,62px)/.98 var(--display); --h2-track:-.01em; --h3-font:700 22px/1.2 var(--body); --num-font:700 26px/1 var(--display); --accent-text:var(--red);
+  --r-bg:#FFFFFF; --r-surface:#FAF9F8; --r-ink:#1A1416; --r-muted:#5F5559; --r-line:#E8E2E3; --r-accent:#C1121F; --r-accent-ink:#FFFFFF; --r-callout-bg:#C1121F; --r-callout-ink:#FFFFFF;
+  --r-num-font:800 clamp(96px,22vw,150px)/.8 var(--display); --r-title-font:800 clamp(34px,7vw,54px)/1 var(--display); --r-title-track:-.01em; --r-h3-font:700 23px/1.2 var(--body); --r-callout-font:italic 600 clamp(22px,4.6vw,29px)/1.25 var(--display);
+  --card-r:4px; --tabs-r:4px; --btn-r:4px; --field-r:4px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#141012; --surface:#1D181A; --ink:#F3EEEF; --muted:#ABA0A3; --line:#342C2F; --accent:#FF4D5A; --accent-ink:#1A0B0D; --red:#FF5C68; --red-soft:#3A1A1E; --focus:#FF5C68; --mark:#6B2228;
+  --key:#241E20; --key-edge:#3E3538; --key-shadow:#0A0809;
+  --r-bg:#1A1517; --r-surface:#221C1E; --r-ink:#F3EEEF; --r-muted:#AFA4A7; --r-line:#362E31; --r-accent:#FF5C68; --r-accent-ink:#1A0B0D; --r-callout-bg:#FF5C68; --r-callout-ink:#1A0B0D;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#141012; --surface:#1D181A; --ink:#F3EEEF; --muted:#ABA0A3; --line:#342C2F; --accent:#FF4D5A; --accent-ink:#1A0B0D; --red:#FF5C68; --red-soft:#3A1A1E; --focus:#FF5C68; --mark:#6B2228;
+  --key:#241E20; --key-edge:#3E3538; --key-shadow:#0A0809;
+  --r-bg:#1A1517; --r-surface:#221C1E; --r-ink:#F3EEEF; --r-muted:#AFA4A7; --r-line:#362E31; --r-accent:#FF5C68; --r-accent-ink:#1A0B0D; --r-callout-bg:#FF5C68; --r-callout-ink:#1A0B0D;
+}
+.wrap{padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.tab{font:600 14px/1 var(--body);letter-spacing:.06em;text-transform:uppercase;padding:11px 16px}
+.tab[aria-selected="true"]{background:var(--red);color:var(--accent-ink)}
+.chip,.m-limits span{border-radius:4px}
+.r-k,.grab .where{text-transform:uppercase;letter-spacing:.08em;font-size:13px}
+.lesson-body li::marker{color:var(--r-accent)}
+.lesson-body h3{font-family:var(--display);font-weight:700;font-size:27px;letter-spacing:-.005em}
+.m-can b{font:700 18px/1.2 var(--body)}
+details.qa summary{font:600 17.5px/1.35 var(--body)}
+.callout{border-radius:2px}
+.sec-h em{font-style:italic;color:var(--red)}
+
+/* hero */
+.s-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);gap:24px 56px;align-items:end;padding-block:40px 8px;border-bottom:2px solid var(--ink)}
+@media (max-width:820px){.s-hero{grid-template-columns:minmax(0,1fr);padding-top:22px;gap:20px}}
+.s-left{min-width:0;padding-bottom:20px}
+.s-pre{margin:0;font:600 13px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.s-mark{margin:6px 0 0;font:900 clamp(96px,26vw,190px)/.82 var(--display);letter-spacing:-.035em;color:var(--red)}
+.s-mark span{color:var(--ink)}
+.s-sub{margin:14px 0 0;font:italic 500 clamp(21px,4.4vw,28px)/1.2 var(--display);color:var(--ink)}
+.s-by{margin:10px 0 0;font:600 13px/1.3 var(--body);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.s-copy{display:flex;flex-direction:column;gap:18px;min-width:0;padding-bottom:22px}
+.s-pitch{margin:0;font:400 19px/1.55 var(--body);max-width:34rem}
+.s-keys{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+.s-key{position:relative;display:flex;flex-direction:column;justify-content:space-between;gap:10px;min-height:76px;text-align:left;background:var(--key);border:1px solid var(--key-edge);border-radius:6px;padding:10px 11px 9px;cursor:pointer;color:var(--ink);box-shadow:0 4px 0 var(--key-shadow);transform:translateY(0);transition:transform .14s cubic-bezier(.23,1,.32,1),box-shadow .14s cubic-bezier(.23,1,.32,1),background-color .2s}
+.s-key small{padding-right:12px;font:600 11px/1.1 var(--body);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.s-key b{font:700 17px/1.1 var(--display);letter-spacing:-.005em}
+.s-key i{position:absolute;top:10px;right:10px;width:8px;height:8px;border-radius:50%;background:var(--key-edge)}
+.s-key.on{background:var(--red);border-color:var(--red);color:var(--accent-ink);box-shadow:0 1px 0 var(--key-shadow);transform:translateY(3px)}
+.s-key.on small{color:var(--accent-ink);opacity:.8}
+.s-key.on i{background:var(--accent-ink)}
+.s-key.next{border:2px solid var(--red)}
+.s-key.next i{background:var(--red)}
+.s-key:active{transform:translateY(3px);box-shadow:0 1px 0 var(--key-shadow)}
+@media (prefers-reduced-motion:no-preference){
+  .s-anim .s-key.on{animation:spress .5s cubic-bezier(.23,1,.32,1) both;animation-delay:calc(var(--i) * 110ms + 200ms)}
+  @keyframes spress{0%{transform:translateY(0);box-shadow:0 4px 0 var(--key-shadow);background:var(--key);color:var(--ink)}60%{transform:translateY(4px);box-shadow:0 0 0 var(--key-shadow)}100%{transform:translateY(3px);box-shadow:0 1px 0 var(--key-shadow)}}
+  .s-key.next i{animation:sblink 1.6s ease-in-out infinite}
+  @keyframes sblink{50%{opacity:.25}}
+}
+.s-status{margin:0;font:500 14.5px/1.4 var(--body);color:var(--muted)}
+.s-status b{color:var(--ink)}
+.s-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{font-weight:600}
+.btn.solid{background:var(--red);border-color:var(--red)}
+
+/* route: a table of contents */
+.s-route{display:grid;gap:22px}
+.s-welcome{display:flex;justify-content:space-between;gap:16px;align-items:center;width:100%;text-align:left;background:var(--red-soft);border:0;border-radius:var(--card-r);padding:18px 20px;cursor:pointer;color:var(--ink)}
+.s-welcome b{display:block;font:800 28px/1.05 var(--display)}
+.s-welcome small{display:block;margin-top:4px;color:var(--muted);font-size:16px}
+.s-welcome em{font:600 12.5px/1.2 var(--body);font-style:normal;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:var(--red)}
+.s-toc{border-top:2px solid var(--ink)}
+.s-row{display:grid;grid-template-columns:64px minmax(0,1fr) auto;gap:2px 14px;align-items:baseline;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:16px 0;cursor:pointer;color:var(--ink)}
+.s-row .n{font:800 44px/.9 var(--display);color:var(--key-edge);font-variant-numeric:lining-nums tabular-nums}
+.s-row b{display:block;font:700 23px/1.15 var(--display)}
+.s-row small{display:block;color:var(--muted);font-size:16px;margin-top:3px}
+.s-row i{font:600 12px/1 var(--body);font-style:normal;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap;color:var(--muted)}
+.s-row.seen .n{color:var(--ink)}
+.s-row.next .n{color:var(--red)}
+.s-row.next i{color:var(--red)}
+@media (hover:hover){.s-row:hover b{color:var(--red)}}
+@media (max-width:520px){.s-row{grid-template-columns:46px minmax(0,1fr)}.s-row .n{font-size:34px}.s-row i{grid-column:2}}
+.s-h{margin:18px 0 0;font:800 34px/1 var(--display)}
+.s-tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.s-tools{grid-template-columns:minmax(0,1fr)}}
+.s-tool{text-align:left;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--red);border-radius:0 0 var(--card-r) var(--card-r);padding:18px 18px 16px;cursor:pointer;color:var(--ink)}
+.s-tool b{display:block;font:800 23px/1.1 var(--display)}
+.s-tool small{display:block;margin-top:6px;color:var(--muted);font-size:16px}
+.s-source{margin:6px 0 0;font:italic 400 15px/1.5 var(--display);color:var(--muted)}
+
+</style>
+<div id="root"></div>
+<script>
+var LESSONS_MD="@@ 0 | Empieza aquí | Bienvenida a El Sí | Por qué la gente dice que sí\nEste curso es para que entiendas qué pasa en la cabeza de alguien justo antes de decir que sí, y para que lo uses con honestidad. También para que te des cuenta cuando alguien lo usa contigo.\n\n## De qué se trata\nTodos los días tomamos cientos de decisiones y no hay tiempo de pensar cada una a fondo. Por eso la mente usa **atajos**: reglas rápidas que casi siempre funcionan. \"Si me dieron algo, devuelvo.\" \"Si ya dije que sí, sigo.\" \"Si todas lo usan, ha de ser bueno.\" \"Si me cae bien, le creo.\" \"Si sabe del tema, le hago caso.\" \"Si se acaba, lo quiero.\"\n\nEsos seis atajos son la base de este curso. Un psicólogo pasó años estudiándolos en laboratorio y, además, trabajando de incógnito con vendedores, recaudadores y publicistas para ver cómo los usaban en la vida real. Lo que encontró sirve para dos cosas: para pedir mejor y para defenderte mejor.\n\n> Un atajo no es bueno ni malo. Lo que importa es si la señal que lo dispara es verdadera.\n\n## Si ya tomaste El Clic\nEl Clic te enseñó a entender la mente de tu clienta: qué siente, qué necesita de fondo y qué significa para ella cada producto. **El Sí** es la otra mitad: los seis atajos que hacen que una persona diga que sí, cómo usarlos sin trampa y cómo reconocerlos cuando te los aplican a ti. Se complementan, pero puedes tomar este solo.\n\n## Cómo está armado\n- **Clase 1.** Cómo funcionan los atajos y el primer truco que casi nadie nota: el contraste.\n- **Clases 2 a 7.** Un atajo por clase: Te doy, Lo dije, Todas lo hacen, Me caes bien, Ella sabe y Se acaba. Cada clase trae la versión honesta para tu negocio y cómo decir que no cuando te lo aplican.\n- **Clase 8.** La regla que une todo: señales verdaderas sí, señales falsas nunca.\n- **Herramientas.** Un checklist antes de pedir un sí, tu escudo para decir que no y una guía para líderes.\n\n## La regla del curso\nTodo lo que vas a aprender funciona. Por eso mismo tiene una regla: **solo se vale con señales verdaderas**. Una muestra regalada de verdad, una opinión real de una clienta, una promoción que de verdad termina el viernes. Inventar urgencia, fingir que todas compran o presionar a una amiga que no se atreve a decirte que no te puede dar una venta hoy, pero te quita la clienta, la amistad y el nombre.\n\n## 🪞 Para pensar\nPiensa en la última vez que dijiste que sí a algo y después te arrepentiste. ¿Qué te hizo decir que sí en ese momento?\n\n## ✍️ Escribe\nEscribe en una frase qué quieres llevarte de este curso. Por ejemplo: \"Quiero pedir sin sentir que presiono.\"\n\n@@ 1 | Clase 1 | Clase 1 · Clic y en automático | Los atajos y el contraste\nLa mente no tiene tiempo de pensar cada decisión. Así que, cuando ve cierta señal, presiona un botón y corre una respuesta ya grabada.\n\n## El botón que corre solo\nEn la naturaleza hay ejemplos muy claros. Hay aves que cuidan a sus crías solo porque escuchan cierto sonido. Si el sonido viene de otro lado, cuidan lo que sea que lo haga. No ven a la cría: escuchan la señal y responden. **Clic, y corre la respuesta.**\n\nLas personas no somos tan distintas. Un estudio muy famoso lo mostró con una fila para sacar copias. Cuando alguien pedía pasar primero \"porque tengo prisa\", casi todos lo dejaban. Lo sorprendente fue que cuando pedía pasar \"porque tengo que sacar unas copias\" (que es justo lo que todos estaban haciendo), casi todos lo dejaban también. La palabra **\"porque\"** bastó para disparar el sí. La razón casi no importó.\n\n> La mente no siempre escucha la razón. Muchas veces solo escucha que hay una razón.\n\n## Por qué existen los atajos\nLos atajos no son un defecto. Son la forma en que la mente ahorra energía. La mayoría de las veces funcionan: lo caro suele ser mejor, lo que muchos eligen suele estar bien, la experta suele saber. El problema es que **cualquiera que conozca la señal puede activarla**, aunque la cosa no lo valga.\n\nPor ejemplo: hay una historia de una tienda que no lograba vender unas piezas de joyería. La dueña dejó una nota para que las bajaran a la mitad. La empleada entendió mal y las subió al doble. Se vendieron todas en un día. Las clientas pensaron \"caro igual a bueno\" y no se detuvieron a ver la pieza.\n\n## El primer atajo: el contraste\nAntes de los seis atajos grandes, hay uno que está en todos lados. **Lo que ves primero cambia cómo ves lo segundo.** Si metes la mano en agua fría y luego en agua tibia, la tibia se siente caliente. Con los precios pasa igual: después de ver algo caro, lo siguiente se siente barato.\n\nLos vendedores de casas lo saben y enseñan primero una casa fea y cara. Los de ropa venden primero el traje y luego la corbata, porque después de un gasto grande, uno chico casi no se siente.\n\n## La versión honesta en tu negocio\nEl contraste no es trampa por sí mismo. Es trampa cuando enseñas algo que no tiene sentido solo para que lo otro parezca barato.\n\n- **Sí se vale:** enseñar primero la rutina completa que de verdad le recomiendas y luego la versión básica, para que ella elija con todo el panorama.\n- **Sí se vale:** dar la razón de lo que recomiendas. \"Te recomiendo este primero porque tu piel se reseca en las tardes.\"\n- **No se vale:** inventar un \"precio antes\" que nunca existió para que el de hoy parezca oferta.\n\n## Cómo decir que no\nCuando sientas que algo \"se ve barato\", pregúntate: **¿barato comparado con qué?** Si la comparación te la acaban de poner enfrente, vuelve a ver el precio solo, sin lo de al lado.\n\n## 🪞 Para pensar\n¿En qué compra reciente te ganó el contraste? Piensa en el \"ya que estoy aquí\".\n\n## ✍️ Escribe\nEscribe la razón real por la que recomiendas tu producto favorito, empezando con \"porque\". Que sea una razón que de verdad le sirva a tu clienta.\n\n## ✅ Para esta semana\n- Fíjate en tres lugares donde te pongan un precio alto primero para que el siguiente parezca bajo.\n- En tus próximas tres recomendaciones, da siempre la razón.\n\n@@ 2 | Clase 2 | Clase 2 · Te doy | La reciprocidad\nCuando alguien nos da algo, sentimos que le debemos. Es una de las reglas más viejas y más fuertes que existen.\n\n## La regla de devolver\nEn todas las culturas del mundo existe la misma regla: **si me das, te devuelvo.** Gracias a ella podemos ayudar a alguien sabiendo que no se pierde. Es la base de la confianza y de la vida en comunidad.\n\nEs tan fuerte que funciona aunque no nos caiga bien la persona y aunque no hayamos pedido el regalo. En un estudio, un desconocido le regaló un refresco a otra persona y después le pidió que le comprara boletos de una rifa. Quienes recibieron el refresco compraron casi el doble, y no importó si el desconocido les había caído bien o mal.\n\n> Un regalo que no pediste igual te deja con la sensación de que debes algo.\n\n## Dar primero\nPor eso las muestras gratis funcionan tan bien. No solo porque la clienta prueba el producto, sino porque recibió algo. Hay empresas de venta por catálogo que dejan una charola con productos en casa de la clienta unos días, sin compromiso. Cuando regresan, la mayoría compra algo. Prueba y regla de devolver, juntas.\n\n## Ceder también es dar\nLa regla no solo funciona con regalos. También con **concesiones**. Si alguien te pide algo grande, le dices que no, y luego te pide algo más chico, sientes que esa persona cedió y que te toca ceder a ti. Por eso pedir primero lo grande y luego lo pequeño funciona tanto.\n\nUn ejemplo clásico: un niño scout le pidió a un señor que le comprara boletos caros para un evento. El señor dijo que no. Entonces el niño le dijo: \"Bueno, ¿y unas barras de chocolate? Son más baratas.\" El señor compró dos barras. No le gustaba el chocolate.\n\n## La versión honesta en tu negocio\n- **Da sin hilos.** Una muestra, un consejo, una rutina armada para ella. Dalo porque quieres que le vaya bien, no para cobrárselo después. Si das esperando, se nota.\n- **Da algo que le sirva a ella.** Una muestra del tono correcto vale más que una bolsa de cosas al azar.\n- **Ofrece lo grande solo si de verdad lo recomiendas.** Si le propones la rutina completa y te dice que no, ofrecerle el limpiador solo está bien, siempre que la rutina completa fuera una recomendación real y no un truco para que el limpiador parezca poco.\n- **Haz que el \"no\" sea fácil.** \"Si no te late, cero pena, me regresas lo que no uses.\" Eso hace que la próxima vez te reciba con gusto.\n\n## Cómo decir que no\nNo tienes que rechazar todos los regalos. Recibe lo que te den, pero ve lo que es. Si el regalo resulta ser una herramienta de venta, **no te obliga a nada**. La regla dice que un favor se devuelve con un favor, no que una táctica se paga con una compra.\n\n## 🪞 Para pensar\n¿Alguna vez compraste algo solo porque te dieron una muestra o una atención y sentiste que \"ni modo de no\"? ¿Cómo te sentiste después?\n\n## ✍️ Escribe\nEscribe tres cosas que puedes dar a tus clientas esta semana sin esperar nada a cambio. Una que cueste dinero y dos que no.\n\n## ✅ Para esta semana\n- Da al menos una de esas tres cosas.\n- Cuando te ofrezcan algo con intención de venta, nota la sensación de \"le debo\" y ponle nombre.\n\n## 💬 Para tu equipo\nComparte con tu equipo la idea de dar sin hilos. ¿Qué es lo mejor que alguien les ha dado sin pedirles nada?\n\n@@ 3 | Clase 3 | Clase 3 · Lo dije | Compromiso y coherencia\nUna vez que decimos algo o tomamos una postura, queremos ser congruentes con eso. Cambiar de opinión se siente feo.\n\n## Queremos ser coherentes\nSer coherente tiene muy buena fama: es de gente confiable, madura y que cumple. Por eso, cuando decimos o hacemos algo, sentimos presión por actuar de acuerdo con eso después. A veces la coherencia nos ahorra pensar: ya decidí, ya no le muevo.\n\nUn estudio lo mostró en una playa. Alguien dejaba su radio en la toalla y se iba. Un \"ladrón\" se lo llevaba. Casi nadie hacía nada. Pero cuando la persona antes de irse le pedía al vecino \"¿me echas un ojo?\" y el vecino decía que sí, casi todos corrían detrás del ladrón. Un \"sí\" chiquito cambió todo.\n\n> Lo que dices en voz alta te va dibujando por dentro.\n\n## Los pequeños sí\nLos compromisos chiquitos abren la puerta a los grandes. En otro estudio, a unos vecinos les pidieron poner un letrero gigante y feo en su jardín sobre manejar con cuidado. Casi todos dijeron que no. A otros vecinos, semanas antes, les habían pedido poner un letrerito pequeño. De esos, la gran mayoría aceptó el letrero gigante. El primer sí les cambió la idea de quiénes eran: \"soy de las personas que se preocupan por esto\".\n\n## Lo que hace un compromiso más fuerte\nUn compromiso pesa más cuando:\n- **Es activo.** Lo escribiste o lo hiciste, no solo lo pensaste.\n- **Es público.** Otras personas lo saben.\n- **Costó trabajo.** Mientras más esfuerzo, más lo cuidamos.\n- **Es tuyo.** Lo elegiste tú, sin que nadie te presionara. Este es el más importante: si alguien te obliga, no lo sientes tuyo.\n\n## La trampa de la bola baja\nHay una táctica que usa la coherencia en contra de la persona. Te ofrecen un precio buenísimo, dices que sí, empiezas a imaginar cómo vas a usar lo que compraste… y justo antes de pagar \"aparece\" un costo extra. Muchos pagan igual, porque ya se sentían dueños. Eso no se hace nunca.\n\n## La versión honesta en tu negocio\n- **Que ella diga su meta.** En lugar de decirle tú qué necesita, pregúntale: \"¿Qué te gustaría ver en tu piel en un mes?\" Una meta dicha por ella vale más que diez argumentos tuyos.\n- **Que lo escriba ella.** Si arma su rutina contigo, que la anote en su celular. Es su plan, no tu venta.\n- **Empieza chico, de verdad.** Una muestra, una prueba de una semana, un solo producto. Si le funciona, ella sola va a querer más.\n- **El precio que dijiste es el precio.** Nada de sorpresas al final.\n\n## Cómo decir que no\nHay dos señales para saber cuándo la coherencia te está jugando chueco. La primera es en el **estómago**: esa sensación de \"no quiero, pero ya dije que sí\". Cuando la sientas, dilo en voz alta: \"Me doy cuenta de que estoy diciendo que sí solo porque ya me comprometí, y no quiero.\"\n\nLa segunda es en el **corazón**, y sirve cuando ya no estás segura. Pregúntate: **\"Sabiendo lo que hoy sé, si pudiera regresar el tiempo, ¿volvería a decir que sí?\"** Fíjate en lo primero que sientes, antes de que la cabeza empiece a justificar.\n\n## 🪞 Para pensar\n¿Hay algo que sigues haciendo solo porque un día dijiste que lo ibas a hacer? ¿Volverías a decir que sí hoy?\n\n## ✍️ Escribe\nEscribe la pregunta que le vas a hacer a tu próxima clienta para que ella diga su meta con sus propias palabras.\n\n## ✅ Para esta semana\n- Haz esa pregunta en tres pláticas y escucha la respuesta sin interrumpir.\n- Revisa un compromiso tuyo con la pregunta del corazón.\n\n@@ 4 | Clase 4 | Clase 4 · Todas lo hacen | La prueba social\nCuando no sabemos qué hacer, vemos qué hacen los demás. Sobre todo, los que se parecen a nosotras.\n\n## Vemos a los demás\nSi un restaurante está lleno y el de al lado vacío, entras al lleno. Si un video tiene miles de comentarios, te detienes a verlo. Es la **prueba social**: decidir qué está bien según lo que hace la gente. Casi siempre funciona, porque si mucha gente hace algo, suele ser por algo.\n\nEs tan fuerte que hasta las risas grabadas de los programas de comedia hacen que la gente se ría más, aunque todos sepan que son falsas.\n\n> Cuando no estamos seguras, copiamos. Y copiamos más a quien se parece a nosotras.\n\n## Cuándo pesa más\nLa prueba social es más fuerte en dos situaciones:\n- **Cuando hay duda.** Si la persona no sabe qué elegir, ve qué eligieron otras. Una clienta que nunca ha usado sérum se fija mucho más en las opiniones que una que ya tiene su favorito.\n- **Cuando son parecidas.** Nos influye mucho más alguien como nosotras: misma edad, mismo tipo de piel, misma vida. La opinión de una mamá de tres que trabaja vale más para otra mamá de tres que la de una modelo.\n\n## Cuando todos esperan\nLa prueba social también tiene un lado peligroso. Cuando alguien necesita ayuda en un lugar lleno de gente, muchas veces nadie hace nada, porque todos ven que los demás tampoco hacen nada y piensan \"seguro no es grave\". El libro da un consejo que vale la pena guardar: si algún día necesitas ayuda en la calle, **no le grites a la multitud. Escoge a una persona**: \"Usted, el de la camisa azul, llame a una ambulancia.\" Eso rompe la duda.\n\n## La versión honesta en tu negocio\n- **Testimonios reales y parecidos.** Pide a tus clientas felices que te cuenten cómo les fue, con sus palabras y con su permiso. Y enséñale a cada clienta el testimonio de alguien parecido a ella.\n- **Cuenta lo que de verdad pasa.** \"Este es el que más me piden las mamás que trabajan\" solo si es cierto.\n- **Fotos de antes y después sin filtro.** Y sin prometer que a todas les va a pasar igual.\n- **No inventes comentarios, ventas ni \"se me agotó\".** Una sola mentira descubierta borra todos tus testimonios verdaderos.\n\n## Cómo decir que no\nLa prueba social falla en dos casos. Uno, cuando la evidencia es falsa: reseñas compradas, \"testimonios espontáneos\" actuados, filas armadas. Si lo notas, no solo no compres: date permiso de desconfiar de quien lo hizo. Dos, cuando todos siguen a todos y nadie sabe por qué. De vez en cuando levanta la vista y pregúntate: **¿esto es bueno para mí o solo lo estoy haciendo porque todas lo hacen?**\n\n## 🪞 Para pensar\n¿Qué compraste este año porque \"todas lo tenían\"? ¿Te sirvió?\n\n## ✍️ Escribe\nEscribe el nombre de dos clientas felices a las que les puedes pedir su testimonio. Al lado, escribe a qué tipo de clienta se parecen.\n\n## ✅ Para esta semana\n- Pide esos dos testimonios, con permiso para compartirlos.\n- Guárdalos ordenados por tipo de clienta.\n\n@@ 5 | Clase 5 | Clase 5 · Me caes bien | La simpatía\nLe decimos que sí más fácil a la gente que conocemos y que nos cae bien. Esto en venta directa es poderoso y delicado al mismo tiempo.\n\n## La amiga que vende\nLas reuniones de venta en casa son el ejemplo más claro de este atajo. La que vende no es solo la demostradora: la que invita es una amiga. Las invitadas compran por el producto, sí, pero también porque se lo están comprando a alguien que quieren. Muchas compran sin necesitar nada, solo por no quedar mal.\n\nEsto es justo lo que hace a la venta directa tan fuerte. Y también lo que la puede volver incómoda. Si tu amiga siente que no te puede decir que no, la venta de hoy puede ser la amistad de mañana.\n\n> Que te quieran no significa que te deban una compra.\n\n## Qué nos hace caer bien\nHay cinco cosas que hacen que alguien nos caiga bien rápido:\n- **El atractivo.** Sin darnos cuenta, a la gente arreglada le creemos más. Por eso tu presentación sí importa.\n- **El parecido.** Nos cae bien quien se parece a nosotras: en la forma de vestir, en lo que le gusta, en de dónde viene.\n- **Los halagos.** Funcionan incluso cuando sabemos que son por algo. Por eso hay que usarlos con cuidado: solo los verdaderos.\n- **El trato frecuente.** Lo conocido nos gusta más. Y si en ese trato hacemos cosas juntas, con una meta en común, nos cae todavía mejor.\n- **La asociación.** Nos contagiamos del sentimiento que rodea a algo. Por eso las marcas se ponen junto a cosas bonitas y por eso al que trae malas noticias le va mal aunque no tenga la culpa.\n\n## La versión honesta en tu negocio\n- **Parecido verdadero.** Busca lo que de verdad tienen en común. Si ella es mamá y tú también, platica de eso. No inventes gustos que no tienes.\n- **Halagos ciertos y concretos.** \"Qué bonito te queda ese tono\" solo si es verdad. Mejor uno real que cinco de cajón.\n- **Equipo con tu clienta.** Ponte de su lado: \"Vamos a encontrar lo que le funcione a tu piel.\" Tú y ella contra el problema, no tú contra ella.\n- **Separa la amistad de la venta.** En una reunión, dilo claro: \"Vinieron a pasarla bien. Si algo les late, me dicen, y si no, igual las quiero aquí.\" Ese \"no pasa nada\" hace que regresen.\n\n## Cómo decir que no\nNo tienes que vigilar cada cosa que hace alguien para caerte bien. Solo fíjate en una señal: **\"¿En este rato, esta persona me cayó mejor de lo que esperaba?\"** Si la respuesta es sí, separa a la persona del producto. Pregúntate qué pensarías del producto si te lo ofreciera alguien que no conoces. Esa es tu respuesta.\n\n## 🪞 Para pensar\n¿Alguna vez le compraste a una amiga algo que no querías? ¿Qué te hubiera ayudado a decirle que no?\n\n## ✍️ Escribe\nEscribe la frase con la que vas a abrir tu próxima reunión o plática para que tus invitadas sepan que pueden decir que no.\n\n## ✅ Para esta semana\n- Usa esa frase.\n- Haz un halago verdadero y concreto a tres clientas, sin venderles nada en ese mensaje.\n\n## 💬 Para tu equipo\nPregunta en tu grupo: ¿cuál es la diferencia entre caer bien y presionar con cariño? Junten ejemplos de las dos.\n\n@@ 6 | Clase 6 | Clase 6 · Ella sabe | La autoridad\nLe hacemos caso a quien sabe. Y a veces, sin darnos cuenta, a quien solo parece que sabe.\n\n## Obedecemos a quien parece saber\nDesde niñas aprendemos que hacerle caso a quien sabe nos conviene: a la doctora, a la maestra, a la experta. Casi siempre es buena idea. El problema es que reaccionamos a los **símbolos** de autoridad casi tanto como a la autoridad real.\n\nHubo un estudio en un hospital que lo mostró muy fuerte. Alguien llamaba por teléfono a las enfermeras diciendo ser un doctor que nadie conocía y les pedía dar una dosis de un medicamento que pasaba el límite. Casi todas iban a darla. Solo las detuvieron antes de llegar al paciente. Un título por teléfono pesó más que su propio conocimiento.\n\n> No le hacemos caso a la persona. Le hacemos caso a la bata, al título y al tono.\n\n## Los tres símbolos\n- **Los títulos.** \"Doctora\", \"experta\", \"directora\". Pesan aunque no tengan nada que ver con el tema.\n- **La ropa.** Un uniforme o un traje hacen que la gente obedezca más, incluso cuando la petición no tiene sentido.\n- **Los adornos.** Un coche caro, una oficina elegante, muchos seguidores. Hacen que alguien parezca importante.\n\n## La versión honesta en tu negocio\n- **Gánate la autoridad.** Aprende de verdad sobre tipos de piel, ingredientes y cómo se usa cada producto. Cuando sabes, se nota sin que lo digas.\n- **Di lo que sabes y lo que no.** \"Esto no lo sé, déjame preguntarle a mi líder\" te da más confianza que inventar.\n- **Admite un punto débil primero.** \"Este es más caro que el de farmacia, pero te dura el doble.\" Cuando reconoces algo en contra, te creen más lo que viene después.\n- **Nunca juegues a la doctora.** No diagnostiques problemas de piel ni prometas curar nada. Si hay algo médico, mándala con una dermatóloga. Eso también es autoridad.\n\n## Cómo decir que no\nHazte dos preguntas cuando alguien con aire de experto te quiera convencer. Primera: **\"¿De verdad sabe de esto?\"** No si tiene un título, sino si su título tiene que ver con lo que te está diciendo. Segunda: **\"¿Qué tan honesta puede ser conmigo aquí?\"** ¿Gana algo si le haces caso? Una experta honesta también te dice lo malo.\n\n## 🪞 Para pensar\n¿A quién le haces caso solo por cómo se ve o por cuántos seguidores tiene? ¿Sabe de verdad del tema?\n\n## ✍️ Escribe\nEscribe un punto débil honesto de tu producto estrella y lo que lo compensa. Así lo vas a decir la próxima vez.\n\n## ✅ Para esta semana\n- Aprende algo nuevo y cierto sobre un ingrediente de tus productos.\n- Di tu punto débil honesto en al menos una plática.\n\n@@ 7 | Clase 7 | Clase 7 · Se acaba | La escasez\nLo que se acaba lo queremos más. Y lo que nos quitan, más todavía.\n\n## Queremos lo que se acaba\nLo escaso se siente valioso. Si algo es difícil de conseguir, pensamos que ha de ser bueno. Además, cuando sentimos que vamos a perder la oportunidad, nos duele más perder que lo que nos alegraría ganar.\n\nEn un estudio le dieron a la gente galletas en un frasco. A unos les dieron un frasco con diez galletas y a otros con dos. Las de dos se calificaron como más ricas. Y las mejores calificadas fueron las de un frasco que empezó con diez y de pronto quedó en dos. **Lo que de repente se vuelve escaso se quiere todavía más.** Y si se acabó porque otras lo quisieron, más.\n\n> La prisa no es una razón. Es una señal de que alguien quiere que no pienses.\n\n## Cómo se usa\n- **\"Solo quedan pocas.\"** Edición limitada, últimas piezas.\n- **\"Solo hoy.\"** Fechas límite.\n- **\"Otra persona también lo quiere.\"** La competencia hace que queramos ganar, más que tener.\n- **\"Ya no te dejan.\"** Cuando nos prohíben algo, lo queremos más. Por eso decirle a alguien \"no deberías\" muchas veces sale al revés.\n\n## La versión honesta en tu negocio\n- **Solo escasez real.** Si la promoción de verdad termina el viernes, dilo con claridad y con tiempo. Si la edición de verdad es limitada, dilo. Si no, no.\n- **Avisa antes, no al final.** \"Te aviso desde hoy que el tono que te gustó sale de catálogo a fin de mes\" es un favor. \"Decide ya o lo pierdes\" en medio de la plática es presión.\n- **Di lo que tiene de único.** A veces lo escaso no es la cantidad, es la información: \"Esto lo acabo de aprender y te lo quería contar a ti primero.\" Solo si es verdad.\n- **Nada de \"si no compras hoy te arrepientes\".** Una clienta que compró con miedo no regresa.\n\n## Cómo decir que no\nLa escasez se siente en el cuerpo: prisa, calor, ganas de ganarle a alguien. **Esa ola de emoción es tu señal para frenar.** Respira y pregúntate: **\"¿Lo quiero para tenerlo o para usarlo?\"** Si es para usarlo, recuerda que lo escaso no sabe ni se ve mejor. Las galletas eran las mismas.\n\n## 🪞 Para pensar\n¿Cuándo fue la última vez que compraste algo por miedo a que se acabara? ¿Lo usaste?\n\n## ✍️ Escribe\nRevisa tu próximo anuncio de promoción. Escríbelo de forma que diga la fecha límite real, sin presión. Por ejemplo: \"La promo dura hasta el viernes. Si te interesa, aquí estoy.\"\n\n## ✅ Para esta semana\n- Publica una promoción con su fecha real y sin palabras de urgencia.\n- Cuando sientas la prisa de comprar algo, espera un día.\n\n@@ 8 | Clase 8 | Clase 8 · Señales verdaderas | La regla que une todo\nLos seis atajos existen porque nos ayudan. Cuidarlos es parte de tu trabajo.\n\n## Por qué los atajos importan cada vez más\nVivimos con más información y más opciones que nunca. Nadie puede investigar a fondo cada compra, cada mensaje y cada decisión. Por eso cada día dependemos más de los atajos. Y por eso cada día hay más gente que los quiere usar para sacar provecho.\n\n> Quien usa una señal verdadera te está ayudando a decidir. Quien la falsifica te está robando la decisión.\n\n## Aliada o tramposa\nEsta es la distinción más importante del curso. Hay dos formas de usar los atajos:\n- **La aliada** te da información verdadera para que decidas rápido y bien. \"Es el más vendido\" (y lo es). \"Me lo dio mi dermatóloga\" (y es cierto). \"La promo termina el viernes\" (y termina). Te ahorra tiempo y te ayuda.\n- **La tramposa** inventa la señal. Comentarios falsos, urgencia inventada, títulos que no tiene, precios \"antes\" que nunca existieron. No solo te engaña a ti: echa a perder el atajo para todos, porque cada vez creemos menos.\n\nTú quieres ser la aliada de tus clientas. Y, cuando te toque estar del otro lado, tienes derecho a no comprarle a la tramposa y a decirle por qué.\n\n## Las seis preguntas de la aliada\nAntes de usar cualquier atajo, pregúntate:\n1. **Te doy.** ¿Lo que doy sirve aunque no me compre?\n2. **Lo dije.** ¿El compromiso lo eligió ella, sin presión?\n3. **Todas lo hacen.** ¿Lo que cuento de otras clientas es cierto?\n4. **Me caes bien.** ¿Mi cercanía es real, y le dejo fácil decirme que no?\n5. **Ella sabe.** ¿Sé de verdad lo que estoy diciendo?\n6. **Se acaba.** ¿La fecha o el límite son reales?\n\nSi alguna respuesta es no, cambia lo que vas a hacer.\n\n## Tu negocio a largo plazo\nEn venta directa tu nombre es tu negocio. Vives de clientas que regresan y de amigas que te recomiendan. La presión puede traer una venta hoy. La honestidad te trae a la misma clienta por años, y a sus amigas.\n\n## 🪞 Para pensar\n¿Cuál de los seis atajos usas más sin darte cuenta? ¿Lo usas como aliada?\n\n## ✍️ Escribe\nEscribe tu propia regla para vender, en una frase. Por ejemplo: \"Solo digo lo que es cierto y siempre dejo fácil el no.\"\n\n## ✅ Para cerrar el curso\n- Pega tu regla donde la veas.\n- Usa el checklist de la siguiente herramienta antes de tu próxima promoción.\n\n## 💬 Para tu equipo\nCompartan sus reglas en el grupo. Con las mejores, armen la regla del equipo.\n\n@@ 9 | Herramientas | Tu checklist del sí | Seis preguntas antes de pedir\nUsa esta lista antes de una promoción, una reunión o un mensaje de venta. Tarda dos minutos.\n\n## Antes de pedir\n- **¿Di algo primero?** Una muestra, un consejo, una rutina. ¿Sirve aunque no compre?\n- **¿Le pregunté su meta?** ¿Ella dijo con sus palabras qué quiere?\n- **¿Tengo un testimonio real de alguien parecido a ella?** ¿Tengo permiso para compartirlo?\n- **¿Le dejé fácil el no?** ¿Le dije que no pasa nada si no compra?\n- **¿Sé lo que estoy diciendo?** ¿Mencioné un punto débil honesto?\n- **¿La fecha o el límite son reales?** ¿Avisé con tiempo?\n\n## Las palabras que evitas\n- \"Última oportunidad\" (si no lo es).\n- \"Todas lo están comprando\" (si no es cierto).\n- \"Antes costaba…\" (si nunca costó eso).\n- \"Te va a quitar las manchas\" o cualquier promesa de salud.\n- \"Ni modo que no me apoyes.\"\n\n## Las frases que sí\n- \"Te recomiendo este porque…\"\n- \"¿Qué te gustaría ver en tu piel en un mes?\"\n- \"A una clienta con tu tipo de piel le funcionó así.\"\n- \"Si no te late, cero pena.\"\n- \"Es más caro que el de farmacia, pero te dura el doble.\"\n- \"La promo dura hasta el viernes. Te aviso con tiempo.\"\n\n## ✍️ Escribe\nPasa tu próximo mensaje de venta por esta lista y reescríbelo aquí.\n\n@@ 10 | Herramientas | Tu escudo | Cómo decir que no cuando te lo aplican a ti\nA ti también te venden. Clientas, proveedores, cursos, redes y a veces hasta tu propio negocio. Esta es tu guía rápida para notar el atajo y decidir con calma.\n\n## La señal y la pregunta de cada atajo\n- **Te doy.** Señal: sientes que \"le debes\". Pregunta: ¿fue un regalo o una herramienta de venta? Si fue herramienta, no debes nada.\n- **Lo dije.** Señal: nudo en el estómago de \"no quiero, pero ya dije\". Pregunta: sabiendo lo que hoy sé, ¿volvería a decir que sí?\n- **Todas lo hacen.** Señal: \"si todas lo tienen, ha de ser bueno\". Pregunta: ¿la evidencia es real y es de gente como yo?\n- **Me caes bien.** Señal: esta persona te cayó mejor de lo que esperabas en poco tiempo. Pregunta: ¿qué pensaría del producto si me lo ofreciera alguien que no conozco?\n- **Ella sabe.** Señal: título, ropa o seguidores. Preguntas: ¿de verdad sabe de esto? ¿Qué gana si le hago caso?\n- **Se acaba.** Señal: prisa y calor en el cuerpo. Pregunta: ¿lo quiero para tenerlo o para usarlo?\n\n## En tu negocio\nLas mismas reglas aplican cuando alguien te quiere convencer de comprar inventario, subir de nivel este mes o meterte a una promoción. Usa el escudo igual:\n- Nunca compres inventario con dinero que no tienes.\n- Una meta tuya se cuida, pero si ya no te hace sentido, puedes cambiarla.\n- \"Se acaba el mes\" no es una razón para endeudarte.\n\n## Frases para decir que no\n- \"Gracias, lo voy a pensar con calma y te aviso.\"\n- \"Hoy no, pero me encantó platicar contigo.\"\n- \"No compro con prisa. Si sigue mañana, lo veo.\"\n- \"Ya no me hace sentido lo que dije, y prefiero decírtelo.\"\n\n## ✍️ Escribe\nEscribe una situación en la que te cuesta decir que no y la frase que vas a usar la próxima vez.\n\n@@ 11 | Herramientas | Para líderes | Los seis atajos en tu equipo\nSi diriges un equipo, los atajos también aparecen al motivar, al reclutar y al dar el ejemplo. Aquí tienes cómo usarlos sin presionar.\n\n## Te doy\nDale a tu equipo antes de pedirle: capacitación, tiempo, una llamada cuando lo necesitan. Un equipo que recibe, responde.\n\n## Lo dije\nQue cada una escriba su propia meta, con sus números y sus tiempos. No le pongas la tuya. Revísenla juntas cada mes y deja que la cambie si su vida cambió.\n\n## Todas lo hacen\nComparte historias reales de compañeras parecidas a ella, no solo de las que más venden. \"Una mamá que trabaja de tiempo completo empezó con dos clientas por semana\" inspira más que el top del mes.\n\n## Me caes bien\nCelebra en público, corrige en privado. Busquen metas en común como equipo. La cercanía real es lo que hace que una se quede.\n\n## Ella sabe\nSé la que sabe del producto y del negocio, y di lo que no sabes. Nunca prometas ingresos ni pongas como normal un caso excepcional.\n\n## Se acaba\nUsa fechas reales (cierres, lanzamientos) y avisa con tiempo. Nunca uses \"se acaba el mes\" para que alguien compre lo que no puede pagar.\n\n## Al reclutar\nCuenta lo bueno y lo difícil. Una invitada que entra sabiendo todo se queda. Una que entró con presión se va, y se va enojada.\n\n## ✍️ Escribe\nEscoge un atajo que vas a usar mejor con tu equipo este mes y escribe cómo.";
+var FAQ_MD="## Empezar | 0\n\n### ¿Necesito haber tomado El Clic antes?\nNo. Se complementan, pero puedes tomar El Sí solo. El Clic es sobre lo que siente y necesita tu clienta. El Sí es sobre los seis atajos que la hacen decir que sí y cómo usarlos con honestidad.\n\n### ¿Esto no es aprender a manipular?\nEs aprender cómo funcionan los atajos de la mente. La misma información sirve para manipular o para ayudar a decidir. La regla del curso es clara: solo se valen las señales verdaderas. La clase 8 está dedicada a eso.\n\n### ¿Cuánto tiempo me lleva el curso?\nCada clase se lee en unos 10 minutos y trae un ejercicio para la semana. Puedes hacer una clase por semana o ir más rápido si quieres.\n\n## Dar primero | 2\n\n### ¿Regalar muestras no es caro?\nLo que importa no es cuánto das, sino que le sirva. Una muestra del tono correcto vale más que una bolsa llena. Y un consejo o una rutina armada para ella no cuesta dinero.\n\n### Si regalo algo, ¿está mal esperar que me compre?\nEsperar que te vaya bien es normal. Lo que no se vale es cobrárselo: hacerla sentir que te debe. Da sin hilos y deja fácil el no. Las que compran así regresan.\n\n### ¿Está mal ofrecer la rutina completa y luego algo más barato?\nNo, siempre que la rutina completa sea lo que de verdad le recomiendas. Lo que no se vale es ofrecer algo exagerado a propósito solo para que lo otro parezca poco.\n\n## Compromiso | 3\n\n### ¿Cómo hago que una clienta se comprometa sin presionarla?\nPregúntale su meta y deja que la diga con sus palabras. Si arma su rutina contigo, que ella la anote. Un compromiso que ella elige pesa más que uno que tú le pones.\n\n### Le dije a mi líder que llegaría a una meta y ya no quiero. ¿Qué hago?\nHazte la pregunta del corazón: sabiendo lo que hoy sé, ¿volvería a decir que sí? Si la respuesta es no, puedes cambiar tu meta. Ser coherente con algo que ya no te hace sentido no es una virtud.\n\n## Testimonios | 4\n\n### ¿Puedo compartir capturas de mensajes de mis clientas?\nSolo con su permiso. Pregúntale si puedes compartir lo que te escribió y si quiere que aparezca su nombre o no.\n\n### Soy nueva y no tengo testimonios. ¿Qué uso?\nEmpieza con tu propia experiencia: qué usas tú y cómo te ha ido, sin exagerar. Mientras, pide opiniones honestas a tus primeras clientas. No inventes ni copies testimonios de otras.\n\n### ¿Puedo decir \"es el más vendido\"?\nSolo si lo es y sabes que lo es. Si no tienes el dato, di algo que sí sepas: \"Es el que más me piden a mí.\"\n\n## Reuniones y amigas | 5\n\n### Me da pena venderle a mis amigas. ¿Qué hago?\nSepara la amistad de la venta en voz alta: \"Te cuento lo que vendo, y si no te late, cero pena.\" Cuando tu amiga sabe que puede decirte que no, te escucha con más gusto.\n\n### ¿Cómo hago una reunión en casa sin que se sienta presión?\nDilo desde el inicio: vinieron a pasarla bien y nadie tiene que comprar. Enseña, deja probar y deja que cada quien pregunte. Que la plática no gire solo en torno a la venta.\n\n### ¿Los halagos funcionan aunque sean de cajón?\nSí funcionan, por eso hay que cuidarlos. Usa solo halagos verdaderos y concretos. Un halago falso que se nota te cuesta la confianza.\n\n## Ser experta | 6\n\n### No soy experta en piel. ¿Cómo gano autoridad?\nAprende de verdad sobre tus productos e ingredientes, y di lo que no sabes. \"Déjame preguntar y te digo\" te da más confianza que inventar. Y nunca diagnostiques ni prometas curar nada.\n\n### ¿Decir un punto débil no espanta a la clienta?\nAl contrario. Cuando reconoces algo en contra, te creen más lo bueno. Escoge un punto débil real y di qué lo compensa.\n\n## Promociones | 7\n\n### ¿Puedo decir \"últimas piezas\"?\nSolo si es cierto. Si de verdad quedan pocas, avisa con claridad. Si no, no lo digas. Una urgencia inventada que se descubre te quita clientas.\n\n### ¿Cómo anuncio una promoción sin presionar?\nDi la fecha real, avisa con tiempo y deja la decisión en ella: \"La promo dura hasta el viernes. Si te interesa, aquí estoy.\"\n\n### Siento prisa de comprar inventario antes de que cierre el mes. ¿Qué hago?\nEsa prisa es tu señal para frenar. Pregúntate si lo necesitas para vender o solo por el cierre. Nunca compres inventario con dinero que no tienes. Lo explica la herramienta Tu escudo.\n\n## La regla | 8\n\n### ¿Cuál es la diferencia entre una aliada y una tramposa?\nLa aliada usa señales verdaderas para ayudarte a decidir rápido. La tramposa las inventa. La clase 8 lo explica.\n\n### ¿Qué hago si veo que alguien de mi equipo exagera o inventa?\nPlatícalo en privado y con cariño. Explícale que una mentira descubierta le borra todos sus testimonios verdaderos y le da mala fama a todo el equipo. Comparte la herramienta Tu checklist del sí.";
+var CFG={"key": "el-si", "n": 8, "groups": [["Empieza aquí", [0]], ["Clases", [1, 2, 3, 4, 5, 6, 7, 8]], ["Herramientas", [9, 10, 11]]], "pitch": "Ocho clases cortas sobre los seis atajos que hacen que alguien diga que sí: cómo usarlos con tus clientas sin presionar y cómo reconocerlos cuando te los aplican a ti.", "faqPh": "Busca: muestras, amigas, promo, testimonios…", "foot": "", "zipName": "el-si.zip", "zipVar": "SKILL_ZIP_B64", "mdName": "el-si-SKILL.md", "mdVar": "SKILL_MD_B64", "tabProgram": "Clases", "welcomeLabel": "Bienvenida", "repaso": "el curso", "source": "Ideas inspiradas en el libro Influencia: la psicología de la persuasión, de Robert B. Cialdini. Si te gusta el curso, cómprate el libro: es un clásico."};
+var MENTOR={"title": "Tu mentora, cuando la necesites", "intro": "El Sí también vive en Claude. Ahí te da las clases una por una, revisa tus mensajes de venta antes de mandarlos y te ayuda a decir que no cuando te están presionando.", "can": [["Las clases", "Te da las 8 clases en el chat, en el orden que quieras."], ["Revisa tu mensaje", "Le pegas tu promo o tu mensaje y te dice qué atajo usas y cómo decirlo sin presión."], ["Tu reunión", "Te ayuda a preparar una reunión en casa donde tus invitadas se sientan libres de decir que no."], ["Tu escudo", "Le cuentas qué te están ofreciendo y te ayuda a decidir con calma."]], "steps": ["Crea tu cuenta en claude.ai. Funciona con la cuenta gratis.", "Descarga la mentora (.zip) y guárdala sin descomprimir.", "En Claude entra a Customize → Skills, toca \"+\", luego \"Create skill\" → \"Upload a skill\" y sube el zip.", "Abre un chat nuevo y escribe una de estas frases."], "prompts": ["Quiero empezar el curso El Sí.", "Revisa este mensaje de mi promo antes de mandarlo:", "Ayúdame a preparar una reunión en casa sin presionar a mis amigas.", "Me están presionando para comprar inventario antes del cierre. ¿Qué hago?"], "limits": ["No promete ingresos", "No hace promesas de salud", "No escribe reseñas ni urgencias falsas", "No sustituye terapia", "Nunca te empuja a endeudarte"], "notes": ["Si no ves los botones de descarga, pide a tu líder el archivo el-si.zip.", "La cuenta gratis tiene un límite de mensajes por día. Si se acaba, vuelve a estar disponible horas después."]};
+var SKIN={
+  first:true,
+  keys:[[2,"Reciprocidad","Te doy"],[3,"Compromiso","Lo dije"],[4,"Prueba social","Todas lo hacen"],[5,"Simpatía","Me caes bien"],[6,"Autoridad","Ella sabe"],[7,"Escasez","Se acaba"]],
+  hero:function(c){
+    var anim=SKIN.first&&!c.reduce;SKIN.first=false;
+    var n=c.count(),k=0;
+    var keys=SKIN.keys.map(function(x){var s=c.stateOf(x[0]);return '<button type="button" class="s-key '+(s==="seen"?"on":s)+'" style="--i:'+(s==="seen"?k++:0)+'" data-open="'+x[0]+'" aria-label="Clase '+x[0]+": "+c.esc(x[2])+(s==="seen"?", completada":"")+'"><i aria-hidden="true"></i><small>'+c.esc(x[1])+"</small><b>"+c.esc(x[2])+"</b></button>";}).join("");
+    var status=n===c.N?"<b>Terminaste el curso.</b> Los seis atajos, prendidos.":(n?"<b>"+n+" de "+c.N+"</b> clases. Cada atajo que aprendes se queda prendido.":"<b>Ocho clases y tres herramientas.</b> Cada atajo que aprendes se queda prendido.");
+    return '<div class="s-hero"><div class="s-left"><p class="s-pre">Los seis atajos de la mente</p><h1 class="s-mark">El <span>Sí</span></h1>'+
+      '<p class="s-sub">Por qué la gente dice que sí, y cómo pedirlo sin trampa</p><p class="s-by">Un curso de ventas para venta directa</p></div>'+
+      '<div class="s-copy"><p class="s-pitch">'+c.esc(c.cfg.pitch)+'</p>'+
+      '<div class="s-keys'+(anim?" s-anim":"")+'">'+keys+"</div>"+
+      '<p class="s-status">'+status+"</p>"+
+      '<div class="s-cta"><button class="btn solid" type="button" id="cta">'+c.esc(c.ctaText())+"</button></div></div></div>";
+  },
+  program:function(c){
+    var w=c.L(0),ids=c.ACTS[0].ids;
+    return '<div class="s-route"><div><h2 class="sec-h">Contenido</h2><p class="sec-p">Ocho clases cortas. La primera vez ve en orden; después regresa a la que necesites antes de una venta o una reunión.</p></div>'+
+      '<button type="button" class="s-welcome" data-open="0"><span><b>'+c.esc(w.title)+"</b><small>"+c.esc(w.topic)+"</small></span><em>"+(c.seen.has(0)?"Leída":"Léela primero")+"</em></button>"+
+      '<div class="s-toc">'+ids.map(function(i){var x=c.L(i),s=c.stateOf(i);return '<button type="button" class="s-row '+s+'" data-open="'+i+'"><span class="n">'+i+"</span><span><b>"+c.esc(c.ttl(x))+"</b><small>"+c.esc(x.topic)+"</small></span><i>"+(s==="seen"?"Completada":(s==="next"?"Aquí vas":""))+"</i></button>";}).join("")+"</div>"+
+      '<h3 class="s-h">Herramientas</h3><div class="s-tools">'+c.TOOLS.map(function(i){var x=c.L(i);return '<button type="button" class="s-tool" data-open="'+i+'"><b>'+c.esc(x.title)+"</b><small>"+c.esc(x.topic)+"</small></button>";}).join("")+"</div>"+
+      '<p class="s-source">'+c.esc(c.cfg.source)+"</p></div>";
+  }
+};
+
+(function(){
+document.documentElement.classList.add("js");
+var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function inline(t){return t.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");}
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+var reduce=false;try{reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
+
+/* ---------- content ---------- */
+var LESSONS=LESSONS_MD.split(/^@@ /m).filter(function(x){return x.trim();}).map(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});
+  var body=lines.slice(1).join("\n").trim(),i=body.indexOf("\n");if(i<0)i=body.length;
+  return {id:+h[0],kicker:h[1],title:h[2],topic:h[3],intro:body.slice(0,i).trim(),body:body.slice(i+1).trim()};
+});
+var ICONS=["🪞","✍️","✅","💬","🎯","📝","🧠","📌","🔥","⭐","📱","🎬","💡","🗓️","✨"];
+function md(src){
+  var out="",list=null;
+  esc(src).split("\n").forEach(function(raw){
+    var l=raw.trim(),ul=l.match(/^[-*]\s+(.*)/),ol=l.match(/^\d+[.)]\s+(.*)/);
+    if(ul||ol){var tag=ul?"ul":"ol";if(list!==tag){if(list)out+="</"+list+">";out+="<"+tag+">";list=tag;}out+="<li>"+inline((ul||ol)[1])+"</li>";return;}
+    if(list){out+="</"+list+">";list=null;}
+    if(l.indexOf("### ")===0)out+="<h4>"+inline(l.slice(4))+"</h4>";
+    else if(l.indexOf("## ")===0)out+="<h3>"+inline(l.slice(3))+"</h3>";
+    else if(l.indexOf("&gt; ")===0)out+='<div class="callout"><p>'+inline(l.slice(5))+"</p></div>";
+    else if(l)out+="<p>"+inline(l)+"</p>";
+  });
+  if(list)out+="</"+list+">";
+  return out;
+}
+function startsIcon(h){for(var i=0;i<ICONS.length;i++)if(h.indexOf(ICONS[i])===0)return ICONS[i];var m=h.match(/^[☀-➿\uD83C-􏰀-\uDFFF️]+\s*/);return m?m[0]:null;}
+function lessonBody(src){
+  var parts=src.split(/^## /m),main=parts[0],tasks=[];
+  parts.slice(1).forEach(function(p){
+    var nl=p.indexOf("\n"),head=(nl<0?p:p.slice(0,nl)).trim(),rest=nl<0?"":p.slice(nl+1);
+    var icon=startsIcon(head);
+    if(icon)tasks.push({title:head.slice(icon.length).trim(),html:md(rest.trim())});else main+="\n## "+p;
+  });
+  return {html:md(main.trim()),tasks:tasks};
+}
+function L(id){for(var i=0;i<LESSONS.length;i++)if(LESSONS[i].id===id)return LESSONS[i];return null;}
+var N=CFG.n,STEPS=[];for(var i=1;i<=N;i++)STEPS.push(i);
+var ORDER=LESSONS.map(function(l){return l.id;});
+var GROUPS=CFG.groups.map(function(g){var p=g[0].split(" · ");return {name:p.length>1?p[1]:g[0],pre:p.length>1?p[0]:"",ids:g[1]};});
+var ACTS=GROUPS.filter(function(g){return g.ids.every(function(i){return i>=1&&i<=N;});});
+var TOOLS=ORDER.filter(function(i){return i>N;});
+var seen=new Set(store.get(CFG.key+"-seen",[])),notes=store.get(CFG.key+"-notes",{});
+function saveSeen(){store.set(CFG.key+"-seen",Array.from(seen));}
+function isStep(id){return id>=1&&id<=N;}
+function nextUp(){if(!seen.has(0)&&!STEPS.some(function(i){return seen.has(i);}))return 0;for(var i=0;i<STEPS.length;i++)if(!seen.has(STEPS[i]))return STEPS[i];return null;}
+function count(){return STEPS.filter(function(i){return seen.has(i);}).length;}
+function stateOf(id){return seen.has(id)?"seen":(id===nextUp()?"next":"");}
+function actOf(id){for(var i=0;i<ACTS.length;i++)if(ACTS[i].ids.indexOf(id)>=0)return ACTS[i];return null;}
+function label(id){var x=L(id);if(!x)return "";if(id===0)return CFG.welcomeLabel||"Bienvenida";var m=x.title.match(/^([^·]{1,14}) · /);if(isStep(id)&&m)return m[1];return x.kicker;}
+function ttl(x){return x.title.replace(/^[^·]{1,14} · /,"");}
+function ctaText(){var n=nextUp();if(n===0)return CFG.ctaStart||"Empezar con la bienvenida";if(n===null)return "Repasar "+(CFG.repaso||"el curso");var l=label(n);return "Seguir con "+(/^Clase/.test(l)?"la ":"el ")+l;}
+var CTX={ttl:ttl,L:L,LESSONS:LESSONS,N:N,STEPS:STEPS,ACTS:ACTS,TOOLS:TOOLS,GROUPS:GROUPS,seen:seen,stateOf:stateOf,nextUp:nextUp,count:count,esc:esc,label:label,ctaText:ctaText,cfg:CFG,reduce:reduce,actOf:actOf,open:function(id){openLesson(id);}};
+
+/* ---------- page shell ---------- */
+var mw=MENTOR.title.indexOf("mentor ")>=0||/mentor,/.test(MENTOR.title)?"mentor":"mentora";
+var SEARCH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>';
+var root=$("#root");
+root.innerHTML='<div class="wrap"><header class="hero" id="hero"></header>'+
+  '<div class="tabbar"><div class="tabs" role="tablist" aria-label="Secciones del curso">'+
+  '<button class="tab" role="tab" id="tabP" aria-selected="true" aria-controls="progView" type="button">'+esc(CFG.tabProgram||"Programa")+'</button>'+
+  '<button class="tab" role="tab" id="tabF" aria-selected="false" aria-controls="faqView" type="button">Preguntas</button>'+
+  '<button class="tab" role="tab" id="tabM" aria-selected="false" aria-controls="mentorView" type="button">Tu '+mw+'</button></div></div>'+
+  '<section id="progView" role="tabpanel" aria-labelledby="tabP"></section>'+
+  '<section id="faqView" role="tabpanel" aria-labelledby="tabF" hidden><div class="faqv"><div><h2 class="sec-h">Preguntas</h2><p class="sec-p">'+esc(CFG.faqLead||"Las dudas que más salen en el equipo, con la clase que las responde.")+'</p></div>'+
+  '<label class="sr" for="fq">Busca tu duda</label><div class="f-search">'+SEARCH+'<input id="fq" type="search" placeholder="'+esc(CFG.faqPh||"Busca tu duda")+'" autocomplete="off"></div><div class="f-chips" id="cats"></div><p class="f-count" id="fcount"></p><div id="faq"></div></div></section>'+
+  '<section id="mentorView" role="tabpanel" aria-labelledby="tabM" hidden></section>'+
+  (CFG.foot?'<footer class="foot">'+esc(CFG.foot)+"</footer>":"")+"</div>";
+
+function renderHero(){$("#hero").innerHTML=SKIN.hero(CTX);var c=$("#cta");if(c)c.onclick=function(){var g=nextUp();if(g===null){setTab("P");$("#progView").scrollIntoView({behavior:"smooth"});}else openLesson(g);};$$("#hero [data-open]").forEach(wireOpen);}
+function renderProgram(){$("#progView").innerHTML=SKIN.program(CTX);$$("#progView [data-open]").forEach(wireOpen);if(SKIN.mount)SKIN.mount(CTX,$("#progView"));}
+function wireOpen(b){b.onclick=function(){openLesson(+b.getAttribute("data-open"),b);};}
+function refresh(){renderHero();renderProgram();}
+
+/* tabs */
+var TABS={P:["#tabP","#progView"],F:["#tabF","#faqView"],M:["#tabM","#mentorView"]};
+function setTab(t){Object.keys(TABS).forEach(function(k){$(TABS[k][0]).setAttribute("aria-selected",String(k===t));$(TABS[k][1]).hidden=k!==t;});}
+Object.keys(TABS).forEach(function(k){$(TABS[k][0]).onclick=function(){setTab(k);};});
+
+/* ---------- faq ---------- */
+var norm=function(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");};
+var STOP=new Set("que como para por con los las del una uno unos mis tus sus mas pero porque cuando donde esta este eso hay tengo puedo debo".split(" "));
+function terms(s){return (norm(s).match(/[a-z0-9ñ]{3,}/g)||[]).filter(function(w){return !STOP.has(w);}).map(function(w){return w.length>5?w.slice(0,-1):w;});}
+var FAQ=[],CATS=[];
+FAQ_MD.split(/^## /m).filter(function(x){return x.trim();}).forEach(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});if(!h[0])return;CATS.push({cat:h[0],cls:+h[1]});
+  lines.slice(1).join("\n").split(/^### /m).filter(function(x){return x.trim();}).forEach(function(qb){var i=qb.indexOf("\n");if(i<0)return;FAQ.push({cat:h[0],cls:+h[1],q:qb.slice(0,i).trim(),a:qb.slice(i+1).trim()});});
+});
+FAQ.forEach(function(f){f.n=norm(f.q+" "+f.a);});
+function hl(html,ts){if(!ts.length)return html;return html.replace(/(>[^<]+<)/g,function(seg){var out=seg;ts.forEach(function(w){var re=new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").split("").map(function(ch){return ({a:"[aá]",e:"[eé]",i:"[ií]",o:"[oó]",u:"[uúü]",n:"[nñ]"})[ch]||ch;}).join("")+"[a-záéíóúñü]*)","gi");out=out.replace(re,"<mark>$1</mark>");});return out;});}
+var fq=$("#fq"),faqEl=$("#faq"),fcount=$("#fcount"),curCat=null;
+function isMentorCat(c){return /mentor/i.test(c);}
+function renderCats(){var c=$("#cats");c.innerHTML="";[{cat:"Todas"}].concat(CATS).forEach(function(x){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=x.cat;b.setAttribute("aria-pressed",String((x.cat==="Todas"&&!curCat)||x.cat===curCat));b.onclick=function(){curCat=x.cat==="Todas"?null:x.cat;renderCats();renderFaq();};c.appendChild(b);});}
+function renderFaq(){
+  var qtxt=fq.value.trim(),ts=Array.from(new Set(terms(qtxt))),items=FAQ.filter(function(f){return !curCat||f.cat===curCat;});
+  if(ts.length){items=items.map(function(f){return {f:f,s:ts.reduce(function(a,w){return a+(f.n.indexOf(w)>=0?(norm(f.q).indexOf(w)>=0?3:1):0);},0)};}).filter(function(x){return x.s>0;}).sort(function(a,b){return b.s-a.s;}).map(function(x){return x.f;});}
+  faqEl.innerHTML="";
+  var gs=ts.length?[[null,items]]:CATS.map(function(c){return [c.cat,items.filter(function(f){return f.cat===c.cat;})];}).filter(function(g){return g[1].length;});
+  gs.forEach(function(g){var d=document.createElement("div");d.className="fgroup";if(g[0]){var h=document.createElement("h3");h.textContent=g[0];d.appendChild(h);}
+    g[1].forEach(function(f,idx){var det=document.createElement("details");det.className="qa";var x=isMentorCat(f.cat)?null:L(f.cls);
+      det.innerHTML="<summary><span>"+hl(">"+esc(f.q)+"<",ts).slice(1,-1)+'</span><i aria-hidden="true">+</i></summary><div class="ans">'+hl(md(f.a),ts)+(x?'<button class="btn go" type="button">Ver: '+esc(x.title)+"</button>":(isMentorCat(f.cat)?'<button class="btn go" type="button">Ir a Tu '+mw+"</button>":""))+"</div>";
+      var go=det.querySelector(".go");if(go)go.onclick=function(){if(x)openLesson(f.cls);else setTab("M");};
+      if(ts.length&&idx===0)det.open=true;d.appendChild(det);});faqEl.appendChild(d);});
+  fcount.textContent=ts.length?(items.length?items.length+(items.length===1?" respuesta":" respuestas")+' para "'+qtxt+'"':'No hay una pregunta frecuente sobre "'+qtxt+'". Pregúntale a tu '+mw+"."):"";
+}
+var ft;fq.addEventListener("input",function(){clearTimeout(ft);ft=setTimeout(renderFaq,150);});
+
+/* ---------- mentor ---------- */
+(function(){
+  var M=MENTOR,h='<div class="m-col"><div><h2 class="sec-h">'+esc(M.title)+'</h2><p class="sec-p">'+esc(M.intro)+"</p></div>"+
+    '<ul class="m-can">'+M.can.map(function(c){return "<li><b>"+esc(c[0])+"</b><span>"+esc(c[1])+"</span></li>";}).join("")+"</ul>"+
+    '<div class="m-dl"><button type="button" class="btn solid" id="dlZip" hidden>Descargar '+(mw==="mentor"?"el mentor":"la mentora")+' (.zip)</button>'+(CFG.mdVar?'<button type="button" class="btn" id="dlMd" hidden>Descargar las instrucciones (.md)</button>':"")+'</div><p class="m-note" id="dlMsg">'+esc(M.notes[0]||"")+"</p></div>"+
+    '<div class="m-col"><h3 class="m-h">Cómo '+(mw==="mentor"?"instalarlo":"instalarla")+'</h3><ol class="m-steps">'+M.steps.map(function(s){return "<li><span>"+esc(s)+"</span></li>";}).join("")+"</ol>"+
+    '<div class="m-prompts">'+M.prompts.map(function(p,i){return '<div class="m-prompt"><q id="mp'+i+'">'+esc(p)+'</q><button type="button" class="btn" data-copy="mp'+i+'">Copiar</button></div>';}).join("")+"</div>"+
+    (M.notes[1]?'<p class="m-note">'+esc(M.notes[1])+"</p>":"")+(M.limits.length?'<div class="m-limits" aria-label="Límites">'+M.limits.map(function(s){return "<span>"+esc(s)+"</span>";}).join("")+"</div>":"")+"</div>";
+  $("#mentorView").innerHTML='<div class="mentorv">'+h+"</div>";
+  $$("[data-copy]").forEach(function(btn){btn.addEventListener("click",function(){var el=document.getElementById(btn.getAttribute("data-copy"));function selt(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="Seleccionado";}
+    try{navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent="Copiado";setTimeout(function(){btn.textContent="Copiar";},1600);},selt);}catch(e){selt();}});});
+  if(window.claude&&window.claude.use){window.claude.use("downloads").then(function(dl){
+    var msg=$("#dlMsg"),bz=$("#dlZip"),bm=$("#dlMd");if(!dl)return;
+    bz.hidden=false;if(bm)bm.hidden=false;msg.textContent=CFG.mdVar?"El .zip es el que se sube a Claude. El .md es el texto de las instrucciones, por si quieres leerlo.":"El .zip es el que se sube a Claude.";
+    function bytes(b64){var s=atob(b64),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u;}
+    function save(name,data){dl.save({filename:name,data:data}).then(function(){msg.textContent="Listo: "+name+" descargado.";},function(e){var c=e&&e.code;
+      if(c==="declined")msg.textContent="Descarga cancelada.";else if(c==="rate_limited")msg.textContent="Ya hay una descarga abierta. Termínala e intenta de nuevo.";else{msg.textContent=M.notes[0]||"Aquí no se puede descargar.";bz.hidden=true;if(bm)bm.hidden=true;}});}
+    bz.onclick=function(){save(CFG.zipName,bytes(window[CFG.zipVar]));};if(bm)bm.onclick=function(){save(CFG.mdName,bytes(window[CFG.mdVar]));};
+  });}
+})();
+
+/* ---------- reader sheet ---------- */
+var cur=null;
+function neighbours(id){var k=ORDER.indexOf(id);return {prev:ORDER[k-1],next:ORDER[k+1]};}
+function where(x){if(x.id===0)return CFG.welcomeLabel||"Bienvenida";if(isStep(x.id)){var a=actOf(x.id);return label(x.id)+" de "+N+(a&&a.name!=="Clases"?", "+a.name:"");}return x.kicker;}
+function sheetHTML(x){
+  var b=lessonBody(x.body),nb=neighbours(x.id),s=seen.has(x.id),nx=nb.next!==undefined?L(nb.next):null;
+  var num=isStep(x.id)?(SKIN.readerNum?SKIN.readerNum(x,CTX):String(x.id)):null;
+  var turn=b.tasks.length?'<section class="turn"><h3>Tu turno</h3>'+b.tasks.map(function(t){return '<div class="task"><h4>'+esc(t.title)+"</h4>"+t.html+"</div>";}).join("")+
+    '<label class="nb-l" for="nb">Tu cuaderno</label><textarea id="nb" placeholder="Escribe aquí tu ejercicio. Se guarda en este dispositivo."></textarea><span class="saved" id="nbs"></span></section>':"";
+  return '<div class="grab" id="grab"><span class="where">'+esc(where(x))+'</span><button type="button" class="x" id="closeB">Cerrar</button></div><div class="scroll" id="scroll">'+
+    '<div class="r-head'+(num?"":" nonum")+'">'+(num?'<span class="r-num" aria-hidden="true">'+esc(num)+"</span>":"")+'<p class="r-k">'+esc(isStep(x.id)?label(x.id):(x.id===0?(CFG.welcomeLabel||"Bienvenida"):x.kicker))+'</p><h1 class="r-title" id="rTitle">'+esc(ttl(x))+'</h1></div><p class="r-topic">'+esc(x.topic)+'</p><p class="r-intro">'+inline(esc(x.intro))+'</p><div class="lesson-body">'+b.html+"</div>"+turn+
+    '<div class="r-foot"><div class="nav"><button class="btn" type="button" id="prevB" '+(nb.prev===undefined?"disabled":"")+'>Anterior</button><button class="btn solid" type="button" id="nextB" '+(nb.next===undefined?"disabled":"")+">Siguiente</button></div>"+
+    (isStep(x.id)?'<button class="btn'+(s?" done":"")+'" type="button" id="seenB" aria-pressed="'+s+'">'+(s?"Completada ✓":"Marcar como completada")+"</button>":"")+
+    (nx?'<p class="r-next">Sigue: '+esc(ttl(nx))+"</p>":"")+"</div></div>";
+}
+function openLesson(id,trigger){
+  var x=L(id);if(!x)return;
+  var fresh=!cur;
+  if(fresh){
+    var scrim=document.createElement("div");scrim.className="scrim";var sh=document.createElement("div");sh.className="sheet";sh.setAttribute("role","dialog");sh.setAttribute("aria-modal","true");sh.setAttribute("aria-labelledby","rTitle");
+    document.body.appendChild(scrim);document.body.appendChild(sh);document.body.classList.add("sheet-open");
+    cur={scrim:scrim,sh:sh,trigger:trigger||document.activeElement};
+    scrim.onclick=closeLesson;
+  }
+  cur.id=id;cur.sh.innerHTML=sheetHTML(x);
+  var sh=cur.sh;
+  if(fresh)requestAnimationFrame(function(){requestAnimationFrame(function(){sh.classList.add("on");cur&&cur.scrim.classList.add("on");});});
+  $("#closeB",sh).onclick=closeLesson;$("#closeB",sh).focus({preventScroll:true});
+  var nb=neighbours(id);
+  $("#prevB",sh).onclick=function(){openLesson(nb.prev);};
+  $("#nextB",sh).onclick=function(){if((isStep(id)||id===0)&&!seen.has(id)){seen.add(id);saveSeen();refresh();}openLesson(nb.next);};
+  var sb=$("#seenB",sh);if(sb)sb.onclick=function(){seen.has(id)?seen.delete(id):seen.add(id);saveSeen();var on=seen.has(id);sb.textContent=on?"Completada ✓":"Marcar como completada";sb.classList.toggle("done",on);sb.setAttribute("aria-pressed",String(on));refresh();};
+  var ta=$("#nb",sh);if(ta){ta.value=notes[id]||"";var t;ta.oninput=function(){clearTimeout(t);t=setTimeout(function(){notes[id]=ta.value;store.set(CFG.key+"-notes",notes);$("#nbs",sh).textContent="Guardado en este dispositivo";},400);};}
+  $("#scroll",sh).scrollTop=0;
+  try{history.replaceState(null,"","#clase-"+id);}catch(e){}
+  var g=$("#grab",sh),y0=null,dy=0,t0=0;
+  g.addEventListener("pointerdown",function(e){if(e.target.closest("button"))return;y0=e.clientY;dy=0;t0=performance.now();sh.classList.add("drag");try{g.setPointerCapture(e.pointerId);}catch(_){}});
+  g.addEventListener("pointermove",function(e){if(y0==null)return;dy=e.clientY-y0;sh.style.transform="translateY("+(dy<0?dy*.15:dy)+"px)";});
+  function end(){if(y0==null)return;var v=dy/Math.max(1,performance.now()-t0);sh.classList.remove("drag");sh.style.transform="";y0=null;if(dy>140||v>.5)closeLesson();}
+  g.addEventListener("pointerup",end);g.addEventListener("pointercancel",end);
+}
+function closeLesson(){
+  if(!cur)return;var c=cur;cur=null;document.body.classList.remove("sheet-open");
+  c.sh.classList.remove("on");c.scrim.classList.remove("on");setTimeout(function(){c.sh.remove();c.scrim.remove();},reduce?0:500);
+  try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}
+  var t=document.querySelector('#progView [data-open="'+c.id+'"]')||c.trigger;if(t&&t.focus)t.focus({preventScroll:false});
+}
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&cur)closeLesson();});
+
+/* ---------- boot ---------- */
+renderCats();renderFaq();refresh();
+var hm=(location.hash||"").replace("#",""),hh=hm.match(/clase-(\d+)/);
+if(hh&&L(+hh[1]))openLesson(+hh[1]);else if(hm==="mentor"||hm==="mentora")setTab("M");else if(hm==="preguntas")setTab("F");
+})();
+
+/* En el sitio no existe window.claude: las descargas son links normales al zip y al md de esta carpeta. */
+(function(){if(window.claude&&window.claude.use)return;[["dlZip","el-si.zip"],["dlMd","el-si-SKILL.md"]].forEach(function(p){var b=document.getElementById(p[0]);if(!b)return;var a=document.createElement("a");a.className=b.className;a.href=p[1];a.setAttribute("download",p[1]);a.textContent=b.textContent;b.replaceWith(a);});var m=document.getElementById("dlMsg");if(m)m.textContent="El .zip es el que se sube a Claude. El .md es el texto de las instrucciones, por si quieres leerlo.";})();
+</script>
+</body></html>
