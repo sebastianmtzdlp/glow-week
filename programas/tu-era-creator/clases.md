@@ -437,39 +437,6 @@ Las palabras que vas a escuchar todo el tiempo en TikTok Shop.
 - **Apelar:** pedir que una persona revise una infracción.
 - **Faceless, voice over, sketch:** estilos de video: sin cara, con voz grabada después, y mini actuación.
 
-@@ 11 | Herramientas | Preguntas frecuentes | Las dudas que más salen, con la clase que las responde
-Respuestas cortas. Si una no alcanza, la clase que se indica la explica completa.
-
-### ¿Necesito tener seguidores para empezar?
-Sí. Para entrar a TikTok Shop necesitas 2,000 seguidores en México o 5,000 en Estados Unidos. Algunas cuentas entran antes en prueba piloto, desde unos 1,000, pero con límites. Mira la clase 1.
-
-### ¿Cuándo me pagan?
-TikTok deposita los miércoles de madrugada, pero te paga 15 días después de que el producto llega a la casa del cliente, porque puede devolverlo. Mira la clase 2.
-
-### ¿Puedo vender un producto que no tengo?
-No. Tienes que tener el producto físicamente para hacer el video. Mira la clase 3.
-
-### ¿Puedo decir el precio o el descuento exacto en el video?
-No. Los precios y los porcentajes cambian y te pueden reportar. Di algo como "menos de $200" o "trae descuentazo". Mira la clase 3.
-
-### ¿Cuántos videos debo subir al día?
-Empieza con uno o dos a la semana y sube poco a poco hasta 3 o 5 al día. Lo que te hace crecer es la constancia, no una semana con 20 videos. Mira la clase 7.
-
-### ¿Qué hago si me llega una infracción?
-No borres el video, porque ya no puedes apelar. Toma capturas, redacta la apelación y pide revisión manual. Mira la clase 8.
-
-### ¿Puedo usar inteligencia artificial para hacer los videos?
-No. Los videos hechos con IA están prohibidos. Sí puedes usar IA para escribir guiones o hooks. Mira la clase 5.
-
-### ¿Qué pasa si el producto se agota?
-No borres el video. El carrito vuelve cuando el producto se resurte. Mira la clase 7.
-
-### ¿Puedo comprar en mi propia vitrina?
-No. Compra a otras creadoras; ellas ganan comisión y el favor regresa. Mira la clase 7.
-
-### ¿Cómo pido muestras gratis?
-Al principio casi no te las aprueban, porque aún no tienes ventas. Compra tus primeros 3 a 5 productos y luego pide muestras. Cuando te llega una, tienes 14 días para grabar el video. Mira la clase 2.
-
 @@ 12 | Herramientas | Medir tu avance | Una lista semanal con números para saber si vas bien
 Revisa esto cada lunes, con los números de la semana anterior. Anótalos en una hoja aparte para ver la tendencia.
 
