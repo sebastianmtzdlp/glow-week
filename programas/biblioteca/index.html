@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La Biblioteca</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="Cinco cursos hechos a partir de libros, en el orden sugerido para tomarlos: Otra tú, Coherencia, Botín, Tu Palabra y El Clic.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Schibsted+Grotesk:wght@800&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Karla:wght@700&display=swap">
+<style>
+/* The shelf is the hero: each course is a book spine built in its own course's colours and type, numbered in the suggested reading order. Same quiet concrete grey as the Escalera so the spines carry the colour. */
+:root{
+  --bg:#EEEDEB; --surface:#FFFFFF; --ink:#18171C; --muted:#5E5C64; --line:#D9D6D1; --wood:#3B2F27;
+  --display:"Archivo","Arial Narrow",system-ui,sans-serif; --body:"Figtree",system-ui,-apple-system,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.55 var(--body);padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+a{color:inherit}
+button{font:inherit;color:inherit}
+:focus-visible{outline:2.5px solid var(--ink);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding-inline:16px;padding-block:36px 72px;display:flex;flex-direction:column;gap:64px}
+h1,h2,h3{margin:0;text-wrap:balance}
+.hero h1{font:900 clamp(54px,12vw,128px)/.84 var(--display);font-stretch:68%;letter-spacing:-.01em}
+.hero p{margin:14px 0 0;max-width:60ch;font-size:clamp(17px,2.2vw,19px);color:var(--muted)}
+.hero .back{display:inline-block;margin-top:14px;font-weight:600;font-size:15px}
+.sec-h{font:800 clamp(32px,5.4vw,52px)/1 var(--display);font-stretch:78%}
+.sec-p{margin:8px 0 22px;color:var(--muted);max-width:60ch}
+
+/* ---------- the shelf ---------- */
+.case{max-width:660px;width:100%}
+.shelf{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:clamp(6px,1.6vw,16px);align-items:end;padding:0 clamp(4px,2vw,24px)}
+.groups{display:grid;grid-template-columns:2fr 3fr;gap:clamp(6px,1.6vw,16px);padding:0 clamp(4px,2vw,24px);margin-bottom:12px}
+.groups span{font:700 13px/1.2 var(--body);color:var(--muted);border-bottom:1.5px solid var(--line);padding-bottom:6px}
+.spine{position:relative;border:0;padding:14px 0 16px;height:var(--h);width:100%;border-radius:6px 6px 2px 2px;background:var(--s-bg);color:var(--s-ink);cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:space-between;overflow:hidden;
+  transform:translateY(0);transition:transform .22s cubic-bezier(.23,1,.32,1),box-shadow .22s;box-shadow:inset -6px 0 0 rgba(0,0,0,.12),inset 3px 0 0 rgba(255,255,255,.08)}
+.spine:hover{transform:translateY(-6px)}
+.spine[aria-pressed="true"]{transform:translateY(-22px);box-shadow:inset -6px 0 0 rgba(0,0,0,.12),0 14px 24px -14px rgba(0,0,0,.5)}
+.spine .n{font:900 clamp(18px,3.4vw,26px)/1 var(--display);font-stretch:72%;color:var(--s-accent)}
+.spine .t{writing-mode:vertical-rl;transform:rotate(180deg);font:var(--s-font);font-size:clamp(22px,4.6vw,44px);line-height:1;letter-spacing:var(--s-track,0);white-space:nowrap;flex:1;display:flex;align-items:center}
+.spine .band{width:62%;height:6px;border-radius:2px;background:var(--s-accent)}
+.spine .done{position:absolute;top:8px;right:8px;width:10px;height:10px;border-radius:50%;background:var(--s-accent);display:none}
+.spine.is-done .done{display:block}
+.plank{height:16px;background:var(--wood);border-radius:3px;box-shadow:0 10px 18px -12px rgba(0,0,0,.6)}
+.hint{margin:14px 0 0;color:var(--muted);font-size:15px}
+
+/* ---------- the card for the chosen book ---------- */
+.ficha{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:clamp(20px,4vw,32px);display:grid;gap:18px;grid-template-columns:1fr;border-top:10px solid var(--s-bg)}
+@media(min-width:760px){.ficha{grid-template-columns:1.3fr 1fr;gap:28px}}
+.ficha .src{margin:0;font-size:14px;font-weight:600;color:var(--muted)}
+.ficha h3{font:var(--s-font);font-size:clamp(38px,7vw,60px);line-height:1;letter-spacing:var(--s-track,0);margin-top:6px}
+.ficha .len{margin:8px 0 0;color:var(--muted);font-size:15px}
+.ficha .out{margin:0;font-size:clamp(18px,2.3vw,20px)}
+.ficha dl{margin:0;display:grid;gap:14px}
+.ficha dt{font:700 13px/1.2 var(--body);text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.ficha dd{margin:4px 0 0}
+.acts{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.btn{display:inline-flex;align-items:center;gap:8px;border:1.5px solid var(--ink);background:var(--ink);color:#fff;border-radius:999px;padding:12px 18px;font-weight:700;font-size:15px;text-decoration:none;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn.ghost{background:transparent;color:var(--ink)}
+.chk{display:inline-flex;gap:8px;align-items:center;font-size:15px;cursor:pointer}
+.chk input{width:18px;height:18px;accent-color:var(--ink)}
+
+/* ---------- where do I start ---------- */
+.needs{display:grid;gap:10px;grid-template-columns:1fr}
+@media(min-width:700px){.needs{grid-template-columns:1fr 1fr}}
+.need{display:flex;gap:14px;align-items:center;text-align:left;width:100%;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:14px 16px;cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.need:active{transform:scale(.98)}
+.need i{flex:none;width:12px;height:36px;border-radius:3px;background:var(--s-bg)}
+.need b{display:block;font-weight:600}
+.need span{display:block;color:var(--muted);font-size:15px}
+
+.ment{list-style:none;margin:0;padding:0;display:grid;gap:12px;grid-template-columns:1fr;counter-reset:m}
+@media(min-width:760px){.ment{grid-template-columns:repeat(3,1fr)}}
+.ment li{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:16px;counter-increment:m;display:grid;gap:4px}
+.ment li::before{content:counter(m);font:900 28px/1 var(--display);font-stretch:72%}
+.ment span{color:var(--muted);font-size:15px}
+code{font-size:.92em;background:var(--bg);padding:1px 6px;border-radius:6px}
+.foot{color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:20px;display:grid;gap:8px}
+.foot p{margin:0;max-width:75ch}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<!-- candado: pide contraseña antes de mostrar la biblioteca (la misma de la Escalera). Es protección del lado del navegador: no cifra nada. Para cambiar la contraseña, reemplaza H por el SHA-256 de la nueva en minúsculas. -->
+<meta name="robots" content="noindex,nofollow">
+<style>
+html.cerrado body>*:not(#candado){display:none!important}
+#candado{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:16px;background:#EEEDEB;color:#18171C;font:17px/1.5 "Figtree",system-ui,-apple-system,sans-serif}
+html:not(.cerrado) #candado{display:none}
+#candado form{width:min(380px,100%);display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #D9D6D1;border-radius:20px;padding:28px 24px}
+#candado h1{margin:0;font:900 38px/.9 "Archivo","Arial Narrow",system-ui,sans-serif;font-stretch:72%;letter-spacing:-.01em}
+#candado p{margin:0;color:#5E5C64;font-size:15px}
+#candado input{font:inherit;width:100%;padding:13px 16px;border:1.5px solid #D9D6D1;border-radius:999px;background:#fff;color:inherit}
+#candado input:focus{outline:2.5px solid #18171C;outline-offset:2px}
+#candado button{font:600 16px/1 "Figtree",system-ui,sans-serif;padding:14px 18px;border:0;border-radius:999px;background:#18171C;color:#fff;cursor:pointer}
+#candado .err{color:#B42318;font-weight:600;min-height:1.4em}
+</style>
+<script>
+(function(){
+  var H="2c179861d319754878fe5f101cc151552e3883d4a7330fd2aec6456a6ca6d156",K="escalera-ok";
+  var ok=false;try{ok=localStorage.getItem(K)===H;}catch(e){}
+  if(!ok)document.documentElement.classList.add("cerrado");
+  function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ("0"+b.toString(16)).slice(-2);}).join("");}
+  document.addEventListener("DOMContentLoaded",function(){
+    var f=document.getElementById("candado-f");if(!f)return;
+    var i=document.getElementById("candado-i"),m=document.getElementById("candado-m");
+    if(document.documentElement.classList.contains("cerrado"))i.focus();
+    f.onsubmit=function(ev){
+      ev.preventDefault();
+      var v=i.value.trim().toLowerCase();
+      if(!window.crypto||!crypto.subtle){m.textContent="Abre la página desde https://mitienda.beauty";return;}
+      crypto.subtle.digest("SHA-256",new TextEncoder().encode(v)).then(function(d){
+        if(hex(d)===H){try{localStorage.setItem(K,H);}catch(e){}document.documentElement.classList.remove("cerrado");}
+        else{m.textContent="Esa no es la contraseña.";i.select();}
+      });
+    };
+  });
+})();
+</script>
+<div id="candado"><form id="candado-f" autocomplete="off"><h1>La biblioteca</h1><p>Esta página está en preparación. Escribe la contraseña para verla.</p><label for="candado-i" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Contraseña</label><input id="candado-i" type="password" placeholder="Contraseña" required><button type="submit">Entrar</button><p class="err" id="candado-m" role="alert"></p></form></div>
+<div class="wrap">
+  <header class="hero">
+    <h1>La biblioteca</h1>
+    <p>Cursos hechos a partir de libros. Cada uno toma las ideas de un libro y las baja a tu día y a tu negocio, con su propia mentora. Están en el orden en que te sugerimos tomarlos: primero tú por dentro, después tu negocio.</p>
+  </header>
+
+  <section aria-labelledby="hs" class="case">
+    <h2 class="sec-h" id="hs" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">El librero</h2>
+    <div class="groups" aria-hidden="true"><span>Tú por dentro</span><span>Tu negocio</span></div>
+    <div class="shelf" id="shelf"></div>
+    <div class="plank" aria-hidden="true"></div>
+    <p class="hint">Toca un libro para ver de qué trata. Los que marques como terminados llevan un punto; se guarda solo en este celular.</p>
+  </section>
+
+  <section aria-labelledby="hf">
+    <h2 class="sec-h" id="hf">Qué te llevas de cada libro</h2>
+    <p class="sec-p">Puedes saltarte el orden si algo te urge. Abajo te decimos por dónde empezar según lo que te pasa hoy.</p>
+    <div id="ficha" class="ficha" aria-live="polite"></div>
+  </section>
+
+  <section aria-labelledby="hq">
+    <h2 class="sec-h" id="hq">¿Por dónde empiezo?</h2>
+    <p class="sec-p">Elige lo que más se parece a lo que te pasa hoy.</p>
+    <div class="needs" id="needs"></div>
+  </section>
+
+  <section aria-labelledby="hm">
+    <h2 class="sec-h" id="hm">Instala las mentoras</h2>
+    <p class="sec-p">Cada curso trae su mentora. Funcionan con la cuenta gratis de claude.ai y puedes tener varias a la vez.</p>
+    <ol class="ment">
+      <li><b>Descarga el .zip</b><span>En la página de cada curso, en la sección de la mentora. No lo descomprimas.</span></li>
+      <li><b>Súbelo a Claude</b><span>Customize → Skills → "+" → Create skill → Upload a skill.</span></li>
+      <li><b>Empieza a hablarle</b><span>Abre un chat nuevo y escribe <code>Quiero empezar el curso Otra tú</code>.</span></li>
+    </ol>
+  </section>
+
+  <footer class="foot">
+    <p>Estos cursos son resúmenes y adaptaciones para el equipo, no sustituyen a los libros. Si un curso te gusta, cómprate el libro.</p>
+    <p>Coherencia y Otra tú son prácticas de bienestar: no prometen sanar nada ni sustituyen atención médica o psicológica. Si alguien se siente muy cansada, triste o rebasada por varios días, que hable con alguien de confianza o con una profesional.</p>
+    <p>Las cifras y ejemplos de estos materiales son casos específicos o metas, no promesas. Ningún resultado, ingreso o venta está garantizado.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+var BOOKS=[
+  {id:"otra-tu",name:"Otra tú",url:"/programas/otra-tu/",book:"Breaking the Habit of Being Yourself (Deja de ser tú), de Joe Dispenza",
+   len:"16 clases: 6 para entender, 6 para practicar en cuatro semanas y 4 herramientas",
+   out:"Dejar el hábito de ser la de siempre: nombrar la emoción que te maneja, soltarla y ensayar todos los días a la nueva tú.",
+   when:"Sientes que repites los mismos días, las mismas excusas y las mismas emociones, aunque cambies de plan.",
+   next:"Coherencia, para volver la práctica parte de tu día.",
+   bg:"#0D1022",ink:"#ECEEFB",accent:"#FFB48A",font:"italic 500 1em 'Newsreader',Georgia,serif",h:92},
+  {id:"coherencia",name:"Coherencia",url:"/programas/coherencia/",book:"Becoming Supernatural (Sobrenatural), de Joe Dispenza",
+   len:"10 clases y 3 herramientas",
+   out:"Salir del piloto automático, volver al presente y sentir hoy la vida que quieres crear, con meditaciones guiadas y una hoja de intención.",
+   when:"Ya decidiste cambiar y quieres una práctica diaria que te dé calma y dirección.",
+   next:"Botín, para pasar de lo que sientes a lo que creas.",
+   bg:"#17675F",ink:"#F7FAFB",accent:"#BFE3DC",font:"500 1em 'Newsreader',Georgia,serif",h:100},
+  {id:"botin",name:"Botín",url:"/programas/botin/",book:"Roba como un artista, de Austin Kleon",
+   len:"10 clases y 3 herramientas",
+   out:"Dejar de esperar la idea perfecta y crear con lo que ya te inspira: aprender de quien admiras sin copiarla y publicar con constancia.",
+   when:"No sabes qué publicar o te comparas tanto que no publicas.",
+   next:"Tu Palabra, para que lo que creas apunte a un solo lugar.",
+   bg:"#E8E6E1",ink:"#141413",accent:"#FF4F9A",font:"400 1em 'Anton',Impact,sans-serif",track:".01em",h:86},
+  {id:"tu-palabra",name:"Tu Palabra",url:"/programas/tu-palabra/",book:"Las 22 leyes inmutables del marketing, de Al Ries y Jack Trout",
+   len:"10 clases",
+   out:"Ser dueña de una sola palabra en la mente de tu clienta: tu categoría, tu escalón y lo que decides dejar fuera.",
+   when:"Vendes lo mismo que todas y nadie te distingue de las demás.",
+   next:"El Clic, para convertir esa palabra en ventas.",
+   bg:"#16181D",ink:"#F2F3EE",accent:"#F2F3EE",font:"800 1em 'Schibsted Grotesk',system-ui,sans-serif",track:"-.01em",h:96},
+  {id:"el-clic",name:"El Clic",url:"/programas/el-clic/",book:"Véndele a la mente, no a la gente, de Jürgen Klarić",
+   len:"8 lecciones y una bienvenida",
+   out:"Entender cómo decide la mente de tu clienta, encontrar la necesidad de fondo y vender sin sonar a discurso, con guiones honestos y seguimiento.",
+   when:"Te escriben, preguntan precio y se van, o te cuesta cerrar sin sentir que presionas.",
+   next:"Terminaste el librero. Regresa a Otra tú cuando sientas que volviste a lo de siempre.",
+   bg:"#E3245C",ink:"#FFFFFF",accent:"#15171E",font:"800 1em 'Bricolage Grotesque',system-ui,sans-serif",track:"-.02em",h:90}
+];
+var NEEDS=[
+  ["Siento que vivo el mismo día una y otra vez","otra-tu"],
+  ["Me cuesta estar tranquila y presente","coherencia"],
+  ["No sé qué publicar","botin"],
+  ["Nadie me distingue de las demás","tu-palabra"],
+  ["Me preguntan precio y desaparecen","el-clic"],
+  ["Quiero hacerlos todos","otra-tu"]
+];
+var K="biblioteca-hechos";
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+var done=[];try{done=JSON.parse(localStorage.getItem(K)||"[]");}catch(e){}
+function save(){try{localStorage.setItem(K,JSON.stringify(done));}catch(e){}}
+function byId(id){for(var i=0;i<BOOKS.length;i++)if(BOOKS[i].id===id)return BOOKS[i];}
+function vars(b){return "--s-bg:"+b.bg+";--s-ink:"+b.ink+";--s-accent:"+b.accent+";--s-font:"+b.font+";--s-track:"+(b.track||"0");}
+var sel=null;for(var i=0;i<BOOKS.length;i++)if(done.indexOf(BOOKS[i].id)<0){sel=BOOKS[i].id;break;}
+if(!sel)sel=BOOKS[0].id;
+
+function drawShelf(){
+  document.getElementById("shelf").innerHTML=BOOKS.map(function(b,i){
+    return '<button class="spine'+(done.indexOf(b.id)>=0?" is-done":"")+'" style="'+vars(b)+';--h:calc(clamp(260px,62vw,400px)*'+(b.h/100)+')" aria-pressed="'+(b.id===sel)+'" data-id="'+b.id+'" aria-label="'+(i+1)+'. '+esc(b.name)+'"><span class="n">'+(i+1)+'</span><span class="t">'+esc(b.name)+'</span><span class="band"></span><i class="done" aria-hidden="true"></i></button>';
+  }).join("");
+}
+function drawFicha(){
+  var b=byId(sel),n=BOOKS.indexOf(b)+1,d=done.indexOf(b.id)>=0,f=document.getElementById("ficha");
+  f.style.cssText=vars(b);
+  f.innerHTML='<div style="display:grid;gap:14px;align-content:start"><div><p class="src">Libro '+n+' de '+BOOKS.length+' · basado en '+esc(b.book)+'</p><h3>'+esc(b.name)+'</h3><p class="len">'+esc(b.len)+'</p></div><p class="out">'+esc(b.out)+'</p><div class="acts"><a class="btn" href="'+b.url+'">Abrir '+esc(b.name)+' →</a><label class="chk"><input type="checkbox" id="doneChk"'+(d?" checked":"")+'> Ya lo terminé</label></div></div><dl><div><dt>Tómalo cuando</dt><dd>'+esc(b.when)+'</dd></div><div><dt>Después sigue</dt><dd>'+esc(b.next)+'</dd></div></dl>';
+  document.getElementById("doneChk").onchange=function(){
+    var k=done.indexOf(b.id);if(this.checked&&k<0)done.push(b.id);if(!this.checked&&k>=0)done.splice(k,1);save();drawShelf();
+  };
+}
+function pick(id,scroll){sel=id;drawShelf();drawFicha();if(scroll)document.getElementById("hf").scrollIntoView({behavior:"smooth",block:"start"});}
+document.getElementById("shelf").addEventListener("click",function(e){var t=e.target.closest(".spine");if(t)pick(t.getAttribute("data-id"),false);});
+document.getElementById("needs").innerHTML=NEEDS.map(function(x){var b=byId(x[1]);return '<button class="need" data-id="'+b.id+'" style="'+vars(b)+'"><i aria-hidden="true"></i><span><b>'+esc(x[0])+'</b><span>Empieza con '+esc(b.name)+'</span></span></button>';}).join("");
+document.getElementById("needs").addEventListener("click",function(e){var t=e.target.closest(".need");if(t)pick(t.getAttribute("data-id"),true);});
+drawShelf();drawFicha();
+})();
+</script>
+</body>
+</html>
