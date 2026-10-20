@@ -7,7 +7,7 @@
 <meta name="description" content="Cursos hechos a partir de libros, en el orden sugerido para tomarlos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Schibsted+Grotesk:wght@800&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Karla:wght@700&family=Jost:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Schibsted+Grotesk:wght@800&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Karla:wght@700&family=Jost:wght@700&family=Cinzel:wght@600&display=swap">
 <style>
 /* The shelf is the hero: each course is a book spine built in its own course's colours and type, numbered in the suggested reading order. Same quiet concrete grey as the Escalera so the spines carry the colour. */
 :root{
@@ -168,8 +168,14 @@ var BOOKS=[
    len:"12 clases y 4 herramientas",
    out:"Crear hábitos que se sostengan solos y soltar los que te estorban, con cuatro reglas sencillas: que se vea, que se antoje, que cueste poquito y que se sienta bien.",
    when:"Sabes lo que te conviene hacer, pero lo dejas a los tres días.",
-   next:"Regresa a Otra tú cuando sientas que volviste a lo de siempre.",
-   bg:"#FBFAF6",ink:"#141414",accent:"#E0A21A",font:"900 1em 'Archivo','Arial Black',sans-serif",track:"-.02em",h:94}
+   next:"Ponte Pro, para trabajar tu negocio como una profesión.",
+   bg:"#FBFAF6",ink:"#141414",accent:"#E0A21A",font:"900 1em 'Archivo','Arial Black',sans-serif",track:"-.02em",h:94},
+  {id:"ponte-pro",name:"Ponte Pro",url:"/programas/ponte-pro/",book:"Go Pro, de Eric Worre",
+   len:"13 clases y 4 herramientas",
+   out:"Dejar de probar suerte con tu negocio de Farmasi y dominar las siete habilidades de una profesional: tu lista, invitar, presentar, dar seguimiento, ayudar a decidir, arrancar a tus nuevas y llenar los eventos.",
+   when:"Tu negocio depende de tu ánimo del día, te da pena invitar o tus prospectas dicen \"luego te digo\" y desaparecen.",
+   next:"Terminaste el librero. Regresa a Otra tú cuando sientas que volviste a lo de siempre.",
+   bg:"#08121F",ink:"#EEF2F8",accent:"#7ED957",font:"600 1em 'Cinzel','Times New Roman',serif",track:".04em",h:94}
 ];
 var NEEDS=[
   ["Siento que vivo el mismo día una y otra vez","otra-tu"],
@@ -179,6 +185,7 @@ var NEEDS=[
   ["No se entiende qué vendo","clarito"],
   ["Me preguntan precio y desaparecen","el-clic"],
   ["Lo dejo a los tres días","atomo"],
+  ["Quiero que mi negocio crezca en serio","ponte-pro"],
   ["Quiero hacerlos todos","otra-tu"]
 ];
 var K="biblioteca-hechos";
