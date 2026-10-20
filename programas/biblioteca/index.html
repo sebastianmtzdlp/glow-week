@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>La Biblioteca</title>
-<meta name="description" content="Cinco cursos hechos a partir de libros, en el orden sugerido para tomarlos: Otra tú, Coherencia, Botín, Tu Palabra y El Clic.">
+<meta name="description" content="Cursos hechos a partir de libros, en el orden sugerido para tomarlos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Schibsted+Grotesk:wght@800&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Karla:wght@700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Schibsted+Grotesk:wght@800&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Karla:wght@700&family=Jost:wght@700&display=swap">
 <style>
 /* The shelf is the hero: each course is a book spine built in its own course's colours and type, numbered in the suggested reading order. Same quiet concrete grey as the Escalera so the spines carry the colour. */
 :root{
@@ -150,8 +150,14 @@ var BOOKS=[
    len:"10 clases",
    out:"Ser dueña de una sola palabra en la mente de tu clienta: tu categoría, tu escalón y lo que decides dejar fuera.",
    when:"Vendes lo mismo que todas y nadie te distingue de las demás.",
-   next:"El Clic, para convertir esa palabra en ventas.",
+   next:"Clarito, para decir esa palabra con un mensaje que se entienda en cinco segundos.",
    bg:"#16181D",ink:"#F2F3EE",accent:"#F2F3EE",font:"800 1em 'Schibsted Grotesk',system-ui,sans-serif",track:"-.01em",h:96},
+  {id:"clarito",name:"Clarito",url:"/programas/clarito/",book:"Building a StoryBrand (Cómo construir una StoryBrand), de Donald Miller",
+   len:"10 clases y 3 herramientas",
+   out:"Que tu clienta sea la protagonista y tú, su guía: armar tu guion de mensaje y usarlo en tu bio, tus publicaciones y tus mensajes.",
+   when:"Tu perfil y tus publicaciones no dejan claro qué vendes, o hablas más de ti que de tu clienta.",
+   next:"El Clic, para convertir ese mensaje en ventas.",
+   bg:"#FBF9F6",ink:"#D8232B",accent:"#A99B89",font:"700 1em 'Jost',system-ui,sans-serif",track:".04em",h:94},
   {id:"el-clic",name:"El Clic",url:"/programas/el-clic/",book:"Véndele a la mente, no a la gente, de Jürgen Klarić",
    len:"8 lecciones y una bienvenida",
    out:"Entender cómo decide la mente de tu clienta, encontrar la necesidad de fondo y vender sin sonar a discurso, con guiones honestos y seguimiento.",
@@ -164,6 +170,7 @@ var NEEDS=[
   ["Me cuesta estar tranquila y presente","coherencia"],
   ["No sé qué publicar","botin"],
   ["Nadie me distingue de las demás","tu-palabra"],
+  ["No se entiende qué vendo","clarito"],
   ["Me preguntan precio y desaparecen","el-clic"],
   ["Quiero hacerlos todos","otra-tu"]
 ];

@@ -1,0 +1,468 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Clarito</title><meta name="description" content="Diez clases cortas para que tu clienta entienda en cinco segundos qué le ofreces, por qué le conviene y qué hacer para tenerlo."><meta property="og:title" content="Clarito"><meta property="og:description" content="Que tu clienta sea la protagonista y tú, su guía."><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap">
+<style>
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body)}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.wrap{max-width:var(--maxw,1040px);margin:0 auto;padding-inline:16px;padding-block:0 64px;display:flex;flex-direction:column;gap:var(--gap,28px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.press{transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.press:active{transform:scale(.97)}
+
+/* tabs */
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;justify-content:center;margin-inline:-16px;padding:10px 16px}
+.tabbar::before{content:"";position:absolute;inset:0;background:var(--bg);opacity:.94;z-index:-1}
+.tabs{display:flex;gap:4px;max-width:100%;overflow-x:auto;padding:4px;border-radius:var(--tabs-r,999px);background:var(--surface);border:1px solid var(--line)}
+.tab{white-space:nowrap;border:0;background:transparent;color:var(--muted);font-weight:600;font-size:15px;padding:10px 18px;border-radius:var(--tabs-r,999px);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+
+/* shared buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font-weight:600;font-size:15px;padding:12px 18px;border-radius:var(--btn-r,999px);cursor:pointer;text-decoration:none;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.35;cursor:default}
+
+/* section heads (faq + mentor) */
+.sec-h{margin:0;font:var(--h2-font);letter-spacing:var(--h2-track,-.01em);text-wrap:balance}
+.sec-p{margin:8px 0 0;color:var(--muted);max-width:56ch}
+
+/* faq */
+.faqv{display:flex;flex-direction:column;gap:16px;max-width:780px}
+.f-search{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--field-r,999px);padding:0 18px}
+.f-search svg{width:20px;height:20px;flex:none;color:var(--muted)}
+.f-search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:17px/1.3 var(--body);padding:14px 0}
+.f-search input:focus{outline:none}
+.f-search:focus-within{border-color:var(--accent)}
+.f-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.f-count{margin:0;color:var(--muted);font-size:14px}
+.fgroup h3{margin:18px 0 8px;font:var(--h3-font)}
+details.qa{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);margin-bottom:8px}
+details.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 18px;font-weight:600;font-size:16.5px;line-height:1.35}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa summary i{flex:none;font-style:normal;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--ink);transition:transform .2s cubic-bezier(.23,1,.32,1)}
+details.qa[open] summary i{transform:rotate(45deg);background:var(--accent);color:var(--accent-ink)}
+.ans{padding:0 18px 18px}
+.ans p{margin:0 0 .7em;max-width:64ch}.ans p:last-child{margin:0}
+.ans ul,.ans ol{margin:0 0 .8em;padding-left:1.3em}
+.ans .go{margin-top:10px}
+mark{background:var(--mark,rgba(255,200,0,.35));color:inherit;border-radius:3px;padding:0 2px}
+
+/* mentor */
+.mentorv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 40px;align-items:start}
+@media (max-width:780px){.mentorv{grid-template-columns:minmax(0,1fr)}}
+.m-col{display:flex;flex-direction:column;gap:18px;min-width:0}
+.m-can{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.m-can li{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);padding:14px 16px}
+.m-can b{display:block;font-weight:700}
+.m-can span{color:var(--muted);font-size:15px}
+.m-dl{display:flex;flex-wrap:wrap;gap:10px}
+.m-note{margin:0;color:var(--muted);font-size:14px}
+.m-h{margin:0;font:var(--h3-font)}
+.m-steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.m-steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:baseline}
+.m-steps li::before{counter-increment:s;content:counter(s);font:var(--num-font,700 22px/1 var(--display));color:var(--accent-text,var(--accent))}
+.m-prompts{display:grid;gap:8px}
+.m-prompt{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,14px);padding:10px 12px 10px 16px}
+.m-prompt q{quotes:none;min-width:0;font-size:15.5px}
+.m-prompt .btn{padding:8px 14px;font-size:13.5px;flex:none}
+.m-limits{display:flex;flex-wrap:wrap;gap:8px}
+.m-limits span{font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted)}
+footer.foot{text-align:center;font-size:14px;color:var(--muted);padding-top:20px}
+
+/* ---------- reader sheet (the lights come on) ---------- */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);opacity:0;transition:opacity .45s cubic-bezier(.32,.72,0,1)}
+.scrim.on{opacity:1}
+.sheet{position:fixed;z-index:41;left:0;right:0;bottom:0;top:calc(12px + env(safe-area-inset-top,0px));margin:0 auto;max-width:800px;background:var(--r-bg);color:var(--r-ink);border-radius:22px 22px 0 0;transform:translateY(100%);transition:transform .5s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,.35);font-family:var(--r-body,var(--body))}
+.sheet.on{transform:translateY(0)}
+.sheet.drag{transition:none}
+.grab{flex:none;touch-action:none;cursor:grab;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:10px 14px 10px 20px;border-bottom:1px solid var(--r-line);position:relative}
+.grab::before{content:"";position:absolute;top:6px;left:50%;width:40px;height:5px;margin-left:-20px;border-radius:3px;background:var(--r-line)}
+.grab .where{font-size:14px;font-weight:600;color:var(--r-muted);padding-top:8px}
+.grab .x{border:1px solid var(--r-line);background:transparent;color:var(--r-ink);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer;margin-top:6px}
+.sheet :focus-visible{outline:2px solid var(--r-accent);outline-offset:3px}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:clamp(22px,5vw,48px) clamp(18px,5vw,56px) calc(56px + env(safe-area-inset-bottom,0px))}
+.r-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;align-items:end;margin-bottom:18px}
+.r-head.nonum{grid-template-columns:minmax(0,1fr)}
+.r-num{grid-row:span 2;font:var(--r-num-font,800 96px/.8 var(--display));color:var(--r-accent);font-variant-numeric:tabular-nums}
+.r-k{margin:0;font-size:14.5px;font-weight:600;color:var(--r-accent)}
+.r-title{margin:0;font:var(--r-title-font,700 clamp(32px,6.5vw,48px)/1 var(--display));letter-spacing:var(--r-title-track,-.01em);text-wrap:balance}
+.r-topic{margin:0 0 18px;font-size:20px;line-height:1.35;color:var(--r-muted)}
+.r-intro{font-size:20px;line-height:1.5;margin:0 0 26px;padding-bottom:24px;border-bottom:1px solid var(--r-line)}
+.lesson-body p,.lesson-body li{max-width:66ch}
+.lesson-body p{margin:0 0 .9em}
+.lesson-body ul,.lesson-body ol{margin:0 0 1em;padding-left:1.3em}
+.lesson-body li{margin:.4em 0}
+.lesson-body li::marker{color:var(--r-accent);font-weight:700}
+.lesson-body strong{font-weight:700}
+.lesson-body h3{font:var(--r-h3-font,700 26px/1.15 var(--display));margin:36px 0 10px;text-wrap:balance}
+.callout{margin:28px 0;padding:22px 24px;border-radius:var(--card-r,18px);background:var(--r-callout-bg);color:var(--r-callout-ink)}
+.callout p{margin:0;font:var(--r-callout-font,700 clamp(22px,4.6vw,28px)/1.2 var(--display));max-width:34ch;text-wrap:balance}
+.turn{margin-top:40px;padding-top:26px;border-top:2px solid var(--r-ink);display:grid;gap:12px}
+.turn h3{margin:0;font:var(--r-h3-font,700 26px/1.15 var(--display))}
+.task{background:var(--r-surface);border:1px solid var(--r-line);border-radius:var(--card-r,16px);padding:16px 18px}
+.task h4{margin:0 0 6px;font-size:17px}
+.task p:last-child,.task ul:last-child,.task ol:last-child{margin-bottom:0}
+.nb-l{font-weight:600;font-size:14px;color:var(--r-muted);margin-top:6px}
+.sheet textarea{width:100%;min-height:150px;resize:vertical;font:16px/1.55 var(--r-body,var(--body));color:var(--r-ink);background:var(--r-surface);border:1px solid var(--r-line);border-radius:12px;padding:14px 16px}
+.saved{font-size:13px;color:var(--r-muted);min-height:1.2em}
+.r-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:34px;padding-top:22px;border-top:1px solid var(--r-line)}
+.r-foot .nav{display:flex;gap:8px;flex-wrap:wrap}
+.sheet .btn{border-color:var(--r-line);color:var(--r-ink)}
+.sheet .btn.solid{background:var(--r-ink);border-color:var(--r-ink);color:var(--r-bg)}
+.sheet .btn.done{background:var(--r-accent);border-color:var(--r-accent);color:var(--r-accent-ink,var(--r-bg))}
+.r-next{width:100%;margin:0;font-size:14px;color:var(--r-muted)}
+body.sheet-open{overflow:hidden}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.mentorv .sec-h{font-size:clamp(28px,6.4vw,46px)}
+
+/* Clarito: a megaphone on a white cover. Warm white, sand-gray and one loud red. The sound waves start as noise and turn into clean red arcs, one per class you finish. */
+:root{
+  color-scheme:light;
+  --bg:#FCFBF9; --surface:#F5F1EB; --ink:#231F1C; --muted:#6B625A; --line:#E4DDD3; --accent:#D8232B; --accent-ink:#FFFFFF; --focus:#D8232B; --mark:#F9C9C6;
+  --sand:#A99B89; --red:#D8232B; --wine:#6E2223; --cone:#F1EEE9; --cone-line:#D7D0C6; --grip:#CFC9C1;
+  --display:"Jost","Futura","Avenir Next","Century Gothic",sans-serif; --body:"Jost","Avenir Next","Segoe UI",sans-serif;
+  --h2-font:700 clamp(36px,7.5vw,56px)/1 var(--display); --h2-track:.04em; --h3-font:600 22px/1.2 var(--display); --num-font:700 24px/1 var(--display);
+  --r-bg:#FFFFFF; --r-surface:#F7F4EF; --r-ink:#231F1C; --r-muted:#6B625A; --r-line:#E6E0D7; --r-accent:#D8232B; --r-accent-ink:#FFFFFF; --r-callout-bg:#D8232B; --r-callout-ink:#FFFFFF;
+  --r-num-font:700 clamp(88px,20vw,140px)/.8 var(--display); --r-title-font:700 clamp(32px,6.8vw,50px)/1.02 var(--display); --r-title-track:.02em; --r-h3-font:600 24px/1.2 var(--display); --r-callout-font:italic 500 clamp(22px,4.6vw,28px)/1.25 var(--display);
+  --card-r:4px; --tabs-r:999px; --btn-r:999px; --field-r:999px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#171412; --surface:#221E1B; --ink:#F3EEE8; --muted:#A99F94; --line:#38312C; --accent:#FF4D52; --accent-ink:#171412; --focus:#FF6B6F; --mark:#6A1F22;
+  --sand:#8C8072; --red:#FF4D52; --wine:#F0A9A2; --cone:#DCD5CC; --cone-line:#A99F94; --grip:#8C847B;
+  --r-bg:#1C1816; --r-surface:#26211E; --r-ink:#F3EEE8; --r-muted:#ACA297; --r-line:#3A332E; --r-accent:#FF4D52; --r-accent-ink:#171412; --r-callout-bg:#D8232B; --r-callout-ink:#FFFFFF;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#171412; --surface:#221E1B; --ink:#F3EEE8; --muted:#A99F94; --line:#38312C; --accent:#FF4D52; --accent-ink:#171412; --focus:#FF6B6F; --mark:#6A1F22;
+  --sand:#8C8072; --red:#FF4D52; --wine:#F0A9A2; --cone:#DCD5CC; --cone-line:#A99F94; --grip:#8C847B;
+  --r-bg:#1C1816; --r-surface:#26211E; --r-ink:#F3EEE8; --r-muted:#ACA297; --r-line:#3A332E; --r-accent:#FF4D52; --r-accent-ink:#171412; --r-callout-bg:#D8232B; --r-callout-ink:#FFFFFF;
+}
+body{font-size:17.5px;line-height:1.62}
+.sec-h{text-transform:uppercase}
+.tab{font-weight:600;letter-spacing:.02em}
+.tab[aria-selected="true"]{background:var(--accent);color:var(--accent-ink)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.r-k,.grab .where{text-transform:uppercase;letter-spacing:.14em;font-size:12.5px}
+.r-title{text-transform:uppercase}
+.lesson-body h3,.turn h3{letter-spacing:.01em}
+.callout{border-radius:2px}
+.task{border-left:3px solid var(--r-accent)}
+.btn{font-weight:600;letter-spacing:.01em}
+.sheet .btn.solid{background:var(--r-accent);border-color:var(--r-accent);color:var(--r-accent-ink)}
+.m-steps li::before{color:var(--red)}
+details.qa summary{font-weight:600}
+
+/* hero */
+.c-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:20px 48px;align-items:center;padding-block:40px 6px}
+@media (max-width:820px){.c-hero{grid-template-columns:minmax(0,1fr);padding-top:24px;gap:10px}}
+.c-left{min-width:0;display:flex;flex-direction:column;gap:18px}
+.c-kick{margin:0;font:400 clamp(14px,3.4vw,17px)/1.2 var(--display);letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+.c-word{margin:0;font-family:var(--display);font-weight:700;text-transform:uppercase;line-height:.92;letter-spacing:.06em}
+.c-word span{display:block}
+.c-word .w1{font-size:clamp(46px,12vw,84px);color:var(--sand)}
+.c-word .w2{font-size:clamp(58px,15.5vw,112px);color:var(--red);letter-spacing:.045em}
+.c-pitch{margin:0;font-size:19px;line-height:1.5;max-width:30rem}
+.c-prog{margin:0;font-size:15px;color:var(--muted)}
+.c-prog b{color:var(--ink)}
+.c-cta{display:flex;gap:12px;flex-wrap:wrap}
+.c-right{min-width:0;display:grid;grid-template-columns:minmax(0,1fr);justify-items:center}
+.c-mega{width:100%;max-width:520px;height:auto;overflow:visible}
+.c-tag{margin:-6px 0 0;justify-self:end;max-width:17rem;font:italic 500 clamp(18px,4.2vw,22px)/1.35 var(--display);letter-spacing:.04em;color:var(--wine);text-align:left}
+@media (max-width:820px){.c-right{order:-1;padding-bottom:10px}.c-mega{max-width:420px}.c-tag{justify-self:center;text-align:center;max-width:22rem}}
+.wv{fill:none;stroke-linecap:round}
+.wv.noise{stroke:var(--sand);stroke-width:2;opacity:.75}
+.wv.clean{stroke:var(--red);stroke-width:5}
+.wv.now{stroke:var(--red);stroke-width:3;stroke-dasharray:2 9;opacity:.9}
+@media (prefers-reduced-motion:no-preference){
+  .c-anim .wv{stroke-dasharray:var(--len);stroke-dashoffset:var(--len);animation:cdraw .7s cubic-bezier(.23,1,.32,1) forwards;animation-delay:calc(var(--i) * 70ms + 150ms)}
+  .c-anim .wv.now{animation:cdraw .7s cubic-bezier(.23,1,.32,1) forwards,cpulse 1.6s ease-in-out 1.2s infinite}
+  @keyframes cdraw{to{stroke-dashoffset:0}}
+  @keyframes cpulse{50%{opacity:.35}}
+}
+
+/* route */
+.c-route{display:grid;gap:22px}
+.c-welcome{display:flex;justify-content:space-between;gap:16px;align-items:center;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r);padding:18px 20px;cursor:pointer;color:var(--ink)}
+.c-welcome b{display:block;font:700 24px/1.1 var(--display);text-transform:uppercase;letter-spacing:.04em}
+.c-welcome small{display:block;margin-top:4px;color:var(--muted);font-size:16px}
+.c-welcome em{font-style:normal;font-weight:600;font-size:14px;color:var(--red);white-space:nowrap}
+.c-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:3px solid var(--red)}
+@media (max-width:720px){.c-list{grid-template-columns:minmax(0,1fr)}}
+.c-row{display:grid;grid-template-columns:58px minmax(0,1fr) auto;gap:2px 12px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:16px 0;cursor:pointer;color:var(--ink)}
+.c-row .n{font:700 44px/1 var(--display);color:var(--sand);font-variant-numeric:tabular-nums}
+.c-row b{display:block;font:600 19px/1.25 var(--display)}
+.c-row small{display:block;color:var(--muted);font-size:15.5px;margin-top:2px}
+.c-row .pc{display:inline-block;margin-top:6px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:2px 9px}
+.c-row i{font-style:normal;font-weight:600;font-size:13px;white-space:nowrap;color:var(--muted)}
+.c-row.seen .n{color:var(--red)}
+.c-row.seen .pc{color:var(--red);border-color:var(--red)}
+.c-row.next .n{color:var(--red)}
+.c-row.next i{color:var(--red)}
+.c-row.next b{text-decoration:underline;text-decoration-color:var(--red);text-decoration-thickness:3px;text-underline-offset:5px}
+@media (hover:hover){.c-row:hover b{color:var(--red)}}
+.c-h{margin:22px 0 4px;font:700 28px/1 var(--display);text-transform:uppercase;letter-spacing:.05em}
+.c-tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.c-tools{grid-template-columns:minmax(0,1fr)}}
+.c-tool{text-align:left;background:var(--surface);border:1px solid var(--line);border-top:4px solid var(--red);border-radius:var(--card-r);padding:18px 18px 16px;cursor:pointer;color:var(--ink)}
+.c-tool b{display:block;font:600 21px/1.15 var(--display)}
+.c-tool small{display:block;margin-top:6px;color:var(--muted);font-size:15.5px}
+.c-source{margin:6px 0 0;font-size:14px;color:var(--muted)}
+
+</style>
+<div id="root"></div>
+<script>
+var LESSONS_MD="@@ 0 | Empieza aquí | Bienvenida a Clarito | Cómo usar el curso\nEste curso es para que cuando hables de lo que vendes, tu clienta entienda en cinco segundos qué le ofreces, cómo le cambia el día y qué tiene que hacer para tenerlo.\n\n## Por qué existe este curso\nCasi todas en el equipo tenemos buen producto. Lo que nos falla muchas veces no es lo que vendemos, sino cómo lo contamos. Publicamos fotos bonitas, mandamos audios largos, ponemos en la bio una frase que suena linda pero no dice nada, y luego nos preguntamos por qué nadie pregunta.\n\nLa razón es sencilla: **la gente no compra lo mejor, compra lo que entiende más rápido**. Si tu mensaje cuesta trabajo, tu clienta se va con la que lo dijo más claro, aunque su producto sea peor que el tuyo.\n\n> Si confundes, pierdes. Si lo dices clarito, te escuchan.\n\n## La idea de todo el curso\nTodas las películas que te han atrapado siguen casi el mismo camino. Una protagonista quiere algo, se topa con un problema, aparece alguien que la guía, le da un plan y la empuja a actuar. Eso la salva de un final triste y la lleva a un final feliz.\n\nEse camino ya está grabado en el cerebro de tu clienta. Cuando acomodas tu mensaje en ese orden, ella no tiene que esforzarse para entenderte. Y el cambio más grande de todos es este: **la protagonista es ella, no tú**. Tú eres la guía.\n\n## Cómo está armado\n- **Clase 1.** Por qué tu mensaje se pierde entre el ruido y la prueba de los cinco segundos.\n- **Clases 2 a 8.** Las siete piezas de tu guion: qué quiere ella, su problema, tú como guía, el plan, la invitación, lo que está en juego y el final feliz.\n- **Clase 9.** En quién se convierte tu clienta gracias a ti.\n- **Clase 10.** Cómo usar tu guion en tu perfil, tus mensajes y con tu equipo.\n- **Herramientas.** Tu guion en una hoja, la revisión de los cinco segundos y un banco de frases.\n\n## Cómo sacarle provecho\n1. Lee una clase por día o por semana, como te acomode. Son cortas.\n2. Haz el ejercicio de cada clase en el cuaderno de abajo. Cada respuesta llena una parte de tu guion.\n3. Al terminar la Clase 8 ya tienes tu guion completo. Pásalo a la hoja de Herramientas y úsalo en todo lo que publiques.\n\n## 🪞 Mírate al espejo\nSi una clienta nueva entra hoy a tu perfil, ¿podría decir en cinco segundos qué vendes y por qué le conviene?\n\n## ✍️ Ejercicio\nEscribe en una sola frase qué le ofreces a tu clienta. Sin pensarlo mucho. La vamos a mejorar a lo largo del curso y al final la vas a comparar.\n\n## ✅ Tu tarea de la semana\nToma captura de tu perfil (bio, foto y las primeras publicaciones) y guárdala. Es tu \"antes\".\n\n## 💬 Para compartir en el grupo\nComparte tu frase de hoy. Nadie la va a juzgar: es el punto de partida de todas.\n\n@@ 1 | Clase 1 | Ruido o música | Por qué tu mensaje se pierde\nTu clienta no te ignora porque sea grosera. Te ignora porque su cerebro está diseñado para ahorrar energía.\n\n## El cerebro tiene dos trabajos\nTodo el día, sin darse cuenta, el cerebro de tu clienta busca dos cosas: lo que la ayude a estar mejor (verse bien, sentirse segura, ahorrar tiempo o dinero, quedar bien con su gente) y gastar la menor energía posible para entender las cosas.\n\nPor eso comete dos errores quien vende:\n1. **Habla de cosas que no ayudan a la clienta.** Cuántos años tiene la marca, dónde está la fábrica, cuántos premios ganó la empresa. Es como contar las sillas de un salón: nadie lo hace. Lo que la gente sí ubica son las salidas, porque eso le sirve.\n2. **La hace pensar de más.** Un audio de tres minutos, una publicación con veinte productos, una bio con cinco emojis y tres frases. Entender eso cansa, y lo que cansa, se brinca.\n\n## Ruido o música\nEl ruido y la música están hechos de lo mismo: sonido. La diferencia es que la música sigue un orden que el cerebro reconoce. Por eso se te queda una canción y no te acuerdas del ruido de la calle.\n\nTu mensaje funciona igual. Si dices muchas cosas sin orden, es ruido. Si lo acomodas como una historia, es música. Y para que suene a música hay que cortar: todo lo que no ayuda a la historia de tu clienta, sale.\n\n> Cada cosa que publicas o es música para tu clienta o es ruido. No hay en medio.\n\n## La prueba de los cinco segundos\nImagina que alguien que no te conoce ve tu perfil, tu estado de WhatsApp o tu publicación durante cinco segundos. Al terminar debería poder responder:\n1. **¿Qué ofreces?**\n2. **¿Cómo me mejora la vida?**\n3. **¿Qué hago para tenerlo?**\n\nSi no puede, no es que tu producto no sirva. Es que tu mensaje todavía no está claro.\n\n## Un ejemplo\nAntes: \"✨ Belleza consciente ✨ Mamá, emprendedora, soñadora 💕 Farmasi lover\".\nDespués: \"Te ayudo a armar tu rutina de piel en 3 pasos, sin gastar de más. Escríbeme 'RUTINA' y te digo cuál es la tuya\".\n\nLa primera suena bonita, pero obliga a adivinar. La segunda pasa la prueba en cinco segundos.\n\n## 🪞 Mírate al espejo\n¿Qué cosas publicas que a ti te importan pero a tu clienta no le cambian nada?\n\n## ✍️ Ejercicio\n1. Abre tu perfil y tu última publicación de venta.\n2. Pídele a alguien que no conozca tu negocio que la vea cinco segundos.\n3. Pregúntale las tres preguntas y anota lo que te conteste, tal cual.\n\n## ✅ Tu tarea de la semana\nCambia una sola cosa de tu bio para que responda la primera pregunta: qué ofreces.\n\n## 💬 Para compartir en el grupo\nComparte qué respondió la persona que hizo la prueba. Seguro te sorprendió algo.\n\n@@ 2 | Clase 2 | Tu clienta es la protagonista | Qué quiere ella\nLa historia no se trata de ti ni de tu marca. Se trata de tu clienta. Y toda historia empieza cuando la protagonista quiere algo.\n\n## La pregunta que engancha\nEn una película, a los pocos minutos ya sabes qué quiere la protagonista: ganar la competencia, recuperar a su familia, conseguir el trabajo. Desde ese momento te quedas viendo porque quieres saber si lo va a lograr.\n\nCon tu clienta pasa igual. En cuanto le dices claramente algo que ella quiere, se abre una pregunta en su cabeza: **¿de verdad me puedes ayudar a tenerlo?** Esa pregunta es la que la hace seguir leyendo. Si no le dices qué quiere, no hay pregunta, y si no hay pregunta, no hay historia.\n\n## Un solo deseo\nEl error más común es querer decirlo todo: \"maquillaje, skincare, cuidado del cabello, perfumes, vitaminas para el cabello, y además te invito al negocio\". Cuando ofreces veinte cosas, tu clienta no se queda con ninguna.\n\nElige **un deseo principal** para tu marca. Lo demás puede venir después, en publicaciones o campañas específicas, como historias secundarias de la misma película.\n\n## Que sea algo que de verdad le importe\nEl deseo tiene que conectar con algo que la ayude a estar mejor en su vida real. Por ejemplo:\n- **Ahorrar dinero:** \"Tu maquillaje completo por menos de lo que gastas en un café a la semana\".\n- **Ahorrar tiempo:** \"Lista en 5 minutos para la escuela de los niños\".\n- **Sentirse parte de algo:** \"Un grupo de mujeres que se echan porras\".\n- **Verse y sentirse bien frente a otros:** \"La piel de la que te van a preguntar qué te hiciste\".\n- **Tener sentido:** \"Que lo que compras también ayude a otra mujer a crecer su negocio\".\n\nFrases como \"belleza que inspira\" o \"brilla con tu luz\" suenan bonitas pero son niebla. Tu clienta no sabe a dónde la llevas.\n\n> Tu clienta es como alguien que pide aventón. Lo único que quiere saber es a dónde vas.\n\n## Ejemplos de deseos claros\n- Skincare: \"Una rutina que sí vas a seguir\".\n- Maquillaje: \"Verte arreglada en 5 minutos\".\n- Fragancias: \"Un aroma que la gente asocie contigo\".\n- Para invitar al equipo: \"Un negocio que puedes acomodar entre la escuela y la casa\".\n\n## 🪞 Mírate al espejo\nSi le preguntas a una clienta a dónde la llevas tú, ¿qué te contestaría?\n\n## ✍️ Ejercicio\n1. Escribe diez cosas que tus clientas quieren y tú las puedes ayudar a conseguir.\n2. Tacha las que suenan bonito pero no se entienden.\n3. Encierra **una**. Esa es la primera pieza de tu guion: **Lo que ella quiere**.\n\n## ✅ Tu tarea de la semana\nHaz una publicación o historia que diga ese deseo en una frase y nada más.\n\n## 💬 Para compartir en el grupo\nComparte el deseo que elegiste. Pídele al grupo que te diga si se entiende a la primera.\n\n@@ 3 | Clase 3 | La villana y los tres problemas | Lo que le estorba\nCuando hablas del problema de tu clienta, se siente entendida. Y entre más claro lo nombras, más le interesa lo que ofreces.\n\n## Toda historia necesita una villana\nSin alguien o algo que estorbe, no hay historia. Entre más clara la villana, más quieres que gane la protagonista.\n\nLa villana de tu clienta no tiene que ser una persona. Puede ser la falta de tiempo, los productos que prometen y no cumplen, el clóset lleno de cosas que no usa, las rutinas de diez pasos imposibles. Lo importante es que tenga cara, que se pueda señalar.\n\nUna buena villana:\n1. **Es la causa, no el sentimiento.** La frustración no es villana; es lo que la villana provoca. \"Las rutinas complicadas\" sí es villana.\n2. **Se reconoce al instante.** Tu clienta la oye y dice \"¡sí, eso!\".\n3. **Es una sola.** Tres villanas confunden.\n4. **Es real.** Nada de inventar miedos para vender.\n\n## Los tres niveles del problema\nLa villana le causa a tu clienta tres problemas a la vez:\n- **Afuera:** lo que se ve. \"Tengo la piel opaca\", \"no tengo maquillaje para el evento\".\n- **Adentro:** lo que siente. \"Me da pena salir sin base\", \"me siento descuidada desde que nació el bebé\", \"me abruma no saber qué comprar\".\n- **Lo que no es justo:** la creencia de fondo. \"Cuidarme no debería ser un lujo\", \"ninguna mamá debería sentir que no tiene ni cinco minutos para ella\".\n\n## El secreto de esta clase\nCasi todas vendemos para el problema de afuera: \"esta crema hidrata\". Pero la gente compra para resolver el de adentro: dejar de sentirse descuidada, sentirse segura otra vez.\n\nCuando nombras lo que siente, tu clienta piensa: \"ella sí me entiende\". Y eso vale más que la mejor lista de ingredientes.\n\n> Vendemos soluciones para lo de afuera. Ellas compran soluciones para lo de adentro.\n\n## Un ejemplo completo\n- **Villana:** las rutinas complicadas que nadie tiene tiempo de seguir.\n- **Afuera:** \"Mi piel se ve cansada\".\n- **Adentro:** \"Siento que me dejé de cuidar\".\n- **No es justo:** \"Cuidarte no debería requerir una hora que no tienes\".\n\n## 🪞 Mírate al espejo\nPiensa en tu mejor clienta. ¿Qué sentía cuando te escribió la primera vez? No qué necesitaba, qué sentía.\n\n## ✍️ Ejercicio\nLlena estas cuatro piezas de tu guion:\n1. **La villana:** ¿qué le estorba a tu clienta?\n2. **Afuera:** ¿qué problema se ve?\n3. **Adentro:** ¿cómo la hace sentir?\n4. **No es justo:** ¿por qué está mal que tenga que pasar por eso?\n\n## ✅ Tu tarea de la semana\nPublica algo que nombre a la villana y el problema de adentro, sin vender todavía. Solo \"te entiendo\".\n\n## 💬 Para compartir en el grupo\nComparte tu villana. A ver cuántas tenemos la misma.\n\n@@ 4 | Clase 4 | Tú eres la guía | Empatía y experiencia\nTu clienta no está buscando a otra protagonista. Está buscando a alguien que la ayude a ganar.\n\n## El error de querer ser la heroína\nCuando hablamos mucho de nosotras (mis logros, mi viaje, mi auto, mi rango, mi historia), creemos que inspiramos. Pero muchas veces la clienta siente que estamos compitiendo por su atención. Ella ya es la protagonista de su propia vida. Lo que necesita es una guía.\n\nPiensa en las películas: la protagonista casi nunca es la más fuerte. Tiene dudas, no sabe si puede. La guía, en cambio, ya pasó por ahí. Tiene la experiencia. Pero la película no es sobre la guía. La guía solo aparece para ayudar.\n\n> El día que te quite el sueño el éxito de tu clienta, y no el tuyo, tu negocio empieza a crecer.\n\n## Las dos cosas que hacen a una guía\nPara que tu clienta te reconozca como su guía, necesita ver dos cosas:\n\n**1. Empatía: \"te entiendo\".**\nDile que sabes lo que siente. Frases que sirven:\n- \"Sé lo que es verte al espejo y no reconocerte.\"\n- \"Ninguna mamá debería sentir que cuidarse es un lujo.\"\n- \"A mí también me abrumaba no saber qué comprar.\"\n\nLa gente confía en quien la entiende. Y no va a saber que te importa hasta que se lo digas.\n\n**2. Experiencia: \"sé cómo ayudarte\".**\nImagina que vas con una nutrióloga, le dices que quieres bajar de peso y te contesta \"¡yo también!\". Te sales del consultorio. Tu clienta necesita saber que sabes lo que haces, sin que presumas. Cuatro formas:\n- **Testimonios:** dos o tres, cortitos, de clientas reales.\n- **Números:** \"Más de 200 rutinas armadas\", \"clientas desde hace 4 años\".\n- **Reconocimientos:** si te capacitaste o ganaste algo, menciónalo pequeñito.\n- **Antes y después reales** del resultado que ellas buscan, con su permiso.\n\n## Primera impresión\nCuando alguien te conoce, en el fondo se pregunta dos cosas: ¿puedo confiar en ella? y ¿sabe lo que hace? La empatía responde la primera. La experiencia, la segunda. Necesitas las dos.\n\n## 🪞 Mírate al espejo\nRevisa tus últimas diez publicaciones. ¿En cuántas la protagonista eres tú y en cuántas es tu clienta?\n\n## ✍️ Ejercicio\n1. Escribe tres frases de empatía para el problema de adentro de tu clienta (Clase 3).\n2. Junta tus pruebas de experiencia: tres testimonios cortos, un número y lo que hayas aprendido.\n3. Elige una frase de empatía y una prueba. Esa es la pieza **La guía** de tu guion.\n\n## ✅ Tu tarea de la semana\nPídele a tres clientas un testimonio corto. Pregúntales: \"¿Cómo estabas antes y cómo estás ahora?\".\n\n## 💬 Para compartir en el grupo\nComparte tu mejor frase de empatía.\n\n@@ 5 | Clase 5 | Dale un plan | Los pasos y tus promesas\nTu clienta ya confía en ti. Pero comprar es un compromiso, y antes de comprometerse necesita ver el camino.\n\n## Piedras en el río\nImagina a tu clienta parada a la orilla de un río. Del otro lado está lo que quiere. Pero escucha una cascada más abajo y piensa: ¿y si me caigo? ¿Y si no me funciona? ¿Y si hago el ridículo comprándolo?\n\nTu trabajo es poner piedras en el río. Cuando le dices \"primero pisas aquí, luego aquí, y ya llegaste\", el miedo baja y cruza.\n\n## El plan de pasos\nExplícale en tres pasos (máximo seis) cómo hacer negocio contigo o cómo usar lo que compra. Aunque te parezca obvio, para ella no lo es.\n\nAntes de comprar:\n1. Escríbeme \"RUTINA\".\n2. Te hago tres preguntas sobre tu piel.\n3. Te mando tu rutina con precio y te la llevo a tu casa.\n\nDespués de comprar:\n1. Mañana: limpiador y sérum.\n2. Noche: limpiador y crema.\n3. A los 15 días me mandas foto y ajustamos.\n\nPonle nombre a tu plan: \"Tu rutina en 3 pasos\", \"Plan de 15 días\", \"Arreglada en 5\". Con nombre, se ve más valioso y se recuerda mejor.\n\n> Si no le dices qué sigue, la confundes. Y una clienta confundida no compra.\n\n## Tus promesas\nEl plan de pasos le quita la confusión. Tus promesas le quitan el miedo.\n\nEscribe todo lo que le preocupa a tu clienta antes de comprarte y responde cada miedo con una promesa:\n- \"¿Y si no me queda el tono?\" → \"Te ayudo a elegirlo por videollamada.\"\n- \"¿Y si me insiste para entrar al negocio?\" → \"Si solo quieres comprar, solo compras. Nunca te voy a presionar.\"\n- \"¿Y si me deja de contestar después de vender?\" → \"Te doy seguimiento a los 15 días, siempre.\"\n\nTus promesas no tienen que ir en cada publicación. Pueden ir en tus historias destacadas, en tu mensaje de bienvenida o en una tarjeta dentro del pedido. Y solo promete lo que de verdad cumples.\n\n## 🪞 Mírate al espejo\n¿Qué le preguntan siempre las clientas antes de comprarte? Esas preguntas son los miedos que tu plan tiene que resolver.\n\n## ✍️ Ejercicio\n1. Escribe tu plan de tres pasos y ponle nombre.\n2. Haz una lista de cinco miedos de tu clienta y responde cada uno con una promesa que sí cumplas.\n3. Anota los pasos y el nombre en la pieza **El plan** de tu guion.\n\n## ✅ Tu tarea de la semana\nArma una historia destacada con tu plan de tres pasos y tus promesas.\n\n## 💬 Para compartir en el grupo\nComparte el nombre de tu plan.\n\n@@ 6 | Clase 6 | Invítala | El sí grande y el sí chiquito\nLas protagonistas no actúan solas. Alguien tiene que invitarlas. Y tu clienta no te lee la mente.\n\n## Nadie actúa si no la invitan\nEn las películas, la protagonista nunca decide cambiar su vida un martes cualquiera porque sí. Algo la empuja. En la vida real pasa igual: la gente no se mueve si nadie la invita a moverse.\n\nA muchas nos da pena pedir la venta. No queremos parecer la vendedora intensa. Pero casi nadie se pasa de insistente: la mayoría pedimos tan bajito que nadie nos oye. Y cuando no invitas con claridad, comunicas que no crees en tu producto.\n\n> Si de verdad le cambia el día, ¿por qué te daría pena invitarla?\n\n## Dos invitaciones\nTu clienta puede estar lista para comprar hoy, o puede no estarlo. Por eso necesitas dos invitaciones, siempre juntas.\n\n**El sí grande (invitación directa).** Lleva a la compra:\n- \"Pídela aquí.\"\n- \"Escríbeme 'QUIERO' y te la aparto.\"\n- \"Agenda tu prueba de tono.\"\n\n**El sí chiquito (invitación puente).** No pide dinero; le da algo de valor para que te conozca:\n- Una guía gratis: \"Los 5 errores al elegir tu base\".\n- Un mini diagnóstico: \"Responde 3 preguntas y te digo tu tipo de piel\".\n- Una muestra o una prueba en vivo.\n- Un video con testimonios de clientas.\n\nEs como en el amor: el sí grande es \"¿te casas conmigo?\" y el sí chiquito es \"¿salimos otra vez?\". Si te dice que no al primero, no se acaba la relación. La invitas a salir de nuevo, le das valor, y cuando esté lista te va a decir que sí.\n\n## Por qué funciona regalar\nEl sí chiquito hace tres cosas: te ubica como la que sabe del tema, genera ganas de corresponder (cuando das, la gente quiere devolver) y te convierte en su guía. La próxima vez que tenga ese problema, va a pensar en ti.\n\n## Dónde poner tu invitación\n- Al final de cada publicación de venta.\n- Fija en tu perfil y en tu enlace.\n- En tu mensaje de bienvenida de WhatsApp.\n- Repetida: la gente no lee, escanea. Tiene que verla varias veces.\n\n## 🪞 Mírate al espejo\nEn tus últimas cinco publicaciones, ¿cuántas terminan con una invitación clara?\n\n## ✍️ Ejercicio\n1. Escribe tu sí grande: una frase con un verbo claro.\n2. Inventa tu sí chiquito: algo útil y gratis que puedas dar esta semana.\n3. Anótalos en la pieza **La invitación** de tu guion.\n\n## ✅ Tu tarea de la semana\nCrea tu sí chiquito (una guía, un mini diagnóstico o un video) y ofrécelo en una publicación junto con tu sí grande.\n\n## 💬 Para compartir en el grupo\nComparte tu idea de sí chiquito. Seguro a otra le da una idea.\n\n@@ 7 | Clase 7 | Lo que está en juego | Una pizca de chile\nSi no se gana ni se pierde nada, no hay historia. Y si no pasa nada por no comprarte, tu clienta no tiene por qué comprarte.\n\n## Sin riesgo, no hay historia\nImagina una película donde la bomba era de juguete, o una de amor donde todo sale bien desde el principio. Te aburres. Lo que te tiene al filo del asiento es saber qué puede salir mal.\n\nTu clienta también se pregunta, en silencio: **¿y qué pasa si no lo compro?** Si tú no le respondes, ella decide que no pasa nada.\n\n## Perder pesa más que ganar\nA la gente le duele más perder algo que lo que le alegra ganar lo mismo. Perder 100 pesos se siente peor que encontrarte 100 pesos. Por eso, a veces, mostrar lo que se puede perder mueve más que mostrar lo que se puede ganar.\n\n## Una pizca, no el frasco\nEsto es como el chile en la comida. Sin nada, queda simple. Con una pizca, sabe rico. Con mucho, nadie se lo come. Si llenas tu mensaje de miedo, la gente se cierra. Si no pones nada, no le importa.\n\n> Lo que está en juego es chile: una pizca le da sabor, el frasco entero lo arruina.\n\n## Cómo decirlo sin asustar\nUn camino en cuatro pasos:\n1. **Muéstrale que le puede pasar.** \"Casi todas usamos un tono de base que no es el nuestro.\"\n2. **Dile que vale la pena evitarlo.** \"Y eso hace que la piel se vea gris en las fotos.\"\n3. **Dale la salida.** \"Por eso hago pruebas de tono por videollamada.\"\n4. **Invítala.** \"Agenda la tuya aquí.\"\n\n## Ejemplos de lo que tu clienta quiere evitar\n- Gastar en productos que terminan en el cajón.\n- Llegar al evento y no sentirse segura en las fotos.\n- Seguir sintiendo que no tiene ni cinco minutos para ella.\n- Comprar el tono equivocado otra vez.\n\nSiempre real, siempre con cariño. Nada de inventar riesgos ni de prometer que un producto evita problemas de salud.\n\n## 🪞 Mírate al espejo\n¿Qué le pasa a tu clienta si sigue igual seis meses más?\n\n## ✍️ Ejercicio\n1. Haz una lista de todo lo que tu clienta pierde si no resuelve su problema.\n2. Elige tres, los más reales y que menos asusten.\n3. Anótalos en la pieza **Lo que está en juego** de tu guion.\n\n## ✅ Tu tarea de la semana\nEscribe una publicación con los cuatro pasos: le puede pasar, vale la pena evitarlo, la salida, la invitación.\n\n## 💬 Para compartir en el grupo\nComparte tu frase de \"lo que está en juego\" y pide al grupo que te diga si se pasa de picante.\n\n@@ 8 | Clase 8 | El final feliz | A dónde la llevas\nNunca des por hecho que tu clienta se imagina cómo le va a cambiar la vida. Díselo.\n\n## La gente quiere que la lleven a algún lado\nUna de las mejores ideas sobre liderazgo es esta: la gente quiere que la lleven a algún lado. Le pasa a tu familia, a tu equipo y a tu clienta. Si no le dices a dónde la llevas, se va con quien sí se lo dijo.\n\n## Que sea concreto\n\"Sentirte increíble\" es niebla. \"Salir de casa en 5 minutos, con la piel lista y sin pensar qué ponerte\" es una escena que tu clienta puede ver. Los finales felices de las buenas historias son específicos: pasa algo concreto a alguien concreto.\n\n## Antes y después\nLlena esta tabla para tu clienta:\n- **Qué tiene:** antes, un cajón de productos que no usa; después, tres productos que sí usa.\n- **Cómo se siente:** antes, abrumada; después, tranquila y segura.\n- **Cómo es su día:** antes, sale corriendo sin arreglarse; después, cinco minutos y lista.\n- **Cómo la ven:** antes, \"¿estás cansada?\"; después, \"¿qué te hiciste?\".\n\nEsa tabla te da frases para un mes de contenido.\n\n> Tu clienta no compra la crema. Compra el momento en que alguien le pregunta qué se hizo.\n\n## Los tres finales que todas queremos\nLas historias suelen terminar de una de tres formas, porque son tres cosas que todas deseamos:\n1. **Ganar un lugar.** Que la reconozcan, que la vean distinto. Ejemplo: un nivel de \"clienta consentida\" con beneficios, o acceso antes que nadie a los lanzamientos.\n2. **Sentirse completa.** Que algo de afuera le resuelva lo que le falta: menos estrés, menos trabajo, más tiempo.\n3. **Aceptarse y crecer.** Llegar a su potencial o sentirse bien como es. Ejemplo: contenido con clientas reales, sin filtros, que dice \"así como eres, te ves bien\".\n\n## Muéstralo\nLas imágenes también cuentan la historia. En lugar de la foto del producto sobre la mesa, muestra a una clienta real (con permiso) contenta, usándolo. Una sonrisa auténtica vende el final feliz mejor que cualquier texto.\n\n## 🪞 Mírate al espejo\n¿Cuál de los tres finales le ofrece tu producto a tu clienta?\n\n## ✍️ Ejercicio\n1. Llena la tabla de antes y después con tus palabras.\n2. Escribe en una frase el final feliz de tu clienta.\n3. Anótalo en la pieza **El final feliz** de tu guion. Con esto, tu guion ya está completo.\n\n## ✅ Tu tarea de la semana\nPublica una foto o video de una clienta real disfrutando el resultado, con su permiso y su frase.\n\n## 💬 Para compartir en el grupo\nComparte tu frase de final feliz.\n\n@@ 9 | Clase 9 | De quién a quién | En quién se convierte gracias a ti\nDebajo de todo lo que tu clienta compra hay un deseo más grande: convertirse en alguien un poquito mejor.\n\n## Todas queremos transformarnos\nAl principio de la historia, la protagonista tiene dudas y no se siente capaz. A lo largo del camino aprende, se atreve y, al final, es otra. Esa transformación es la razón por la que amamos las historias, porque es nuestra historia.\n\nTu clienta no solo quiere una piel más bonita. Quiere ser la mujer que se cuida, la que se ve arreglada sin esfuerzo, la que se da su lugar. Cuando tu marca la acompaña en ese cambio, deja de ser una vendedora más y se vuelve parte de su historia.\n\n## ¿Cómo quiere que hablen de ella?\nLa mejor manera de encontrar esa identidad es preguntarte: **¿qué le gustaría a tu clienta que dijeran de ella sus amigas?** \"Siempre se ve arreglada\", \"sabe de skincare\", \"se da tiempo para ella\", \"es la que siempre huele rico\".\n\nEsa frase te da el lenguaje para tu contenido. Ya no hablas solo del producto; hablas de la mujer en la que se está convirtiendo.\n\n> No vendes productos. Acompañas a una mujer a convertirse en la que quiere ser.\n\n## De ___ a ___\nEscríbelo así:\n- **De** abrumada con mil productos **a** la que tiene su rutina clarita.\n- **De** \"no tengo tiempo para mí\" **a** la que se da cinco minutos todos los días.\n- **De** insegura en las fotos **a** la que sale con confianza.\n- Para tu equipo: **de** \"no sé vender\" **a** la que explica su producto con seguridad.\n\n## La guía celebra el cambio\nEn las películas, cuando la protagonista por fin gana, aparece la guía y le dice: \"Mira lo lejos que llegaste\". Ese momento es importante porque ella sola no se da cuenta de cuánto cambió.\n\nTú puedes hacer eso con tus clientas y con tu equipo. Escríbeles para celebrar su avance, comparte (con permiso) su antes y después, y diles en voz alta que son otras. Una clienta que se siente vista se queda contigo para siempre.\n\n## 🪞 Mírate al espejo\n¿Quién eras tú antes de empezar con tu negocio, y quién eres ahora? ¿Alguien te lo ha dicho?\n\n## ✍️ Ejercicio\n1. Escribe cómo le gustaría a tu clienta que hablaran de ella.\n2. Llena tu frase: **De** ___ **a** ___.\n3. Anótala en la pieza **De quién a quién** de tu guion.\n\n## ✅ Tu tarea de la semana\nEscríbele a una clienta o a alguien de tu equipo para decirle, con detalle, cuánto ha cambiado.\n\n## 💬 Para compartir en el grupo\nComparte tu \"de ___ a ___\".\n\n@@ 10 | Clase 10 | Úsalo en todos lados | Tu perfil, tus mensajes y tu equipo\nUn guion guardado en una libreta no vende. Lo que vende es usarlo en cada cosa que publicas y dices.\n\n## Empieza por tu perfil\nTu perfil (Instagram, TikTok, Facebook o tu catálogo en línea) es lo primero que ve una clienta nueva. Es como una primera cita: no le cuentas tu vida entera, le dices lo justo para que quiera una segunda. Cinco cosas:\n\n1. **Tu oferta, arriba y clara.** En la bio y en tu primera publicación fija: qué ofreces, a quién y qué le cambia. \"Rutinas de piel en 3 pasos para mamás con poco tiempo.\"\n2. **Tu invitación, visible y repetida.** Un solo botón o enlace principal, con tu sí grande. Tu sí chiquito, cerca, pero sin competir.\n3. **Imágenes del final feliz.** Clientas reales contentas, no solo productos sobre la mesa.\n4. **Tus opciones, en pedacitos.** Si vendes varias cosas, busca una frase que las una y separa lo demás en destacadas: \"Piel\", \"Maquillaje\", \"Aromas\", \"Únete al equipo\".\n5. **Pocas palabras.** La gente no lee perfiles, los escanea. Si puedes decir algo en la mitad de palabras, hazlo.\n\n> Si no viene de tu guion, es ruido.\n\n## Tus mensajes\nUsa tu guion para armar tus mensajes de WhatsApp en este orden:\n1. Lo que ella quiere.\n2. El problema de adentro (con empatía).\n3. Tu plan en tres pasos.\n4. Tu invitación.\n5. El final feliz.\n\nNo tiene que ser largo. Cinco líneas bastan.\n\n## Con tu equipo\nLas clientas no son las únicas que se confunden cuando el mensaje no es claro. Los equipos también. Cuando no hay una historia que una a todas, cada quien jala para su lado.\n\nSi eres líder, aplica el mismo guion al revés: **tu compañera es la protagonista y tú eres su guía**. ¿Qué quiere ella? ¿Qué le estorba? ¿Qué plan le das? ¿A dónde la llevas? Y cada una debería poder contar en una frase la historia de su clienta y cómo la ayuda. Cuando todo el equipo cuenta la misma historia clarita, la gente la repite.\n\n## 🪞 Mírate al espejo\n¿Tu equipo, o tu socia, contaría tu negocio con las mismas palabras que tú?\n\n## ✍️ Ejercicio\n1. Reescribe tu bio con tu guion: deseo, cómo le ayudas y tu invitación.\n2. Reescribe tu mensaje de bienvenida de WhatsApp en cinco líneas.\n3. Saca tu captura de \"antes\" de la Bienvenida y compárala.\n\n## ✅ Tu tarea de la semana\nHaz la prueba de los cinco segundos (Herramientas) a tu perfil nuevo con tres personas.\n\n## 💬 Para compartir en el grupo\nComparte tu antes y después del perfil. ¡Celébrense!\n\n@@ 11 | Herramientas | Tu guion en una hoja | Las piezas de tu mensaje\nTodo tu mensaje cabe en una hoja. Llénala con lo que escribiste en cada clase y tenla a la mano cada vez que vayas a publicar.\n\n## Las piezas\n1. **Lo que ella quiere** (Clase 2): un solo deseo, claro.\n2. **La villana** (Clase 3): lo que le estorba.\n3. **Afuera** (Clase 3): el problema que se ve.\n4. **Adentro** (Clase 3): cómo la hace sentir.\n5. **No es justo** (Clase 3): por qué no debería pasar por eso.\n6. **La guía** (Clase 4): tu frase de empatía y tu prueba de experiencia.\n7. **El plan** (Clase 5): tres pasos con nombre, y tus promesas.\n8. **La invitación** (Clase 6): tu sí grande y tu sí chiquito.\n9. **Lo que está en juego** (Clase 7): tres cosas que quiere evitar.\n10. **El final feliz** (Clase 8): a dónde la llevas.\n11. **De quién a quién** (Clase 9): de ___ a ___.\n\n## Un ejemplo lleno\n1. Una rutina de piel que sí va a seguir.\n2. Las rutinas complicadas.\n3. Piel opaca y cansada.\n4. Siente que se dejó de cuidar.\n5. Cuidarse no debería requerir una hora que no tiene.\n6. \"Sé lo que es no tener ni cinco minutos.\" Más de 200 rutinas armadas.\n7. \"Tu rutina en 3 pasos\": me escribes, te pregunto, te la llevo. Si no te gusta, te ayudo a cambiarla.\n8. Sí grande: \"Escríbeme RUTINA\". Sí chiquito: \"Responde 3 preguntas y te digo tu tipo de piel\".\n9. Gastar en productos que no usa, verse cansada en las fotos, seguir sin tiempo para ella.\n10. Cinco minutos en la mañana y la piel lista.\n11. De abrumada a la que tiene su rutina clarita.\n\n## Cómo usarlo\n- Haz un guion para tu marca en general y, si quieres, uno por línea de producto o por tipo de clienta.\n- Antes de publicar, pregúntate: ¿esto sale de alguna pieza de mi guion? Si no, es ruido.\n\n> Una hoja, siete piezas, todas tus publicaciones.\n\n@@ 12 | Herramientas | La prueba de los cinco segundos | Revisa antes de publicar\nUsa esta lista antes de publicar o cuando sientas que algo no está funcionando.\n\n## La prueba\nEnséñale tu perfil o tu publicación a alguien que no conozca tu negocio durante cinco segundos. Después pregúntale:\n1. ¿Qué ofrezco?\n2. ¿Cómo te mejora la vida?\n3. ¿Qué tienes que hacer para tenerlo?\n\nSi duda en alguna, esa es la parte que hay que aclarar.\n\n## La revisión rápida\n- ¿La protagonista es mi clienta, no yo?\n- ¿Dice un solo deseo, claro?\n- ¿Nombra lo que ella siente, no solo lo que se ve?\n- ¿Muestro que la entiendo y que sé lo que hago, sin presumir?\n- ¿Hay un plan sencillo de qué sigue?\n- ¿Termina con una invitación clara?\n- ¿Hay una pizca (solo una) de lo que está en juego?\n- ¿Se ve el final feliz?\n- ¿Usé la menor cantidad de palabras posible?\n- ¿Quité todo lo que no sale de mi guion?\n\n## Señales de ruido\n- Frases bonitas que no dicen qué vendes.\n- Más de un deseo en la misma publicación.\n- Palabras técnicas que tu clienta no usa. Di \"piel que se ve descansada\", no el nombre del ingrediente.\n- Audios o textos largos para algo que cabe en tres líneas.\n- Ninguna invitación al final.\n\n> Si tienes que explicarlo, todavía no está claro.\n\n@@ 13 | Herramientas | Banco de frases | Para cuando no sepas cómo empezar\nFrases para empezar cada pieza de tu mensaje. Úsalas como molde y cámbialas a tu voz.\n\n## Lo que ella quiere\n- \"Para ti que quieres ___ sin ___.\"\n- \"Imagina ___ en solo ___.\"\n\n## Empatía\n- \"Sé lo que es ___.\"\n- \"Ninguna mujer debería ___.\"\n- \"A mí también me pasaba que ___.\"\n\n## Experiencia\n- \"Ya van ___ clientas que ___.\"\n- \"Esto me dijo ___ después de ___.\"\n\n## El plan\n- \"Es así de fácil: 1) ___ 2) ___ 3) ___.\"\n- \"Mi promesa: ___.\"\n\n## La invitación\n- Sí grande: \"Escríbeme ___ y te ___.\" / \"Aparta el tuyo aquí.\"\n- Sí chiquito: \"¿Quieres mi guía gratis de ___?\" / \"Responde ___ y te digo ___.\"\n\n## Lo que está en juego\n- \"Si sigues ___, vas a seguir ___.\"\n- \"No dejes que ___ te quite ___.\"\n\n## Final feliz\n- \"Imagina que ___.\"\n- \"Así se siente cuando ___.\"\n- \"De ___ a ___.\"\n\n## Para tu mensaje de WhatsApp (5 líneas)\n1. \"Hola, ___. ¿Te gustaría ___?\"\n2. \"Sé que ___ (problema de adentro).\"\n3. \"Lo hacemos en 3 pasos: ___.\"\n4. \"Escríbeme ___ y empezamos.\"\n5. \"Para que pronto ___ (final feliz).\"\n\n> Las mejores frases suenan a ti. Usa estas para arrancar, no para quedarte.";
+var FAQ_MD="## Empezar | 0\n\n### ¿Este curso es para mí si apenas estoy empezando a vender?\nSí, y es mejor empezar así. Si armas tu guion desde el principio, todo lo que publiques va a sonar claro desde el día uno, en lugar de tener que corregirlo después.\n\n### ¿Tengo que tomar las clases en orden?\nLa primera vez, sí. Cada clase llena una pieza de tu guion y la siguiente se apoya en la anterior. Después puedes regresar a la que necesites.\n\n### ¿Dónde guardo mis respuestas?\nEn el cuaderno al final de cada clase. Se guarda solo en este celular y este navegador. Si cambias de teléfono o borras los datos del navegador, se pierde, así que pasa tu guion final a tu libreta o a una nota.\n\n### ¿Cuánto tiempo me toma?\nCada clase se lee en cinco o diez minutos. El ejercicio te puede tomar otros quince. Si haces una clase por día, en dos semanas tienes tu guion y tu perfil nuevo.\n\n## El mensaje | 1\n\n### ¿Por qué nadie me pregunta, si mi producto es bueno?\nCasi siempre es porque el mensaje no está claro, no porque el producto falle. La gente compra lo que entiende más rápido. Haz la prueba de los cinco segundos de la Clase 1 y vas a ver dónde se atora.\n\n### ¿No es mejor poner toda la información para que la clienta decida?\nNo al principio. Mucha información cansa, y lo que cansa se brinca. Primero di lo justo para que quiera saber más. Los detalles van después, cuando ella pregunte.\n\n### ¿Puedo seguir usando mis frases bonitas?\nSí, siempre que se entienda qué vendes. Una frase linda que obliga a adivinar es ruido. Ponla junto a una frase clara, no en lugar de ella.\n\n## Tu clienta | 2\n\n### Vendo muchos productos. ¿Cómo elijo un solo deseo?\nBusca lo que tienen en común para tu clienta. Muchas veces es algo como \"verte y sentirte arreglada sin complicarte\". Ese es tu deseo principal. Cada línea de producto puede tener su propio deseo en publicaciones específicas.\n\n### ¿Y si mi problema de adentro suena muy dramático?\nDilo con cariño y con palabras normales. No es \"estás destruida\", es \"sé lo que es sentir que te dejaste de cuidar\". Si suena a algo que tu clienta diría de sí misma, vas bien.\n\n### ¿Quién es la villana si mi producto es de belleza?\nNo es una persona ni otra marca. Es lo que le estorba a tu clienta: la falta de tiempo, los productos que no cumplen, las rutinas complicadas, no saber qué comprar. La Clase 3 tiene ejemplos.\n\n## Ser la guía | 4\n\n### ¿Entonces ya no puedo compartir mi historia?\nClaro que puedes. La clave es contarla para que tu clienta se vea en ella: \"yo también me sentía así, esto fue lo que me ayudó\". Tu historia sirve como empatía, no como el centro de la película.\n\n### No tengo testimonios todavía. ¿Cómo muestro experiencia?\nEmpieza con lo que sí tienes: lo que aprendiste, cuánto tiempo llevas usando el producto, tu propio antes y después. Y pídele testimonio a tus primeras clientas en cuanto les funcione algo. Tres cortitos son suficientes.\n\n## Plan e invitación | 5\n\n### Me da pena pedir la venta. ¿Cómo lo hago sin ser intensa?\nUsa las dos invitaciones de la Clase 6. El sí grande dice claramente cómo comprar; el sí chiquito ofrece algo gratis y útil. Si no te dicen que sí al primero, sigues dando valor con el segundo. Eso no es intenso, es servicio.\n\n### ¿Qué puedo regalar como sí chiquito si no tengo presupuesto?\nAlgo que cueste tu tiempo, no tu dinero: una guía en una imagen, un mini diagnóstico de tres preguntas, un video corto de \"cómo elegir tu tono\", una prueba por videollamada.\n\n### ¿Cuántos pasos debe tener mi plan?\nTres es ideal. Nunca más de seis. Si tu proceso tiene más, agrúpalo en etapas.\n\n## Lo que está en juego | 7\n\n### ¿Hablar de lo que pierde no es asustar a la gente?\nSolo si te pasas. Es como el chile: una pizca le da sabor y mucho lo arruina. Habla de cosas reales y cotidianas, como gastar en productos que no usa, y siempre ofrece la salida.\n\n### ¿Puedo decir que un producto evita problemas de piel o de salud?\nNo. No hagas promesas de salud. Habla de rutina, de cómo se siente y de lo que tus clientas cuentan de su experiencia.\n\n## Usarlo | 10\n\n### ¿Esto sirve también para invitar gente al equipo?\nSí. Haz un guion aparte donde la protagonista es la mujer que podría unirse. Pregúntate qué quiere, qué le estorba y qué plan le das. Y no prometas ingresos: habla de lo que vas a hacer tú como su guía.\n\n### ¿Qué cambio primero: la bio, las publicaciones o los mensajes?\nLa bio. Es lo primero que ve una clienta nueva y es lo más rápido de cambiar. Después tu mensaje de bienvenida de WhatsApp, y luego cada publicación nueva.\n\n## Tu mentora | 0\n\n### ¿Qué hace la mentora de Clarito?\nTe da las clases en el chat, te ayuda a llenar tu guion pregunta por pregunta y revisa tu bio, tus publicaciones y tus mensajes con la prueba de los cinco segundos.\n\n### ¿Necesito pagar Claude para usarla?\nNo. Funciona con la cuenta gratis. La cuenta gratis tiene un límite de mensajes por día; si se acaba, vuelve a estar disponible horas después.";
+var MZ="";
+var MD="";
+var CFG={"key": "clarito", "n": 10, "groups": [["Empieza aquí", [0]], ["Clases", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]], ["Herramientas", [11, 12, 13]]], "pitch": "Diez clases cortas para que tu clienta entienda en cinco segundos qué le ofreces, por qué le conviene y qué hacer para tenerlo.", "faqPh": "Busca: bio, invitar, testimonios, pena…", "foot": "", "zipName": "clarito.zip", "zipVar": "MZ", "mdName": "clarito-SKILL.md", "mdVar": "MD", "tabProgram": "Clases", "welcomeLabel": "Bienvenida", "repaso": "el curso", "faqLead": "Las dudas que más salen al aclarar tu mensaje, con la clase que las responde.", "source": "Ideas inspiradas en el libro Building a StoryBrand (Cómo construir una StoryBrand), de Donald Miller. Si te gusta el curso, cómprate el libro."};
+var MENTOR={"title": "Tu mentora, cuando la necesites", "intro": "Clarito también vive en Claude. Ahí te da las clases una por una, te ayuda a llenar tu guion y revisa tus textos con la prueba de los cinco segundos.", "can": [["Las clases", "Te da las 10 lecciones en el chat, en el orden que quieras."], ["Tu guion", "Te pregunta pieza por pieza y te entrega tu guion completo en una hoja."], ["Más clarito", "Le pegas tu bio, un post o un mensaje y te lo regresa más corto y más claro."], ["Tus invitaciones", "Te ayuda a escribir tu sí grande y a inventar tu sí chiquito."]], "steps": ["Crea tu cuenta en claude.ai. Funciona con la cuenta gratis.", "Descarga la mentora (.zip) y guárdala sin descomprimir.", "En Claude entra a Customize → Skills, toca \"+\", luego \"Create skill\" → \"Upload a skill\" y sube el zip.", "Abre un chat nuevo y escribe una de estas frases."], "prompts": ["Quiero empezar el curso Clarito.", "Ayúdame a armar mi guion, pregunta por pregunta.", "Revisa mi bio con la prueba de los cinco segundos: ", "Escríbeme un mensaje de WhatsApp de cinco líneas para mi rutina de piel."], "limits": ["No promete ingresos", "No hace promesas de salud", "No inventa testimonios", "No sustituye terapia", "Nunca te empuja a endeudarte"], "notes": ["Si no ves los botones de descarga, pide el archivo clarito.zip a tu líder.", "La cuenta gratis tiene un límite de mensajes por día. Si se acaba, vuelve a estar disponible horas después."]};
+var SKIN={
+  first:true,
+  pieces:{1:"Prueba de 5 segundos",2:"Lo que ella quiere",3:"Villana y problemas",4:"La guía",5:"El plan",6:"La invitación",7:"Lo que está en juego",8:"El final feliz",9:"De quién a quién",10:"Tu perfil"},
+  waves:function(c){
+    var cx=300,cy=150,a=0.62,out="";
+    c.STEPS.forEach(function(s,k){
+      var r=44+k*19,st=c.stateOf(s),d,len;
+      if(st==="seen"){
+        var x0=cx+r*Math.cos(a),y0=cy-r*Math.sin(a),y1=cy+r*Math.sin(a);
+        d="M"+x0.toFixed(1)+" "+y0.toFixed(1)+"A"+r+" "+r+" 0 0 1 "+x0.toFixed(1)+" "+y1.toFixed(1);len=Math.ceil(2*a*r)+2;
+      }else{
+        var waves=Math.max(4,Math.round(2*a*r/16)),steps=waves*6,pts=[],amp=st==="next"?0:1.6+k*.45;len=0;var px=null,py=null;
+        for(var i=0;i<=steps;i++){var t=-a+2*a*i/steps,rr=r+amp*Math.sin(i*Math.PI*2/6+k),x=cx+rr*Math.cos(t),y=cy+rr*Math.sin(t);pts.push(x.toFixed(1)+" "+y.toFixed(1));if(px!==null)len+=Math.hypot(x-px,y-py);px=x;py=y;}
+        d="M"+pts.join("L");len=Math.ceil(len)+2;
+      }
+      out+='<path class="wv '+(st==="seen"?"clean":(st==="next"?"now":"noise"))+'" style="--i:'+k+';--len:'+len+'" d="'+d+'"/>';
+    });
+    return out;
+  },
+  mega:function(c,anim){
+    return '<svg class="c-mega'+(anim?" c-anim":"")+'" viewBox="0 0 560 300" role="img" aria-label="Un megáfono. Cada clase que terminas convierte una onda de ruido en una onda clara.">'+
+      '<path d="M150 118 L292 42 Q300 40 300 52 L300 248 Q300 260 292 258 L150 182 Z" fill="var(--cone)" stroke="var(--cone-line)" stroke-width="1.5"/>'+
+      '<ellipse cx="300" cy="150" rx="14" ry="104" fill="var(--cone)" stroke="var(--cone-line)" stroke-width="1.5"/>'+
+      '<path d="M112 176 L132 176 L140 250 Q141 258 133 258 L120 258 Q112 258 112 250 Z" fill="var(--grip)"/>'+
+      '<rect x="56" y="112" width="104" height="76" rx="14" fill="var(--red)"/>'+
+      '<rect x="128" y="112" width="6" height="76" fill="rgba(0,0,0,.14)"/>'+
+      '<g fill="rgba(0,0,0,.22)"><circle cx="72" cy="130" r="3"/><circle cx="72" cy="150" r="3"/><circle cx="72" cy="170" r="3"/><circle cx="84" cy="140" r="3"/><circle cx="84" cy="160" r="3"/></g>'+
+      SKIN.waves(c)+"</svg>";
+  },
+  hero:function(c){
+    var anim=SKIN.first&&!c.reduce;SKIN.first=false;
+    var n=c.count();
+    return '<div class="c-hero"><div class="c-left">'+
+      '<p class="c-kick">Un curso para decirlo claro</p>'+
+      '<h1 class="c-word" aria-label="Dilo clarito"><span class="w1" aria-hidden="true">Dilo</span><span class="w2" aria-hidden="true">Clarito</span></h1>'+
+      '<p class="c-pitch">'+c.esc(c.cfg.pitch)+"</p>"+
+      '<p class="c-prog">'+(n===c.N?"<b>Terminaste el curso.</b> Tu mensaje ya suena a música.":"<b>"+n+" de "+c.N+"</b> clases. Cada una que terminas convierte una onda de ruido en una onda clara.")+"</p>"+
+      '<div class="c-cta"><button class="btn solid" type="button" id="cta">'+c.esc(c.ctaText())+"</button></div></div>"+
+      '<div class="c-right">'+SKIN.mega(c,anim)+'<p class="c-tag">Que tu clienta sea la protagonista y tú, su guía.</p></div></div>';
+  },
+  program:function(c){
+    var w=c.L(0),ids=c.ACTS[0].ids;
+    return '<div class="c-route"><div><h2 class="sec-h">Tu guion</h2><p class="sec-p">Diez clases cortas. Cada una llena una pieza de tu mensaje. La primera vez, ve en orden.</p></div>'+
+      '<button type="button" class="c-welcome" data-open="0"><span><b>'+c.esc(w.title)+"</b><small>"+c.esc(w.topic)+"</small></span><em>"+(c.seen.has(0)?"Leída":"Léela primero")+"</em></button>"+
+      '<div class="c-list">'+ids.map(function(i){var x=c.L(i),s=c.stateOf(i);return '<button type="button" class="c-row '+s+'" data-open="'+i+'"><span class="n">'+i+"</span><span><b>"+c.esc(c.ttl(x))+"</b><small>"+c.esc(x.topic)+'</small><span class="pc">'+c.esc(SKIN.pieces[i]||"")+"</span></span><i>"+(s==="seen"?"Lista ✓":(s==="next"?"Aquí vas":""))+"</i></button>";}).join("")+"</div>"+
+      '<h3 class="c-h">Herramientas</h3><div class="c-tools">'+c.TOOLS.map(function(i){var x=c.L(i);return '<button type="button" class="c-tool" data-open="'+i+'"><b>'+c.esc(x.title)+"</b><small>"+c.esc(x.topic)+"</small></button>";}).join("")+"</div>"+
+      '<p class="c-source">'+c.esc(c.cfg.source)+"</p></div>";
+  }
+};
+
+(function(){
+document.documentElement.classList.add("js");
+var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function inline(t){return t.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");}
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+var reduce=false;try{reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
+
+/* ---------- content ---------- */
+var LESSONS=LESSONS_MD.split(/^@@ /m).filter(function(x){return x.trim();}).map(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});
+  var body=lines.slice(1).join("\n").trim(),i=body.indexOf("\n");if(i<0)i=body.length;
+  return {id:+h[0],kicker:h[1],title:h[2],topic:h[3],intro:body.slice(0,i).trim(),body:body.slice(i+1).trim()};
+});
+var ICONS=["🪞","✍️","✅","💬","🎯","📝","🧠","📌","🔥","⭐","📱","🎬","💡","🗓️","✨"];
+function md(src){
+  var out="",list=null;
+  esc(src).split("\n").forEach(function(raw){
+    var l=raw.trim(),ul=l.match(/^[-*]\s+(.*)/),ol=l.match(/^\d+[.)]\s+(.*)/);
+    if(ul||ol){var tag=ul?"ul":"ol";if(list!==tag){if(list)out+="</"+list+">";out+="<"+tag+">";list=tag;}out+="<li>"+inline((ul||ol)[1])+"</li>";return;}
+    if(list){out+="</"+list+">";list=null;}
+    if(l.indexOf("### ")===0)out+="<h4>"+inline(l.slice(4))+"</h4>";
+    else if(l.indexOf("## ")===0)out+="<h3>"+inline(l.slice(3))+"</h3>";
+    else if(l.indexOf("&gt; ")===0)out+='<div class="callout"><p>'+inline(l.slice(5))+"</p></div>";
+    else if(l)out+="<p>"+inline(l)+"</p>";
+  });
+  if(list)out+="</"+list+">";
+  return out;
+}
+function startsIcon(h){for(var i=0;i<ICONS.length;i++)if(h.indexOf(ICONS[i])===0)return ICONS[i];var m=h.match(/^[☀-➿\uD83C-􏰀-\uDFFF️]+\s*/);return m?m[0]:null;}
+function lessonBody(src){
+  var parts=src.split(/^## /m),main=parts[0],tasks=[];
+  parts.slice(1).forEach(function(p){
+    var nl=p.indexOf("\n"),head=(nl<0?p:p.slice(0,nl)).trim(),rest=nl<0?"":p.slice(nl+1);
+    var icon=startsIcon(head);
+    if(icon)tasks.push({title:head.slice(icon.length).trim(),html:md(rest.trim())});else main+="\n## "+p;
+  });
+  return {html:md(main.trim()),tasks:tasks};
+}
+function L(id){for(var i=0;i<LESSONS.length;i++)if(LESSONS[i].id===id)return LESSONS[i];return null;}
+var N=CFG.n,STEPS=[];for(var i=1;i<=N;i++)STEPS.push(i);
+var ORDER=LESSONS.map(function(l){return l.id;});
+var GROUPS=CFG.groups.map(function(g){var p=g[0].split(" · ");return {name:p.length>1?p[1]:g[0],pre:p.length>1?p[0]:"",ids:g[1]};});
+var ACTS=GROUPS.filter(function(g){return g.ids.every(function(i){return i>=1&&i<=N;});});
+var TOOLS=ORDER.filter(function(i){return i>N;});
+var seen=new Set(store.get(CFG.key+"-seen",[])),notes=store.get(CFG.key+"-notes",{});
+function saveSeen(){store.set(CFG.key+"-seen",Array.from(seen));}
+function isStep(id){return id>=1&&id<=N;}
+function nextUp(){if(!seen.has(0)&&!STEPS.some(function(i){return seen.has(i);}))return 0;for(var i=0;i<STEPS.length;i++)if(!seen.has(STEPS[i]))return STEPS[i];return null;}
+function count(){return STEPS.filter(function(i){return seen.has(i);}).length;}
+function stateOf(id){return seen.has(id)?"seen":(id===nextUp()?"next":"");}
+function actOf(id){for(var i=0;i<ACTS.length;i++)if(ACTS[i].ids.indexOf(id)>=0)return ACTS[i];return null;}
+function label(id){var x=L(id);if(!x)return "";if(id===0)return CFG.welcomeLabel||"Bienvenida";var m=x.title.match(/^([^·]{1,14}) · /);if(isStep(id)&&m)return m[1];return x.kicker;}
+function ttl(x){return x.title.replace(/^[^·]{1,14} · /,"");}
+function ctaText(){var n=nextUp();if(n===0)return CFG.ctaStart||"Empezar con la bienvenida";if(n===null)return "Repasar "+(CFG.repaso||"el curso");var l=label(n);return "Seguir con "+(/^Clase/.test(l)?"la ":"el ")+l;}
+var CTX={ttl:ttl,L:L,LESSONS:LESSONS,N:N,STEPS:STEPS,ACTS:ACTS,TOOLS:TOOLS,GROUPS:GROUPS,seen:seen,stateOf:stateOf,nextUp:nextUp,count:count,esc:esc,label:label,ctaText:ctaText,cfg:CFG,reduce:reduce,actOf:actOf,open:function(id){openLesson(id);}};
+
+/* ---------- page shell ---------- */
+var mw=MENTOR.title.indexOf("mentor ")>=0||/mentor,/.test(MENTOR.title)?"mentor":"mentora";
+var SEARCH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>';
+var root=$("#root");
+root.innerHTML='<div class="wrap"><header class="hero" id="hero"></header>'+
+  '<div class="tabbar"><div class="tabs" role="tablist" aria-label="Secciones del curso">'+
+  '<button class="tab" role="tab" id="tabP" aria-selected="true" aria-controls="progView" type="button">'+esc(CFG.tabProgram||"Programa")+'</button>'+
+  '<button class="tab" role="tab" id="tabF" aria-selected="false" aria-controls="faqView" type="button">Preguntas</button>'+
+  '<button class="tab" role="tab" id="tabM" aria-selected="false" aria-controls="mentorView" type="button">Tu '+mw+'</button></div></div>'+
+  '<section id="progView" role="tabpanel" aria-labelledby="tabP"></section>'+
+  '<section id="faqView" role="tabpanel" aria-labelledby="tabF" hidden><div class="faqv"><div><h2 class="sec-h">Preguntas</h2><p class="sec-p">'+esc(CFG.faqLead||"Las dudas que más salen en el equipo, con la clase que las responde.")+'</p></div>'+
+  '<label class="sr" for="fq">Busca tu duda</label><div class="f-search">'+SEARCH+'<input id="fq" type="search" placeholder="'+esc(CFG.faqPh||"Busca tu duda")+'" autocomplete="off"></div><div class="f-chips" id="cats"></div><p class="f-count" id="fcount"></p><div id="faq"></div></div></section>'+
+  '<section id="mentorView" role="tabpanel" aria-labelledby="tabM" hidden></section>'+
+  (CFG.foot?'<footer class="foot">'+esc(CFG.foot)+"</footer>":"")+"</div>";
+
+function renderHero(){$("#hero").innerHTML=SKIN.hero(CTX);var c=$("#cta");if(c)c.onclick=function(){var g=nextUp();if(g===null){setTab("P");$("#progView").scrollIntoView({behavior:"smooth"});}else openLesson(g);};$$("#hero [data-open]").forEach(wireOpen);}
+function renderProgram(){$("#progView").innerHTML=SKIN.program(CTX);$$("#progView [data-open]").forEach(wireOpen);if(SKIN.mount)SKIN.mount(CTX,$("#progView"));}
+function wireOpen(b){b.onclick=function(){openLesson(+b.getAttribute("data-open"),b);};}
+function refresh(){renderHero();renderProgram();}
+
+/* tabs */
+var TABS={P:["#tabP","#progView"],F:["#tabF","#faqView"],M:["#tabM","#mentorView"]};
+function setTab(t){Object.keys(TABS).forEach(function(k){$(TABS[k][0]).setAttribute("aria-selected",String(k===t));$(TABS[k][1]).hidden=k!==t;});}
+Object.keys(TABS).forEach(function(k){$(TABS[k][0]).onclick=function(){setTab(k);};});
+
+/* ---------- faq ---------- */
+var norm=function(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");};
+var STOP=new Set("que como para por con los las del una uno unos mis tus sus mas pero porque cuando donde esta este eso hay tengo puedo debo".split(" "));
+function terms(s){return (norm(s).match(/[a-z0-9ñ]{3,}/g)||[]).filter(function(w){return !STOP.has(w);}).map(function(w){return w.length>5?w.slice(0,-1):w;});}
+var FAQ=[],CATS=[];
+FAQ_MD.split(/^## /m).filter(function(x){return x.trim();}).forEach(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});if(!h[0])return;CATS.push({cat:h[0],cls:+h[1]});
+  lines.slice(1).join("\n").split(/^### /m).filter(function(x){return x.trim();}).forEach(function(qb){var i=qb.indexOf("\n");if(i<0)return;FAQ.push({cat:h[0],cls:+h[1],q:qb.slice(0,i).trim(),a:qb.slice(i+1).trim()});});
+});
+FAQ.forEach(function(f){f.n=norm(f.q+" "+f.a);});
+function hl(html,ts){if(!ts.length)return html;return html.replace(/(>[^<]+<)/g,function(seg){var out=seg;ts.forEach(function(w){var re=new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").split("").map(function(ch){return ({a:"[aá]",e:"[eé]",i:"[ií]",o:"[oó]",u:"[uúü]",n:"[nñ]"})[ch]||ch;}).join("")+"[a-záéíóúñü]*)","gi");out=out.replace(re,"<mark>$1</mark>");});return out;});}
+var fq=$("#fq"),faqEl=$("#faq"),fcount=$("#fcount"),curCat=null;
+function isMentorCat(c){return /mentor/i.test(c);}
+function renderCats(){var c=$("#cats");c.innerHTML="";[{cat:"Todas"}].concat(CATS).forEach(function(x){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=x.cat;b.setAttribute("aria-pressed",String((x.cat==="Todas"&&!curCat)||x.cat===curCat));b.onclick=function(){curCat=x.cat==="Todas"?null:x.cat;renderCats();renderFaq();};c.appendChild(b);});}
+function renderFaq(){
+  var qtxt=fq.value.trim(),ts=Array.from(new Set(terms(qtxt))),items=FAQ.filter(function(f){return !curCat||f.cat===curCat;});
+  if(ts.length){items=items.map(function(f){return {f:f,s:ts.reduce(function(a,w){return a+(f.n.indexOf(w)>=0?(norm(f.q).indexOf(w)>=0?3:1):0);},0)};}).filter(function(x){return x.s>0;}).sort(function(a,b){return b.s-a.s;}).map(function(x){return x.f;});}
+  faqEl.innerHTML="";
+  var gs=ts.length?[[null,items]]:CATS.map(function(c){return [c.cat,items.filter(function(f){return f.cat===c.cat;})];}).filter(function(g){return g[1].length;});
+  gs.forEach(function(g){var d=document.createElement("div");d.className="fgroup";if(g[0]){var h=document.createElement("h3");h.textContent=g[0];d.appendChild(h);}
+    g[1].forEach(function(f,idx){var det=document.createElement("details");det.className="qa";var x=isMentorCat(f.cat)?null:L(f.cls);
+      det.innerHTML="<summary><span>"+hl(">"+esc(f.q)+"<",ts).slice(1,-1)+'</span><i aria-hidden="true">+</i></summary><div class="ans">'+hl(md(f.a),ts)+(x?'<button class="btn go" type="button">Ver: '+esc(x.title)+"</button>":(isMentorCat(f.cat)?'<button class="btn go" type="button">Ir a Tu '+mw+"</button>":""))+"</div>";
+      var go=det.querySelector(".go");if(go)go.onclick=function(){if(x)openLesson(f.cls);else setTab("M");};
+      if(ts.length&&idx===0)det.open=true;d.appendChild(det);});faqEl.appendChild(d);});
+  fcount.textContent=ts.length?(items.length?items.length+(items.length===1?" respuesta":" respuestas")+' para "'+qtxt+'"':'No hay una pregunta frecuente sobre "'+qtxt+'". Pregúntale a tu '+mw+"."):"";
+}
+var ft;fq.addEventListener("input",function(){clearTimeout(ft);ft=setTimeout(renderFaq,150);});
+
+/* ---------- mentor ---------- */
+(function(){
+  var M=MENTOR,h='<div class="m-col"><div><h2 class="sec-h">'+esc(M.title)+'</h2><p class="sec-p">'+esc(M.intro)+"</p></div>"+
+    '<ul class="m-can">'+M.can.map(function(c){return "<li><b>"+esc(c[0])+"</b><span>"+esc(c[1])+"</span></li>";}).join("")+"</ul>"+
+    '<div class="m-dl"><button type="button" class="btn solid" id="dlZip" hidden>Descargar '+(mw==="mentor"?"el mentor":"la mentora")+' (.zip)</button>'+(CFG.mdVar?'<button type="button" class="btn" id="dlMd" hidden>Descargar las instrucciones (.md)</button>':"")+'</div><p class="m-note" id="dlMsg">'+esc(M.notes[0]||"")+"</p></div>"+
+    '<div class="m-col"><h3 class="m-h">Cómo '+(mw==="mentor"?"instalarlo":"instalarla")+'</h3><ol class="m-steps">'+M.steps.map(function(s){return "<li><span>"+esc(s)+"</span></li>";}).join("")+"</ol>"+
+    '<div class="m-prompts">'+M.prompts.map(function(p,i){return '<div class="m-prompt"><q id="mp'+i+'">'+esc(p)+'</q><button type="button" class="btn" data-copy="mp'+i+'">Copiar</button></div>';}).join("")+"</div>"+
+    (M.notes[1]?'<p class="m-note">'+esc(M.notes[1])+"</p>":"")+(M.limits.length?'<div class="m-limits" aria-label="Límites">'+M.limits.map(function(s){return "<span>"+esc(s)+"</span>";}).join("")+"</div>":"")+"</div>";
+  $("#mentorView").innerHTML='<div class="mentorv">'+h+"</div>";
+  $$("[data-copy]").forEach(function(btn){btn.addEventListener("click",function(){var el=document.getElementById(btn.getAttribute("data-copy"));function selt(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="Seleccionado";}
+    try{navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent="Copiado";setTimeout(function(){btn.textContent="Copiar";},1600);},selt);}catch(e){selt();}});});
+  if(window.claude&&window.claude.use){window.claude.use("downloads").then(function(dl){
+    var msg=$("#dlMsg"),bz=$("#dlZip"),bm=$("#dlMd");if(!dl)return;
+    bz.hidden=false;if(bm)bm.hidden=false;msg.textContent=CFG.mdVar?"El .zip es el que se sube a Claude. El .md es el texto de las instrucciones, por si quieres leerlo.":"El .zip es el que se sube a Claude.";
+    function bytes(b64){var s=atob(b64),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u;}
+    function save(name,data){dl.save({filename:name,data:data}).then(function(){msg.textContent="Listo: "+name+" descargado.";},function(e){var c=e&&e.code;
+      if(c==="declined")msg.textContent="Descarga cancelada.";else if(c==="rate_limited")msg.textContent="Ya hay una descarga abierta. Termínala e intenta de nuevo.";else{msg.textContent=M.notes[0]||"Aquí no se puede descargar.";bz.hidden=true;if(bm)bm.hidden=true;}});}
+    bz.onclick=function(){save(CFG.zipName,bytes(window[CFG.zipVar]));};if(bm)bm.onclick=function(){save(CFG.mdName,bytes(window[CFG.mdVar]));};
+  });}
+})();
+
+if(!(window.claude&&window.claude.use)&&/^https?:/.test(location.protocol)){var a=$("#dlZip"),b=$("#dlMd");a.hidden=false;a.onclick=function(){location.href=CFG.zipName;};if(b){b.hidden=false;b.onclick=function(){location.href=CFG.mdName;};}$("#dlMsg").textContent="El .zip es el que se sube a Claude. El .md es el texto de las instrucciones, por si quieres leerlo.";}
+
+/* ---------- reader sheet ---------- */
+var cur=null;
+function neighbours(id){var k=ORDER.indexOf(id);return {prev:ORDER[k-1],next:ORDER[k+1]};}
+function where(x){if(x.id===0)return CFG.welcomeLabel||"Bienvenida";if(isStep(x.id)){var a=actOf(x.id);return label(x.id)+" de "+N+(a&&a.name!=="Clases"?", "+a.name:"");}return x.kicker;}
+function sheetHTML(x){
+  var b=lessonBody(x.body),nb=neighbours(x.id),s=seen.has(x.id),nx=nb.next!==undefined?L(nb.next):null;
+  var num=isStep(x.id)?(SKIN.readerNum?SKIN.readerNum(x,CTX):String(x.id)):null;
+  var turn=b.tasks.length?'<section class="turn"><h3>Tu turno</h3>'+b.tasks.map(function(t){return '<div class="task"><h4>'+esc(t.title)+"</h4>"+t.html+"</div>";}).join("")+
+    '<label class="nb-l" for="nb">Tu cuaderno</label><textarea id="nb" placeholder="Escribe aquí tu ejercicio. Se guarda en este dispositivo."></textarea><span class="saved" id="nbs"></span></section>':"";
+  return '<div class="grab" id="grab"><span class="where">'+esc(where(x))+'</span><button type="button" class="x" id="closeB">Cerrar</button></div><div class="scroll" id="scroll">'+
+    '<div class="r-head'+(num?"":" nonum")+'">'+(num?'<span class="r-num" aria-hidden="true">'+esc(num)+"</span>":"")+'<p class="r-k">'+esc(isStep(x.id)?label(x.id):(x.id===0?(CFG.welcomeLabel||"Bienvenida"):x.kicker))+'</p><h1 class="r-title" id="rTitle">'+esc(ttl(x))+'</h1></div><p class="r-topic">'+esc(x.topic)+'</p><p class="r-intro">'+inline(esc(x.intro))+'</p><div class="lesson-body">'+b.html+"</div>"+turn+
+    '<div class="r-foot"><div class="nav"><button class="btn" type="button" id="prevB" '+(nb.prev===undefined?"disabled":"")+'>Anterior</button><button class="btn solid" type="button" id="nextB" '+(nb.next===undefined?"disabled":"")+">Siguiente</button></div>"+
+    (isStep(x.id)?'<button class="btn'+(s?" done":"")+'" type="button" id="seenB" aria-pressed="'+s+'">'+(s?"Completada ✓":"Marcar como completada")+"</button>":"")+
+    (nx?'<p class="r-next">Sigue: '+esc(ttl(nx))+"</p>":"")+"</div></div>";
+}
+function openLesson(id,trigger){
+  var x=L(id);if(!x)return;
+  var fresh=!cur;
+  if(fresh){
+    var scrim=document.createElement("div");scrim.className="scrim";var sh=document.createElement("div");sh.className="sheet";sh.setAttribute("role","dialog");sh.setAttribute("aria-modal","true");sh.setAttribute("aria-labelledby","rTitle");
+    document.body.appendChild(scrim);document.body.appendChild(sh);document.body.classList.add("sheet-open");
+    cur={scrim:scrim,sh:sh,trigger:trigger||document.activeElement};
+    scrim.onclick=closeLesson;
+  }
+  cur.id=id;cur.sh.innerHTML=sheetHTML(x);
+  var sh=cur.sh;
+  if(fresh)requestAnimationFrame(function(){requestAnimationFrame(function(){sh.classList.add("on");cur&&cur.scrim.classList.add("on");});});
+  $("#closeB",sh).onclick=closeLesson;$("#closeB",sh).focus({preventScroll:true});
+  var nb=neighbours(id);
+  $("#prevB",sh).onclick=function(){openLesson(nb.prev);};
+  $("#nextB",sh).onclick=function(){if((isStep(id)||id===0)&&!seen.has(id)){seen.add(id);saveSeen();refresh();}openLesson(nb.next);};
+  var sb=$("#seenB",sh);if(sb)sb.onclick=function(){seen.has(id)?seen.delete(id):seen.add(id);saveSeen();var on=seen.has(id);sb.textContent=on?"Completada ✓":"Marcar como completada";sb.classList.toggle("done",on);sb.setAttribute("aria-pressed",String(on));refresh();};
+  var ta=$("#nb",sh);if(ta){ta.value=notes[id]||"";var t;ta.oninput=function(){clearTimeout(t);t=setTimeout(function(){notes[id]=ta.value;store.set(CFG.key+"-notes",notes);$("#nbs",sh).textContent="Guardado en este dispositivo";},400);};}
+  $("#scroll",sh).scrollTop=0;
+  try{history.replaceState(null,"","#clase-"+id);}catch(e){}
+  var g=$("#grab",sh),y0=null,dy=0,t0=0;
+  g.addEventListener("pointerdown",function(e){if(e.target.closest("button"))return;y0=e.clientY;dy=0;t0=performance.now();sh.classList.add("drag");try{g.setPointerCapture(e.pointerId);}catch(_){}});
+  g.addEventListener("pointermove",function(e){if(y0==null)return;dy=e.clientY-y0;sh.style.transform="translateY("+(dy<0?dy*.15:dy)+"px)";});
+  function end(){if(y0==null)return;var v=dy/Math.max(1,performance.now()-t0);sh.classList.remove("drag");sh.style.transform="";y0=null;if(dy>140||v>.5)closeLesson();}
+  g.addEventListener("pointerup",end);g.addEventListener("pointercancel",end);
+}
+function closeLesson(){
+  if(!cur)return;var c=cur;cur=null;document.body.classList.remove("sheet-open");
+  c.sh.classList.remove("on");c.scrim.classList.remove("on");setTimeout(function(){c.sh.remove();c.scrim.remove();},reduce?0:500);
+  try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}
+  var t=document.querySelector('#progView [data-open="'+c.id+'"]')||c.trigger;if(t&&t.focus)t.focus({preventScroll:false});
+}
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&cur)closeLesson();});
+
+/* ---------- boot ---------- */
+renderCats();renderFaq();refresh();
+var hm=(location.hash||"").replace("#",""),hh=hm.match(/clase-(\d+)/);
+if(hh&&L(+hh[1]))openLesson(+hh[1]);else if(hm==="mentor"||hm==="mentora")setTab("M");else if(hm==="preguntas")setTab("F");
+})();
+</script>
+</body></html>
