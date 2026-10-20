@@ -7,7 +7,7 @@
 <meta name="description" content="Cursos hechos a partir de libros, en el orden sugerido para tomarlos.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Schibsted+Grotesk:wght@800&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Karla:wght@700&family=Jost:wght@700&family=Cinzel:wght@600&family=Cormorant+Garamond:wght@500&family=Bodoni+Moda:opsz,wght@6..96,900&family=Libre+Baskerville&family=Londrina+Solid:wght@900&family=Montserrat:wght@900&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..900&family=Figtree:wght@400;500;600;700&family=Anton&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,500&family=Schibsted+Grotesk:wght@800&family=Bricolage+Grotesque:opsz,wght@12..96,800&family=Karla:wght@700&family=Jost:wght@700&family=Cinzel:wght@600&family=Cormorant+Garamond:wght@500&family=Bodoni+Moda:opsz,wght@6..96,900&family=Libre+Baskerville&family=Londrina+Solid:wght@900&family=Montserrat:wght@900&family=Crimson+Pro:wght@500&display=swap">
 <style>
 /* The shelf is the hero: each course is a book spine built in its own course's colours and type, numbered in the suggested reading order. Same quiet concrete grey as the Escalera so the spines carry the colour. */
 :root{
@@ -205,7 +205,13 @@ var BOOKS=[
    out:"Dejar de preguntarte si eres buena para algo y empezar a preguntarte cómo aprenderlo: ver el error como información, cachar a tu voz de «no puedes» y armar planes con día, hora y lugar.",
    when:"Te dices «no soy buena para vender», «no sé hablar a cámara» o «no soy de números», y por eso ni lo intentas.",
    next:"Regresa a Otra tú cuando sientas que volviste a lo de siempre.",
-   bg:"#F3F0EA",ink:"#18171A",accent:"#E2378E",font:"900 1em 'Montserrat',system-ui,sans-serif",track:"-.02em",h:94}
+   bg:"#F3F0EA",ink:"#18171A",accent:"#E2378E",font:"900 1em 'Montserrat',system-ui,sans-serif",track:"-.02em",h:94},
+  {id:"despacio",name:"Despacio",url:"/programas/despacio/",book:"Pensar rápido, pensar despacio, de Daniel Kahneman",
+   len:"12 clases y 4 herramientas",
+   out:"Entender cómo decide tu cabeza y la de tu clienta: equivocarte menos con tu dinero y tus planes, y vender claro, sin trucos.",
+   when:"Decides con prisa y luego te arrepientes, o quieres vender mejor sin sentir que manipulas.",
+   next:"Regresa a cualquier libro del librero y usa La Pausa antes de tu próxima decisión grande.",
+   bg:"#F6F3EA",ink:"#151412",accent:"#F2C12E",font:"500 1em 'Crimson Pro',Georgia,serif",track:"-.01em",h:94}
 ];
 var NEEDS=[
   ["Siento que vivo el mismo día una y otra vez","otra-tu"],
@@ -221,6 +227,7 @@ var NEEDS=[
   ["Quiero que mi negocio crezca en serio","ponte-pro"],
   ["Quiero que la gente hable de lo que vendo","pasalo"],
   ["Me digo que no soy buena para algo","todavia"],
+  ["Decido con prisa y luego me arrepiento","despacio"],
   ["Quiero hacerlos todos","otra-tu"]
 ];
 var K="biblioteca-hechos";
