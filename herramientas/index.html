@@ -35,12 +35,14 @@
   .ag small{display:block;color:var(--muted)}
   .empty{color:var(--muted);font-size:14px;margin-top:10px}
   [hidden]{display:none!important}
+  a.rp{display:block;text-decoration:none;color:inherit;border-color:var(--accent)}a.rp h2::after{content:" →";color:var(--accent)}
   a.back{display:block;margin-top:22px;font-size:14px;color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="wrap">
   <header><div class="eb">Para el equipo</div><h1>Herramientas</h1><p class="lead">Lo que te ayuda a atender más rápido a tus clientas.</p></header>
+  <a class="card rp" href="ritmo-de-puntos/"><h2>Ritmo de Puntos</h2><p>Tu meta del mes, día a día: cuántos puntos te tocan hoy y si vas al ritmo.</p></a>
   <div class="tabs" role="tablist"><button role="tab" aria-selected="true" data-t="seg">Seguimiento</button><button role="tab" aria-selected="false" data-t="ago">Agotados</button><button role="tab" aria-selected="false" data-t="mia">Mis links</button></div>
 
   <section id="t-seg">
