@@ -1,0 +1,506 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Pásalo</title><meta name="description" content="Diez clases cortas para que la gente hable de lo que vendes: las seis razones por las que algo se comparte."><meta property="og:title" content="Pásalo"><meta property="og:description" content="Lo que hace que la gente hable. Un curso con mentora para Claude."><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@100..125,400..700&family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&display=swap">
+<style>
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body)}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.wrap{max-width:var(--maxw,1040px);margin:0 auto;padding-inline:16px;padding-block:0 64px;display:flex;flex-direction:column;gap:var(--gap,28px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.press{transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.press:active{transform:scale(.97)}
+
+/* tabs */
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;justify-content:center;margin-inline:-16px;padding:10px 16px}
+.tabbar::before{content:"";position:absolute;inset:0;background:var(--bg);opacity:.94;z-index:-1}
+.tabs{display:flex;gap:4px;max-width:100%;overflow-x:auto;padding:4px;border-radius:var(--tabs-r,999px);background:var(--surface);border:1px solid var(--line)}
+.tab{white-space:nowrap;border:0;background:transparent;color:var(--muted);font-weight:600;font-size:15px;padding:10px 18px;border-radius:var(--tabs-r,999px);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+
+/* shared buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font-weight:600;font-size:15px;padding:12px 18px;border-radius:var(--btn-r,999px);cursor:pointer;text-decoration:none;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.35;cursor:default}
+
+/* section heads (faq + mentor) */
+.sec-h{margin:0;font:var(--h2-font);letter-spacing:var(--h2-track,-.01em);text-wrap:balance}
+.sec-p{margin:8px 0 0;color:var(--muted);max-width:56ch}
+
+/* faq */
+.faqv{display:flex;flex-direction:column;gap:16px;max-width:780px}
+.f-search{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--field-r,999px);padding:0 18px}
+.f-search svg{width:20px;height:20px;flex:none;color:var(--muted)}
+.f-search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:17px/1.3 var(--body);padding:14px 0}
+.f-search input:focus{outline:none}
+.f-search:focus-within{border-color:var(--accent)}
+.f-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.f-count{margin:0;color:var(--muted);font-size:14px}
+.fgroup h3{margin:18px 0 8px;font:var(--h3-font)}
+details.qa{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);margin-bottom:8px}
+details.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 18px;font-weight:600;font-size:16.5px;line-height:1.35}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa summary i{flex:none;font-style:normal;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--ink);transition:transform .2s cubic-bezier(.23,1,.32,1)}
+details.qa[open] summary i{transform:rotate(45deg);background:var(--accent);color:var(--accent-ink)}
+.ans{padding:0 18px 18px}
+.ans p{margin:0 0 .7em;max-width:64ch}.ans p:last-child{margin:0}
+.ans ul,.ans ol{margin:0 0 .8em;padding-left:1.3em}
+.ans .go{margin-top:10px}
+mark{background:var(--mark,rgba(255,200,0,.35));color:inherit;border-radius:3px;padding:0 2px}
+
+/* mentor */
+.mentorv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 40px;align-items:start}
+@media (max-width:780px){.mentorv{grid-template-columns:minmax(0,1fr)}}
+.m-col{display:flex;flex-direction:column;gap:18px;min-width:0}
+.m-can{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.m-can li{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);padding:14px 16px}
+.m-can b{display:block;font-weight:700}
+.m-can span{color:var(--muted);font-size:15px}
+.m-dl{display:flex;flex-wrap:wrap;gap:10px}
+.m-note{margin:0;color:var(--muted);font-size:14px}
+.m-h{margin:0;font:var(--h3-font)}
+.m-steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.m-steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:baseline}
+.m-steps li::before{counter-increment:s;content:counter(s);font:var(--num-font,700 22px/1 var(--display));color:var(--accent-text,var(--accent))}
+.m-prompts{display:grid;gap:8px}
+.m-prompt{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,14px);padding:10px 12px 10px 16px}
+.m-prompt q{quotes:none;min-width:0;font-size:15.5px}
+.m-prompt .btn{padding:8px 14px;font-size:13.5px;flex:none}
+.m-limits{display:flex;flex-wrap:wrap;gap:8px}
+.m-limits span{font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted)}
+footer.foot{text-align:center;font-size:14px;color:var(--muted);padding-top:20px}
+
+/* ---------- reader sheet (the lights come on) ---------- */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);opacity:0;transition:opacity .45s cubic-bezier(.32,.72,0,1)}
+.scrim.on{opacity:1}
+.sheet{position:fixed;z-index:41;left:0;right:0;bottom:0;top:calc(12px + env(safe-area-inset-top,0px));margin:0 auto;max-width:800px;background:var(--r-bg);color:var(--r-ink);border-radius:22px 22px 0 0;transform:translateY(100%);transition:transform .5s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,.35);font-family:var(--r-body,var(--body))}
+.sheet.on{transform:translateY(0)}
+.sheet.drag{transition:none}
+.grab{flex:none;touch-action:none;cursor:grab;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:10px 14px 10px 20px;border-bottom:1px solid var(--r-line);position:relative}
+.grab::before{content:"";position:absolute;top:6px;left:50%;width:40px;height:5px;margin-left:-20px;border-radius:3px;background:var(--r-line)}
+.grab .where{font-size:14px;font-weight:600;color:var(--r-muted);padding-top:8px}
+.grab .x{border:1px solid var(--r-line);background:transparent;color:var(--r-ink);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer;margin-top:6px}
+.sheet :focus-visible{outline:2px solid var(--r-accent);outline-offset:3px}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:clamp(22px,5vw,48px) clamp(18px,5vw,56px) calc(56px + env(safe-area-inset-bottom,0px))}
+.r-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;align-items:end;margin-bottom:18px}
+.r-head.nonum{grid-template-columns:minmax(0,1fr)}
+.r-num{grid-row:span 2;font:var(--r-num-font,800 96px/.8 var(--display));color:var(--r-accent);font-variant-numeric:tabular-nums}
+.r-k{margin:0;font-size:14.5px;font-weight:600;color:var(--r-accent)}
+.r-title{margin:0;font:var(--r-title-font,700 clamp(32px,6.5vw,48px)/1 var(--display));letter-spacing:var(--r-title-track,-.01em);text-wrap:balance}
+.r-topic{margin:0 0 18px;font-size:20px;line-height:1.35;color:var(--r-muted)}
+.r-intro{font-size:20px;line-height:1.5;margin:0 0 26px;padding-bottom:24px;border-bottom:1px solid var(--r-line)}
+.lesson-body p,.lesson-body li{max-width:66ch}
+.lesson-body p{margin:0 0 .9em}
+.lesson-body ul,.lesson-body ol{margin:0 0 1em;padding-left:1.3em}
+.lesson-body li{margin:.4em 0}
+.lesson-body li::marker{color:var(--r-accent);font-weight:700}
+.lesson-body strong{font-weight:700}
+.lesson-body h3{font:var(--r-h3-font,700 26px/1.15 var(--display));margin:36px 0 10px;text-wrap:balance}
+.callout{margin:28px 0;padding:22px 24px;border-radius:var(--card-r,18px);background:var(--r-callout-bg);color:var(--r-callout-ink)}
+.callout p{margin:0;font:var(--r-callout-font,700 clamp(22px,4.6vw,28px)/1.2 var(--display));max-width:34ch;text-wrap:balance}
+.turn{margin-top:40px;padding-top:26px;border-top:2px solid var(--r-ink);display:grid;gap:12px}
+.turn h3{margin:0;font:var(--r-h3-font,700 26px/1.15 var(--display))}
+.task{background:var(--r-surface);border:1px solid var(--r-line);border-radius:var(--card-r,16px);padding:16px 18px}
+.task h4{margin:0 0 6px;font-size:17px}
+.task p:last-child,.task ul:last-child,.task ol:last-child{margin-bottom:0}
+.nb-l{font-weight:600;font-size:14px;color:var(--r-muted);margin-top:6px}
+.sheet textarea{width:100%;min-height:150px;resize:vertical;font:16px/1.55 var(--r-body,var(--body));color:var(--r-ink);background:var(--r-surface);border:1px solid var(--r-line);border-radius:12px;padding:14px 16px}
+.saved{font-size:13px;color:var(--r-muted);min-height:1.2em}
+.r-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:34px;padding-top:22px;border-top:1px solid var(--r-line)}
+.r-foot .nav{display:flex;gap:8px;flex-wrap:wrap}
+.sheet .btn{border-color:var(--r-line);color:var(--r-ink)}
+.sheet .btn.solid{background:var(--r-ink);border-color:var(--r-ink);color:var(--r-bg)}
+.sheet .btn.done{background:var(--r-accent);border-color:var(--r-accent);color:var(--r-accent-ink,var(--r-bg))}
+.r-next{width:100%;margin:0;font-size:14px;color:var(--r-muted)}
+body.sheet-open{overflow:hidden}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.mentorv .sec-h{font-size:clamp(28px,6.4vw,46px)}
+/* Pásalo: the book cover. Hot orange page, black serif wordmark, wide-tracked caps, a dandelion growing out of a bulb socket. The one moment: every class you finish lets more seeds go with the wind. */
+:root{
+  color-scheme:light;
+  --bg:#F26B1D; --surface:#F7843F; --ink:#17110C; --muted:#45200A; --line:rgba(23,17,12,.24); --accent:#17110C; --accent-ink:#FFF4E6; --seed:#FFF6EA; --focus:#17110C; --mark:rgba(255,246,234,.75);
+  --display:"Cormorant Garamond","Cormorant",Garamond,Georgia,serif; --body:"Archivo",system-ui,-apple-system,sans-serif;
+  --h2-font:500 clamp(40px,8vw,64px)/1 var(--display); --h2-track:-.01em; --h3-font:600 26px/1.15 var(--display); --num-font:italic 500 28px/1 var(--display);
+  --r-bg:#FFF7EE; --r-surface:#FFFFFF; --r-ink:#1C140E; --r-muted:#62503F; --r-line:#EBDDCB; --r-accent:#B83E0A; --r-accent-ink:#FFF7EE; --r-callout-bg:#F26B1D; --r-callout-ink:#17110C;
+  --r-num-font:italic 500 clamp(92px,20vw,140px)/.8 var(--display); --r-title-font:500 clamp(36px,7vw,54px)/1.02 var(--display); --r-h3-font:600 28px/1.12 var(--display); --r-callout-font:italic 500 clamp(25px,5vw,33px)/1.2 var(--display);
+  --card-r:14px; --btn-r:999px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#16100B; --surface:#22180F; --ink:#F7EDE2; --muted:#C2AC97; --line:#3D2D1F; --accent:#F47A2C; --accent-ink:#16100B; --seed:#FFF1DE; --focus:#F47A2C; --mark:rgba(244,122,44,.4);
+  --r-bg:#1D1610; --r-surface:#271D14; --r-ink:#F3E9DD; --r-muted:#BCA690; --r-line:#3A2C1F; --r-accent:#FF8A3D; --r-accent-ink:#16100B; --r-callout-bg:#F26B1D; --r-callout-ink:#16100B;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#16100B; --surface:#22180F; --ink:#F7EDE2; --muted:#C2AC97; --line:#3D2D1F; --accent:#F47A2C; --accent-ink:#16100B; --seed:#FFF1DE; --focus:#F47A2C; --mark:rgba(244,122,44,.4);
+  --r-bg:#1D1610; --r-surface:#271D14; --r-ink:#F3E9DD; --r-muted:#BCA690; --r-line:#3A2C1F; --r-accent:#FF8A3D; --r-accent-ink:#16100B; --r-callout-bg:#F26B1D; --r-callout-ink:#16100B;
+}
+.caps{font-family:var(--body);font-stretch:125%;font-weight:600;text-transform:uppercase;letter-spacing:.24em}
+.tabs{background:transparent;border:1.5px solid var(--ink);gap:2px}
+.tab{color:var(--ink);font-stretch:112%;font-weight:600;letter-spacing:.06em;text-transform:uppercase;font-size:13px;padding:11px 16px}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.chip{background:transparent;border-color:var(--line)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+details.qa{background:var(--surface);border-color:var(--line)}
+details.qa summary{font-size:17px}
+details.qa summary i{background:var(--bg)}
+.f-search{background:var(--surface);border-color:var(--line)}
+.f-search input::placeholder{color:var(--muted)}
+.m-can li,.m-prompt{background:var(--surface);border-color:var(--line)}
+.m-can b{font:600 22px/1.15 var(--display)}
+.m-steps li::before{color:var(--ink)}
+.m-limits span{color:var(--ink);border-color:var(--line)}
+.btn{border-color:var(--ink);font-weight:600}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.r-k{text-transform:uppercase;font-stretch:125%;letter-spacing:.18em;font-size:12.5px}
+.grab .where{font-stretch:112%}
+.task h4{font:600 21px/1.2 var(--display)}
+.lesson-body h4{font:600 20px/1.2 var(--display);margin:22px 0 6px}
+.callout{border-radius:6px}
+.turn{border-top-color:var(--r-accent)}
+
+/* hero: the cover */
+.p-hero{display:grid;justify-items:center;text-align:center;padding-block:40px 4px;gap:0}
+.p-pre{margin:0 0 10px;font-size:12.5px;color:var(--muted)}
+.p-mark{margin:0;font:500 clamp(88px,25vw,176px)/.86 var(--display);letter-spacing:-.025em}
+.p-sub{margin:16px 0 0;font-size:clamp(11.5px,2.9vw,15px);letter-spacing:.26em;max-width:100%}
+.p-flower{margin:8px 0 0;width:min(400px,100%)}
+.p-tip{fill:#1C1408}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]) .p-tip{fill:#6B5A2E}}
+:root[data-theme="dark"] .p-tip{fill:#6B5A2E}
+.p-flower svg{display:block;width:100%;height:auto;overflow:visible}
+.p-seed{transition:transform 1.5s cubic-bezier(.22,.8,.3,1),opacity 1.5s ease}
+.p-seed line,.p-seed path{stroke:var(--seed);stroke-linecap:round;fill:none}
+.p-seed .st{stroke-width:1.1;opacity:.92}
+.p-seed .pp{stroke-width:.7;opacity:.95}
+.p-seed circle{fill:#5B4A2A}
+.p-seed.flown .sway{animation:psway 5s ease-in-out infinite alternate;animation-delay:var(--d,0s)}
+@keyframes psway{from{transform:translate(0,0) rotate(0)}to{transform:translate(4px,-6px) rotate(6deg)}}
+.p-pitch{margin:6px 0 0;max-width:40ch;font-size:17.5px;line-height:1.55}
+.p-status{margin:10px 0 0;font-size:13px;color:var(--muted)}
+.p-cta{margin-top:18px;display:flex;flex-direction:column;align-items:center;gap:8px}
+.p-cta .btn{padding:15px 28px;font-size:16px}
+
+/* route */
+.p-route{display:grid;gap:22px;max-width:780px;margin:0 auto;width:100%}
+.p-route .sec-p{color:var(--muted)}
+.p-welcome{display:flex;justify-content:space-between;gap:16px;align-items:center;width:100%;text-align:left;background:var(--ink);color:var(--bg);border:0;border-radius:var(--card-r);padding:18px 22px;cursor:pointer;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.p-welcome:active{transform:scale(.98)}
+.p-welcome small{display:block;font-size:12px;opacity:.75}
+.p-welcome b{display:block;font:500 30px/1.05 var(--display);margin:4px 0 2px}
+.p-welcome span span{display:block;font-size:15px;opacity:.85}
+.p-welcome em{font:italic 500 34px/1 var(--display);flex:none}
+.p-list{list-style:none;margin:0;padding:0;border-top:1.5px solid var(--ink)}
+.p-row{display:grid;grid-template-columns:52px minmax(0,1fr) auto;gap:4px 12px;align-items:center;width:100%;text-align:left;background:transparent;border:0;border-bottom:1px solid var(--line);padding:15px 4px;cursor:pointer;color:var(--ink);transition:transform .16s cubic-bezier(.23,1,.32,1),background-color .2s}
+.p-row:active{transform:scale(.985)}
+@media (hover:hover){.p-row:hover{background:rgba(255,255,255,.08)}}
+.p-row .n{font:italic 500 38px/1 var(--display);text-align:center;opacity:.55}
+.p-row .k{display:block;font-size:11px;color:var(--muted);margin-bottom:3px}
+.p-row b{display:block;font:600 21px/1.15 var(--display)}
+.p-row small{display:block;color:var(--muted);font-size:14.5px;line-height:1.35;margin-top:3px}
+.p-row .st{font-size:12px;font-weight:600;border-radius:999px;padding:5px 11px;white-space:nowrap}
+.p-row.seen .n{opacity:1}
+.p-row.seen .st{padding-inline:0}
+.p-row.next{background:var(--surface);border-radius:var(--card-r);border-bottom-color:transparent;margin-block:4px;box-shadow:inset 0 0 0 1.5px var(--ink);padding-inline:6px 14px}
+.p-row.next .n{opacity:1}
+.p-row.next .st{background:var(--ink);color:var(--bg)}
+.p-h{margin:14px 0 0;font:var(--h3-font)}
+.p-tools{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,230px),1fr));gap:10px}
+.p-tool{display:flex;flex-direction:column;gap:4px;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r);padding:16px 18px;cursor:pointer;color:var(--ink);transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.p-tool:active{transform:scale(.98)}
+.p-tool b{font:600 21px/1.15 var(--display)}
+.p-tool small{color:var(--muted);font-size:14px}
+.p-source{margin:8px 0 0;font-size:14px;color:var(--muted);border-top:1px solid var(--line);padding-top:16px}
+.r-title:focus{outline:none}
+footer.foot{max-width:62ch;margin:0 auto;font-size:13px;line-height:1.5;color:var(--muted)}
+
+</style>
+<div id="root"></div>
+<script>
+var LESSONS_MD="@@ 0 | Empieza aquí | Bienvenida a Pásalo | El curso en 5 minutos\nEste curso es para que la gente hable de lo que haces sin que tengas que rogarle a nadie. Ni a tu tía, ni a tus amigas de la prepa, ni al grupo de WhatsApp de la escuela.\n\n## De qué se trata\nTodas conocemos a alguien que publica y publica y nadie comenta. Y todas conocemos el caso contrario: un video sencillo, una frase, un producto que de pronto todo mundo trae en la boca. Parece suerte. No lo es.\n\nLo que hace que algo se comparta se puede aprender. Hay razones muy concretas por las que la gente le pasa una idea a otra persona, y casi ninguna tiene que ver con tener muchos seguidores o mucho presupuesto. Tiene que ver con **cómo está hecha la idea**.\n\nEn este curso vas a conocer **las seis semillas**: seis razones por las que la gente comparte. No necesitas las seis en cada publicación. Con dos o tres bien puestas, tu mensaje ya vuela solo.\n\n> No se trata de gritar más fuerte. Se trata de darle a la gente algo que quiera pasar.\n\n## Las seis semillas\n- **Brillo.** Compartimos lo que nos hace ver bien.\n- **Ancla.** Hablamos de lo que algo de todos los días nos recuerda.\n- **Chispa.** Cuando algo nos mueve, lo pasamos.\n- **Vitrina.** Lo que se ve, se copia.\n- **Regalo.** Pasamos lo que le sirve a alguien que queremos.\n- **Historia.** Las ideas viajan dentro de los cuentos.\n\n## Cómo está armado\n- **Clase 1** te explica por qué la plática entre personas vende más que cualquier anuncio.\n- **Clases 2 a 8** son las seis semillas, una por una (Brillo tiene dos clases porque da para mucho).\n- **Clases 9 y 10** las juntan: cómo revisar cualquier idea con las seis y cómo armar tu primer mes.\n- **Herramientas:** la revisión de las seis semillas, ganchos y formatos listos para usar, y tu siembra de cuatro semanas.\n\n## Lo que necesitas\n- Algo que quieras que se platique: tu producto, tu negocio, tu equipo o una idea.\n- Tu celular y 15 minutos por clase.\n- Ganas de probar. Aquí nadie se vuelve viral leyendo; se aprende publicando y viendo qué pasa.\n\n## Antes de empezar\nEste curso no promete ventas, seguidores ni videos virales. Te da una forma de pensar tus mensajes para que tengan más probabilidad de compartirse. Y una regla que vale para todo el curso: **nada de exagerar ni de inventar**. Lo que se comparte rápido también se desmiente rápido.\n\n## 🪞 Para pensar\n¿Qué fue lo último que le recomendaste a alguien sin que nadie te pagara por hacerlo? ¿Por qué lo hiciste?\n\n## ✍️ Escribe\nEscribe en una frase qué quieres que la gente platique de ti. Por ejemplo: \"Quiero que cuando alguien busque un buen perfume, mis clientas digan mi nombre.\"\n\n@@ 1 | Clase | Clase 1 · Así se riega una idea | De boca en boca\nAntes de hablar de cómo hacer que algo se comparta, vale la pena entender por qué la plática entre personas pesa tanto.\n\n## La recomendación le gana al anuncio\nPiensa en la última vez que probaste un restaurante nuevo, una crema o una serie. Lo más probable es que alguien te lo haya recomendado. Una recomendación de alguien que conoces vale más que cualquier anuncio por dos razones.\n\n**Es más creíble.** El anuncio siempre va a decir que el producto es el mejor. Tu amiga no gana nada con decírtelo, y si algo no le gustó, te lo dice igual.\n\n**Va directo a quien le sirve.** Nadie le recomienda una base de maquillaje a alguien que no se maquilla. Cuando una persona pasa algo, ya pensó a quién le va a servir.\n\n> Una amiga que dice \"pruébalo\" vende más que cien publicaciones que dicen \"cómpralo\".\n\n## La mayor parte de la plática no pasa en redes\nEsto sorprende: una investigación encontró que solo como el 7 % de las recomendaciones pasan en internet. El resto pasa cara a cara, en la fila de las tortillas, en la junta de la escuela, en la comida del domingo.\n\nEso no quiere decir que las redes no sirvan. Quiere decir que tu meta no es solo que te vean en el celular. Es que **te mencionen cuando tú no estás**. Un buen video sirve si después alguien dice \"oye, ¿viste lo que publicó Ana?\".\n\n## No depende de las influencers\nEs fácil pensar que para que algo pegue necesitas que lo comparta alguien famosa. Pero los incendios grandes no se hacen con una chispa gigante: se hacen con muchos árboles que agarran fuego uno tras otro. Las ideas que se riegan las pasan cientos de personas normales, como tú y como tus clientas.\n\nPor eso este curso no te va a pedir que busques a la cuenta con más seguidores. Te va a pedir que hagas **una idea que cualquiera quiera pasar**.\n\n## No es suerte, es cómo está hecha la idea\nHay cosas que parecen \"naturalmente\" interesantes y cosas que parecen aburridas. Pero hay licuadoras, cereales y hasta elotes que se volvieron tema de conversación, y perfumes carísimos de los que nadie habla. La diferencia no está en el producto. Está en cómo se presenta.\n\nLas seis semillas son las razones que se repiten una y otra vez en lo que se comparte. En las siguientes clases las vas a conocer una por una, con ejemplos de venta directa y de contenido.\n\n## Ojo con el \"compártelo, porfa\"\nPedir que compartan no es una estrategia. A todas nos ha llegado el mensaje en cadena del grupo familiar y lo ignoramos. La gente no comparte para hacerte un favor; comparte por sus propias razones. Tu trabajo es entender esas razones y ponerlas en tu mensaje.\n\n## 🪞 Para pensar\nPiensa en tus últimas tres clientas. ¿Cómo llegaron contigo? ¿Cuántas llegaron porque alguien les habló de ti?\n\n## ✍️ Escribe\nHaz una lista de cinco cosas que tú has recomendado este año (un producto, un lugar, una serie, una cuenta). Junto a cada una, escribe por qué la recomendaste.\n\n## ✅ Tu tarea de la semana\nPregúntales a tres clientas, de forma casual: \"¿Cómo supiste de mí?\" o \"¿A quién le has platicado del producto?\". Anota sus respuestas tal cual.\n\n## 💬 Para compartir en el grupo\nComparte una cosa que recomendaste este año y por qué. Vas a ver que las razones se repiten.\n\n@@ 2 | Clase | Clase 2 · Brillo: lo que te hace ver bien | Lo que se cuenta para quedar bien\nLa primera semilla es la más humana de todas: compartimos lo que nos hace ver bien ante los demás.\n\n## Lo que compartes dice quién eres\nLo que cuentas en una comida, lo que publicas en tus historias y lo que reenvías dice algo de ti. Que estás enterada. Que tienes buen gusto. Que sabes de algo. Que eres divertida. Por eso a todas nos encanta contar algo que los demás no sabían.\n\nHablar de una misma se siente bien. Se ha estudiado que a la gente le gusta tanto compartir su opinión que hasta renuncia a un poco de dinero con tal de hacerlo. Eso es Brillo: **la gente comparte lo que la hace brillar a ella**, no lo que te hace brillar a ti.\n\n> La pregunta no es \"¿qué quiero decir?\". Es \"¿cómo va a quedar ella si lo cuenta?\".\n\n## Busca lo que sorprende\nLo sorprendente se comparte porque quien lo cuenta queda como alguien interesante. Y casi todo producto tiene algo sorprendente escondido. La clave es encontrarlo.\n\nUna marca de licuadoras se hizo famosa metiendo cosas absurdas a la licuadora para ver si se licuaban. Nadie quiere ver un comercial de licuadoras, pero todo mundo quería ver si se licuaba un celular. Lo que mostraban era lo mismo de siempre (que era una licuadora muy potente), pero dicho de forma que daba ganas de contarlo.\n\nEn tu negocio puede ser:\n- Un dato curioso de cómo se hace el producto o de un ingrediente.\n- Una prueba extrema: el labial que aguantó una boda completa, con fotos de las 8 de la noche y de la 1 de la mañana.\n- Un uso que nadie se imagina: el aceite para el pelo que también sirve para las cutículas.\n\n## Cómo encontrar lo sorprendente\nHazte estas preguntas sobre tu producto o tu idea:\n1. ¿Qué es lo que la gente no sabe y le haría decir \"¿en serio?\"?\n2. ¿Qué es lo más extremo que aguanta o logra?\n3. ¿Qué haría alguien que no se esperaba de esto?\n4. ¿Qué preguntan siempre tus clientas la primera vez?\n\nSi la respuesta no te sorprende ni a ti, sigue buscando. Lo sorprendente no se inventa, se descubre.\n\n## Lo sorprendente tiene que ser cierto\nAquí va la regla de la casa: **sorprender no es exagerar**. Si dices que una crema \"quita las arrugas en una semana\", eso no es Brillo, es una promesa que no puedes cumplir. Y cuando una clienta lo cuenta y no se cumple, la que queda mal es ella. Nunca vuelve a recomendarte.\n\n## 🪞 Para pensar\nCuando le recomiendas algo a una amiga, ¿qué sientes? ¿Qué quieres que piense de ti?\n\n## ✍️ Escribe\nElige un producto que vendas. Responde las cuatro preguntas de \"Cómo encontrar lo sorprendente\". Subraya la respuesta que más te sorprenda a ti.\n\n## ✅ Tu tarea de la semana\nGraba un video corto de 15 a 30 segundos que muestre esa sorpresa. Nada de \"compra aquí\": solo el dato o la prueba.\n\n## 💬 Para compartir en el grupo\nComparte el dato sorprendente de tu producto. Vamos a ver cuántas del equipo no lo sabían.\n\n@@ 3 | Clase | Clase 3 · Brillo: juego y secreto | Estatus y sentirse de adentro\nHay dos formas más de darle Brillo a algo: convertirlo en juego y hacer que la gente se sienta de adentro.\n\n## Haz que se pueda ganar\nA todas nos gusta ir avanzando. Los niveles, las insignias, los sellos de la tarjeta del café. No solo porque nos dan algo, sino porque nos dejan **presumir** que vamos avanzando y que estamos por encima de otras.\n\nLas aerolíneas lo saben: la gente cambia de vuelo y paga de más con tal de no perder su nivel. No por el beneficio, sino por el estatus.\n\nEn tu negocio puedes crear tus propios niveles:\n- **Para clientas:** la tarjeta de sellos (a la quinta compra, una muestra de regalo), el \"Club de las fieles\" con un nombre bonito, la clienta del mes.\n- **Para tu equipo:** reconocer en público cada logro, aunque sea chiquito. La primera venta, el primer mes completo, la primera persona que se suma.\n\nLo importante es que el logro **se pueda contar**. Si alguien gana algo y nadie se entera, no hay Brillo.\n\n## Hazla sentir de adentro\nLo que no todas pueden tener se vuelve más valioso. Y quien sí lo tiene, lo cuenta. Esto funciona de dos formas.\n\n**Escaso:** hay poquito. Una edición limitada, un lote pequeño, un tono que solo se consigue una temporada.\n\n**Exclusivo:** hay que conocer a alguien o cumplir algo para entrar. Un grupo cerrado de clientas que se enteran primero de las novedades, una preventa solo para quienes ya te compraron, una clase privada para tu equipo.\n\nHay un bar escondido detrás de una cabina telefónica dentro de un puesto de hot dogs. No tiene letrero. Y precisamente por eso todo mundo lo platica: quien lo conoce se siente de adentro.\n\n> Lo secreto se cuenta más que lo que se anuncia.\n\n## Con honestidad\nLo escaso y lo exclusivo funcionan cuando son reales. Si cada semana es \"la última oportunidad\", tus clientas aprenden que no es cierto y dejan de creerte. Usa estas herramientas pocas veces y en serio.\n\n## Cuidado con pagar para que hablen\nCuando le pagas a alguien por recomendarte, la recomendación cambia. Ya no lo hace porque quiere, sino por el pago. Y en cuanto el pago se acaba, la plática también. Si das un regalo, que sea un detalle o un reconocimiento, no un \"te pago por cada amiga que traigas\". Es más fuerte que alguien te recomiende porque se siente parte de algo.\n\n## 🪞 Para pensar\n¿De qué grupo, club o lista te encanta ser parte? ¿Por qué lo cuentas?\n\n## ✍️ Escribe\nDiseña un nivel para tus clientas o para tu equipo. Ponle nombre, di qué se necesita para llegar y cómo se va a enterar la gente cuando alguien lo logre.\n\n## ✅ Tu tarea de la semana\nArma algo de adentro: una lista de \"las primeras en enterarse\", una preventa solo para clientas o un reconocimiento en público para alguien del equipo. Lánzalo esta semana.\n\n## 💬 Para compartir en el grupo\nComparte el nombre de tu nivel o de tu grupo de adentro. Las mejores ideas se las vamos a copiar todas.\n\n@@ 4 | Clase | Clase 4 · Ancla: que algo te recuerde | Lo que está en la mente se platica\nLa segunda semilla es la más subestimada: la gente habla de lo que tiene en la cabeza, y tiene en la cabeza lo que algo de su día le recuerda.\n\n## Interesante no siempre es suficiente\nLo interesante se platica una vez, el día que lo conoces. Pero lo que se platica todos los días es otra cosa: es lo que el entorno te recuerda. Se ha visto que los productos \"aburridos\" de uso diario, como el cereal o el detergente, generan más conversación que cosas emocionantes como un viaje a un parque de diversiones. ¿Por qué? Porque el cereal lo ves todas las mañanas.\n\nHay dos tipos de plática:\n- **La de un día:** cuando algo es nuevo y emocionante, se habla mucho y luego se olvida.\n- **La de siempre:** cuando algo aparece en la vida diaria, se sigue hablando de él semanas y meses.\n\nPara tu negocio, la que más importa es la segunda.\n\n> Si nada le recuerda tu producto, no importa qué tan bueno sea: no va a hablar de él.\n\n## Busca tu ancla\nUn ancla es algo del entorno que hace que la gente piense en ti. Una canción que dice \"viernes\" se escucha más cada viernes. Una marca de chocolates se ligó al café (\"un chocolate con tu café\") y sus ventas subieron, porque la gente toma café todos los días.\n\nPara encontrar tu ancla, pregúntate:\n1. ¿En qué momento del día alguien usa o necesita lo que vendes?\n2. ¿Qué cosa ve, escucha o hace justo en ese momento?\n3. ¿Qué tan seguido pasa eso?\n\nEjemplos:\n- **El protector solar:** el ancla es salir de la casa en la mañana. \"Llaves, celular, protector.\"\n- **El perfume:** el ancla es el último paso antes de salir. \"Antes de la puerta, tu perfume.\"\n- **Tu negocio:** el ancla puede ser el lunes (\"lunes de reto\"), la quincena, el regreso a clases o la hora del café.\n\n## Que el ancla esté cerca de la decisión\nUn ancla funciona mejor cuando aparece justo donde la persona puede actuar. Recordarle a alguien que tome agua cuando está frente al garrafón funciona mejor que un anuncio en la tele. Para ti: tu mensaje sobre el rímel tiene que aparecer cuando ella se está maquillando, no a las 11 de la noche.\n\n## Ojo con las anclas en contra\nA veces el entorno le recuerda a la gente algo que no te conviene. Si tu competencia ya es \"la del café\", tú no lo vas a ganar. Busca un momento que nadie haya tomado.\n\n## 🪞 Para pensar\n¿Qué marcas te vienen a la cabeza en automático en algún momento de tu día? ¿Qué es lo que te las recuerda?\n\n## ✍️ Escribe\nElige tu producto estrella y escribe tres anclas posibles: un momento del día, un día de la semana y una temporada del año. Junto a cada una, escribe una frase corta que las una.\n\n## ✅ Tu tarea de la semana\nElige un ancla y úsala tres veces esta semana (por ejemplo, tres lunes de reto o tres publicaciones a la hora del café). Fíjate si alguien te la menciona.\n\n## 💬 Para compartir en el grupo\nComparte tu frase-ancla. Si otra del equipo vende lo mismo, pueden usar la misma y reforzarla juntas.\n\n@@ 5 | Clase | Clase 5 · Chispa: lo que se siente, se comparte | Emociones que encienden\nLa tercera semilla: cuando algo nos mueve, lo pasamos. Pero no cualquier emoción funciona igual.\n\n## No todas las emociones encienden\nSe analizaron cientos de artículos para ver cuáles se compartían más. El resultado fue claro: lo que despierta emociones se comparte más. Pero hay un detalle importante: lo que importa no es si la emoción es buena o mala, sino **si te activa o te apaga**.\n\nEmociones que activan (se comparten mucho):\n- **Asombro:** \"¡no puede ser!\"\n- **Emoción y entusiasmo:** \"¡ya quiero!\"\n- **Risa:** \"tienes que ver esto\"\n- **Enojo:** \"esto no puede seguir así\"\n- **Ansiedad:** \"¿y si me pasa a mí?\"\n\nEmociones que apagan (se comparten poco):\n- **Tristeza:** te deja quieta.\n- **Satisfacción tranquila:** te sientes bien, pero no te mueve.\n\n> Lo que te pone el corazón a mil es lo que le mandas a alguien.\n\n## El asombro es tu mejor amigo\nEl asombro es esa sensación de ver algo más grande de lo que esperabas. Una transformación de maquillaje increíble, una historia de superación de alguien del equipo, una clienta de 70 años que se arregló por primera vez en años para la boda de su nieta. Eso no se vende: se siente, y por eso se pasa.\n\n## Encuentra la emoción detrás de los datos\nA veces creemos que tenemos que hablar de las características: \"dura 12 horas\", \"tiene vitamina E\". Pero eso casi nunca se comparte. Lo que se comparte es lo que significa.\n\nUsa los **tres porqués**: escribe por qué alguien compra tu producto y pregúntate \"¿y eso por qué importa?\" tres veces.\n1. \"Compra el labial porque dura todo el día.\"\n2. ¿Por qué importa? \"Porque no tiene tiempo de retocarse.\"\n3. ¿Por qué importa? \"Porque trabaja, tiene niños y no para.\"\n4. ¿Por qué importa? \"Porque merece verse bien aunque nadie le dé un respiro.\"\n\nAhí está la emoción. Ese es el video.\n\n## La chispa también funciona fuera del celular\nSe ha visto que la gente comparte más cuando está activada físicamente, por ejemplo, después de hacer ejercicio. Esto sirve para tus eventos: una presentación animada, con música y movimiento, hace que la gente salga hablando. Una junta sentada y aburrida, no.\n\n## Con cuidado con el enojo y el miedo\nEl enojo y la ansiedad se comparten mucho, pero úsalos con respeto. No asustes a nadie para que te compre (\"si no usas esto, vas a envejecer\"). Eso es manipular. Y nunca hagas promesas de salud para vender.\n\n## 🪞 Para pensar\n¿Qué fue lo último que te dio tanto gusto o tanto asombro que se lo mandaste a alguien enseguida?\n\n## ✍️ Escribe\nHaz los tres porqués con tu producto estrella. Escribe la emoción que encontraste al final.\n\n## ✅ Tu tarea de la semana\nGraba un video o escribe una publicación que cuente esa emoción, no la característica. Si puedes, usa una historia real (con permiso de la clienta).\n\n## 💬 Para compartir en el grupo\nComparte tus tres porqués. Es sorprendente ver cómo cambia el mensaje.\n\n@@ 6 | Clase | Clase 6 · Vitrina: lo que se ve, se copia | Hazlo público\nLa cuarta semilla: la gente imita lo que ve. Si nadie ve que alguien usa lo que vendes, nadie lo va a copiar.\n\n## Hacemos lo que vemos que otros hacen\nCuando no sabes qué hacer, ves qué hacen los demás. Entre dos restaurantes, eliges el que está lleno. Si toda la oficina usa la misma termo, terminas preguntando dónde la compraron. No es tonto: si mucha gente lo usa, debe ser bueno.\n\nEl problema es que mucho de lo que compramos **no se ve**. Nadie sabe qué crema usas, qué suplemento tomas o a qué red de venta perteneces, a menos que tú lo muestres.\n\n> Lo que no se ve, no se puede imitar.\n\n## Haz que lo privado se vea\nHay una campaña famosa de salud masculina en la que, durante un mes, los hombres se dejan crecer el bigote. Un tema privado (la salud) se volvió algo que todo mundo podía ver en la cara de otros. Y cada bigote abría la conversación: \"¿y ese bigote?\".\n\n¿Cómo hacer visible lo tuyo?\n- **El empaque que se queda:** una bolsa bonita, una tarjeta con mensaje escrito a mano, algo que la clienta quiera conservar o mostrar.\n- **El detalle que se ve:** una pulsera, un listón o un color que identifique a tu equipo en los eventos.\n- **El antes y después:** con permiso, la clienta que muestra su resultado.\n- **La foto de la entrega:** que tus clientas suban la foto cuando reciben su pedido.\n\n## Que se anuncie solo\nLo mejor es que el producto se anuncie cada vez que alguien lo usa. Un correo que al final dice \"enviado desde tal servicio\", unos audífonos de un color diferente que se reconocen de lejos. Piensa en qué parte de tu producto o de tu servicio podría llevar tu marca sin estorbar.\n\n## Deja rastro\nLas cosas que se quedan después de comprar siguen hablando por ti: la bolsa que tu clienta reutiliza, la tarjeta con tu número en su espejo, la pulsera del evento. A eso podemos llamarle **rastro**: lo que queda a la vista después de la compra.\n\n## Cuidado con mostrar lo que no quieres\nSi quieres que algo no se haga, no muestres que todo mundo lo hace. Decir \"nadie del equipo está publicando\" hace que más gente deje de publicar, porque lo que ven es que \"nadie lo hace\". Mejor muestra a las que sí lo hacen.\n\n## 🪞 Para pensar\n¿Qué compraste porque viste que alguien más lo tenía?\n\n## ✍️ Escribe\nHaz una lista de todo lo que tu clienta ve y toca desde que te compra hasta que usa el producto. ¿En qué momento podrías dejar algo visible?\n\n## ✅ Tu tarea de la semana\nCrea un rastro: una tarjeta, una forma de entregar, un hashtag del equipo o un detalle que se quede. Úsalo con tus próximas cinco clientas.\n\n## 💬 Para compartir en el grupo\nSube una foto de tu rastro. Si funciona, lo hacemos de todas.\n\n@@ 7 | Clase | Clase 7 · Regalo: lo que sirve, se pasa | Valor práctico\nLa quinta semilla: compartimos lo que le puede servir a alguien que queremos. Pasar un buen consejo es una forma de cuidar.\n\n## Ayudar se siente bien\nCuando le mandas a tu hermana el truco para que el delineado le salga igual de los dos lados, no lo haces por presumir. Lo haces porque te importa. Y eso tiene más fuerza de lo que parece. Los videos de consejos prácticos (cómo saber si un aguacate ya está, cómo doblar ropa en dos segundos) se comparten muchísimo porque alguien siempre piensa: \"esto le sirve a fulana\".\n\n> Un buen consejo es un regalo que se envuelve solo.\n\n## Los consejos que más se comparten\n- **Son útiles de verdad:** resuelven algo que la persona quería resolver.\n- **Son fáciles de entender:** se ven una vez y se aprenden.\n- **Son para alguien en particular:** curiosamente, lo que le sirve a un grupo específico se comparte más que lo que le sirve \"a todas\", porque te hace pensar en alguien concreto. \"Tres trucos de maquillaje para mamás que se arreglan en 5 minutos\" se comparte más que \"tips de maquillaje\".\n\n## Cuando lo que ofreces es un precio\nLas ofertas también se comparten, pero no todas igual. Lo que la gente siente como buena oferta depende de con qué lo compara. Por eso:\n- **Muestra el precio de referencia:** \"antes $450, hoy $350\" se siente mejor que solo \"$350\".\n- **Usa la regla del 100:** si el producto cuesta menos de $100, el descuento se ve más grande en porcentaje (\"25 % menos\"). Si cuesta más de $100, se ve más grande en pesos (\"$200 menos\"). Haz la cuenta de las dos formas y usa la que suene más grande.\n- **Que no sea para siempre:** un tiempo limitado o una cantidad limitada hace que valga la pena contarlo. Pero solo si es cierto.\n\n## Empaqueta lo que sabes\nTú sabes cosas que a ti te parecen obvias y a tus clientas no. Cómo elegir el tono de base, en qué orden se ponen los productos, cómo hacer que el perfume dure más. Ese conocimiento es tu Regalo. Empaquétalo en algo fácil de pasar: un video corto, una imagen con tres pasos, una guía de una página.\n\nCuando una clienta reenvía tu guía, también te está recomendando a ti.\n\n## La verdad, siempre\nLos consejos se comparten tan rápido que a veces se comparte también lo que no es cierto. No caigas en eso. **Nunca compartas \"consejos\" de salud o resultados que no puedas comprobar**. Ni \"esto cura\", ni \"esto quema grasa\", ni \"esto quita las manchas en tres días\". Tu nombre vale más que una venta.\n\n## 🪞 Para pensar\n¿Cuál es el último consejo que reenviaste? ¿A quién y por qué?\n\n## ✍️ Escribe\nEscribe diez cosas que sabes de tu producto o de tu tema que tus clientas no saben. Elige la más útil y escríbela como si se la explicaras a una amiga en un audio de 30 segundos.\n\n## ✅ Tu tarea de la semana\nPublica tu consejo como video corto o imagen con pasos. Dirígelo a alguien en particular (\"para las que tienen piel grasa\", \"para las que trabajan de noche\").\n\n## 💬 Para compartir en el grupo\nComparte tu consejo. Vamos a armar entre todas una colección de regalos para clientas.\n\n@@ 8 | Clase | Clase 8 · Historia: el caballo de Troya | Las ideas viajan dentro de los cuentos\nLa sexta semilla: las ideas viajan dentro de las historias. Pero la historia tiene que llevar tu mensaje adentro, no nada más entretener.\n\n## Pensamos en historias\nDesde chiquitas aprendemos con cuentos. Una historia se recuerda mejor que un dato, se cuenta más fácil y se cree más. Si te digo \"este perfume dura mucho\", lo olvidas. Si te cuento que una clienta lo usó en su boda y su esposo todavía dice que \"huele a ese día\", lo recuerdas y lo cuentas.\n\n> La gente no comparte información. Comparte historias, y la información va adentro.\n\n## El caballo de Troya\nEn la historia antigua, los soldados entraron a la ciudad escondidos dentro de un caballo de madera que parecía un regalo. Así funciona una buena historia: la gente la deja entrar porque es entretenida, y adentro va tu mensaje.\n\nUna buena historia de tu negocio tiene:\n- **Una persona real:** tu clienta, tú, alguien del equipo.\n- **Un problema que se siente:** algo que le faltaba o le preocupaba.\n- **Un cambio:** qué pasó después.\n- **Tu producto dentro del cambio:** no al final como anuncio, sino como parte de la historia.\n\n## Que la historia no se coma tu mensaje\nAquí está el truco. Hay comerciales divertidísimos que todo mundo comparte, y aun así nadie recuerda la marca. Se hizo viral, pero no sirvió. Lo que lo hace valioso es que **no se pueda contar la historia sin mencionar tu producto**.\n\nUn ejemplo: unos comerciales en los que un panda destruía todo cuando alguien rechazaba un queso. Eran absurdos y se compartían mucho, pero no se podía contar la historia sin decir \"el panda del queso\". La marca estaba en el centro.\n\nPregúntate: si alguien cuenta tu historia a otra persona, ¿va a mencionar tu producto? Si no, la historia necesita ajuste.\n\n## Tu historia, la de tus clientas y la de tu equipo\n- **La tuya:** cómo empezaste, qué te hizo quedarte, qué ha cambiado.\n- **La de tus clientas:** lo que el producto significó en un momento de su vida (siempre con permiso y sin exagerar resultados).\n- **La de tu equipo:** cómo llegó cada una y qué ha aprendido. Estas historias son las que más invitan a otras a sumarse.\n\n## 🪞 Para pensar\n¿Qué historia de tu negocio cuentas una y otra vez cuando platicas en persona? Esa es probablemente tu mejor historia.\n\n## ✍️ Escribe\nEscribe una historia corta con los cuatro elementos: persona real, problema, cambio y tu producto dentro del cambio. Léela en voz alta: ¿se podría contar sin tu producto?\n\n## ✅ Tu tarea de la semana\nCuenta esa historia en un video o en una publicación. Al final no pongas \"compra aquí\". Deja que la historia haga el trabajo.\n\n## 💬 Para compartir en el grupo\nComparte tu historia. Ayúdale a otra del equipo a encontrar dónde va su producto en la suya.\n\n@@ 9 | Clase | Clase 9 · Las seis juntas | Revisa cualquier idea\nYa conoces las seis semillas. Ahora vamos a juntarlas, porque la mayoría de las ideas que se riegan usan varias a la vez.\n\n## Una historia de uñas\nHace casi cincuenta años, un grupo de mujeres que llegaron a otro país sin nada, sin hablar el idioma y sin poder ejercer sus profesiones, aprendieron a hacer manicure con la ayuda de una actriz que las visitaba en el campamento donde vivían. Consiguieron trabajo, después abrieron sus propios salones, y la noticia corrió entre su gente. Hoy, buena parte de los salones de uñas de ese país los atienden personas de esa misma comunidad.\n\n¿Cómo pasó? Con las seis semillas:\n- **Ancla:** el tema del trabajo salía todos los días entre las recién llegadas.\n- **Vitrina:** veían a otras trabajando en los salones.\n- **Brillo:** a las que les iba bien les gustaba contarlo.\n- **Regalo:** ayudar a una amiga a conseguir trabajo es el mejor consejo.\n- **Chispa:** las historias de las que salieron adelante emocionaban.\n- **Historia:** todo viajaba en forma de \"fíjate que a mi prima le va increíble\".\n\n> Ninguna de esas mujeres era famosa. Lo que se riega es la idea, no la persona.\n\nSe parece mucho a cómo crece un equipo de venta directa, ¿verdad?\n\n## No necesitas las seis\nNo hay que meter las seis semillas en cada publicación. Eso se ve forzado. Con dos o tres bien puestas es suficiente. Lo que sí vale la pena es revisar tu idea con las seis preguntas antes de publicarla. Muchas veces una pequeña vuelta la convierte en algo mucho más fácil de pasar.\n\n## La revisión\nAntes de publicar, pregúntate:\n1. **Brillo:** ¿quien lo comparta va a quedar bien?\n2. **Ancla:** ¿qué de su día a día le va a recordar esto?\n3. **Chispa:** ¿qué va a sentir? ¿La activa o la deja quieta?\n4. **Vitrina:** ¿se ve cuando alguien lo usa? ¿Queda rastro?\n5. **Regalo:** ¿le sirve a alguien en particular?\n6. **Historia:** ¿hay una historia? ¿Se puede contar sin mi producto?\n\nCalifica cada una del 0 al 2. Si tu idea tiene menos de 4 puntos, busca cómo subir una o dos semillas.\n\n## Un ejemplo\nIdea original: \"Nuevo labial en promoción.\"\nRevisada: \"Lo probé en la boda de mi hermana de 6 de la tarde a 2 de la mañana (Historia). Así se veía a las 2 a.m. (Brillo, sorpresa). Solo esta semana con 25 % menos (Regalo, regla del 100). Para las que van a boda este mes (Regalo para alguien en particular).\"\n\n## 🪞 Para pensar\nDe todas las semillas, ¿cuál se te da más natural? ¿Cuál casi nunca usas?\n\n## ✍️ Escribe\nToma tu última publicación y califícala con las seis preguntas. Después reescríbela para subir al menos dos semillas.\n\n## ✅ Tu tarea de la semana\nPublica la versión mejorada y compárala con la anterior. Fíjate en comentarios, mensajes y compartidos, no solo en los \"me gusta\".\n\n## 💬 Para compartir en el grupo\nComparte el antes y el después de tu publicación con su calificación.\n\n@@ 10 | Clase | Clase 10 · Siembra | Tu primer mes\nLa última clase es para que lo aprendido se vuelva costumbre. Una idea que se riega no es casualidad: es lo que pasa cuando siembras seguido.\n\n## Siembra, no cosecha\nMuchas publicamos una vez, vemos que no pasa nada y concluimos que \"no funciona\". Pero las semillas no salen al día siguiente. Lo que hace que la gente hable de ti es que aparezcas seguido, con ideas fáciles de pasar, durante semanas.\n\n> No necesitas una idea viral. Necesitas muchas ideas que se puedan pasar.\n\n## Tu mes en cuatro semanas\n- **Semana 1 · Brillo y Regalo.** Lo sorprendente de tu producto y un consejo útil para alguien en particular.\n- **Semana 2 · Ancla.** Elige tu ancla y úsala tres veces. Que la gente empiece a ligarte con ese momento.\n- **Semana 3 · Historia y Chispa.** Una historia real con tu producto adentro y la emoción que encontraste con los tres porqués.\n- **Semana 4 · Vitrina y juego.** Tu rastro, tu grupo de adentro o tu nivel. Que se vea quién ya es parte.\n\nLa herramienta \"Tu siembra de 4 semanas\" te lo da día por día.\n\n## Escucha lo que la gente dice\nLo más valioso no son los \"me gusta\". Son las frases que tus clientas usan cuando hablan de ti. Anótalas. Si dos o tres dicen lo mismo (\"es que contigo sí me explicas\"), ahí está tu mejor mensaje. Úsalo.\n\n## Para tu equipo\nSi lideras un equipo, enséñales las seis semillas. Cuando todas usan la misma ancla, el mismo rastro o el mismo nivel, el efecto se multiplica. Una sola persona hace ruido; un equipo coordinado hace que se platique.\n\n## Lo que no cambia\n- Nada de exagerar ni de prometer resultados.\n- Nada de mensajes en cadena a tus contactos.\n- Nada de pagar para que te recomienden.\n- Lo que se riega es lo que la gente quiere pasar. Tu trabajo es dárselo.\n\n## 🪞 Para pensar\n¿Qué cambió en tu forma de ver tus publicaciones desde la primera clase?\n\n## ✍️ Escribe\nEscribe tu plan de las cuatro semanas con una idea concreta para cada semana.\n\n## ✅ Tu tarea de la semana\nArranca la semana 1 hoy. Agenda en tu celular un recordatorio para cada publicación.\n\n## 💬 Para compartir en el grupo\nComparte tu plan del mes. Busca una compañera para revisarse los avances cada semana.\n\n@@ 11 | Herramienta | La revisión de las seis semillas | Antes de publicar\nUsa esta revisión con cualquier idea: una publicación, un evento, una promoción o una invitación al equipo.\n\n## Califica del 0 al 2\n- **0:** no la tiene.\n- **1:** la tiene un poco.\n- **2:** la tiene clarísima.\n\n## Las seis preguntas\n1. **Brillo.** ¿Quien lo comparta va a quedar bien? ¿Hay algo sorprendente? ¿Hay un juego, un nivel o algo de adentro?\n2. **Ancla.** ¿Qué momento, lugar o cosa de su día le va a recordar esto? ¿Pasa seguido?\n3. **Chispa.** ¿Qué va a sentir: asombro, risa, entusiasmo? ¿Encontré la emoción con los tres porqués?\n4. **Vitrina.** ¿Se ve cuando alguien lo usa o lo compra? ¿Queda algún rastro?\n5. **Regalo.** ¿Le sirve a alguien en particular? ¿Se entiende en una sola vista? Si hay oferta, ¿usé la regla del 100?\n6. **Historia.** ¿Hay una persona real y un cambio? ¿Se puede contar sin mencionar mi producto?\n\n## Cómo leer tu resultado\n- **0 a 3:** la idea necesita otra vuelta. Busca la semilla más fácil de subir.\n- **4 a 7:** buena idea. Con un ajuste puede volar.\n- **8 a 12:** lista para salir.\n\n## La revisión de la verdad\nAntes de publicar, también contesta:\n- ¿Todo lo que digo es cierto y lo puedo comprobar?\n- ¿Estoy prometiendo un resultado de salud, de peso o de dinero? Si sí, quítalo.\n- ¿Tengo permiso de la clienta para usar su historia o su foto?\n\n@@ 12 | Herramienta | Ganchos y formatos listos | Una idea por semilla\nFormatos para cuando no sepas por dónde empezar. Cámbialos a tus palabras y a tu producto.\n\n## Brillo\n- \"Algo que casi nadie sabe de [producto]…\"\n- \"Lo puse a prueba: [prueba extrema]. Así quedó.\"\n- \"Tres usos de [producto] que no te imaginas.\"\n- \"Las primeras en enterarse siempre son las del grupo. Hoy les toca a ustedes.\"\n\n## Ancla\n- \"Lunes de [tu reto]: hoy toca…\"\n- \"Antes de salir de la casa: llaves, celular y [producto].\"\n- \"Si estás leyendo esto con tu café, esto es para ti.\"\n\n## Chispa\n- \"No me lo esperaba: [momento de asombro].\"\n- La transformación completa en 15 segundos, con música que suba.\n- \"Esto me pasó hoy y tenía que contárselo a alguien.\"\n\n## Vitrina\n- Foto de la entrega con tu rastro (tarjeta, bolsa, listón).\n- \"Así llegó el pedido de [nombre de clienta, con permiso].\"\n- Foto grupal del equipo con su detalle distintivo.\n\n## Regalo\n- \"Tres trucos para [grupo específico] que [problema].\"\n- \"El orden correcto para ponerte [rutina], en 30 segundos.\"\n- \"Hoy está en $[precio] (antes $[precio]). Solo hasta el [fecha].\"\n\n## Historia\n- \"Hace un año, [persona] me escribió porque [problema]…\"\n- \"Cómo llegué a este negocio (y por qué me quedé).\"\n- \"Lo que [clienta] me dijo ayer me tiene pensando…\"\n\n## Para cerrar sin rogar\nEn lugar de \"compártelo, porfa\", prueba:\n- \"Mándaselo a la amiga que siempre llega tarde.\"\n- \"Guárdalo para tu próximo evento.\"\n- \"¿A quién le serviría esto?\"\n\n@@ 13 | Herramienta | Tu siembra de 4 semanas | Un plan día por día\nUn plan sencillo para practicar las seis semillas durante un mes. Tres publicaciones a la semana y una acción fuera de redes.\n\n## Semana 1 · Brillo y Regalo\n- **Lunes:** publica lo sorprendente de tu producto (clase 2).\n- **Miércoles:** publica un consejo útil para alguien en particular (clase 7).\n- **Viernes:** publica un uso inesperado de tu producto.\n- **Fuera de redes:** platícale a tres clientas el dato sorprendente en persona.\n\n## Semana 2 · Ancla\n- **Lunes:** presenta tu ancla (\"cada lunes les voy a…\").\n- **Miércoles:** usa tu ancla otra vez.\n- **Viernes:** usa tu ancla y pide que te cuenten cómo les fue.\n- **Fuera de redes:** pon tu frase-ancla en la tarjeta de tus entregas.\n\n## Semana 3 · Historia y Chispa\n- **Lunes:** cuenta tu historia (cómo empezaste o por qué te quedaste).\n- **Miércoles:** cuenta la historia de una clienta, con permiso.\n- **Viernes:** publica algo que te dé asombro o risa de tu día.\n- **Fuera de redes:** cuenta tu mejor historia en la próxima reunión en persona.\n\n## Semana 4 · Vitrina y juego\n- **Lunes:** lanza tu rastro o tu detalle visible.\n- **Miércoles:** lanza tu nivel o tu grupo de adentro.\n- **Viernes:** celebra en público a una clienta o a alguien del equipo.\n- **Fuera de redes:** entrega tus pedidos con el rastro nuevo.\n\n## Al final del mes\nContesta:\n- ¿Qué publicación generó más mensajes o compartidos?\n- ¿Qué frases repitieron tus clientas cuando hablaron de ti?\n- ¿Qué semilla te sale más natural y cuál te falta practicar?";
+var FAQ_MD="## Empezar | 0\n\n### ¿Necesito muchos seguidores para que esto funcione?\nNo. Lo que se riega lo pasan personas normales, no solo cuentas grandes. Una idea fácil de pasar llega más lejos con 300 seguidoras que una idea aburrida con 30 mil. Lo explica la clase 1.\n\n### ¿Tengo que usar las seis semillas en cada publicación?\nNo. Con dos o tres bien puestas es suficiente. Meter las seis a fuerza se ve forzado. Usa la revisión de la herramienta 1 para ver cuáles le faltan a tu idea.\n\n### ¿Esto es solo para redes sociales?\nNo. La mayor parte de las recomendaciones pasan cara a cara. Las seis semillas sirven igual para una publicación, una plática en la fila de la escuela, un evento o una invitación a tu equipo.\n\n### ¿El curso me garantiza ventas o un video viral?\nNo. Te da una forma de pensar tus mensajes para que sea más fácil que se compartan. Lo demás depende de tu constancia, tu producto y muchas cosas que nadie controla.\n\n## Brillo | 2\n\n### Mi producto es muy normal, ¿qué tiene de sorprendente?\nCasi todo producto tiene algo sorprendente escondido: cómo se hace, cuánto aguanta, un uso que nadie se imagina o lo que preguntan las clientas la primera vez. Haz las cuatro preguntas de la clase 2 y sigue buscando hasta que algo te sorprenda a ti.\n\n### ¿No es presumir hacer niveles y reconocimientos?\nEl reconocimiento no es para ti, es para tus clientas y tu equipo. Cuando alguien logra algo y se puede contar, lo cuenta con orgullo. Lo explica la clase 3.\n\n### ¿Puedo decir \"últimas piezas\" para que compren más rápido?\nSolo si es cierto. Si cada semana es \"la última oportunidad\", tus clientas aprenden que no es verdad y dejan de creerte.\n\n### ¿Le pago a mis clientas por recomendarme?\nMejor no pagar por recomendación. Cuando hay pago, la gente recomienda por el pago y no porque quiere, y en cuanto se acaba el pago, se acaba la plática. Un detalle o un reconocimiento funciona mejor.\n\n## Ancla | 4\n\n### ¿Qué es un ancla?\nAlgo del día a día que le recuerda tu producto a la gente: un momento, un lugar, un día de la semana, una costumbre. Mientras más seguido pasa, más se habla de ti.\n\n### ¿Qué hago si mi competencia ya usa la misma ancla?\nBusca otro momento. Si otra marca ya es \"la del café\", tú no le vas a ganar ese lugar. Piensa en qué hace tu clienta justo antes o justo después de usar tu producto.\n\n## Chispa | 5\n\n### ¿Las historias tristes se comparten?\nMenos de lo que crees. La tristeza conmueve, pero deja quieta a la gente. Lo que más se comparte es lo que activa: asombro, entusiasmo, risa. Una historia difícil con un final que emociona se comparte más que una que solo da tristeza.\n\n### ¿Puedo usar el miedo para vender?\nNo. Asustar a alguien para que compre es manipular, y nunca hagas promesas de salud. Usa la emoción para conectar, no para presionar.\n\n## Vitrina | 6\n\n### ¿Cómo hago visible algo que se usa en privado, como una crema?\nHaz visible lo que rodea al producto: el empaque, la entrega, la tarjeta, el antes y después (con permiso), la foto de la clienta cuando lo recibe. Lo explica la clase 6.\n\n### ¿Por qué no debo decir que \"nadie del equipo está publicando\"?\nPorque la gente imita lo que ve. Si lo que ve es que nadie publica, publica menos. Mejor muestra y celebra a las que sí lo hacen.\n\n## Regalo | 7\n\n### ¿Qué es la regla del 100?\nSi tu producto cuesta menos de $100, el descuento se ve más grande en porcentaje. Si cuesta más de $100, se ve más grande en pesos. Haz la cuenta de las dos formas y usa la que suene más grande.\n\n### ¿Es mejor un consejo para todas o para un grupo?\nPara un grupo específico. Cuando un consejo es claramente para \"mamás que se arreglan en 5 minutos\", la que lo ve piensa en alguien en concreto y se lo manda.\n\n### ¿Puedo compartir resultados de salud que me contaron mis clientas?\nNo. Lo que una persona vivió no se puede presentar como resultado garantizado, y las promesas de salud no se hacen. Comparte la experiencia de uso (cómo se siente, cómo huele, cuánto dura), no curas ni resultados médicos.\n\n## Historia | 8\n\n### ¿Qué hago si no tengo una historia interesante?\nSí la tienes. Piensa en la historia que cuentas en persona una y otra vez: cómo empezaste, una clienta que te marcó, un día que salió mal. Esa es tu mejor historia.\n\n### Mi video se compartió mucho pero no vendí nada, ¿por qué?\nProbablemente la historia se podía contar sin tu producto. Si la gente puede contarlo sin mencionarte, se lleva la historia pero no tu nombre. Lo explica la clase 8.\n\n## Tu mentora | 0\n\n### ¿Qué hace la mentora?\nTe da las clases una por una en Claude, revisa tus ideas con las seis semillas y te ayuda a escribir ganchos, historias y consejos con tu voz.\n\n### ¿Necesito pagar Claude para usarla?\nNo. Funciona con la cuenta gratis. La cuenta gratis tiene un límite de mensajes al día; si se acaba, vuelve a estar disponible horas después.";
+var MZ="";
+var MD="";
+var CFG={"key": "pasalo", "n": 10, "groups": [["Empieza aquí", [0]], ["Clases", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]], ["Herramientas", [11, 12, 13]]], "pitch": "Diez clases cortas para que la gente hable de lo que vendes sin que tengas que rogarle a nadie: las seis razones por las que algo se comparte, con ejemplos de venta directa.", "faqPh": "Busca: seguidores, oferta, historia, ancla…", "foot": "Este curso no promete ventas, seguidores ni resultados. No hagas promesas de salud ni uses historias o fotos de clientas sin su permiso.", "zipName": "pasalo.zip", "zipVar": "MZ", "mdName": "pasalo-SKILL.md", "mdVar": "MD", "tabProgram": "Clases", "welcomeLabel": "Bienvenida", "repaso": "el curso", "faqLead": "Las dudas más comunes, con la clase que las responde.", "source": "Ideas inspiradas en el libro Contagioso (Contagious), de Jonah Berger. Si te gusta el curso, cómprate el libro: está lleno de historias."};
+var MENTOR={"title": "Tu mentora para Pásalo, cuando la necesites", "intro": "La mentora vive en Claude. Te da las clases una por una, revisa tus ideas con las seis semillas y te ayuda a escribir ganchos, historias y ofertas con tu voz.", "can": [["Revisa tu idea", "Pégale tu publicación y te la califica con las seis semillas, con una versión mejorada."], ["Escribe contigo", "Ganchos, historias de clientas y consejos para un grupo en particular."], ["Saca la cuenta", "Te dice si tu descuento suena mejor en pesos o en porcentaje."], ["El curso", "Escribe \"Clase 4\" y te la da completa, con ejercicio."]], "steps": ["Crea tu cuenta en claude.ai. Funciona con la cuenta gratis.", "Descarga la mentora (.zip) y guárdala sin descomprimir.", "En Claude entra a Customize → Skills, toca \"+\", luego \"Create skill\" → \"Upload a skill\" y sube el zip.", "Abre un chat nuevo y escribe una de estas frases."], "prompts": ["Quiero empezar el curso Pásalo.", "Revisa esta publicación con las seis semillas: …", "Ayúdame a encontrar el ancla de mi producto estrella."], "limits": ["No promete ventas ni virales", "No hace promesas de salud", "No escribe escasez falsa", "No sustituye terapia"], "notes": ["Si no ves los botones de descarga, pídele a tu líder el archivo pasalo.zip.", "La cuenta gratis tiene un límite de mensajes por día. Si se acaba, vuelve a estar disponible horas después."]};
+var SEMILLA={2:"Brillo",3:"Brillo",4:"Ancla",5:"Chispa",6:"Vitrina",7:"Regalo",8:"Historia"};
+var SKIN={
+  K:46, cx:200, cy:178,
+  /* deterministic jitter so the flower looks the same on every visit */
+  rnd:function(i,s){var x=Math.sin(i*127.1+s*311.7)*43758.5453;return x-Math.floor(x);},
+  seeds:function(){
+    if(SKIN._s)return SKIN._s;
+    var out=[],K=SKIN.K;
+    for(var i=0;i<K;i++){
+      var a=-180+360*(i/K)+(SKIN.rnd(i,1)-.5)*7,len=62+SKIN.rnd(i,2)*16;
+      /* flight order: seeds on the upper right let go first, as if the wind came from the left */
+      var rad=a*Math.PI/180,order=Math.sin(rad)+.6*-Math.cos(rad)+SKIN.rnd(i,3)*.5;
+      /* where it lands: a drift up and to the right, spreading as more seeds go */
+      var t=SKIN.rnd(i,4),fx=225+t*150+(SKIN.rnd(i,5)-.5)*60,fy=85+(1-t)*120+(SKIN.rnd(i,6)-.5)*70;
+      if(SKIN.rnd(i,7)<.28){fx=25+SKIN.rnd(i,8)*140;fy=80+SKIN.rnd(i,9)*80;}
+      fx=Math.max(22,Math.min(342,fx));fy=Math.max(78,Math.min(250,fy));
+      out.push({i:i,a:a,len:len,order:order,fx:fx,fy:fy,fa:a*.35+(SKIN.rnd(i,10)-.5)*80,sc:.72+SKIN.rnd(i,11)*.2});
+    }
+    var rank=out.slice().sort(function(p,q){return q.order-p.order;});
+    rank.forEach(function(s,k){s.rank=k;});
+    return (SKIN._s=out);
+  },
+  gone:function(c){return 3+Math.round((SKIN.K-3)*c.count()/c.N);},
+  tf:function(s,flown){return flown?"translate("+s.fx.toFixed(1)+"px,"+s.fy.toFixed(1)+"px) rotate("+s.fa.toFixed(1)+"deg) scale("+s.sc.toFixed(2)+")":"translate("+SKIN.cx+"px,"+SKIN.cy+"px) rotate("+s.a.toFixed(1)+"deg)";},
+  seedSVG:function(s,flown){
+    var L=s.len.toFixed(1),pp="";
+    for(var k=-3;k<=3;k++){var ang=(k*17-90)*Math.PI/180,r=11+Math.abs(k)*.6;pp+="M0,-"+L+"l"+(Math.cos(ang)*r).toFixed(1)+","+(Math.sin(ang)*r).toFixed(1);}
+    return '<g class="p-seed'+(flown?" flown":"")+'" data-i="'+s.i+'" style="transform:'+SKIN.tf(s,flown)+';--d:-'+(SKIN.rnd(s.i,12)*5).toFixed(2)+'s"><g class="sway"><line class="st" x1="0" y1="-4" x2="0" y2="-'+L+'"/><path class="pp" d="'+pp+'"/><circle cx="0" cy="-4" r="1.6"/></g></g>';
+  },
+  flower:function(c,gone){
+    var S=SKIN.seeds(),cx=SKIN.cx,cy=SKIN.cy;
+    return '<figure class="p-flower"><svg viewBox="0 0 400 430" role="img" aria-label="Un diente de león que crece de un socket de foco. Cada clase que terminas suelta más semillas al viento: llevas '+c.count()+' de '+c.N+'.">'+
+      '<defs><linearGradient id="pskt" x1="0" x2="1"><stop offset="0" stop-color="#2A1C08"/><stop offset=".35" stop-color="#C9A04A"/><stop offset=".55" stop-color="#F6E3A1"/><stop offset=".8" stop-color="#8A6420"/><stop offset="1" stop-color="#2A1C08"/></linearGradient>'+
+      '<radialGradient id="phd" cx=".45" cy=".4" r=".6"><stop offset="0" stop-color="#E4EBB4"/><stop offset="1" stop-color="#8FA03C"/></radialGradient></defs>'+
+      '<path d="M'+cx+','+(cy+8)+' C'+(cx+3)+',260 '+(cx-4)+',300 '+cx+',336" stroke="#6B5A2E" stroke-width="5" fill="none" stroke-linecap="round"/>'+
+      '<path d="M'+(cx-3)+','+(cy+14)+' l-14,34 M'+(cx+3)+','+(cy+14)+' l10,30" stroke="#7E9636" stroke-width="3" fill="none" stroke-linecap="round"/>'+
+      S.map(function(s){return s.rank<gone?"":SKIN.seedSVG(s,false);}).join("")+
+      '<circle cx="'+cx+'" cy="'+cy+'" r="13" fill="url(#phd)"/>'+
+      '<g transform="translate('+cx+',336)"><path d="M-40,0 h80 l-3,12 h-74 z" fill="url(#pskt)"/>'+
+      [0,1,2,3].map(function(k){var y=14+k*12,w=36-k*1.5;return '<path d="M-'+w+','+y+' q'+w+',8 '+(w*2)+',0 l-2,9 q-'+(w-2)+',7 -'+(w*2-4)+',0 z" fill="url(#pskt)"/>';}).join("")+
+      '<path class="p-tip" d="M-24,62 h48 l-10,16 h-28 z"/></g>'+
+      S.map(function(s){return s.rank<gone?SKIN.seedSVG(s,true):"";}).join("")+
+      "</svg></figure>";
+  },
+  hero:function(c){
+    var n=c.count(),nu=c.nextUp(),first=SKIN._gone==null&&!c.reduce;
+    var gone=SKIN.gone(c),drawn=first?0:(SKIN._gone==null?gone:SKIN._gone);
+    SKIN._target=gone;
+    var status=nu===null?"Terminaste las "+c.N+" clases. Ya soltaste todas tus semillas.":(n?n+" de "+c.N+" clases. Cada clase que terminas suelta más semillas.":"Diez clases cortas y tres herramientas. Cada clase que terminas suelta más semillas.");
+    return '<div class="p-hero"><h1 class="p-mark">Pásalo</h1><p class="p-sub caps">Lo que hace que la gente hable</p>'+
+      SKIN.flower(c,drawn)+
+      '<p class="p-pitch">'+c.esc(c.cfg.pitch)+'</p>'+
+      '<div class="p-cta"><button class="btn solid" type="button" id="cta">'+c.esc(c.ctaText())+'</button><p class="p-status">'+c.esc(status)+"</p></div></div>";
+  },
+  program:function(c){
+    var w=c.L(0),ids=c.ACTS[0].ids;
+    return '<div class="p-route"><div><h2 class="sec-h">Las clases</h2><p class="sec-p">La primera vez, ve en orden. Después regresa a la semilla que necesites.</p></div>'+
+      '<button type="button" class="p-welcome" data-open="0"><span><small class="caps">'+(c.seen.has(0)?"Bienvenida · leída":"Empieza aquí")+"</small><b>"+c.esc(w.title)+"</b><span>"+c.esc(w.topic)+": de qué se trata y las seis semillas.</span></span><em aria-hidden=\"true\">→</em></button>"+
+      '<ol class="p-list">'+ids.map(function(i){var x=c.L(i),s=c.stateOf(i),sm=SEMILLA[i];
+        return '<li><button type="button" class="p-row '+s+'" data-open="'+i+'"><span class="n" aria-hidden="true">'+i+"</span><span>"+(sm?'<span class="k caps">Semilla · '+sm+"</span>":"")+"<b>"+c.esc(c.ttl(x))+"</b><small>"+c.esc(x.topic)+"</small></span>"+(s?'<span class="st">'+(s==="seen"?"Vista ✓":"Aquí vas")+"</span>":"")+"</button></li>";}).join("")+"</ol>"+
+      '<h3 class="p-h">Herramientas</h3><div class="p-tools">'+c.TOOLS.map(function(i){var x=c.L(i);return '<button type="button" class="p-tool" data-open="'+i+'"><b>'+c.esc(x.title)+"</b><small>"+c.esc(x.topic)+"</small></button>";}).join("")+"</div>"+
+      '<p class="p-source">'+c.esc(c.cfg.source)+"</p></div>";
+  },
+  mount:function(c){
+    var to=SKIN._target,from=SKIN._gone==null?(c.reduce?to:0):SKIN._gone;SKIN._gone=to;
+    if(from===to)return;
+    var svg=document.querySelector(".p-flower svg");if(!svg)return;
+    var S=SKIN.seeds(),lo=Math.min(from,to),hi=Math.max(from,to),fly=to>from;
+    /* move the seeds that change state; the ones flying go to the top layer so they pass in front of the socket */
+    var go=function(){
+      S.forEach(function(s){
+        if(s.rank<lo||s.rank>=hi)return;
+        var g=svg.querySelector('.p-seed[data-i="'+s.i+'"]');if(!g)return;
+        if(fly)svg.appendChild(g);
+        g.style.transitionDelay=((fly?s.rank-lo:hi-1-s.rank)*45)+"ms";
+        g.classList.toggle("flown",fly);g.style.transform=SKIN.tf(s,fly);
+      });
+    };
+    if(c.reduce){S.forEach(function(s){var g=svg.querySelector('.p-seed[data-i="'+s.i+'"]');if(g)g.style.transition="none";});go();return;}
+    setTimeout(function(){requestAnimationFrame(go);},from===0&&SKIN._first!==false?450:60);
+    SKIN._first=false;
+  }
+};
+
+(function(){
+document.documentElement.classList.add("js");
+var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function inline(t){return t.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");}
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+var reduce=false;try{reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
+
+/* ---------- content ---------- */
+var LESSONS=LESSONS_MD.split(/^@@ /m).filter(function(x){return x.trim();}).map(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});
+  var body=lines.slice(1).join("\n").trim(),i=body.indexOf("\n");if(i<0)i=body.length;
+  return {id:+h[0],kicker:h[1],title:h[2],topic:h[3],intro:body.slice(0,i).trim(),body:body.slice(i+1).trim()};
+});
+var ICONS=["🪞","✍️","✅","💬","🎯","📝","🧠","📌","🔥","⭐","📱","🎬","💡","🗓️","✨"];
+function md(src){
+  var out="",list=null;
+  esc(src).split("\n").forEach(function(raw){
+    var l=raw.trim(),ul=l.match(/^[-*]\s+(.*)/),ol=l.match(/^\d+[.)]\s+(.*)/);
+    if(ul||ol){var tag=ul?"ul":"ol";if(list!==tag){if(list)out+="</"+list+">";out+="<"+tag+">";list=tag;}out+="<li>"+inline((ul||ol)[1])+"</li>";return;}
+    if(list){out+="</"+list+">";list=null;}
+    if(l.indexOf("### ")===0)out+="<h4>"+inline(l.slice(4))+"</h4>";
+    else if(l.indexOf("## ")===0)out+="<h3>"+inline(l.slice(3))+"</h3>";
+    else if(l.indexOf("&gt; ")===0)out+='<div class="callout"><p>'+inline(l.slice(5))+"</p></div>";
+    else if(l)out+="<p>"+inline(l)+"</p>";
+  });
+  if(list)out+="</"+list+">";
+  return out;
+}
+function startsIcon(h){for(var i=0;i<ICONS.length;i++)if(h.indexOf(ICONS[i])===0)return ICONS[i];var m=h.match(/^[☀-➿\uD83C-􏰀-\uDFFF️]+\s*/);return m?m[0]:null;}
+function lessonBody(src){
+  var parts=src.split(/^## /m),main=parts[0],tasks=[];
+  parts.slice(1).forEach(function(p){
+    var nl=p.indexOf("\n"),head=(nl<0?p:p.slice(0,nl)).trim(),rest=nl<0?"":p.slice(nl+1);
+    var icon=startsIcon(head);
+    if(icon)tasks.push({title:head.slice(icon.length).trim(),html:md(rest.trim())});else main+="\n## "+p;
+  });
+  return {html:md(main.trim()),tasks:tasks};
+}
+function L(id){for(var i=0;i<LESSONS.length;i++)if(LESSONS[i].id===id)return LESSONS[i];return null;}
+var N=CFG.n,STEPS=[];for(var i=1;i<=N;i++)STEPS.push(i);
+var ORDER=LESSONS.map(function(l){return l.id;});
+var GROUPS=CFG.groups.map(function(g){var p=g[0].split(" · ");return {name:p.length>1?p[1]:g[0],pre:p.length>1?p[0]:"",ids:g[1]};});
+var ACTS=GROUPS.filter(function(g){return g.ids.every(function(i){return i>=1&&i<=N;});});
+var TOOLS=ORDER.filter(function(i){return i>N;});
+var seen=new Set(store.get(CFG.key+"-seen",[])),notes=store.get(CFG.key+"-notes",{});
+function saveSeen(){store.set(CFG.key+"-seen",Array.from(seen));}
+function isStep(id){return id>=1&&id<=N;}
+function nextUp(){if(!seen.has(0)&&!STEPS.some(function(i){return seen.has(i);}))return 0;for(var i=0;i<STEPS.length;i++)if(!seen.has(STEPS[i]))return STEPS[i];return null;}
+function count(){return STEPS.filter(function(i){return seen.has(i);}).length;}
+function stateOf(id){return seen.has(id)?"seen":(id===nextUp()?"next":"");}
+function actOf(id){for(var i=0;i<ACTS.length;i++)if(ACTS[i].ids.indexOf(id)>=0)return ACTS[i];return null;}
+function label(id){var x=L(id);if(!x)return "";if(id===0)return CFG.welcomeLabel||"Bienvenida";var m=x.title.match(/^([^·]{1,14}) · /);if(isStep(id)&&m)return m[1];return x.kicker;}
+function ttl(x){return x.title.replace(/^[^·]{1,14} · /,"");}
+function ctaText(){var n=nextUp();if(n===0)return CFG.ctaStart||"Empezar con la bienvenida";if(n===null)return "Repasar "+(CFG.repaso||"el curso");var l=label(n);return "Seguir con "+(/^Clase/.test(l)?"la ":"el ")+l;}
+var CTX={ttl:ttl,L:L,LESSONS:LESSONS,N:N,STEPS:STEPS,ACTS:ACTS,TOOLS:TOOLS,GROUPS:GROUPS,seen:seen,stateOf:stateOf,nextUp:nextUp,count:count,esc:esc,label:label,ctaText:ctaText,cfg:CFG,reduce:reduce,actOf:actOf,open:function(id){openLesson(id);}};
+
+/* ---------- page shell ---------- */
+var mw=MENTOR.title.indexOf("mentor ")>=0||/mentor,/.test(MENTOR.title)?"mentor":"mentora";
+var SEARCH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>';
+var root=$("#root");
+root.innerHTML='<div class="wrap"><header class="hero" id="hero"></header>'+
+  '<div class="tabbar"><div class="tabs" role="tablist" aria-label="Secciones del curso">'+
+  '<button class="tab" role="tab" id="tabP" aria-selected="true" aria-controls="progView" type="button">'+esc(CFG.tabProgram||"Programa")+'</button>'+
+  '<button class="tab" role="tab" id="tabF" aria-selected="false" aria-controls="faqView" type="button">Preguntas</button>'+
+  '<button class="tab" role="tab" id="tabM" aria-selected="false" aria-controls="mentorView" type="button">Tu '+mw+'</button></div></div>'+
+  '<section id="progView" role="tabpanel" aria-labelledby="tabP"></section>'+
+  '<section id="faqView" role="tabpanel" aria-labelledby="tabF" hidden><div class="faqv"><div><h2 class="sec-h">Preguntas</h2><p class="sec-p">'+esc(CFG.faqLead||"Las dudas que más salen en el equipo, con la clase que las responde.")+'</p></div>'+
+  '<label class="sr" for="fq">Busca tu duda</label><div class="f-search">'+SEARCH+'<input id="fq" type="search" placeholder="'+esc(CFG.faqPh||"Busca tu duda")+'" autocomplete="off"></div><div class="f-chips" id="cats"></div><p class="f-count" id="fcount"></p><div id="faq"></div></div></section>'+
+  '<section id="mentorView" role="tabpanel" aria-labelledby="tabM" hidden></section>'+
+  (CFG.foot?'<footer class="foot">'+esc(CFG.foot)+"</footer>":"")+"</div>";
+
+function renderHero(){$("#hero").innerHTML=SKIN.hero(CTX);var c=$("#cta");if(c)c.onclick=function(){var g=nextUp();if(g===null){setTab("P");$("#progView").scrollIntoView({behavior:"smooth"});}else openLesson(g);};$$("#hero [data-open]").forEach(wireOpen);}
+function renderProgram(){$("#progView").innerHTML=SKIN.program(CTX);$$("#progView [data-open]").forEach(wireOpen);if(SKIN.mount)SKIN.mount(CTX,$("#progView"));}
+function wireOpen(b){b.onclick=function(){openLesson(+b.getAttribute("data-open"),b);};}
+function refresh(){renderHero();renderProgram();}
+
+/* tabs */
+var TABS={P:["#tabP","#progView"],F:["#tabF","#faqView"],M:["#tabM","#mentorView"]};
+function setTab(t){Object.keys(TABS).forEach(function(k){$(TABS[k][0]).setAttribute("aria-selected",String(k===t));$(TABS[k][1]).hidden=k!==t;});}
+Object.keys(TABS).forEach(function(k){$(TABS[k][0]).onclick=function(){setTab(k);};});
+
+/* ---------- faq ---------- */
+var norm=function(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");};
+var STOP=new Set("que como para por con los las del una uno unos mis tus sus mas pero porque cuando donde esta este eso hay tengo puedo debo".split(" "));
+function terms(s){return (norm(s).match(/[a-z0-9ñ]{3,}/g)||[]).filter(function(w){return !STOP.has(w);}).map(function(w){return w.length>5?w.slice(0,-1):w;});}
+var FAQ=[],CATS=[];
+FAQ_MD.split(/^## /m).filter(function(x){return x.trim();}).forEach(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});if(!h[0])return;CATS.push({cat:h[0],cls:+h[1]});
+  lines.slice(1).join("\n").split(/^### /m).filter(function(x){return x.trim();}).forEach(function(qb){var i=qb.indexOf("\n");if(i<0)return;FAQ.push({cat:h[0],cls:+h[1],q:qb.slice(0,i).trim(),a:qb.slice(i+1).trim()});});
+});
+FAQ.forEach(function(f){f.n=norm(f.q+" "+f.a);});
+function hl(html,ts){if(!ts.length)return html;return html.replace(/(>[^<]+<)/g,function(seg){var out=seg;ts.forEach(function(w){var re=new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").split("").map(function(ch){return ({a:"[aá]",e:"[eé]",i:"[ií]",o:"[oó]",u:"[uúü]",n:"[nñ]"})[ch]||ch;}).join("")+"[a-záéíóúñü]*)","gi");out=out.replace(re,"<mark>$1</mark>");});return out;});}
+var fq=$("#fq"),faqEl=$("#faq"),fcount=$("#fcount"),curCat=null;
+function isMentorCat(c){return /mentor/i.test(c);}
+function renderCats(){var c=$("#cats");c.innerHTML="";[{cat:"Todas"}].concat(CATS).forEach(function(x){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=x.cat;b.setAttribute("aria-pressed",String((x.cat==="Todas"&&!curCat)||x.cat===curCat));b.onclick=function(){curCat=x.cat==="Todas"?null:x.cat;renderCats();renderFaq();};c.appendChild(b);});}
+function renderFaq(){
+  var qtxt=fq.value.trim(),ts=Array.from(new Set(terms(qtxt))),items=FAQ.filter(function(f){return !curCat||f.cat===curCat;});
+  if(ts.length){items=items.map(function(f){return {f:f,s:ts.reduce(function(a,w){return a+(f.n.indexOf(w)>=0?(norm(f.q).indexOf(w)>=0?3:1):0);},0)};}).filter(function(x){return x.s>0;}).sort(function(a,b){return b.s-a.s;}).map(function(x){return x.f;});}
+  faqEl.innerHTML="";
+  var gs=ts.length?[[null,items]]:CATS.map(function(c){return [c.cat,items.filter(function(f){return f.cat===c.cat;})];}).filter(function(g){return g[1].length;});
+  gs.forEach(function(g){var d=document.createElement("div");d.className="fgroup";if(g[0]){var h=document.createElement("h3");h.textContent=g[0];d.appendChild(h);}
+    g[1].forEach(function(f,idx){var det=document.createElement("details");det.className="qa";var x=isMentorCat(f.cat)?null:L(f.cls);
+      det.innerHTML="<summary><span>"+hl(">"+esc(f.q)+"<",ts).slice(1,-1)+'</span><i aria-hidden="true">+</i></summary><div class="ans">'+hl(md(f.a),ts)+(x?'<button class="btn go" type="button">Ver: '+esc(x.title)+"</button>":(isMentorCat(f.cat)?'<button class="btn go" type="button">Ir a Tu '+mw+"</button>":""))+"</div>";
+      var go=det.querySelector(".go");if(go)go.onclick=function(){if(x)openLesson(f.cls);else setTab("M");};
+      if(ts.length&&idx===0)det.open=true;d.appendChild(det);});faqEl.appendChild(d);});
+  fcount.textContent=ts.length?(items.length?items.length+(items.length===1?" respuesta":" respuestas")+' para "'+qtxt+'"':'No hay una pregunta frecuente sobre "'+qtxt+'". Pregúntale a tu '+mw+"."):"";
+}
+var ft;fq.addEventListener("input",function(){clearTimeout(ft);ft=setTimeout(renderFaq,150);});
+
+/* ---------- mentor ---------- */
+(function(){
+  var M=MENTOR,h='<div class="m-col"><div><h2 class="sec-h">'+esc(M.title)+'</h2><p class="sec-p">'+esc(M.intro)+"</p></div>"+
+    '<ul class="m-can">'+M.can.map(function(c){return "<li><b>"+esc(c[0])+"</b><span>"+esc(c[1])+"</span></li>";}).join("")+"</ul>"+
+    '<div class="m-dl"><button type="button" class="btn solid" id="dlZip" hidden>Descargar '+(mw==="mentor"?"el mentor":"la mentora")+' (.zip)</button>'+(CFG.mdVar?'<button type="button" class="btn" id="dlMd" hidden>Descargar las instrucciones (.md)</button>':"")+'</div><p class="m-note" id="dlMsg">'+esc(M.notes[0]||"")+"</p></div>"+
+    '<div class="m-col"><h3 class="m-h">Cómo '+(mw==="mentor"?"instalarlo":"instalarla")+'</h3><ol class="m-steps">'+M.steps.map(function(s){return "<li><span>"+esc(s)+"</span></li>";}).join("")+"</ol>"+
+    '<div class="m-prompts">'+M.prompts.map(function(p,i){return '<div class="m-prompt"><q id="mp'+i+'">'+esc(p)+'</q><button type="button" class="btn" data-copy="mp'+i+'">Copiar</button></div>';}).join("")+"</div>"+
+    (M.notes[1]?'<p class="m-note">'+esc(M.notes[1])+"</p>":"")+(M.limits.length?'<div class="m-limits" aria-label="Límites">'+M.limits.map(function(s){return "<span>"+esc(s)+"</span>";}).join("")+"</div>":"")+"</div>";
+  $("#mentorView").innerHTML='<div class="mentorv">'+h+"</div>";
+  $$("[data-copy]").forEach(function(btn){btn.addEventListener("click",function(){var el=document.getElementById(btn.getAttribute("data-copy"));function selt(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="Seleccionado";}
+    try{navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent="Copiado";setTimeout(function(){btn.textContent="Copiar";},1600);},selt);}catch(e){selt();}});});
+  if(window.claude&&window.claude.use){window.claude.use("downloads").then(function(dl){
+    var msg=$("#dlMsg"),bz=$("#dlZip"),bm=$("#dlMd");if(!dl)return;
+    bz.hidden=false;if(bm)bm.hidden=false;msg.textContent=CFG.mdVar?"El .zip es el que se sube a Claude. El .md es el texto de las instrucciones, por si quieres leerlo.":"El .zip es el que se sube a Claude.";
+    function bytes(b64){var s=atob(b64),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u;}
+    function save(name,data){dl.save({filename:name,data:data}).then(function(){msg.textContent="Listo: "+name+" descargado.";},function(e){var c=e&&e.code;
+      if(c==="declined")msg.textContent="Descarga cancelada.";else if(c==="rate_limited")msg.textContent="Ya hay una descarga abierta. Termínala e intenta de nuevo.";else{msg.textContent=M.notes[0]||"Aquí no se puede descargar.";bz.hidden=true;if(bm)bm.hidden=true;}});}
+    bz.onclick=function(){save(CFG.zipName,bytes(window[CFG.zipVar]));};if(bm)bm.onclick=function(){save(CFG.mdName,bytes(window[CFG.mdVar]));};
+  });}
+})();
+
+if(!(window.claude&&window.claude.use)&&/^https?:/.test(location.protocol)){var a=$("#dlZip"),b=$("#dlMd");a.hidden=false;a.onclick=function(){location.href=CFG.zipName;};if(b){b.hidden=false;b.onclick=function(){location.href=CFG.mdName;};}$("#dlMsg").textContent="El .zip es el que se sube a Claude. El .md es el texto de las instrucciones, por si quieres leerlo.";}
+/* ---------- reader sheet ---------- */
+var cur=null;
+function neighbours(id){var k=ORDER.indexOf(id);return {prev:ORDER[k-1],next:ORDER[k+1]};}
+function where(x){if(x.id===0)return CFG.welcomeLabel||"Bienvenida";if(isStep(x.id)){var a=actOf(x.id);return label(x.id)+" de "+N+(a&&a.name!=="Clases"?", "+a.name:"");}return x.kicker;}
+function sheetHTML(x){
+  var b=lessonBody(x.body),nb=neighbours(x.id),s=seen.has(x.id),nx=nb.next!==undefined?L(nb.next):null;
+  var num=isStep(x.id)?(SKIN.readerNum?SKIN.readerNum(x,CTX):String(x.id)):null;
+  var turn=b.tasks.length?'<section class="turn"><h3>Tu turno</h3>'+b.tasks.map(function(t){return '<div class="task"><h4>'+esc(t.title)+"</h4>"+t.html+"</div>";}).join("")+
+    '<label class="nb-l" for="nb">Tu cuaderno</label><textarea id="nb" placeholder="Escribe aquí tu ejercicio. Se guarda en este dispositivo."></textarea><span class="saved" id="nbs"></span></section>':"";
+  return '<div class="grab" id="grab"><span class="where">'+esc(where(x))+'</span><button type="button" class="x" id="closeB">Cerrar</button></div><div class="scroll" id="scroll">'+
+    '<div class="r-head'+(num?"":" nonum")+'">'+(num?'<span class="r-num" aria-hidden="true">'+esc(num)+"</span>":"")+'<p class="r-k">'+esc(isStep(x.id)?label(x.id):(x.id===0?(CFG.welcomeLabel||"Bienvenida"):x.kicker))+'</p><h1 class="r-title" id="rTitle">'+esc(ttl(x))+'</h1></div><p class="r-topic">'+esc(x.topic)+'</p><p class="r-intro">'+inline(esc(x.intro))+'</p><div class="lesson-body">'+b.html+"</div>"+turn+
+    '<div class="r-foot"><div class="nav"><button class="btn" type="button" id="prevB" '+(nb.prev===undefined?"disabled":"")+'>Anterior</button><button class="btn solid" type="button" id="nextB" '+(nb.next===undefined?"disabled":"")+">Siguiente</button></div>"+
+    (isStep(x.id)?'<button class="btn'+(s?" done":"")+'" type="button" id="seenB" aria-pressed="'+s+'">'+(s?"Completada ✓":"Marcar como completada")+"</button>":"")+
+    (nx?'<p class="r-next">Sigue: '+esc(ttl(nx))+"</p>":"")+"</div></div>";
+}
+function openLesson(id,trigger){
+  var x=L(id);if(!x)return;
+  var fresh=!cur;
+  if(fresh){
+    var scrim=document.createElement("div");scrim.className="scrim";var sh=document.createElement("div");sh.className="sheet";sh.setAttribute("role","dialog");sh.setAttribute("aria-modal","true");sh.setAttribute("aria-labelledby","rTitle");
+    document.body.appendChild(scrim);document.body.appendChild(sh);document.body.classList.add("sheet-open");
+    cur={scrim:scrim,sh:sh,trigger:trigger||document.activeElement};
+    scrim.onclick=closeLesson;
+  }
+  cur.id=id;cur.sh.innerHTML=sheetHTML(x);
+  var sh=cur.sh;
+  if(fresh)requestAnimationFrame(function(){requestAnimationFrame(function(){sh.classList.add("on");cur&&cur.scrim.classList.add("on");});});
+  $("#closeB",sh).onclick=closeLesson;var rt=$("#rTitle",sh);rt.setAttribute("tabindex","-1");rt.focus({preventScroll:true});
+  var nb=neighbours(id);
+  $("#prevB",sh).onclick=function(){openLesson(nb.prev);};
+  $("#nextB",sh).onclick=function(){if((isStep(id)||id===0)&&!seen.has(id)){seen.add(id);saveSeen();refresh();}openLesson(nb.next);};
+  var sb=$("#seenB",sh);if(sb)sb.onclick=function(){seen.has(id)?seen.delete(id):seen.add(id);saveSeen();var on=seen.has(id);sb.textContent=on?"Completada ✓":"Marcar como completada";sb.classList.toggle("done",on);sb.setAttribute("aria-pressed",String(on));refresh();};
+  var ta=$("#nb",sh);if(ta){ta.value=notes[id]||"";var t;ta.oninput=function(){clearTimeout(t);t=setTimeout(function(){notes[id]=ta.value;store.set(CFG.key+"-notes",notes);$("#nbs",sh).textContent="Guardado en este dispositivo";},400);};}
+  $("#scroll",sh).scrollTop=0;
+  try{history.replaceState(null,"","#clase-"+id);}catch(e){}
+  var g=$("#grab",sh),y0=null,dy=0,t0=0;
+  g.addEventListener("pointerdown",function(e){if(e.target.closest("button"))return;y0=e.clientY;dy=0;t0=performance.now();sh.classList.add("drag");try{g.setPointerCapture(e.pointerId);}catch(_){}});
+  g.addEventListener("pointermove",function(e){if(y0==null)return;dy=e.clientY-y0;sh.style.transform="translateY("+(dy<0?dy*.15:dy)+"px)";});
+  function end(){if(y0==null)return;var v=dy/Math.max(1,performance.now()-t0);sh.classList.remove("drag");sh.style.transform="";y0=null;if(dy>140||v>.5)closeLesson();}
+  g.addEventListener("pointerup",end);g.addEventListener("pointercancel",end);
+}
+function closeLesson(){
+  if(!cur)return;var c=cur;cur=null;document.body.classList.remove("sheet-open");
+  c.sh.classList.remove("on");c.scrim.classList.remove("on");setTimeout(function(){c.sh.remove();c.scrim.remove();},reduce?0:500);
+  try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}
+  var t=document.querySelector('#progView [data-open="'+c.id+'"]')||c.trigger;if(t&&t.focus)t.focus({preventScroll:false});
+}
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&cur)closeLesson();});
+
+/* ---------- boot ---------- */
+renderCats();renderFaq();refresh();
+var hm=(location.hash||"").replace("#",""),hh=hm.match(/clase-(\d+)/);
+if(hh&&L(+hh[1]))openLesson(+hh[1]);else if(hm==="mentor"||hm==="mentora")setTab("M");else if(hm==="preguntas")setTab("F");
+})();
+
+</script>
+</body></html>
