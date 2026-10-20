@@ -1,0 +1,433 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><title>A la vista</title><meta name="description" content="Diez clases cortas para dejar de esconder lo que haces: compartir tu proceso, contar tu historia y enseñar lo que sabes, sin sentir que te vendes a gritos."><meta property="og:title" content="A la vista"><meta property="og:description" content="Diez clases para mostrar tu trabajo sin sentir que te vendes a gritos."><style>:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body>
+<title>A la vista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@400;900&family=IBM+Plex+Mono:wght@400;600&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;0,8..60,700;1,8..60,600&display=swap">
+<style>
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body)}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.wrap{max-width:var(--maxw,1040px);margin:0 auto;padding-inline:16px;padding-block:0 64px;display:flex;flex-direction:column;gap:var(--gap,28px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.press{transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.press:active{transform:scale(.97)}
+
+/* tabs */
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;justify-content:center;margin-inline:-16px;padding:10px 16px}
+.tabbar::before{content:"";position:absolute;inset:0;background:var(--bg);opacity:.94;z-index:-1}
+.tabs{display:flex;gap:4px;max-width:100%;overflow-x:auto;padding:4px;border-radius:var(--tabs-r,999px);background:var(--surface);border:1px solid var(--line)}
+.tab{white-space:nowrap;border:0;background:transparent;color:var(--muted);font-weight:600;font-size:15px;padding:10px 18px;border-radius:var(--tabs-r,999px);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+
+/* shared buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font-weight:600;font-size:15px;padding:12px 18px;border-radius:var(--btn-r,999px);cursor:pointer;text-decoration:none;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.35;cursor:default}
+
+/* section heads (faq + mentor) */
+.sec-h{margin:0;font:var(--h2-font);letter-spacing:var(--h2-track,-.01em);text-wrap:balance}
+.sec-p{margin:8px 0 0;color:var(--muted);max-width:56ch}
+
+/* faq */
+.faqv{display:flex;flex-direction:column;gap:16px;max-width:780px}
+.f-search{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--field-r,999px);padding:0 18px}
+.f-search svg{width:20px;height:20px;flex:none;color:var(--muted)}
+.f-search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:17px/1.3 var(--body);padding:14px 0}
+.f-search input:focus{outline:none}
+.f-search:focus-within{border-color:var(--accent)}
+.f-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.f-count{margin:0;color:var(--muted);font-size:14px}
+.fgroup h3{margin:18px 0 8px;font:var(--h3-font)}
+details.qa{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);margin-bottom:8px}
+details.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 18px;font-weight:600;font-size:16.5px;line-height:1.35}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa summary i{flex:none;font-style:normal;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--ink);transition:transform .2s cubic-bezier(.23,1,.32,1)}
+details.qa[open] summary i{transform:rotate(45deg);background:var(--accent);color:var(--accent-ink)}
+.ans{padding:0 18px 18px}
+.ans p{margin:0 0 .7em;max-width:64ch}.ans p:last-child{margin:0}
+.ans ul,.ans ol{margin:0 0 .8em;padding-left:1.3em}
+.ans .go{margin-top:10px}
+mark{background:var(--mark,rgba(255,200,0,.35));color:inherit;border-radius:3px;padding:0 2px}
+
+/* mentor */
+.mentorv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 40px;align-items:start}
+@media (max-width:780px){.mentorv{grid-template-columns:minmax(0,1fr)}}
+.m-col{display:flex;flex-direction:column;gap:18px;min-width:0}
+.m-can{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.m-can li{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);padding:14px 16px}
+.m-can b{display:block;font-weight:700}
+.m-can span{color:var(--muted);font-size:15px}
+.m-dl{display:flex;flex-wrap:wrap;gap:10px}
+.m-note{margin:0;color:var(--muted);font-size:14px}
+.m-h{margin:0;font:var(--h3-font)}
+.m-steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.m-steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:baseline}
+.m-steps li::before{counter-increment:s;content:counter(s);font:var(--num-font,700 22px/1 var(--display));color:var(--accent-text,var(--accent))}
+.m-prompts{display:grid;gap:8px}
+.m-prompt{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,14px);padding:10px 12px 10px 16px}
+.m-prompt q{quotes:none;min-width:0;font-size:15.5px}
+.m-prompt .btn{padding:8px 14px;font-size:13.5px;flex:none}
+.m-limits{display:flex;flex-wrap:wrap;gap:8px}
+.m-limits span{font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted)}
+footer.foot{text-align:center;font-size:14px;color:var(--muted);padding-top:20px}
+
+/* ---------- reader sheet (the lights come on) ---------- */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);opacity:0;transition:opacity .45s cubic-bezier(.32,.72,0,1)}
+.scrim.on{opacity:1}
+.sheet{position:fixed;z-index:41;left:0;right:0;bottom:0;top:calc(12px + env(safe-area-inset-top,0px));margin:0 auto;max-width:800px;background:var(--r-bg);color:var(--r-ink);border-radius:22px 22px 0 0;transform:translateY(100%);transition:transform .5s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,.35);font-family:var(--r-body,var(--body))}
+.sheet.on{transform:translateY(0)}
+.sheet.drag{transition:none}
+.grab{flex:none;touch-action:none;cursor:grab;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:10px 14px 10px 20px;border-bottom:1px solid var(--r-line);position:relative}
+.grab::before{content:"";position:absolute;top:6px;left:50%;width:40px;height:5px;margin-left:-20px;border-radius:3px;background:var(--r-line)}
+.grab .where{font-size:14px;font-weight:600;color:var(--r-muted);padding-top:8px}
+.grab .x{border:1px solid var(--r-line);background:transparent;color:var(--r-ink);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer;margin-top:6px}
+.sheet :focus-visible{outline:2px solid var(--r-accent);outline-offset:3px}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:clamp(22px,5vw,48px) clamp(18px,5vw,56px) calc(56px + env(safe-area-inset-bottom,0px))}
+.r-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;align-items:end;margin-bottom:18px}
+.r-head.nonum{grid-template-columns:minmax(0,1fr)}
+.r-num{grid-row:span 2;font:var(--r-num-font,800 96px/.8 var(--display));color:var(--r-accent);font-variant-numeric:tabular-nums}
+.r-k{margin:0;font-size:14.5px;font-weight:600;color:var(--r-accent)}
+.r-title{margin:0;font:var(--r-title-font,700 clamp(32px,6.5vw,48px)/1 var(--display));letter-spacing:var(--r-title-track,-.01em);text-wrap:balance}
+.r-topic{margin:0 0 18px;font-size:20px;line-height:1.35;color:var(--r-muted)}
+.r-intro{font-size:20px;line-height:1.5;margin:0 0 26px;padding-bottom:24px;border-bottom:1px solid var(--r-line)}
+.lesson-body p,.lesson-body li{max-width:66ch}
+.lesson-body p{margin:0 0 .9em}
+.lesson-body ul,.lesson-body ol{margin:0 0 1em;padding-left:1.3em}
+.lesson-body li{margin:.4em 0}
+.lesson-body li::marker{color:var(--r-accent);font-weight:700}
+.lesson-body strong{font-weight:700}
+.lesson-body h3{font:var(--r-h3-font,700 26px/1.15 var(--display));margin:36px 0 10px;text-wrap:balance}
+.callout{margin:28px 0;padding:22px 24px;border-radius:var(--card-r,18px);background:var(--r-callout-bg);color:var(--r-callout-ink)}
+.callout p{margin:0;font:var(--r-callout-font,700 clamp(22px,4.6vw,28px)/1.2 var(--display));max-width:34ch;text-wrap:balance}
+.turn{margin-top:40px;padding-top:26px;border-top:2px solid var(--r-ink);display:grid;gap:12px}
+.turn h3{margin:0;font:var(--r-h3-font,700 26px/1.15 var(--display))}
+.task{background:var(--r-surface);border:1px solid var(--r-line);border-radius:var(--card-r,16px);padding:16px 18px}
+.task h4{margin:0 0 6px;font-size:17px}
+.task p:last-child,.task ul:last-child,.task ol:last-child{margin-bottom:0}
+.nb-l{font-weight:600;font-size:14px;color:var(--r-muted);margin-top:6px}
+.sheet textarea{width:100%;min-height:150px;resize:vertical;font:16px/1.55 var(--r-body,var(--body));color:var(--r-ink);background:var(--r-surface);border:1px solid var(--r-line);border-radius:12px;padding:14px 16px}
+.saved{font-size:13px;color:var(--r-muted);min-height:1.2em}
+.r-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:34px;padding-top:22px;border-top:1px solid var(--r-line)}
+.r-foot .nav{display:flex;gap:8px;flex-wrap:wrap}
+.sheet .btn{border-color:var(--r-line);color:var(--r-ink)}
+.sheet .btn.solid{background:var(--r-ink);border-color:var(--r-ink);color:var(--r-bg)}
+.sheet .btn.done{background:var(--r-accent);border-color:var(--r-accent);color:var(--r-accent-ink,var(--r-bg))}
+.r-next{width:100%;margin:0;font-size:14px;color:var(--r-muted)}
+body.sheet-open{overflow:hidden}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.mentorv .sec-h{font-size:clamp(28px,6.4vw,46px)}
+
+/* A la vista: the cover of the book is white paper and fat hand-cut black capitals. We keep that, plus one red "REC" light that marks where you are: the class you are recording now. */
+:root{
+  color-scheme:light;
+  --bg:#FBFAF6; --surface:#FFFFFF; --ink:#111110; --muted:#5C5A55; --line:#DEDBD2; --accent:#111110; --accent-ink:#FBFAF6; --rec:#E3342A; --rec-ink:#FFFFFF; --focus:#E3342A; --mark:#FFD9D5;
+  --display:"Londrina Solid","Impact","Arial Black",sans-serif; --body:"Source Serif 4",Georgia,"Times New Roman",serif; --mono:"IBM Plex Mono","Courier New",monospace;
+  --h2-font:900 clamp(46px,9.5vw,76px)/.92 var(--display); --h2-track:.005em; --h3-font:700 24px/1.15 var(--body); --num-font:900 28px/1 var(--display); --accent-text:var(--ink);
+  --r-bg:#FBFAF6; --r-surface:#FFFFFF; --r-ink:#111110; --r-muted:#5C5A55; --r-line:#E2DFD6; --r-accent:#111110; --r-accent-ink:#FBFAF6; --r-callout-bg:#111110; --r-callout-ink:#FBFAF6;
+  --r-num-font:900 clamp(100px,23vw,156px)/.8 var(--display); --r-title-font:900 clamp(38px,7.6vw,60px)/.98 var(--display); --r-title-track:.005em; --r-h3-font:700 25px/1.15 var(--body); --r-callout-font:italic 600 clamp(23px,4.8vw,30px)/1.25 var(--body);
+  --card-r:3px; --tabs-r:3px; --btn-r:3px; --field-r:3px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#121211; --surface:#1C1C1A; --ink:#F2F0E9; --muted:#A8A59C; --line:#34332F; --accent:#F2F0E9; --accent-ink:#121211; --rec:#FF4F43; --rec-ink:#121211; --focus:#FF6F65; --mark:#6B1E19;
+  --r-bg:#161615; --r-surface:#20201E; --r-ink:#F2F0E9; --r-muted:#A8A59C; --r-line:#34332F; --r-accent:#F2F0E9; --r-accent-ink:#121211; --r-callout-bg:#F2F0E9; --r-callout-ink:#121211;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#121211; --surface:#1C1C1A; --ink:#F2F0E9; --muted:#A8A59C; --line:#34332F; --accent:#F2F0E9; --accent-ink:#121211; --rec:#FF4F43; --rec-ink:#121211; --focus:#FF6F65; --mark:#6B1E19;
+  --r-bg:#161615; --r-surface:#20201E; --r-ink:#F2F0E9; --r-muted:#A8A59C; --r-line:#34332F; --r-accent:#F2F0E9; --r-accent-ink:#121211; --r-callout-bg:#F2F0E9; --r-callout-ink:#121211;
+}
+body{font-size:18px}
+.tab{font:600 14px/1 var(--mono);padding:11px 16px;letter-spacing:.01em}
+.chip,.m-limits span{border-radius:3px;font-family:var(--mono);font-size:13.5px}
+.r-k,.grab .where,.f-count,.m-note,.saved,.nb-l{font-family:var(--mono)}
+.r-k{color:var(--r-muted)}
+.lesson-body li::marker{color:var(--r-ink)}
+.task h4{font:700 18px/1.25 var(--body)}
+.m-steps li::before{color:var(--ink)}
+.m-can b{font:700 19px/1.2 var(--body)}
+details.qa summary{font:600 18px/1.3 var(--body)}
+.callout{border-radius:2px}
+.btn{font-family:var(--mono);font-weight:600}
+.btn.solid{box-shadow:4px 4px 0 var(--rec)}
+.btn.solid:active{box-shadow:2px 2px 0 var(--rec)}
+
+/* hero */
+.v-hero{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:28px 56px;align-items:center;padding-block:34px 8px}
+@media (max-width:820px){.v-hero{grid-template-columns:minmax(0,1fr);padding-top:18px;gap:24px}}
+.v-left{min-width:0}
+.v-word{margin:0;font:900 clamp(78px,19vw,150px)/.8 var(--display);letter-spacing:.005em;text-transform:uppercase;color:var(--ink)}
+.v-word span{display:block}
+.v-word .a{transform:rotate(-2deg);transform-origin:0 100%}
+.v-word .b{margin-left:.14em;transform:rotate(1deg)}
+.v-word .c{transform:rotate(-1deg)}
+.v-word span.bang{display:inline;color:var(--rec)}
+.v-sub{margin:16px 0 0;font:600 14.5px/1.4 var(--mono);color:var(--muted)}
+.v-ask{display:inline-flex;align-items:center;gap:10px;margin:18px 0 0;padding:10px 14px;border:2px solid var(--ink);background:var(--surface);font:600 15px/1.3 var(--mono);transform:rotate(-1deg)}
+.rec-dot{flex:none;width:11px;height:11px;border-radius:50%;background:var(--rec)}
+@media (prefers-reduced-motion:no-preference){.rec-dot{animation:recb 1.6s steps(1,end) infinite}@keyframes recb{50%{opacity:.25}}}
+.v-copy{display:flex;flex-direction:column;gap:18px;max-width:32rem}
+.v-pitch{margin:0;font:400 20px/1.5 var(--body);text-wrap:pretty}
+.v-strip{display:flex;flex-direction:column;gap:9px}
+.v-strip ol{list-style:none;margin:0;padding:8px;display:grid;grid-template-columns:repeat(10,minmax(0,1fr));gap:5px;background:#0E0E0D;border:1px solid var(--line);border-radius:3px}
+.v-strip li{aspect-ratio:3/4;border-radius:2px;display:grid;place-items:center;font:900 15px/1 var(--display);background:#3A3936;color:#8D8A82;position:relative}
+.v-strip li.seen{background:#F2F0E9;color:#111110}
+.v-strip li.next{background:var(--rec);color:var(--rec-ink)}
+.v-strip li.next::after{content:"";position:absolute;top:4px;right:4px;width:5px;height:5px;border-radius:50%;background:currentColor}
+.v-strip p{margin:0;font:400 14.5px/1.4 var(--mono);color:var(--muted)}
+.v-strip p b{color:var(--ink)}
+.v-cta{display:flex;gap:12px;flex-wrap:wrap}
+
+/* route */
+.v-route{display:grid;gap:22px}
+.v-welcome{display:flex;justify-content:space-between;gap:16px;align-items:center;width:100%;text-align:left;background:var(--surface);border:2px solid var(--ink);border-radius:var(--card-r);padding:18px 20px;cursor:pointer;color:var(--ink)}
+.v-welcome b{display:block;font:900 32px/1 var(--display)}
+.v-welcome small{display:block;margin-top:4px;color:var(--muted);font-size:16px}
+.v-welcome em{font:600 13.5px/1.2 var(--mono);font-style:normal;white-space:nowrap}
+.v-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:3px solid var(--ink)}
+@media (max-width:720px){.v-list{grid-template-columns:minmax(0,1fr)}}
+.v-row{display:grid;grid-template-columns:54px minmax(0,1fr) auto;gap:2px 12px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:15px 0;cursor:pointer;color:var(--ink)}
+.v-row .n{font:900 44px/1 var(--display);color:var(--muted);opacity:.5;font-variant-numeric:tabular-nums}
+.v-row b{display:block;font:700 21px/1.25 var(--body)}
+.v-row small{display:block;color:var(--muted);font-size:16px;margin-top:2px}
+.v-row i{font:600 12.5px/1 var(--mono);font-style:normal;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+.v-row.seen .n{color:var(--ink);opacity:1}
+.v-row.seen i{color:var(--muted)}
+.v-row.next .n{color:var(--rec);opacity:1}
+.v-row.next i{color:var(--rec)}
+@media (hover:hover){.v-row:hover b{text-decoration:underline;text-decoration-thickness:2px;text-underline-offset:4px}}
+.v-h{margin:20px 0 4px;font:900 36px/1 var(--display)}
+.v-tools{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+@media (max-width:720px){.v-tools{grid-template-columns:minmax(0,1fr)}}
+.v-tool{text-align:left;background:var(--surface);border:2px solid var(--ink);border-radius:3px;padding:0 0 18px;cursor:pointer;color:var(--ink);overflow:hidden;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.v-tool .lab{display:block;background:var(--ink);color:var(--bg);font:600 12px/1 var(--mono);letter-spacing:.06em;padding:8px 16px;text-transform:uppercase}
+.v-tool b{display:block;margin:14px 16px 0;font:900 28px/1 var(--display)}
+.v-tool small{display:block;margin:6px 16px 0;color:var(--muted);font-size:16px}
+@media (hover:hover){.v-tool:hover{transform:translate(-2px,-2px);box-shadow:4px 4px 0 var(--rec)}}
+.v-source{margin:6px 0 0;font:400 13.5px/1.5 var(--mono);color:var(--muted)}
+
+</style>
+<div id="root"></div>
+<script>
+var LESSONS_MD="@@ 0 | Empieza aquí | Bienvenida a A la vista | Cómo usar el curso\nEste curso es para las que hacen buen trabajo todos los días y casi nadie se entera. Aquí aprendes a dejarlo a la vista sin sentir que te estás vendiendo a gritos.\n\n## La idea en una frase\nNo se trata de promocionarte. Se trata de **dejar que te encuentren**. La gente no llega a ti por un anuncio; llega porque un día vio cómo haces lo que haces, le gustó y se quedó. Para eso, lo que haces tiene que estar donde se pueda ver.\n\nMucha gente piensa que primero hay que ser muy buena y después, con calma, mostrarse. Este curso propone lo contrario: mostrarte **mientras** te vuelves buena. Ir dejando migajas de tu trabajo, de lo que aprendes y de lo que te inspira, todos los días, para que las personas a las que les interesa lo mismo te encuentren.\n\n> No tienes que gritar. Tienes que estar a la vista.\n\n## Si ya tomaste Botín\nEste curso es su hermano. Botín era sobre aprender de lo que otras hacen: mirar, juntar, mezclar. A la vista es la otra mitad: **ahora te toca a ti ser la que inspira**. Si no lo tomaste, no pasa nada; este curso se entiende solo.\n\n## Cómo está armado\n- **Diez clases cortas.** Cada una tiene una idea, ejemplos de contenido y de venta directa, y un bloque de \"Tu turno\" con preguntas, un ejercicio, una tarea de la semana y algo para compartir en el grupo.\n- **Tres herramientas.** El envío del día, tu historia y tu bio, y un plan de 30 días para practicar todo junto.\n- **Un cuaderno por clase.** Lo que escribes se guarda en tu celular.\n\nLa primera vez, ve en orden. Después regresa a la clase que necesites.\n\n## Lo que necesitas\n- Tu celular, que ya es un estudio completo.\n- Cinco a quince minutos al día.\n- Ganas de enseñar el \"cómo\", no solo el resultado.\n\n## 🪞 Para pensar\n¿Qué haces bien en tu negocio que casi nadie ha visto? Piensa en lo que pasa antes de la foto bonita.\n\n## ✍️ Escribe\nTermina esta frase en tu cuaderno: \"Me da pena mostrarme porque…\". No la corrijas. Al final del curso la vas a volver a leer.\n\n## 💬 Para compartir en el grupo\nCuenta en una línea qué te gustaría que la gente supiera de tu trabajo y todavía no sabe.\n\n@@ 1 | Clase 1 | No tienes que ser genio | Tu escena y tu espíritu de aficionada\nHay un mito que nos paraliza: que lo creativo es cosa de unas cuantas personas brillantes que trabajan solas y un día sorprenden al mundo.\n\n## El mito de la genia solitaria\nNos contaron que las grandes ideas le caen del cielo a gente especial, que se encierra a trabajar y sale con una obra perfecta. Si crees eso, lo lógico es quedarte calladita mirando a las demás.\n\nLa realidad casi siempre es otra. Detrás de las personas que admiramos hubo **una escena**: un grupo de gente que se veía el trabajo, se copiaba, se pasaba ideas, se echaba porras y se corregía. Nadie crea en el vacío.\n\n## Tu escena\nUna escena no depende de qué tan talentosa seas, sino de **lo que aportas**: las ideas que compartes, las conversaciones que empiezas, las conexiones que haces entre personas. Eso cambia la pregunta. Ya no es \"¿qué pueden hacer por mí?\", sino \"¿qué puedo aportar yo?\".\n\nHoy tu escena está en tu celular: el grupo de tu equipo, las cuentas de maquillaje que sigues, los comentarios donde se ayudan entre todas. No hay que pedir permiso para entrar.\n\n## Aficionada con orgullo\n\"Aficionada\" viene de afición, de amor por algo. La aficionada hace las cosas por gusto, sin la presión de ser experta, y por eso se atreve a probar, a equivocarse en público y a compartir lo que va aprendiendo.\n\nEsa es tu ventaja. Una clienta que apenas está aprendiendo a maquillarse entiende mejor a otra que apenas está aprendiendo que a una maquillista con veinte años de oficio. **Tú recuerdas lo que cuesta empezar.** La experta ya lo olvidó.\n\n> Hacer algo, aunque sea chiquito y no perfecto, siempre le gana a no hacer nada.\n\n## Tu voz aparece cuando la usas\n\"Encuentra tu voz\" suena a algo que se busca. En realidad la voz se encuentra hablando. Habla de lo que te gusta, todos los días, y tu voz va a ir saliendo sola.\n\nY si te da miedo, recuerda que el tiempo no es infinito. No se trata de ponerse trágicas, sino de no guardar para \"algún día\" lo que podrías compartir hoy.\n\n## 🪞 Para pensar\n¿Qué estás aprendiendo ahorita? ¿Qué te emociona aunque todavía no lo domines?\n\n## ✍️ Ejercicio\n1. Escribe tres cosas que estás aprendiendo (un producto, una técnica, una forma de grabar, de vender o de organizarte).\n2. Elige una y escribe qué has descubierto en las últimas dos semanas.\n3. Escribe a quién de tu escena le serviría saberlo.\n\n## ✅ Tu tarea de la semana\nPublica algo que estás aprendiendo **mientras lo aprendes**. Empieza con \"Estoy aprendiendo a…\" y cuenta lo que llevas.\n\n## 💬 Para compartir en el grupo\nComparte qué estás aprendiendo y pregunta quién más lo está aprendiendo contigo.\n\n@@ 2 | Clase 2 | Piensa en proceso, no en producto | Vuélvete documentalista de lo que haces\nTu trabajo tiene dos partes: lo que entregas y todo lo que haces para llegar ahí. La segunda es la que más acerca a la gente.\n\n## El sustantivo y el verbo\nHay \"trabajo\" el resultado (el maquillaje terminado, el pedido entregado, el video publicado) y hay \"trabajar\", el verbo: elegir tonos, probar, equivocarte, armar la caja, aprender a usar una app. Nos enseñaron a enseñar solo el resultado y esconder el resto.\n\nPero a la gente le interesa la gente. Quiere ver cómo se hacen las cosas, quién está detrás, cómo es un día normal. Cuando muestras tu proceso, la clienta deja de ver un producto y empieza a ver a una persona en la que puede confiar.\n\n> A nadie le interesa tu currículum. Les interesa ver lo que haces con tus propias manos.\n\n## Lo cotidiano también se ve bien\nPiensa en alguien con un trabajo que parece lejano, como una astronauta: lo que más engancha a la gente no son los grandes momentos, sino verla lavarse los dientes, dormir o arreglar algo en la nave. Lo cotidiano de un trabajo ajeno es fascinante.\n\nTu día también lo es para alguien. Cómo organizas el inventario, cómo eliges qué producto recomendar, cómo te arreglas en diez minutos antes de una junta. **Lo que a ti te parece aburrido, a otra le parece interesante.**\n\n## Vuélvete documentalista\nAntes de compartir, junta material. No para hacer arte, solo para llevar registro:\n- Toma fotos de tu trabajo en distintas etapas: el antes, el durante y el después.\n- Graba pedacitos de ti trabajando, aunque no sepas si los vas a usar.\n- Lleva una libreta o una nota de voz con lo que piensas, lo que pruebas y lo que aprendes.\n- Guarda capturas de lo que dicen tus clientas (con su permiso si lo vas a mostrar).\n\nDocumentar tiene premio aunque no publiques nada: vas a ver tu avance con claridad. Y cuando quieras compartir, vas a tener de dónde escoger.\n\n## 🪞 Para pensar\n¿Qué parte de tu trabajo nunca enseñas porque te parece \"poco interesante\"?\n\n## ✍️ Ejercicio\n1. Elige una tarea que repites cada semana (armar pedidos, probar un tono, grabar un video, preparar tu día).\n2. Escribe sus pasos, del primero al último.\n3. Marca en qué paso podrías tomar una foto o grabar diez segundos.\n\n## ✅ Tu tarea de la semana\nDocumenta esa tarea completa una vez: fotos o videos de cada paso. No tienes que publicarlo todavía; guárdalo en un álbum que se llame \"proceso\".\n\n## 💬 Para compartir en el grupo\nComparte una foto del \"durante\", no del resultado, y cuenta qué estabas haciendo.\n\n@@ 3 | Clase 3 | Comparte algo pequeño cada día | El envío del día y la prueba del ¿y qué?\nEl éxito de la noche a la mañana casi nunca existe. Lo que sí existe es poquito, todos los días, durante mucho tiempo.\n\n## Piensa en días\nConstruir algo grande toma años, pero no tienes que vivir los años de golpe. Olvídate del año y del mes. **Piensa en hoy.** El día es una unidad que sí se puede manejar: sale el sol, trabajas, se mete el sol.\n\n## El envío del día\nUna vez al día, después de trabajar, regresa a lo que documentaste y escoge **un pedacito** para compartir. Qué compartir depende de en qué parte del proceso vas:\n- **Al empezar algo:** lo que te inspira, de dónde salió la idea.\n- **A la mitad:** cómo lo estás haciendo, lo que salió mal, lo que vas probando.\n- **Al terminar:** el resultado, lo que quedó fuera y lo que aprendiste.\n- **Después:** cómo le fue, qué dijeron tus clientas, cómo lo usan.\n\nTu envío del día puede ser una historia, un post, un video corto o un mensaje a tu lista. La forma no importa. Elige uno o dos lugares donde esté tu gente y no te preocupes por estar en todos.\n\n## La mejor pregunta para publicar\nMuchas apps te preguntan \"¿qué estás pensando?\" o \"¿cómo te sientes?\". Cámbiala por esta: **\"¿en qué estás trabajando?\"**. Con esa pregunta en mente, vas a enseñar tu trabajo y no tu desayuno.\n\nY no tiene que salir perfecto. La mayor parte de lo que hacemos no es genial, y no siempre sabemos qué es bueno hasta que otras personas lo ven y reaccionan.\n\n## \"No tengo tiempo\"\nEl tiempo se encuentra como el cambio suelto: en los rincones. En la fila del súper, mientras se calienta la comida, cuando las niñas ya se durmieron. Y si compartir empieza a comerse tu trabajo, pon un temporizador de 20 o 30 minutos y, cuando suene, regresa a lo tuyo.\n\n## La prueba del ¿y qué?\nCompartir no es contarlo todo. Lo que subes es público y puede llegar a cualquiera, así que publica como si lo fuera a ver tu jefa, tu suegra o tu mejor clienta. Antes de subir algo, pregúntate:\n- ¿Le sirve a alguien?\n- ¿Entretiene o enseña algo?\n- ¿Me sentiría cómoda si lo viera cualquier persona?\n\nSi dudas, déjalo un día en borradores y míralo mañana con ojos frescos. Guardar algo para después no tiene nada de malo.\n\n## El río y la repisa\nHay dos tipos de contenido. **El río** son tus historias y posts del día: lo que le recuerda a la gente que existes. **La repisa** es lo que dura: una guía, un video tutorial, un post fijado que sigue sirviendo en dos años.\n\nLa repisa se construye con el río. Si compartes todos los días, empiezas a ver temas que se repiten. Junta esos pedacitos y conviértelos en algo más grande: diez historias sobre cómo elegir tono de base se vuelven una guía fijada.\n\n> Poquito todos los días se vuelve algo enorme.\n\n## Tu casa propia\nLas redes vienen y van. Ten algo que sea tuyo y no dependa de una app: tu tienda en línea, una página sencilla, tus historias destacadas bien ordenadas o tu propia lista de contactos. No tiene que ser bonito; tiene que existir y ser fácil de encontrar.\n\n## 🪞 Para pensar\n¿Qué te detiene más a la hora de publicar: el tiempo, la pena o no saber qué decir?\n\n## ✍️ Ejercicio\n1. Escribe en qué parte del proceso vas con lo que estás haciendo ahorita (empezando, a la mitad, terminando o después).\n2. Haz una lista de cinco envíos del día posibles para esa etapa.\n3. Pásalos por la prueba del ¿y qué? y quédate con los tres mejores.\n\n## ✅ Tu tarea de la semana\nSiete envíos del día en siete días. Uno por día, aunque sea una historia de diez segundos. Usa la herramienta \"El envío del día\".\n\n## 💬 Para compartir en el grupo\nComparte tu mejor envío de la semana y cuenta qué reacción tuvo.\n\n@@ 4 | Clase 4 | Abre tu vitrina | Comparte lo que te inspira, con crédito\nAntes de atreverte a enseñar lo tuyo, puedes enseñar lo que te gusta. Tu gusto también habla de ti.\n\n## Todas tenemos una vitrina\nAntes había gente que llenaba un cuarto entero con cosas raras y bonitas: conchas, libros, piedras, objetos de otros países. Era su forma de enseñar qué le asombraba del mundo.\n\nTú también tienes una vitrina, aunque sea invisible: los productos que amas, las cuentas que sigues, la música con la que te arreglas, las frases que tienes en el refri, las mujeres que admiras. Todo eso forma tu gusto, y tu gusto se nota en tu trabajo.\n\n## Tu gusto llega antes que tu talento\nAl principio casi todas pasamos por lo mismo: sabemos reconocer lo bueno, pero lo que hacemos todavía no está a esa altura. Esa distancia es normal y se cierra con práctica. Mientras tanto, compartir lo que te inspira es una forma de mostrarte sin tener todo resuelto.\n\nPregúntate:\n- ¿A quién sigues y por qué?\n- ¿Qué productos usas aunque nadie te pague por hablar de ellos?\n- ¿Qué te inspira fuera del maquillaje: la cocina, la moda, tu abuela, una película?\n- ¿Quién hace un trabajo que admiras en tu negocio?\n\n## Sin placeres culposos\nTe van a gustar cosas que otras consideran cursis, básicas o raras. Quiérelas igual. Lo que te hace única es justamente esa mezcla de cosas \"finas\" y \"corrientes\" que nadie más juntaría. No intentes verte cool. Ser honesta con lo que te gusta es la manera más rápida de conectar con quien siente lo mismo.\n\n## Da crédito siempre\nSi compartes el trabajo de otra persona, dile a todo el mundo de quién es. Cuando no das crédito, no solo le quitas algo a quien lo hizo, también le quitas a tu gente la posibilidad de encontrar más de su trabajo.\n\nUn buen crédito es como **la etiqueta de un museo**: quién lo hizo, qué es, por qué lo compartes y dónde ver más. Etiqueta la cuenta, pon el enlace y, si alguien te lo enseñó a ti, menciónala también.\n\n> Si no sabes de quién es, no lo compartas. Busca el crédito o déjalo pasar.\n\n## 🪞 Para pensar\n¿Qué te gusta que te da pena admitir? ¿Qué pasaría si lo compartieras?\n\n## ✍️ Ejercicio\n1. Haz la lista de tu vitrina: tres cuentas, tres productos, tres cosas de fuera de tu negocio que te inspiran.\n2. Al lado de cada una, escribe en una línea por qué te gusta.\n3. Elige una y escríbele su etiqueta de museo.\n\n## ✅ Tu tarea de la semana\nComparte una cosa de tu vitrina con su etiqueta completa: de quién es, qué es, por qué te gusta y dónde ver más.\n\n## 💬 Para compartir en el grupo\nRecomienda una cuenta que te inspire, con su etiqueta, para que las demás la conozcan.\n\n@@ 5 | Clase 5 | Cuenta buenas historias | Tu trabajo no habla solo\nDos cosas idénticas valen distinto según la historia que traen. Lo que cuentas de tu trabajo cambia cómo lo ven.\n\n## La misma cosa, otro valor\nImagina dos cuadros iguales. Te dicen que uno lo pintó una maestra de hace siglos y el otro es una copia de la semana pasada. Aunque no veas ninguna diferencia, ya no los miras igual.\n\nPasa con todo. Hubo un experimento en el que compraron objetos baratos de segunda mano, les inventaron una historia y los revendieron. Los objetos eran los mismos; con la historia, se vendieron por muchísimo más. **Las palabras cambian el valor.**\n\nPor eso \"mi trabajo habla por sí solo\" no funciona. La gente quiere saber de dónde viene algo, cómo se hizo y quién lo hizo.\n\n## Ya estás contando una historia\nCada historia que subes, cada mensaje a una clienta, cada foto es un pedacito de un relato sobre ti. Lo estás contando aunque no lo planees. La pregunta es si lo cuentas bien.\n\n## La estructura que casi siempre funciona\nToda buena historia tiene una forma clara. La más sencilla: **alguien quiere algo, enfrenta un obstáculo y termina ganando, perdiendo o empatando**. Es también la forma del trabajo creativo: tienes una idea, la sacas adelante con esfuerzo y la mandas al mundo, a ver qué pasa.\n\nPuedes usar este molde para cualquier contenido:\n- **Había una vez…** (quién eres o cómo eran las cosas)\n- **Todos los días…** (la rutina, el problema)\n- **Hasta que un día…** (lo que cambió)\n- **Por eso…** (lo que pasó después)\n- **Y por eso…** (la consecuencia)\n- **Hasta que al fin…** (cómo terminó)\n\n## Historias sin final: la invitación\nCasi siempre estamos a la mitad de nuestra historia. Para eso sirve el formato de tres actos con el final abierto: **el pasado** (de dónde vienes y qué has hecho), **el presente** (dónde estás ahorita) y **el futuro** (a dónde vas y cómo te puede ayudar la otra persona). Así funciona una buena invitación al negocio: no le vendes un final, le ofreces escribirlo contigo.\n\n## \"¿Y tú a qué te dedicas?\"\nPractica tu respuesta. Debe entenderla una niña de seis años y tu abuela. No inventes: di la verdad con dignidad. Si trabajas de día en otra cosa, dilo. Si estás empezando, dilo.\n\nY para tu bio, quita los adjetivos. No eres \"una apasionada emprendedora increíble\"; eres alguien que hace algo concreto. \"Enseño a mamás ocupadas a arreglarse en diez minutos\" dice más que cualquier adjetivo.\n\n> No necesitas una historia más impresionante. Necesitas contarla con más claridad.\n\n## 🪞 Para pensar\n¿Qué historia te cuentas de tu trabajo? ¿Es la misma que le cuentas a los demás?\n\n## ✍️ Ejercicio\n1. Llena el molde de \"Había una vez…\" con la historia de cómo empezaste tu negocio.\n2. Escribe tu respuesta a \"¿y tú a qué te dedicas?\" en dos frases, sin adjetivos.\n3. Léela en voz alta. Si suena a anuncio, simplifícala.\n\n## ✅ Tu tarea de la semana\nPublica tu historia de inicio usando el molde. Puede ser un video de un minuto o un carrusel. Usa la herramienta \"Tu historia y tu bio\".\n\n## 💬 Para compartir en el grupo\nComparte tu respuesta a \"¿y tú a qué te dedicas?\" y ayuda a otra compañera a quitarle adjetivos a la suya.\n\n@@ 6 | Clase 6 | Enseña lo que sabes | Tu propia clase de cocina\nDa miedo enseñar tus trucos porque parece que te quedas sin nada. Pasa justo lo contrario.\n\n## La receta no es el platillo\nPiensa en una taquería famosa cuya dueña explica en video exactamente cómo prepara su salsa. ¿Le quita clientes? No. La técnica es sencilla, pero dominarla toma años de práctica. Ver la receta no te hace cocinera; te hace valorar más a quien sí sabe. Y te da más ganas de ir a comer ahí.\n\nLo mismo con tu trabajo. Puedes enseñar cómo eliges el tono de base o cómo aplicas un delineado, y tu clienta va a seguir prefiriendo que se lo recomiendes tú. **Enseñar no resta, suma.**\n\n## ¿Cuál es tu programa de cocina?\nPregúntate qué podrías enseñar:\n- ¿Qué técnica dominas?\n- ¿Qué herramientas o productos sabes usar bien?\n- ¿Qué sabes de tu trabajo que tu clienta no sabe?\n- ¿Qué aprendiste hace poco y todavía recuerdas cómo te costó?\n\nEn cuanto aprendas algo, voltéate y enséñaselo a alguien. Comparte lo que lees, recomienda tus fuentes, haz tutoriales paso a paso. Haz que tu gente sea mejor en algo que quiere aprender.\n\n## Enseñar te enseña\nCuando enseñas, la gente responde: te hace preguntas, te corrige, te recomienda cosas que no conocías. Compartir lo que sabes te regala una escuela gratuita para toda la vida.\n\n> Cuando enseñas tu receta, no regalas tu cocina. Invitas a la gente a la mesa.\n\n## 🪞 Para pensar\n¿Qué sabes hacer que a ti te parece obvio, pero a una clienta nueva le costaría muchísimo?\n\n## ✍️ Ejercicio\n1. Escribe diez cosas que sabes hacer en tu negocio, por chiquitas que parezcan.\n2. Marca las tres que más le servirían a una clienta.\n3. Convierte una en un tutorial de tres pasos: qué necesitas, cómo se hace y el error más común.\n\n## ✅ Tu tarea de la semana\nPublica tu tutorial de tres pasos. Termina con una pregunta para que te cuenten cómo les fue.\n\n## 💬 Para compartir en el grupo\nComparte tu tutorial y deja un comentario en el de otra compañera con algo que aprendiste.\n\n@@ 7 | Clase 7 | No te vuelvas spam | Para tener fans, sé fan\nTodas conocemos a alguien que solo aparece para vender. No seas esa persona.\n\n## Spam con patas\nEs la que no lee lo que publican las demás, pero te manda su catálogo por inbox. La que no va a los eventos de nadie, pero exige que vayas al suyo. La que no escucha, solo habla. Y ojo: no hace falta empezar para caer ahí. También pasa cuando te va bien y empiezas a creer que todo gira alrededor de ti.\n\n## Sé fan primero\nSi quieres que la gente apoye lo tuyo, apoya primero lo de los demás. Comenta de verdad, recomienda a otras, haz preguntas, pide sugerencias, platica con tu gente sobre lo que les gusta. Sé **una puerta abierta**: alguien por donde pasan ideas, contactos y recomendaciones.\n\nUna conversación sincera en los comentarios puede terminar en una colaboración, una clienta o una amiga. Pasa cuando tratas a tu gente como cómplice y no como público.\n\n## Calidad, no cantidad\nDeja de contar seguidores y empieza a fijarte en quiénes son. No sigas a gente solo porque crees que te conviene. Para ser interesante, interésate: pon atención, haz preguntas, aprende de otras.\n\nY nunca, nunca pidas \"sígueme y te sigo\". Haz cosas que te gustan, habla de lo que te gusta y vas a atraer a la gente a la que le gusta lo mismo.\n\n## La prueba de la pila\nDespués de pasar tiempo con alguien, ¿tienes la pila cargada o vacía? Si te deja agotada cada vez, aléjate con cariño. Funciona también con trabajos, grupos, apps y hasta horarios.\n\n## Tus cómplices\nMientras te muestras, vas a encontrar a unas cuantas personas obsesionadas con lo mismo que tú. No son muchas, pero valen oro. Cuídalas: enséñales tu trabajo antes que a nadie, celébralas en público, invítalas a hacer cosas juntas.\n\nY cuando se pueda, conviértelas en amigas de verdad: un café, una comida, una sesión de fotos juntas. Conocer en persona a alguien con quien ya platicabas en línea es de lo mejor que te da compartir.\n\n> Si quieres que te noten, nota a los demás.\n\n## 🪞 Para pensar\n¿Cuándo fue la última vez que apoyaste el trabajo de otra sin esperar nada?\n\n## ✍️ Ejercicio\n1. Escribe los nombres de tres personas con las que compartes una obsesión (tus cómplices o candidatas).\n2. Al lado, escribe algo concreto que puedes hacer por cada una esta semana.\n3. Revisa a quién sigues y aplica la prueba de la pila.\n\n## ✅ Tu tarea de la semana\nDeja diez comentarios sinceros (no emojis sueltos) en publicaciones de otras personas. Y recomienda públicamente a una compañera o creadora que admires.\n\n## 💬 Para compartir en el grupo\nCelebra a una compañera del grupo con algo específico que te gustó de su trabajo.\n\n@@ 8 | Clase 8 | Aprende a recibir un golpe | Críticas, trolls y la voz de tu cabeza\nMientras más gente vea tu trabajo, más opiniones vas a recibir. Unas te van a ayudar, otras no. Aquí aprendes a distinguirlas.\n\n## Cinco formas de aguantar un golpe\n1. **Respira.** Las personas creativas tenemos mucha imaginación y la usamos para imaginar lo peor. Una mala crítica no es el fin del mundo; nadie se ha muerto por un comentario feo.\n2. **Hazte fuerte a fuerza de práctica.** Mientras más publicas, más críticas recibes, y mientras más críticas recibes, menos te duelen. Saca mucho trabajo.\n3. **Muévete con el golpe.** No controlas lo que te dicen, pero sí cómo respondes. Una crítica puede darte la idea para tu siguiente contenido. A veces, lo que a alguien le choca es justo lo que te hace distinta.\n4. **Protege lo más sensible.** Si algo te queda demasiado cerca del corazón, guárdalo. Pero si te escondes siempre por miedo a la pena, nunca vas a conectar de verdad con nadie.\n5. **Recuerda que tu trabajo no eres tú.** Es algo que haces, no quien eres. Rodéate de la gente que te quiere por ti, no por tus resultados.\n\n## ¿De quién viene?\nLo primero es ver quién te lo dice. Escucha a la gente que te quiere y que entiende lo que haces. Desconfía de las opiniones que vienen de fuera de ese círculo.\n\nUn **troll** es alguien que no quiere que mejores, solo quiere provocarte. No le contestes. Sin atención, casi siempre se va. Bloquea, borra comentarios ofensivos y, si hace falta, desactiva los comentarios. Si alguien ensucia la sala de tu casa, no lo dejas ahí.\n\n## El troll más difícil\nEl peor troll es el que vive en tu cabeza: la voz que dice que no eres suficiente, que ya se rieron de ti, que nadie te va a comprar. Es una cosa tenerla dentro y otra que un comentario de una desconocida le preste un megáfono.\n\nCuando pase, regresa al número 5: tu trabajo no eres tú. Y busca a tus cómplices.\n\n> No te importa lo que piensen todos. Te importa lo que piensen las personas correctas.\n\n## 🪞 Para pensar\n¿Qué crítica te ha dolido más? ¿Vino de alguien que te quiere y entiende lo que haces?\n\n## ✍️ Ejercicio\n1. Escribe la crítica que más miedo te da recibir.\n2. Escribe qué le contestaría tu mejor amiga.\n3. Escribe una idea de contenido que podrías sacar de esa misma crítica.\n\n## ✅ Tu tarea de la semana\nPublica algo que te dé un poquito de miedo. Y arma tu carpeta de porras: capturas de mensajes bonitos para leer en los días malos.\n\n## 💬 Para compartir en el grupo\nCuenta una crítica que te ayudó a mejorar y cómo la usaste.\n\n@@ 9 | Clase 9 | Véndete sin pena | Cobrar, tu lista y decir que sí\nHay que comer y pagar la renta. Ganar dinero con lo que haces no te hace menos auténtica.\n\n## Basta de la artista muerta de hambre\nMucha de la obra más querida del mundo se hizo por encargo y por dinero. Querer que te vaya bien no corrompe tu trabajo. Y cuando a una compañera le va bien, no es \"vendida\": celébrala como si fuera tu triunfo.\n\n## Cuando hay gente, se puede pedir\nCuando ya hay personas que disfrutan lo que compartes gratis, puedes invitarlas a apoyarte: comprar, recomendarte, contratarte. Funciona mucho mejor cuando ya llevas tiempo mostrando tu proceso y cuidando a tu gente. Primero das, luego pides.\n\nOjo con algo: cuando le pones precio a lo que amas, descubres cuánto lo valora la gente de verdad. Habrá quien te diga \"me cambiaste la vida\" y no compre. Está bien. **Pide dinero cuando estés segura de que lo que ofreces vale, y ponle un precio justo.**\n\n## Tu lista\nAunque hoy no tengas nada que vender, junta los contactos de la gente a la que le gusta lo que haces y quiere saber de ti: una lista de difusión, un grupo, un correo. Lo más sencillo es lo que más dura. Un mensaje directo llega; un post se puede perder.\n\nLas reglas: nunca agregues a nadie sin su permiso, di qué tan seguido vas a escribir y no abuses. Quien se suma a tu lista te está dando su confianza.\n\n## Di que sí (y luego, que no)\nSé ambiciosa. Prueba cosas nuevas. Si una oportunidad te deja hacer más del trabajo que amas, di que sí. Si te da más dinero, pero menos del trabajo que amas, piénsalo dos veces.\n\nY cuando te vaya bien, comparte: recomienda a tus maestras, a tus compañeras y a tu gente. Con el tiempo vas a tener que decir que no más seguido para cuidar tu tiempo. Sé tan generosa como puedas, pero lo bastante egoísta para hacer tu trabajo.\n\n> No hacemos contenido para vender. Vendemos para poder seguir haciendo lo que amamos.\n\n## 🪞 Para pensar\n¿Qué te da pena de cobrar o de invitar a comprar? ¿De dónde viene esa pena?\n\n## ✍️ Ejercicio\n1. Escribe en una frase qué ofreces y por qué vale lo que cuesta.\n2. Escribe un mensaje para invitar a la gente a tu lista: qué van a recibir y cada cuánto.\n3. Escribe una oportunidad a la que te gustaría decir que sí este mes y una a la que deberías decir que no.\n\n## ✅ Tu tarea de la semana\nAbre tu lista y comparte la invitación. Después manda tu primer mensaje con algo útil, no solo con una venta.\n\n## 💬 Para compartir en el grupo\nComparte tu invitación a la lista y pide a las demás que te ayuden a mejorarla.\n\n@@ 10 | Clase 10 | Quédate | No renuncies antes de tiempo\nLas que llegan casi siempre son las que se quedaron el tiempo suficiente.\n\n## No sabes en qué capítulo vas\nEn medio de tu historia no sabes si vas arriba o abajo. Que hoy no funcione no significa que no vaya a funcionar. Hay segundos, terceros y hasta quintos actos. **No renuncies antes de tiempo.**\n\nNo puedes controlar el éxito. Solo puedes hacer tu trabajo todos los días, sin ilusionarte de más ni desesperarte, y estar lista para cuando llegue la oportunidad.\n\n## La mecha\nNi el éxito ni el fracaso te garantizan nada. Después de cada lanzamiento, te vas a preguntar: \"¿y ahora qué?\". Para no quedarte parada, usa el final de un proyecto para prender el siguiente:\n- Al terminar algo, pregúntate qué te faltó, qué harías mejor y qué no alcanzaste a hacer.\n- Esa respuesta es tu siguiente proyecto.\n- Deja siempre algo empezado para saber por dónde arrancar mañana.\n\n## Pausas para recargar\nA veces te vas a quemar y necesitarás parar. No hace falta un año sabático; bastan pausas pequeñas: un rato en el camino sin celular, moverte, salir a la naturaleza. Separa tu trabajo del resto de tu vida. Si nunca te vas del trabajo, tampoco descansas de él.\n\n## Vuelve a empezar\nCuando sientas que ya aprendiste todo lo que había que aprender de algo, toca buscar algo nuevo. Si no te da un poco de pena quién eras hace un año, quizá no estás aprendiendo lo suficiente.\n\nNo es empezar de cero: lo que aprendiste se queda contigo y se mete en todo lo que hagas. Es **volver a ser aficionada**. Regresa a la clase 1, busca algo nuevo que aprender y apréndelo a la vista. Documenta, comparte y, cuando lleguen las personas correctas, ponles atención.\n\n> Muéstralo, enséñalo, quédate. Y cuando aprendas, vuelve a empezar.\n\n## 🪞 Para pensar\n¿Qué proyecto dejaste a medias porque no funcionó luego luego? ¿Qué pasaría si le dieras otra temporada?\n\n## ✍️ Ejercicio\n1. Elige tu último proyecto o lanzamiento.\n2. Escribe qué te faltó, qué harías mejor y qué no alcanzaste a hacer.\n3. Convierte una de esas respuestas en tu siguiente proyecto.\n4. Lee la frase que escribiste en la bienvenida (\"Me da pena mostrarme porque…\") y escribe qué cambió.\n\n## ✅ Tu tarea de la semana\nEmpieza el plan de 30 días a la vista. Y elige una pausa semanal que vas a cuidar como cita.\n\n## 💬 Para compartir en el grupo\nCuenta qué vas a aprender a la vista en los próximos 30 días e invita a una compañera a hacerlo contigo.\n\n@@ 11 | Herramientas | El envío del día | Qué compartir hoy, en cinco minutos\nPara cuando abres la cámara y no sabes qué subir. Úsala todos los días, al terminar de trabajar.\n\n## Paso 1 · ¿En qué parte vas?\n- **Empezando:** comparte lo que te inspira, una referencia (con crédito) o la idea que traes.\n- **A la mitad:** un \"durante\", algo que salió mal, una decisión que tomaste.\n- **Terminando:** el resultado, lo que quedó fuera, lo que aprendiste.\n- **Después:** cómo le fue, qué dijo una clienta, cómo se usa.\n\n## Paso 2 · Elige un formato\n- Una foto del durante con una línea de texto.\n- Un video de diez segundos con tus manos trabajando.\n- Una nota en historias: \"Hoy aprendí…\".\n- Un antes y después.\n- Una pregunta a tu gente.\n\n## Paso 3 · La prueba del ¿y qué?\n- ¿Le sirve o entretiene a alguien?\n- ¿Se entiende sin explicación extra?\n- ¿Me daría gusto que lo viera cualquier persona?\n- Si comparto algo ajeno, ¿lleva su crédito?\n\nSi pasa, publícalo. Si dudas, a borradores y mañana lo ves.\n\n## Paso 4 · Cierra\n- Anota en tu cuaderno qué compartiste.\n- Contesta los comentarios del día.\n- Apaga la app. Ya cumpliste.\n\n## Treinta ideas para cuando no se te ocurre nada\n1. Tu mesa de trabajo antes de empezar.\n2. Lo que hay en tu bolsa hoy.\n3. Un producto que usas todos los días y por qué.\n4. Un error que cometiste esta semana.\n5. Cómo armas un pedido.\n6. Un tono que no te funcionó y por qué.\n7. La pregunta que más te hacen.\n8. Tu rutina de diez minutos.\n9. Algo que aprendiste de una compañera (con crédito).\n10. Una cuenta que te inspira (con crédito).\n11. Tu primera foto de producto contra la de hoy.\n12. Un mensaje bonito de una clienta (con su permiso).\n13. Qué haces cuando no tienes ganas.\n14. Tu lugar favorito para grabar.\n15. Cómo organizas tu semana.\n16. Algo que estás aprendiendo.\n17. Un mito que quieres desmentir (sin promesas de salud).\n18. Tu herramienta favorita y cómo la limpias.\n19. Una decisión difícil de tu negocio.\n20. Lo que hay detrás de una foto bonita.\n21. Un tip para principiantes.\n22. Algo que te dio pena publicar.\n23. Una meta de este mes.\n24. El resultado de una meta del mes pasado.\n25. Una recomendación que no es de tu negocio.\n26. Cómo elegiste tu negocio.\n27. Lo mejor de tu día.\n28. Una pregunta para tu gente.\n29. Algo que se quedó fuera de un video.\n30. Lo que harás mañana.\n\n@@ 12 | Herramientas | Tu historia y tu bio | Tres moldes para contar lo que haces\nTres plantillas para llenar en tu cuaderno. Escríbelas a mano primero; después pásalas a tu perfil.\n\n## Molde 1 · Había una vez\n- Había una vez… (quién eras)\n- Todos los días… (cómo era tu vida o tu problema)\n- Hasta que un día… (lo que cambió)\n- Por eso… (lo que hiciste)\n- Y por eso… (lo que pasó después)\n- Hasta que al fin… (dónde estás hoy)\n\nÚsalo para tu historia de inicio, para la historia de un producto o para la de una clienta (con su permiso).\n\n## Molde 2 · La invitación en tres actos\n- **Pasado:** qué querías, por qué y qué has hecho para lograrlo.\n- **Presente:** dónde estás ahorita y qué te ha costado.\n- **Futuro:** a dónde vas y cómo puede ayudarte, o sumarse, la persona que te escucha.\n\nSirve para invitar a alguien a tu equipo, presentarte en un evento o pedir una colaboración. Deja el final abierto: que la otra persona decida cómo sigue.\n\n## Molde 3 · \"¿Y tú a qué te dedicas?\"\nDos frases, sin adjetivos:\n- **Qué haces:** \"Vendo maquillaje y enseño a usarlo\".\n- **Para quién o cómo:** \"Sobre todo a mamás que tienen diez minutos para arreglarse\".\n\nPrueba: ¿lo entendería una niña de seis años? ¿Y tu abuela? Si no, simplifícalo.\n\n## Tu bio\n- Quita adjetivos como \"apasionada\", \"increíble\" o \"experta\".\n- Nada de \"gurú\", \"ninja\" ni \"reina\", a menos que lo seas de verdad.\n- Di lo que haces, para quién y dónde encontrarte.\n- Si trabajas en otra cosa de día, puedes decirlo. La verdad conecta.\n\n> Una bio corta y verdadera vale más que una larga e impresionante.\n\n@@ 13 | Herramientas | 30 días a la vista | Un plan para practicar todo el curso\nUn mes para convertir el curso en hábito. Haz un envío del día diario y suma la acción de cada semana.\n\n## Semana 1 · Documenta\n- Todos los días: toma al menos tres fotos o videos de tu proceso.\n- Día 1: crea tu álbum \"proceso\" en el celular.\n- Día 3: publica \"Estoy aprendiendo a…\".\n- Día 5: publica un \"durante\".\n- Día 7: revisa tu álbum y elige tus tres favoritas.\n\n## Semana 2 · Abre la vitrina\n- Día 8: comparte una cuenta que te inspira, con su etiqueta.\n- Día 10: comparte un producto que amas y por qué.\n- Día 12: comparte algo que te gusta fuera de tu negocio.\n- Día 14: deja diez comentarios sinceros a otras.\n\n## Semana 3 · Cuenta y enseña\n- Día 15: escribe tu respuesta a \"¿y tú a qué te dedicas?\".\n- Día 16: actualiza tu bio, sin adjetivos.\n- Día 18: publica tu historia de inicio con el molde \"Había una vez\".\n- Día 20: publica un tutorial de tres pasos.\n- Día 21: celebra en público a una cómplice.\n\n## Semana 4 · Invita y sigue\n- Día 22: abre tu lista e invita a tu gente.\n- Día 24: manda tu primer mensaje útil a la lista.\n- Día 26: publica algo que te dé un poquito de miedo.\n- Día 28: junta tus mejores envíos del mes y conviértelos en algo de la repisa (una guía o un destacado).\n- Día 30: escribe qué te faltó, qué harías mejor y elige qué vas a aprender a la vista el mes que sigue.\n\n## Reglas del plan\n- Si un día no publicas, no pasa nada. Al día siguiente sigues donde ibas.\n- Lo que cuenta es la constancia, no el número de seguidores.\n- Comparte tus avances en el grupo cada domingo.\n\n> Treinta pedacitos pequeños se ven como un trabajo grande.";
+var FAQ_MD="## Empezar | 0\n\n### ¿En qué se diferencia de Botín?\nBotín es sobre aprender de lo que hacen otras: mirar, juntar y mezclar. A la vista es la otra mitad: cómo mostrar lo tuyo para que te encuentren. Se complementan, pero puedes tomar este curso sin haber tomado Botín.\n\n### ¿Necesito muchos seguidores para empezar?\nNo. Al principio, que pocas te vean es una ventaja: puedes probar y equivocarte sin presión. El curso es para que te encuentre la gente correcta, no para juntar números.\n\n### No soy creativa. ¿Este curso es para mí?\nSí. Mostrar tu trabajo no depende de ser artista. Si vendes, aconsejas, organizas o enseñas, tienes un proceso que a alguien le interesa ver. La clase 1 habla de esto.\n\n## Qué compartir | 2\n\n### Mi trabajo es aburrido. ¿Qué enseño?\nLo que a ti te parece aburrido, a otra le parece fascinante: cómo armas un pedido, cómo eliges un tono, cómo organizas tu semana. Empieza documentando una tarea que repites. Lo explica la clase 2.\n\n### No sé qué publicar hoy.\nUsa la herramienta \"El envío del día\". Pregúntate en qué parte del proceso vas y escoge un pedacito. Hay una lista de treinta ideas para los días en blanco.\n\n### ¿Puedo compartir contenido de otras personas?\nSí, siempre con crédito: de quién es, qué es, por qué lo compartes y dónde ver más. Si no sabes de quién es, no lo compartas. Lo ves en la clase 4.\n\n### ¿Tengo que estar en todas las redes?\nNo. Elige una o dos donde esté tu gente y hazlo bien ahí. Y ten algo propio que no dependa de una app, como tu tienda o tu lista. Lo ves en la clase 3.\n\n## Tiempo y constancia | 3\n\n### No tengo tiempo para publicar todos los días.\nUn envío del día puede ser una historia de diez segundos. Busca el tiempo en los rincones: la fila, la espera, cuando las niñas se duermen. Y si se te va la mano, pon un temporizador.\n\n### ¿Y si un día no publico?\nNo pasa nada. Al día siguiente sigues. Lo que cuenta es la constancia a lo largo de las semanas, no la perfección diaria.\n\n### ¿Cómo sé si estoy compartiendo de más?\nPásalo por la prueba del ¿y qué?: ¿le sirve a alguien?, ¿entretiene o enseña?, ¿me sentiría cómoda si lo viera cualquier persona? Si dudas, déjalo un día en borradores.\n\n## Contar y enseñar | 5\n\n### ¿Contar mi historia no es presumir?\nNo, si cuentas la verdad con sencillez. Presumir es inflarte; contar es ayudar a que la gente entienda de dónde vienes. Quita los adjetivos y quédate con los hechos. Lo ves en la clase 5.\n\n### Si enseño mis trucos, ¿no me quitan clientas?\nPasa lo contrario. Ver una técnica no te hace experta; te hace valorar más a quien la domina. Enseñar genera confianza y acerca a la gente. Lo explica la clase 6.\n\n### ¿Qué pongo en mi bio?\nQué haces, para quién y dónde encontrarte, en dos frases y sin adjetivos. Usa el molde 3 de la herramienta \"Tu historia y tu bio\".\n\n## Gente y críticas | 7\n\n### ¿Cómo hago crecer mi cuenta sin ser intensa?\nSé fan antes de pedir que te sigan: comenta de verdad, recomienda a otras y platica con tu gente. Nunca pidas \"sígueme y te sigo\". Lo ves en la clase 7.\n\n### Me llegó un comentario feo. ¿Le contesto?\nPrimero mira de quién viene. Si es alguien que solo quiere provocarte, no le contestes: borra o bloquea. Si es una crítica de alguien que te quiere y entiende lo que haces, escúchala. Lo ves en la clase 8.\n\n### Mi familia critica que publique tanto.\nEscucha si hay algo útil, pero recuerda que tu trabajo no eres tú. Busca apoyo en tus cómplices y en el grupo. Y si te pesa mucho, platícalo con alguien de confianza.\n\n## Dinero | 9\n\n### ¿Está mal querer vender con mi contenido?\nNo. Ganar dinero con lo que haces no te hace menos auténtica. Lo importante es dar primero, pedir después y ponerle un precio justo a lo que ofreces.\n\n### ¿Para qué quiero una lista si ya tengo redes?\nPorque un mensaje directo llega y un post se puede perder. Además, las redes cambian y tu lista es tuya. Nunca agregues a nadie sin su permiso.\n\n### ¿El curso me garantiza ventas?\nNo. Ningún curso puede garantizar ingresos. Lo que sí te da es un método para que tu trabajo se vea y la gente correcta te encuentre.\n\n## Tu mentora | 0\n\n### ¿Qué hace la mentora en Claude?\nTe da las clases en el chat, te ayuda a decidir tu envío del día, a escribir tu historia y tu bio sin adjetivos, y a convertir lo que sabes en tutoriales.\n\n### ¿Necesito pagar Claude?\nNo. La mentora funciona con la cuenta gratis. Esa cuenta tiene un límite de mensajes por día; si se acaba, vuelve horas después.";
+var CFG={"key": "a-la-vista", "n": 10, "groups": [["Empieza aquí", [0]], ["Clases", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]], ["Herramientas", [11, 12, 13]]], "pitch": "Diez clases cortas para dejar de esconder lo que haces: compartir tu proceso, contar tu historia y enseñar lo que sabes, sin sentir que te vendes a gritos.", "faqPh": "Busca: publicar, tiempo, bio, críticas…", "foot": "", "zipName": "a-la-vista.zip", "zipVar": "SKILL_ZIP_B64", "mdName": "a-la-vista-SKILL.md", "mdVar": "SKILL_MD_B64", "tabProgram": "Clases", "welcomeLabel": "Bienvenida", "repaso": "el curso", "source": "Ideas inspiradas en el libro Show Your Work! (en español, Aprende a promocionar tu trabajo), de Austin Kleon, la continuación de Roba como un artista. Si te gusta el curso, cómprate el libro: se lee en una tarde."};
+var MENTOR={"title": "Tu mentora, cuando la necesites", "intro": "A la vista también vive en Claude. Ahí te da las clases una por una, te ayuda a decidir qué publicar hoy y escribe contigo tu historia y tu bio.", "can": [["Las clases", "Te da las 10 lecciones en el chat, en el orden que quieras."], ["Tu envío del día", "Le cuentas en qué estás trabajando y te propone tres cosas para publicar."], ["Tu historia", "Llena contigo los moldes y le quita los adjetivos a tu bio."], ["Tus tutoriales", "Convierte lo que sabes hacer en una clase de tres pasos."]], "steps": ["Crea tu cuenta en claude.ai. Funciona con la cuenta gratis.", "Descarga la mentora (.zip) y guárdala sin descomprimir.", "En Claude entra a Customize → Skills, toca \"+\", luego \"Create skill\" → \"Upload a skill\" y sube el zip.", "Abre un chat nuevo y escribe una de estas frases."], "prompts": ["Quiero empezar el curso A la vista.", "Estoy armando pedidos hoy. ¿Qué publico?", "Ayúdame a quitarle los adjetivos a mi bio.", "Lección 6: quiero hacer mi primer tutorial."], "limits": ["No promete ventas ni seguidores", "No hace promesas de salud", "No ayuda a mandar spam", "No sustituye terapia", "Nunca te empuja a endeudarte"], "notes": ["Si no ves los botones de descarga, pídele a tu líder el archivo a-la-vista.zip.", "La cuenta gratis tiene un límite de mensajes por día. Si se acaba, vuelve a estar disponible horas después."]};
+var SKIN={
+  hero:function(c){
+    var n=c.count();
+    var strip=c.STEPS.map(function(s){var st=c.stateOf(s);return '<li class="'+(st==="seen"?"seen":(st==="next"?"next":""))+'">'+s+"</li>";}).join("");
+    return '<div class="v-hero"><div class="v-left"><h1 class="v-word" aria-label="¡A la vista!"><span class="a" aria-hidden="true">¡A la</span><span class="b" aria-hidden="true">vista<span class="bang">!</span></span></h1>'+
+      '<p class="v-sub">el curso para mostrar tu trabajo</p>'+
+      '<p class="v-ask"><span class="rec-dot" aria-hidden="true"></span>¿En qué estás trabajando hoy?</p></div>'+
+      '<div class="v-copy"><p class="v-pitch">'+c.esc(c.cfg.pitch)+'</p>'+
+      '<div class="v-strip"><ol aria-hidden="true">'+strip+'</ol><p>'+(n===c.N?"<b>Terminaste el curso.</b> Ahora, un envío al día.":"<b>"+n+" de "+c.N+"</b> clases. La roja es la que estás grabando.")+"</p></div>"+
+      '<div class="v-cta"><button class="btn solid" type="button" id="cta">'+c.esc(c.ctaText())+"</button></div></div></div>";
+  },
+  program:function(c){
+    var w=c.L(0),ids=c.ACTS[0].ids;
+    return '<div class="v-route"><div><h2 class="sec-h">Las clases</h2><p class="sec-p">Diez clases cortas. La primera vez, ve en orden; luego regresa a la que necesites.</p></div>'+
+      '<button type="button" class="v-welcome" data-open="0"><span><b>'+c.esc(w.title)+"</b><small>"+c.esc(w.topic)+"</small></span><em>"+(c.seen.has(0)?"Leída":"Léela primero")+"</em></button>"+
+      '<div class="v-list">'+ids.map(function(i){var x=c.L(i),s=c.stateOf(i);return '<button type="button" class="v-row '+s+'" data-open="'+i+'"><span class="n">'+i+"</span><span><b>"+c.esc(c.ttl(x))+"</b><small>"+c.esc(x.topic)+"</small></span><i>"+(s==="seen"?"Completada":(s==="next"?'<span class="rec-dot"></span>Aquí vas':""))+"</i></button>";}).join("")+"</div>"+
+      '<h3 class="v-h">Herramientas</h3><div class="v-tools">'+c.TOOLS.map(function(i){var x=c.L(i);return '<button type="button" class="v-tool" data-open="'+i+'"><span class="lab">Herramienta</span><b>'+c.esc(x.title)+"</b><small>"+c.esc(x.topic)+"</small></button>";}).join("")+"</div>"+
+      '<p class="v-source">'+c.esc(c.cfg.source)+"</p></div>";
+  }
+};
+
+
+(function(){
+document.documentElement.classList.add("js");
+var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function inline(t){return t.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");}
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+var reduce=false;try{reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
+
+/* ---------- content ---------- */
+var LESSONS=LESSONS_MD.split(/^@@ /m).filter(function(x){return x.trim();}).map(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});
+  var body=lines.slice(1).join("\n").trim(),i=body.indexOf("\n");if(i<0)i=body.length;
+  return {id:+h[0],kicker:h[1],title:h[2],topic:h[3],intro:body.slice(0,i).trim(),body:body.slice(i+1).trim()};
+});
+var ICONS=["🪞","✍️","✅","💬","🎯","📝","🧠","📌","🔥","⭐","📱","🎬","💡","🗓️","✨"];
+function md(src){
+  var out="",list=null;
+  esc(src).split("\n").forEach(function(raw){
+    var l=raw.trim(),ul=l.match(/^[-*]\s+(.*)/),ol=l.match(/^\d+[.)]\s+(.*)/);
+    if(ul||ol){var tag=ul?"ul":"ol";if(list!==tag){if(list)out+="</"+list+">";out+="<"+tag+">";list=tag;}out+="<li>"+inline((ul||ol)[1])+"</li>";return;}
+    if(list){out+="</"+list+">";list=null;}
+    if(l.indexOf("### ")===0)out+="<h4>"+inline(l.slice(4))+"</h4>";
+    else if(l.indexOf("## ")===0)out+="<h3>"+inline(l.slice(3))+"</h3>";
+    else if(l.indexOf("&gt; ")===0)out+='<div class="callout"><p>'+inline(l.slice(5))+"</p></div>";
+    else if(l)out+="<p>"+inline(l)+"</p>";
+  });
+  if(list)out+="</"+list+">";
+  return out;
+}
+function startsIcon(h){for(var i=0;i<ICONS.length;i++)if(h.indexOf(ICONS[i])===0)return ICONS[i];var m=h.match(/^[☀-➿\uD83C-􏰀-\uDFFF️]+\s*/);return m?m[0]:null;}
+function lessonBody(src){
+  var parts=src.split(/^## /m),main=parts[0],tasks=[];
+  parts.slice(1).forEach(function(p){
+    var nl=p.indexOf("\n"),head=(nl<0?p:p.slice(0,nl)).trim(),rest=nl<0?"":p.slice(nl+1);
+    var icon=startsIcon(head);
+    if(icon)tasks.push({title:head.slice(icon.length).trim(),html:md(rest.trim())});else main+="\n## "+p;
+  });
+  return {html:md(main.trim()),tasks:tasks};
+}
+function L(id){for(var i=0;i<LESSONS.length;i++)if(LESSONS[i].id===id)return LESSONS[i];return null;}
+var N=CFG.n,STEPS=[];for(var i=1;i<=N;i++)STEPS.push(i);
+var ORDER=LESSONS.map(function(l){return l.id;});
+var GROUPS=CFG.groups.map(function(g){var p=g[0].split(" · ");return {name:p.length>1?p[1]:g[0],pre:p.length>1?p[0]:"",ids:g[1]};});
+var ACTS=GROUPS.filter(function(g){return g.ids.every(function(i){return i>=1&&i<=N;});});
+var TOOLS=ORDER.filter(function(i){return i>N;});
+var seen=new Set(store.get(CFG.key+"-seen",[])),notes=store.get(CFG.key+"-notes",{});
+function saveSeen(){store.set(CFG.key+"-seen",Array.from(seen));}
+function isStep(id){return id>=1&&id<=N;}
+function nextUp(){if(!seen.has(0)&&!STEPS.some(function(i){return seen.has(i);}))return 0;for(var i=0;i<STEPS.length;i++)if(!seen.has(STEPS[i]))return STEPS[i];return null;}
+function count(){return STEPS.filter(function(i){return seen.has(i);}).length;}
+function stateOf(id){return seen.has(id)?"seen":(id===nextUp()?"next":"");}
+function actOf(id){for(var i=0;i<ACTS.length;i++)if(ACTS[i].ids.indexOf(id)>=0)return ACTS[i];return null;}
+function label(id){var x=L(id);if(!x)return "";if(id===0)return CFG.welcomeLabel||"Bienvenida";var m=x.title.match(/^([^·]{1,14}) · /);if(isStep(id)&&m)return m[1];return x.kicker;}
+function ttl(x){return x.title.replace(/^[^·]{1,14} · /,"");}
+function ctaText(){var n=nextUp();if(n===0)return CFG.ctaStart||"Empezar con la bienvenida";if(n===null)return "Repasar "+(CFG.repaso||"el curso");var l=label(n);return "Seguir con "+(/^Clase/.test(l)?"la ":"el ")+l;}
+var CTX={ttl:ttl,L:L,LESSONS:LESSONS,N:N,STEPS:STEPS,ACTS:ACTS,TOOLS:TOOLS,GROUPS:GROUPS,seen:seen,stateOf:stateOf,nextUp:nextUp,count:count,esc:esc,label:label,ctaText:ctaText,cfg:CFG,reduce:reduce,actOf:actOf,open:function(id){openLesson(id);}};
+
+/* ---------- page shell ---------- */
+var mw=MENTOR.title.indexOf("mentor ")>=0||/mentor,/.test(MENTOR.title)?"mentor":"mentora";
+var SEARCH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>';
+var root=$("#root");
+root.innerHTML='<div class="wrap"><header class="hero" id="hero"></header>'+
+  '<div class="tabbar"><div class="tabs" role="tablist" aria-label="Secciones del curso">'+
+  '<button class="tab" role="tab" id="tabP" aria-selected="true" aria-controls="progView" type="button">'+esc(CFG.tabProgram||"Programa")+'</button>'+
+  '<button class="tab" role="tab" id="tabF" aria-selected="false" aria-controls="faqView" type="button">Preguntas</button>'+
+  '<button class="tab" role="tab" id="tabM" aria-selected="false" aria-controls="mentorView" type="button">Tu '+mw+'</button></div></div>'+
+  '<section id="progView" role="tabpanel" aria-labelledby="tabP"></section>'+
+  '<section id="faqView" role="tabpanel" aria-labelledby="tabF" hidden><div class="faqv"><div><h2 class="sec-h">Preguntas</h2><p class="sec-p">'+esc(CFG.faqLead||"Las dudas que más salen en el equipo, con la clase que las responde.")+'</p></div>'+
+  '<label class="sr" for="fq">Busca tu duda</label><div class="f-search">'+SEARCH+'<input id="fq" type="search" placeholder="'+esc(CFG.faqPh||"Busca tu duda")+'" autocomplete="off"></div><div class="f-chips" id="cats"></div><p class="f-count" id="fcount"></p><div id="faq"></div></div></section>'+
+  '<section id="mentorView" role="tabpanel" aria-labelledby="tabM" hidden></section>'+
+  (CFG.foot?'<footer class="foot">'+esc(CFG.foot)+"</footer>":"")+"</div>";
+
+function renderHero(){$("#hero").innerHTML=SKIN.hero(CTX);var c=$("#cta");if(c)c.onclick=function(){var g=nextUp();if(g===null){setTab("P");$("#progView").scrollIntoView({behavior:"smooth"});}else openLesson(g);};$$("#hero [data-open]").forEach(wireOpen);}
+function renderProgram(){$("#progView").innerHTML=SKIN.program(CTX);$$("#progView [data-open]").forEach(wireOpen);if(SKIN.mount)SKIN.mount(CTX,$("#progView"));}
+function wireOpen(b){b.onclick=function(){openLesson(+b.getAttribute("data-open"),b);};}
+function refresh(){renderHero();renderProgram();}
+
+/* tabs */
+var TABS={P:["#tabP","#progView"],F:["#tabF","#faqView"],M:["#tabM","#mentorView"]};
+function setTab(t){Object.keys(TABS).forEach(function(k){$(TABS[k][0]).setAttribute("aria-selected",String(k===t));$(TABS[k][1]).hidden=k!==t;});}
+Object.keys(TABS).forEach(function(k){$(TABS[k][0]).onclick=function(){setTab(k);};});
+
+/* ---------- faq ---------- */
+var norm=function(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");};
+var STOP=new Set("que como para por con los las del una uno unos mis tus sus mas pero porque cuando donde esta este eso hay tengo puedo debo".split(" "));
+function terms(s){return (norm(s).match(/[a-z0-9ñ]{3,}/g)||[]).filter(function(w){return !STOP.has(w);}).map(function(w){return w.length>5?w.slice(0,-1):w;});}
+var FAQ=[],CATS=[];
+FAQ_MD.split(/^## /m).filter(function(x){return x.trim();}).forEach(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});if(!h[0])return;CATS.push({cat:h[0],cls:+h[1]});
+  lines.slice(1).join("\n").split(/^### /m).filter(function(x){return x.trim();}).forEach(function(qb){var i=qb.indexOf("\n");if(i<0)return;FAQ.push({cat:h[0],cls:+h[1],q:qb.slice(0,i).trim(),a:qb.slice(i+1).trim()});});
+});
+FAQ.forEach(function(f){f.n=norm(f.q+" "+f.a);});
+function hl(html,ts){if(!ts.length)return html;return html.replace(/(>[^<]+<)/g,function(seg){var out=seg;ts.forEach(function(w){var re=new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").split("").map(function(ch){return ({a:"[aá]",e:"[eé]",i:"[ií]",o:"[oó]",u:"[uúü]",n:"[nñ]"})[ch]||ch;}).join("")+"[a-záéíóúñü]*)","gi");out=out.replace(re,"<mark>$1</mark>");});return out;});}
+var fq=$("#fq"),faqEl=$("#faq"),fcount=$("#fcount"),curCat=null;
+function isMentorCat(c){return /mentor/i.test(c);}
+function renderCats(){var c=$("#cats");c.innerHTML="";[{cat:"Todas"}].concat(CATS).forEach(function(x){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=x.cat;b.setAttribute("aria-pressed",String((x.cat==="Todas"&&!curCat)||x.cat===curCat));b.onclick=function(){curCat=x.cat==="Todas"?null:x.cat;renderCats();renderFaq();};c.appendChild(b);});}
+function renderFaq(){
+  var qtxt=fq.value.trim(),ts=Array.from(new Set(terms(qtxt))),items=FAQ.filter(function(f){return !curCat||f.cat===curCat;});
+  if(ts.length){items=items.map(function(f){return {f:f,s:ts.reduce(function(a,w){return a+(f.n.indexOf(w)>=0?(norm(f.q).indexOf(w)>=0?3:1):0);},0)};}).filter(function(x){return x.s>0;}).sort(function(a,b){return b.s-a.s;}).map(function(x){return x.f;});}
+  faqEl.innerHTML="";
+  var gs=ts.length?[[null,items]]:CATS.map(function(c){return [c.cat,items.filter(function(f){return f.cat===c.cat;})];}).filter(function(g){return g[1].length;});
+  gs.forEach(function(g){var d=document.createElement("div");d.className="fgroup";if(g[0]){var h=document.createElement("h3");h.textContent=g[0];d.appendChild(h);}
+    g[1].forEach(function(f,idx){var det=document.createElement("details");det.className="qa";var x=isMentorCat(f.cat)?null:L(f.cls);
+      det.innerHTML="<summary><span>"+hl(">"+esc(f.q)+"<",ts).slice(1,-1)+'</span><i aria-hidden="true">+</i></summary><div class="ans">'+hl(md(f.a),ts)+(x?'<button class="btn go" type="button">Ver: '+esc(x.title)+"</button>":(isMentorCat(f.cat)?'<button class="btn go" type="button">Ir a Tu '+mw+"</button>":""))+"</div>";
+      var go=det.querySelector(".go");if(go)go.onclick=function(){if(x)openLesson(f.cls);else setTab("M");};
+      if(ts.length&&idx===0)det.open=true;d.appendChild(det);});faqEl.appendChild(d);});
+  fcount.textContent=ts.length?(items.length?items.length+(items.length===1?" respuesta":" respuestas")+' para "'+qtxt+'"':'No hay una pregunta frecuente sobre "'+qtxt+'". Pregúntale a tu '+mw+"."):"";
+}
+var ft;fq.addEventListener("input",function(){clearTimeout(ft);ft=setTimeout(renderFaq,150);});
+
+/* ---------- mentor ---------- */
+(function(){
+  var M=MENTOR,h='<div class="m-col"><div><h2 class="sec-h">'+esc(M.title)+'</h2><p class="sec-p">'+esc(M.intro)+"</p></div>"+
+    '<ul class="m-can">'+M.can.map(function(c){return "<li><b>"+esc(c[0])+"</b><span>"+esc(c[1])+"</span></li>";}).join("")+"</ul>"+
+    '<div class="m-dl"><button type="button" class="btn solid" id="dlZip" hidden>Descargar '+(mw==="mentor"?"el mentor":"la mentora")+' (.zip)</button>'+(CFG.mdVar?'<button type="button" class="btn" id="dlMd" hidden>Descargar las instrucciones (.md)</button>':"")+'</div><p class="m-note" id="dlMsg">'+esc(M.notes[0]||"")+"</p></div>"+
+    '<div class="m-col"><h3 class="m-h">Cómo '+(mw==="mentor"?"instalarlo":"instalarla")+'</h3><ol class="m-steps">'+M.steps.map(function(s){return "<li><span>"+esc(s)+"</span></li>";}).join("")+"</ol>"+
+    '<div class="m-prompts">'+M.prompts.map(function(p,i){return '<div class="m-prompt"><q id="mp'+i+'">'+esc(p)+'</q><button type="button" class="btn" data-copy="mp'+i+'">Copiar</button></div>';}).join("")+"</div>"+
+    (M.notes[1]?'<p class="m-note">'+esc(M.notes[1])+"</p>":"")+(M.limits.length?'<div class="m-limits" aria-label="Límites">'+M.limits.map(function(s){return "<span>"+esc(s)+"</span>";}).join("")+"</div>":"")+"</div>";
+  $("#mentorView").innerHTML='<div class="mentorv">'+h+"</div>";
+  $$("[data-copy]").forEach(function(btn){btn.addEventListener("click",function(){var el=document.getElementById(btn.getAttribute("data-copy"));function selt(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="Seleccionado";}
+    try{navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent="Copiado";setTimeout(function(){btn.textContent="Copiar";},1600);},selt);}catch(e){selt();}});});
+  if(window.claude&&window.claude.use){window.claude.use("downloads").then(function(dl){
+    var msg=$("#dlMsg"),bz=$("#dlZip"),bm=$("#dlMd");if(!dl)return;
+    bz.hidden=false;if(bm)bm.hidden=false;msg.textContent=CFG.mdVar?"El .zip es el que se sube a Claude. El .md es el texto de las instrucciones, por si quieres leerlo.":"El .zip es el que se sube a Claude.";
+    function bytes(b64){var s=atob(b64),u=new Uint8Array(s.length);for(var i=0;i<s.length;i++)u[i]=s.charCodeAt(i);return u;}
+    function save(name,data){dl.save({filename:name,data:data}).then(function(){msg.textContent="Listo: "+name+" descargado.";},function(e){var c=e&&e.code;
+      if(c==="declined")msg.textContent="Descarga cancelada.";else if(c==="rate_limited")msg.textContent="Ya hay una descarga abierta. Termínala e intenta de nuevo.";else{msg.textContent=M.notes[0]||"Aquí no se puede descargar.";bz.hidden=true;if(bm)bm.hidden=true;}});}
+    bz.onclick=function(){save(CFG.zipName,bytes(window[CFG.zipVar]));};if(bm)bm.onclick=function(){save(CFG.mdName,bytes(window[CFG.mdVar]));};
+  });}
+})();
+
+if(!(window.claude&&window.claude.use)&&/^https?:/.test(location.protocol)){var a=$("#dlZip"),b=$("#dlMd");a.hidden=false;a.onclick=function(){location.href=CFG.zipName;};if(b){b.hidden=false;b.onclick=function(){location.href=CFG.mdName;};}$("#dlMsg").textContent="El .zip es el que se sube a Claude. El .md es el texto de las instrucciones, por si quieres leerlo.";}
+/* ---------- reader sheet ---------- */
+var cur=null;
+function neighbours(id){var k=ORDER.indexOf(id);return {prev:ORDER[k-1],next:ORDER[k+1]};}
+function where(x){if(x.id===0)return CFG.welcomeLabel||"Bienvenida";if(isStep(x.id)){var a=actOf(x.id);return label(x.id)+" de "+N+(a&&a.name!=="Clases"?", "+a.name:"");}return x.kicker;}
+function sheetHTML(x){
+  var b=lessonBody(x.body),nb=neighbours(x.id),s=seen.has(x.id),nx=nb.next!==undefined?L(nb.next):null;
+  var num=isStep(x.id)?(SKIN.readerNum?SKIN.readerNum(x,CTX):String(x.id)):null;
+  var turn=b.tasks.length?'<section class="turn"><h3>Tu turno</h3>'+b.tasks.map(function(t){return '<div class="task"><h4>'+esc(t.title)+"</h4>"+t.html+"</div>";}).join("")+
+    '<label class="nb-l" for="nb">Tu cuaderno</label><textarea id="nb" placeholder="Escribe aquí tu ejercicio. Se guarda en este dispositivo."></textarea><span class="saved" id="nbs"></span></section>':"";
+  return '<div class="grab" id="grab"><span class="where">'+esc(where(x))+'</span><button type="button" class="x" id="closeB">Cerrar</button></div><div class="scroll" id="scroll">'+
+    '<div class="r-head'+(num?"":" nonum")+'">'+(num?'<span class="r-num" aria-hidden="true">'+esc(num)+"</span>":"")+'<p class="r-k">'+esc(isStep(x.id)?label(x.id):(x.id===0?(CFG.welcomeLabel||"Bienvenida"):x.kicker))+'</p><h1 class="r-title" id="rTitle">'+esc(ttl(x))+'</h1></div><p class="r-topic">'+esc(x.topic)+'</p><p class="r-intro">'+inline(esc(x.intro))+'</p><div class="lesson-body">'+b.html+"</div>"+turn+
+    '<div class="r-foot"><div class="nav"><button class="btn" type="button" id="prevB" '+(nb.prev===undefined?"disabled":"")+'>Anterior</button><button class="btn solid" type="button" id="nextB" '+(nb.next===undefined?"disabled":"")+">Siguiente</button></div>"+
+    (isStep(x.id)?'<button class="btn'+(s?" done":"")+'" type="button" id="seenB" aria-pressed="'+s+'">'+(s?"Completada ✓":"Marcar como completada")+"</button>":"")+
+    (nx?'<p class="r-next">Sigue: '+esc(ttl(nx))+"</p>":"")+"</div></div>";
+}
+function openLesson(id,trigger){
+  var x=L(id);if(!x)return;
+  var fresh=!cur;
+  if(fresh){
+    var scrim=document.createElement("div");scrim.className="scrim";var sh=document.createElement("div");sh.className="sheet";sh.setAttribute("role","dialog");sh.setAttribute("aria-modal","true");sh.setAttribute("aria-labelledby","rTitle");
+    document.body.appendChild(scrim);document.body.appendChild(sh);document.body.classList.add("sheet-open");
+    cur={scrim:scrim,sh:sh,trigger:trigger||document.activeElement};
+    scrim.onclick=closeLesson;
+  }
+  cur.id=id;cur.sh.innerHTML=sheetHTML(x);
+  var sh=cur.sh;
+  if(fresh)requestAnimationFrame(function(){requestAnimationFrame(function(){sh.classList.add("on");cur&&cur.scrim.classList.add("on");});});
+  $("#closeB",sh).onclick=closeLesson;$("#closeB",sh).focus({preventScroll:true});
+  var nb=neighbours(id);
+  $("#prevB",sh).onclick=function(){openLesson(nb.prev);};
+  $("#nextB",sh).onclick=function(){if((isStep(id)||id===0)&&!seen.has(id)){seen.add(id);saveSeen();refresh();}openLesson(nb.next);};
+  var sb=$("#seenB",sh);if(sb)sb.onclick=function(){seen.has(id)?seen.delete(id):seen.add(id);saveSeen();var on=seen.has(id);sb.textContent=on?"Completada ✓":"Marcar como completada";sb.classList.toggle("done",on);sb.setAttribute("aria-pressed",String(on));refresh();};
+  var ta=$("#nb",sh);if(ta){ta.value=notes[id]||"";var t;ta.oninput=function(){clearTimeout(t);t=setTimeout(function(){notes[id]=ta.value;store.set(CFG.key+"-notes",notes);$("#nbs",sh).textContent="Guardado en este dispositivo";},400);};}
+  $("#scroll",sh).scrollTop=0;
+  try{history.replaceState(null,"","#clase-"+id);}catch(e){}
+  var g=$("#grab",sh),y0=null,dy=0,t0=0;
+  g.addEventListener("pointerdown",function(e){if(e.target.closest("button"))return;y0=e.clientY;dy=0;t0=performance.now();sh.classList.add("drag");try{g.setPointerCapture(e.pointerId);}catch(_){}});
+  g.addEventListener("pointermove",function(e){if(y0==null)return;dy=e.clientY-y0;sh.style.transform="translateY("+(dy<0?dy*.15:dy)+"px)";});
+  function end(){if(y0==null)return;var v=dy/Math.max(1,performance.now()-t0);sh.classList.remove("drag");sh.style.transform="";y0=null;if(dy>140||v>.5)closeLesson();}
+  g.addEventListener("pointerup",end);g.addEventListener("pointercancel",end);
+}
+function closeLesson(){
+  if(!cur)return;var c=cur;cur=null;document.body.classList.remove("sheet-open");
+  c.sh.classList.remove("on");c.scrim.classList.remove("on");setTimeout(function(){c.sh.remove();c.scrim.remove();},reduce?0:500);
+  try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}
+  var t=document.querySelector('#progView [data-open="'+c.id+'"]')||c.trigger;if(t&&t.focus)t.focus({preventScroll:false});
+}
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&cur)closeLesson();});
+
+/* ---------- boot ---------- */
+renderCats();renderFaq();refresh();
+var hm=(location.hash||"").replace("#",""),hh=hm.match(/clase-(\d+)/);
+if(hh&&L(+hh[1]))openLesson(+hh[1]);else if(hm==="mentor"||hm==="mentora")setTab("M");else if(hm==="preguntas")setTab("F");
+})();
+</script>
+</body></html>
