@@ -1,0 +1,449 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body><title>El Clic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700;12..96,800&family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,600;9..40,700&family=JetBrains+Mono:wght@500;600&display=swap">
+<style>
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font:17px/1.6 var(--body)}
+button{font:inherit;color:inherit}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--focus,var(--accent));outline-offset:3px}
+.wrap{max-width:var(--maxw,1040px);margin:0 auto;padding-inline:16px;padding-block:0 64px;display:flex;flex-direction:column;gap:var(--gap,28px)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.press{transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.press:active{transform:scale(.97)}
+
+/* tabs */
+.tabbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;display:flex;justify-content:center;margin-inline:-16px;padding:10px 16px}
+.tabbar::before{content:"";position:absolute;inset:0;background:var(--bg);opacity:.94;z-index:-1}
+.tabs{display:flex;gap:4px;max-width:100%;overflow-x:auto;padding:4px;border-radius:var(--tabs-r,999px);background:var(--surface);border:1px solid var(--line)}
+.tab{white-space:nowrap;border:0;background:transparent;color:var(--muted);font-weight:600;font-size:15px;padding:10px 18px;border-radius:var(--tabs-r,999px);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+
+/* shared buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1.5px solid var(--line);background:transparent;color:var(--ink);font-weight:600;font-size:15px;padding:12px 18px;border-radius:var(--btn-r,999px);cursor:pointer;text-decoration:none;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.btn:active{transform:scale(.97)}
+.btn.solid{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.btn[disabled]{opacity:.35;cursor:default}
+
+/* section heads (faq + mentor) */
+.sec-h{margin:0;font:var(--h2-font);letter-spacing:var(--h2-track,-.01em);text-wrap:balance}
+.sec-p{margin:8px 0 0;color:var(--muted);max-width:56ch}
+
+/* faq */
+.faqv{display:flex;flex-direction:column;gap:16px;max-width:780px}
+.f-search{display:flex;gap:10px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:var(--field-r,999px);padding:0 18px}
+.f-search svg{width:20px;height:20px;flex:none;color:var(--muted)}
+.f-search input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:17px/1.3 var(--body);padding:14px 0}
+.f-search input:focus{outline:none}
+.f-search:focus-within{border-color:var(--accent)}
+.f-chips{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:8px 14px;font-size:14px;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.f-count{margin:0;color:var(--muted);font-size:14px}
+.fgroup h3{margin:18px 0 8px;font:var(--h3-font)}
+details.qa{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);margin-bottom:8px}
+details.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:14px;padding:15px 18px;font-weight:600;font-size:16.5px;line-height:1.35}
+details.qa summary::-webkit-details-marker{display:none}
+details.qa summary i{flex:none;font-style:normal;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:var(--bg);color:var(--ink);transition:transform .2s cubic-bezier(.23,1,.32,1)}
+details.qa[open] summary i{transform:rotate(45deg);background:var(--accent);color:var(--accent-ink)}
+.ans{padding:0 18px 18px}
+.ans p{margin:0 0 .7em;max-width:64ch}.ans p:last-child{margin:0}
+.ans ul,.ans ol{margin:0 0 .8em;padding-left:1.3em}
+.ans .go{margin-top:10px}
+mark{background:var(--mark,rgba(255,200,0,.35));color:inherit;border-radius:3px;padding:0 2px}
+
+/* mentor */
+.mentorv{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:28px 40px;align-items:start}
+@media (max-width:780px){.mentorv{grid-template-columns:minmax(0,1fr)}}
+.m-col{display:flex;flex-direction:column;gap:18px;min-width:0}
+.m-can{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.m-can li{background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,16px);padding:14px 16px}
+.m-can b{display:block;font-weight:700}
+.m-can span{color:var(--muted);font-size:15px}
+.m-dl{display:flex;flex-wrap:wrap;gap:10px}
+.m-note{margin:0;color:var(--muted);font-size:14px}
+.m-h{margin:0;font:var(--h3-font)}
+.m-steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+.m-steps li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:10px;align-items:baseline}
+.m-steps li::before{counter-increment:s;content:counter(s);font:var(--num-font,700 22px/1 var(--display));color:var(--accent-text,var(--accent))}
+.m-prompts{display:grid;gap:8px}
+.m-prompt{display:flex;gap:12px;align-items:center;justify-content:space-between;background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r,14px);padding:10px 12px 10px 16px}
+.m-prompt q{quotes:none;min-width:0;font-size:15.5px}
+.m-prompt .btn{padding:8px 14px;font-size:13.5px;flex:none}
+.m-limits{display:flex;flex-wrap:wrap;gap:8px}
+.m-limits span{font-size:13.5px;border:1px solid var(--line);border-radius:999px;padding:5px 12px;color:var(--muted)}
+footer.foot{text-align:center;font-size:14px;color:var(--muted);padding-top:20px}
+
+/* ---------- reader sheet (the lights come on) ---------- */
+.scrim{position:fixed;inset:0;z-index:40;background:rgba(0,0,0,.45);opacity:0;transition:opacity .45s cubic-bezier(.32,.72,0,1)}
+.scrim.on{opacity:1}
+.sheet{position:fixed;z-index:41;left:0;right:0;bottom:0;top:calc(12px + env(safe-area-inset-top,0px));margin:0 auto;max-width:800px;background:var(--r-bg);color:var(--r-ink);border-radius:22px 22px 0 0;transform:translateY(100%);transition:transform .5s cubic-bezier(.32,.72,0,1);display:flex;flex-direction:column;box-shadow:0 -12px 50px rgba(0,0,0,.35);font-family:var(--r-body,var(--body))}
+.sheet.on{transform:translateY(0)}
+.sheet.drag{transition:none}
+.grab{flex:none;touch-action:none;cursor:grab;display:grid;grid-template-columns:1fr auto;align-items:center;gap:10px;padding:10px 14px 10px 20px;border-bottom:1px solid var(--r-line);position:relative}
+.grab::before{content:"";position:absolute;top:6px;left:50%;width:40px;height:5px;margin-left:-20px;border-radius:3px;background:var(--r-line)}
+.grab .where{font-size:14px;font-weight:600;color:var(--r-muted);padding-top:8px}
+.grab .x{border:1px solid var(--r-line);background:transparent;color:var(--r-ink);border-radius:999px;padding:8px 14px;font-weight:600;font-size:14px;cursor:pointer;margin-top:6px}
+.sheet :focus-visible{outline:2px solid var(--r-accent);outline-offset:3px}
+.scroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch;overscroll-behavior:contain;padding:clamp(22px,5vw,48px) clamp(18px,5vw,56px) calc(56px + env(safe-area-inset-bottom,0px))}
+.r-head{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 18px;align-items:end;margin-bottom:18px}
+.r-head.nonum{grid-template-columns:minmax(0,1fr)}
+.r-num{grid-row:span 2;font:var(--r-num-font,800 96px/.8 var(--display));color:var(--r-accent);font-variant-numeric:tabular-nums}
+.r-k{margin:0;font-size:14.5px;font-weight:600;color:var(--r-accent)}
+.r-title{margin:0;font:var(--r-title-font,700 clamp(32px,6.5vw,48px)/1 var(--display));letter-spacing:var(--r-title-track,-.01em);text-wrap:balance}
+.r-topic{margin:0 0 18px;font-size:20px;line-height:1.35;color:var(--r-muted)}
+.r-intro{font-size:20px;line-height:1.5;margin:0 0 26px;padding-bottom:24px;border-bottom:1px solid var(--r-line)}
+.lesson-body p,.lesson-body li{max-width:66ch}
+.lesson-body p{margin:0 0 .9em}
+.lesson-body ul,.lesson-body ol{margin:0 0 1em;padding-left:1.3em}
+.lesson-body li{margin:.4em 0}
+.lesson-body li::marker{color:var(--r-accent);font-weight:700}
+.lesson-body strong{font-weight:700}
+.lesson-body h3{font:var(--r-h3-font,700 26px/1.15 var(--display));margin:36px 0 10px;text-wrap:balance}
+.callout{margin:28px 0;padding:22px 24px;border-radius:var(--card-r,18px);background:var(--r-callout-bg);color:var(--r-callout-ink)}
+.callout p{margin:0;font:var(--r-callout-font,700 clamp(22px,4.6vw,28px)/1.2 var(--display));max-width:34ch;text-wrap:balance}
+.turn{margin-top:40px;padding-top:26px;border-top:2px solid var(--r-ink);display:grid;gap:12px}
+.turn h3{margin:0;font:var(--r-h3-font,700 26px/1.15 var(--display))}
+.task{background:var(--r-surface);border:1px solid var(--r-line);border-radius:var(--card-r,16px);padding:16px 18px}
+.task h4{margin:0 0 6px;font-size:17px}
+.task p:last-child,.task ul:last-child,.task ol:last-child{margin-bottom:0}
+.nb-l{font-weight:600;font-size:14px;color:var(--r-muted);margin-top:6px}
+.sheet textarea{width:100%;min-height:150px;resize:vertical;font:16px/1.55 var(--r-body,var(--body));color:var(--r-ink);background:var(--r-surface);border:1px solid var(--r-line);border-radius:12px;padding:14px 16px}
+.saved{font-size:13px;color:var(--r-muted);min-height:1.2em}
+.r-foot{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin-top:34px;padding-top:22px;border-top:1px solid var(--r-line)}
+.r-foot .nav{display:flex;gap:8px;flex-wrap:wrap}
+.sheet .btn{border-color:var(--r-line);color:var(--r-ink)}
+.sheet .btn.solid{background:var(--r-ink);border-color:var(--r-ink);color:var(--r-bg)}
+.sheet .btn.done{background:var(--r-accent);border-color:var(--r-accent);color:var(--r-accent-ink,var(--r-bg))}
+.r-next{width:100%;margin:0;font-size:14px;color:var(--r-muted)}
+body.sheet-open{overflow:hidden}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+.mentorv .sec-h{font-size:clamp(28px,6.4vw,46px)}
+
+/* El Clic: a signal trace on lab paper. The line stays flat until the mind says yes; each finished class leaves a spike, and the one you are on gets the big one. */
+:root{
+  color-scheme:light;
+  --bg:#F3F3EF; --surface:#FFFFFF; --ink:#15171E; --muted:#5B5F6C; --line:#DADAD3; --grid:rgba(21,23,30,.05);
+  --accent:#E3245C; --accent-ink:#FFFFFF; --accent-text:#BE1849; --focus:#BE1849; --mark:rgba(227,36,92,.18);
+  --display:"Bricolage Grotesque",system-ui,-apple-system,sans-serif; --body:"DM Sans",system-ui,-apple-system,sans-serif; --mono:"JetBrains Mono",ui-monospace,Menlo,monospace;
+  --h2-font:800 clamp(34px,7vw,52px)/1 var(--display); --h2-track:-.02em; --h3-font:700 22px/1.15 var(--display); --num-font:600 17px/1.4 var(--mono);
+  --r-bg:#FFFFFF; --r-surface:#F6F6F2; --r-ink:#15171E; --r-muted:#5B5F6C; --r-line:#E2E2DB; --r-accent:#BE1849; --r-accent-ink:#FFFFFF; --r-callout-bg:#15171E; --r-callout-ink:#F3F3EF;
+  --r-num-font:600 clamp(56px,14vw,92px)/.85 var(--mono); --r-title-font:800 clamp(30px,6.4vw,46px)/1.02 var(--display); --r-title-track:-.02em; --r-h3-font:700 24px/1.15 var(--display); --r-callout-font:700 clamp(21px,4.4vw,27px)/1.2 var(--display);
+  --card-r:14px; --btn-r:999px;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  color-scheme:dark;
+  --bg:#101218; --surface:#181B23; --ink:#ECEDF0; --muted:#A3A7B4; --line:#2B2F3A; --grid:rgba(236,237,240,.045);
+  --accent:#FF4D84; --accent-ink:#16060C; --accent-text:#FF79A2; --focus:#FF79A2; --mark:rgba(255,77,132,.28);
+  --r-bg:#171A22; --r-surface:#1F232C; --r-ink:#ECEDF0; --r-muted:#A3A7B4; --r-line:#2E323D; --r-accent:#FF79A2; --r-accent-ink:#16060C; --r-callout-bg:#ECEDF0; --r-callout-ink:#15171E;
+}}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#101218; --surface:#181B23; --ink:#ECEDF0; --muted:#A3A7B4; --line:#2B2F3A; --grid:rgba(236,237,240,.045);
+  --accent:#FF4D84; --accent-ink:#16060C; --accent-text:#FF79A2; --focus:#FF79A2; --mark:rgba(255,77,132,.28);
+  --r-bg:#171A22; --r-surface:#1F232C; --r-ink:#ECEDF0; --r-muted:#A3A7B4; --r-line:#2E323D; --r-accent:#FF79A2; --r-accent-ink:#16060C; --r-callout-bg:#ECEDF0; --r-callout-ink:#15171E;
+}
+/* graph paper: the lab sheet the signal is printed on */
+body{background-color:var(--bg);background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.tab{font-family:var(--body)}
+.tab[aria-selected="true"]{background:var(--ink);color:var(--bg)}
+.chip[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.btn.solid{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+mark{background:var(--mark)}
+.m-steps li::before{color:var(--accent-text)}
+
+/* hero */
+.c-hero{display:flex;flex-direction:column;gap:18px;padding-block:28px 6px}
+.c-kick{margin:0;font:500 13px/1.4 var(--mono);color:var(--muted)}
+.c-kick b{color:var(--accent-text);font-weight:600}
+.c-word{margin:0;font:800 clamp(64px,17vw,148px)/.86 var(--display);letter-spacing:-.045em;color:var(--ink)}
+.c-word span{color:var(--accent-text)}
+.c-scope{position:relative;margin-inline:-4px;padding:6px 0 0}
+.c-svg{display:block;width:100%;height:auto;overflow:visible}
+.c-base{stroke:var(--line);stroke-width:2;stroke-dasharray:6 10}
+.c-trace{fill:none;stroke:var(--ink);stroke-width:4.5;stroke-linejoin:round;stroke-linecap:round}
+.c-hot{fill:none;stroke:var(--accent);stroke-width:7;stroke-linejoin:round;stroke-linecap:round}
+@media (prefers-reduced-motion:no-preference){
+  .c-anim .c-trace{stroke-dasharray:1;stroke-dashoffset:1;animation:cdraw 1.1s cubic-bezier(.23,1,.32,1) .1s forwards}
+  .c-anim .c-hot{opacity:0;animation:cpop .35s cubic-bezier(.23,1,.32,1) 1.05s forwards}
+  .c-anim .c-node.next::after{animation:cring 1s cubic-bezier(.23,1,.32,1) 1.2s 1 both}
+  @keyframes cdraw{to{stroke-dashoffset:0}}
+  @keyframes cpop{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+  @keyframes cring{from{transform:scale(.6);opacity:.9}to{transform:scale(2.1);opacity:0}}
+}
+.c-nodes{position:absolute;inset:0}
+.c-node{position:absolute;top:var(--y);left:var(--x);width:34px;height:34px;margin:-17px 0 0 -17px;border-radius:50%;border:1.5px solid var(--line);background:var(--bg);color:var(--muted);font:600 12.5px/1 var(--mono);display:grid;place-items:center;cursor:pointer;padding:0;transition:transform .16s cubic-bezier(.23,1,.32,1),border-color .2s}
+.c-node::after{content:"";position:absolute;inset:-2px;border-radius:50%;border:2px solid var(--accent);opacity:0;pointer-events:none}
+.c-node.seen{background:var(--ink);border-color:var(--ink);color:var(--bg)}
+.c-node.next{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.c-node:active{transform:scale(.92)}
+@media (hover:hover){.c-node:hover{border-color:var(--ink)}}
+.c-copy{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:16px 40px;align-items:start}
+@media (max-width:760px){.c-copy{grid-template-columns:minmax(0,1fr)}}
+.c-tag{margin:0;font:700 clamp(24px,4.8vw,34px)/1.12 var(--display);letter-spacing:-.015em;text-wrap:balance}
+.c-tag em{font-style:normal;color:var(--accent-text)}
+.c-side{display:flex;flex-direction:column;gap:14px}
+.c-pitch{margin:0;color:var(--muted)}
+.c-now{margin:0;font:500 13.5px/1.4 var(--mono);color:var(--muted)}
+.c-now b{color:var(--ink);font-weight:600}
+.c-cta{display:flex;gap:10px;flex-wrap:wrap}
+
+/* program */
+.c-prog{display:grid;gap:22px}
+.c-welcome{display:flex;justify-content:space-between;gap:16px;align-items:center;width:100%;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r);padding:18px 20px;cursor:pointer;color:var(--ink)}
+.c-welcome b{display:block;font:800 24px/1.1 var(--display);letter-spacing:-.01em}
+.c-welcome small{color:var(--muted);font-size:15px}
+.c-welcome span:last-child{font:600 13px/1.3 var(--mono);color:var(--accent-text);white-space:nowrap}
+.c-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 36px;border-top:1.5px solid var(--ink)}
+@media (max-width:700px){.c-list{grid-template-columns:minmax(0,1fr)}}
+.c-row{display:grid;grid-template-columns:40px minmax(0,1fr) 54px;gap:2px 12px;align-items:center;width:100%;text-align:left;background:none;border:0;border-bottom:1px solid var(--line);padding:15px 0;cursor:pointer;color:var(--ink)}
+.c-row .n{font:600 15px/1 var(--mono);color:var(--muted)}
+.c-row b{display:block;font:700 20px/1.15 var(--display);letter-spacing:-.01em}
+.c-row small{display:block;color:var(--muted);font-size:15px;margin-top:3px}
+.c-row .st{display:flex;flex-direction:column;align-items:flex-end;gap:3px}
+.c-row svg{width:54px;height:22px;overflow:visible}
+.c-row svg path{fill:none;stroke:var(--line);stroke-width:1.8;stroke-linejoin:round;stroke-linecap:round}
+.c-row.seen svg path{stroke:var(--ink)}
+.c-row.next svg path{stroke:var(--accent);stroke-width:2.2}
+.c-row i{font:600 11px/1 var(--mono);font-style:normal;color:var(--muted);white-space:nowrap}
+.c-row.next i{color:var(--accent-text)}
+.c-row.seen .n{color:var(--ink)}
+.c-row.next .n{color:var(--accent-text)}
+@media (hover:hover){.c-row:hover b{color:var(--accent-text)}}
+.c-h{margin:12px 0 0;font:800 26px/1 var(--display);letter-spacing:-.01em}
+.c-tools{display:flex;flex-wrap:wrap;gap:12px}
+.c-tool{flex:1 1 200px;min-width:0;text-align:left;background:var(--surface);border:1px solid var(--line);border-radius:var(--card-r);padding:16px 18px;cursor:pointer;color:var(--ink)}
+.c-tool b{display:block;font:700 19px/1.15 var(--display)}
+.c-tool small{color:var(--muted);font-size:15px}
+.r-k{font-family:var(--mono);font-weight:600;font-size:13px}
+
+</style>
+<div id="root"></div>
+<script>
+var LESSONS_MD="@@ 0 | Empieza aquí | Bienvenida a El Clic | Vender sin sentir que vendes\nEl Clic es ese segundo en que la mente de alguien dice \"sí, esto es para mí\". Este curso es para que entiendas qué lo provoca y lo cuides en cada plática con tus clientas.\n\n## Por qué este curso\nHoy casi todo se parece. Hay cientos de personas vendiendo cremas, perfumes y maquillaje, y desde afuera todo suena igual: \"de calidad\", \"precio increíble\", \"el mejor\". Cuando todo suena igual, la única diferencia que queda es el precio, y competir por precio es trabajar casi gratis.\n\nLa salida no es gritar más fuerte. Es entender **cómo decide la mente** y hablarle a eso: a lo que tu clienta siente, teme y sueña, no solo a lo que dice que quiere.\n\n## Lo que vas a construir\n- Tu **necesidad de fondo**: lo que de verdad compra tu clienta cuando te compra.\n- Tu forma de abrir una plática con **atención, emoción y recuerdo**.\n- Tus **tres opciones** para que la mente pueda elegir.\n- El **significado** de tu producto estrella, más allá de lo que hace.\n- Tus **historias** de venta, honestas y con pruebas.\n- Tu **guion de El Clic** para un tipo de clienta.\n- Tu **reto de 66 días**, 15 minutos al día.\n\n## Antes de empezar: la regla de oro\nTodo lo que vas a aprender sirve para conectar mejor, no para manipular. Si un producto no le sirve a alguien, no se lo vendas. No inventes miedos, no prometas resultados de salud y nunca mientas. Cuando ayudas de verdad, la clienta regresa y te recomienda.\n\n> Vender sin vender: escucha primero, ayuda siempre y la venta llega sola.\n\n## Cómo aprovecharlo\n1. **Una clase por semana.** Son lecturas cortas, de unos 7 minutos.\n2. **Haz el ejercicio en el cuaderno** que viene al final de cada clase.\n3. **Pruébalo esa misma semana** con una clienta real. Esto se aprende en la plática, no en la lectura.\n4. **Comparte en el grupo** lo que te funcionó. Lo que a ti te salió, a otra le ahorra meses.\n\n## 🪞 Mírate al espejo\nPiensa en tu última venta. ¿Por qué crees que te compró? ¿Y si la razón real fuera otra?\n\n## ✍️ Ejercicio\nEscribe las tres frases que más usas para vender. Guárdalas: al final del curso las vas a reescribir.\n\n## ✅ Tu tarea de la semana\nPlatica con una clienta sin ofrecerle nada. Solo pregúntale cómo está y escucha. Anota qué te contó.\n\n## 💬 Para compartir en el grupo\n¿Cuál es la frase que más usas para vender? Compártela tal cual, sin pena.\n\n@@ 1 | Clase 1 | La mente compra primero | Nadie sabe bien por qué compra\nLa mayor parte de una decisión de compra pasa por debajo de lo consciente. La persona compra y después busca razones para explicarlo.\n\n## La gente no sabe por qué compra\nPregúntale a alguien por qué eligió ese perfume y te dirá \"porque huele rico\". Pero había otros veinte que olían rico. Lo que pasó por dentro (un recuerdo, una emoción, cómo se imaginó usándolo) casi nunca lo sabe decir. Los estudios de este tema dicen que **la gran mayoría de la decisión es inconsciente** y solo una parte pequeña es lógica.\n\nEso no significa que tu clienta sea tonta. Significa que es humana. Todas compramos así, también tú.\n\n## Primero se siente, luego se justifica\nLa mente decide con la emoción y luego le pide a la parte lógica que le dé argumentos. Por eso alguien sale a comprar \"algo práctico\" y regresa con lo que le encantó, y después te explica muy convencida por qué era lo más práctico.\n\n> La emoción decide. La lógica firma.\n\n## Cuando todo se parece, gana la que conecta\nSi tú y otras diez personas dicen lo mismo (\"es de calidad\", \"está en promoción\"), la mente no ve diferencia, y cuando no ve diferencia elige lo más barato. Tu ventaja no es decir más cosas, es decir **las cosas que le importan a ella**.\n\n## Vender sin vender\nMientras más suena a \"discurso de vendedora\", más se cierra la mente. Lo que abre es lo contrario: preguntar, escuchar, platicar de su vida. Si una clienta te cuenta que tiene dos hijos, que no tiene tiempo y que extraña arreglarse, ya sabes qué ofrecerle y cómo decírselo. Si no le preguntas, estás hablando a ciegas.\n\n## Las dos formas de vender\n- La vendedora de siempre habla mucho, explica características y usa el mismo discurso con todas.\n- La que vende a la mente pregunta, escucha, usa todo el cuerpo para comunicar, adapta lo que dice a cada persona y sabe que la gente compra para sentirse bien y quitarse un miedo de encima.\n\n## 🪞 Mírate al espejo\nEn tus últimas pláticas de venta, ¿quién habló más: tú o tu clienta?\n\n## ✍️ Ejercicio\n1. Piensa en algo que compraste este mes y que no necesitabas.\n2. Escribe la razón \"lógica\" que te diste.\n3. Ahora escribe la razón real: ¿qué sentiste?, ¿qué te imaginaste?\n\n## ✅ Tu tarea de la semana\nEn tu próxima plática de venta haz al menos tres preguntas antes de mencionar un solo producto.\n\n## 💬 Para compartir en el grupo\nCuenta algo que compraste por emoción y la excusa lógica que te diste. Va a dar risa y vas a aprender.\n\n@@ 2 | Clase 2 | La necesidad de fondo | Lo que de verdad se compra\nDebajo de cada compra hay una necesidad muy básica, casi de instinto. Si la encuentras, sabes qué decir.\n\n## Tres partes que deciden juntas\nUna forma sencilla de entender la mente es imaginar tres partes que trabajan juntas:\n- **La que sobrevive.** Busca estar a salvo, cuidarse, pertenecer al grupo. No piensa, reacciona.\n- **La que siente.** Guarda recuerdos y emociones. Un olor te puede regresar veinte años en un segundo.\n- **La que explica.** Es la lógica. Es la única que habla, por eso siempre racionalizamos lo que hacemos.\n\nLa que explica cree que manda, pero la que sobrevive y la que siente llevan el volante. Por eso alguien te dice \"no te compro por el precio\" cuando la razón real es otra.\n\n## La necesidad de fondo\nTodo producto toca alguna necesidad básica. Estas son las más comunes:\n- **Seguridad y protección:** estar a salvo, cuidar a los suyos.\n- **Pertenecer:** ser aceptada por su grupo.\n- **Reconocimiento:** que la vean, que la admiren.\n- **Placer:** darse un gusto, sentirse bien.\n- **Control y orden:** tener las cosas bajo control.\n- **Libertad:** escapar un ratito de la rutina.\n- **Explorar:** probar algo nuevo, descubrir.\n- **Trascender:** dejar algo, ser ejemplo, la familia.\n\nCasi siempre hay varias, pero una pesa más. Esa es la que buscas.\n\n## Aterrizado a lo que vendemos\nUna mamá que compra una crema no compra crema: compra **cinco minutos para ella** (placer y libertad) y verse bien en las fotos con sus hijos (trascender). Una mujer que compra un perfume para una boda compra **que la volteen a ver** (reconocimiento). Una clienta que compra la rutina completa compra **sentir que tiene su piel bajo control**.\n\n> No vendes el producto. Vendes la necesidad que cubre.\n\n## Cuidado con decirlo en voz alta\nLa necesidad de fondo es para que tú la entiendas, no para anunciarla. No le digas \"esto es para que tus amigas te acepten\". Dile \"con este tono vas a llegar a la reunión sintiéndote increíble\". Ella entiende lo demás.\n\n## 🪞 Mírate al espejo\n¿Cuál es la necesidad de fondo de tu producto que más vendes? ¿La has usado alguna vez al hablar de él?\n\n## ✍️ Ejercicio\n1. Escribe tus 3 productos que más vendes.\n2. Para cada uno, elige la necesidad de fondo que más pesa.\n3. Escribe una frase para cada uno que hable de esa necesidad sin nombrarla.\n\n## ✅ Tu tarea de la semana\nUsa una de esas frases con tres clientas y anota cómo reaccionaron.\n\n## 💬 Para compartir en el grupo\nComparte tu producto estrella y la necesidad de fondo que encontraste. A ver si el equipo coincide.\n\n@@ 3 | Clase 3 | Cómo decide la mente | Atención, emoción y recuerdo\nPara que alguien diga que sí tienen que pasar tres cosas, en orden. Si falta una, no hay clic.\n\n## Las tres llaves\n1. **Atención.** Si no te pone atención, el juego no empieza. Se logra con algo conocido y luego algo nuevo, con algo que entienda fácil y con un poquito de expectativa: \"espérate a ver cómo se siente en la piel\".\n2. **Emoción.** Que lo que le dices le haga sentir algo bueno. Ojo: puedes llamar la atención y aun así provocar una emoción negativa o ninguna.\n3. **Recuerdo.** Que conecte lo que vendes con su propia vida: cómo le va a servir a ella, en su día, con su familia. Ahí es cuando se anima a pagar.\n\n> Atención abre la puerta. Emoción la invita a pasar. Recuerdo la hace quedarse.\n\n## La mente necesita tres opciones\nCon una sola opción la mente no puede decidir, y si no le das opciones se va a buscarlas a otro lado. Con muchas se confunde. Tres es el número que funciona: tres tonos, tres tamaños, tres paquetes. Y aunque cada opción se sienta \"lógica\", detrás de cada una hay una emoción: la que me hace sentir atrevida, la que me hace sentir inteligente, la que me hace sentir que me consiento.\n\n## Emoción con un dato para justificar\nNadie quiere sentir que compró \"por impulso\". Cuando notes que tu clienta ya se enamoró del producto, dale un dato lógico que le dé tranquilidad: cuánto le dura, cómo se usa, qué incluye. Así se va contenta y con argumentos para contarle a quien le pregunte.\n\n## Cuando se vuelve todo números\nSi la plática se queda solo en precios y comparaciones, regrésala a lo que siente. Pregunta para qué lo quiere, cuándo lo va a usar, cómo se quiere ver. Cuando se pierde la emoción, el precio se vuelve un monstruo.\n\n## 🪞 Mírate al espejo\n¿Cuál de las tres llaves se te olvida más? ¿Te quedas en la atención y no llegas al recuerdo?\n\n## ✍️ Ejercicio\nPara tu producto estrella escribe:\n1. Una frase para ganar **atención** (algo conocido más algo nuevo).\n2. Una frase de **emoción** (cómo se va a sentir).\n3. Una frase de **recuerdo** (cómo encaja en su vida, en su día).\n4. Las **tres opciones** que le vas a ofrecer.\n\n## ✅ Tu tarea de la semana\nOfrece siempre tres opciones esta semana, en lugar de una o de todo el catálogo.\n\n## 💬 Para compartir en el grupo\n¿Cuáles son tus tres opciones para tu producto estrella?\n\n@@ 4 | Clase 4 | Lo que la mente busca | Cinco cosas que tu clienta quiere sentir\nEn cualquier plática de venta, la mente de tu clienta está buscando cinco cosas. Si se las das, se queda contigo.\n\n## 1. Sorpréndeme\nA la mente le encanta lo nuevo, pero anclado en algo que ya conoce. No tienes que inventar productos nuevos; muéstrale un ángulo que no había visto: otra forma de usarlo, otro momento del día, otra combinación. Sin exagerar: si suena a circo o a promesa imposible, se desconecta.\n\n## 2. Hazme sentir inteligente\nEl peor error es que tu clienta se sienta tonta. Nada de tecnicismos ni nombres de ingredientes que no entiende. Explícalo con lo que vive: \"es la que se absorbe rápido y no te deja brillosa\". Dale la razón, hazla sentir que ella eligió bien.\n\n## 3. Déjame preguntar\nLa mente aprende mejor cuando ella pregunta y tú respondes, que cuando le sueltas todo de golpe. Si te repite una pregunta, no te desesperes: está disfrutando escuchar otra vez lo que le gustó. Y nunca le preguntes \"¿me entendiste?\". Pregunta **\"¿fui clara?\"**: la responsabilidad de explicarte bien es tuya.\n\n## 4. Quítame un dolor\nLo que más fideliza no es la sorpresa ni el placer: es **quitarle un dolor**. Una mala experiencia con otra marca, un pedido que nunca llegó, una piel que nada le funciona. Déjala contar. Hazla sentir comprendida: \"sí, eso pasa, no eres la única, tiene solución\". Y si te dice un miedo, contéstalo siempre. Si no sabes, dile \"no lo sé, déjame averiguarlo ahorita\". Nunca dejes un miedo sin respuesta.\n\n## 5. Siente conmigo\nTu clienta quiere sentir que hablas con una persona, no con una máquina de vender. Muestra tus emociones y fíjate en las suyas. Si ella habla con las manos, tú también. Si va despacio, tú también. Ese espejo natural hace que se sienta en confianza.\n\n> Hazme sentir inteligente, entendida y acompañada, y te compro a ti.\n\n## El orden que funciona\nPrimero sorpréndela para ganar su atención, luego hazla sentir inteligente, déjala preguntar, escucha su dolor, y todo el tiempo siente con ella.\n\n## 🪞 Mírate al espejo\n¿Alguna vez una clienta se fue confundida o se sintió tonta en tu plática? ¿Qué pasó?\n\n## ✍️ Ejercicio\n1. Escribe cómo explicas hoy tu producto estrella.\n2. Reescríbelo sin una sola palabra técnica, como se lo dirías a tu mamá.\n3. Escribe qué dolor le quita a tu clienta.\n\n## ✅ Tu tarea de la semana\nPregúntale a tres clientas: \"¿qué es lo que menos te ha gustado de otras marcas que has probado?\" y anota las respuestas.\n\n## 💬 Para compartir en el grupo\nComparte un dolor de tus clientas que tu producto resuelve.\n\n@@ 5 | Clase 5 | El significado | Las cosas valen por lo que significan\nLas cosas valen más por lo que significan que por lo que son. Cuando tu producto significa algo, el precio deja de ser el tema.\n\n## Lo que es y lo que significa\nUn labial es pigmento en una barra. Pero para tu clienta puede significar \"hoy me arreglé para mí\", \"me siento lista para la entrevista\" o \"volví a sentirme bonita después del bebé\". Ese significado es lo que compra, y por eso paga gustosa.\n\n## De dónde sale el significado\nUna decisión de compra mezcla tres cosas:\n- **Lo que ella opina.** Es lo que te dice, y es lo que menos pesa.\n- **Su cultura.** Lo que ese producto significa en su entorno, con sus amigas, en su ciudad.\n- **Su biología.** Lo que todas compartimos: queremos cuidarnos, pertenecer, que nos vean.\n\nDonde se juntan la cultura y la biología nace el significado. Ese es el imán.\n\n## Mismo producto, distinto significado\nImagina que alguien recibe un regalo precioso y le encanta. Luego le cuentan, muy orgullosos, que lo compraron en oferta en el súper. El regalo es el mismo, pero ya no se siente igual. **No cambió el producto, cambió lo que significaba.** Cuida cómo presentas, cómo entregas y cómo hablas de lo que vendes.\n\n## Pregúntale cómo se quiere sentir\nUna de las preguntas más poderosas es: **\"¿Cómo te quieres sentir?\"** o \"¿para qué ocasión lo quieres?\". Con su respuesta ya sabes qué ofrecerle y cómo decirlo: \"este tono te va a hacer sentir segura en tu presentación\".\n\n## El precio y el significado\nLa vendedora que cree que todo se trata de precio no conoce el significado de lo que vende. Bajar el precio no te hace ganar: te hace trabajar más por menos. Cuando la diferencia de precio es pequeña, gana la que conectó con lo que el producto significa.\n\n> Si la única razón para comprarte es que eres más barata, cualquiera te reemplaza.\n\n## No se dice, se da a entender\nEl significado no se anuncia (\"esto es para que tus amigas te envidien\"). Se transmite con cómo lo presentas, con la historia, con el empaque, con tu forma de entregarlo.\n\n## 🪞 Mírate al espejo\n¿Has bajado tus precios o regalado de más por miedo a que no te compren?\n\n## ✍️ Ejercicio\n1. Elige tu producto estrella.\n2. Escribe qué **es** en una línea.\n3. Escribe tres cosas que puede **significar** para distintas clientas.\n4. Escribe cómo vas a entregarlo para cuidar ese significado (empaque, nota, mensaje).\n\n## ✅ Tu tarea de la semana\nPregunta \"¿cómo te quieres sentir?\" o \"¿para qué ocasión es?\" en cada venta de la semana.\n\n## 💬 Para compartir en el grupo\n¿Qué significa tu producto estrella para tus clientas? Comparte la mejor respuesta que te hayan dado.\n\n@@ 6 | Clase 6 | Miedos e historias | Lo que mueve y lo que convence\nCasi todo lo que compramos sirve para calmar algún miedo. Y nada explica mejor que una historia.\n\n## Los miedos que ya existen\nComprar algo casi siempre calma un miedo: a verse cansada, a no gustar, a quedarse fuera, a perder tiempo, a gastar mal. Tu trabajo **no es crear miedos**: eso es manipular y no lo hacemos. Tu trabajo es descubrir los que tu clienta ya trae y darle una solución honesta.\n\nPregúntate siempre: ¿qué le preocupa a mi clienta cuando llega a comprar? Si no lo sabes, ese miedo juega en tu contra. Si lo sabes, puedes acompañarla.\n\n## Tres tipos de historia\nA la mente le encantan las historias, y cada tipo hace un trabajo distinto:\n- **La historia incómoda llama la atención.** Empieza reconociendo lo que no está bien: \"te voy a ser honesta, muchas cremas prometen de más\". Cuando reconoces lo malo, te creen lo bueno.\n- **La historia positiva mueve a la acción.** Un caso real o un dato verdadero, con prueba: la reseña de una clienta, una foto real de cómo le quedó el tono (con su permiso), la ficha del producto.\n- **La historia tranquila justifica.** Cuando te dice \"lo voy a pensar\", no la presiones: \"claro, piénsalo bien. Te dejo esta información para que la veas con calma\".\n\n> Los datos informan. Las historias convencen. La verdad sostiene.\n\n## La escalera: seguridad, comodidad y gusto\nTodo producto debe dar tres cosas, en este orden:\n1. **Seguridad:** \"es confiable, no te va a hacer daño, tu dinero está bien invertido\".\n2. **Comodidad:** \"es fácil de usar, no te complica la mañana\".\n3. **Gusto:** \"y vas a disfrutar usarlo, cómo huele, cómo se siente\".\n\nSi empiezas por el gusto sin dar seguridad, la mente desconfía.\n\n## Del dato al disfrute y del disfrute al significado\nEmpieza por lo lógico (qué hace y para qué sirve), llévala a lo que va a disfrutar y termina en lo que significa para ella. No te quedes en un solo nivel: es un viaje.\n\n## Tu carpeta de pruebas\nSi una clienta te dice \"escuché que esa marca no es buena\", no discutas. Pregunta dónde lo escuchó y qué le dijeron. Luego enséñale pruebas reales: reseñas, artículos, testimonios con permiso. Lo que sale de tu boca se duda; lo que ve con sus ojos, se cree. Junta esas pruebas en una carpeta en tu celular.\n\n## 🪞 Mírate al espejo\n¿Qué miedos trae tu clienta ideal cuando llega a comprar?\n\n## ✍️ Ejercicio\n1. Escribe tres miedos reales de tu clienta ideal.\n2. Para tu producto estrella, escribe una historia incómoda, una positiva y una tranquila.\n3. Ordena tus argumentos en la escalera: seguridad, comodidad, gusto.\n\n## ✅ Tu tarea de la semana\nArma tu carpeta de pruebas en el celular con al menos cinco reseñas, fotos o testimonios reales (con permiso).\n\n## 💬 Para compartir en el grupo\n¿Cuál es la objeción que más escuchas? Juntemos pruebas entre todas.\n\n@@ 7 | Clase 7 | Cuerpo, sentidos y trato | Cómo se siente estar contigo\nTus palabras son solo una parte de lo que comunicas. Tu cuerpo, tu tono y lo que tu clienta toca y huele dicen más.\n\n## Tu cuerpo habla primero\nEl cuerpo comunica desde mucho antes que las palabras. Si dices \"cuéntame qué buscas\" con los brazos cruzados y viendo el celular, tu clienta escucha \"no me interesas\". Y el tono cambia todo: \"qué bonita estás\" puede sonar a cumplido o a burla.\n\n## La mirada guía\nMírala a los ojos cuando le hablas y luego lleva tu mirada al producto: ella va a seguirla. Si le dices \"mira este tono\" mientras ves a otro lado, se pierde. En video y en redes pasa igual: mira a la cámara cuando hablas y al producto cuando lo enseñas.\n\n## Los cinco sentidos venden\nLa mente decide con todos los sentidos, y en belleza eso es oro:\n- **Tacto:** que lo toque, que se lo pruebe en la mano.\n- **Olfato:** que huela el perfume, la crema, el producto abierto.\n- **Vista:** que vea el tono en su piel, no en la foto.\n- **Gusto y comodidad:** un vaso de agua, algo dulce, un lugar para sentarse. Alguien con sed o cansada no compra.\n- **Oído:** música tranquila si recibes en casa o en un evento.\n\n## Dale espacio\nA nadie le gusta que lo persigan. Saluda con calidez y déjala ver y soñar con calma. Mantente cerca y atenta para cuando termine de explorar y te necesite.\n\n## Coincide antes de agregar\nSi te dice \"me dijeron que esos productos resecan\", no le digas \"eso no es cierto\". Primero dale la razón en lo que tenga: \"tienes razón, hay pieles que se resecan con algunos productos\". Luego agrega: \"por eso te recomiendo esta, que tiene hidratación extra; si quieres pruébala en la mano\".\n\n## Cuida a su gente\nSi llega con sus hijos, atiéndelos también: salúdalos, ofréceles agua, algo para entretenerse. Una mamá no olvida a quien trató bien a sus hijos.\n\n## Corto, claro y con historias\nLo simple gana. Los primeros y los últimos minutos son los que más se recuerdan, así que prepara bien cómo abres y cómo cierras. Y explica con comparaciones y refranes: una buena analogía vale más que un párrafo.\n\n> Sonríe de verdad. El buen humor relaja, conecta y vende.\n\n## Palabras que activan\nUsa verbos de acción: lograr, disfrutar, proteger, transformar, consentir, alcanzar. \"Con esta rutina vas a disfrutar tus mañanas\" se queda más que \"esta rutina es muy buena\".\n\n## 🪞 Mírate al espejo\nSi te grabaras vendiendo, ¿qué diría tu cuerpo sin el audio?\n\n## ✍️ Ejercicio\n1. Grábate un minuto explicando tu producto estrella.\n2. Míralo sin sonido: ¿qué comunica tu cuerpo?\n3. Escribe cómo vas a involucrar al menos tres sentidos en tu próxima venta.\n\n## ✅ Tu tarea de la semana\nEn cada venta de esta semana, haz que tu clienta toque o huela el producto antes de hablarle del precio.\n\n## 💬 Para compartir en el grupo\n¿Qué haces para que tus clientas prueben con los sentidos? Comparte tu truco.\n\n@@ 8 | Clase 8 | Seguimiento y tu mente vendedora | La relación sigue después del sí\nLa venta no termina cuando te pagan. Y antes que la clienta, la primera mente que tienes que preparar es la tuya.\n\n## Seguimiento sin presionar\nLa mente necesita espacio para pensar. Escribirle tres veces al día \"¿ya te decidiste?\" la aleja. El seguimiento que funciona **aporta algo**: un tip para su tipo de piel, un video de cómo usar el producto, algo que te acordaste por ella. Así, cuando esté lista, te busca a ti.\n\n## Primero amistad, luego negocio\nLas mejores ventas pasan con gente que te conoce y te tiene confianza. Interésate por su vida, por su trabajo, por sus hijos, de verdad. Pero no mezcles: si te invitan a una fiesta, disfruta la fiesta. Al otro día, si viene al caso, platican del negocio.\n\n## Un error bien atendido\nCuando algo sale mal (un pedido que no llegó, un tono que no le quedó), ahí empieza el fracaso o la lealtad para siempre. La clienta llega lista para pelear. Escúchala completa, dale la razón y resuélvelo con generosidad: \"tienes toda la razón, no era mi intención fallarte; vamos a cambiarlo por el que sí te queda\". Esa clienta se vuelve tu fan.\n\n## El orgullo de vender\nA muchas les da pena decir que venden. Cámbialo: no \"vendo cremas\", sino **\"ayudo a mujeres ocupadas a cuidarse en cinco minutos\"**. Cuando tú y tu familia entienden el valor de lo que haces, se te nota en todo.\n\n## Tu mente también decide\n- **Declara tu meta con claridad.** Si te pones un techo bajo, tu mente se acomoda a ese techo.\n- **Usa el no como gasolina.** Quince minutos después de un \"no\", pregúntate: ¿qué dije?, ¿en qué momento se desconectó?, ¿qué cambio la próxima vez?\n- **La pasión sostiene.** Vender cansa; lo que te mantiene es creer en lo que vendes y disfrutar ayudar.\n\n> El cerebro prefiere quedarse igual. El hábito le gana a la flojera.\n\n## El reto: 48 horas y 66 días\n1. Tienes **48 horas** para aplicar algo de este curso con una clienta real. Si dejas pasar más tiempo, lo más probable es que ya no lo hagas.\n2. Dedica **15 minutos al día durante 66 días** a mejorar cómo vendes: leer, practicar tu guion, grabarte, escuchar. Es el tiempo que suele tomar volver algo un hábito.\n\n## 🪞 Mírate al espejo\n¿Cómo describes lo que haces cuando alguien te pregunta a qué te dedicas?\n\n## ✍️ Ejercicio\n1. Reescribe \"a qué te dedicas\" en una frase que diga a quién ayudas y cómo.\n2. Regresa a las tres frases de venta que escribiste en la Bienvenida y reescríbelas con lo que aprendiste.\n3. Escribe tu acción para las próximas 48 horas.\n\n## ✅ Tu tarea de la semana\nEmpieza tu reto de 66 días con la herramienta **Tu reto de 66 días**.\n\n## 💬 Para compartir en el grupo\nComparte tus frases de antes y de después. Celebren el cambio.\n\n@@ 9 | Herramientas | Tu guion de El Clic | Arma tu plática para un tipo de clienta\nNo es un guion para recitar. Es una estructura para que tú construyas tus propias palabras. Si cambia la clienta, cambia todo.\n\n## Antes de hablar: tres preguntas\n1. **¿Quién es?** Un tipo de clienta concreto: mamá ocupada, recién egresada, señora que se quiere consentir, novia a punto de casarse.\n2. **¿Cuál es su necesidad de fondo?** Seguridad, pertenecer, reconocimiento, placer, control, libertad, explorar o trascender.\n3. **¿Qué miedo trae?** El que tú puedes ayudar a calmar con honestidad.\n\n## Luego, las tres llaves\n- **Atención:** una historia real o algo que reconoces con honestidad.\n- **Emoción:** cómo se va a sentir, con sus propias palabras.\n- **Recuerdo:** cómo encaja en su vida y su día.\n\n## Ejemplo: rutina de cuidado para una mamá ocupada\n- **Quién:** mamá de dos, trabaja, siente que ya no tiene tiempo para ella.\n- **Necesidad de fondo:** libertad (un ratito para ella) y trascender (verse bien con sus hijos).\n- **Miedo:** verse cansada, sentirse descuidada, gastar en algo que no va a usar.\n- **Atención:** \"Te voy a ser honesta: la mayoría de las rutinas de diez pasos terminan olvidadas en el baño.\"\n- **Emoción:** \"Esta es de tres pasos. Son cinco minutos en la mañana que son solo tuyos, y se nota.\"\n- **Recuerdo:** \"Imagínate en la foto del cumpleaños de tu hija, sintiéndote fresca y contenta contigo.\"\n- **Dato para justificar:** \"Te dura alrededor de dos meses usándola diario.\"\n- **Tres opciones:** solo la crema, la rutina de tres pasos o la rutina con el sérum.\n\n## Tu turno\nLlena el mismo esquema para tu clienta más común. Luego hazlo para otra muy distinta y fíjate cuánto cambia.\n\n> ¿Quieres que te ayuden a armarlo? Pídeselo al mentor en la pestaña **Tu mentor**.\n\n@@ 10 | Herramientas | Tu reto de 66 días | 15 minutos al día\nEl cerebro prefiere quedarse igual porque cambiar le cuesta energía. El hábito es lo que le gana. Aquí tienes ideas para tus 15 minutos diarios.\n\n## Las primeras 48 horas\nElige una sola cosa del curso y aplícala con una clienta real antes de que pasen dos días. Anota qué pasó.\n\n## Ideas para tus 15 minutos\n- Reescribe la descripción de un producto sin palabras técnicas.\n- Practica tu guion de El Clic en voz alta o grábate.\n- Mira un video tuyo vendiendo sin sonido y revisa tu cuerpo.\n- Agrega una prueba nueva a tu carpeta (una reseña, una foto con permiso).\n- Escribe a una clienta solo para aportarle algo, sin vender.\n- Repasa una clase y haz su ejercicio otra vez.\n- Después de un \"no\", escribe qué dijiste y qué cambiarías.\n\n## Cómo llevar la cuenta\n- Marca cada día en tu calendario o en el cuaderno de esta herramienta.\n- Si fallas un día, no empiezas de cero: retomas al día siguiente.\n- Cada semana, comparte en el grupo una cosa que aprendiste.\n\n> El día 67 ya no te va a costar. Ya va a ser parte de ti.\n\n@@ 11 | Herramientas | Para líderes de equipo | Motivar sin gritar\nSi diriges un equipo, estas ideas te ayudan a que nadie se quede atrás.\n\n## Que nadie se quede fuera\nCuando siempre ganan las mismas tres, las demás dejan de intentarlo. Haz como los juegos que te ayudan a pasar de nivel cuando te atoras: si alguien no logra la meta grande, dale una más pequeña que sí pueda cumplir, y luego la siguiente. Que nadie termine un mes sintiendo que no sirve para esto.\n\n## Premios que se sueñan\nUn premio en efectivo muchas veces se va en la casa, los pagos y los niños. Un premio que ella sueña tener pero no se compraría con su dinero (una bolsa, una experiencia, un día de spa) mueve más. Eso sí, no preguntes qué premio quieren: casi todas van a decir \"dinero\".\n\n## Reconocer frente a quien importa\nUn diploma frente a las compañeras está bien, pero lo que de verdad pesa es que su familia vea su logro. Busca formas de reconocerla donde su gente lo vea: un mensaje para compartir, una celebración donde pueda invitar a los suyos.\n\n## Hacerlas sentir necesarias\nNo es lo mismo \"si no llegas a la meta, no te necesitamos\" que \"te necesitamos aquí, por eso vamos juntas por la meta\". La primera apaga; la segunda enciende.\n\n## Cuando alguien quiere sumarse\nMás que el currículum, platica con ella sobre:\n- Un reto que haya superado en su vida.\n- Algo que la apasione y que **haga**, no solo que mire.\n- Cómo reacciona cuando algo le sale mal.\n- Qué tan cómoda se siente diciendo que quiere crecer.\n\n> Un equipo motivado se siente parte de algo. El dinero importa, pero pertenecer importa más.\n";
+var FAQ_MD="## Empezar | 0\n\n### ¿Tengo que tomar las clases en orden?\nLa primera vez sí te conviene, porque cada clase usa lo de la anterior. Después puedes ir directo a la que necesites desde la lista.\n\n### ¿Cuánto me toma cada clase?\nUnos 7 minutos de lectura, más el ejercicio. Lo importante es probarlo esa misma semana con una clienta real.\n\n### ¿Dónde se guardan mis respuestas?\nEn el cuaderno que viene al final de cada clase. Se guarda solo en este dispositivo y en este navegador. Si cambias de celular o borras los datos del navegador se pierde, así que copia lo importante a tu libreta.\n\n### ¿Esto no es manipular a la gente?\nNo, si lo usas bien. Se trata de entender a tu clienta para ayudarla mejor. La regla es clara: no inventes miedos, no mientas, no prometas resultados de salud y no le vendas algo que no le sirve.\n\n## La mente | 1\n\n### Si la gente no sabe por qué compra, ¿entonces para qué le pregunto?\nPorque lo que te cuenta te da pistas de lo que siente, lo que teme y lo que sueña. No tomes su primera respuesta como la razón final; sigue escuchando.\n\n### ¿Cómo encuentro la necesidad de fondo de mi producto?\nPregúntate qué se siente tener ese producto, no qué hace. Luego elige de la lista de la Clase 2 la necesidad que más pesa para tu clienta: seguridad, pertenecer, reconocimiento, placer, control, libertad, explorar o trascender.\n\n### ¿Por qué siempre tres opciones?\nCon una sola la mente no puede comparar y se va a buscar opciones a otro lado. Con demasiadas se confunde. Tres le permite elegir tranquila.\n\n### Mi clienta solo pregunta por el precio. ¿Qué hago?\nContéstale con claridad y luego regresa la plática a lo que ella siente: para qué lo quiere, cuándo lo va a usar, cómo se quiere ver. Cuando hay emoción, el precio pesa menos.\n\n## Precio y objeciones | 5\n\n### ¿Debo bajar mi precio para vender más?\nCasi nunca. Bajar el precio te hace trabajar más por menos y no te diferencia. Trabaja el significado de tu producto y cómo lo presentas.\n\n### Me dicen \"lo voy a pensar\". ¿Insisto?\nNo presiones. Dile que está bien pensarlo, déjale información útil y dale seguimiento aportando algo, no preguntando \"¿ya te decidiste?\".\n\n### Me dicen que la marca no es buena. ¿Cómo respondo?\nPrimero pregunta dónde lo escuchó y qué le dijeron. Dale la razón en lo que tenga y luego enséñale pruebas reales de tu carpeta: reseñas, testimonios, artículos.\n\n### ¿Puedo hablar mal de otras marcas?\nNo. Te resta confianza. Si te preguntan, habla bien de lo tuyo con honestidad y deja que las pruebas hablen.\n\n## En la plática | 7\n\n### Soy muy tímida. ¿Puedo vender así?\nSí. Mucha gente tímida vende muy bien porque escucha más. Vender es un papel que se aprende; empieza con preguntas y con clientas que ya te conocen.\n\n### ¿Cómo uso los sentidos si vendo por WhatsApp o redes?\nDescribe cómo se siente, cómo huele y cómo se ve en piel real. Manda videos aplicándolo, no solo fotos de catálogo. Y cuando puedas, regala una muestra.\n\n### ¿Qué hago si una clienta me pregunta algo que no sé?\nDile la verdad: \"no lo sé, déjame averiguarlo ahorita\". Nunca dejes una duda o un miedo sin respuesta, y nunca inventes.\n\n### ¿Puedo decir que un producto quita manchas o arrugas?\nSolo lo que diga la información oficial del producto, con sus mismas palabras. No prometas resultados de salud ni curas. Habla de la experiencia, la rutina y cómo se siente.\n\n## Seguimiento | 8\n\n### ¿Cada cuánto le escribo a una clienta que no ha comprado?\nSin una regla fija, pero cada mensaje tiene que aportar algo: un tip, un video, algo que te acordaste por ella. Si solo preguntas \"¿ya te decidiste?\", la alejas.\n\n### Una clienta está molesta porque algo salió mal. ¿Qué hago?\nEscúchala completa sin interrumpir, dale la razón y resuélvelo con generosidad. Un error bien atendido es la mejor oportunidad para ganarte una clienta para siempre.\n\n### ¿Qué hago con los \"no\"?\nQuince minutos después, revisa: ¿qué dije?, ¿en qué momento se desconectó?, ¿qué cambio la próxima vez? Cada \"no\" te enseña algo.\n\n## El mentor | 0\n\n### ¿Qué es \"Tu mentor\"?\nEs El Clic, el mentor de Sel dentro de Claude. Te da las clases una por una, te ayuda a encontrar la necesidad de fondo de tus productos, arma contigo tu guion y practica contigo respondiendo objeciones.\n\n### ¿Tengo que pagar Claude?\nNo. Funciona con la cuenta gratis de claude.ai. La cuenta gratis tiene un límite de mensajes por día.\n\n### ¿Cómo lo instalo?\nDescarga el mentor (.zip) en la pestaña **Tu mentor**. En Claude entra a Customize → Skills, toca \"+\", luego \"Create skill\" → \"Upload a skill\" y sube el zip sin descomprimir.\n";
+var CFG={"key": "clic", "n": 8, "groups": [["Empieza aquí", [0]], ["Clases", [1, 2, 3, 4, 5, 6, 7, 8]], ["Herramientas", [9, 10, 11]]], "pitch": "Ocho clases cortas para entender cómo decide la mente de tu clienta y venderle con honestidad, sin sentir que vendes.", "faqPh": "Busca: precio, lo voy a pensar, tímida, WhatsApp…", "foot": "", "zipName": "el-clic.zip", "zipVar": "SKILL_ZIP_B64", "mdName": "el-clic-SKILL.md", "mdVar": "SKILL_MD_B64", "tabProgram": "Clases", "welcomeLabel": "Bienvenida", "repaso": "el curso"};
+var MENTOR={"title": "Tu mentor, cuando lo necesites", "intro": "El Clic también vive en Claude. Ahí te da las clases una por una, arma contigo tus guiones y practica contigo las objeciones más difíciles, con tus productos de ejemplo.", "can": [["Mentoría de ventas", "Le cuentas qué te está costando y te deja frases listas para usar y un siguiente paso."], ["Tu guion de El Clic", "Arma contigo la plática para un tipo de clienta: necesidad de fondo, miedo, atención, emoción y recuerdo."], ["Práctica de objeciones", "Hace de clienta (\"está caro\", \"lo voy a pensar\") y te da retroalimentación."], ["Descripciones y seguimiento", "Reescribe tus productos sin tecnicismos y te da mensajes de seguimiento que no presionan."]], "steps": ["Crea tu cuenta en claude.ai. Funciona con la cuenta gratis.", "Descarga el mentor (.zip) y guárdalo sin descomprimir.", "En Claude entra a Customize → Skills, toca \"+\", luego \"Create skill\" → \"Upload a skill\" y sube el zip.", "Abre un chat nuevo y escribe una de estas frases."], "prompts": ["Quiero empezar el curso de El Clic.", "Lección 2: ayúdame a encontrar la necesidad de fondo de mi crema estrella.", "Haz de clienta y dime \"está caro\". Quiero practicar.", "Arma mi guion de El Clic para una mamá ocupada que quiere cuidarse la piel."], "limits": ["No promete ingresos", "No hace promesas de salud", "No inventa miedos ni urgencias", "No sustituye terapia"], "notes": ["La cuenta gratis tiene un límite de mensajes por día. Si se acaba, vuelve a estar disponible horas después."]};
+var SKIN=(function(){
+  var W=1000,H=200,BASE=140,X0=60,X1=940,first=true;
+  function xs(n){var a=[];for(var i=0;i<n;i++)a.push(X0+i*(X1-X0)/(n-1));return a;}
+  function spike(x,h){return " L"+(x-30)+","+BASE+" L"+(x-14)+","+(BASE+h*.22)+" L"+(x-3)+","+(BASE-h)+" L"+(x+9)+","+(BASE+h*.38)+" L"+(x+20)+","+BASE;}
+  function wiggle(a,b){var m=(a+b)/2;return " L"+(m-16)+","+BASE+" L"+(m-8)+","+(BASE-5)+" L"+m+","+(BASE+4)+" L"+(m+8)+","+(BASE-3)+" L"+(m+16)+","+BASE;}
+  function mini(state){
+    if(state==="seen")return "M0,14 L16,14 L21,17 L26,4 L31,19 L36,14 L54,14";
+    if(state==="next")return "M0,14 L14,14 L19,18 L25,-2 L32,22 L37,14 L54,14";
+    return "M0,14 L54,14";
+  }
+  return {
+    hero:function(c){
+      var ids=c.ACTS[0].ids,nu=c.nextUp(),n=c.count(),P=xs(ids.length),d="M0,"+BASE,hot="";
+      ids.forEach(function(i,j){
+        var s=(nu===0&&j===0)?"next":c.stateOf(i),x=P[j];
+        if(j>0)d+=wiggle(P[j-1],x);
+        if(s==="next"){d+=spike(x,118);hot="M"+(x-30)+","+BASE+spike(x,118).slice(spike(x,118).indexOf(" L",2));}
+        else if(s==="seen")d+=spike(x,62);
+        else d+=" L"+x+","+BASE;
+      });
+      d+=" L"+W+","+BASE;
+      var nodes=ids.map(function(i,j){var s=(nu===0&&j===0)?"next":c.stateOf(i),x=c.L(i);return '<button type="button" class="c-node '+s+'" style="--x:'+(P[j]/W*100)+'%;--y:'+(BASE/H*100)+'%" data-open="'+i+'" aria-label="Clase '+i+": "+c.esc(c.ttl(x))+(s==="seen"?", completada":(s==="next"?", aquí vas":""))+'">'+i+"</button>";}).join("");
+      var anim=first&&!c.reduce;first=false;
+      return '<div class="c-hero'+(anim?" c-anim":"")+'"><p class="c-kick">el mentor de Sel · <b>curso de ventas</b></p><h1 class="c-word">El <span>Clic</span></h1>'+
+        '<div class="c-scope"><svg class="c-svg" viewBox="0 0 '+W+" "+H+'" aria-hidden="true"><line class="c-base" x1="0" y1="'+BASE+'" x2="'+W+'" y2="'+BASE+'"/><path class="c-trace" pathLength="1" d="'+d+'"/>'+(hot?'<path class="c-hot" d="'+hot+'"/>':"")+'</svg><div class="c-nodes">'+nodes+"</div></div>"+
+        '<div class="c-copy"><p class="c-tag">La emoción decide. <em>La lógica firma.</em></p><div class="c-side"><p class="c-pitch">'+c.esc(c.cfg.pitch)+'</p><p class="c-now">'+(n===c.N?"<b>8 de 8 clics.</b> Terminaste el curso.":"<b>"+n+" de "+c.N+"</b> clases completadas · cada una deja su pico")+'</p><div class="c-cta"><button class="btn solid" type="button" id="cta">'+c.esc(c.ctaText())+"</button></div></div></div></div>";
+    },
+    program:function(c){
+      var w=c.L(0),ids=c.ACTS[0].ids;
+      return '<div class="c-prog"><div><h2 class="sec-h">Las clases</h2><p class="sec-p">Ocho clases cortas sobre cómo decide la mente de tu clienta. La primera vez, ve en orden.</p></div>'+
+        '<button type="button" class="c-welcome" data-open="0"><span><b>'+c.esc(w.title)+"</b><small>"+c.esc(w.topic)+"</small></span><span>"+(c.seen.has(0)?"Leída":"Empieza aquí")+"</span></button>"+
+        '<div class="c-list">'+ids.map(function(i){var x=c.L(i),s=c.stateOf(i);return '<button type="button" class="c-row '+s+'" data-open="'+i+'"><span class="n">'+("0"+i).slice(-2)+"</span><span><b>"+c.esc(c.ttl(x))+"</b><small>"+c.esc(x.topic)+'</small></span><span class="st"><svg viewBox="0 0 54 22" aria-hidden="true"><path d="'+mini(s)+'"/></svg><i>'+(s==="seen"?"Hecha":(s==="next"?"Aquí vas":""))+"</i></span></button>";}).join("")+"</div>"+
+        '<h3 class="c-h">Herramientas</h3><div class="c-tools">'+c.TOOLS.map(function(i){var x=c.L(i);return '<button type="button" class="c-tool" data-open="'+i+'"><b>'+c.esc(x.title)+"</b><small>"+c.esc(x.topic)+"</small></button>";}).join("")+"</div></div>";
+    },
+    readerNum:function(x){return ("0"+x.id).slice(-2);}
+  };
+})();
+
+(function(){
+document.documentElement.classList.add("js");
+var $=function(s,r){return (r||document).querySelector(s);},$$=function(s,r){return Array.prototype.slice.call((r||document).querySelectorAll(s));};
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];});}
+function inline(t){return t.replace(/\*\*(.+?)\*\*/g,"<strong>$1</strong>");}
+var store={get:function(k,d){try{var v=localStorage.getItem(k);return v==null?d:JSON.parse(v);}catch(e){return d;}},set:function(k,v){try{localStorage.setItem(k,JSON.stringify(v));}catch(e){}}};
+var reduce=false;try{reduce=matchMedia("(prefers-reduced-motion: reduce)").matches;}catch(e){}
+
+/* ---------- content ---------- */
+var LESSONS=LESSONS_MD.split(/^@@ /m).filter(function(x){return x.trim();}).map(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});
+  var body=lines.slice(1).join("\n").trim(),i=body.indexOf("\n");if(i<0)i=body.length;
+  return {id:+h[0],kicker:h[1],title:h[2],topic:h[3],intro:body.slice(0,i).trim(),body:body.slice(i+1).trim()};
+});
+var ICONS=["🪞","✍️","✅","💬","🎯","📝","🧠","📌","🔥","⭐","📱","🎬","💡","🗓️","✨"];
+function md(src){
+  var out="",list=null;
+  esc(src).split("\n").forEach(function(raw){
+    var l=raw.trim(),ul=l.match(/^[-*]\s+(.*)/),ol=l.match(/^\d+[.)]\s+(.*)/);
+    if(ul||ol){var tag=ul?"ul":"ol";if(list!==tag){if(list)out+="</"+list+">";out+="<"+tag+">";list=tag;}out+="<li>"+inline((ul||ol)[1])+"</li>";return;}
+    if(list){out+="</"+list+">";list=null;}
+    if(l.indexOf("### ")===0)out+="<h4>"+inline(l.slice(4))+"</h4>";
+    else if(l.indexOf("## ")===0)out+="<h3>"+inline(l.slice(3))+"</h3>";
+    else if(l.indexOf("&gt; ")===0)out+='<div class="callout"><p>'+inline(l.slice(5))+"</p></div>";
+    else if(l)out+="<p>"+inline(l)+"</p>";
+  });
+  if(list)out+="</"+list+">";
+  return out;
+}
+function startsIcon(h){for(var i=0;i<ICONS.length;i++)if(h.indexOf(ICONS[i])===0)return ICONS[i];var m=h.match(/^[☀-➿\uD83C-􏰀-\uDFFF️]+\s*/);return m?m[0]:null;}
+function lessonBody(src){
+  var parts=src.split(/^## /m),main=parts[0],tasks=[];
+  parts.slice(1).forEach(function(p){
+    var nl=p.indexOf("\n"),head=(nl<0?p:p.slice(0,nl)).trim(),rest=nl<0?"":p.slice(nl+1);
+    var icon=startsIcon(head);
+    if(icon)tasks.push({title:head.slice(icon.length).trim(),html:md(rest.trim())});else main+="\n## "+p;
+  });
+  return {html:md(main.trim()),tasks:tasks};
+}
+function L(id){for(var i=0;i<LESSONS.length;i++)if(LESSONS[i].id===id)return LESSONS[i];return null;}
+var N=CFG.n,STEPS=[];for(var i=1;i<=N;i++)STEPS.push(i);
+var ORDER=LESSONS.map(function(l){return l.id;});
+var GROUPS=CFG.groups.map(function(g){var p=g[0].split(" · ");return {name:p.length>1?p[1]:g[0],pre:p.length>1?p[0]:"",ids:g[1]};});
+var ACTS=GROUPS.filter(function(g){return g.ids.every(function(i){return i>=1&&i<=N;});});
+var TOOLS=ORDER.filter(function(i){return i>N;});
+var seen=new Set(store.get(CFG.key+"-seen",[])),notes=store.get(CFG.key+"-notes",{});
+function saveSeen(){store.set(CFG.key+"-seen",Array.from(seen));}
+function isStep(id){return id>=1&&id<=N;}
+function nextUp(){if(!seen.has(0)&&!STEPS.some(function(i){return seen.has(i);}))return 0;for(var i=0;i<STEPS.length;i++)if(!seen.has(STEPS[i]))return STEPS[i];return null;}
+function count(){return STEPS.filter(function(i){return seen.has(i);}).length;}
+function stateOf(id){return seen.has(id)?"seen":(id===nextUp()?"next":"");}
+function actOf(id){for(var i=0;i<ACTS.length;i++)if(ACTS[i].ids.indexOf(id)>=0)return ACTS[i];return null;}
+function label(id){var x=L(id);if(!x)return "";if(id===0)return CFG.welcomeLabel||"Bienvenida";var m=x.title.match(/^([^·]{1,14}) · /);if(isStep(id)&&m)return m[1];return x.kicker;}
+function ttl(x){return x.title.replace(/^[^·]{1,14} · /,"");}
+function ctaText(){var n=nextUp();if(n===0)return CFG.ctaStart||"Empezar con la bienvenida";if(n===null)return "Repasar "+(CFG.repaso||"el curso");var l=label(n);return "Seguir con "+(/^Clase/.test(l)?"la ":"el ")+l;}
+var CTX={ttl:ttl,L:L,LESSONS:LESSONS,N:N,STEPS:STEPS,ACTS:ACTS,TOOLS:TOOLS,GROUPS:GROUPS,seen:seen,stateOf:stateOf,nextUp:nextUp,count:count,esc:esc,label:label,ctaText:ctaText,cfg:CFG,reduce:reduce,actOf:actOf,open:function(id){openLesson(id);}};
+
+/* ---------- page shell ---------- */
+var mw=MENTOR.title.indexOf("mentor ")>=0||/mentor,/.test(MENTOR.title)?"mentor":"mentora";
+var SEARCH='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg>';
+var root=$("#root");
+root.innerHTML='<div class="wrap"><header class="hero" id="hero"></header>'+
+  '<div class="tabbar"><div class="tabs" role="tablist" aria-label="Secciones del curso">'+
+  '<button class="tab" role="tab" id="tabP" aria-selected="true" aria-controls="progView" type="button">'+esc(CFG.tabProgram||"Programa")+'</button>'+
+  '<button class="tab" role="tab" id="tabF" aria-selected="false" aria-controls="faqView" type="button">Preguntas</button>'+
+  '<button class="tab" role="tab" id="tabM" aria-selected="false" aria-controls="mentorView" type="button">Tu '+mw+'</button></div></div>'+
+  '<section id="progView" role="tabpanel" aria-labelledby="tabP"></section>'+
+  '<section id="faqView" role="tabpanel" aria-labelledby="tabF" hidden><div class="faqv"><div><h2 class="sec-h">Preguntas</h2><p class="sec-p">'+esc(CFG.faqLead||"Las dudas que más salen en el equipo, con la clase que las responde.")+'</p></div>'+
+  '<label class="sr" for="fq">Busca tu duda</label><div class="f-search">'+SEARCH+'<input id="fq" type="search" placeholder="'+esc(CFG.faqPh||"Busca tu duda")+'" autocomplete="off"></div><div class="f-chips" id="cats"></div><p class="f-count" id="fcount"></p><div id="faq"></div></div></section>'+
+  '<section id="mentorView" role="tabpanel" aria-labelledby="tabM" hidden></section>'+
+  (CFG.foot?'<footer class="foot">'+esc(CFG.foot)+"</footer>":"")+"</div>";
+
+function renderHero(){$("#hero").innerHTML=SKIN.hero(CTX);var c=$("#cta");if(c)c.onclick=function(){var g=nextUp();if(g===null){setTab("P");$("#progView").scrollIntoView({behavior:"smooth"});}else openLesson(g);};$$("#hero [data-open]").forEach(wireOpen);}
+function renderProgram(){$("#progView").innerHTML=SKIN.program(CTX);$$("#progView [data-open]").forEach(wireOpen);if(SKIN.mount)SKIN.mount(CTX,$("#progView"));}
+function wireOpen(b){b.onclick=function(){openLesson(+b.getAttribute("data-open"),b);};}
+function refresh(){renderHero();renderProgram();}
+
+/* tabs */
+var TABS={P:["#tabP","#progView"],F:["#tabF","#faqView"],M:["#tabM","#mentorView"]};
+function setTab(t){Object.keys(TABS).forEach(function(k){$(TABS[k][0]).setAttribute("aria-selected",String(k===t));$(TABS[k][1]).hidden=k!==t;});}
+Object.keys(TABS).forEach(function(k){$(TABS[k][0]).onclick=function(){setTab(k);};});
+
+/* ---------- faq ---------- */
+var norm=function(s){return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g,"");};
+var STOP=new Set("que como para por con los las del una uno unos mis tus sus mas pero porque cuando donde esta este eso hay tengo puedo debo".split(" "));
+function terms(s){return (norm(s).match(/[a-z0-9ñ]{3,}/g)||[]).filter(function(w){return !STOP.has(w);}).map(function(w){return w.length>5?w.slice(0,-1):w;});}
+var FAQ=[],CATS=[];
+FAQ_MD.split(/^## /m).filter(function(x){return x.trim();}).forEach(function(block){
+  var lines=block.split("\n"),h=lines[0].split("|").map(function(x){return x.trim();});if(!h[0])return;CATS.push({cat:h[0],cls:+h[1]});
+  lines.slice(1).join("\n").split(/^### /m).filter(function(x){return x.trim();}).forEach(function(qb){var i=qb.indexOf("\n");if(i<0)return;FAQ.push({cat:h[0],cls:+h[1],q:qb.slice(0,i).trim(),a:qb.slice(i+1).trim()});});
+});
+FAQ.forEach(function(f){f.n=norm(f.q+" "+f.a);});
+function hl(html,ts){if(!ts.length)return html;return html.replace(/(>[^<]+<)/g,function(seg){var out=seg;ts.forEach(function(w){var re=new RegExp("("+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&").split("").map(function(ch){return ({a:"[aá]",e:"[eé]",i:"[ií]",o:"[oó]",u:"[uúü]",n:"[nñ]"})[ch]||ch;}).join("")+"[a-záéíóúñü]*)","gi");out=out.replace(re,"<mark>$1</mark>");});return out;});}
+var fq=$("#fq"),faqEl=$("#faq"),fcount=$("#fcount"),curCat=null;
+function isMentorCat(c){return /mentor/i.test(c);}
+function renderCats(){var c=$("#cats");c.innerHTML="";[{cat:"Todas"}].concat(CATS).forEach(function(x){var b=document.createElement("button");b.type="button";b.className="chip";b.textContent=x.cat;b.setAttribute("aria-pressed",String((x.cat==="Todas"&&!curCat)||x.cat===curCat));b.onclick=function(){curCat=x.cat==="Todas"?null:x.cat;renderCats();renderFaq();};c.appendChild(b);});}
+function renderFaq(){
+  var qtxt=fq.value.trim(),ts=Array.from(new Set(terms(qtxt))),items=FAQ.filter(function(f){return !curCat||f.cat===curCat;});
+  if(ts.length){items=items.map(function(f){return {f:f,s:ts.reduce(function(a,w){return a+(f.n.indexOf(w)>=0?(norm(f.q).indexOf(w)>=0?3:1):0);},0)};}).filter(function(x){return x.s>0;}).sort(function(a,b){return b.s-a.s;}).map(function(x){return x.f;});}
+  faqEl.innerHTML="";
+  var gs=ts.length?[[null,items]]:CATS.map(function(c){return [c.cat,items.filter(function(f){return f.cat===c.cat;})];}).filter(function(g){return g[1].length;});
+  gs.forEach(function(g){var d=document.createElement("div");d.className="fgroup";if(g[0]){var h=document.createElement("h3");h.textContent=g[0];d.appendChild(h);}
+    g[1].forEach(function(f,idx){var det=document.createElement("details");det.className="qa";var x=isMentorCat(f.cat)?null:L(f.cls);
+      det.innerHTML="<summary><span>"+hl(">"+esc(f.q)+"<",ts).slice(1,-1)+'</span><i aria-hidden="true">+</i></summary><div class="ans">'+hl(md(f.a),ts)+(x?'<button class="btn go" type="button">Ver: '+esc(x.title)+"</button>":(isMentorCat(f.cat)?'<button class="btn go" type="button">Ir a Tu '+mw+"</button>":""))+"</div>";
+      var go=det.querySelector(".go");if(go)go.onclick=function(){if(x)openLesson(f.cls);else setTab("M");};
+      if(ts.length&&idx===0)det.open=true;d.appendChild(det);});faqEl.appendChild(d);});
+  fcount.textContent=ts.length?(items.length?items.length+(items.length===1?" respuesta":" respuestas")+' para "'+qtxt+'"':'No hay una pregunta frecuente sobre "'+qtxt+'". Pregúntale a tu '+mw+"."):"";
+}
+var ft;fq.addEventListener("input",function(){clearTimeout(ft);ft=setTimeout(renderFaq,150);});
+
+/* ---------- mentor ---------- */
+(function(){
+  var M=MENTOR,h='<div class="m-col"><div><h2 class="sec-h">'+esc(M.title)+'</h2><p class="sec-p">'+esc(M.intro)+"</p></div>"+
+    '<ul class="m-can">'+M.can.map(function(c){return "<li><b>"+esc(c[0])+"</b><span>"+esc(c[1])+"</span></li>";}).join("")+"</ul>"+
+    '<div class="m-dl"><a class="btn solid" href="'+CFG.zipName+'" download>Descargar '+(mw==="mentor"?"el mentor":"la mentora")+' (.zip)</a>'+(CFG.mdVar?'<a class="btn" href="'+CFG.mdName+'" download>Descargar las instrucciones (.md)</a>':"")+'</div><p class="m-note" id="dlMsg">'+esc(M.notes[0]||"")+"</p></div>"+
+    '<div class="m-col"><h3 class="m-h">Cómo '+(mw==="mentor"?"instalarlo":"instalarla")+'</h3><ol class="m-steps">'+M.steps.map(function(s){return "<li><span>"+esc(s)+"</span></li>";}).join("")+"</ol>"+
+    '<div class="m-prompts">'+M.prompts.map(function(p,i){return '<div class="m-prompt"><q id="mp'+i+'">'+esc(p)+'</q><button type="button" class="btn" data-copy="mp'+i+'">Copiar</button></div>';}).join("")+"</div>"+
+    (M.notes[1]?'<p class="m-note">'+esc(M.notes[1])+"</p>":"")+(M.limits.length?'<div class="m-limits" aria-label="Límites">'+M.limits.map(function(s){return "<span>"+esc(s)+"</span>";}).join("")+"</div>":"")+"</div>";
+  $("#mentorView").innerHTML='<div class="mentorv">'+h+"</div>";
+  $$("[data-copy]").forEach(function(btn){btn.addEventListener("click",function(){var el=document.getElementById(btn.getAttribute("data-copy"));function selt(){var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent="Seleccionado";}
+    try{navigator.clipboard.writeText(el.textContent).then(function(){btn.textContent="Copiado";setTimeout(function(){btn.textContent="Copiar";},1600);},selt);}catch(e){selt();}});});
+})();
+
+/* ---------- reader sheet ---------- */
+var cur=null;
+function neighbours(id){var k=ORDER.indexOf(id);return {prev:ORDER[k-1],next:ORDER[k+1]};}
+function where(x){if(x.id===0)return CFG.welcomeLabel||"Bienvenida";if(isStep(x.id)){var a=actOf(x.id);return label(x.id)+" de "+N+(a&&a.name!=="Clases"?", "+a.name:"");}return x.kicker;}
+function sheetHTML(x){
+  var b=lessonBody(x.body),nb=neighbours(x.id),s=seen.has(x.id),nx=nb.next!==undefined?L(nb.next):null;
+  var num=isStep(x.id)?(SKIN.readerNum?SKIN.readerNum(x,CTX):String(x.id)):null;
+  var turn=b.tasks.length?'<section class="turn"><h3>Tu turno</h3>'+b.tasks.map(function(t){return '<div class="task"><h4>'+esc(t.title)+"</h4>"+t.html+"</div>";}).join("")+
+    '<label class="nb-l" for="nb">Tu cuaderno</label><textarea id="nb" placeholder="Escribe aquí tu ejercicio. Se guarda en este dispositivo."></textarea><span class="saved" id="nbs"></span></section>':"";
+  return '<div class="grab" id="grab"><span class="where">'+esc(where(x))+'</span><button type="button" class="x" id="closeB">Cerrar</button></div><div class="scroll" id="scroll">'+
+    '<div class="r-head'+(num?"":" nonum")+'">'+(num?'<span class="r-num" aria-hidden="true">'+esc(num)+"</span>":"")+'<p class="r-k">'+esc(isStep(x.id)?label(x.id):(x.id===0?(CFG.welcomeLabel||"Bienvenida"):x.kicker))+'</p><h1 class="r-title" id="rTitle">'+esc(ttl(x))+'</h1></div><p class="r-topic">'+esc(x.topic)+'</p><p class="r-intro">'+inline(esc(x.intro))+'</p><div class="lesson-body">'+b.html+"</div>"+turn+
+    '<div class="r-foot"><div class="nav"><button class="btn" type="button" id="prevB" '+(nb.prev===undefined?"disabled":"")+'>Anterior</button><button class="btn solid" type="button" id="nextB" '+(nb.next===undefined?"disabled":"")+">Siguiente</button></div>"+
+    (isStep(x.id)?'<button class="btn'+(s?" done":"")+'" type="button" id="seenB" aria-pressed="'+s+'">'+(s?"Completada ✓":"Marcar como completada")+"</button>":"")+
+    (nx?'<p class="r-next">Sigue: '+esc(ttl(nx))+"</p>":"")+"</div></div>";
+}
+function openLesson(id,trigger){
+  var x=L(id);if(!x)return;
+  var fresh=!cur;
+  if(fresh){
+    var scrim=document.createElement("div");scrim.className="scrim";var sh=document.createElement("div");sh.className="sheet";sh.setAttribute("role","dialog");sh.setAttribute("aria-modal","true");sh.setAttribute("aria-labelledby","rTitle");
+    document.body.appendChild(scrim);document.body.appendChild(sh);document.body.classList.add("sheet-open");
+    cur={scrim:scrim,sh:sh,trigger:trigger||document.activeElement};
+    scrim.onclick=closeLesson;
+  }
+  cur.id=id;cur.sh.innerHTML=sheetHTML(x);
+  var sh=cur.sh;
+  if(fresh)requestAnimationFrame(function(){requestAnimationFrame(function(){sh.classList.add("on");cur&&cur.scrim.classList.add("on");});});
+  $("#closeB",sh).onclick=closeLesson;$("#closeB",sh).focus({preventScroll:true});
+  var nb=neighbours(id);
+  $("#prevB",sh).onclick=function(){openLesson(nb.prev);};
+  $("#nextB",sh).onclick=function(){if((isStep(id)||id===0)&&!seen.has(id)){seen.add(id);saveSeen();refresh();}openLesson(nb.next);};
+  var sb=$("#seenB",sh);if(sb)sb.onclick=function(){seen.has(id)?seen.delete(id):seen.add(id);saveSeen();var on=seen.has(id);sb.textContent=on?"Completada ✓":"Marcar como completada";sb.classList.toggle("done",on);sb.setAttribute("aria-pressed",String(on));refresh();};
+  var ta=$("#nb",sh);if(ta){ta.value=notes[id]||"";var t;ta.oninput=function(){clearTimeout(t);t=setTimeout(function(){notes[id]=ta.value;store.set(CFG.key+"-notes",notes);$("#nbs",sh).textContent="Guardado en este dispositivo";},400);};}
+  $("#scroll",sh).scrollTop=0;
+  try{history.replaceState(null,"","#clase-"+id);}catch(e){}
+  var g=$("#grab",sh),y0=null,dy=0,t0=0;
+  g.addEventListener("pointerdown",function(e){if(e.target.closest("button"))return;y0=e.clientY;dy=0;t0=performance.now();sh.classList.add("drag");try{g.setPointerCapture(e.pointerId);}catch(_){}});
+  g.addEventListener("pointermove",function(e){if(y0==null)return;dy=e.clientY-y0;sh.style.transform="translateY("+(dy<0?dy*.15:dy)+"px)";});
+  function end(){if(y0==null)return;var v=dy/Math.max(1,performance.now()-t0);sh.classList.remove("drag");sh.style.transform="";y0=null;if(dy>140||v>.5)closeLesson();}
+  g.addEventListener("pointerup",end);g.addEventListener("pointercancel",end);
+}
+function closeLesson(){
+  if(!cur)return;var c=cur;cur=null;document.body.classList.remove("sheet-open");
+  c.sh.classList.remove("on");c.scrim.classList.remove("on");setTimeout(function(){c.sh.remove();c.scrim.remove();},reduce?0:500);
+  try{history.replaceState(null,"",location.pathname+location.search);}catch(e){}
+  var t=document.querySelector('#progView [data-open="'+c.id+'"]')||c.trigger;if(t&&t.focus)t.focus({preventScroll:false});
+}
+document.addEventListener("keydown",function(e){if(e.key==="Escape"&&cur)closeLesson();});
+
+/* ---------- boot ---------- */
+renderCats();renderFaq();refresh();
+var hm=(location.hash||"").replace("#",""),hh=hm.match(/clase-(\d+)/);
+if(hh&&L(+hh[1]))openLesson(+hh[1]);else if(hm==="mentor"||hm==="mentora")setTab("M");else if(hm==="preguntas")setTab("F");
+})();
+
+</script>
+
+<footer style="max-width:1120px;margin:56px auto 0;padding:22px 16px 40px;border-top:1px solid var(--line,#D9D6D1);color:var(--muted,#5E5C64);font:500 14px/1.5 var(--body,system-ui,sans-serif)"><strong style="color:var(--ink,#18171C)">Aviso:</strong> Las cifras y ejemplos de este material son casos específicos o metas, no promesas. Ningún resultado, ingreso o venta está garantizado; cada persona tiene resultados distintos y dependen de su esfuerzo, su mercado y sus decisiones.</footer></body></html>
