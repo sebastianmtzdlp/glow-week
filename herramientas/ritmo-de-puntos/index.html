@@ -1,0 +1,953 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ritmo de Puntos · Mi Tienda Beauty</title>
+<meta name="description" content="Reparte tu meta de puntos del mes y mira cada día cuántos te tocan.">
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* Layout: columna de teléfono; en escritorio dos columnas (día y rachas a la izquierda, calendario y gráfica a la derecha). Identidad: fondo blanco, paneles gris lavanda, coral como acento y azul marino para el texto, como el Back Office. */
+:root{
+  --bg:#FFFFFF; --surface:#FFFFFF; --ink:#262A4A; --muted:#6C7090; --line:#E6E8F0;
+  --accent:#DB414C; --accent-ink:#FFFFFF; --soft:#EEF0F8; --plum:#262A4A; --tint:#FDEEF0;
+  --good:#1B8A5A; --warn:#B26A00; --bad:#B42318;
+  color-scheme:light;
+  --f-ui:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --f-num:'IBM Plex Mono',ui-monospace,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-ui);font-size:15px;line-height:1.45;padding-inline:16px;padding-block:16px 56px}
+button,input,select,textarea{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.app{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.main,.col{display:contents}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:16px;min-width:0}
+.num{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.muted{color:var(--muted)}
+.sub{color:var(--muted);font-size:13px}
+#hero{order:1}#calcard{order:2}#chartcard{order:3}#streakcard{order:4}#histcard{order:5}#ledger{order:6}#settings{order:7}#howcard{order:8}
+
+/* encabezado de marca */
+.head{background:var(--soft);border-radius:16px;padding:16px;display:flex;flex-direction:column;gap:14px}
+.brand{display:flex;align-items:center;gap:6px 14px;min-width:0;flex-wrap:wrap}
+.wm{font-weight:300;font-size:22px;letter-spacing:.32em;text-transform:uppercase;color:var(--ink);overflow-wrap:anywhere;line-height:1.2}
+.logobox{background:#fff;border-radius:12px;padding:6px 12px;display:flex;align-items:center}
+.logobox img{display:block;max-height:40px;max-width:180px;object-fit:contain}
+.bname{font-weight:700;font-size:15px}
+.addlogo{font-size:12.5px;font-weight:600;color:var(--accent);border:1px dashed var(--accent);border-radius:999px;padding:4px 12px;cursor:pointer}
+.btag{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent)}
+.nav{display:flex;align-items:center;gap:8px;min-width:0;flex-wrap:wrap}
+.nav h1{font-size:26px;font-weight:800;margin:0;padding-inline:4px;white-space:nowrap;letter-spacing:-.01em;color:var(--ink)}
+.ib{width:38px;height:38px;border-radius:12px;border:1px solid var(--line);background:var(--bg);color:var(--ink);font-size:20px;line-height:1}
+.chip{margin-left:auto;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:999px;padding:7px 14px;font-size:13px;font-weight:600}
+
+/* bienvenida */
+.welcome{display:flex;flex-direction:column;gap:14px;border-color:var(--accent)}
+.welcome h2{font-size:28px;font-weight:800;margin:0;letter-spacing:-.01em;color:var(--ink)}
+.how{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;color:var(--muted)}
+.how b{color:var(--ink);font-weight:600}
+.lgrow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+#wlogoprev img{max-height:36px;max-width:140px;background:#fff;border-radius:8px;padding:4px 8px;display:block}
+.fld{display:flex;flex-direction:column;gap:6px;font-weight:600;font-size:14px}
+.fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px}
+input[type=text],input[type=number],select{border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:10px 12px;font-size:16px;width:100%;min-width:0}
+input[type=number]{font-family:var(--f-num);font-variant-numeric:tabular-nums}
+.primary{border:0;background:var(--accent);color:var(--accent-ink);border-radius:12px;padding:11px 20px;font-weight:700}
+.ghost{border:1px solid var(--line);background:transparent;border-radius:12px;padding:8px 12px;font-size:13.5px;font-weight:600}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+
+/* día elegido */
+.hi{font-size:13.5px;color:var(--muted);font-weight:500}
+.kicker{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-top:2px}
+.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+.tag{font-size:12px;font-weight:600;border-radius:999px;padding:3px 10px;background:var(--soft);color:var(--plum)}
+.big{font-size:clamp(48px,16vw,72px);font-weight:800;letter-spacing:-.03em;line-height:1;font-variant-numeric:tabular-nums;margin-top:8px;color:var(--accent)}
+.bigsub{font-size:14.5px;color:var(--muted);margin-top:4px}
+.dbar{height:9px;border-radius:99px;background:var(--soft);overflow:hidden;margin-top:12px}
+.dbar>i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.dline{font-size:13.5px;margin-top:6px;display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.rows{margin:14px 0 0;display:flex;flex-direction:column;border-top:1px solid var(--line)}
+.rows>div{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:9px 0;border-bottom:1px solid var(--line)}
+.rows dt{color:var(--muted);font-size:14px}
+.rows dd{margin:0;font-family:var(--f-num);font-variant-numeric:tabular-nums;font-weight:500;text-align:right}
+.good{color:var(--good)}.warn{color:var(--warn)}.bad{color:var(--bad)}
+.seg{display:flex;gap:4px;background:var(--soft);padding:3px;border-radius:13px;margin-top:16px}
+.seg button{flex:1;border:0;background:transparent;border-radius:10px;padding:8px;font-size:13.5px;font-weight:600;color:var(--muted)}
+.seg button.on{background:var(--bg);color:var(--accent);box-shadow:0 0 0 1px var(--line)}
+.entry{display:flex;gap:8px;margin-top:10px}
+.entry input{flex:1;min-width:0}
+.flash{color:var(--good);font-size:13px;font-weight:600;min-height:18px;margin-top:6px}
+.opts{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:12px}
+.opts label{display:flex;align-items:center;gap:8px;font-size:13.5px;color:var(--muted)}
+.opts input{width:84px;padding:7px 10px;font-size:14px}
+#wa{width:100%;min-height:90px;margin-top:8px;border:1px solid var(--line);background:var(--bg);border-radius:12px;padding:8px;font-size:13px}
+
+/* resumen del mes */
+.sumhead{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap}
+.sumhead b{font-size:18px}
+.track{position:relative;height:11px;border-radius:99px;background:var(--soft);margin:10px 0 8px}
+.track .fill{position:absolute;inset:0 auto 0 0;border-radius:99px;background:var(--accent)}
+.track .tick{position:absolute;top:-4px;bottom:-4px;width:2px;background:var(--plum);border-radius:2px}
+.sumfoot{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:13px;color:var(--muted)}
+
+/* calendario */
+.cal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px;margin-top:14px}
+.dh{text-align:center;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding-bottom:2px}
+.day{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:space-between;gap:2px;min-height:56px;padding:6px 2px 5px;border:1px solid var(--line);border-radius:12px;background:var(--bg);min-width:0}
+.day .n{font-weight:700;font-size:14.5px;line-height:1}
+.day .v{font-family:var(--f-num);font-size:10.5px;color:var(--muted);line-height:1;font-variant-numeric:tabular-nums;white-space:nowrap}
+.day.soft{background:var(--soft)}
+.day.rest{border-style:dashed}
+.day.out{opacity:.6}
+tr.out td{opacity:.6}
+.day.good{background:color-mix(in srgb,var(--good) 14%,var(--bg))}.day.good .v{color:var(--good)}
+.day.warn{background:color-mix(in srgb,var(--warn) 16%,var(--bg))}.day.warn .v{color:var(--warn)}
+.day.bad{background:color-mix(in srgb,var(--bad) 14%,var(--bg))}.day.bad .v{color:var(--bad)}
+.day.hol::after,.day.sp::after{content:"";position:absolute;top:4px;right:4px;width:6px;height:6px;border-radius:50%;background:var(--plum)}
+.day.sp::after{background:transparent;border:1.5px solid var(--plum)}
+.day.today{box-shadow:0 0 0 2px var(--accent)}
+.day.sel{background:var(--accent);border-color:var(--accent);color:var(--accent-ink)}
+.day.sel .v{color:var(--accent-ink)}
+.day.sel::after{background:var(--accent-ink);border-color:var(--accent-ink)}
+.day.sel.sp::after{background:transparent}
+.blank{min-height:0}
+.legend{display:flex;gap:6px 14px;flex-wrap:wrap;font-size:12px;color:var(--muted);margin-top:12px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px;border:1px solid var(--line)}
+.legend i.dot{border-radius:50%;background:var(--plum);border-color:var(--plum)}
+.legend i.ring{border-radius:50%;background:transparent;border:1.5px solid var(--plum)}
+
+/* gráfica */
+h2.ct{font-size:16px;font-weight:700;margin:0 0 4px}
+#chart svg{display:block;width:100%;height:auto;overflow:visible}
+.c-grid{stroke:var(--line);stroke-width:1}
+.c-ax{fill:var(--muted);font-family:var(--f-num);font-size:11px}
+.c-plan{fill:none;stroke:var(--plum);stroke-width:2;opacity:.55}
+.c-real{fill:none;stroke:var(--accent);stroke-width:3;stroke-linejoin:round;stroke-linecap:round}
+.c-dot{fill:var(--surface);stroke:var(--accent);stroke-width:2.5}
+.c-proj{fill:none;stroke:var(--accent);stroke-width:2;stroke-dasharray:5 5;opacity:.8}
+.c-goal{stroke:var(--good);stroke-width:1.5;stroke-dasharray:3 4}
+.c-goalt{fill:var(--good);font-family:var(--f-num);font-size:11px;font-weight:500}
+.c-today{stroke:var(--muted);stroke-width:1;stroke-dasharray:2 4}
+.clegend{display:flex;gap:6px 16px;flex-wrap:wrap;font-size:12.5px;color:var(--muted);margin-top:6px}
+.clegend span::before{content:"";display:inline-block;width:18px;height:0;border-top:3px solid var(--accent);margin-right:6px;vertical-align:3px}
+.clegend .lp::before{border-top:2px solid var(--plum);opacity:.55}
+.clegend .lj::before{border-top:2px dashed var(--accent)}
+.chartnote{font-size:14px;margin-top:10px}
+
+/* rachas */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:10px}
+.tile{background:var(--soft);border-radius:14px;padding:12px 10px;display:flex;flex-direction:column;gap:2px;min-width:0}
+.tl{font-size:11.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:var(--muted)}
+.tile b{font-size:28px;font-weight:800;line-height:1.1;color:var(--accent);font-family:var(--f-num)}
+.ts{font-size:12px;color:var(--muted)}
+
+/* historial */
+.hist{display:flex;flex-direction:column;margin-top:8px;max-height:340px;overflow-y:auto}
+.hrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:2px 10px;padding:10px 4px;border:0;border-bottom:1px solid var(--line);background:transparent;text-align:left;width:100%}
+.hrow:last-child{border-bottom:0}
+.hrow .hn{font-weight:600}
+.hrow .hp{font-family:var(--f-num);text-align:right;font-weight:500}
+.hrow .hb{grid-column:1/-1;height:7px;border-radius:99px;background:var(--soft);overflow:hidden}
+.hrow .hb i{display:block;height:100%;background:var(--accent);border-radius:99px}
+.hrow .hs{grid-column:1/-1;font-size:12.5px;color:var(--muted)}
+.hrow.cur .hn{color:var(--accent)}
+
+/* tabla y ajustes */
+details>summary{cursor:pointer;font-weight:700;list-style:none;display:flex;justify-content:space-between;align-items:center}
+details>summary::-webkit-details-marker{display:none}
+details>summary::after{content:"+";font-family:var(--f-num);color:var(--muted);font-size:18px}
+details[open]>summary::after{content:"−"}
+.tw{overflow-x:auto;margin-top:12px}
+table{width:100%;border-collapse:collapse;font-family:var(--f-num);font-variant-numeric:tabular-nums;font-size:13.5px}
+th{font-family:var(--f-ui);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:right;padding:6px 8px;border-bottom:2px solid var(--accent)}
+th:first-child,td:first-child{text-align:center}
+td{text-align:right;padding:7px 8px;border-bottom:1px solid var(--line)}
+td.ref{color:var(--muted);background:var(--soft)}
+tr[data-d]{cursor:pointer}
+tr.soft td:first-child{background:var(--soft)}
+tr.today td:first-child{color:var(--accent);font-weight:700}
+tr.sel td{background:color-mix(in srgb,var(--accent) 14%,var(--surface))}
+.sbody{display:flex;flex-direction:column;gap:20px;margin-top:14px}
+.sec{display:flex;flex-direction:column;gap:8px}
+.h{font-weight:700;margin:0;font-size:15px;color:var(--accent)}
+.wgrid{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px;margin-top:4px}
+.wf{display:flex;flex-direction:column;gap:4px;font-size:12px;font-weight:700;color:var(--muted);text-align:center;text-transform:uppercase;letter-spacing:.05em}
+.wf input{padding:8px 2px;text-align:center;font-size:14px}
+.pv{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:6px}
+.pv div{text-align:center;font-family:var(--f-num);font-size:12px;background:var(--soft);border-radius:10px;padding:6px 0;font-variant-numeric:tabular-nums}
+textarea.bx{width:100%;min-height:70px;border:1px solid var(--line);background:var(--bg);color:var(--ink);border-radius:12px;padding:8px;font-family:var(--f-num);font-size:12px}
+.lrow{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.danger{color:var(--bad);border-color:var(--bad)}
+#banner:empty{display:none}
+[hidden]{display:none!important}
+html,body{margin:0}
+.foot{order:99;font-size:13px;color:var(--muted);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:6px}
+.foot a{color:var(--muted)}
+.imp{background:var(--tint);border:1px solid var(--accent);border-radius:14px;padding:12px 14px;font-size:14px}
+
+
+
+@media (min-width:900px){
+  body{padding-block:28px 64px}
+  .app{max-width:1060px;display:grid;grid-template-columns:minmax(340px,400px) minmax(0,1fr);gap:16px;align-items:start}
+  .head,#welcome,#imp,.foot{grid-column:1/-1}
+  .col{display:flex;flex-direction:column;gap:16px;min-width:0}
+  .head{flex-direction:row;align-items:center;justify-content:space-between;padding:18px 22px}
+  .nav h1{font-size:28px}
+  .chip{margin-left:8px}
+  .cal{gap:8px}
+  .day{min-height:76px;padding:9px 4px 8px;border-radius:14px}
+  .day .n{font-size:17px}
+  .day .v{font-size:12.5px}
+  .dh{font-size:12.5px}
+  .day:hover:not(.sel){border-color:var(--accent)}
+}
+@media (prefers-reduced-motion:no-preference){.dbar>i,.track .fill{transition:width .3s ease}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div class="imp" id="imp" role="status" hidden></div>
+  <header class="head" id="head" hidden>
+    <div class="brand">
+      <div id="logo" class="wm"></div>
+      <div><div class="bname" id="bname" hidden></div><div class="btag" id="btag"></div></div>
+      <label class="addlogo" id="addlogo" for="plogo" hidden>+ Agregar logo</label>
+    </div>
+    <div class="nav">
+      <button class="ib" id="prev" aria-label="Mes anterior">‹</button>
+      <h1 id="mtitle"></h1>
+      <button class="ib" id="next" aria-label="Mes siguiente">›</button>
+      <button class="chip" id="gotoday" hidden>Ir a hoy</button>
+    </div>
+  </header>
+
+  <section class="card welcome" id="welcome" hidden>
+    <div class="kicker" style="color:var(--accent)">Bienvenida</div>
+    <h2>Ritmo de Puntos</h2>
+    <p class="sub" style="margin:0;font-size:14.5px">Pon la meta del mes y tu día de cierre. Con eso armo el calendario del mes y cada día te digo cuántos puntos te tocan.</p>
+    <ul class="how" id="how1"></ul>
+    <div class="fgrid">
+      <label class="fld" for="wgoal">Meta del mes<input id="wgoal" type="number" inputmode="numeric" min="1" step="1" placeholder="Ej. 20000"></label>
+      <label class="fld" for="wclose">Día de cierre del mes<input id="wclose" type="number" inputmode="numeric" min="1" max="31" step="1" value="31"></label>
+    </div>
+    <div class="sub" style="margin-top:-6px">La meta debe quedar cubierta para ese día. Los puntos de después siguen sumando. Si cierras el último día del mes, deja 31.</div>
+    <div class="fgrid">
+      <label class="fld" for="wn">Tu nombre<input id="wn" type="text" autocomplete="given-name" placeholder="Ej. Sebastián"></label>
+      <label class="fld" for="wt">Nombre de tu equipo o negocio<input id="wt" type="text" placeholder="Ej. Equipo Selene"></label>
+      <label class="fld" for="wg">Línea de la marca<input id="wg" type="text" value="Farmasi"></label>
+      <label class="fld" for="wu">Cómo llamas a tus puntos<input id="wu" type="text" value="puntos"></label>
+      <label class="fld" for="wk">Los fines de semana valen
+        <select id="wk"><option value="1">Igual que entre semana</option><option value="0.75">75%</option><option value="0.5" selected>La mitad (50%)</option><option value="0.25">25%</option><option value="0">Descanso (0%)</option></select></label>
+    </div>
+    <div class="sec">
+      <div class="lgrow">
+        <label class="ghost" for="wlogo" style="cursor:pointer">Subir logo (opcional)</label>
+        <input id="wlogo" type="file" accept="image/*" hidden>
+        <span id="wlogoprev"></span>
+      </div>
+      <div class="sub">Descarga el logo desde tu Back Office y súbelo aquí. Se guarda solo en tu navegador.</div>
+    </div>
+    <div class="sub" id="wmsg" style="color:var(--bad)"></div>
+    <div><button class="primary" data-act="start">Empezar</button></div>
+  </section>
+
+
+  <div class="main" id="main" hidden>
+    <div class="col">
+      <section class="card" id="hero" aria-live="polite"></section>
+
+      <section class="card" id="streakcard">
+        <h2 class="ct">Rachas</h2>
+        <div class="tiles" id="tiles"></div>
+      </section>
+
+      <details class="card" id="ledger">
+        <summary>Tabla del mes</summary>
+        <div class="tw"><table>
+          <thead><tr><th>Día</th><th>Debo tener</th><th>Tengo</th><th>Falta</th></tr></thead>
+          <tbody id="tbody"></tbody>
+        </table></div>
+      </details>
+    </div>
+
+    <div class="col">
+      <section class="card" id="calcard">
+        <div id="summary"></div>
+        <div class="cal" id="cal"></div>
+        <div class="legend">
+          <span><i style="background:color-mix(in srgb,var(--good) 30%,var(--surface))"></i>al ritmo o adelante</span>
+          <span><i style="background:color-mix(in srgb,var(--warn) 30%,var(--surface))"></i>menos de un día atrás</span>
+          <span><i style="background:color-mix(in srgb,var(--bad) 30%,var(--surface))"></i>más de un día atrás</span>
+          <span><i style="background:var(--soft)"></i>meta reducida</span>
+          <span><i class="dot"></i>feriado</span>
+          <span><i class="ring"></i>fecha comercial</span>
+        </div>
+      </section>
+
+      <section class="card" id="chartcard">
+        <h2 class="ct">Plan contra real</h2>
+        <div id="chart"></div>
+        <div class="clegend"><span>Lo que llevas</span><span class="lp">Plan</span><span class="lj">Proyección</span></div>
+        <div class="chartnote" id="chartnote"></div>
+      </section>
+
+      <section class="card" id="histcard">
+        <h2 class="ct">Historial</h2>
+        <div class="hist" id="hist"></div>
+      </section>
+
+      <details class="card" id="settings">
+        <summary>Ajustes</summary>
+        <div class="sbody">
+          <div class="sec">
+            <p class="h">Tu equipo</p>
+            <div class="fgrid">
+              <label class="fld" for="pn">Tu nombre<input id="pn" type="text"></label>
+              <label class="fld" for="pt">Equipo o negocio<input id="pt" type="text"></label>
+              <label class="fld" for="pg">Línea de la marca<input id="pg" type="text"></label>
+              <label class="fld" for="pu">Cómo llamas a tus puntos<input id="pu" type="text"></label>
+            </div>
+            <div class="lrow">
+              <label class="ghost" for="plogo" style="cursor:pointer">Subir logo del equipo</label>
+              <input id="plogo" type="file" accept="image/*" hidden>
+              <button class="ghost" data-act="logoClear" id="logoclear" hidden>Quitar logo</button>
+              <span class="sub" id="logomsg"></span>
+            </div>
+          </div>
+          <div class="sec">
+            <label class="fld" for="goal"><span class="h">Meta del mes <span class="muted" style="font-weight:500">(<span id="sm"></span>)</span></span>
+              <input id="goal" type="number" inputmode="numeric" min="1" step="1"></label>
+            <label class="fld" for="close" style="margin-top:8px"><span class="h">Día de cierre</span>
+              <input id="close" type="number" inputmode="numeric" min="1" max="31" step="1"></label>
+            <p class="sub" style="margin:0">La meta debe quedar cubierta para el día de cierre. Los puntos de después siguen sumando. Pon 31 si cierras el último día del mes.</p>
+          </div>
+          <div class="sec">
+            <p class="h">Peso de cada día de la semana</p>
+            <p class="sub" style="margin:0">1 es un día normal, 0.5 vale la mitad, 0 es descanso. La meta del mes se reparte según estos pesos. Para un día suelto, cambia su peso desde el panel del día.</p>
+            <div class="wgrid" id="wgrid"></div>
+            <label class="fld" for="hw" style="margin-top:6px">Peso de los feriados oficiales<input id="hw" type="number" inputmode="decimal" min="0" step="0.25"></label>
+            <p class="sub" style="margin:0">Año Nuevo, Constitución, Benito Juárez, Día del Trabajo, Independencia, Revolución y Navidad.</p>
+          </div>
+          <div class="sec">
+            <p class="h">Lo que vale cada día este mes</p>
+            <div class="pv" id="pv"></div>
+          </div>
+          <div class="sec">
+            <p class="h">Pasar a hoja de cálculo</p>
+            <p class="sub" style="margin:0">Copia las filas y pégalas en Google Sheets o Excel con pegar.</p>
+            <div class="btns" style="margin:0">
+              <button class="ghost" data-act="xm">Copiar este mes</button>
+              <button class="ghost" data-act="xa">Copiar todos los meses</button>
+            </div>
+            <textarea class="bx" id="xp" aria-label="Filas para la hoja de cálculo" spellcheck="false" hidden></textarea>
+          </div>
+          <div class="sec">
+            <p class="h">Respaldo</p>
+            <p class="sub" style="margin:0">Tus datos viven en este navegador y se guarda una copia privada de tus registros para Mi Tienda Beauty. Copia el respaldo para pasarlos a otro dispositivo.</p>
+            <textarea class="bx" id="bk" aria-label="Respaldo en texto" spellcheck="false"></textarea>
+            <div class="btns" style="margin:0">
+              <button class="ghost" data-act="copy">Copiar respaldo</button>
+              <button class="ghost" data-act="restore">Restaurar desde el texto</button>
+              <button class="ghost danger" data-act="reset" id="resetbtn">Borrar todo</button>
+            </div>
+            <div class="sub" id="bkmsg"></div>
+          </div>
+        </div>
+      </details>
+
+      <details class="card" id="howcard">
+        <summary>Cómo funciona</summary>
+        <ul class="how" id="how2" style="margin-top:12px"></ul>
+      </details>
+    </div>
+  </div>
+  <p class="foot"><a href="../">← Herramientas</a><span>Se guarda una copia privada de tus registros.</span></p>
+</div>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+<script>
+(function(){
+const KEY='ritmo-puntos-v2',OLD='ritmo-puntos-v1';
+const MESES=['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'];
+const DIAS=['lunes','martes','miércoles','jueves','viernes','sábado','domingo'];
+const DCORTO=['Lun','Mar','Mié','Jue','Vie','Sáb','Dom'];
+const $=s=>document.querySelector(s);
+const esc=s=>String(s==null?'':s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const fmt=n=>Math.round(n).toLocaleString('es-MX');
+const sgn=n=>(n>0?'+':n<0?'−':'')+fmt(Math.abs(n));
+const short=n=>{const a=Math.abs(n);const t=a>=10000?Math.round(a/1000)+'k':fmt(a);return (n>0?'+':n<0?'−':'')+t};
+const mkey=(y,m)=>y+'-'+String(m+1).padStart(2,'0');
+
+function fresh(){return {v:2,profile:null,weights:[1,1,1,1,1,0.5,0.5],holidayW:0.5,defaultGoal:20000,defaultClose:31,months:{}};}
+function load(){
+  try{const r=localStorage.getItem(KEY);if(r){const s=JSON.parse(r);if(s&&s.months&&Array.isArray(s.weights))return s;}}catch(e){}
+  const s=fresh();
+  try{const o=JSON.parse(localStorage.getItem(OLD)||'null');
+    if(o&&o.sample===false&&o.months&&Array.isArray(o.weights)){s.months=o.months;s.weights=o.weights;if(o.defaultGoal>0)s.defaultGoal=o.defaultGoal;}}catch(e){}
+  return s;
+}
+let S=load();
+/* Copia privada en Supabase: la página solo puede insertar; leer, solo desde el panel de Supabase (supabase/ritmo_puntos.sql) */
+const SB_URL='https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/ritmo_puntos',SB_KEY='sb_publishable_ltaNA7nnVozoSCOcZIjg';
+const devId=(()=>{try{let v=localStorage.getItem('ritmo-puntos-id');if(!v){v=(crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g,()=>(Math.random()*16|0).toString(16)));localStorage.setItem('ritmo-puntos-id',v);}return v;}catch(e){return null;}})();
+let sbT=null;
+function sb(accion,dia){
+  if(!devId||!S.profile)return;
+  try{
+    const now=new Date(),y=typeof vy==='number'?vy:now.getFullYear(),m=typeof vm==='number'?vm:now.getMonth();
+    const k=y+'-'+String(m+1).padStart(2,'0'),mo=S.months[k]||{};
+    let total=null;if(mo.entries){const ds=Object.keys(mo.entries).map(Number).sort((a,b)=>a-b);if(ds.length)total=Math.round(mo.entries[ds[ds.length-1]]);}
+    const est=JSON.parse(JSON.stringify(S));if(est.profile)delete est.profile.logo;
+    const row={dispositivo:devId,accion,nombre:(S.profile.name||'').slice(0,80),equipo:(S.profile.team||'').slice(0,80),mes:k,dia:dia||null,total,meta:mo.goal!=null?Math.round(mo.goal):null,cierre:mo.close||null,estado:est};
+    fetch(SB_URL,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json',apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,Prefer:'return=minimal'},body:JSON.stringify(row)}).catch(()=>{});
+  }catch(e){}
+}
+const sbLater=a=>{clearTimeout(sbT);sbT=setTimeout(()=>sb(a),2000);};
+const gc=(path,title)=>{const go=()=>{try{window.goatcounter.count({path:'ritmo-puntos/'+path,title:title||path,event:true});}catch(_){}};if(window.goatcounter&&window.goatcounter.count)go();else window.addEventListener('load',()=>setTimeout(go,300));};
+/* Traer los datos del artefacto de Claude: llegan en el #importar=… (nunca salen del navegador) */
+(function(){
+  const m=location.hash.match(/^#importar=(.+)$/);if(!m)return;
+  history.replaceState(null,'',location.pathname+location.search);
+  const box=document.getElementById('imp');
+  try{
+    const b=atob(m[1].replace(/-/g,'+').replace(/_/g,'/'));
+    const s=JSON.parse(decodeURIComponent(Array.from(b,c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')).join('')));
+    if(!s||typeof s.months!=='object'||!Array.isArray(s.weights)||s.weights.length!==7)throw 0;
+    const mine=Object.values(S.months).some(x=>x&&x.entries&&Object.keys(x.entries).length);
+    if(mine&&S.profile){box.textContent='Ya tenías datos en este navegador, así que no los reemplacé. Si quieres los de Claude, usa Ajustes › Respaldo.';box.hidden=false;gc('importar-omitido','Importar omitido');return;}
+    S=s;save();box.textContent='Listo, trajimos tus datos. Desde ahora usa esta página.';box.hidden=false;gc('importado','Datos importados');setTimeout(()=>sb('importado'),0);
+    setTimeout(()=>{box.hidden=true;},8000);
+  }catch(e){box.textContent='No pude traer tus datos. Ábrelo en Claude, copia el respaldo en Ajustes y pégalo aquí.';box.hidden=false;}
+})();
+gc(S.profile?'abrir':'nueva','Abrir'+(S.profile?'':' (sin datos)'));
+function save(){try{localStorage.setItem(KEY,JSON.stringify(S));return true;}catch(e){return false;}}
+const today=new Date();
+
+/*LOGIC-START*/
+const _hc={};
+function nth(y,m,wd,n){const f=new Date(y,m,1).getDay();return 1+((wd-f+7)%7)+(n-1)*7;}
+function holidays(y){
+  if(_hc[y])return _hc[y];
+  const h={};
+  h['1-1']='Año Nuevo';
+  h['2-'+nth(y,1,1,1)]='Día de la Constitución';
+  h['3-'+nth(y,2,1,3)]='Natalicio de Benito Juárez';
+  h['5-1']='Día del Trabajo';
+  h['9-16']='Día de la Independencia';
+  h['11-'+nth(y,10,1,3)]='Día de la Revolución';
+  h['12-25']='Navidad';
+  if(y>=2024&&(y-2024)%6===0)h['10-1']='Transmisión del Poder Ejecutivo';
+  return (_hc[y]=h);
+}
+function specials(y){
+  const h={};
+  h['2-14']='San Valentín';
+  h['5-10']='Día de las Madres';
+  h['6-'+nth(y,5,0,3)]='Día del Padre';
+  return h;
+}
+function model(y,m){
+  const key=mkey(y,m);
+  const mo=S.months[key]||{goal:S.defaultGoal,entries:{},over:{}};
+  const n=new Date(y,m+1,0).getDate();
+  const closeD=Math.max(1,Math.min(n,Math.round(mo.close||S.defaultClose||n)));
+  const hol=holidays(y);
+  const hw=(S.holidayW!=null)?S.holidayW:0.5;
+  const w=[0],cum=[0],target=[0],share=[0];
+  for(let d=1;d<=n;d++){
+    const dow=(new Date(y,m,d).getDay()+6)%7;
+    const ov=mo.over&&mo.over[d];
+    w[d]=d>closeD?0:((ov!=null)?ov:(hol[(m+1)+'-'+d]!=null?hw:S.weights[dow]));
+    cum[d]=cum[d-1]+w[d];
+  }
+  const total=cum[n];
+  for(let d=1;d<=n;d++){
+    target[d]=total>0?Math.round(mo.goal*cum[d]/total):0;
+    share[d]=target[d]-target[d-1];
+  }
+  return {key,y,m,mo,n,close:closeD,w,cum,total,target,share};
+}
+function latest(M,d){for(let k=d;k>=1;k--){if(M.mo.entries[k]!=null)return{day:k,val:M.mo.entries[k]};}return{day:0,val:0};}
+function before(M,d){return latest(M,d-1);}
+function needFor(M,d){
+  const rem=M.mo.goal-before(M,d).val;
+  const remW=M.total-M.cum[d-1];
+  if(remW<=0||rem<=0||M.w[d]<=0)return 0;
+  return Math.round(rem*M.w[d]/remW);
+}
+function streaks(M,upto){
+  let run=0,best=0;
+  for(let d=1;d<=upto;d++){
+    if(M.w[d]<=0)continue;
+    if(latest(M,d).val>=M.target[d]){run++;if(run>best)best=run;}else run=0;
+  }
+  return {cur:run,best};
+}
+function bestDay(M){
+  let g=0,day=0;
+  for(let d=1;d<=M.n;d++){
+    const e=M.mo.entries[d];if(e==null)continue;
+    let gain=null;
+    if(d===1)gain=e;else if(M.mo.entries[d-1]!=null)gain=e-M.mo.entries[d-1];
+    if(gain!=null&&gain>g){g=gain;day=d;}
+  }
+  return {gain:g,day};
+}
+/*LOGIC-END*/
+
+function upTo(y,m,M){
+  const ty=today.getFullYear(),tm=today.getMonth();
+  if(y<ty||(y===ty&&m<tm))return M.n;
+  if(y===ty&&m===tm){const t=today.getDate();return M.mo.entries[t]!=null?t:t-1;}
+  return 0;
+}
+const prof=()=>S.profile||{name:'',team:'',tag:'',unit:'puntos'};
+const U=()=>prof().unit||'puntos';
+
+let vy=today.getFullYear(),vm=today.getMonth(),mode='total',flash='',flashT=null;
+const isCurM=()=>vy===today.getFullYear()&&vm===today.getMonth();
+function defaultSel(){
+  if(isCurM())return today.getDate();
+  const past=(vy<today.getFullYear())||(vy===today.getFullYear()&&vm<today.getMonth());
+  return past?new Date(vy,vm+1,0).getDate():1;
+}
+let sel=defaultSel();
+function ensure(){
+  const k=mkey(vy,vm);
+  if(!S.months[k])S.months[k]={goal:S.defaultGoal,close:S.defaultClose||31,entries:{},over:{}};
+  if(!S.months[k].over)S.months[k].over={};
+  return S.months[k];
+}
+
+
+function render(){
+  if(!S.profile){
+    $('#head').hidden=true;$('#main').hidden=true;$('#welcome').hidden=false;
+    return;
+  }
+  $('#welcome').hidden=true;$('#head').hidden=false;$('#main').hidden=false;
+  const M=model(vy,vm);
+  if(sel>M.n)sel=M.n;
+  const cur=isCurM();
+  $('#mtitle').textContent=MESES[vm]+' '+vy;
+  $('#gotoday').hidden=cur;
+  renderHead();renderHero(M,cur);renderSummary(M,cur);renderCal(M,cur);renderChart(M,cur);renderStreaks();renderHist();renderTable(M,cur);syncSettings(M);
+}
+
+function renderHead(){
+  const p=prof();const team=p.team||'Mi equipo';
+  const lg=$('#logo');
+  if(p.logo){lg.className='logobox';lg.innerHTML='<img alt="'+esc(team)+'" src="'+p.logo+'">';$('#bname').textContent=team;$('#bname').hidden=false;}
+  else{lg.className='wm';lg.textContent=team.toUpperCase();$('#bname').hidden=true;}
+  $('#btag').textContent=p.tag||'';$('#btag').hidden=!p.tag;
+  $('#addlogo').hidden=!!p.logo;
+}
+
+function renderHero(M,cur){
+  const p=prof();
+  const d=sel,w=M.w[d],ent=M.mo.entries[d],unit=U();
+  const bb=before(M,d),lt=latest(M,d),have=lt.val;
+  const need=needFor(M,d);
+  const done=ent!=null?ent-bb.val:null;
+  const falta=M.target[d]-have;
+  const isT=cur&&d===today.getDate();
+  const dow=(new Date(vy,vm,d).getDay()+6)%7;
+  const hn=holidays(vy)[(vm+1)+'-'+d],sp=specials(vy)[(vm+1)+'-'+d];
+  const hasOv=M.mo.over&&M.mo.over[d]!=null;
+  let tags='';
+  if(hn)tags+='<span class="tag">Feriado · '+esc(hn)+'</span>';
+  if(sp)tags+='<span class="tag">'+esc(sp)+'</span>';
+  if(d>M.close)tags+='<span class="tag">Después del cierre</span>';
+  else if(w<=0)tags+='<span class="tag">Descanso</span>';
+  else if(hasOv)tags+='<span class="tag">Peso '+w+'</span>';
+  let head;
+  if(d>M.close){
+    const over=have-M.mo.goal;
+    head=over>=0
+      ?'<div class="big" style="font-size:clamp(34px,10vw,48px)">Meta cubierta</div><div class="bigsub">Llevas '+sgn(over)+' sobre la meta. Los puntos de después del cierre siguen sumando.</div>'
+      :'<div class="big">'+fmt(-over)+'</div><div class="bigsub">'+esc(unit)+' para cubrir la meta. Debía estar lista el día '+M.close+'.</div>';
+  }else if(w<=0){
+    head='<div class="big">Descanso</div><div class="bigsub">Este día no suma a la meta.</div>';
+  }else{
+    head='<div class="big">+'+fmt(need)+'</div><div class="bigsub">'+esc(unit)+(isT?' te tocan hoy':' · meta ajustada de este día')+'</div>';
+    if(done!=null){
+      const pct=need>0?Math.min(100,Math.max(0,done/need*100)):100;
+      const ok=need>0&&done>=need;
+      head+='<div class="dbar"><i style="width:'+pct.toFixed(1)+'%"></i></div>'
+        +'<div class="dline"><span class="num">'+(isT?'Llevas hoy ':'Hiciste ')+sgn(done)+'</span><span class="'+(ok?'good':'muted')+'">'+(ok?'Meta del día cumplida':(need>0?Math.round(done/need*100)+'% de la meta del día':''))+'</span></div>';
+    }
+  }
+  let faltaTxt;
+  if(falta>0)faltaTxt='<span class="bad">'+fmt(falta)+'</span>';
+  else if(falta<0)faltaTxt='<span class="good">Adelante '+fmt(-falta)+'</span>';
+  else faltaTxt='<span class="good">Al día</span>';
+  const note=(ent==null&&lt.day>0)?' <span class="sub">(día '+lt.day+')</span>':'';
+  const hint=mode==='total'
+    ?'Escribe el total que llevas acumulado al cierre de este día.'
+    :'Se suma a lo que llevas ('+fmt(ent!=null?ent:bb.val)+').';
+  const first=(p.name||'').trim().split(/\s+/)[0];
+  $('#hero').innerHTML=
+    (first?'<div class="hi">Hola, '+esc(first)+'</div>':'')
+    +'<div class="kicker">'+(isT?'Hoy · ':'')+DIAS[dow]+' '+d+' de '+MESES[vm].toLowerCase()+'</div>'
+    +(tags?'<div class="tags">'+tags+'</div>':'')
+    +head
+    +'<dl class="rows">'
+    +'<div><dt>Plan original del día</dt><dd>'+(w>0?'+':'')+fmt(M.share[d])+'</dd></div>'
+    +'<div><dt>Debo tener al cierre</dt><dd>'+fmt(M.target[d])+'</dd></div>'
+    +'<div><dt>Tengo'+note+'</dt><dd>'+fmt(have)+'</dd></div>'
+    +'<div><dt>Falta para el ritmo</dt><dd>'+faltaTxt+'</dd></div>'
+    +'</dl>'
+    +'<div class="seg" role="group" aria-label="Modo de captura"><button data-act="mode" data-m="total" class="'+(mode==='total'?'on':'')+'">Total acumulado</button><button data-act="mode" data-m="sum" class="'+(mode==='sum'?'on':'')+'">Sumar '+esc(unit)+'</button></div>'
+    +'<div class="entry"><input id="ev" type="number" inputmode="decimal" min="0" step="any" placeholder="'+(mode==='total'?(have>0?fmt(have):'0'):'0')+'" aria-label="'+esc(unit)+'"><button class="primary" data-act="save">Guardar</button></div>'
+    +'<div class="sub" style="margin-top:6px">'+hint+'</div>'
+    +'<div class="flash" id="flash">'+flash+'</div>'
+    +'<div class="opts"><label for="wv">Peso de este día<input id="wv" type="number" inputmode="decimal" min="0" step="0.25" placeholder="'+M.w[d]+'" value="'+(hasOv?M.mo.over[d]:'')+'"></label>'
+    +'<span class="btns" style="margin:0">'+(hasOv?'<button class="ghost" data-act="clearW">Quitar ajuste</button>':'<button class="ghost" data-act="rest">Marcar descanso</button>')+(ent!=null?'<button class="ghost" data-act="clearE">Borrar registro</button>':'')+'</span></div>'
+    +'<div class="btns"><button class="ghost" data-act="wa">Copiar resumen para WhatsApp</button></div>'
+    +'<textarea id="wa" aria-label="Resumen para copiar" hidden></textarea>';
+}
+
+function renderSummary(M,cur){
+  const have=latest(M,M.n).val,goal=M.mo.goal;
+  const pct=goal>0?have/goal:0;
+  const past=(vy<today.getFullYear())||(vy===today.getFullYear()&&vm<today.getMonth());
+  const planNow=cur?M.target[today.getDate()]:(past?goal:0);
+  const tick=goal>0?Math.min(100,planNow/goal*100):0;
+  let foot='<span>Faltan <b class="num">'+fmt(Math.max(0,goal-have))+'</b> para la meta</span>';
+  if(cur){const left=Math.max(0,M.close-today.getDate()+1);foot+='<span>Quedan '+left+(left===1?' día':' días')+' hasta el cierre (día '+M.close+')</span>';}
+  $('#summary').innerHTML=
+    '<div class="sumhead"><b class="num">'+fmt(have)+' <span class="muted" style="font-weight:400">de '+fmt(goal)+'</span></b><span class="num">'+Math.round(pct*100)+'%</span></div>'
+    +'<div class="track" role="img" aria-label="Avance del mes"><div class="fill" style="width:'+Math.min(100,pct*100).toFixed(1)+'%"></div>'+(planNow>0?'<div class="tick" style="left:calc('+tick.toFixed(1)+'% - 1px)"></div>':'')+'</div>'
+    +'<div class="sumfoot"><span>La raya marca dónde debería ir el plan: <b class="num">'+fmt(planNow)+'</b></span></div>'
+    +'<div class="sumfoot" style="margin-top:2px">'+foot+'</div>';
+}
+
+function renderCal(M,cur){
+  let h=DCORTO.map(n=>'<div class="dh">'+n.charAt(0)+'</div>').join('');
+  const lead=(new Date(vy,vm,1).getDay()+6)%7;
+  for(let i=0;i<lead;i++)h+='<div class="blank"></div>';
+  const mean=M.mo.goal/M.close;
+  const hol=holidays(vy),spc=specials(vy);
+  for(let d=1;d<=M.n;d++){
+    const e=M.mo.entries[d];
+    let cls='day',v,aria='Día '+d;
+    const k=(vm+1)+'-'+d;
+    if(M.w[d]<1)cls+=' soft';
+    if(M.w[d]<=0)cls+=' rest';
+    if(hol[k]){cls+=' hol';aria+=', '+hol[k];}
+    else if(spc[k]){cls+=' sp';aria+=', '+spc[k];}
+    if(d>M.close){cls+=' out';aria+=', después del cierre';}
+    if(e!=null){
+      const delta=e-M.target[d];
+      cls+=delta>=0?' good':(delta>-mean?' warn':' bad');
+      v=short(delta);aria+=delta>=0?', al ritmo':', faltan '+fmt(-delta);
+    }else{
+      v=d>M.close?'·':(M.w[d]>0?fmt(M.share[d]):'—');aria+=', plan '+fmt(M.share[d]);
+    }
+    if(cur&&d===today.getDate())cls+=' today';
+    if(d===sel)cls+=' sel';
+    h+='<button class="'+cls+'" data-d="'+d+'" aria-label="'+esc(aria)+'"'+(d===sel?' aria-current="date"':'')+'><span class="n">'+d+'</span><span class="v">'+v+'</span></button>';
+  }
+  $('#cal').innerHTML=h;
+}
+
+function niceStep(x){const p=Math.pow(10,Math.floor(Math.log10(x)));const f=x/p;return (f<=1?1:f<=2?2:f<=5?5:10)*p;}
+function axisLbl(v){if(v>=1000){const k=v/1000;return (Math.round(k*10)/10).toString().replace('.0','')+'k';}return String(v);}
+function renderChart(M,cur){
+  const el=$('#chart');
+  const W=Math.max(260,el.clientWidth||320);
+  const H=Math.max(190,Math.min(300,Math.round(W*0.56)));
+  const pl=40,pr=12,pt=16,pb=26,iw=W-pl-pr,ih=H-pt-pb;
+  const lt=latest(M,M.close);
+  let proj=null;
+  if(cur&&lt.day>0&&lt.day<M.close&&M.cum[lt.day]>0){
+    proj=lt.val+(lt.val/M.cum[lt.day])*(M.total-M.cum[lt.day]);
+  }
+  const maxY=Math.max(M.mo.goal,proj||0,lt.val)*1.05;
+  const step=niceStep(maxY/4);
+  const top=Math.ceil(maxY/step)*step;
+  const X=d=>pl+d/M.close*iw,Y=v=>pt+ih-(v/top)*ih;
+  let s='<svg viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Línea del plan contra lo que llevas en el mes">';
+  for(let v=0;v<=top+1;v+=step){s+='<line class="c-grid" x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(v).toFixed(1)+'" y2="'+Y(v).toFixed(1)+'"/><text class="c-ax" x="'+(pl-6)+'" y="'+(Y(v)+4).toFixed(1)+'" text-anchor="end">'+axisLbl(v)+'</text>';}
+  const xs=Math.max(1,Math.ceil(M.close/6));
+  for(let d=1;d<=M.close;d+=xs){s+='<text class="c-ax" x="'+X(d).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle">'+d+'</text>';}
+  s+='<line class="c-goal" x1="'+pl+'" x2="'+(W-pr)+'" y1="'+Y(M.mo.goal).toFixed(1)+'" y2="'+Y(M.mo.goal).toFixed(1)+'"/>';
+  s+='<text class="c-goalt" x="'+(pl+4)+'" y="'+(Y(M.mo.goal)-5).toFixed(1)+'">Meta '+fmt(M.mo.goal)+'</text>';
+  if(cur){const tx=X(today.getDate()).toFixed(1);s+='<line class="c-today" x1="'+tx+'" x2="'+tx+'" y1="'+pt+'" y2="'+(pt+ih)+'"/>';}
+  let pp='';
+  for(let d=0;d<=M.close;d++){pp+=(d?' L':'M')+X(d).toFixed(1)+' '+Y(M.target[d]).toFixed(1);}
+  s+='<path class="c-plan" d="'+pp+'"/>';
+  const days=Object.keys(M.mo.entries).map(Number).filter(d=>d<=M.close).sort((a,b)=>a-b);
+  if(days.length){
+    let rp='M'+X(0).toFixed(1)+' '+Y(0).toFixed(1);
+    days.forEach(d=>{rp+=' L'+X(d).toFixed(1)+' '+Y(M.mo.entries[d]).toFixed(1);});
+    if(proj!=null){
+      s+='<path class="c-proj" d="M'+X(lt.day).toFixed(1)+' '+Y(lt.val).toFixed(1)+' L'+X(M.close).toFixed(1)+' '+Y(proj).toFixed(1)+'"/>';
+    }
+    s+='<path class="c-real" d="'+rp+'"/>';
+    days.forEach(d=>{s+='<circle class="c-dot" r="3.5" cx="'+X(d).toFixed(1)+'" cy="'+Y(M.mo.entries[d]).toFixed(1)+'"/>';});
+    if(proj!=null){s+='<text class="c-ax" x="'+(W-pr)+'" y="'+(Y(proj)+(proj>=M.mo.goal?-6:16)).toFixed(1)+'" text-anchor="end">~'+fmt(proj)+'</text>';}
+  }
+  s+='</svg>';
+  el.innerHTML=s;
+  let note;
+  const unit=esc(U());
+  if(!days.length)note='Registra tu primer total y aquí verás tu línea contra el plan.';
+  else if(proj!=null){
+    const pc=Math.round(proj/M.mo.goal*100);
+    note='A este ritmo cerrarías cerca de <b class="num">'+fmt(proj)+'</b> '+unit+' ('+pc+'% de la meta). '+(proj>=M.mo.goal?'<span class="good">Vas para cumplirla.</span>':'<span class="bad">Te faltarían unos '+fmt(M.mo.goal-proj)+'.</span>');
+  }else if(lt.day>0&&!cur){
+    note='Cerraste en <b class="num">'+fmt(lt.val)+'</b> '+unit+' ('+Math.round(lt.val/M.mo.goal*100)+'% de la meta).';
+  }else note='Llevas <b class="num">'+fmt(lt.val)+'</b> '+unit+'.';
+  $('#chartnote').innerHTML=note;
+}
+
+function renderStreaks(){
+  const ty=today.getFullYear(),tm=today.getMonth();
+  const Mc=model(ty,tm);
+  const cur=streaks(Mc,upTo(ty,tm,Mc)).cur;
+  let best=0,bg=0,bgKey='',bgDay=0;
+  Object.keys(S.months).forEach(k=>{
+    const [yy,mm]=k.split('-').map(Number);const m0=mm-1;
+    const M=model(yy,m0);
+    const b=streaks(M,upTo(yy,m0,M)).best;if(b>best)best=b;
+    const bd=bestDay(M);if(bd.gain>bg){bg=bd.gain;bgKey=MESES[m0].slice(0,3).toLowerCase();bgDay=bd.day;}
+  });
+  $('#tiles').innerHTML=
+    '<div class="tile"><span class="tl">Racha actual</span><b>'+cur+'</b><span class="ts">'+(cur===1?'día al ritmo':'días al ritmo')+'</span></div>'
+    +'<div class="tile"><span class="tl">Mejor racha</span><b>'+best+'</b><span class="ts">'+(best===1?'día':'días')+' seguidos</span></div>'
+    +'<div class="tile"><span class="tl">Mejor día</span><b>'+(bg>0?'+'+fmt(bg):'—')+'</b><span class="ts">'+(bg>0?bgDay+' '+bgKey:'sin registro')+'</span></div>';
+}
+
+function renderHist(){
+  const keys=Object.keys(S.months);
+  const ck=mkey(today.getFullYear(),today.getMonth());
+  if(keys.indexOf(ck)<0)keys.push(ck);
+  keys.sort().reverse();
+  let h='';
+  keys.forEach((k,i)=>{
+    const [yy,mm]=k.split('-').map(Number);const m0=mm-1;
+    const M=model(yy,m0);
+    const have=latest(M,M.n).val,goal=M.mo.goal,pct=goal>0?have/goal:0;
+    const prevK=keys[i+1];let cmp='';
+    if(prevK){
+      const [py,pmm]=prevK.split('-').map(Number);const PM=model(py,pmm-1);
+      const ph=latest(PM,PM.n).val;
+      if(ph>0){const dp=Math.round((have/ph-1)*100);cmp=' · '+(dp>=0?'+':'−')+Math.abs(dp)+'% vs '+MESES[pmm-1].slice(0,3).toLowerCase();}
+    }
+    const isCur=k===ck;
+    const state=isCur?'En curso':(have>=goal?'Meta cumplida':'No se alcanzó');
+    h+='<button class="hrow'+(isCur?' cur':'')+'" data-go="'+yy+'-'+m0+'"><span class="hn">'+MESES[m0]+' '+yy+'</span><span class="hp">'+Math.round(pct*100)+'%</span>'
+      +'<span class="hb"><i style="width:'+Math.min(100,pct*100).toFixed(1)+'%"></i></span>'
+      +'<span class="hs num">'+fmt(have)+' de '+fmt(goal)+' · '+state+cmp+'</span></button>';
+  });
+  $('#hist').innerHTML=h;
+}
+
+function renderTable(M,cur){
+  let h='';
+  for(let d=1;d<=M.n;d++){
+    const e=M.mo.entries[d];
+    const f=e!=null?M.target[d]-e:null;
+    let cls=M.w[d]<1?'soft':'';
+    if(cur&&d===today.getDate())cls+=' today';
+    if(d>M.close)cls+=' out';
+    if(d===sel)cls+=' sel';
+    h+='<tr data-d="'+d+'" class="'+cls+'"><td>'+d+'</td><td class="ref">'+fmt(M.target[d])+'</td><td>'+(e!=null?fmt(e):'')+'</td><td class="'+(f==null?'':f>0?'bad':'good')+'">'+(f==null?'':fmt(f))+'</td></tr>';
+  }
+  $('#tbody').innerHTML=h;
+}
+
+function setIf(id,val){const el=$(id);if(el&&document.activeElement!==el)el.value=val;}
+function syncSettings(M){
+  const p=prof();
+  $('#sm').textContent=MESES[vm].toLowerCase();
+  setIf('#goal',M.mo.goal);
+  setIf('#close',M.close);
+  for(let i=0;i<7;i++)setIf('#w'+i,S.weights[i]);
+  setIf('#hw',S.holidayW!=null?S.holidayW:0.5);
+  setIf('#pn',p.name||'');setIf('#pt',p.team||'');setIf('#pg',p.tag||'');setIf('#pu',p.unit||'');
+  $('#logoclear').hidden=!p.logo;
+  $('#pv').innerHTML=DCORTO.map((n,i)=>'<div><span class="muted">'+n+'</span><br>'+(M.total>0?fmt(M.mo.goal*S.weights[i]/M.total):'0')+'</div>').join('');
+}
+
+function saveEntry(){
+  const inp=$('#ev');const v=parseFloat(inp.value);
+  if(!isFinite(v)||v<0)return;
+  const M=model(vy,vm);const mo=ensure();
+  let val;
+  if(mode==='total')val=Math.round(v);
+  else{const base=mo.entries[sel]!=null?mo.entries[sel]:before(M,sel).val;val=Math.round(base+v);}
+  mo.entries[sel]=val;
+  save();gc('registro','Registró puntos');sb('registro',sel);
+  const M2=model(vy,vm);
+  const doneNow=val-before(M2,sel).val;
+  const target=needFor(M2,sel);
+  flash=(target>0&&doneNow>=target)?'Guardado. Meta del día cumplida.':'Guardado';
+  render();
+  clearTimeout(flashT);flashT=setTimeout(()=>{flash='';const f=$('#flash');if(f)f.textContent='';},2600);
+}
+
+let welcomeLogo=null;
+function processLogo(f,ok,bad){
+  const rd=new FileReader();
+  rd.onload=()=>{
+    const img=new Image();
+    img.onload=()=>{
+      const mx=240,sc=Math.min(1,mx/Math.max(img.width,img.height));
+      const c=document.createElement('canvas');c.width=Math.max(1,Math.round(img.width*sc));c.height=Math.max(1,Math.round(img.height*sc));
+      c.getContext('2d').drawImage(img,0,0,c.width,c.height);
+      ok(c.toDataURL('image/png'));
+    };
+    img.onerror=bad;img.src=rd.result;
+  };
+  rd.readAsDataURL(f);
+}
+const HOW=[
+  '<b>Reparte tu meta del mes</b> entre los días hasta tu cierre, para que esté cubierta ese día. Fines de semana y feriados piden menos.',
+  '<b>Cada día te dice</b> cuántos puntos te tocan y cuánto te falta para ir al ritmo. Si te atrasas o te adelantas, se reajusta.',
+  '<b>Calendario de colores</b>, gráfica del plan contra lo real con proyección al cierre, rachas e historial de meses.',
+  '<b>Resumen para WhatsApp</b> en un toque y copia a hoja de cálculo.',
+  '<b>Tus datos viven en tu navegador</b>, con respaldo para pasarlos a otro dispositivo. Se guarda una copia privada de tus registros (nombre, meta y puntos) que nadie más del equipo puede ver.'
+];
+function ensureVisible(){
+  const r=$('#hero').getBoundingClientRect();
+  if(r.top<0||r.bottom>window.innerHeight){$('#hero').scrollIntoView({block:'nearest',behavior:'smooth'});}
+}
+
+function copyText(text,fallbackSel,msgEl,okText){
+  const ok=()=>{if(msgEl)msgEl.textContent=okText;};
+  const no=()=>{const ta=$(fallbackSel);ta.hidden=false;ta.value=text;ta.focus();ta.select();if(msgEl)msgEl.textContent='Selecciona el texto y cópialo a mano.';};
+  try{navigator.clipboard.writeText(text).then(ok,no);}catch(e){no();}
+}
+function tsv(rows){return rows.map(r=>r.join('\t')).join('\n');}
+function monthRows(M,withMonth){
+  const rows=[];
+  for(let d=1;d<=M.n;d++){
+    const e=M.mo.entries[d];
+    const dow=(new Date(M.y,M.m,d).getDay()+6)%7;
+    const base=[d,M.y+'-'+String(M.m+1).padStart(2,'0')+'-'+String(d).padStart(2,'0'),DIAS[dow],M.w[d],M.target[d],e!=null?e:'',e!=null?M.target[d]-e:'',e!=null?e-before(M,d).val:''];
+    rows.push(withMonth?[MESES[M.m]+' '+M.y,M.mo.goal].concat(base):base);
+  }
+  return rows;
+}
+const XH=['Día','Fecha','Día de la semana','Peso','Debo tener','Tengo','Falta','Puntos del día'];
+
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-act],[data-d],[data-go]');
+  if(!t)return;
+  if(t.dataset.go){const [yy,mm]=t.dataset.go.split('-').map(Number);vy=yy;vm=mm;sel=defaultSel();render();window.scrollTo({top:0,behavior:'smooth'});return;}
+  if(t.dataset.d){sel=+t.dataset.d;render();ensureVisible();return;}
+  const a=t.dataset.act;
+  if(a==='start'){
+    const name=$('#wn').value.trim(),goal=parseFloat($('#wgoal').value),cl=Math.round(parseFloat($('#wclose').value)),msg=$('#wmsg');
+    if(!(goal>0)){msg.textContent='Escribe la meta del mes, un número mayor que 0.';$('#wgoal').focus();return;}
+    if(!(cl>=1&&cl<=31)){msg.textContent='El día de cierre va del 1 al 31.';$('#wclose').focus();return;}
+    if(!name){msg.textContent='Escribe tu nombre para empezar.';$('#wn').focus();return;}
+    const wk=parseFloat($('#wk').value);
+    S.profile={name,team:$('#wt').value.trim()||'Mi equipo',tag:$('#wg').value.trim(),unit:$('#wu').value.trim()||'puntos'};
+    if(welcomeLogo)S.profile.logo=welcomeLogo;
+    S.weights[5]=wk;S.weights[6]=wk;S.defaultGoal=goal;S.defaultClose=cl;
+    vy=today.getFullYear();vm=today.getMonth();sel=defaultSel();
+    const mo=ensure();mo.goal=goal;mo.close=cl;
+    save();render();window.scrollTo({top:0});gc('empezar','Empezó');sb('empezar');
+  }
+  else if(a==='mode'){const cur=$('#ev')?$('#ev').value:'';mode=t.dataset.m;render();$('#ev').value=cur;}
+  else if(a==='save')saveEntry();
+  else if(a==='clearE'){const mo=ensure();delete mo.entries[sel];save();render();sb('borrar',sel);}
+  else if(a==='clearW'){const mo=ensure();delete mo.over[sel];save();render();}
+  else if(a==='rest'){const mo=ensure();mo.over[sel]=0;save();render();}
+  else if(a==='wa'){
+    const M=model(vy,vm);const p=prof();const have=latest(M,sel).val;
+    const fal=M.target[sel]-have;const need=needFor(M,sel);
+    const dt=sel+' de '+MESES[vm].toLowerCase();
+    const lines=[(p.team||'Mi equipo')+' · '+dt,
+      (p.name?p.name.trim().split(/\s+/)[0]+': ':'')+'llevo '+fmt(have)+' de '+fmt(M.mo.goal)+' '+U()+' ('+Math.round(have/M.mo.goal*100)+'%).',
+      fal>0?'Me faltan '+fmt(fal)+' para ir al ritmo.':(fal<0?'Voy adelante por '+fmt(-fal)+'.':'Voy justo al ritmo.')];
+    if(need>0)lines.push('Meta de hoy: +'+fmt(need)+'.');
+    copyText(lines.join('\n'),'#wa',$('#flash'),'Resumen copiado.');gc('whatsapp','Resumen WhatsApp');
+  }
+  else if(a==='xm'){const M=model(vy,vm);copyText(tsv([XH].concat(monthRows(M,false))),'#xp',null,'');}
+  else if(a==='xa'){
+    const keys=Object.keys(S.months).sort();let rows=[['Mes','Meta'].concat(XH)];
+    keys.forEach(k=>{const [yy,mm]=k.split('-').map(Number);rows=rows.concat(monthRows(model(yy,mm-1),true));});
+    copyText(tsv(rows),'#xp',null,'');
+  }
+  else if(a==='logoClear'){if(S.profile){delete S.profile.logo;save();render();}}
+  else if(a==='copy'){
+    const ta=$('#bk');ta.value=JSON.stringify(S);ta.select();
+    copyText(ta.value,'#bk',$('#bkmsg'),'Respaldo copiado.');
+  }
+  else if(a==='restore'){
+    const msg=$('#bkmsg');
+    try{
+      const s=JSON.parse($('#bk').value);
+      if(!s||typeof s.months!=='object'||!Array.isArray(s.weights)||s.weights.length!==7)throw 0;
+      S=s;if(!(S.defaultGoal>0))S.defaultGoal=10000;save();render();msg.textContent='Datos restaurados.';gc('restaurar','Restauró respaldo');sb('restaurar');
+    }catch(err){msg.textContent='El texto no es un respaldo válido.';}
+  }
+  else if(a==='reset'){
+    if(t.dataset.arm){S=fresh();save();delete t.dataset.arm;t.textContent='Borrar todo';render();}
+    else{t.dataset.arm='1';t.textContent='¿Seguro? Toca otra vez';setTimeout(()=>{if(t.dataset.arm){delete t.dataset.arm;t.textContent='Borrar todo';}},3500);}
+  }
+});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Enter'&&e.target.id==='ev'){e.preventDefault();saveEntry();}
+});
+document.addEventListener('change',e=>{
+  if(e.target.id==='wv'){
+    const mo=ensure();const raw=e.target.value;const v=parseFloat(raw);
+    if(raw===''){delete mo.over[sel];}else if(isFinite(v)&&v>=0){mo.over[sel]=v;}
+    save();render();
+  }else if(e.target.id==='plogo'){
+    const f=e.target.files&&e.target.files[0];if(!f||!S.profile)return;
+    const msg=$('#logomsg');
+    processLogo(f,data=>{S.profile.logo=data;msg.textContent=save()?'Logo guardado.':'No se pudo guardar el logo en este navegador.';render();},()=>{msg.textContent='No se pudo leer esa imagen.';});
+  }else if(e.target.id==='wlogo'){
+    const f=e.target.files&&e.target.files[0];if(!f)return;
+    processLogo(f,data=>{welcomeLogo=data;$('#wlogoprev').innerHTML='<img alt="Logo elegido" src="'+data+'">';},()=>{$('#wmsg').textContent='No se pudo leer esa imagen.';});
+  }
+});
+document.addEventListener('input',e=>{
+  const id=e.target.id;
+  if(id==='goal'){
+    const v=parseFloat(e.target.value);
+    if(v>0){const mo=ensure();mo.goal=v;S.defaultGoal=v;save();render();sbLater('meta');}
+  }else if(id==='close'){
+    const v=Math.round(parseFloat(e.target.value));
+    if(v>=1&&v<=31){const mo=ensure();mo.close=v;S.defaultClose=v;save();render();sbLater('meta');}
+  }else if(/^w[0-6]$/.test(id)){
+    const v=parseFloat(e.target.value);
+    if(isFinite(v)&&v>=0){S.weights[+id.slice(1)]=v;save();render();}
+  }else if(id==='hw'){
+    const v=parseFloat(e.target.value);
+    if(isFinite(v)&&v>=0){S.holidayW=v;save();render();}
+  }else if(S.profile&&(id==='pn'||id==='pt'||id==='pg'||id==='pu')){
+    const k={pn:'name',pt:'team',pg:'tag',pu:'unit'}[id];
+    S.profile[k]=e.target.value;save();render();
+  }
+});
+
+$('#prev').addEventListener('click',()=>{vm--;if(vm<0){vm=11;vy--;}sel=defaultSel();render();});
+$('#next').addEventListener('click',()=>{vm++;if(vm>11){vm=0;vy++;}sel=defaultSel();render();});
+$('#gotoday').addEventListener('click',()=>{vy=today.getFullYear();vm=today.getMonth();sel=defaultSel();render();});
+
+$('#wgrid').innerHTML=DCORTO.map((n,i)=>'<label class="wf" for="w'+i+'">'+n+'<input id="w'+i+'" type="number" inputmode="decimal" min="0" step="0.25" aria-label="Peso del '+DIAS[i]+'"></label>').join('');
+$('#how1').innerHTML=HOW.map(t=>'<li>'+t+'</li>').join('');
+$('#how2').innerHTML=HOW.map(t=>'<li>'+t+'</li>').join('');
+let rz=null;
+window.addEventListener('resize',()=>{clearTimeout(rz);rz=setTimeout(()=>{if(S.profile)renderChart(model(vy,vm),isCurM());},150);});
+render();
+})();
+</script>
+
+</body>
+</html>

@@ -79,6 +79,7 @@
     <button class="tab" role="tab" aria-selected="true" data-p="resumen">Resumen</button>
     <button class="tab" role="tab" aria-selected="false" data-p="cons">Consultoras</button>
     <button class="tab" role="tab" aria-selected="false" data-p="prod">Productos</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="ritmo">Ritmo de Puntos</button>
   </div>
 
   <section class="pane" id="p-resumen">
@@ -96,6 +97,11 @@
 
   <section class="pane" id="p-cons" hidden>
     <div class="card"><h2>Por consultora</h2><p class="sub">Visitas a su tablero y catálogo, y pedidos que salieron de ahí.</p><div id="consList"></div></div>
+  </section>
+
+  <section class="pane" id="p-ritmo" hidden>
+    <div class="tiles" id="rTiles"></div>
+    <div class="card"><h2>Ritmo de Puntos</h2><p class="sub">Uso de <a href="../herramientas/ritmo-de-puntos/" style="color:inherit">la herramienta</a> desde que se movió al sitio. Solo conteos: los puntos y nombres de cada quien se quedan en su celular.</p><div id="rList"></div></div>
   </section>
 
   <section class="pane" id="p-prod" hidden>
@@ -158,6 +164,19 @@
   $("prodSub").textContent = ps.length ? "Los 10 productos que más se agregan al pedido." : "";
   $("prodList").innerHTML = ps.length ? ps.slice(0,10).map((p,i) => `<div class="row"><div class="rk${i<3?" top":""}">${i+1}</div><div><div class="nm">${esc(p.name)}</div><div class="meta">${esc(p.code)}</div><div class="track"><i style="width:${p.agregados/pmax*100}%"></i></div></div><div class="val">${fmt(p.agregados)}<small>veces</small></div></div>`).join("")
     : `<div class="empty"><b>Aún no hay productos agregados.</b>Cuando las clientas empiecen a armar pedidos, verás aquí los favoritos. Con 20 agregados en total, los 6 más pedidos aparecen también en los tableros.</div>`;
+
+  // Ritmo de Puntos
+  const R = D.ritmo || {}, rv = k => R[k] || 0;
+  $("rTiles").innerHTML = [
+    ["Visitas", fmt(rv("visitas")), "veces que se abrió la página", false],
+    ["Empezaron", fmt(rv("empezar")), "pusieron su meta por primera vez", true],
+    ["Registros", fmt(rv("registro")), "veces que guardaron sus puntos", false],
+    ["Resúmenes", fmt(rv("whatsapp")), "copiados para WhatsApp", false],
+  ].map(([l,n,d,h]) => `<div class="tile"><div class="label">${l}</div><div class="n${h?" hl":""}">${n}</div><div class="d">${d}</div></div>`).join("");
+  const rs = [["Abrieron con datos", rv("abrir")], ["Abrieron sin datos", rv("nueva")], ["Trajeron sus datos de Claude", rv("importado")], ["Restauraron un respaldo", rv("restaurar")]], rmax = Math.max(1, ...rs.map(x => x[1]));
+  $("rList").innerHTML = rs.some(x => x[1]) || rv("visitas")
+    ? rs.map(([l,n]) => `<div class="row" style="grid-template-columns:1fr auto"><div><div class="nm">${l}</div><div class="track"><i style="width:${n/rmax*100}%"></i></div></div><div class="val">${fmt(n)}</div></div>`).join("")
+    : `<div class="empty"><b>Aún no hay uso registrado.</b>Cuando el equipo abra Ritmo de Puntos en mitienda.beauty, aquí verás cuántas lo usan.</div>`;
 })();
 </script>
 </body>

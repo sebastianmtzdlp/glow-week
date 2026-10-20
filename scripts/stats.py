@@ -37,6 +37,7 @@ try:
 except Exception: pass
 
 board, cat, adds, orders, wa = {}, {}, {}, {}, 0
+ritmo = {"visitas": 0}  # Ritmo de Puntos: visitas a la página y conteo de cada evento ritmo-puntos/<accion>
 xc = {}  # por consultora: {slug: {"agregar": {code: n}, "ver": {code: n}}}
 for h in hits:
     p, n = h["path"].strip("/"), h["count"]
@@ -48,7 +49,9 @@ for h in hits:
         elif p.startswith("pedido-enviado/") or p.startswith("pedido-catalogo/"):
             s = p.split("/",1)[1]; orders[s] = orders.get(s, 0) + n
         elif p == "wa-flotante": wa += n
+        elif p.startswith("ritmo-puntos/"): k = p.split("/",1)[1]; ritmo[k] = ritmo.get(k, 0) + n
     else:
+        if p == "herramientas/ritmo-de-puntos": ritmo["visitas"] += n; continue
         m = re.fullmatch(r"([a-z0-9]+)/catalogo", p)
         if m: cat[m.group(1)] = cat.get(m.group(1), 0) + n; continue
         m = re.fullmatch(r"([a-z0-9]+)", p)
@@ -64,7 +67,7 @@ def topn(d, k=5): return [{"code": c, "name": prod.get(c, c), "n": n} for c, n i
 por = {s: {"agregados": topn(v["agregar"]), "vistos": topn(v["ver"])} for s, v in xc.items()}
 out = {"actualizado": now.strftime("%Y-%m-%d"), "hora": now.strftime("%H:%M"), "desde": START[:10],
        "totales": {"visitas": tot.get("total", 0), "agregados": sum(adds.values()), "pedidos": sum(orders.values()), "wa": wa},
-       "dias": dias, "consultoras": cons, "productos": productos, "por_consultora": por}
+       "dias": dias, "consultoras": cons, "productos": productos, "por_consultora": por, "ritmo": ritmo}
 def guardar(ruta, nuevo, ignorar=()):
     """Escribe solo si cambió algo (sin contar fecha/hora), para no llenar el historial de commits."""
     f = os.path.join(ROOT, ruta)
