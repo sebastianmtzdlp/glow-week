@@ -351,7 +351,7 @@ html,body{margin:0}
           </div>
           <div class="sec">
             <p class="h">Respaldo</p>
-            <p class="sub" style="margin:0">Tus datos viven solo en este navegador. Copia el respaldo para guardarlo o pasarlo a otro dispositivo.</p>
+            <p class="sub" style="margin:0">Tus datos viven en este navegador y se guarda una copia privada de tus registros para Mi Tienda Beauty. Copia el respaldo para pasarlos a otro dispositivo.</p>
             <textarea class="bx" id="bk" aria-label="Respaldo en texto" spellcheck="false"></textarea>
             <div class="btns" style="margin:0">
               <button class="ghost" data-act="copy">Copiar respaldo</button>
@@ -369,7 +369,7 @@ html,body{margin:0}
       </details>
     </div>
   </div>
-  <p class="foot"><a href="../">← Herramientas</a><span>Tus datos se quedan en este celular.</span></p>
+  <p class="foot"><a href="../">← Herramientas</a><span>Se guarda una copia privada de tus registros.</span></p>
 </div>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 
@@ -395,6 +395,22 @@ function load(){
   return s;
 }
 let S=load();
+/* Copia privada en Supabase: la página solo puede insertar; leer, solo desde el panel de Supabase (supabase/ritmo_puntos.sql) */
+const SB_URL='https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/ritmo_puntos',SB_KEY='sb_publishable_ltaNA7nnVozoSCOcZIjg';
+const devId=(()=>{try{let v=localStorage.getItem('ritmo-puntos-id');if(!v){v=(crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g,()=>(Math.random()*16|0).toString(16)));localStorage.setItem('ritmo-puntos-id',v);}return v;}catch(e){return null;}})();
+let sbT=null;
+function sb(accion,dia){
+  if(!devId||!S.profile)return;
+  try{
+    const now=new Date(),y=typeof vy==='number'?vy:now.getFullYear(),m=typeof vm==='number'?vm:now.getMonth();
+    const k=y+'-'+String(m+1).padStart(2,'0'),mo=S.months[k]||{};
+    let total=null;if(mo.entries){const ds=Object.keys(mo.entries).map(Number).sort((a,b)=>a-b);if(ds.length)total=Math.round(mo.entries[ds[ds.length-1]]);}
+    const est=JSON.parse(JSON.stringify(S));if(est.profile)delete est.profile.logo;
+    const row={dispositivo:devId,accion,nombre:(S.profile.name||'').slice(0,80),equipo:(S.profile.team||'').slice(0,80),mes:k,dia:dia||null,total,meta:mo.goal!=null?Math.round(mo.goal):null,cierre:mo.close||null,estado:est};
+    fetch(SB_URL,{method:'POST',keepalive:true,headers:{'Content-Type':'application/json',apikey:SB_KEY,Authorization:'Bearer '+SB_KEY,Prefer:'return=minimal'},body:JSON.stringify(row)}).catch(()=>{});
+  }catch(e){}
+}
+const sbLater=a=>{clearTimeout(sbT);sbT=setTimeout(()=>sb(a),2000);};
 const gc=(path,title)=>{const go=()=>{try{window.goatcounter.count({path:'ritmo-puntos/'+path,title:title||path,event:true});}catch(_){}};if(window.goatcounter&&window.goatcounter.count)go();else window.addEventListener('load',()=>setTimeout(go,300));};
 /* Traer los datos del artefacto de Claude: llegan en el #importar=… (nunca salen del navegador) */
 (function(){
@@ -407,7 +423,7 @@ const gc=(path,title)=>{const go=()=>{try{window.goatcounter.count({path:'ritmo-
     if(!s||typeof s.months!=='object'||!Array.isArray(s.weights)||s.weights.length!==7)throw 0;
     const mine=Object.values(S.months).some(x=>x&&x.entries&&Object.keys(x.entries).length);
     if(mine&&S.profile){box.textContent='Ya tenías datos en este navegador, así que no los reemplacé. Si quieres los de Claude, usa Ajustes › Respaldo.';box.hidden=false;gc('importar-omitido','Importar omitido');return;}
-    S=s;save();box.textContent='Listo, trajimos tus datos. Desde ahora usa esta página.';box.hidden=false;gc('importado','Datos importados');
+    S=s;save();box.textContent='Listo, trajimos tus datos. Desde ahora usa esta página.';box.hidden=false;gc('importado','Datos importados');setTimeout(()=>sb('importado'),0);
     setTimeout(()=>{box.hidden=true;},8000);
   }catch(e){box.textContent='No pude traer tus datos. Ábrelo en Claude, copia el respaldo en Ajustes y pégalo aquí.';box.hidden=false;}
 })();
@@ -771,7 +787,7 @@ function saveEntry(){
   if(mode==='total')val=Math.round(v);
   else{const base=mo.entries[sel]!=null?mo.entries[sel]:before(M,sel).val;val=Math.round(base+v);}
   mo.entries[sel]=val;
-  save();gc('registro','Registró puntos');
+  save();gc('registro','Registró puntos');sb('registro',sel);
   const M2=model(vy,vm);
   const doneNow=val-before(M2,sel).val;
   const target=needFor(M2,sel);
@@ -800,7 +816,7 @@ const HOW=[
   '<b>Cada día te dice</b> cuántos puntos te tocan y cuánto te falta para ir al ritmo. Si te atrasas o te adelantas, se reajusta.',
   '<b>Calendario de colores</b>, gráfica del plan contra lo real con proyección al cierre, rachas e historial de meses.',
   '<b>Resumen para WhatsApp</b> en un toque y copia a hoja de cálculo.',
-  '<b>Tus datos se quedan en tu navegador</b>, con respaldo para pasarlos a otro dispositivo. El sitio solo cuenta visitas, nunca tus puntos.'
+  '<b>Tus datos viven en tu navegador</b>, con respaldo para pasarlos a otro dispositivo. Se guarda una copia privada de tus registros (nombre, meta y puntos) que nadie más del equipo puede ver.'
 ];
 function ensureVisible(){
   const r=$('#hero').getBoundingClientRect();
@@ -842,11 +858,11 @@ document.addEventListener('click',e=>{
     S.weights[5]=wk;S.weights[6]=wk;S.defaultGoal=goal;S.defaultClose=cl;
     vy=today.getFullYear();vm=today.getMonth();sel=defaultSel();
     const mo=ensure();mo.goal=goal;mo.close=cl;
-    save();render();window.scrollTo({top:0});gc('empezar','Empezó');
+    save();render();window.scrollTo({top:0});gc('empezar','Empezó');sb('empezar');
   }
   else if(a==='mode'){const cur=$('#ev')?$('#ev').value:'';mode=t.dataset.m;render();$('#ev').value=cur;}
   else if(a==='save')saveEntry();
-  else if(a==='clearE'){const mo=ensure();delete mo.entries[sel];save();render();}
+  else if(a==='clearE'){const mo=ensure();delete mo.entries[sel];save();render();sb('borrar',sel);}
   else if(a==='clearW'){const mo=ensure();delete mo.over[sel];save();render();}
   else if(a==='rest'){const mo=ensure();mo.over[sel]=0;save();render();}
   else if(a==='wa'){
@@ -875,7 +891,7 @@ document.addEventListener('click',e=>{
     try{
       const s=JSON.parse($('#bk').value);
       if(!s||typeof s.months!=='object'||!Array.isArray(s.weights)||s.weights.length!==7)throw 0;
-      S=s;if(!(S.defaultGoal>0))S.defaultGoal=10000;save();render();msg.textContent='Datos restaurados.';gc('restaurar','Restauró respaldo');
+      S=s;if(!(S.defaultGoal>0))S.defaultGoal=10000;save();render();msg.textContent='Datos restaurados.';gc('restaurar','Restauró respaldo');sb('restaurar');
     }catch(err){msg.textContent='El texto no es un respaldo válido.';}
   }
   else if(a==='reset'){
@@ -904,10 +920,10 @@ document.addEventListener('input',e=>{
   const id=e.target.id;
   if(id==='goal'){
     const v=parseFloat(e.target.value);
-    if(v>0){const mo=ensure();mo.goal=v;S.defaultGoal=v;save();render();}
+    if(v>0){const mo=ensure();mo.goal=v;S.defaultGoal=v;save();render();sbLater('meta');}
   }else if(id==='close'){
     const v=Math.round(parseFloat(e.target.value));
-    if(v>=1&&v<=31){const mo=ensure();mo.close=v;S.defaultClose=v;save();render();}
+    if(v>=1&&v<=31){const mo=ensure();mo.close=v;S.defaultClose=v;save();render();sbLater('meta');}
   }else if(/^w[0-6]$/.test(id)){
     const v=parseFloat(e.target.value);
     if(isFinite(v)&&v>=0){S.weights[+id.slice(1)]=v;save();render();}
