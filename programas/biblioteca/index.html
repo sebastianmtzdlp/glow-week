@@ -83,9 +83,24 @@ code{font-size:.92em;background:var(--bg);padding:1px 6px;border-radius:6px}
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@900&family=IBM+Plex+Mono:wght@600&family=Libre+Baskerville&family=Jost:wght@700&family=Crimson+Pro:wght@500&family=Bodoni+Moda:opsz,wght@6..96,900&family=Cormorant+Garamond:wght@600&family=Cinzel:wght@700&family=Montserrat:wght@900&display=swap">
 <style>
 /* ---------- covers: every spine wears its own course's texture, type and drawing ---------- */
-.case{max-width:900px}
-.row{display:grid;grid-template-columns:repeat(var(--per),minmax(0,1fr));gap:clamp(6px,1.6vw,14px);align-items:end;padding:0 clamp(4px,2vw,20px)}
-.row+.plank{margin-bottom:34px}
+/* one long shelf that grows sideways: it scrolls left and right, the page never does */
+.case{max-width:none}
+.rack{position:relative;margin-inline:-16px}
+.rack::before,.rack::after{content:"";position:absolute;top:0;bottom:16px;width:28px;z-index:2;pointer-events:none;opacity:0;transition:opacity .2s}
+.rack::before{left:0;background:linear-gradient(90deg,var(--bg),transparent)}
+.rack::after{right:0;background:linear-gradient(270deg,var(--bg),transparent)}
+.rack.more-l::before,.rack.more-r::after{opacity:1}
+.scroller{overflow-x:auto;overflow-y:hidden;scroll-snap-type:x proximity;scroll-padding-inline:24px;scrollbar-width:none;-webkit-overflow-scrolling:touch;padding:30px 16px 0}
+.scroller::-webkit-scrollbar{display:none}
+.row{display:flex;gap:clamp(6px,1.2vw,12px);align-items:flex-end;width:max-content;padding:0 clamp(8px,2vw,20px)}
+.row .spine{width:clamp(58px,8.4vw,92px);flex:none;scroll-snap-align:start}
+.row+.plank{width:100%;min-width:100%}
+.shelfbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:14px}
+.shelfbar .hint{margin:0}
+.arrows{display:flex;gap:8px;flex:none}
+.arrows button{width:40px;height:40px;border-radius:50%;border:1.5px solid var(--line);background:var(--surface);cursor:pointer;font:700 18px/1 var(--body);display:grid;place-items:center;transition:transform .16s cubic-bezier(.23,1,.32,1)}
+.arrows button:active{transform:scale(.94)}
+.arrows button:disabled{opacity:.35;cursor:default}
 .spine{background:var(--s-tex,none),var(--s-bg);box-shadow:inset -7px 0 0 rgba(0,0,0,.16),inset 4px 0 0 rgba(255,255,255,.1),inset 0 -1px 0 rgba(0,0,0,.2)}
 .spine::after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.08),transparent 16%,transparent 74%,rgba(0,0,0,.12));border-radius:inherit}
 .spine .t{text-transform:var(--s-tt,none);font-size:calc(clamp(22px,4.6vw,44px)*var(--s-size,1));padding:6px 0}
@@ -109,8 +124,8 @@ code{font-size:.92em;background:var(--bg);padding:1px 6px;border-radius:6px}
 
   <section aria-labelledby="hs" class="case">
     <h2 class="sec-h" id="hs" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">El librero</h2>
-    <div id="shelf"></div>
-    <p class="hint">Toca un libro para ver de qué trata. Los que marques como terminados llevan un punto; se guarda solo en este celular.</p>
+    <div class="rack"><div class="scroller" id="shelf"></div><div class="plank" aria-hidden="true"></div></div>
+    <div class="shelfbar"><p class="hint">Desliza el librero y toca un libro para ver de qué trata. Los que marques como terminados llevan un punto.</p><div class="arrows" id="arrows"><button id="prev" aria-label="Libros anteriores">←</button><button id="next" aria-label="Más libros">→</button></div></div>
   </section>
 
   <section aria-labelledby="hf">
@@ -302,18 +317,21 @@ function vars(b){var k=skin(b),v="--s-bg:"+b.bg+";--s-ink:"+b.ink+";--s-accent:"
   if(k.tex)v+=";--s-tex:"+k.tex;if(k.tt)v+=";--s-tt:"+k.tt;if(k.size)v+=";--s-size:"+k.size;if(k.titleBg)v+=";--s-tbg:"+k.titleBg+";--s-hbg:"+k.titleBg.replace("90deg","0deg");if(k.titleInk)v+=";--s-tink:"+k.titleInk;
   return v;}
 function va(b){return vars(b).replace(/"/g,"&quot;");}
-function perRow(){return window.innerWidth<640?5:7;}
+function edges(){var sc=document.getElementById("shelf"),rk=sc.parentNode,m=sc.scrollWidth-sc.clientWidth-2;
+  rk.classList.toggle("more-l",sc.scrollLeft>2);rk.classList.toggle("more-r",sc.scrollLeft<m);
+  document.getElementById("prev").disabled=sc.scrollLeft<=2;document.getElementById("next").disabled=sc.scrollLeft>=m;
+  document.getElementById("arrows").hidden=m<=0;}
 var sel=null;for(var i=0;i<BOOKS.length;i++)if(done.indexOf(BOOKS[i].id)<0){sel=BOOKS[i].id;break;}
 if(!sel)sel=BOOKS[0].id;
 
 function drawShelf(){
-  var per=perRow(),h="";
-  for(var r=0;r<BOOKS.length;r+=per){
-    h+='<div class="row" style="--per:'+per+'">'+BOOKS.slice(r,r+per).map(function(b,j){var i=r+j,k=skin(b);
+  var h="";
+  {var r=0;
+    h+='<div class="row">'+BOOKS.map(function(b,j){var i=r+j,k=skin(b);
       return '<button class="spine'+(done.indexOf(b.id)>=0?" is-done":"")+'" style="'+va(b)+';--h:calc(clamp(260px,62vw,400px)*'+(b.h/100)+')" aria-pressed="'+(b.id===sel)+'" data-id="'+b.id+'" aria-label="'+(i+1)+'. '+esc(b.name)+'"><span class="n">'+(i+1)+'</span>'+(k.top?'<span class="mt">'+k.top+'</span>':'')+'<span class="t"><b>'+esc(b.name)+'</b></span>'+(k.bot?'<span class="mb">'+k.bot+'</span>':'<span class="band"></span>')+'<i class="done" aria-hidden="true"></i></button>';
-    }).join("")+'</div><div class="plank" aria-hidden="true"></div>';
+    }).join("")+'</div>';
   }
-  document.getElementById("shelf").innerHTML=h;
+  var sc=document.getElementById("shelf"),x=sc.scrollLeft;sc.innerHTML=h;sc.scrollLeft=x;edges();
 }
 function drawFicha(){
   var b=byId(sel),n=BOOKS.indexOf(b)+1,d=done.indexOf(b.id)>=0,f=document.getElementById("ficha");
@@ -328,7 +346,9 @@ document.getElementById("shelf").addEventListener("click",function(e){var t=e.ta
 document.getElementById("needs").innerHTML=NEEDS.map(function(x){var b=byId(x[1]);return '<button class="need" data-id="'+b.id+'" style="'+va(b)+'"><i aria-hidden="true"></i><span><b>'+esc(x[0])+'</b><span>Empieza con '+esc(b.name)+'</span></span></button>';}).join("");
 document.getElementById("needs").addEventListener("click",function(e){var t=e.target.closest(".need");if(t)pick(t.getAttribute("data-id"),true);});
 drawShelf();drawFicha();
-var lastPer=perRow();window.addEventListener("resize",function(){if(perRow()!==lastPer){lastPer=perRow();drawShelf();}});
+var SC=document.getElementById("shelf");SC.addEventListener("scroll",edges,{passive:true});window.addEventListener("resize",edges);
+function nudge(d){SC.scrollBy({left:d*SC.clientWidth*.8,behavior:"smooth"});}
+document.getElementById("prev").onclick=function(){nudge(-1);};document.getElementById("next").onclick=function(){nudge(1);};
 })();
 </script>
 </body>
