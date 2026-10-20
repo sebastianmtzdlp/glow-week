@@ -4,7 +4,6 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>La Biblioteca</title>
-<meta name="robots" content="noindex,nofollow">
 <meta name="description" content="Cinco cursos hechos a partir de libros, en el orden sugerido para tomarlos: Otra tú, Coherencia, Botín, Tu Palabra y El Clic.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -83,43 +82,6 @@ code{font-size:.92em;background:var(--bg);padding:1px 6px;border-radius:6px}
 </style>
 </head>
 <body>
-<!-- candado: pide contraseña antes de mostrar la biblioteca (la misma de la Escalera). Es protección del lado del navegador: no cifra nada. Para cambiar la contraseña, reemplaza H por el SHA-256 de la nueva en minúsculas. -->
-<meta name="robots" content="noindex,nofollow">
-<style>
-html.cerrado body>*:not(#candado){display:none!important}
-#candado{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:16px;background:#EEEDEB;color:#18171C;font:17px/1.5 "Figtree",system-ui,-apple-system,sans-serif}
-html:not(.cerrado) #candado{display:none}
-#candado form{width:min(380px,100%);display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #D9D6D1;border-radius:20px;padding:28px 24px}
-#candado h1{margin:0;font:900 38px/.9 "Archivo","Arial Narrow",system-ui,sans-serif;font-stretch:72%;letter-spacing:-.01em}
-#candado p{margin:0;color:#5E5C64;font-size:15px}
-#candado input{font:inherit;width:100%;padding:13px 16px;border:1.5px solid #D9D6D1;border-radius:999px;background:#fff;color:inherit}
-#candado input:focus{outline:2.5px solid #18171C;outline-offset:2px}
-#candado button{font:600 16px/1 "Figtree",system-ui,sans-serif;padding:14px 18px;border:0;border-radius:999px;background:#18171C;color:#fff;cursor:pointer}
-#candado .err{color:#B42318;font-weight:600;min-height:1.4em}
-</style>
-<script>
-(function(){
-  var H="2c179861d319754878fe5f101cc151552e3883d4a7330fd2aec6456a6ca6d156",K="escalera-ok";
-  var ok=false;try{ok=localStorage.getItem(K)===H;}catch(e){}
-  if(!ok)document.documentElement.classList.add("cerrado");
-  function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ("0"+b.toString(16)).slice(-2);}).join("");}
-  document.addEventListener("DOMContentLoaded",function(){
-    var f=document.getElementById("candado-f");if(!f)return;
-    var i=document.getElementById("candado-i"),m=document.getElementById("candado-m");
-    if(document.documentElement.classList.contains("cerrado"))i.focus();
-    f.onsubmit=function(ev){
-      ev.preventDefault();
-      var v=i.value.trim().toLowerCase();
-      if(!window.crypto||!crypto.subtle){m.textContent="Abre la página desde https://mitienda.beauty";return;}
-      crypto.subtle.digest("SHA-256",new TextEncoder().encode(v)).then(function(d){
-        if(hex(d)===H){try{localStorage.setItem(K,H);}catch(e){}document.documentElement.classList.remove("cerrado");}
-        else{m.textContent="Esa no es la contraseña.";i.select();}
-      });
-    };
-  });
-})();
-</script>
-<div id="candado"><form id="candado-f" autocomplete="off"><h1>La biblioteca</h1><p>Esta página está en preparación. Escribe la contraseña para verla.</p><label for="candado-i" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Contraseña</label><input id="candado-i" type="password" placeholder="Contraseña" required><button type="submit">Entrar</button><p class="err" id="candado-m" role="alert"></p></form></div>
 <div class="wrap">
   <header class="hero">
     <h1>La biblioteca</h1>
