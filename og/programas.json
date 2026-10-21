@@ -1,0 +1,29 @@
+{
+  "_nota": "Textos del preview de WhatsApp de cada página en programas/. Después de editar, corre: node scripts/og-programas.cjs",
+  "paginas": {
+    "": {"titulo": "Escalera de Programas", "eyebrow": "Programas", "desc": "Qué programa tomar y cuándo. Empieza abajo y sube un escalón a la vez."},
+    "mega": {"titulo": "Mega Escalera", "eyebrow": "Programas", "desc": "Todos los programas en un solo lugar, en el orden para tomarlos."},
+    "biblioteca": {"titulo": "La Biblioteca", "eyebrow": "Programas", "desc": "Cursos hechos a partir de libros, en el orden sugerido para tomarlos."},
+    "a-la-vista": {"titulo": "A la vista", "eyebrow": "Curso", "desc": "Diez clases para mostrar tu trabajo sin sentir que te vendes a gritos."},
+    "antena": {"titulo": "Antena", "eyebrow": "Curso de creatividad", "desc": "Nota lo que te mueve, junta ideas sin juzgarlas, termínalas y atrévete a compartirlas."},
+    "atomo": {"titulo": "Átomo", "eyebrow": "Curso de hábitos", "desc": "Hábitos que se sostienen solos: que se vea, que se antoje, que cueste poquito y que se sienta bien."},
+    "botin": {"titulo": "Botín", "eyebrow": "Curso de creatividad", "desc": "Diez clases para dejar de esperar la idea perfecta y crear con lo que ya te inspira."},
+    "clarito": {"titulo": "Clarito", "eyebrow": "Curso de mensaje", "desc": "Que tu clienta sea la protagonista y tú, su guía."},
+    "coherencia": {"titulo": "Coherencia", "eyebrow": "Curso de meditación", "desc": "Sal del piloto automático y siente hoy la vida que quieres crear."},
+    "despacio": {"titulo": "Despacio", "eyebrow": "Curso de decisiones", "desc": "Entiende cómo decide tu cabeza y la de tu clienta, y vende claro, sin trucos."},
+    "el-clic": {"titulo": "El Clic", "eyebrow": "Curso de ventas", "desc": "Encuentra la necesidad de fondo de tu clienta y vende sin sonar a discurso."},
+    "el-giro": {"titulo": "El Giro", "eyebrow": "Curso", "desc": "Cuando cambias tú, gira todo lo demás."},
+    "el-si": {"titulo": "El Sí", "eyebrow": "Curso de persuasión", "desc": "Los seis atajos de la mente, sin trampa."},
+    "encendida": {"titulo": "Encendida", "eyebrow": "Curso de redes", "desc": "Tus redes, desde cero."},
+    "iman": {"titulo": "Imán", "eyebrow": "Curso de ventas", "desc": "De perseguir a atraer."},
+    "otra-tu": {"titulo": "Otra tú", "eyebrow": "Curso", "desc": "Deja de ser la de siempre."},
+    "pasalo": {"titulo": "Pásalo", "eyebrow": "Curso", "desc": "Lo que hace que la gente hable de lo que vendes."},
+    "ponte-pro": {"titulo": "Ponte Pro", "eyebrow": "Curso de negocio", "desc": "Las 7 habilidades de una profesional."},
+    "ritmo": {"titulo": "Ritmo", "eyebrow": "Programa", "desc": "30 días para elegirte."},
+    "todavia": {"titulo": "Todavía", "eyebrow": "Curso de mindset", "desc": "No me sale… todavía."},
+    "trazo": {"titulo": "Trazo", "eyebrow": "Curso de redes", "desc": "Tu ruta en redes, paso a paso."},
+    "tu-era-creator": {"titulo": "Tu era Creator", "eyebrow": "La guía de TikTok Shop", "desc": "De cero a vender como creadora, paso a paso."},
+    "tu-palabra": {"titulo": "Tu Palabra", "eyebrow": "Curso de marketing", "desc": "Sé dueña de una sola palabra en la mente de tu clienta."},
+    "visible": {"titulo": "Visible", "eyebrow": "Curso de marca personal", "desc": "Marca personal que vende."}
+  }
+}
