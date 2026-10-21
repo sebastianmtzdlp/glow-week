@@ -1,6 +1,7 @@
 {
  "codes": [
-  "1002157"
+  "1002157",
+  "PK102734"
  ],
  "nota": "Se llena solo con scripts/stats.py cuando hay datos suficientes."
 }
