@@ -18,6 +18,8 @@
 <style>
   :root{--bg:#EAE2D4;--paper:#F4EFE6;--ink:#2A2420;--muted:#6B6158;--line:#C9BDA9;--terra:#A6461F}
   *{box-sizing:border-box;margin:0}
+  a,button{-webkit-tap-highlight-color:transparent}
+  :focus-visible{outline:2px solid var(--terra);outline-offset:3px}
   body{background:var(--bg);color:var(--ink);font-family:Jost,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
   .wrap{max-width:480px;margin:0 auto;padding:18px 16px 56px}
   a{color:var(--terra)}
@@ -46,6 +48,11 @@
   .ed.main .go{display:inline-block;margin:14px auto 0;padding:12px 22px;background:var(--c);color:#fff;font-weight:500}
   .pet{fill:var(--flor);stroke:color-mix(in srgb,var(--flor),#000 12%)}.cen{fill:color-mix(in srgb,var(--flor),#fff 25%)}.ojo{fill:color-mix(in srgb,var(--flor),#000 30%)}
   .past .ed{opacity:.7}
+  .ed{transition:transform 160ms cubic-bezier(.23,1,.32,1),box-shadow 200ms ease}
+  .ed:active{transform:scale(.98)}
+  .ed.main .go{transition:filter 150ms ease}
+  @media (hover:hover) and (pointer:fine){.ed:not(.main):hover{box-shadow:0 6px 18px rgba(42,36,32,.10)}.ed.main:hover .go{filter:brightness(.9)}a.top:hover,a.back:hover{color:var(--terra)}}
+  @media (prefers-reduced-motion:reduce){.ed{transition-property:box-shadow}}
   .empty{text-align:center;color:var(--muted);background:var(--paper);padding:20px;margin-top:10px}
   a.back{display:block;margin-top:24px;font-size:14px;color:var(--muted)}
 </style>

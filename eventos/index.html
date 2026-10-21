@@ -17,19 +17,24 @@
 <style>
   :root{--bg:#FFFFFF;--card:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--accent:#DB414C;--red:#C7303B;--soft:#F4F5FA}
   *{box-sizing:border-box;margin:0}
+  :root{--ease-out:cubic-bezier(.23,1,.32,1)}
+  a,button{-webkit-tap-highlight-color:transparent}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
   body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.45;-webkit-text-size-adjust:100%}
   .wrap{max-width:640px;margin:0 auto;padding:0 0 60px}
   .pad{padding:0 18px}
   /* Destacado */
   .hero{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:440px;padding:22px 18px;color:#fff;text-decoration:none;background:var(--c,#262A4A) center/cover no-repeat;overflow:hidden}
-  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08) 30%,rgba(0,0,0,.55))}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.32),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 38%,rgba(0,0,0,.6))}
   .hero.sinfoto{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 16px,transparent 16px 32px)}
   .hero>*{position:relative}
-  .hero .brand{position:absolute;top:18px;left:18px;font-size:12px;font-weight:800;letter-spacing:.16em}
+  .hero .brand{position:absolute;top:18px;left:18px;font-size:12px;font-weight:800;letter-spacing:.16em;text-shadow:0 1px 10px rgba(0,0,0,.45)}
   .hero .pill{align-self:flex-start;font-size:12px;font-weight:700;background:#fff;color:var(--c,#262A4A);padding:5px 11px;border-radius:999px}
-  .hero h1{font-size:clamp(30px,8.5vw,40px);font-weight:800;line-height:1.05;margin-top:10px}
-  .hero p{font-size:15px;margin-top:6px;opacity:.95}
-  .hero .go{align-self:flex-start;margin-top:14px;background:#fff;color:var(--ink);font-weight:700;padding:12px 20px;border-radius:12px}
+  .hero h1{font-size:clamp(30px,8.5vw,40px);font-weight:800;line-height:1.05;margin-top:10px;text-wrap:balance;letter-spacing:-.01em}
+  .hero .pill{font-variant-numeric:tabular-nums}
+  .hero p{font-size:15px;margin-top:6px;opacity:.95;max-width:34ch}
+  .hero .go{align-self:flex-start;margin-top:14px;background:#fff;color:var(--ink);font-weight:700;padding:12px 20px;border-radius:12px;transition:transform 160ms var(--ease-out)}
+  .hero:active .go{transform:scale(.97)}
   .top{display:flex;justify-content:space-between;align-items:center;padding:22px 18px 4px}
   .top b{font-size:12px;font-weight:800;letter-spacing:.16em}
   /* Categorías (iconos) y zonas */
@@ -55,11 +60,31 @@
   .serie{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;background:var(--soft);border-radius:16px;padding:12px;margin:0 18px 10px}
   .serie i{flex:none;width:56px;height:56px;border-radius:12px;background:var(--c,var(--ink)) center/cover}
   .serie b{display:block}.serie small{color:var(--muted);font-size:13px}
-  .past .card{opacity:.65}
+  .past .card .img{filter:grayscale(.7);opacity:.8}
+  .past .card .d{color:var(--muted)}
   .empty{margin:18px;color:var(--muted);background:var(--soft);border-radius:16px;padding:18px;text-align:center}
   [hidden]{display:none!important}
   a.back{display:block;margin:30px 18px 0;font-size:14px;color:var(--muted)}
   @media (min-width:640px){.hero{border-radius:0 0 24px 24px}}
+  /* Respuesta al toque y al cursor */
+  .cats button,.zonas button{transition:color 150ms ease,background-color 150ms ease,border-color 150ms ease,transform 120ms var(--ease-out)}
+  .zonas button:active,.cats button:active{transform:scale(.96)}
+  .card .img{overflow:hidden;transition:transform 160ms var(--ease-out)}
+  .card:active .img{transform:scale(.98)}
+  .serie{transition:background-color 150ms ease,transform 160ms var(--ease-out)}
+  .serie:active{transform:scale(.98)}
+  @media (hover:hover) and (pointer:fine){
+    .cats button:hover{color:var(--ink)}
+    .zonas button:not([aria-pressed=true]):hover{border-color:var(--ink)}
+    .card:hover b{color:var(--accent)}
+    .serie:hover{background:#ECEEF6}
+    .hero .go{transition:transform 160ms var(--ease-out),background-color 150ms ease}
+    .hero:hover .go{background:#F4F5FA}
+  }
+  .leaflet-container{font-family:inherit}
+  .leaflet-popup-content{font-size:14px;line-height:1.4}
+  .leaflet-popup-content a{color:var(--accent);font-weight:600}
+  @media (prefers-reduced-motion:reduce){*{transition-property:color,background-color,border-color,opacity!important}}
 </style>
 </head>
 <body>
@@ -116,7 +141,7 @@
     // Destacado: el próximo evento (o el que está pasando)
     const H=$("hero"); H.hidden=!dest; $("top").hidden=!!dest;
     if(dest){ H.href=dest.href; H.className="hero"+(dest.imagen?"":" sinfoto"); H.setAttribute("style",bg(dest));
-      H.innerHTML=`<span class="brand">MI TIENDA BEAUTY · EVENTOS</span><span class="pill">${dest.a<=now?"Está pasando ahora":"Destacado · "+falta(dest.a-now)}</span>
+      H.innerHTML=`<span class="brand">MI TIENDA BEAUTY · EVENTOS</span><span class="pill">${dest.a<=now?"Está pasando ahora":falta(dest.a-now).replace(/^f/,"F").replace(/^e/,"E")}</span>
         <h1>${esc(dest.nombre)}</h1><p>${esc(corta(dest.a))} · ${esc(hora(dest.a))}${dest.lugar?" · "+esc(dest.lugar):""}</p>${dest.resumen?`<p>${esc(dest.resumen)}</p>`:""}<span class="go">Ver evento y apartar</span>`; }
     // Categorías y zonas
     $("cats").innerHTML=cats.length?["Todos",...cats].map(k=>`<button aria-pressed="${(k==="Todos"?"":k)===cat}" data-k="${esc(k==="Todos"?"":k)}">${icon(k)}${esc(k)}</button>`).join(""):"";

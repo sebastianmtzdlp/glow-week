@@ -19,6 +19,8 @@
 <style>
   :root{--bg:#EAE2D4;--paper:#F4EFE6;--ink:#2A2420;--muted:#6B6158;--line:#C9BDA9;--terra:#A6461F;--terra-d:#7E3415;--flor:#D9792B}
   *{box-sizing:border-box;margin:0}
+  a,button{-webkit-tap-highlight-color:transparent}
+  :focus-visible{outline:2px solid var(--terra);outline-offset:3px}
   body{background:var(--bg);color:var(--ink);font-family:Jost,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
   .wrap{max-width:480px;margin:0 auto;padding:18px 16px 56px}
   a{color:var(--terra)}
@@ -30,13 +32,13 @@
   .flyer h1{font-style:italic;font-weight:500;font-size:clamp(44px,14vw,60px);line-height:1;color:var(--terra);margin:6px 0 2px}
   .flyer .ed{font-weight:500;font-size:clamp(20px,6.4vw,26px)}
   .rule{width:48px;height:1px;background:var(--line);margin:14px auto}
-  .flyer .lead{font-size:17px;max-width:300px;margin:0 auto}
+  .flyer .lead{font-size:17px;max-width:300px;margin:0 auto;text-wrap:balance}
   .flores .pet{fill:var(--flor);stroke:color-mix(in srgb,var(--flor),#000 12%)}.flores .cen{fill:color-mix(in srgb,var(--flor),#fff 25%)}.flores .ojo{fill:color-mix(in srgb,var(--flor),#000 30%)}
   .flores{display:block;width:210px;max-width:62%;height:auto;margin:10px auto 6px}
   .fecha{display:flex;align-items:center;justify-content:center;gap:16px}
   .fecha span{font-size:13px;font-weight:500;letter-spacing:.26em}
   .fecha i{width:1px;height:56px;background:var(--line)}
-  .fecha b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:58px;line-height:1;color:var(--terra)}
+  .fecha b{font-variant-numeric:lining-nums;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:58px;line-height:1;color:var(--terra)}
   .hora{font-size:15px;letter-spacing:.06em;margin-top:6px}
   .colab{font-style:italic;font-size:18px;margin-top:12px;line-height:1.35}
   .st{display:inline-block;margin-top:16px;font-size:13px;font-weight:500;padding:6px 12px;border:1px solid var(--line);color:var(--terra)}
@@ -46,6 +48,11 @@
   .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
   .btn{display:block;text-align:center;text-decoration:none;font:inherit;font-weight:500;font-size:15px;padding:14px 10px;cursor:pointer;border:1.5px solid var(--terra);background:transparent;color:var(--terra)}
   .btn.fill{background:var(--terra);color:#fff}
+  .btn{transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 150ms ease,color 150ms ease}
+  .btn:active{transform:scale(.97)}
+  @media (hover:hover) and (pointer:fine){.btn:hover{background:color-mix(in srgb,var(--terra),transparent 90%)}.btn.fill:hover{background:var(--terra-d)}a.top:hover,a.back:hover{color:var(--terra)}}
+  .leaflet-container{font-family:inherit}
+  @media (prefers-reduced-motion:reduce){.btn{transition-property:background-color,color}}
   .btn.full{grid-column:1/-1}
   .aviso{text-align:center;font-size:15px;margin-top:14px}
   .links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:15px}
