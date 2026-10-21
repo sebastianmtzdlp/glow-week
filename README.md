@@ -21,5 +21,10 @@ Raíz: `index.html` (portada), `CNAME` (dominio), `netlify.toml` (respaldo en gl
 - **Producto por tiempo limitado:** `"desde"` / `"hasta"` en el producto; fuera de esas fechas no aparece.
 - **Aviso arriba:** `"aviso": {"texto": "Hoy 2x1 en labiales", "desde": ..., "hasta": ...}`.
 
-## Fuera del catálogo
+## Eventos
+`mitienda.beauty/eventos` lista los eventos (ahora, próximos y los que ya pasaron) y cada uno tiene su página en `/eventos/<slug>/` con cuenta regresiva, botón para agregarlo al calendario y para compartirlo por WhatsApp.
+- Agregar un evento = agregar un bloque en `_data/eventos.json` (copia uno que ya exista y cambia `slug`, `titulo`, `tipo`, `desde`, `hasta`, `resumen`). Opcionales: `lugar`, `descripcion` (párrafos separados con una línea en blanco), `puntos`, `boton` (`texto` y `url`), `color` del encabezado.
+- Al subir el cambio a `main`, la acción **Eventos** genera la página sola. A mano: `python3 scripts/eventos.py`. El diseño está en `scripts/evento_plantilla.html`; no edites `eventos/<slug>/index.html` directamente.
+- Fechas con hora de México, p. ej. `"2026-11-05T19:00:00-06:00"`. Si `desde` y `hasta` son el mismo día, la página muestra el horario; si no, el rango de días.
+
 `_data/fuera-de-catalogo.json` lista los productos de la tienda de Farmasi que no salen en el catálogo impreso (se muestran como el chip "Fuera del catálogo" dentro del catálogo). Se regenera revisando la tienda de Selene (mx.farmasi.com/selenevehe): cada categoría se lee paginada y se compara contra los códigos de `catalogo-farmasi.json`. Se oculta lo agotado.
