@@ -298,7 +298,7 @@
         ${se.length?`<section><h3>Series</h3>${se.map(([k,s])=>{const eds=ev.filter(e=>e.serie===k), p=eds.filter(e=>e.b>=now)[0];
           return `<a class="fila" href="/eventos/${esc(k)}/"><span>${esc(s.nombre)}</span><small>${eds.length} edici${eds.length===1?"ón":"ones"}${p?" · próxima "+esc(corta(p.a)):""}</small></a>`;}).join("")}</section>`:""}
         <section><h3>Ya pasaron</h3>${pasados.length?pasados.slice(0,6).map(e=>`<a class="fila" href="${esc(e.href)}"><span>${esc(e.nombre)}</span><small class="num">${esc(corta(e.a))}</small></a>`).join(""):`<p class="vacio">Aquí van a quedar los eventos que ya pasaron.</p>`}</section>
-        <div><a class="volver" href="/">← Mi Tienda Beauty</a></div></div>`;
+        </div>`;
 
     if($("zona")) $("zona").onchange=()=>{ zona=$("zona").value; mes=null; sel=null; url(); pinta(); };
     document.querySelectorAll("[data-vista]").forEach(b=>b.onclick=()=>cambia(b.dataset.vista));
