@@ -34,28 +34,71 @@
   [hidden]{display:none!important}
 
   .pag{max-width:1280px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px));
-    display:grid;grid-template-columns:minmax(0,1fr);gap:44px;grid-template-areas:"intro" "dest" "muro" "mapa" "pie"}
-  .intro{grid-area:intro}.dest{grid-area:dest}.muro{grid-area:muro}.mapa{grid-area:mapa}.pie{grid-area:pie}
+    display:grid;grid-template-columns:minmax(0,1fr);gap:28px}
+  #vista{display:grid;gap:44px;min-width:0}
   h1{font-size:clamp(56px,10.5vw,132px);font-weight:800;line-height:.88;letter-spacing:-.035em;margin-top:12px}
-  .intro>p{font-size:18px;color:var(--muted);max-width:36ch;margin-top:16px}
+  .intro .txt>p{font-size:18px;color:var(--muted);max-width:36ch;margin-top:16px}
   .filtro{margin-top:20px;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .filtro select{font:inherit;font-weight:600;color:var(--ink);border:0;border-bottom:2px solid var(--accent);background:transparent;padding:4px 22px 4px 0;appearance:none;cursor:pointer;min-height:44px;
     background-image:linear-gradient(45deg,transparent 50%,var(--accent) 50%),linear-gradient(135deg,var(--accent) 50%,transparent 50%);background-position:right 6px top 55%,right 1px top 55%;background-size:5px 5px;background-repeat:no-repeat}
 
-  /* Calendario del mes */
-  .cal{margin-top:26px;max-width:360px}
-  .cal .cab{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
-  .cal .cab b{font-size:15px;font-weight:600}
-  .cal .cab button{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font:600 18px/1 var(--sans);cursor:pointer}
-  .cal .g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center}
-  .cal .dn{font-size:11px;color:var(--muted);padding-bottom:2px}
-  .cal .d{border-radius:10px;min-height:40px;font-size:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--muted);border:0;background:none;font-family:var(--mono)}
-  .cal .d.fin{background:var(--soft)}
-  .cal .d.hoy{background:var(--accent);color:#fff}
-  .cal .d.ev{color:var(--ink);font-weight:700;cursor:pointer;background:#fff;box-shadow:inset 0 0 0 1px var(--line)}
-  .cal .d.ev.hoy{background:var(--accent);color:#fff;box-shadow:none}
-  .cal .d i{width:6px;height:6px;border-radius:50%;background:var(--c)}
-  .cal .d.hoy i{background:#fff}
+  /* Selector de vista: Cartelera · Calendario · Mapa */
+  .vistas{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.94);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);
+    margin:0 -16px;padding:10px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .seg{display:inline-flex;gap:2px;padding:4px;border:1px solid var(--line);border-radius:14px;background:#fff}
+  .seg button{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 14px;border:0;border-radius:10px;background:none;color:var(--muted);font:500 15px var(--sans);cursor:pointer;transition:background-color 160ms var(--ease),color 160ms var(--ease),transform 160ms var(--ease)}
+  .seg button:active{transform:scale(.97)}
+  .seg button[aria-pressed=true]{background:var(--ink);color:#fff}
+  .seg svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex:none}
+  .cuenta{font-size:13px;color:var(--muted);white-space:nowrap}
+  @media (max-width:520px){.seg{width:100%}.seg button{flex:1;justify-content:center;padding:0 8px;font-size:14px;gap:6px}.cuenta{display:none}}
+
+  /* Renglón de evento (calendario y mapa) */
+  .fe{display:grid;grid-template-columns:64px minmax(0,1fr);gap:14px;align-items:center;padding:12px 0;border-top:1px solid var(--line)}
+  .fe .marco,.fe .gen{width:64px;border-radius:3px;box-shadow:0 1px 2px rgba(38,42,74,.1)}
+  .fe .gen{padding:0}.fe .gen *{display:none}
+  .fe a{color:inherit;text-decoration:none;display:grid;gap:2px;min-width:0}
+  .fe .num{font-size:13px;color:var(--accent-t);font-weight:500}
+  .fe b{font-size:17px;font-weight:700;line-height:1.2}
+  .fe span.l{color:var(--muted);font-size:14px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .fe .enmapa{margin-top:0;min-height:36px;font-size:13px}
+  .fe.flash{animation:flashf 1100ms var(--ease)}
+  @keyframes flashf{0%{background:var(--tint)}100%{background:transparent}}
+
+  /* Vista calendario */
+  .vcal{display:grid;gap:36px}
+  .mes .cab{display:flex;align-items:center;gap:8px;margin-bottom:14px}
+  .mes .cab h2{font-size:clamp(28px,4vw,44px);font-weight:800;letter-spacing:-.02em;margin-right:auto}
+  .mes .cab button{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font:600 18px/1 var(--sans);cursor:pointer;transition:transform 160ms var(--ease)}
+  .mes .cab button:active{transform:scale(.97)}
+  .mes .g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr))}
+  .mes .dn{font-size:11px;letter-spacing:.12em;color:var(--muted);padding:0 0 8px 6px}
+  .mes .d{min-height:52px;border-top:1px solid var(--line);padding:6px;display:flex;flex-direction:column;align-items:flex-start;gap:4px;min-width:0;background:none;border-left:0;border-right:0;border-bottom:0;font:inherit;color:inherit;text-align:left}
+  .mes .d .n{font:500 13px/1 var(--mono);color:var(--muted);width:26px;height:26px;display:grid;place-items:center;border-radius:50%}
+  .mes .d.pas .n{opacity:.45}
+  .mes .d.hoy .n{background:var(--accent);color:#fff;opacity:1}
+  .mes .d.ev{cursor:pointer}
+  .mes .d.ev .n{color:var(--ink);font-weight:700}
+  .mes .d.sel{background:var(--soft);border-radius:10px}
+  .mes .pt{display:flex;gap:3px;padding-left:6px}.mes .pt i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+  .mes .chip{display:none}
+  .agenda h3{font-size:22px;font-weight:700;margin-bottom:4px}
+  .agenda h4{font:500 12px var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:22px 0 4px}
+  .agenda .otro{display:inline-flex;align-items:center;min-height:44px;border:0;background:none;padding:0;font:600 16px var(--sans);color:var(--accent-t);cursor:pointer}
+
+  /* Vista mapa */
+  .vmap{display:grid;gap:16px}
+  .vmap .cajamapa{position:relative;height:62vh;min-height:360px;margin:0 -16px}
+  #mapa{position:absolute;inset:0;z-index:0}
+  .vmap .lista .tit{display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:44px}
+  .vmap .lista .tit p{font-size:15px;color:var(--muted)}.vmap .lista .tit b{color:var(--ink)}
+  .vmap .todos{border:0;background:none;padding:0;min-height:44px;font:600 15px var(--sans);color:var(--accent-t);cursor:pointer}
+  .vmap .fila-ev.on{background:var(--soft)}
+  @media (max-width:899px){
+    .vmap .filas{display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:2px 16px 12px;scrollbar-width:none}
+    .vmap .filas::-webkit-scrollbar{display:none}
+    .vmap .fe{flex:0 0 min(84%,340px);scroll-snap-align:start;border:1px solid var(--line);border-radius:14px;padding:10px 12px}
+  }
 
   /* Destacado */
   .dest{display:grid;gap:24px;align-items:center}
@@ -95,7 +138,6 @@
 
   /* Mapa, series y pasados */
   h3{font-size:22px;font-weight:700;margin-bottom:14px}
-  #mapa{height:340px;border-radius:18px;border:1px solid var(--line);z-index:0;scroll-margin-top:20px}
   .leaflet-container{font-family:var(--sans);background:var(--soft)}
   .osm-gris{filter:grayscale(.7) contrast(.92) brightness(1.04)}
   /* Pin con la fecha del evento */
@@ -118,18 +160,31 @@
   @media (hover:hover) and (pointer:fine){
     .post>a:hover b,.fila:hover,.dest>a:hover~.info h2{color:var(--accent-t)}
     .go:hover{background:var(--accent-t)}.enmapa:hover{color:var(--accent-t)}
-    .cal .cab button:hover{border-color:#C9CDE0}
+    .mes .cab button:hover{border-color:#C9CDE0}
+    .seg button[aria-pressed=false]:hover{color:var(--ink);background:var(--soft)}
+    .mes .chip:hover b,.fe a:hover b{color:var(--accent-t)}.vmap .todos:hover,.agenda .otro:hover{text-decoration:underline}
   }
   @media (min-width:900px){
-    .pag{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:72px;padding:56px 48px 48px;
-      grid-template-areas:"intro intro intro intro intro mapa mapa mapa mapa mapa mapa mapa" "dest dest dest dest dest dest dest dest dest dest dest dest" "muro muro muro muro muro muro muro muro muro muro muro muro" "pie pie pie pie pie pie pie pie pie pie pie pie"}
-    .mapa{position:relative}
-    #mapa{position:absolute;inset:0;height:auto;min-height:420px}
+    .pag{padding:56px 48px 48px;gap:36px}
+    .intro{display:grid;grid-template-columns:7fr 5fr;gap:48px;align-items:end}
+    .intro .txt>p{margin-top:0}
+    .vistas{margin:0 -48px;padding:12px 48px}
+    #vista{gap:72px}
     .dest{grid-template-columns:6fr 5fr;gap:64px}
     .muro{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 40px}
-    .pie{grid-template-columns:1fr 1fr 1fr;gap:56px;align-items:start}
+    .pie{grid-template-columns:1fr 1fr 1fr;gap:56px;align-items:start;margin-top:40px}
+    .vcal{grid-template-columns:8fr 4fr;gap:56px;align-items:start}
+    .mes .d{min-height:112px;padding:8px}
+    .mes .pt{display:none}
+    .mes .chip{display:block;width:100%;padding:5px 7px;border-radius:6px;background:var(--soft);border-left:3px solid var(--c);color:var(--ink);text-decoration:none;font-size:12px;line-height:1.25}
+    .mes .chip b{display:block;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+    .mes .chip span{font:500 11px var(--mono);color:var(--muted)}
+    .agenda{position:sticky;top:96px}
+    .vmap{grid-template-columns:5fr 7fr;gap:40px;align-items:start}
+    .vmap .cajamapa{order:2;margin:0;height:calc(100vh - 120px);min-height:480px;position:sticky;top:90px;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
+    .vmap .lista{order:1}
   }
-  @media (prefers-reduced-motion:reduce){.press{transition:none}.post.flash .marco,.post.flash .gen{animation:none}}
+  @media (prefers-reduced-motion:reduce){.press{transition:none}.post.flash .marco,.post.flash .gen,.fe.flash{animation:none}.seg button{transition:none}}
 </style>
 </head>
 <body>
@@ -165,75 +220,126 @@
     : `<div class="gen" style="--c:${esc(e.color||"#262A4A")}${e.imagen?`;background-image:url('${esc(e.imagen)}')`:""}"><span class="num">${esc(corta(e.a))}</span><b>${esc(e.nombre)}</b></div>`;
   const pin='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
 
-  function calendario(L1){
-    if(!mes){ const d=L1[0]?.a||now; mes={y:+part(d,{year:"numeric"}),m:+part(d,{month:"numeric"})-1}; }
-    const ini=new Date(Date.UTC(mes.y,mes.m,1)), dias=new Date(Date.UTC(mes.y,mes.m+1,0)).getUTCDate(), off=ini.getUTCDay(), hoy=dia(now), porDia={};
-    L1.forEach(e=>{(porDia[dia(e.a)]??=[]).push(e);});
-    let g=["D","L","M","M","J","V","S"].map(x=>`<span class="dn" aria-hidden="true">${x}</span>`).join("")+"<span></span>".repeat(off);
-    for(let x=1;x<=dias;x++){ const t=Date.UTC(mes.y,mes.m,x), w=(off+x-1)%7, h=porDia[t], cls=`d${w===0||w===6?" fin":""}${t===hoy?" hoy":""}${h?" ev":""}`;
-      g+=h?`<button class="${cls}" data-ir="${esc(h[0].slug)}" style="--c:${esc(h[0].color||"#262A4A")}" aria-label="${x}: ${esc(h.map(e=>e.nombre).join(", "))}">${x}<i></i></button>`:`<span class="${cls}">${x}</span>`; }
-    const nom=new Intl.DateTimeFormat("es-MX",{month:"long",year:"numeric",timeZone:"UTC"}).format(ini).replace(" de "," ");
-    return `<div class="cal" aria-label="Calendario"><div class="cab"><button id="mAnt" aria-label="Mes anterior">‹</button><b>${esc(nom[0].toUpperCase()+nom.slice(1))}</b><button id="mSig" aria-label="Mes siguiente">›</button></div><div class="g">${g}</div></div>`;
-  }
+  const VISTAS=[["cartelera","Cartelera",'<rect x="3.5" y="3.5" width="7" height="8.5" rx="1"/><rect x="13.5" y="3.5" width="7" height="8.5" rx="1"/><path d="M3.5 16h7M3.5 20h5M13.5 16h7M13.5 20h5"/>'],
+    ["calendario","Calendario",'<rect x="3.5" y="5" width="17" height="15.5" rx="2"/><path d="M3.5 10h17M8 3v4M16 3v4"/>'],
+    ["mapa","Mapa",'<path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/>']];
+  let vista=VISTAS.some(v=>v[0]===q.get("vista"))?q.get("vista"):"cartelera", sel=null;
+  const url=()=>{ const p=new URLSearchParams(); if(zona)p.set("zona",zona); if(vista!=="cartelera")p.set("vista",vista); history.replaceState(null,"",p.toString()?"?"+p:location.pathname); };
+  const flash=t=>{ if(!t) return; t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); };
+  const fila=e=>`<div class="fe" id="fe-${esc(e.slug)}" data-slug="${esc(e.slug)}">${cartel(e)}<div style="min-width:0;display:grid">
+    <a href="${esc(e.href)}"><span class="num">${esc(corta(e.a).toUpperCase())} · ${esc(h24(e.a))}</span><b>${esc(e.nombre)}</b><span class="l">${esc(lugar(e))}</span></a>
+    ${e.mapa&&vista!=="mapa"?`<button class="enmapa" data-mapa="${esc(e.slug)}">${pin}Ver en el mapa</button>`:""}</div></div>`;
 
-  function pinta(){
-    if(mapa){ mapa.remove(); mapa=null; marcas={}; }
-    const L1=vivos.filter(e=>!zona||e.zona===zona), d=L1[0], resto=L1.slice(1), se=Object.entries(S).filter(([k])=>!k.startsWith("_"));
-    $("app").innerHTML=`
-      <div class="intro"><div class="marca">EQUIPO SVH</div><h1>Eventos</h1>
-        <p>Talleres, clases y fiestas en persona, en la Ciudad de México. Entra al que te guste y aparta tu lugar.</p>
-        ${zonas.length?`<label class="filtro" for="zona">Ver eventos en <select id="zona">${["",...zonas].map(z=>`<option value="${esc(z)}"${z===zona?" selected":""}>${esc(z||"todas las zonas")}</option>`).join("")}</select></label>`:""}
-        ${L1.length?calendario(L1):""}</div>
-      ${d?`<section class="dest post" id="ev-${esc(d.slug)}" aria-label="Próximo evento"><a class="press" href="${esc(d.href)}" aria-label="${esc(d.nombre)}">${cartel(d)}</a>
+  function cartelera(L1){ const d=L1[0], resto=L1.slice(1);
+    return `${d?`<section class="dest post" id="ev-${esc(d.slug)}" aria-label="Próximo evento"><a class="press" href="${esc(d.href)}" aria-label="${esc(d.nombre)}">${cartel(d)}</a>
         <div class="info"><div class="eti">${esc(cuando(d.a))} · ${esc(part(d.a,{weekday:"long"}))}</div>
           <div class="big num">${esc(part(d.a,{day:"2-digit"}))}.${esc(part(d.a,{month:"2-digit"}))}</div>
           <h2>${esc(d.nombre)}</h2><div class="lug"><span class="num">${esc(h24(d.a))}${d.b>d.a?"–"+esc(h24(d.b)):""}</span> h · ${esc(lugar(d))}</div>
           ${d.resumen?`<p>${esc(d.resumen)}</p>`:""}
           ${(d.aportacion||[]).length?`<div class="apo">${d.aportacion.map(x=>`<span>${esc(x.etiqueta)} <b class="num">${esc(x.precio)}</b></span>`).join("")}</div>`:""}
           ${d.regalo?`<p class="reg">${esc(d.regalo)}</p>`:""}${(d.colaboran||[]).length?`<div class="con">Con ${esc(lista_y(d.colaboran))}</div>`:""}
-          <a class="go press" href="${esc(d.href)}">Ver y apartar <span aria-hidden="true">→</span></a></div></section>`
-        :`<p class="vacio dest">${zona?"No hay eventos en "+esc(zona)+" por ahora. Prueba con todas las zonas.":"Pronto anunciamos el siguiente evento."}</p>`}
+          ${d.mapa?`<button class="enmapa" data-mapa="${esc(d.slug)}">${pin}Ver en el mapa</button><br>`:""}
+          <a class="go press" href="${esc(d.href)}">Ver y apartar <span aria-hidden="true">→</span></a></div></section>`:""}
       <div class="muro">${resto.map(e=>`<article class="post" id="ev-${esc(e.slug)}"><a class="press" href="${esc(e.href)}">${cartel(e)}
         <div class="cap"><span class="num">${esc(corta(e.a).toUpperCase())} · ${esc(h24(e.a))}</span><b>${esc(e.nombre)}</b><span>${esc(lugar(e))}</span></div></a>
-        ${e.mapa?`<button class="enmapa" data-mapa="${esc(e.slug)}">${pin}Ver en el mapa</button>`:""}</article>`).join("")}</div>
-      <div class="mapa">${L1.some(e=>e.mapa)?`<div id="mapa" role="region" aria-label="Mapa de eventos"></div>`:""}</div>
+        ${e.mapa?`<button class="enmapa" data-mapa="${esc(e.slug)}">${pin}Ver en el mapa</button>`:""}</article>`).join("")}</div>`; }
+
+  const enMes=(L1,m)=>L1.filter(e=>+part(e.a,{year:"numeric"})===m.y&&+part(e.a,{month:"numeric"})-1===m.m);
+  function calendario(L1){
+    if(!mes){ const d=L1[0]?.a||now; mes={y:+part(d,{year:"numeric"}),m:+part(d,{month:"numeric"})-1}; }
+    const ini=new Date(Date.UTC(mes.y,mes.m,1)), dias=new Date(Date.UTC(mes.y,mes.m+1,0)).getUTCDate(), off=ini.getUTCDay(), hoy=dia(now), porDia={};
+    const M=enMes(L1,mes); M.forEach(e=>{(porDia[dia(e.a)]??=[]).push(e);});
+    let g=["DOM","LUN","MAR","MIÉ","JUE","VIE","SÁB"].map(x=>`<span class="dn" aria-hidden="true">${x}</span>`).join("")+"<span class='d' aria-hidden='true'></span>".repeat(off);
+    for(let x=1;x<=dias;x++){ const t=Date.UTC(mes.y,mes.m,x), h=porDia[t], cls=`d${t<hoy?" pas":""}${t===hoy?" hoy":""}${h?" ev":""}${sel===t?" sel":""}`;
+      const n=`<span class="n">${x}</span>`;
+      g+=h?`<div class="${cls}" data-dia="${t}" role="button" tabindex="0" aria-label="${x}: ${esc(h.map(e=>e.nombre).join(", "))}">${n}
+          <span class="pt">${h.map(e=>`<i style="--c:${esc(e.color||"#262A4A")}"></i>`).join("")}</span>
+          ${h.map(e=>`<a class="chip" href="${esc(e.href)}" style="--c:${esc(e.color||"#262A4A")}"><b>${esc(e.nombre)}</b><span>${esc(h24(e.a))}</span></a>`).join("")}</div>`
+        :`<div class="${cls}">${n}</div>`; }
+    const nom=new Intl.DateTimeFormat("es-MX",{month:"long",year:"numeric",timeZone:"UTC"}).format(ini).replace(" de "," ");
+    const grupos=Object.entries(porDia).sort((a,b)=>a[0]-b[0]);
+    const sig=L1.find(e=>e.a>=new Date(Date.UTC(mes.y,mes.m+1,1)));
+    return `<div class="vcal"><section class="mes" aria-label="Calendario"><div class="cab"><h2>${esc(nom[0].toUpperCase()+nom.slice(1))}</h2>
+        <button id="mAnt" aria-label="Mes anterior">‹</button><button id="mSig" aria-label="Mes siguiente">›</button></div><div class="g">${g}</div></section>
+      <aside class="agenda" aria-live="polite"><h3>${M.length?`${M.length} evento${M.length>1?"s":""} este mes`:"Nada este mes"}</h3>
+        ${grupos.map(([t,h])=>`<div data-grupo="${t}"><h4>${esc(part(h[0].a,{weekday:"long",day:"numeric",month:"long"}))}</h4>${h.map(fila).join("")}</div>`).join("")}
+        ${sig?`<button class="otro" data-salta="${esc(part(sig.a,{year:"numeric"}))}-${+part(sig.a,{month:"numeric"})-1}">${M.length?"Siguiente":"Próximo"}: ${esc(sig.nombre)}, ${esc(corta(sig.a))} →</button>`:""}</aside></div>`;
+  }
+
+  function mapaVista(L1){ const pts=L1.filter(e=>e.mapa);
+    return `<div class="vmap"><div class="cajamapa">${pts.length?`<div id="mapa" role="region" aria-label="Mapa de eventos"></div>`:""}</div>
+      <section class="lista"><div class="tit"><p id="enVista"><b>${pts.length}</b> evento${pts.length===1?"":"s"} en el mapa</p><button class="todos" id="todos" hidden>Ver todos</button></div>
+        <div class="filas">${pts.map(fila).join("")}</div>
+        ${L1.length>pts.length?`<p class="vacio">${L1.length-pts.length} evento(s) sin ubicación todavía: búscalos en la Cartelera.</p>`:""}</section></div>`; }
+
+  function pinta(){
+    if(mapa){ mapa.remove(); mapa=null; marcas={}; }
+    const L1=vivos.filter(e=>!zona||e.zona===zona), se=Object.entries(S).filter(([k])=>!k.startsWith("_"));
+    const cuerpo=!L1.length?`<p class="vacio">${zona?"No hay eventos en "+esc(zona)+" por ahora. Prueba con todas las zonas.":"Pronto anunciamos el siguiente evento."}</p>`
+      :vista==="calendario"?calendario(L1):vista==="mapa"?mapaVista(L1):cartelera(L1);
+    $("app").innerHTML=`
+      <div class="intro"><div><div class="marca">EQUIPO SVH</div><h1>Eventos</h1></div>
+        <div class="txt"><p>Talleres, clases y fiestas en persona, en la Ciudad de México. Entra al que te guste y aparta tu lugar.</p>
+        ${zonas.length?`<label class="filtro" for="zona">Ver eventos en <select id="zona">${["",...zonas].map(z=>`<option value="${esc(z)}"${z===zona?" selected":""}>${esc(z||"todas las zonas")}</option>`).join("")}</select></label>`:""}</div></div>
+      <nav class="vistas" aria-label="Cómo ver los eventos"><div class="seg">${VISTAS.map(([k,n,ic])=>`<button data-vista="${k}" aria-pressed="${k===vista}"><svg viewBox="0 0 24 24" aria-hidden="true">${ic}</svg>${n}</button>`).join("")}</div>
+        <span class="cuenta num">${L1.length} PRÓXIMO${L1.length===1?"":"S"}</span></nav>
+      <div id="vista">${cuerpo}</div>
       <div class="pie">
         ${se.length?`<section><h3>Series</h3>${se.map(([k,s])=>{const eds=ev.filter(e=>e.serie===k), p=eds.filter(e=>e.b>=now)[0];
           return `<a class="fila" href="/eventos/${esc(k)}/"><span>${esc(s.nombre)}</span><small>${eds.length} edici${eds.length===1?"ón":"ones"}${p?" · próxima "+esc(corta(p.a)):""}</small></a>`;}).join("")}</section>`:""}
         <section><h3>Ya pasaron</h3>${pasados.length?pasados.slice(0,6).map(e=>`<a class="fila" href="${esc(e.href)}"><span>${esc(e.nombre)}</span><small class="num">${esc(corta(e.a))}</small></a>`).join(""):`<p class="vacio">Aquí van a quedar los eventos que ya pasaron.</p>`}</section>
         <div><a class="volver" href="/">← Mi Tienda Beauty</a></div></div>`;
 
-    if($("zona")) $("zona").onchange=()=>{ zona=$("zona").value; mes=null; const p=new URLSearchParams(); if(zona)p.set("zona",zona); history.replaceState(null,"",p.toString()?"?"+p:location.pathname); pinta(); };
-    const mov=k=>{ mes.m+=k; if(mes.m<0){mes.m=11;mes.y--;} if(mes.m>11){mes.m=0;mes.y++;} const c=document.querySelector(".cal"); c.outerHTML=calendario(L1); enlazaCal(); };
-    const enlazaCal=()=>{ $("mAnt")&&($("mAnt").onclick=()=>mov(-1)); $("mSig")&&($("mSig").onclick=()=>mov(1));
-      document.querySelectorAll(".cal [data-ir]").forEach(b=>b.onclick=()=>{ const t=$("ev-"+b.dataset.ir); if(!t) return;
-        t.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"}); t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); vuela(b.dataset.ir,false); }); };
-    enlazaCal();
+    if($("zona")) $("zona").onchange=()=>{ zona=$("zona").value; mes=null; sel=null; url(); pinta(); };
+    document.querySelectorAll("[data-vista]").forEach(b=>b.onclick=()=>cambia(b.dataset.vista));
+    document.querySelectorAll("[data-mapa]").forEach(b=>b.onclick=()=>cambia("mapa",b.dataset.mapa));
 
-    // Mapa: cada evento con su color; "Ver en el mapa" lleva el mapa a su lugar
-    const pts=L1.filter(e=>e.mapa);
-    if(pts.length&&window.L&&$("mapa")){
-      mapa=L.map("mapa",{scrollWheelZoom:false});
-      const encuadra=()=>pts.length===1?mapa.setView(pts[0].mapa,14):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[48,48]});
-      encuadra(); planoClaro(mapa,"claro");
-      pts.forEach(e=>{ const dia=part(e.a,{day:"2-digit"})+" "+part(e.a,{month:"short"}).replace(/\./g,"");
-        const m=marcas[e.slug]=L.marker(e.mapa,{title:e.nombre,riseOnHover:true,icon:L.divIcon({className:"pinw",iconSize:null,iconAnchor:[10,12],popupAnchor:[0,-14],
-          html:`<span class="pin" style="--c:${esc(e.color||"#DB414C")}"><i></i>${esc(dia)}</span>`})})
-        .bindPopup(`<div class="pop">${e.flyer?`<img src="${esc(e.flyer)}" alt="">`:""}<div><b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">Ver y apartar</a></div></div>`).addTo(mapa);
-        // Del mapa al evento: tocar el punto marca su cartel
-        m.on("click",()=>{ const t=$("ev-"+e.slug); if(t){ t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); } }); });
-      // Del evento al mapa: pasar sobre el cartel resalta su punto
-      document.querySelectorAll(".post[id^=ev-]").forEach(p=>{ const m=marcas[p.id.slice(3)]; if(!m) return;
-        const pin=()=>m.getElement()&&m.getElement().querySelector(".pin");
-        p.addEventListener("mouseenter",()=>{ pin()&&pin().classList.add("on"); m.setZIndexOffset(1000); });
-        p.addEventListener("mouseleave",()=>{ pin()&&pin().classList.remove("on"); m.setZIndexOffset(0); }); });
-      setTimeout(()=>{ mapa.invalidateSize(); encuadra(); },0);
+    if(vista==="calendario"&&L1.length){
+      const mov=k=>{ mes.m+=k; if(mes.m<0){mes.m=11;mes.y--;} if(mes.m>11){mes.m=0;mes.y++;} sel=null; pintaVista(L1); };
+      $("mAnt").onclick=()=>mov(-1); $("mSig").onclick=()=>mov(1);
+      const s=document.querySelector("[data-salta]"); if(s) s.onclick=()=>{ const [y,m]=s.dataset.salta.split("-"); mes={y:+y,m:+m}; sel=null; pintaVista(L1); };
+      document.querySelectorAll(".mes [data-dia]").forEach(c=>{ const ir=ev=>{ if(ev.target.closest("a")) return; sel=+c.dataset.dia;
+          document.querySelectorAll(".mes .sel").forEach(x=>x.classList.remove("sel")); c.classList.add("sel");
+          const gr=document.querySelector(`[data-grupo="${c.dataset.dia}"]`); if(!gr) return;
+          if(matchMedia("(max-width:899px)").matches) gr.scrollIntoView({behavior:reduce?"auto":"smooth",block:"start"});
+          gr.querySelectorAll(".fe").forEach(flash); };
+        c.onclick=ir; c.onkeydown=k=>{ if(k.key==="Enter"||k.key===" "){ k.preventDefault(); ir(k); } }; });
     }
-    function vuela(slug,bajar){ const m=marcas[slug]; if(!mapa||!m) return;
-      if(bajar){ const r=$("mapa").getBoundingClientRect(); if(r.top<0||r.bottom>innerHeight) $("mapa").scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"}); }
-      mapa.flyTo(m.getLatLng(),15,{duration:reduce?0:.7}); setTimeout(()=>m.openPopup(),reduce?0:700); }
-    document.querySelectorAll("[data-mapa]").forEach(b=>b.onclick=()=>vuela(b.dataset.mapa,true));
+    if(vista==="mapa") montaMapa(L1);
   }
+  // Cambiar de vista sin perder el lugar: el selector queda arriba
+  function cambia(v,slug){ vista=v; url(); const y=$("app").querySelector(".vistas").offsetTop; pinta();
+    if(scrollY>y) scrollTo({top:y,behavior:"auto"}); if(slug) setTimeout(()=>vuela(slug),60); }
+  function pintaVista(L1){ $("vista").innerHTML=calendario(L1); const y=scrollY; pinta(); scrollTo(0,y); }
+
+  function montaMapa(L1){
+    const pts=L1.filter(e=>e.mapa); if(!pts.length||!window.L||!$("mapa")) return;
+    mapa=L.map("mapa",{scrollWheelZoom:false});
+    const encuadra=()=>pts.length===1?mapa.setView(pts[0].mapa,14):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[56,56]});
+    encuadra(); planoClaro(mapa,"claro");
+    const fe=slug=>$("fe-"+slug);
+    pts.forEach(e=>{ const dia=part(e.a,{day:"2-digit"})+" "+part(e.a,{month:"short"}).replace(/\./g,"");
+      const m=marcas[e.slug]=L.marker(e.mapa,{title:e.nombre,riseOnHover:true,icon:L.divIcon({className:"pinw",iconSize:null,iconAnchor:[10,12],popupAnchor:[0,-14],
+        html:`<span class="pin" style="--c:${esc(e.color||"#DB414C")}"><i></i>${esc(dia)}</span>`})})
+      .bindPopup(`<div class="pop">${e.flyer?`<img src="${esc(e.flyer)}" alt="">`:""}<div><b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">Ver y apartar</a></div></div>`).addTo(mapa);
+      // Del mapa a la lista: tocar el pin marca su renglón
+      m.on("click",()=>{ const r=fe(e.slug); if(!r) return; r.scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest",inline:"start"}); flash(r); }); });
+    // De la lista al mapa: pasar encima resalta el pin; tocar el cartel lo ubica
+    document.querySelectorAll(".vmap .fe").forEach(r=>{ const m=marcas[r.dataset.slug]; if(!m) return;
+      const p=()=>m.getElement()&&m.getElement().querySelector(".pin");
+      r.addEventListener("mouseenter",()=>{ p()&&p().classList.add("on"); m.setZIndexOffset(1000); });
+      r.addEventListener("mouseleave",()=>{ p()&&p().classList.remove("on"); m.setZIndexOffset(0); });
+      r.querySelector(".marco,.gen").addEventListener("click",()=>vuela(r.dataset.slug)); r.querySelector(".marco,.gen").style.cursor="pointer"; });
+    // Lo que se ve en el mapa decide la lista
+    const filtra=()=>{ const b=mapa.getBounds().pad(.02); let n=0;
+      pts.forEach(e=>{ const r=fe(e.slug), dentro=b.contains(e.mapa); if(r) r.hidden=!dentro; n+=dentro; });
+      $("enVista").innerHTML=n===pts.length?`<b>${n}</b> evento${n===1?"":"s"} en el mapa`:n?`<b>${n}</b> de ${pts.length} en esta parte del mapa`:"Ningún evento en esta parte del mapa";
+      $("todos").hidden=n===pts.length; };
+    $("todos").onclick=()=>{ mapa.closePopup(); encuadra(); };
+    setTimeout(()=>{ mapa.invalidateSize(); encuadra(); mapa.on("moveend",filtra); filtra(); },0);
+  }
+  function vuela(slug){ const m=marcas[slug]; if(!mapa||!m) return;
+    mapa.flyTo(m.getLatLng(),15,{duration:reduce?0:.7}); setTimeout(()=>m.openPopup(),reduce?0:750); }
   pinta();
 })();
 </script>
