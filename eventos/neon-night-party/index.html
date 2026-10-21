@@ -2,17 +2,16 @@
 <html lang="es-MX">
 <head>
 <meta charset="utf-8">
-<!-- Muestra de la plantilla base desde _data/eventos.json. No la edites a mano. -->
+<!-- Generada por scripts/eventos.py desde _data/eventos.json. No la edites a mano. -->
 <link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
-<meta name="robots" content="noindex">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Mañana de skincare en Coyoacán · Eventos · Mi Tienda Beauty</title>
-<meta name="description" content="Página de muestra para ver cómo se ve un evento que no es de una serie.">
-<meta property="og:title" content="Mañana de skincare en Coyoacán">
-<meta property="og:description" content="Página de muestra para ver cómo se ve un evento que no es de una serie.">
-<meta property="og:url" content="https://mitienda.beauty/eventos/propuestas/base/">
+<title>Neon Night Party · Eventos · Mi Tienda Beauty</title>
+<meta name="description" content="Mat pilates, beauty, música, experiencias exclusivas, regalos y muchas sorpresas.">
+<meta property="og:title" content="Neon Night Party">
+<meta property="og:description" content="Mat pilates, beauty, música, experiencias exclusivas, regalos y muchas sorpresas.">
+<meta property="og:url" content="https://mitienda.beauty/eventos/neon-night-party/">
 <meta name="theme-color" content="#EEF0F8">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
@@ -61,8 +60,20 @@
   .mas .btn{min-height:48px;font-size:14px;font-weight:500;border-width:1px;padding:0 8px;text-align:center;line-height:1.2}
   .fin{margin-top:22px;color:var(--muted);background:var(--soft);border-radius:14px;padding:14px 16px}
   a.back{display:inline-flex;align-items:center;min-height:44px;margin:26px 0 40px;font-size:15px;color:var(--muted)}
+  .con{margin-top:10px;color:var(--muted);font-size:15px}
+  .flyer{display:block;width:100%;max-width:440px;height:auto;margin:24px auto 0;border-radius:6px;box-shadow:0 1px 2px rgba(38,42,74,.08),0 12px 32px rgba(38,42,74,.12)}
+  .apo{display:flex;flex-wrap:wrap;gap:2px 16px}.apo span{color:var(--muted);font-size:14px}.apo b{display:inline;font:700 17px var(--mono);color:var(--ink);margin-left:6px}
+  /* Con flyer: el flyer es el cartel; en cel va después de los botones, en compu a la izquierda */
+  main.fly .prin,main.fly .lado{display:contents}
+  main.fly{display:flex;flex-direction:column;gap:0}
+  main.fly .tipo{order:1}main.fly h1{order:2}main.fly .res{order:3}main.fly .con{order:4}main.fly .ficha{order:5}main.fly .acc{order:6}main.fly .mas{order:7}main.fly .fin{order:8}main.fly .flyer{order:9}main.fly .txt{order:10}main.fly>.back{order:11}
   [hidden]{display:none!important}
   @media (min-width:900px){
+    main.fly{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);grid-template-rows:repeat(19,auto) 1fr;column-gap:64px;row-gap:0;align-items:start;align-content:start;padding-top:32px}
+    main.fly .flyer{grid-column:1;grid-row:1/span 20;position:sticky;top:24px;margin:0}
+    main.fly>*,main.fly .prin>*,main.fly .lado>*{grid-column:2}
+    main.fly .flyer{grid-column:1}
+    main.fly .tipo{margin-top:0}main.fly .ficha{margin-top:22px}main.fly>.back{grid-column:1/-1}
     .col{max-width:1120px;padding-left:48px;padding-right:48px}
     .dos{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start;padding-top:24px}
     .lado{position:sticky;top:24px;padding-top:18px}.lado .ficha{margin-top:0}
@@ -81,12 +92,15 @@
   <div class="tipo" id="tipo"></div>
   <h1 id="tit"></h1>
   <p class="res" id="res"></p>
+  <p class="con" id="con" hidden></p>
+  <img class="flyer" id="flyer" alt="" hidden>
   <div class="txt" id="desc" hidden></div>
   </div><aside class="lado">
   <section class="ficha" aria-label="Cuándo y dónde">
     <div class="cuenta" id="cuenta"><b id="cN"></b><span id="cT"></span></div>
     <div class="fila"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><div><b id="dia"></b><small id="hora"></small></div></div>
     <div class="fila" id="lugarRow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><div><b id="lugar"></b><small id="zona"></small></div></div>
+    <div class="fila" id="apoRow" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 16.5V14a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg><div id="apo"></div></div>
     <div id="mapa" role="region" aria-label="Zona del evento en el mapa" hidden></div>
   </section>
   <div class="acc" id="acc"><div id="btns" class="acc" style="margin-top:0"></div><p class="aviso" id="aviso" hidden></p></div>
@@ -95,7 +109,7 @@
   </aside>
   <a class="back" href="/">← Mi Tienda Beauty</a>
 </main>
-<script id="evento" type="application/json">{"slug": "ejemplo", "titulo": "Mañana de skincare en Coyoacán", "tipo": "Taller (ejemplo)", "imagen": "/eventos/fotos/altar.jpg", "color": "#DB414C", "desde": "2026-11-14T10:00:00-06:00", "hasta": "2026-11-14T12:00:00-06:00", "zona": "Coyoacán", "lugar": "Col. Del Carmen", "mapa": [19.3496, -99.1617], "resumen": "Página de muestra para ver cómo se ve un evento que no es de una serie.", "descripcion": "Este texto es de ejemplo. Aquí va lo que se hace en el evento, qué llevar y a quién está dirigido.", "puntos": ["Trae tu neceser", "Cupo para 12 personas"], "apartar": {"whatsapp": "5215500000000"}, "url": "https://mitienda.beauty/eventos/propuestas/base/"}</script>
+<script id="evento" type="application/json">{"slug": "neon-night-party", "titulo": "Neon Night Party", "tipo": "Fiesta", "categoria": "Pilates", "flyer": "/eventos/fotos/neon-night-party.jpg", "color": "#C2185B", "desde": "2026-11-19T18:30:00-06:00", "hasta": "2026-11-19T22:30:00-06:00", "zona": "Álvaro Obregón", "lugar": "Umaah Haus", "direccion": "Fernando M. Villalpando 98, Guadalupe Inn.", "mapa": [19.3612, -99.1851], "resumen": "Mat pilates, beauty, música, experiencias exclusivas, regalos y muchas sorpresas.", "puntos": ["Dresscode: colores neón", "Cupo limitado", "Usuarias de Wellhub y TotalPass: manda DM para tu precio especial"], "aportacion": [{"etiqueta": "Precio regular", "precio": "$500"}], "colaboran": ["La Mat Party", "Catarsis"], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/neon-night-party/"}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
@@ -114,7 +128,10 @@
   $("tipo").textContent=e.tipo||""; $("tit").textContent=e.titulo; $("res").textContent=e.resumen||"";
   $("dia").textContent=mismo?may(part(a,{weekday:"long",day:"numeric",month:"long"})):`Del ${part(a,{day:"numeric",month:"long"})} al ${part(b,{day:"numeric",month:"long"})}`;
   $("hora").innerHTML=`<span class="num">${b>a?h24(a)+"–"+h24(b):h24(a)}</span> h · hora del centro de México`;
-  if(e.lugar){ $("lugar").textContent=e.lugar; $("zona").textContent=[e.zona,"Te mandamos la dirección exacta al apartar"].filter(Boolean).join(" · "); } else $("lugarRow").hidden=true;
+  if(e.lugar){ $("lugar").textContent=e.lugar; $("zona").textContent=e.direccion?[e.direccion,e.zona].filter(Boolean).join(" · "):[e.zona,"Te mandamos la dirección exacta al apartar"].filter(Boolean).join(" · "); } else $("lugarRow").hidden=true;
+  if(e.flyer){ $("flyer").src=e.flyer; $("flyer").alt="Flyer de "+e.titulo; $("flyer").hidden=false; document.querySelector("main").classList.add("fly"); $("foto").hidden=true; }
+  if((e.colaboran||[]).length){ const c=e.colaboran; $("con").textContent="Con "+(c.length>1?c.slice(0,-1).join(", ")+" y "+c.at(-1):c[0]); $("con").hidden=false; }
+  if((e.aportacion||[]).length){ $("apo").innerHTML='<div class="apo">'+e.aportacion.map(x=>`<span>${esc(x.etiqueta)}<b>${esc(x.precio)}</b></span>`).join("")+"</div>"+(e.regalo?`<small>${esc(e.regalo)}</small>`:""); $("apoRow").hidden=false; }
 
   const link=s=>esc(s).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
   const ok='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
