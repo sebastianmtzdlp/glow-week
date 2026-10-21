@@ -1,5 +1,5 @@
 {
- "_nota": "Eventos presenciales. Todos salen en mitienda.beauty/eventos (con mapa y filtro por zona). Evento suelto: /eventos/<slug>/. Si es de una serie (\"serie\": una de \"series\"), sale en /eventos/<serie>/<slug>/ y la serie tiene su página con todas las ediciones en /eventos/<serie>/. Al cambiar este archivo las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). \"mapa\" = [latitud, longitud]. \"plantilla\" elige el diseño (scripts/evento_<plantilla>.html y scripts/serie_<plantilla>.html). Opcionales: direccion (si se puede publicar), flyer (imagen del flyer completo), icono (ilustración chica, PNG sin fondo), aportacion (lista de {etiqueta, precio}), regalo, categoria (filtro con íconos), imagen, serie, edicion, lugar, zona, ciudad (solo si es fuera de CDMX; sale en el filtro \"Fuera de CDMX\" y en el pin del mapa), mapa, descripcion, puntos, colaboran, apartar, boton, color.",
+ "_nota": "Eventos presenciales. Todos salen en mitienda.beauty/eventos (con mapa y filtro por zona). Evento suelto: /eventos/<slug>/. Si es de una serie (\"serie\": una de \"series\"), sale en /eventos/<serie>/<slug>/ y la serie tiene su página con todas las ediciones en /eventos/<serie>/. Al cambiar este archivo las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). \"mapa\" = [latitud, longitud]. \"plantilla\" elige el diseño (scripts/evento_<plantilla>.html y scripts/serie_<plantilla>.html). Opcionales: direccion (si se puede publicar), flyer (imagen del flyer completo), icono (ilustración chica, PNG sin fondo), aportacion (lista de {etiqueta, precio}), regalo, categoria (filtro con íconos), imagen, serie, edicion, lugar, zona, ciudad (solo si es fuera de CDMX; sale en el filtro \"Fuera de CDMX\" y en el pin del mapa), mapa, descripcion, puntos, colaboran, apartar, boton, color, responsables (quién recibe a las interesadas: slugs de _data/equipo.json como [\"laura\", \"nancy\"], o {\"nombre\", \"whatsapp\"} si no tiene página; cada una sale como botón \"Escríbele a ...\", y un link con ?de=<slug> muestra solo a quien invitó).",
  "series": {
   "flowers-to-go": {
    "nombre": "Flowers to Go",
@@ -30,6 +30,7 @@
    "aportacion": [{"etiqueta": "Preventa", "precio": "$250"}, {"etiqueta": "Previo al evento", "precio": "$300"}],
    "regalo": "Los primeros 10 lugares se llevan un regalo sorpresa de Farmasi.",
    "colaboran": ["Verbalia Floral", "Teresita Flowers", "Nutriplus", "Cima Vision"],
+   "responsables": ["viri", "sel"],
    "apartar": {
     "whatsapp": "",
     "instagram": ""
@@ -52,6 +53,7 @@
    "puntos": ["Masterclass con maquillista profesional", "Práctica guiada", "Incluye kit con paleta de sombras y gloss", "Cupo limitado"],
    "aportacion": [{"etiqueta": "Por persona", "precio": "$899"}],
    "colaboran": ["Nalé Relax & Beauty"],
+   "responsables": ["laura", "nancy"],
    "apartar": {
     "whatsapp": "",
     "instagram": ""
@@ -74,6 +76,7 @@
    "puntos": ["Dresscode: colores neón", "Cupo limitado", "Usuarias de Wellhub y TotalPass: manda DM para tu precio especial"],
    "aportacion": [{"etiqueta": "Precio regular", "precio": "$500"}],
    "colaboran": ["La Mat Party", "Catarsis"],
+   "responsables": ["laura", "nancy"],
    "apartar": {
     "whatsapp": "",
     "instagram": ""
@@ -92,6 +95,7 @@
    "mapa": [19.427, -99.1677],
    "resumen": "Spinning al atardecer en un helipuerto, con la ciudad abajo.",
    "puntos": ["Boletos a la venta"],
+   "responsables": ["laura", "nancy"],
    "apartar": {
     "whatsapp": "",
     "instagram": ""
@@ -113,6 +117,7 @@
    "puntos": ["Master class con Lizeth Montes de Oca, makeup artist", "Tendencias de maquillaje 2027", "Prueba y compra producto Farmasi", "Información para afiliarte"],
    "aportacion": [{"etiqueta": "Costo", "precio": "$100"}],
    "colaboran": ["Lizeth Montes de Oca"],
+   "responsables": ["danny"],
    "apartar": {"whatsapp": "", "instagram": ""}
   }
  ]

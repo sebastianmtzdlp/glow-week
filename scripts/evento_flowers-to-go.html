@@ -60,6 +60,7 @@
   .osm-gris{filter:sepia(.25) grayscale(.45) contrast(.95)}
   @media (prefers-reduced-motion:reduce){.btn{transition-property:background-color,color}}
   .btn.full{grid-column:1/-1}
+  .quien{grid-column:1/-1;text-align:center;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .aviso{text-align:center;font-size:15px;margin-top:14px}
   .links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:15px}
   .links a,.links button{min-height:44px;display:inline-flex;align-items:center}
@@ -148,12 +149,20 @@
   const tick=()=>{const n=new Date(); $("st").textContent=n<a?"Faltan "+falta(a-n):n<=b?"¡Está pasando ahora!":"Esta edición ya pasó"; $("st").dataset.fin=n>b?"1":"";};
   tick(); setInterval(tick,30000);
 
-  // Apartar
-  const ap=e.apartar||{}, msg=`Hola, quiero apartar mi lugar para ${e.titulo} (${part(a,{weekday:"long",day:"numeric",month:"long"})}).`;
+  const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  // Apartar: un botón por responsable (cada una recibe a quien invitó; ?de=<slug> deja solo a esa persona)
+  const ap=e.apartar||{}, cuando=part(a,{weekday:"long",day:"numeric",month:"long"}), msg=`Hola, quiero apartar mi lugar para ${e.titulo} (${cuando}).`;
+  const rs=e.responsables||[], de=new URLSearchParams(location.search).get("de"), quien=rs.filter(r=>r.slug===de).length?rs.filter(r=>r.slug===de):rs;
   let bt="";
-  if(ap.whatsapp) bt+=`<a class="btn fill" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${String(ap.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent(msg)}">Apartar por WhatsApp</a>`;
+  if(quien.length){
+    if(quien.length>1) bt+=`<p class="quien">¿Quién te invitó?</p>`;
+    bt+=quien.map(r=>`<a class="btn${quien.length>1?"":" fill full"}" data-r="${esc(r.slug)}" target="_blank" rel="noopener" href="https://wa.me/${r.whatsapp}?text=${encodeURIComponent(`Hola ${r.nombre}, estoy interesada en el evento ${e.titulo} (${cuando}).`)}">Escríbele a ${esc(r.nombre)}</a>`).join("");
+    if(quien.length%2&&quien.length>1) bt=bt.replace(/class="btn"([^>]*)>([^<]*)<\/a>$/,'class="btn full"$1>$2</a>');
+  } else if(ap.whatsapp) bt+=`<a class="btn fill" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${String(ap.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent(msg)}">Apartar por WhatsApp</a>`;
   if(ap.instagram) bt+=`<a class="btn${ap.whatsapp?"":" fill"}" id="bIg" target="_blank" rel="noopener" href="https://ig.me/m/${encodeURIComponent(String(ap.instagram).replace(/^@/,""))}">DM en Instagram</a>`;
-  $("btns").innerHTML=bt; if(bt){ if(!(ap.whatsapp&&ap.instagram)) $("btns").firstElementChild.classList.add("full"); $("aviso").hidden=true; }
+  $("btns").innerHTML=bt; if(bt&&!quien.length){ if(!(ap.whatsapp&&ap.instagram)) $("btns").firstElementChild.classList.add("full"); $("aviso").hidden=true; }
+  if(quien.length) $("aviso").hidden=true;
+  $("btns").querySelectorAll("[data-r]").forEach(x=>x.onclick=()=>gc("whatsapp-"+x.dataset.r,x.textContent));
   $("bWa")&&($("bWa").onclick=()=>gc("apartar-whatsapp","Apartar por WhatsApp")); $("bIg")&&($("bIg").onclick=()=>gc("apartar-instagram","Apartar por Instagram"));
   if(new Date()>b){ $("btns").hidden=true; $("aviso").hidden=true; }
 

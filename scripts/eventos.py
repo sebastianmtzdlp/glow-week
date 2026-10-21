@@ -31,6 +31,8 @@ BASE = "https://mitienda.beauty/"
 data = json.loads(DATOS.read_text(encoding="utf-8"))
 series = {k: v for k, v in data.get("series", {}).items() if not k.startswith("_")}
 eventos = data["eventos"]
+# Números de WhatsApp: los de cada consultora viven en _data/equipo.json
+EQUIPO = {c["slug"]: c for c in json.loads((ROOT / "_data" / "equipo.json").read_text(encoding="utf-8"))["consultoras"]}
 
 
 def valida(s):
@@ -43,6 +45,23 @@ def plantilla(tipo, nombre):
     if not p.exists():
         raise SystemExit(f"No existe la plantilla {p.relative_to(ROOT)}")
     return p.read_text(encoding="utf-8")
+
+
+def responsables(e):
+    """"responsables": slugs de _data/equipo.json o {"nombre", "whatsapp"} para quien no tiene página.
+    Cada una sale como botón "Escríbele a <nombre>"; sin número no sale botón."""
+    out = []
+    for r in e.get("responsables") or []:
+        c = EQUIPO.get(r) if isinstance(r, str) else r
+        if c is None:
+            raise SystemExit(f"El evento {e['slug']!r} pide a {r!r}, que no está en _data/equipo.json")
+        wa = re.sub(r"\D", "", c.get("whatsapp") or "")
+        slug = c.get("slug") or re.sub(r"[^a-z0-9]+", "-", c["nombre"].lower()).strip("-")
+        if wa:
+            out.append({"slug": slug, "nombre": c["nombre"], "whatsapp": wa})
+        else:
+            print(f"aviso: {e['slug']}: {c['nombre']} no tiene WhatsApp, no sale su botón")
+    return out
 
 
 def escribe(destino, tpl, titulo, resumen, datos):
@@ -82,7 +101,7 @@ for k, sv in series.items():
 
 for e in eventos:
     sv = series.get(e.get("serie"), {})
-    datos = {k: v for k, v in e.items() if k != "_destino"} | {"url": BASE + e["_destino"] + "/"}
+    datos = {k: v for k, v in e.items() if k != "_destino"} | {"url": BASE + e["_destino"] + "/", "responsables": responsables(e)}
     if sv:
         datos |= {"serie_nombre": sv["nombre"], "serie_url": f"/eventos/{e['serie']}/"}
     escribe(e["_destino"], plantilla("evento", e.get("plantilla") or sv.get("plantilla")),

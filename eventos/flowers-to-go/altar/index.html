@@ -60,6 +60,7 @@
   .osm-gris{filter:sepia(.25) grayscale(.45) contrast(.95)}
   @media (prefers-reduced-motion:reduce){.btn{transition-property:background-color,color}}
   .btn.full{grid-column:1/-1}
+  .quien{grid-column:1/-1;text-align:center;font-size:12px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
   .aviso{text-align:center;font-size:15px;margin-top:14px}
   .links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:15px}
   .links a,.links button{min-height:44px;display:inline-flex;align-items:center}
@@ -115,7 +116,7 @@
   <div class="links"><a id="gcal" target="_blank" rel="noopener">Google Calendar</a><button id="ics">Calendario del cel</button><a id="share" target="_blank" rel="noopener">Compartir</a></div>
   <a class="back" href="/eventos/">← Todos los eventos</a>
 </div>
-<script id="evento" type="application/json">{"serie": "flowers-to-go", "slug": "altar", "edicion": "Altar", "titulo": "Flowers to Go · Edición Altar", "tipo": "Taller", "categoria": "Flores", "imagen": "/eventos/fotos/altar.jpg", "flyer": "/eventos/fotos/altar-flyer.jpg", "icono": "/eventos/fotos/altar-ramo.png", "color": "#A6461F", "desde": "2026-10-31T11:00:00-06:00", "hasta": "2026-10-31T13:00:00-06:00", "zona": "Benito Juárez", "lugar": "Col. Nápoles", "mapa": [19.3937, -99.177], "resumen": "Una mañana de pan, cafecito y un ramo para tu altar.", "aportacion": [{"etiqueta": "Preventa", "precio": "$250"}, {"etiqueta": "Previo al evento", "precio": "$300"}], "regalo": "Los primeros 10 lugares se llevan un regalo sorpresa de Farmasi.", "colaboran": ["Verbalia Floral", "Teresita Flowers", "Nutriplus", "Cima Vision"], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/flowers-to-go/altar/", "serie_nombre": "Flowers to Go", "serie_url": "/eventos/flowers-to-go/"}</script>
+<script id="evento" type="application/json">{"serie": "flowers-to-go", "slug": "altar", "edicion": "Altar", "titulo": "Flowers to Go · Edición Altar", "tipo": "Taller", "categoria": "Flores", "imagen": "/eventos/fotos/altar.jpg", "flyer": "/eventos/fotos/altar-flyer.jpg", "icono": "/eventos/fotos/altar-ramo.png", "color": "#A6461F", "desde": "2026-10-31T11:00:00-06:00", "hasta": "2026-10-31T13:00:00-06:00", "zona": "Benito Juárez", "lugar": "Col. Nápoles", "mapa": [19.3937, -99.177], "resumen": "Una mañana de pan, cafecito y un ramo para tu altar.", "aportacion": [{"etiqueta": "Preventa", "precio": "$250"}, {"etiqueta": "Previo al evento", "precio": "$300"}], "regalo": "Los primeros 10 lugares se llevan un regalo sorpresa de Farmasi.", "colaboran": ["Verbalia Floral", "Teresita Flowers", "Nutriplus", "Cima Vision"], "responsables": [{"slug": "viri", "nombre": "Viri", "whatsapp": "525517970538"}, {"slug": "sel", "nombre": "Selene", "whatsapp": "525541456984"}], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/flowers-to-go/altar/", "serie_nombre": "Flowers to Go", "serie_url": "/eventos/flowers-to-go/"}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"></script>
@@ -148,12 +149,20 @@
   const tick=()=>{const n=new Date(); $("st").textContent=n<a?"Faltan "+falta(a-n):n<=b?"¡Está pasando ahora!":"Esta edición ya pasó"; $("st").dataset.fin=n>b?"1":"";};
   tick(); setInterval(tick,30000);
 
-  // Apartar
-  const ap=e.apartar||{}, msg=`Hola, quiero apartar mi lugar para ${e.titulo} (${part(a,{weekday:"long",day:"numeric",month:"long"})}).`;
+  const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  // Apartar: un botón por responsable (cada una recibe a quien invitó; ?de=<slug> deja solo a esa persona)
+  const ap=e.apartar||{}, cuando=part(a,{weekday:"long",day:"numeric",month:"long"}), msg=`Hola, quiero apartar mi lugar para ${e.titulo} (${cuando}).`;
+  const rs=e.responsables||[], de=new URLSearchParams(location.search).get("de"), quien=rs.filter(r=>r.slug===de).length?rs.filter(r=>r.slug===de):rs;
   let bt="";
-  if(ap.whatsapp) bt+=`<a class="btn fill" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${String(ap.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent(msg)}">Apartar por WhatsApp</a>`;
+  if(quien.length){
+    if(quien.length>1) bt+=`<p class="quien">¿Quién te invitó?</p>`;
+    bt+=quien.map(r=>`<a class="btn${quien.length>1?"":" fill full"}" data-r="${esc(r.slug)}" target="_blank" rel="noopener" href="https://wa.me/${r.whatsapp}?text=${encodeURIComponent(`Hola ${r.nombre}, estoy interesada en el evento ${e.titulo} (${cuando}).`)}">Escríbele a ${esc(r.nombre)}</a>`).join("");
+    if(quien.length%2&&quien.length>1) bt=bt.replace(/class="btn"([^>]*)>([^<]*)<\/a>$/,'class="btn full"$1>$2</a>');
+  } else if(ap.whatsapp) bt+=`<a class="btn fill" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${String(ap.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent(msg)}">Apartar por WhatsApp</a>`;
   if(ap.instagram) bt+=`<a class="btn${ap.whatsapp?"":" fill"}" id="bIg" target="_blank" rel="noopener" href="https://ig.me/m/${encodeURIComponent(String(ap.instagram).replace(/^@/,""))}">DM en Instagram</a>`;
-  $("btns").innerHTML=bt; if(bt){ if(!(ap.whatsapp&&ap.instagram)) $("btns").firstElementChild.classList.add("full"); $("aviso").hidden=true; }
+  $("btns").innerHTML=bt; if(bt&&!quien.length){ if(!(ap.whatsapp&&ap.instagram)) $("btns").firstElementChild.classList.add("full"); $("aviso").hidden=true; }
+  if(quien.length) $("aviso").hidden=true;
+  $("btns").querySelectorAll("[data-r]").forEach(x=>x.onclick=()=>gc("whatsapp-"+x.dataset.r,x.textContent));
   $("bWa")&&($("bWa").onclick=()=>gc("apartar-whatsapp","Apartar por WhatsApp")); $("bIg")&&($("bIg").onclick=()=>gc("apartar-instagram","Apartar por Instagram"));
   if(new Date()>b){ $("btns").hidden=true; $("aviso").hidden=true; }
 
