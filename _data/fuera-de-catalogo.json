@@ -1,6 +1,6 @@
 {
  "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
- "actualizado": "2026-10-20",
+ "actualizado": "2026-10-21",
  "grupos": [
   {
    "titulo": "Edición limitada y de temporada",
@@ -294,11 +294,6 @@
     [
      "1000241",
      "Bálsamo Hidratante Arándanos",
-     80.5
-    ],
-    [
-     "1000242",
-     "Perfecting Balm Aloe Pleasure",
      80.5
     ],
     [
