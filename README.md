@@ -1,6 +1,6 @@
 # mitienda.beauty · Tableros de ventas Farmasi
 
-Un tablero por consultora, cada una en su carpeta. Se publica solo (GitHub Pages en mitienda.beauty; Netlify en glow-week.netlify.app como respaldo) cada vez que cambia este repositorio.
+Un tablero por consultora, cada una en su carpeta. Se publica solo con GitHub Pages en mitienda.beauty cada vez que cambia `main`.
 
 - `mitienda.beauty` — portada del equipo: lista de consultoras.
 - `mitienda.beauty/<slug>` — tablero de cada una (`/sel`, `/nancy`, `/silvia`, `/elda`, `/pao`, …). Cada tablero tiene su `catalogo/`.
@@ -12,7 +12,7 @@ Un tablero por consultora, cada una en su carpeta. Se publica solo (GitHub Pages
 - `_template/` — el diseño del tablero y del catálogo. `build.py` lo copia a cada carpeta; nunca edites el `index.html` de una carpeta directamente.
 - `_data/catalogo-farmasi.json` — precios del catálogo; `_data/catalogo.json` — precios base.
 
-Raíz: `index.html` (portada), `CNAME` (dominio), `netlify.toml` (respaldo en glow-week.netlify.app).
+Raíz: `index.html` (portada), `CNAME` (dominio), `catalogo/` y `catalogo.html` (links viejos que mandan a `/sel/catalogo/`).
 
 ## Cómo se marca cada cosa en `promos.json`
 - **Precio con promo:** `"retail"` = precio base, `"price"` = precio con descuento.
