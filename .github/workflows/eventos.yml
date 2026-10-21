@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths: ["_data/eventos.json", "scripts/eventos.py", "scripts/evento_*.html"]
+    paths: ["_data/eventos.json", "scripts/eventos.py", "scripts/evento_*.html", "scripts/serie_*.html"]
 
 permissions:
   contents: write

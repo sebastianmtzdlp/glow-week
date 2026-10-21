@@ -1,11 +1,16 @@
 {
- "_nota": "Eventos presenciales. Todos salen en mitienda.beauty/eventos (con mapa y filtro por zona). Cada uno tiene su página en /eventos/<slug>/, o en /<ruta>/ si le pones \"ruta\". Al cambiar este archivo las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). \"mapa\" = [latitud, longitud]. \"plantilla\" elige el diseño (scripts/evento_<plantilla>.html); sin ella se usa el diseño general. Opcionales: ruta, serie, edicion, lugar, mapa, descripcion, puntos, colaboran, apartar, boton, color.",
+ "_nota": "Eventos presenciales. Todos salen en mitienda.beauty/eventos (con mapa y filtro por zona). Evento suelto: /eventos/<slug>/. Si es de una serie (\"serie\": una de \"series\"), sale en /eventos/<serie>/<slug>/ y la serie tiene su página con todas las ediciones en /eventos/<serie>/. Al cambiar este archivo las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). \"mapa\" = [latitud, longitud]. \"plantilla\" elige el diseño (scripts/evento_<plantilla>.html y scripts/serie_<plantilla>.html). Opcionales: serie, edicion, lugar, zona, mapa, descripcion, puntos, colaboran, apartar, boton, color.",
+ "series": {
+  "flowers-to-go": {
+   "nombre": "Flowers to Go",
+   "plantilla": "flowers-to-go",
+   "color": "#A6461F"
+  }
+ },
  "eventos": [
   {
+   "serie": "flowers-to-go",
    "slug": "altar",
-   "ruta": "flowers-to-go",
-   "plantilla": "flowers-to-go",
-   "serie": "Flowers to Go",
    "edicion": "Altar",
    "titulo": "Flowers to Go · Edición Altar",
    "tipo": "Taller",

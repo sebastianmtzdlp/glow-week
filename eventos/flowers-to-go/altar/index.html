@@ -11,13 +11,13 @@
 <meta name="description" content="Una mañana de pan, cafecito y un ramo para tu altar.">
 <meta property="og:title" content="Flowers to Go · Edición Altar">
 <meta property="og:description" content="Una mañana de pan, cafecito y un ramo para tu altar.">
-<meta property="og:url" content="https://mitienda.beauty/flowers-to-go/">
+<meta property="og:url" content="https://mitienda.beauty/eventos/flowers-to-go/altar/">
 <meta name="theme-color" content="#F4EFE6">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
-  :root{--bg:#EAE2D4;--paper:#F4EFE6;--ink:#2A2420;--muted:#6B6158;--line:#C9BDA9;--terra:#A6461F;--terra-d:#7E3415}
+  :root{--bg:#EAE2D4;--paper:#F4EFE6;--ink:#2A2420;--muted:#6B6158;--line:#C9BDA9;--terra:#A6461F;--terra-d:#7E3415;--flor:#D9792B}
   *{box-sizing:border-box;margin:0}
   body{background:var(--bg);color:var(--ink);font-family:Jost,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
   .wrap{max-width:480px;margin:0 auto;padding:18px 16px 56px}
@@ -31,6 +31,7 @@
   .flyer .ed{font-weight:500;font-size:clamp(20px,6.4vw,26px)}
   .rule{width:48px;height:1px;background:var(--line);margin:14px auto}
   .flyer .lead{font-size:17px;max-width:300px;margin:0 auto}
+  .flores .pet{fill:var(--flor);stroke:color-mix(in srgb,var(--flor),#000 12%)}.flores .cen{fill:color-mix(in srgb,var(--flor),#fff 25%)}.flores .ojo{fill:color-mix(in srgb,var(--flor),#000 30%)}
   .flores{display:block;width:210px;max-width:62%;height:auto;margin:10px auto 6px}
   .fecha{display:flex;align-items:center;justify-content:center;gap:16px}
   .fecha span{font-size:13px;font-weight:500;letter-spacing:.26em}
@@ -55,7 +56,7 @@
 </head>
 <body>
 <div class="wrap">
-  <a class="top" href="/eventos/">← Todos los eventos</a>
+  <a class="top" href="/eventos/" id="volver">← Todos los eventos</a>
   <section class="flyer">
     <div class="inv caps">Te invitamos a</div>
     <h1 class="serif" id="serie"></h1>
@@ -64,13 +65,13 @@
     <p class="lead" id="res"></p>
     <svg class="flores" viewBox="0 0 200 220" aria-hidden="true">
       <g stroke="#6E7B4F" stroke-width="2" fill="none"><path d="M100 215 L72 62"/><path d="M100 215 L128 72"/><path d="M100 215 L46 122"/><path d="M100 215 L158 112"/><path d="M100 215 L100 132"/><path d="M100 215 L78 108"/><path d="M100 215 L140 145"/></g>
-      <g stroke="#C4621F" stroke-dasharray="3 2.5">
-        <circle cx="72" cy="62" r="22" fill="#D9792B" stroke-width="6"/><circle cx="128" cy="72" r="22" fill="#D9792B" stroke-width="6"/>
-        <circle cx="46" cy="122" r="18" fill="#D9792B" stroke-width="5"/><circle cx="158" cy="112" r="18" fill="#D9792B" stroke-width="5"/>
-        <circle cx="100" cy="132" r="24" fill="#D9792B" stroke-width="6"/><circle cx="78" cy="108" r="11" fill="#D9792B" stroke-width="4"/><circle cx="140" cy="145" r="13" fill="#D9792B" stroke-width="4"/>
+      <g class="pet" stroke-dasharray="3 2.5">
+        <circle cx="72" cy="62" r="22" stroke-width="6"/><circle cx="128" cy="72" r="22" stroke-width="6"/>
+        <circle cx="46" cy="122" r="18" stroke-width="5"/><circle cx="158" cy="112" r="18" stroke-width="5"/>
+        <circle cx="100" cy="132" r="24" stroke-width="6"/><circle cx="78" cy="108" r="11" stroke-width="4"/><circle cx="140" cy="145" r="13" stroke-width="4"/>
       </g>
-      <g fill="#E99A45"><circle cx="72" cy="62" r="12"/><circle cx="128" cy="72" r="12"/><circle cx="46" cy="122" r="10"/><circle cx="158" cy="112" r="10"/><circle cx="100" cy="132" r="13"/></g>
-      <g fill="#B4521C"><circle cx="72" cy="62" r="5"/><circle cx="128" cy="72" r="5"/><circle cx="46" cy="122" r="4"/><circle cx="158" cy="112" r="4"/><circle cx="100" cy="132" r="5"/><circle cx="78" cy="108" r="5"/><circle cx="140" cy="145" r="5"/></g>
+      <g class="cen"><circle cx="72" cy="62" r="12"/><circle cx="128" cy="72" r="12"/><circle cx="46" cy="122" r="10"/><circle cx="158" cy="112" r="10"/><circle cx="100" cy="132" r="13"/></g>
+      <g class="ojo"><circle cx="72" cy="62" r="5"/><circle cx="128" cy="72" r="5"/><circle cx="46" cy="122" r="4"/><circle cx="158" cy="112" r="4"/><circle cx="100" cy="132" r="5"/><circle cx="78" cy="108" r="5"/><circle cx="140" cy="145" r="5"/></g>
     </svg>
     <div class="fecha"><span id="dia"></span><i></i><b id="num"></b><i></i><span id="mes"></span></div>
     <div class="hora" id="hora"></div>
@@ -86,7 +87,7 @@
   <div class="links"><a id="gcal" target="_blank" rel="noopener">Google Calendar</a><button id="ics">Calendario del cel</button><a id="share" target="_blank" rel="noopener">Compartir</a></div>
   <a class="back" href="/">← Volver a Mi Tienda Beauty</a>
 </div>
-<script id="evento" type="application/json">{"slug": "altar", "ruta": "flowers-to-go", "plantilla": "flowers-to-go", "serie": "Flowers to Go", "edicion": "Altar", "titulo": "Flowers to Go · Edición Altar", "tipo": "Taller", "color": "#A6461F", "desde": "2026-10-31T11:00:00-06:00", "hasta": "2026-10-31T13:00:00-06:00", "zona": "Benito Juárez", "lugar": "Col. Nápoles", "mapa": [19.3937, -99.177], "resumen": "Una mañana de pan, cafecito y un ramo para tu altar.", "colaboran": ["Teresita Flwrs", "Nutriplus", "Cima Vision"], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/flowers-to-go/"}</script>
+<script id="evento" type="application/json">{"serie": "flowers-to-go", "slug": "altar", "edicion": "Altar", "titulo": "Flowers to Go · Edición Altar", "tipo": "Taller", "color": "#A6461F", "desde": "2026-10-31T11:00:00-06:00", "hasta": "2026-10-31T13:00:00-06:00", "zona": "Benito Juárez", "lugar": "Col. Nápoles", "mapa": [19.3937, -99.177], "resumen": "Una mañana de pan, cafecito y un ramo para tu altar.", "colaboran": ["Teresita Flwrs", "Nutriplus", "Cima Vision"], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/flowers-to-go/altar/", "serie_nombre": "Flowers to Go", "serie_url": "/eventos/flowers-to-go/"}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
@@ -97,7 +98,11 @@
   const hora=d=>part(d,{hour:"numeric",minute:"2-digit",hour12:true}).replace(":00","").replace(/\s*([ap])\.?\s*m\.?/i," $1. m.");
   const gc=(p,t)=>{const go=()=>{try{window.goatcounter.count({path:"eventos/"+e.slug+"/"+p,title:t,event:true})}catch(_){}};if(window.goatcounter&&window.goatcounter.count)go();else window.addEventListener("load",()=>setTimeout(go,300));};
 
-  $("serie").textContent=e.serie||e.titulo; $("ed").textContent=e.edicion?"Edición "+e.edicion:"";
+  // Cada edición puede tener sus colores: "color" (letras y botones) y "flor" (el ramo)
+  if(e.color) document.documentElement.style.setProperty("--terra",e.color);
+  if(e.flor) document.documentElement.style.setProperty("--flor",e.flor);
+  if(e.serie_url){ $("volver").href=e.serie_url; $("volver").textContent="← Todas las ediciones de "+e.serie_nombre; }
+  $("serie").textContent=e.serie_nombre||e.titulo; $("ed").textContent=e.edicion?"Edición "+e.edicion:"";
   $("res").textContent=e.resumen||"";
   $("dia").textContent=part(a,{weekday:"long"}).toUpperCase(); $("num").textContent=part(a,{day:"numeric"}); $("mes").textContent=part(a,{month:"long"}).toUpperCase();
   $("hora").textContent="De "+hora(a)+(b>a?" a "+hora(b):"");
@@ -122,7 +127,7 @@
   if(e.mapa&&window.L){ $("mapa").hidden=false;
     const m=L.map("mapa",{scrollWheelZoom:false,attributionControl:true}).setView(e.mapa,15);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
-    L.circle(e.mapa,{radius:250,color:"#A6461F",weight:2,fillColor:"#D9792B",fillOpacity:.25}).addTo(m); }
+    L.circle(e.mapa,{radius:250,color:e.color||"#A6461F",weight:2,fillColor:e.flor||"#D9792B",fillOpacity:.25}).addTo(m); }
 
   // Calendario y compartir
   const utc=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""), fin=b>a?b:new Date(+a+36e5);

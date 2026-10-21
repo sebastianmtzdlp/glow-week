@@ -39,7 +39,7 @@
 </head>
 <body>
 <div class="wrap">
-  <a class="top" href="/eventos/">← Todos los eventos</a>
+  <a class="top" href="/eventos/" id="volver">← Todos los eventos</a>
   <section class="hero" id="hero"><div class="eb" id="tipo"></div><h1 id="tit"></h1><p id="res"></p><span class="st" id="st"></span></section>
   <div class="card">
     <div class="row"><i>📅</i><div id="cuando"></div></div>
@@ -51,7 +51,7 @@
   <a class="btn alt" id="share" target="_blank" rel="noopener">Compartir por WhatsApp</a>
   <a class="back" href="/">← Volver a Mi Tienda Beauty</a>
 </div>
-<script id="evento" type="application/json">{{EVENTO_JSON}}</script>
+<script id="evento" type="application/json">{{DATOS_JSON}}</script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (()=>{
@@ -61,6 +61,7 @@
   const a=new Date(e.desde), b=new Date(e.hasta||e.desde), mismo=part(a,{dateStyle:"short"})===part(b,{dateStyle:"short"});
   const hora=d=>part(d,{hour:"numeric",minute:"2-digit"});
   const gc=(p,t)=>{const go=()=>{try{window.goatcounter.count({path:"eventos/"+e.slug+"/"+p,title:t,event:true})}catch(_){}};if(window.goatcounter&&window.goatcounter.count)go();else window.addEventListener("load",()=>setTimeout(go,300));};
+  if(e.serie_url){ $("volver").href=e.serie_url; $("volver").textContent="← "+e.serie_nombre; }
   if(e.color) $("hero").style.setProperty("--c",e.color);
   $("tipo").textContent=e.tipo||"Evento"; $("tit").textContent=e.titulo; $("res").textContent=e.resumen||"";
   $("cuando").innerHTML=mismo

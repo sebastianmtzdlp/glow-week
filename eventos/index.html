@@ -61,7 +61,7 @@
     return part(a,{month:"long"})===part(b,{month:"long"})?part(a,{day:"numeric"})+" al "+dia(b):dia(a)+" al "+dia(b);};
   let E=[];
   try{ E=(await (await fetch("../_data/eventos.json?v="+Date.now())).json()).eventos||[]; }catch(_){}
-  const now=new Date(), ev=E.map(e=>({...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde),href:"/"+(e.ruta||"eventos/"+e.slug)+"/"}));
+  const now=new Date(), ev=E.map(e=>({...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde),href:"/eventos/"+(e.serie?e.serie+"/":"")+e.slug+"/"}));
   const vivos=ev.filter(e=>e.b>=now), zonas=[...new Set(vivos.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
   let zona=new URLSearchParams(location.search).get("zona")||"";
   if(!zonas.includes(zona)) zona="";
