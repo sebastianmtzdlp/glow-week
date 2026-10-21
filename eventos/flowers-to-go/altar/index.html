@@ -56,6 +56,7 @@
   .btn:active{transform:scale(.97)}
   @media (hover:hover) and (pointer:fine){.btn:hover{background:color-mix(in srgb,var(--terra),transparent 90%)}.btn.fill:hover{background:var(--terra-d)}a.top:hover,a.back:hover{color:var(--terra)}}
   .leaflet-container{font-family:inherit}
+  .leaflet-tile-pane{filter:sepia(.25) grayscale(.45) contrast(.95)}
   @media (prefers-reduced-motion:reduce){.btn{transition-property:background-color,color}}
   .btn.full{grid-column:1/-1}
   .aviso{text-align:center;font-size:15px;margin-top:14px}
@@ -155,7 +156,7 @@
   // Mapa (zona aproximada; la dirección exacta se manda al apartar)
   if(e.mapa&&window.L){ $("mapa").hidden=false;
     const m=L.map("mapa",{scrollWheelZoom:false,attributionControl:true}).setView(e.mapa,15);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{maxZoom:19,subdomains:"abcd",attribution:"© OpenStreetMap · © CARTO"}).addTo(m);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
     L.circle(e.mapa,{radius:250,color:e.color||"#A6461F",weight:2,fillColor:e.flor||"#D9792B",fillOpacity:.25}).addTo(m); }
 
   // Calendario y compartir
