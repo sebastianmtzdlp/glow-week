@@ -1,5 +1,5 @@
 {
- "_nota": "Eventos presenciales. Todos salen en mitienda.beauty/eventos (con mapa y filtro por zona). Evento suelto: /eventos/<slug>/. Si es de una serie (\"serie\": una de \"series\"), sale en /eventos/<serie>/<slug>/ y la serie tiene su página con todas las ediciones en /eventos/<serie>/. Al cambiar este archivo las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). \"mapa\" = [latitud, longitud]. \"plantilla\" elige el diseño (scripts/evento_<plantilla>.html y scripts/serie_<plantilla>.html). Opcionales: direccion (si se puede publicar), flyer (imagen del flyer completo), icono (ilustración chica, PNG sin fondo), aportacion (lista de {etiqueta, precio}), regalo, categoria (filtro con íconos), imagen, serie, edicion, lugar, zona, mapa, descripcion, puntos, colaboran, apartar, boton, color.",
+ "_nota": "Eventos presenciales. Todos salen en mitienda.beauty/eventos (con mapa y filtro por zona). Evento suelto: /eventos/<slug>/. Si es de una serie (\"serie\": una de \"series\"), sale en /eventos/<serie>/<slug>/ y la serie tiene su página con todas las ediciones en /eventos/<serie>/. Al cambiar este archivo las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). \"mapa\" = [latitud, longitud]. \"plantilla\" elige el diseño (scripts/evento_<plantilla>.html y scripts/serie_<plantilla>.html). Opcionales: direccion (si se puede publicar), flyer (imagen del flyer completo), icono (ilustración chica, PNG sin fondo), aportacion (lista de {etiqueta, precio}), regalo, categoria (filtro con íconos), imagen, serie, edicion, lugar, zona, ciudad (solo si es fuera de CDMX; sale en el filtro \"Fuera de CDMX\" y en el pin del mapa), mapa, descripcion, puntos, colaboran, apartar, boton, color.",
  "series": {
   "flowers-to-go": {
    "nombre": "Flowers to Go",
@@ -105,6 +105,7 @@
    "flyer": "/eventos/fotos/master-class-tendencias-2027.jpg",
    "color": "#8C7560",
    "desde": "2026-10-25T11:00:00-06:00",
+   "ciudad": "Tizayuca",
    "zona": "Tizayuca, Hidalgo",
    "lugar": "Tizayuca Centro",
    "mapa": [19.8378, -98.9817],

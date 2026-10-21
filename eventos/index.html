@@ -35,7 +35,7 @@
 
   .pag{max-width:1280px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px));
     display:grid;grid-template-columns:minmax(0,1fr);gap:44px;grid-template-areas:"intro" "dest" "muro" "mapa" "pie"}
-  .intro{grid-area:intro}.dest{grid-area:dest}.muro{grid-area:muro}.mapa{grid-area:mapa}.pie{grid-area:pie}
+  .intro{grid-area:intro}.dest{grid-area:dest}.muro{grid-area:muro}.mapa{grid-area:mapa;position:relative}.pie{grid-area:pie}
   h1{font-size:clamp(56px,10.5vw,132px);font-weight:800;line-height:.88;letter-spacing:-.035em;margin-top:12px}
   .intro>p{font-size:18px;color:var(--muted);max-width:36ch;margin-top:16px}
   .filtro{margin-top:20px;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
@@ -105,6 +105,8 @@
     box-shadow:0 1px 2px rgba(38,42,74,.18),0 4px 14px rgba(38,42,74,.14);transform-origin:10px 50%;transition:transform 200ms var(--ease)}
   .pin i{width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--c)}
   .pin.on{transform:scale(1.18)}
+  .afuera{position:absolute;right:12px;top:12px;z-index:500;min-height:40px;padding:0 14px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font:600 14px var(--sans);cursor:pointer;box-shadow:0 2px 10px rgba(38,42,74,.1);transition:transform 160ms var(--ease)}
+  .afuera:active{transform:scale(.97)}
   .leaflet-popup-content{font-size:14px;line-height:1.4;margin:12px 14px}
   .leaflet-popup-content a{color:var(--accent-t);font-weight:600}
   .pop{display:flex;gap:10px;align-items:flex-start;min-width:200px}.pop img{flex:none;width:54px;height:68px;object-fit:cover;border-radius:3px}
@@ -157,8 +159,17 @@
     nombre:e.serie&&s.nombre?s.nombre+(e.edicion?" · "+e.edicion:""):e.titulo,serieN:s.nombre||"",
     href:"/eventos/"+(e.serie?e.serie+"/":"")+e.slug+"/"};});
   const vivos=ev.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a), pasados=ev.filter(e=>e.b<now).sort((x,y)=>y.a-x.a);
-  const zonas=[...new Set(vivos.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
-  const q=new URLSearchParams(location.search); let zona=zonas.includes(q.get("zona"))?q.get("zona"):"", mes=null, mapa=null, marcas={};
+  // Filtro por ciudad y luego por zona: "cdmx" y "fuera" agrupan; lo demás es una zona exacta
+  const unicas=a=>[...new Set(a.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
+  const zCdmx=unicas(vivos.filter(e=>!e.ciudad)), zFuera=unicas(vivos.filter(e=>e.ciudad)), zonas=[...zCdmx,...zFuera];
+  const valida=z=>z==="cdmx"&&zCdmx.length||z==="fuera"&&zFuera.length||zonas.includes(z);
+  const q=new URLSearchParams(location.search); let zona=valida(q.get("zona"))?q.get("zona"):"", mes=null, mapa=null, marcas={};
+  const pasa=e=>!zona||(zona==="cdmx"?!e.ciudad:zona==="fuera"?!!e.ciudad:e.zona===zona);
+  const opc=(v,t)=>`<option value="${esc(v)}"${v===zona?" selected":""}>${esc(t)}</option>`;
+  const selector=()=>`<select id="zona">${opc("","todas las zonas")}${zFuera.length&&zCdmx.length
+    ?`<optgroup label="Ciudad de México">${opc("cdmx","toda la CDMX")}${zCdmx.map(z=>opc(z,z)).join("")}</optgroup><optgroup label="Fuera de CDMX">${opc("fuera","todo fuera de CDMX")}${zFuera.map(z=>opc(z,z)).join("")}</optgroup>`
+    :zonas.map(z=>opc(z,z)).join("")}</select>`;
+  const nomZona=()=>zona==="cdmx"?"la CDMX":zona==="fuera"?"fuera de CDMX":zona;
   const lugar=e=>[e.lugar,e.zona].filter(Boolean).join(" · ");
   const cartel=e=>e.flyer
     ? `<div class="marco" style="--img:url('${esc(e.flyer)}')"><img src="${esc(e.flyer)}" alt="Flyer de ${esc(e.nombre)}" loading="lazy"></div>`
@@ -178,11 +189,11 @@
 
   function pinta(){
     if(mapa){ mapa.remove(); mapa=null; marcas={}; }
-    const L1=vivos.filter(e=>!zona||e.zona===zona), d=L1[0], resto=L1.slice(1), se=Object.entries(S).filter(([k])=>!k.startsWith("_"));
+    const L1=vivos.filter(pasa), d=L1[0], resto=L1.slice(1), se=Object.entries(S).filter(([k])=>!k.startsWith("_"));
     $("app").innerHTML=`
       <div class="intro"><div class="marca">EQUIPO SVH</div><h1>Eventos</h1>
         <p>Talleres, clases y fiestas en persona, en la Ciudad de México y alrededores. Entra al que te guste y aparta tu lugar.</p>
-        ${zonas.length?`<label class="filtro" for="zona">Ver eventos en <select id="zona">${["",...zonas].map(z=>`<option value="${esc(z)}"${z===zona?" selected":""}>${esc(z||"todas las zonas")}</option>`).join("")}</select></label>`:""}
+        ${zonas.length?`<label class="filtro" for="zona">Ver eventos en ${selector()}</label>`:""}
         ${L1.length?calendario(L1):""}</div>
       ${d?`<section class="dest post" id="ev-${esc(d.slug)}" aria-label="Próximo evento"><a class="press" href="${esc(d.href)}" aria-label="${esc(d.nombre)}">${cartel(d)}</a>
         <div class="info"><div class="eti">${esc(cuando(d.a))} · ${esc(part(d.a,{weekday:"long"}))}</div>
@@ -192,7 +203,7 @@
           ${(d.aportacion||[]).length?`<div class="apo">${d.aportacion.map(x=>`<span>${esc(x.etiqueta)} <b class="num">${esc(x.precio)}</b></span>`).join("")}</div>`:""}
           ${d.regalo?`<p class="reg">${esc(d.regalo)}</p>`:""}${(d.colaboran||[]).length?`<div class="con">Con ${esc(lista_y(d.colaboran))}</div>`:""}
           <a class="go press" href="${esc(d.href)}">Ver y apartar <span aria-hidden="true">→</span></a></div></section>`
-        :`<p class="vacio dest">${zona?"No hay eventos en "+esc(zona)+" por ahora. Prueba con todas las zonas.":"Pronto anunciamos el siguiente evento."}</p>`}
+        :`<p class="vacio dest">${zona?"No hay eventos en "+esc(nomZona())+" por ahora. Prueba con todas las zonas.":"Pronto anunciamos el siguiente evento."}</p>`}
       <div class="muro">${resto.map(e=>`<article class="post" id="ev-${esc(e.slug)}"><a class="press" href="${esc(e.href)}">${cartel(e)}
         <div class="cap"><span class="num">${esc(corta(e.a).toUpperCase())} · ${esc(h24(e.a))}</span><b>${esc(e.nombre)}</b><span>${esc(lugar(e))}</span></div></a>
         ${e.mapa?`<button class="enmapa" data-mapa="${esc(e.slug)}">${pin}Ver en el mapa</button>`:""}</article>`).join("")}</div>
@@ -214,9 +225,13 @@
     const pts=L1.filter(e=>e.mapa);
     if(pts.length&&window.L&&$("mapa")){
       mapa=L.map("mapa",{scrollWheelZoom:false});
-      const encuadra=()=>pts.length===1?mapa.setView(pts[0].mapa,14):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[48,48]});
+      // Si hay eventos en CDMX y fuera, el mapa abre en la ciudad; un botón muestra los de fuera
+      const cd=pts.filter(e=>!e.ciudad), base=cd.length&&cd.length<pts.length?cd:pts;
+      const encuadra=(t=base)=>t.length===1?mapa.setView(t[0].mapa,14):mapa.fitBounds(t.map(e=>e.mapa),{padding:[48,48]});
+      if(base!==pts){ const b=document.createElement("button"); b.className="afuera"; b.textContent="Ver también fuera de CDMX";
+        b.onclick=()=>{ mapa.closePopup(); encuadra(pts); b.remove(); }; $("mapa").parentNode.appendChild(b); }
       encuadra(); planoClaro(mapa,"claro");
-      pts.forEach(e=>{ const dia=part(e.a,{day:"2-digit"})+" "+part(e.a,{month:"short"}).replace(/\./g,"");
+      pts.forEach(e=>{ const dia=part(e.a,{day:"2-digit"})+" "+part(e.a,{month:"short"}).replace(/\./g,"")+(e.ciudad?" · "+e.ciudad:"");
         const m=marcas[e.slug]=L.marker(e.mapa,{title:e.nombre,riseOnHover:true,icon:L.divIcon({className:"pinw",iconSize:null,iconAnchor:[10,12],popupAnchor:[0,-14],
           html:`<span class="pin" style="--c:${esc(e.color||"#DB414C")}"><i></i>${esc(dia)}</span>`})})
         .bindPopup(`<div class="pop">${e.flyer?`<img src="${esc(e.flyer)}" alt="">`:""}<div><b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">Ver y apartar</a></div></div>`).addTo(mapa);
