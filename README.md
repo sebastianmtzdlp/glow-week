@@ -11,6 +11,7 @@ Un tablero por consultora, cada una en su carpeta. Se publica solo (GitHub Pages
 - `<slug>/promos.json` — datos de esa consultora (nombre, WhatsApp, Instagram, referidas). Puede sobreescribir cualquier campo compartido, p. ej. `"tema": "normal"`.
 - `_template/` — el diseño del tablero y del catálogo. `build.py` lo copia a cada carpeta; nunca edites el `index.html` de una carpeta directamente.
 - `_data/catalogo-farmasi.json` — precios del catálogo; `_data/catalogo.json` — precios base.
+- `og/programas.json` — título y frase del preview de WhatsApp de cada página en `programas/`. Después de editarlo corre `node scripts/og-programas.cjs`: rehace las imágenes en `og/programas/` y las etiquetas de cada página.
 
 Raíz: `index.html` (portada), `CNAME` (dominio), `netlify.toml` (respaldo en glow-week.netlify.app).
 
