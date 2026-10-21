@@ -22,9 +22,13 @@ Raíz: `index.html` (portada), `CNAME` (dominio), `netlify.toml` (respaldo en gl
 - **Aviso arriba:** `"aviso": {"texto": "Hoy 2x1 en labiales", "desde": ..., "hasta": ...}`.
 
 ## Eventos
-`mitienda.beauty/eventos` lista los eventos (ahora, próximos y los que ya pasaron) y cada uno tiene su página en `/eventos/<slug>/` con cuenta regresiva, botón para agregarlo al calendario y para compartirlo por WhatsApp.
-- Agregar un evento = agregar un bloque en `_data/eventos.json` (copia uno que ya exista y cambia `slug`, `titulo`, `tipo`, `desde`, `hasta`, `resumen`). Opcionales: `lugar`, `descripcion` (párrafos separados con una línea en blanco), `puntos`, `boton` (`texto` y `url`), `color` del encabezado.
-- Al subir el cambio a `main`, la acción **Eventos** genera la página sola. A mano: `python3 scripts/eventos.py`. El diseño está en `scripts/evento_plantilla.html`; no edites `eventos/<slug>/index.html` directamente.
-- Fechas con hora de México, p. ej. `"2026-11-05T19:00:00-06:00"`. Si `desde` y `hasta` son el mismo día, la página muestra el horario; si no, el rango de días.
+Eventos presenciales de todo tipo. `mitienda.beauty/eventos` los lista (ahora, próximos y los que ya pasaron) con un mapa y botones para filtrar por zona. Cada evento tiene su página con cuenta regresiva y botones para apartar, agregar al calendario y compartir por WhatsApp.
+- Agregar un evento = agregar un bloque en `_data/eventos.json` (copia uno que ya exista). Obligatorios: `slug`, `titulo`, `tipo`, `desde`, `hasta`. Para que salga en el mapa y en el filtro: `zona` y `mapa` (`[latitud, longitud]`; en Google Maps, clic derecho sobre el lugar).
+- Página: por defecto en `/eventos/<slug>/`. Con `"ruta": "flowers-to-go"` sale en `mitienda.beauty/flowers-to-go/` (el script no deja usar una carpeta que ya existe, como la de una consultora).
+- Diseño: `"plantilla": "flowers-to-go"` usa `scripts/evento_flowers-to-go.html`; sin plantilla se usa `scripts/evento_plantilla.html`. Para un diseño nuevo, copia una plantilla como `scripts/evento_<nombre>.html`.
+- Apartar: `"apartar": {"whatsapp": "52155…", "instagram": "usuario"}` muestra los botones; si va vacío, la página solo dice que se aparta por WhatsApp o DM.
+- Al subir el cambio a `main`, la acción **Eventos** genera la página sola. A mano: `python3 scripts/eventos.py`. No edites a mano las páginas generadas. Si borras un evento, borra también su carpeta.
+- Fechas con hora de México, p. ej. `"2026-10-31T11:00:00-06:00"`.
 
+## Fuera del catálogo
 `_data/fuera-de-catalogo.json` lista los productos de la tienda de Farmasi que no salen en el catálogo impreso (se muestran como el chip "Fuera del catálogo" dentro del catálogo). Se regenera revisando la tienda de Selene (mx.farmasi.com/selenevehe): cada categoría se lee paginada y se compara contra los códigos de `catalogo-farmasi.json`. Se oculta lo agotado.
