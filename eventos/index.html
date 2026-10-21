@@ -12,83 +12,135 @@
 <meta property="og:description" content="Talleres, mañanas y reuniones en persona del equipo Farmasi. Elige tu zona y aparta tu lugar.">
 <meta property="og:url" content="https://mitienda.beauty/eventos/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
-  :root{--bg:#FAF7F5;--card:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--accent:#DB414C;--tint:#FDEEF0;--soft:#EEF0F8}
+  :root{--bg:#FFFFFF;--card:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--accent:#DB414C;--red:#C7303B;--soft:#F4F5FA}
   *{box-sizing:border-box;margin:0}
-  body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
-  .wrap{max-width:560px;margin:0 auto;padding:0 18px 60px}
-  header{padding:34px 0 14px}.eb{font-size:13px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--accent)}
-  h1{font-size:34px;line-height:1.05;font-weight:800;margin:8px 0}
-  .lead{color:var(--muted);font-size:16px}
-  h3{font-size:13px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin:26px 0 0}
-  a.ev{display:flex;gap:14px;align-items:stretch;text-decoration:none;color:inherit;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:14px;margin-top:12px}
-  a.ev:hover{border-color:var(--accent)}
-  .cal{flex:none;width:62px;border-radius:14px;color:#fff;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:8px 0;background:var(--c,var(--accent))}
-  .cal b{font-size:24px;line-height:1;font-weight:800}.cal span{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase}
-  .ev h2{font-size:18px;font-weight:800;line-height:1.2}.ev h2::after{content:" →";color:var(--accent)}
-  .ev p{color:var(--muted);font-size:14px;margin-top:2px}
-  .tag{display:inline-block;font-size:12px;font-weight:700;padding:2px 9px;border-radius:999px;background:var(--soft);margin-bottom:4px}
-  .tag.on{background:var(--accent);color:#fff}
-  .past a.ev{opacity:.7}.past .cal{background:#9A9DB5}
-  .empty{color:var(--muted);font-size:15px;background:var(--card);border:1px dashed var(--line);border-radius:20px;padding:18px;margin-top:12px}
-  .zonas{display:flex;gap:8px;overflow-x:auto;margin:16px -18px 0;padding:0 18px 4px;scrollbar-width:none}
-  .zonas button{flex:none;font:inherit;font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+  body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.45;-webkit-text-size-adjust:100%}
+  .wrap{max-width:640px;margin:0 auto;padding:0 0 60px}
+  .pad{padding:0 18px}
+  /* Destacado */
+  .hero{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:440px;padding:22px 18px;color:#fff;text-decoration:none;background:var(--c,#262A4A) center/cover no-repeat;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08) 30%,rgba(0,0,0,.55))}
+  .hero.sinfoto{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 16px,transparent 16px 32px)}
+  .hero>*{position:relative}
+  .hero .brand{position:absolute;top:18px;left:18px;font-size:12px;font-weight:800;letter-spacing:.16em}
+  .hero .pill{align-self:flex-start;font-size:12px;font-weight:700;background:#fff;color:var(--c,#262A4A);padding:5px 11px;border-radius:999px}
+  .hero h1{font-size:clamp(30px,8.5vw,40px);font-weight:800;line-height:1.05;margin-top:10px}
+  .hero p{font-size:15px;margin-top:6px;opacity:.95}
+  .hero .go{align-self:flex-start;margin-top:14px;background:#fff;color:var(--ink);font-weight:700;padding:12px 20px;border-radius:12px}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:22px 18px 4px}
+  .top b{font-size:12px;font-weight:800;letter-spacing:.16em}
+  /* Categorías (iconos) y zonas */
+  .cats{display:flex;gap:22px;overflow-x:auto;padding:16px 18px 0;border-bottom:1px solid var(--line);scrollbar-width:none}
+  .cats button{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;font:inherit;font-size:12px;font-weight:500;color:var(--muted);background:none;border:0;border-bottom:2px solid transparent;padding:2px 0 10px;cursor:pointer}
+  .cats button svg{width:24px;height:24px}
+  .cats button[aria-pressed=true]{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}
+  .zonas{display:flex;gap:8px;overflow-x:auto;padding:14px 18px 0;scrollbar-width:none}
+  .zonas button{flex:none;font:inherit;font-size:13px;font-weight:600;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
   .zonas button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
-  #mapa{height:300px;border-radius:20px;margin-top:12px;border:1px solid var(--line);z-index:0}
-  .ev .zn{font-weight:600;color:var(--ink)}
-  a.back{display:block;margin-top:26px;font-size:14px;color:var(--muted)}
+  /* Secciones */
+  section{margin-top:26px}
+  .sh{display:flex;justify-content:space-between;align-items:baseline;padding:0 18px;margin-bottom:12px}
+  .sh h2{font-size:20px;font-weight:800}
+  .rail{display:flex;gap:12px;overflow-x:auto;padding:0 18px 6px;scroll-snap-type:x mandatory;scroll-padding-inline:18px;scrollbar-width:none}
+  .card{flex:none;width:min(220px,62vw);scroll-snap-align:start;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:3px}
+  .card .img{height:140px;border-radius:14px;background:var(--c,var(--soft)) center/cover no-repeat;position:relative;margin-bottom:5px}
+  .card .img span{position:absolute;top:10px;left:10px;background:#fff;border-radius:999px;font-size:11px;font-weight:700;padding:4px 9px}
+  .card .d{font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.03em}
+  .card b{font-weight:700;line-height:1.25}
+  .card small{font-size:13px;color:var(--muted)}
+  #mapa{height:240px;border-radius:18px;margin:0 18px;border:1px solid var(--line);z-index:0}
+  .serie{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;background:var(--soft);border-radius:16px;padding:12px;margin:0 18px 10px}
+  .serie i{flex:none;width:56px;height:56px;border-radius:12px;background:var(--c,var(--ink)) center/cover}
+  .serie b{display:block}.serie small{color:var(--muted);font-size:13px}
+  .past .card{opacity:.65}
+  .empty{margin:18px;color:var(--muted);background:var(--soft);border-radius:16px;padding:18px;text-align:center}
+  [hidden]{display:none!important}
+  a.back{display:block;margin:30px 18px 0;font-size:14px;color:var(--muted)}
+  @media (min-width:640px){.hero{border-radius:0 0 24px 24px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header><div class="eb">Farmasi · Mi Tienda Beauty</div><h1>Eventos</h1><p class="lead">Talleres, mañanas y reuniones en persona. Elige tu zona y aparta tu lugar.</p></header>
+  <a class="hero" id="hero" hidden></a>
+  <div class="top" id="top" hidden><b>MI TIENDA BEAUTY · EVENTOS</b></div>
+  <nav class="cats" id="cats" aria-label="Categorías"></nav>
   <div class="zonas" id="zonas" role="group" aria-label="Filtrar por zona"></div>
-  <div id="mapa" hidden></div>
-  <div id="list"><p class="empty">Cargando eventos…</p></div>
+  <div id="secs"><p class="empty">Cargando eventos…</p></div>
+  <section id="secMapa" hidden><div class="sh"><h2>Cerca de ti</h2></div><div id="mapa"></div></section>
+  <div id="secSeries"></div>
+  <div id="secPasados"></div>
   <a class="back" href="../">← Volver a Mi Tienda Beauty</a>
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (async()=>{
-  const TZ="America/Mexico_City", esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const $=id=>document.getElementById(id), TZ="America/Mexico_City", esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const part=(d,o)=>new Intl.DateTimeFormat("es-MX",{timeZone:TZ,...o}).format(d);
-  const dia=d=>part(d,{day:"numeric",month:"long"});
-  const rango=(a,b)=>{const ka=part(a,{dateStyle:"short"}),kb=part(b,{dateStyle:"short"});
-    if(ka===kb) return part(a,{weekday:"long",day:"numeric",month:"long"})+" · "+part(a,{hour:"numeric",minute:"2-digit"});
-    return part(a,{month:"long"})===part(b,{month:"long"})?part(a,{day:"numeric"})+" al "+dia(b):dia(a)+" al "+dia(b);};
-  let E=[];
-  try{ E=(await (await fetch("../_data/eventos.json?v="+Date.now())).json()).eventos||[]; }catch(_){}
-  const now=new Date(), ev=E.map(e=>({...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde),href:"/eventos/"+(e.serie?e.serie+"/":"")+e.slug+"/"}));
-  const vivos=ev.filter(e=>e.b>=now), zonas=[...new Set(vivos.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
-  let zona=new URLSearchParams(location.search).get("zona")||"";
-  if(!zonas.includes(zona)) zona="";
-  // Mapa (OpenStreetMap)
+  const hora=d=>part(d,{hour:"numeric",minute:"2-digit",hour12:true}).replace(":00","").replace(/\s*([ap])\.?\s*m\.?/i," $1. m.");
+  const corta=d=>(part(d,{weekday:"short"})+" "+part(d,{day:"numeric"})+" "+part(d,{month:"short"})).replace(/\./g,"");
+  const bg=e=>(e.color?`--c:${esc(e.color)};`:"")+(e.imagen?`background-image:url('${esc(e.imagen)}');`:"");
+  // Íconos de categoría (los que no estén aquí usan el de estrella)
+  const IC={Todos:'<path d="M4 5h16v14H4zM4 10h16"/>',Flores:'<circle cx="12" cy="8" r="4"/><path d="M12 12v9M12 17c-2-2-5-2-6-1M12 19c2-2 5-2 6-1"/>',
+    Maquillaje:'<rect x="9" y="3" width="6" height="18" rx="2"/><path d="M9 9h6"/>',Reuniones:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.8.7 3 2.5 3.5 5.2"/>',
+    Skincare:'<path d="M8 3h8v4l2 3v11H6V10l2-3z"/>',Lanzamientos:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+    Capacitación:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>'};
+  const icon=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">${IC[k]||IC.Lanzamientos}</svg>`;
+
+  let D={eventos:[],series:{}};
+  try{ D=await (await fetch("../_data/eventos.json?v="+Date.now())).json(); }catch(_){}
+  const S=D.series||{}, now=new Date();
+  const ev=(D.eventos||[]).map(e=>{const s=S[e.serie]||{};return {...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde),
+    nombre:e.serie&&s.nombre?s.nombre+(e.edicion?" · "+e.edicion:""):e.titulo,
+    href:"/eventos/"+(e.serie?e.serie+"/":"")+e.slug+"/",cat:e.categoria||""};});
+  const vivos=ev.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a);
+  const cats=[...new Set(vivos.map(e=>e.cat).filter(Boolean))], zonas=[...new Set(vivos.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
+  const q=new URLSearchParams(location.search); let cat=cats.includes(q.get("cat"))?q.get("cat"):"", zona=zonas.includes(q.get("zona"))?q.get("zona"):"";
+  const url=()=>{const p=new URLSearchParams();if(cat)p.set("cat",cat);if(zona)p.set("zona",zona);history.replaceState(null,"",p.toString()?"?"+p:location.pathname);};
+
   let mapa=null, capa=null;
-  if(window.L&&vivos.some(e=>e.mapa)){ document.getElementById("mapa").hidden=false;
-    mapa=L.map("mapa",{scrollWheelZoom:false}); capa=L.layerGroup().addTo(mapa);
+  if(window.L&&vivos.some(e=>e.mapa)){ $("secMapa").hidden=false; mapa=L.map("mapa",{scrollWheelZoom:false}); capa=L.layerGroup().addTo(mapa);
     L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(mapa); }
-  const card=(e,on)=>`<a class="ev" href="${esc(e.href)}"><div class="cal"${e.color?` style="--c:${esc(e.color)}"`:""}><b>${part(e.a,{day:"numeric"})}</b><span>${part(e.a,{month:"short"}).replace(".","")}</span></div>
-    <div><span class="tag${on?" on":""}">${on?"Ahora · ":""}${esc(e.tipo||"Evento")}</span><h2>${esc(e.titulo)}</h2><p>${esc(rango(e.a,e.b))}</p><p>${e.zona?`<span class="zn">${esc(e.zona)}</span>`:""}${e.zona&&e.lugar?" · ":""}${esc(e.lugar||"")}</p>${e.resumen?`<p>${esc(e.resumen)}</p>`:""}</div></a>`;
+
+  const card=e=>`<a class="card" href="${esc(e.href)}"><div class="img" style="${bg(e)}">${e.cat||e.tipo?`<span>${esc(e.cat||e.tipo)}</span>`:""}</div>
+    <span class="d">${esc(corta(e.a))} · ${esc(hora(e.a))}</span><b>${esc(e.nombre)}</b><small>${esc([e.lugar,e.zona].filter(Boolean).join(" · "))}</small></a>`;
+  const rail=(t,l,cls)=>l.length?`<section class="${cls||""}"><div class="sh"><h2>${t}</h2></div><div class="rail">${l.map(card).join("")}</div></section>`:"";
+  const falta=ms=>{const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5);return d?`faltan ${d} día${d>1?"s":""}`:h?`faltan ${h} h`:"empieza pronto";};
+
   const pinta=()=>{
-    const z=e=>!zona||e.zona===zona;
-    const ahora=ev.filter(e=>e.a<=now&&now<=e.b&&z(e)).sort((x,y)=>x.b-y.b),
-          prox=ev.filter(e=>e.a>now&&z(e)).sort((x,y)=>x.a-y.a),
-          pas=ev.filter(e=>e.b<now&&z(e)).sort((x,y)=>y.b-x.b).slice(0,6);
-    let h="";
-    if(ahora.length) h+="<h3>Ahora</h3>"+ahora.map(e=>card(e,true)).join("");
-    h+="<h3>Próximos</h3>"+(prox.length?prox.map(e=>card(e)).join(""):`<p class="empty">${zona?"Por ahora no hay eventos en "+esc(zona)+".":"Pronto anunciamos el siguiente evento."}</p>`);
-    if(pas.length) h+='<div class="past"><h3>Ya pasaron</h3>'+pas.map(e=>card(e)).join("")+"</div>";
-    document.getElementById("list").innerHTML=h;
-    document.getElementById("zonas").innerHTML=zonas.length?["",...zonas].map(x=>`<button aria-pressed="${x===zona}" data-z="${esc(x)}">${esc(x||"Todas")}</button>`).join(""):"";
-    document.querySelectorAll("#zonas button").forEach(bt=>bt.onclick=()=>{zona=bt.dataset.z; history.replaceState(null,"",zona?"?zona="+encodeURIComponent(zona):location.pathname); pinta();});
-    if(mapa){ capa.clearLayers(); const pts=[...ahora,...prox].filter(e=>e.mapa);
-      pts.forEach(e=>L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1}).bindPopup(`<b>${esc(e.titulo)}</b><br>${esc(rango(e.a,e.b))}<br><a href="${esc(e.href)}">Ver evento</a>`).addTo(capa));
-      if(pts.length===1) mapa.setView(pts[0].mapa,13); else if(pts.length) mapa.fitBounds(pts.map(e=>e.mapa),{padding:[30,30]}); else mapa.setView([19.4326,-99.1332],11); }
+    const ok=e=>(!cat||e.cat===cat)&&(!zona||e.zona===zona);
+    const L1=vivos.filter(ok), dest=L1[0];
+    // Destacado: el próximo evento (o el que está pasando)
+    const H=$("hero"); H.hidden=!dest; $("top").hidden=!!dest;
+    if(dest){ H.href=dest.href; H.className="hero"+(dest.imagen?"":" sinfoto"); H.setAttribute("style",bg(dest));
+      H.innerHTML=`<span class="brand">MI TIENDA BEAUTY · EVENTOS</span><span class="pill">${dest.a<=now?"Está pasando ahora":"Destacado · "+falta(dest.a-now)}</span>
+        <h1>${esc(dest.nombre)}</h1><p>${esc(corta(dest.a))} · ${esc(hora(dest.a))}${dest.lugar?" · "+esc(dest.lugar):""}</p>${dest.resumen?`<p>${esc(dest.resumen)}</p>`:""}<span class="go">Ver evento y apartar</span>`; }
+    // Categorías y zonas
+    $("cats").innerHTML=cats.length?["Todos",...cats].map(k=>`<button aria-pressed="${(k==="Todos"?"":k)===cat}" data-k="${esc(k==="Todos"?"":k)}">${icon(k)}${esc(k)}</button>`).join(""):"";
+    $("cats").hidden=!cats.length;
+    $("zonas").innerHTML=zonas.length?["",...zonas].map(z=>`<button aria-pressed="${z===zona}" data-z="${esc(z)}">${esc(z||"Todas las zonas")}</button>`).join(""):"";
+    document.querySelectorAll("#cats button").forEach(b=>b.onclick=()=>{cat=b.dataset.k;url();pinta();});
+    document.querySelectorAll("#zonas button").forEach(b=>b.onclick=()=>{zona=b.dataset.z;url();pinta();});
+    // Carruseles (sin repetir el destacado)
+    const resto=L1.slice(1), sem=+now+7*864e5;
+    let h=rail("Esta semana",resto.filter(e=>e.a<=sem))+rail("Más adelante",resto.filter(e=>e.a>sem));
+    if(!L1.length) h=`<p class="empty">${cat||zona?"No hay eventos con esos filtros por ahora.":"Pronto anunciamos el siguiente evento."}</p>`;
+    $("secs").innerHTML=h;
+    // Mapa
+    if(mapa){ capa.clearLayers(); const pts=L1.filter(e=>e.mapa); $("secMapa").hidden=!pts.length;
+      pts.forEach(e=>L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1}).bindPopup(`<b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(hora(e.a))}<br><a href="${esc(e.href)}">Ver evento</a>`).addTo(capa));
+      if(pts.length){ setTimeout(()=>{mapa.invalidateSize(); pts.length===1?mapa.setView(pts[0].mapa,13):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[30,30]});},0); } }
   };
   pinta();
+
+  // Series y pasados (no dependen de los filtros)
+  const ser=Object.entries(S).filter(([k])=>!k.startsWith("_")).map(([k,s])=>{const eds=ev.filter(e=>e.serie===k), prox=eds.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a)[0];
+    return `<a class="serie" href="/eventos/${esc(k)}/"><i style="${bg(s)}"></i><span><b>${esc(s.nombre)}</b><small>${eds.length} edici${eds.length===1?"ón":"ones"}${prox?" · próxima: "+esc(corta(prox.a)):""}</small></span></a>`;});
+  $("secSeries").innerHTML=ser.length?`<section><div class="sh"><h2>Series</h2></div>${ser.join("")}</section>`:"";
+  $("secPasados").innerHTML=rail("Ya pasaron",ev.filter(e=>e.b<now).sort((x,y)=>y.a-x.a).slice(0,8),"past");
 })();
 </script>
 </body>
