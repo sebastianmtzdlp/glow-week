@@ -35,7 +35,7 @@
   .pag{max-width:1280px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px));
     display:grid;grid-template-columns:minmax(0,1fr);gap:44px;grid-template-areas:"intro" "dest" "muro" "mapa" "pie"}
   .intro{grid-area:intro}.dest{grid-area:dest}.muro{grid-area:muro}.mapa{grid-area:mapa}.pie{grid-area:pie}
-  h1{font-size:clamp(56px,16vw,148px);font-weight:800;line-height:.88;letter-spacing:-.035em;margin-top:12px}
+  h1{font-size:clamp(56px,10.5vw,132px);font-weight:800;line-height:.88;letter-spacing:-.035em;margin-top:12px}
   .intro>p{font-size:18px;color:var(--muted);max-width:36ch;margin-top:16px}
   .filtro{margin-top:20px;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
   .filtro select{font:inherit;font-weight:600;color:var(--ink);border:0;border-bottom:2px solid var(--accent);background:transparent;padding:4px 22px 4px 0;appearance:none;cursor:pointer;min-height:44px;
@@ -71,8 +71,11 @@
   .go{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;text-decoration:none;padding:0 22px;min-height:52px;border-radius:14px}
 
   /* Carteles */
-  .flyer{display:block;width:100%;height:auto;border-radius:4px;box-shadow:0 1px 2px rgba(38,42,74,.08),0 12px 32px rgba(38,42,74,.12)}
-  .dest .flyer{max-height:80vh;width:auto;max-width:100%;margin:0 auto}
+  /* Todos los carteles en el mismo marco 4:5; el flyer completo adentro, sin recortar, sobre su propio color difuminado */
+  .marco{position:relative;aspect-ratio:4/5;max-width:100%;overflow:hidden;border-radius:4px;background:var(--soft);box-shadow:0 1px 2px rgba(38,42,74,.08),0 12px 32px rgba(38,42,74,.12)}
+  .marco::before{content:"";position:absolute;inset:-30px;background:var(--img) center/cover;filter:blur(24px) saturate(1.15);opacity:.6}
+  .marco img{position:relative;display:block;width:100%;height:100%;object-fit:contain}
+  .dest .marco,.dest .gen{max-width:560px;margin:0 auto;width:100%}
   .gen{aspect-ratio:4/5;max-width:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#fff;background:var(--c) center/cover no-repeat;position:relative;overflow:hidden;border-radius:4px}
   .gen::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.55))}
   .gen>*{position:relative}.gen b{font-size:28px;line-height:1.05;font-weight:800;text-wrap:balance}
@@ -86,7 +89,7 @@
   .post .cap span{color:var(--muted);font-size:15px}
   .enmapa{display:inline-flex;align-items:center;gap:6px;margin-top:6px;min-height:44px;padding:0;border:0;background:none;font:500 14px var(--sans);color:var(--ink);cursor:pointer;justify-self:start}
   .enmapa svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
-  .post.flash .flyer,.post.flash .gen{animation:flash 1100ms var(--ease)}
+  .post.flash .marco,.post.flash .gen{animation:flash 1100ms var(--ease)}
   @keyframes flash{0%{box-shadow:0 0 0 4px var(--accent)}100%{box-shadow:0 0 0 0 transparent,0 12px 32px rgba(38,42,74,.12)}}
 
   /* Mapa, series y pasados */
@@ -95,6 +98,7 @@
   .leaflet-container{font-family:var(--sans);background:var(--soft)}
   .leaflet-popup-content{font-size:14px;line-height:1.4;margin:12px 14px}
   .leaflet-popup-content a{color:var(--accent-t);font-weight:600}
+  .pop{display:flex;gap:10px;align-items:flex-start;min-width:200px}.pop img{flex:none;width:54px;height:68px;object-fit:cover;border-radius:3px}
   .pie{display:grid;gap:40px}
   .fila{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 0;border-top:1px solid var(--line);color:inherit;text-decoration:none;font-size:18px;font-weight:600;min-height:44px}
   .fila small{font-size:14px;color:var(--muted);font-weight:400;text-align:right}
@@ -116,7 +120,7 @@
     .muro{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 40px}
     .pie{grid-template-columns:1fr 1fr 1fr;gap:56px;align-items:start}
   }
-  @media (prefers-reduced-motion:reduce){.press{transition:none}.post.flash .flyer,.post.flash .gen{animation:none}}
+  @media (prefers-reduced-motion:reduce){.press{transition:none}.post.flash .marco,.post.flash .gen{animation:none}}
 </style>
 </head>
 <body>
@@ -145,7 +149,7 @@
   const q=new URLSearchParams(location.search); let zona=zonas.includes(q.get("zona"))?q.get("zona"):"", mes=null, mapa=null, marcas={};
   const lugar=e=>[e.lugar,e.zona].filter(Boolean).join(" · ");
   const cartel=e=>e.flyer
-    ? `<img class="flyer" src="${esc(e.flyer)}" alt="Flyer de ${esc(e.nombre)}" loading="lazy">`
+    ? `<div class="marco" style="--img:url('${esc(e.flyer)}')"><img src="${esc(e.flyer)}" alt="Flyer de ${esc(e.nombre)}" loading="lazy"></div>`
     : `<div class="gen" style="--c:${esc(e.color||"#262A4A")}${e.imagen?`;background-image:url('${esc(e.imagen)}')`:""}"><span class="num">${esc(corta(e.a))}</span><b>${esc(e.nombre)}</b></div>`;
   const pin='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
 
@@ -199,8 +203,15 @@
     if(pts.length&&window.L&&$("mapa")){
       mapa=L.map("mapa",{scrollWheelZoom:false});
       L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{maxZoom:19,subdomains:"abcd",attribution:"© OpenStreetMap · © CARTO"}).addTo(mapa);
-      pts.forEach(e=>{ marcas[e.slug]=L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1})
-        .bindPopup(`<b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">Ver y apartar</a>`).addTo(mapa); });
+      pts.forEach(e=>{ const m=marcas[e.slug]=L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1})
+        .bindPopup(`<div class="pop">${e.flyer?`<img src="${esc(e.flyer)}" alt="">`:""}<div><b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">Ver y apartar</a></div></div>`).addTo(mapa);
+        // Del mapa al evento: tocar el punto marca su cartel
+        m.on("click",()=>{ const t=$("ev-"+e.slug); if(t){ t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); } });
+        m.bindTooltip(e.nombre,{direction:"top",offset:[0,-10]}); });
+      // Del evento al mapa: pasar sobre el cartel resalta su punto
+      document.querySelectorAll(".post[id^=ev-]").forEach(p=>{ const m=marcas[p.id.slice(3)]; if(!m) return;
+        p.addEventListener("mouseenter",()=>{ m.setStyle({radius:15,weight:4}); m.bringToFront(); });
+        p.addEventListener("mouseleave",()=>m.setStyle({radius:10,weight:3})); });
       setTimeout(()=>{ mapa.invalidateSize(); pts.length===1?mapa.setView(pts[0].mapa,14):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[36,36]}); },0);
     }
     function vuela(slug,bajar){ const m=marcas[slug]; if(!mapa||!m) return;
