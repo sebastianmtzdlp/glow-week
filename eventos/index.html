@@ -96,6 +96,7 @@
   h3{font-size:22px;font-weight:700;margin-bottom:14px}
   #mapa{height:340px;border-radius:18px;border:1px solid var(--line);z-index:0;scroll-margin-top:20px}
   .leaflet-container{font-family:var(--sans);background:var(--soft)}
+  .leaflet-tile-pane{filter:grayscale(.7) contrast(.92) brightness(1.04)}
   .leaflet-popup-content{font-size:14px;line-height:1.4;margin:12px 14px}
   .leaflet-popup-content a{color:var(--accent-t);font-weight:600}
   .pop{display:flex;gap:10px;align-items:flex-start;min-width:200px}.pop img{flex:none;width:54px;height:68px;object-fit:cover;border-radius:3px}
@@ -202,7 +203,7 @@
     const pts=L1.filter(e=>e.mapa);
     if(pts.length&&window.L&&$("mapa")){
       mapa=L.map("mapa",{scrollWheelZoom:false});
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{maxZoom:19,subdomains:"abcd",attribution:"© OpenStreetMap · © CARTO"}).addTo(mapa);
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(mapa);
       pts.forEach(e=>{ const m=marcas[e.slug]=L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1})
         .bindPopup(`<div class="pop">${e.flyer?`<img src="${esc(e.flyer)}" alt="">`:""}<div><b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">Ver y apartar</a></div></div>`).addTo(mapa);
         // Del mapa al evento: tocar el punto marca su cartel

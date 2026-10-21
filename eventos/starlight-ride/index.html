@@ -46,6 +46,7 @@
   .cuenta span{color:var(--ink);font-size:15px}
   #mapa{height:200px;border-top:1px solid var(--line);z-index:0}
   .leaflet-container{font-family:inherit;background:var(--soft)}
+  .leaflet-tile-pane{filter:grayscale(.7) contrast(.92) brightness(1.04)}
   .txt{margin-top:24px;font-size:17px}
   .txt p+p{margin-top:12px}.txt a{color:var(--accent-t)}
   .txt ul{list-style:none;padding:0;margin-top:14px;display:grid;gap:8px}
@@ -159,7 +160,7 @@
   // Mapa (zona aproximada)
   if(e.mapa&&window.L){ $("mapa").hidden=false;
     const m=L.map("mapa",{scrollWheelZoom:false,dragging:!L.Browser.mobile,attributionControl:true}).setView(e.mapa,15);
-    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{maxZoom:19,subdomains:"abcd",attribution:"© OpenStreetMap · © CARTO"}).addTo(m);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
     L.circle(e.mapa,{radius:250,color:e.color||"#DB414C",weight:2,fillColor:e.color||"#DB414C",fillOpacity:.15}).addTo(m); }
 
   // Calendario y compartir
