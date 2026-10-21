@@ -96,6 +96,23 @@
     "whatsapp": "",
     "instagram": ""
    }
+  },
+  {
+   "slug": "master-class-tendencias-2027",
+   "titulo": "Master Class Tendencias 2027",
+   "tipo": "Master class de maquillaje",
+   "categoria": "Maquillaje",
+   "flyer": "/eventos/fotos/master-class-tendencias-2027.jpg",
+   "color": "#8C7560",
+   "desde": "2026-10-25T11:00:00-06:00",
+   "zona": "Tizayuca, Hidalgo",
+   "lugar": "Tizayuca Centro",
+   "mapa": [19.8378, -98.9817],
+   "resumen": "Las tendencias de maquillaje para 2027 con la maquillista Lizeth Montes de Oca. Ve los resultados profesionales de Farmasi, llévate producto o afíliate.",
+   "puntos": ["Master class con Lizeth Montes de Oca, makeup artist", "Tendencias de maquillaje 2027", "Prueba y compra producto Farmasi", "Información para afiliarte"],
+   "aportacion": [{"etiqueta": "Costo", "precio": "$100"}],
+   "colaboran": ["Lizeth Montes de Oca"],
+   "apartar": {"whatsapp": "", "instagram": ""}
   }
  ]
 }

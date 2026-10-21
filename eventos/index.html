@@ -181,7 +181,7 @@
     const L1=vivos.filter(e=>!zona||e.zona===zona), d=L1[0], resto=L1.slice(1), se=Object.entries(S).filter(([k])=>!k.startsWith("_"));
     $("app").innerHTML=`
       <div class="intro"><div class="marca">EQUIPO SVH</div><h1>Eventos</h1>
-        <p>Talleres, clases y fiestas en persona, en la Ciudad de México. Entra al que te guste y aparta tu lugar.</p>
+        <p>Talleres, clases y fiestas en persona, en la Ciudad de México y alrededores. Entra al que te guste y aparta tu lugar.</p>
         ${zonas.length?`<label class="filtro" for="zona">Ver eventos en <select id="zona">${["",...zonas].map(z=>`<option value="${esc(z)}"${z===zona?" selected":""}>${esc(z||"todas las zonas")}</option>`).join("")}</select></label>`:""}
         ${L1.length?calendario(L1):""}</div>
       ${d?`<section class="dest post" id="ev-${esc(d.slug)}" aria-label="Próximo evento"><a class="press" href="${esc(d.href)}" aria-label="${esc(d.nombre)}">${cartel(d)}</a>
