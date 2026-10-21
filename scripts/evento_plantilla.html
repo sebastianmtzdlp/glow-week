@@ -11,7 +11,7 @@
 <meta name="description" content="{{RESUMEN}}">
 <meta property="og:title" content="{{TITULO}}">
 <meta property="og:description" content="{{RESUMEN}}">
-<meta property="og:url" content="https://mitienda.beauty/eventos/{{SLUG}}/">
+<meta property="og:url" content="https://mitienda.beauty/{{RUTA}}/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -39,7 +39,7 @@
 </head>
 <body>
 <div class="wrap">
-  <a class="top" href="../">← Todos los eventos</a>
+  <a class="top" href="/eventos/">← Todos los eventos</a>
   <section class="hero" id="hero"><div class="eb" id="tipo"></div><h1 id="tit"></h1><p id="res"></p><span class="st" id="st"></span></section>
   <div class="card">
     <div class="row"><i>📅</i><div id="cuando"></div></div>
@@ -49,7 +49,7 @@
   <a class="btn" id="cta" hidden></a>
   <div class="two" id="calBtns"><a class="btn alt" id="gcal" target="_blank" rel="noopener">Google Calendar</a><button class="btn alt" id="ics">Calendario del cel</button></div>
   <a class="btn alt" id="share" target="_blank" rel="noopener">Compartir por WhatsApp</a>
-  <a class="back" href="../../">← Volver a Mi Tienda Beauty</a>
+  <a class="back" href="/">← Volver a Mi Tienda Beauty</a>
 </div>
 <script id="evento" type="application/json">{{EVENTO_JSON}}</script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -84,7 +84,7 @@
 
   // Agregar al calendario
   const utc=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,"");
-  const url="https://mitienda.beauty/eventos/"+e.slug+"/", det=(e.resumen?e.resumen+"\n\n":"")+url;
+  const url=e.url, det=(e.resumen?e.resumen+"\n\n":"")+url;
   $("gcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.titulo)+"&dates="+utc(a)+"/"+utc(b>a?b:new Date(+a+36e5))+"&details="+encodeURIComponent(det)+(e.lugar?"&location="+encodeURIComponent(e.lugar):"");
   $("gcal").onclick=()=>gc("calendario","Google Calendar");
   $("ics").onclick=()=>{

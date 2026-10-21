@@ -7,12 +7,13 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Eventos · Mi Tienda Beauty</title>
-<meta name="description" content="Ventas especiales, lanzamientos y reuniones del equipo Farmasi.">
+<meta name="description" content="Talleres, mañanas y reuniones en persona del equipo Farmasi. Elige tu zona y aparta tu lugar.">
 <meta property="og:title" content="Eventos · Mi Tienda Beauty">
-<meta property="og:description" content="Ventas especiales, lanzamientos y reuniones del equipo Farmasi.">
+<meta property="og:description" content="Talleres, mañanas y reuniones en persona del equipo Farmasi. Elige tu zona y aparta tu lugar.">
 <meta property="og:url" content="https://mitienda.beauty/eventos/">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
   :root{--bg:#FAF7F5;--card:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--accent:#DB414C;--tint:#FDEEF0;--soft:#EEF0F8}
   *{box-sizing:border-box;margin:0}
@@ -32,15 +33,23 @@
   .tag.on{background:var(--accent);color:#fff}
   .past a.ev{opacity:.7}.past .cal{background:#9A9DB5}
   .empty{color:var(--muted);font-size:15px;background:var(--card);border:1px dashed var(--line);border-radius:20px;padding:18px;margin-top:12px}
+  .zonas{display:flex;gap:8px;overflow-x:auto;margin:16px -18px 0;padding:0 18px 4px;scrollbar-width:none}
+  .zonas button{flex:none;font:inherit;font-size:14px;font-weight:600;padding:9px 14px;border-radius:999px;border:1.5px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+  .zonas button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+  #mapa{height:300px;border-radius:20px;margin-top:12px;border:1px solid var(--line);z-index:0}
+  .ev .zn{font-weight:600;color:var(--ink)}
   a.back{display:block;margin-top:26px;font-size:14px;color:var(--muted)}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <header><div class="eb">Farmasi · Mi Tienda Beauty</div><h1>Eventos</h1><p class="lead">Ventas especiales, lanzamientos y reuniones del equipo.</p></header>
+  <header><div class="eb">Farmasi · Mi Tienda Beauty</div><h1>Eventos</h1><p class="lead">Talleres, mañanas y reuniones en persona. Elige tu zona y aparta tu lugar.</p></header>
+  <div class="zonas" id="zonas" role="group" aria-label="Filtrar por zona"></div>
+  <div id="mapa" hidden></div>
   <div id="list"><p class="empty">Cargando eventos…</p></div>
   <a class="back" href="../">← Volver a Mi Tienda Beauty</a>
 </div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (async()=>{
@@ -52,17 +61,34 @@
     return part(a,{month:"long"})===part(b,{month:"long"})?part(a,{day:"numeric"})+" al "+dia(b):dia(a)+" al "+dia(b);};
   let E=[];
   try{ E=(await (await fetch("../_data/eventos.json?v="+Date.now())).json()).eventos||[]; }catch(_){}
-  const now=new Date(), ev=E.map(e=>({...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde)}));
-  const ahora=ev.filter(e=>e.a<=now&&now<=e.b).sort((x,y)=>x.b-y.b),
-        prox=ev.filter(e=>e.a>now).sort((x,y)=>x.a-y.a),
-        pas=ev.filter(e=>e.b<now).sort((x,y)=>y.b-x.b).slice(0,6);
-  const card=(e,on)=>`<a class="ev" href="${encodeURIComponent(e.slug)}/"><div class="cal" style="--c:${esc(e.color||"")}"><b>${part(e.a,{day:"numeric"})}</b><span>${part(e.a,{month:"short"}).replace(".","")}</span></div>
-    <div><span class="tag${on?" on":""}">${on?"Ahora · ":""}${esc(e.tipo||"Evento")}</span><h2>${esc(e.titulo)}</h2><p>${esc(rango(e.a,e.b))}</p>${e.resumen?`<p>${esc(e.resumen)}</p>`:""}</div></a>`;
-  let h="";
-  if(ahora.length) h+="<h3>Ahora</h3>"+ahora.map(e=>card(e,true)).join("");
-  h+="<h3>Próximos</h3>"+(prox.length?prox.map(e=>card(e)).join(""):'<p class="empty">Pronto anunciamos el siguiente evento.</p>');
-  if(pas.length) h+='<div class="past"><h3>Ya pasaron</h3>'+pas.map(e=>card(e)).join("")+"</div>";
-  document.getElementById("list").innerHTML=h;
+  const now=new Date(), ev=E.map(e=>({...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde),href:"/"+(e.ruta||"eventos/"+e.slug)+"/"}));
+  const vivos=ev.filter(e=>e.b>=now), zonas=[...new Set(vivos.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
+  let zona=new URLSearchParams(location.search).get("zona")||"";
+  if(!zonas.includes(zona)) zona="";
+  // Mapa (OpenStreetMap)
+  let mapa=null, capa=null;
+  if(window.L&&vivos.some(e=>e.mapa)){ document.getElementById("mapa").hidden=false;
+    mapa=L.map("mapa",{scrollWheelZoom:false}); capa=L.layerGroup().addTo(mapa);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(mapa); }
+  const card=(e,on)=>`<a class="ev" href="${esc(e.href)}"><div class="cal"${e.color?` style="--c:${esc(e.color)}"`:""}><b>${part(e.a,{day:"numeric"})}</b><span>${part(e.a,{month:"short"}).replace(".","")}</span></div>
+    <div><span class="tag${on?" on":""}">${on?"Ahora · ":""}${esc(e.tipo||"Evento")}</span><h2>${esc(e.titulo)}</h2><p>${esc(rango(e.a,e.b))}</p><p>${e.zona?`<span class="zn">${esc(e.zona)}</span>`:""}${e.zona&&e.lugar?" · ":""}${esc(e.lugar||"")}</p>${e.resumen?`<p>${esc(e.resumen)}</p>`:""}</div></a>`;
+  const pinta=()=>{
+    const z=e=>!zona||e.zona===zona;
+    const ahora=ev.filter(e=>e.a<=now&&now<=e.b&&z(e)).sort((x,y)=>x.b-y.b),
+          prox=ev.filter(e=>e.a>now&&z(e)).sort((x,y)=>x.a-y.a),
+          pas=ev.filter(e=>e.b<now&&z(e)).sort((x,y)=>y.b-x.b).slice(0,6);
+    let h="";
+    if(ahora.length) h+="<h3>Ahora</h3>"+ahora.map(e=>card(e,true)).join("");
+    h+="<h3>Próximos</h3>"+(prox.length?prox.map(e=>card(e)).join(""):`<p class="empty">${zona?"Por ahora no hay eventos en "+esc(zona)+".":"Pronto anunciamos el siguiente evento."}</p>`);
+    if(pas.length) h+='<div class="past"><h3>Ya pasaron</h3>'+pas.map(e=>card(e)).join("")+"</div>";
+    document.getElementById("list").innerHTML=h;
+    document.getElementById("zonas").innerHTML=zonas.length?["",...zonas].map(x=>`<button aria-pressed="${x===zona}" data-z="${esc(x)}">${esc(x||"Todas")}</button>`).join(""):"";
+    document.querySelectorAll("#zonas button").forEach(bt=>bt.onclick=()=>{zona=bt.dataset.z; history.replaceState(null,"",zona?"?zona="+encodeURIComponent(zona):location.pathname); pinta();});
+    if(mapa){ capa.clearLayers(); const pts=[...ahora,...prox].filter(e=>e.mapa);
+      pts.forEach(e=>L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1}).bindPopup(`<b>${esc(e.titulo)}</b><br>${esc(rango(e.a,e.b))}<br><a href="${esc(e.href)}">Ver evento</a>`).addTo(capa));
+      if(pts.length===1) mapa.setView(pts[0].mapa,13); else if(pts.length) mapa.fitBounds(pts.map(e=>e.mapa),{padding:[30,30]}); else mapa.setView([19.4326,-99.1332],11); }
+  };
+  pinta();
 })();
 </script>
 </body>

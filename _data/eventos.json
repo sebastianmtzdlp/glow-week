@@ -1,18 +1,23 @@
 {
- "_nota": "Eventos de mitienda.beauty/eventos. Cada evento tiene su página en /eventos/<slug>/. Después de cambiar este archivo, las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). Campos opcionales: lugar, descripcion, puntos, boton, color.",
+ "_nota": "Eventos presenciales. Todos salen en mitienda.beauty/eventos (con mapa y filtro por zona). Cada uno tiene su página en /eventos/<slug>/, o en /<ruta>/ si le pones \"ruta\". Al cambiar este archivo las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). \"mapa\" = [latitud, longitud]. \"plantilla\" elige el diseño (scripts/evento_<plantilla>.html); sin ella se usa el diseño general. Opcionales: ruta, serie, edicion, lugar, mapa, descripcion, puntos, colaboran, apartar, boton, color.",
  "eventos": [
   {
-   "slug": "noche-de-brujas",
-   "titulo": "Noche de Brujas",
-   "tipo": "Venta",
-   "desde": "2026-10-16T00:00:00-06:00",
-   "hasta": "2026-10-25T23:59:59-06:00",
-   "lugar": "En línea, en la tienda de tu consultora",
-   "resumen": "Promos de Miedo: kits con hasta 50 % de descuento.",
-   "descripcion": "Del 16 al 25 de octubre, los favoritos de maquillaje de Farmasi tienen descuento.\n\nElige a tu consultora, arma tu pedido en su tienda y le llega directo a su WhatsApp.",
-   "puntos": ["Kits con hasta 50 % de descuento", "Tu pedido llega directo al WhatsApp de tu consultora", "Termina el 25 de octubre a las 11:59 p. m."],
-   "boton": {"texto": "Elige a tu consultora", "url": "/"},
-   "color": "#4B2A6B"
+   "slug": "altar",
+   "ruta": "flowers-to-go",
+   "plantilla": "flowers-to-go",
+   "serie": "Flowers to Go",
+   "edicion": "Altar",
+   "titulo": "Flowers to Go · Edición Altar",
+   "tipo": "Taller",
+   "color": "#A6461F",
+   "desde": "2026-10-31T11:00:00-06:00",
+   "hasta": "2026-10-31T13:00:00-06:00",
+   "zona": "Benito Juárez",
+   "lugar": "Col. Nápoles",
+   "mapa": [19.3937, -99.1770],
+   "resumen": "Una mañana de pan, cafecito y un ramo para tu altar.",
+   "colaboran": ["Teresita Flwrs", "Nutriplus", "Cima Vision"],
+   "apartar": {"whatsapp": "", "instagram": ""}
   }
  ]
 }
