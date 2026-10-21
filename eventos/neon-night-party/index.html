@@ -57,6 +57,8 @@
   .btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:14px;padding:0 16px;font:inherit;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer;border:1.5px solid var(--line);background:#fff;color:var(--ink);transition:transform 160ms var(--ease),background-color 150ms ease,border-color 150ms ease}
   .btn.fill{background:var(--accent);border-color:var(--accent);color:#fff}
   .btn:active{transform:scale(.97)}
+  .btn.tint{background:var(--tint);border-color:var(--tint);color:var(--accent-t)}
+  .quien{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:-2px}
   .aviso{color:var(--muted);font-size:15px;text-align:center}
   .mas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
   .mas .btn{min-height:48px;font-size:14px;font-weight:500;border-width:1px;padding:0 8px;text-align:center;line-height:1.2}
@@ -83,7 +85,7 @@
     h1{font-size:52px}.res{font-size:20px}
     #mapa{height:240px}
   }
-  @media (hover:hover) and (pointer:fine){.btn:hover{border-color:#C9CDE0}.btn.fill:hover{background:var(--accent-t);border-color:var(--accent-t)}.cab a:hover{color:var(--accent-t)}}
+  @media (hover:hover) and (pointer:fine){.btn:hover{border-color:#C9CDE0}.btn.tint:hover{border-color:#F6C9CE}.btn.fill:hover{background:var(--accent-t);border-color:var(--accent-t)}.cab a:hover{color:var(--accent-t)}}
   @media (prefers-reduced-motion:reduce){.btn{transition-property:background-color,border-color}}
 </style>
 </head>
@@ -111,7 +113,7 @@
   </aside>
   <a class="back" href="/eventos/">← Todos los eventos</a>
 </main>
-<script id="evento" type="application/json">{"slug": "neon-night-party", "titulo": "Neon Night Party", "tipo": "Fiesta", "categoria": "Pilates", "flyer": "/eventos/fotos/neon-night-party.jpg", "color": "#C2185B", "desde": "2026-11-19T18:30:00-06:00", "hasta": "2026-11-19T22:30:00-06:00", "zona": "Álvaro Obregón", "lugar": "Umaah Haus", "direccion": "Fernando M. Villalpando 98, Guadalupe Inn.", "mapa": [19.3612, -99.1851], "resumen": "Mat pilates, beauty, música, experiencias exclusivas, regalos y muchas sorpresas.", "puntos": ["Dresscode: colores neón", "Cupo limitado", "Usuarias de Wellhub y TotalPass: manda DM para tu precio especial"], "aportacion": [{"etiqueta": "Precio regular", "precio": "$500"}], "colaboran": ["La Mat Party", "Catarsis"], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/neon-night-party/"}</script>
+<script id="evento" type="application/json">{"slug": "neon-night-party", "titulo": "Neon Night Party", "tipo": "Fiesta", "categoria": "Pilates", "flyer": "/eventos/fotos/neon-night-party.jpg", "color": "#C2185B", "desde": "2026-11-19T18:30:00-06:00", "hasta": "2026-11-19T22:30:00-06:00", "zona": "Álvaro Obregón", "lugar": "Umaah Haus", "direccion": "Fernando M. Villalpando 98, Guadalupe Inn.", "mapa": [19.3612, -99.1851], "resumen": "Mat pilates, beauty, música, experiencias exclusivas, regalos y muchas sorpresas.", "puntos": ["Dresscode: colores neón", "Cupo limitado", "Usuarias de Wellhub y TotalPass: manda DM para tu precio especial"], "aportacion": [{"etiqueta": "Precio regular", "precio": "$500"}], "colaboran": ["La Mat Party", "Catarsis"], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/neon-night-party/", "responsables": []}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"></script>
@@ -144,13 +146,19 @@
   const li=(e.puntos||[]).length?"<ul>"+e.puntos.map(x=>"<li>"+ok+"<span>"+link(x)+"</span></li>").join("")+"</ul>":"";
   if(ps||li){ $("desc").innerHTML=ps+li; $("desc").hidden=false; }
 
-  // Apartar: WhatsApp e Instagram (o el botón propio del evento). Un solo botón en acento.
-  const ap=e.apartar||{}, msg=`Hola, quiero apartar mi lugar para ${e.titulo} (${part(a,{weekday:"long",day:"numeric",month:"long"})}).`;
+  // Apartar: un botón por responsable (cada una recibe a quien invitó; ?de=<slug> deja solo a esa persona),
+  // si no, WhatsApp e Instagram del evento (o su botón propio). Un solo botón en acento.
+  const ap=e.apartar||{}, cuando=part(a,{weekday:"long",day:"numeric",month:"long"}), msg=`Hola, quiero apartar mi lugar para ${e.titulo} (${cuando}).`;
+  const rs=e.responsables||[], de=new URLSearchParams(location.search).get("de"), quien=rs.filter(r=>r.slug===de).length?rs.filter(r=>r.slug===de):rs;
   let bt="";
-  if(ap.whatsapp) bt+=`<a class="btn fill" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${String(ap.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent(msg)}">Apartar por WhatsApp</a>`;
+  if(quien.length){
+    if(quien.length>1) bt+=`<p class="quien">¿Quién te invitó?</p>`;
+    bt+=quien.map(r=>`<a class="btn ${quien.length>1?"tint":"fill"}" data-r="${esc(r.slug)}" target="_blank" rel="noopener" href="https://wa.me/${r.whatsapp}?text=${encodeURIComponent(`Hola ${r.nombre}, estoy interesada en el evento ${e.titulo} (${cuando}).`)}">Escríbele a ${esc(r.nombre)}</a>`).join("");
+  } else if(ap.whatsapp) bt+=`<a class="btn fill" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${String(ap.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent(msg)}">Apartar por WhatsApp</a>`;
   if(ap.instagram) bt+=`<a class="btn${bt?"":" fill"}" id="bIg" target="_blank" rel="noopener" href="https://ig.me/m/${encodeURIComponent(String(ap.instagram).replace(/^@/,""))}">Apartar por Instagram</a>`;
   if(e.boton&&e.boton.url) bt+=`<a class="btn${bt?"":" fill"}" id="bOtro" href="${esc(e.boton.url)}" target="_blank" rel="noopener">${esc(e.boton.texto||"Quiero ir")}</a>`;
   $("btns").innerHTML=bt; if(!bt){ $("aviso").textContent="Muy pronto te decimos cómo apartar tu lugar."; $("aviso").hidden=false; }
+  $("btns").querySelectorAll("[data-r]").forEach(x=>x.onclick=()=>gc("whatsapp-"+x.dataset.r,x.textContent));
   $("bWa")&&($("bWa").onclick=()=>gc("apartar-whatsapp","Apartar por WhatsApp")); $("bIg")&&($("bIg").onclick=()=>gc("apartar-instagram","Apartar por Instagram")); $("bOtro")&&($("bOtro").onclick=()=>gc("boton",e.boton.texto||"Botón"));
 
   // Cuenta regresiva: primero el número
