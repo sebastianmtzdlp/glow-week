@@ -7,165 +7,219 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Eventos · Mi Tienda Beauty</title>
-<meta name="description" content="Talleres, mañanas y reuniones en persona del equipo Farmasi. Elige tu zona y aparta tu lugar.">
+<meta name="description" content="Talleres, clases y fiestas en persona en la Ciudad de México. Elige tu zona y aparta tu lugar.">
 <meta property="og:title" content="Eventos · Mi Tienda Beauty">
-<meta property="og:description" content="Talleres, mañanas y reuniones en persona del equipo Farmasi. Elige tu zona y aparta tu lugar.">
+<meta property="og:description" content="Talleres, clases y fiestas en persona en la Ciudad de México. Elige tu zona y aparta tu lugar.">
 <meta property="og:url" content="https://mitienda.beauty/eventos/">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <style>
-  :root{--bg:#FFFFFF;--card:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--accent:#DB414C;--red:#C7303B;--soft:#F4F5FA}
+  /* Cartelera: la página cuelga el flyer de cada evento; la marca (estilo Farmasi) queda callada alrededor. */
+  :root{color-scheme:light;
+    --bg:#FFFFFF;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;
+    --sans:Outfit,system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;--serif:"Cormorant Garamond",Georgia,serif;
+    --ease:cubic-bezier(.23,1,.32,1)}
   *{box-sizing:border-box;margin:0}
-  :root{--ease-out:cubic-bezier(.23,1,.32,1)}
-  a,button{-webkit-tap-highlight-color:transparent}
-  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
-  body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.45;-webkit-text-size-adjust:100%}
-  .wrap{max-width:640px;margin:0 auto;padding:0 0 60px}
-  .pad{padding:0 18px}
-  /* Destacado */
-  .hero{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:440px;padding:22px 18px;color:#fff;text-decoration:none;background:var(--c,#262A4A) center/cover no-repeat;overflow:hidden}
-  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.32),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 38%,rgba(0,0,0,.6))}
-  .hero.sinfoto{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 16px,transparent 16px 32px)}
-  .hero>*{position:relative}
-  .hero .brand{position:absolute;top:18px;left:18px;font-size:12px;font-weight:800;letter-spacing:.16em;text-shadow:0 1px 10px rgba(0,0,0,.45)}
-  .hero .pill{align-self:flex-start;font-size:12px;font-weight:700;background:#fff;color:var(--c,#262A4A);padding:5px 11px;border-radius:999px}
-  .hero h1{font-size:clamp(30px,8.5vw,40px);font-weight:800;line-height:1.05;margin-top:10px;text-wrap:balance;letter-spacing:-.01em}
-  .hero .pill{font-variant-numeric:tabular-nums}
-  .hero p{font-size:15px;margin-top:6px;opacity:.95;max-width:34ch}
-  .hero .go{align-self:flex-start;margin-top:14px;background:#fff;color:var(--ink);font-weight:700;padding:12px 20px;border-radius:12px;transition:transform 160ms var(--ease-out)}
-  .hero:active .go{transform:scale(.97)}
-  .top{display:flex;justify-content:space-between;align-items:center;padding:22px 18px 4px}
-  .top b{font-size:12px;font-weight:800;letter-spacing:.16em}
-  /* Categorías (iconos) y zonas */
-  .cats{display:flex;gap:22px;overflow-x:auto;padding:16px 18px 0;border-bottom:1px solid var(--line);scrollbar-width:none}
-  .cats button{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;font:inherit;font-size:12px;font-weight:500;color:var(--muted);background:none;border:0;border-bottom:2px solid transparent;padding:2px 0 10px;cursor:pointer}
-  .cats button svg{width:24px;height:24px}
-  .cats button[aria-pressed=true]{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}
-  .zonas{display:flex;gap:8px;overflow-x:auto;padding:14px 18px 0;scrollbar-width:none}
-  .zonas button{flex:none;font:inherit;font-size:13px;font-weight:600;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
-  .zonas button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
-  /* Secciones */
-  section{margin-top:26px}
-  .sh{display:flex;justify-content:space-between;align-items:baseline;padding:0 18px;margin-bottom:12px}
-  .sh h2{font-size:20px;font-weight:800}
-  .rail{display:flex;gap:12px;overflow-x:auto;padding:0 18px 6px;scroll-snap-type:x mandatory;scroll-padding-inline:18px;scrollbar-width:none}
-  .card{flex:none;width:min(220px,62vw);scroll-snap-align:start;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:3px}
-  .card .img{height:140px;border-radius:14px;background:var(--c,var(--soft)) center/cover no-repeat;position:relative;margin-bottom:5px}
-  .card .img span{position:absolute;top:10px;left:10px;background:#fff;border-radius:999px;font-size:11px;font-weight:700;padding:4px 9px}
-  .card .d{font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.03em}
-  .card b{font-weight:700;line-height:1.25}
-  .card small{font-size:13px;color:var(--muted)}
-  #mapa{height:240px;border-radius:18px;margin:0 18px;border:1px solid var(--line);z-index:0}
-  .serie{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;background:var(--soft);border-radius:16px;padding:12px;margin:0 18px 10px}
-  .serie i{flex:none;width:56px;height:56px;border-radius:12px;background:var(--c,var(--ink)) center/cover}
-  .serie b{display:block}.serie small{color:var(--muted);font-size:13px}
-  .past .card .img{filter:grayscale(.7);opacity:.8}
-  .past .card .d{color:var(--muted)}
-  .empty{margin:18px;color:var(--muted);background:var(--soft);border-radius:16px;padding:18px;text-align:center}
+  html,body{background:var(--bg)}
+  body{color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.45;-webkit-text-size-adjust:100%}
+  a,button,select{-webkit-tap-highlight-color:transparent}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .marca{font-weight:300;font-size:12px;letter-spacing:.24em;color:var(--muted)}
+  .press{transition:transform 160ms var(--ease)}
+  .press:active{transform:scale(.98)}
   [hidden]{display:none!important}
-  a.back{display:block;margin:30px 18px 0;font-size:14px;color:var(--muted)}
-  @media (min-width:640px){.hero{border-radius:0 0 24px 24px}}
-  /* Respuesta al toque y al cursor */
-  .cats button,.zonas button{transition:color 150ms ease,background-color 150ms ease,border-color 150ms ease,transform 120ms var(--ease-out)}
-  .zonas button:active,.cats button:active{transform:scale(.96)}
-  .card .img{overflow:hidden;transition:transform 160ms var(--ease-out)}
-  .card:active .img{transform:scale(.98)}
-  .serie{transition:background-color 150ms ease,transform 160ms var(--ease-out)}
-  .serie:active{transform:scale(.98)}
+
+  .pag{max-width:1280px;margin:0 auto;padding:28px max(16px,env(safe-area-inset-right,0px)) 40px max(16px,env(safe-area-inset-left,0px));
+    display:grid;grid-template-columns:minmax(0,1fr);gap:44px;grid-template-areas:"intro" "dest" "muro" "mapa" "pie"}
+  .intro{grid-area:intro}.dest{grid-area:dest}.muro{grid-area:muro}.mapa{grid-area:mapa}.pie{grid-area:pie}
+  h1{font-size:clamp(56px,10.5vw,132px);font-weight:800;line-height:.88;letter-spacing:-.035em;margin-top:12px}
+  .intro>p{font-size:18px;color:var(--muted);max-width:36ch;margin-top:16px}
+  .filtro{margin-top:20px;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .filtro select{font:inherit;font-weight:600;color:var(--ink);border:0;border-bottom:2px solid var(--accent);background:transparent;padding:4px 22px 4px 0;appearance:none;cursor:pointer;min-height:44px;
+    background-image:linear-gradient(45deg,transparent 50%,var(--accent) 50%),linear-gradient(135deg,var(--accent) 50%,transparent 50%);background-position:right 6px top 55%,right 1px top 55%;background-size:5px 5px;background-repeat:no-repeat}
+
+  /* Calendario del mes */
+  .cal{margin-top:26px;max-width:360px}
+  .cal .cab{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+  .cal .cab b{font-size:15px;font-weight:600}
+  .cal .cab button{width:44px;height:44px;border-radius:12px;border:1px solid var(--line);background:#fff;color:var(--ink);font:600 18px/1 var(--sans);cursor:pointer}
+  .cal .g{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;text-align:center}
+  .cal .dn{font-size:11px;color:var(--muted);padding-bottom:2px}
+  .cal .d{border-radius:10px;min-height:40px;font-size:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;color:var(--muted);border:0;background:none;font-family:var(--mono)}
+  .cal .d.fin{background:var(--soft)}
+  .cal .d.hoy{background:var(--accent);color:#fff}
+  .cal .d.ev{color:var(--ink);font-weight:700;cursor:pointer;background:#fff;box-shadow:inset 0 0 0 1px var(--line)}
+  .cal .d.ev.hoy{background:var(--accent);color:#fff;box-shadow:none}
+  .cal .d i{width:6px;height:6px;border-radius:50%;background:var(--c)}
+  .cal .d.hoy i{background:#fff}
+
+  /* Destacado */
+  .dest{display:grid;gap:24px;align-items:center}
+  .dest>a{display:block}
+  .eti{font-size:14px;color:var(--accent-t);font-weight:500}
+  .big{font:700 clamp(44px,9vw,84px)/.95 var(--mono);letter-spacing:-.04em;margin-top:6px}
+  .info h2{font-size:clamp(26px,3vw,34px);font-weight:800;line-height:1.1;margin-top:14px;text-wrap:balance}
+  .info .lug{color:var(--muted);font-size:17px;margin-top:4px}
+  .info p{font-size:18px;margin-top:14px;max-width:38ch}
+  .apo{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:16px;padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);font-size:15px;color:var(--muted)}
+  .apo b{color:var(--ink);font-size:17px;margin-left:4px}
+  .info .reg{font-size:15px;color:var(--accent-t);margin-top:10px}
+  .info .con{font-size:15px;color:var(--muted);margin-top:10px}
+  .go{display:inline-flex;align-items:center;gap:10px;margin-top:22px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;text-decoration:none;padding:0 22px;min-height:52px;border-radius:14px}
+
+  /* Carteles */
+  /* Todos los carteles en el mismo marco 4:5; el flyer completo adentro, sin recortar, sobre su propio color difuminado */
+  .marco{position:relative;aspect-ratio:4/5;max-width:100%;overflow:hidden;border-radius:4px;background:var(--soft);box-shadow:0 1px 2px rgba(38,42,74,.08),0 12px 32px rgba(38,42,74,.12)}
+  .marco::before{content:"";position:absolute;inset:-30px;background:var(--img) center/cover;filter:blur(24px) saturate(1.15);opacity:.6}
+  .marco img{position:relative;display:block;width:100%;height:100%;object-fit:contain}
+  .dest .marco,.dest .gen{max-width:560px;margin:0 auto;width:100%}
+  .gen{aspect-ratio:4/5;max-width:100%;display:flex;flex-direction:column;justify-content:flex-end;padding:20px;color:#fff;background:var(--c) center/cover no-repeat;position:relative;overflow:hidden;border-radius:4px}
+  .gen::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 45%,rgba(0,0,0,.55))}
+  .gen>*{position:relative}.gen b{font-size:28px;line-height:1.05;font-weight:800;text-wrap:balance}
+  .muro{display:grid;gap:40px 28px;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));align-items:start}
+  .muro:empty{display:none}
+  .post{min-width:0}
+  .post>a{display:block;color:inherit;text-decoration:none}
+  .post .cap{display:grid;gap:2px;margin-top:14px}
+  .post .cap .num{font-size:13px;color:var(--accent-t);font-weight:500}
+  .post .cap b{font-size:19px;font-weight:700;line-height:1.2}
+  .post .cap span{color:var(--muted);font-size:15px}
+  .enmapa{display:inline-flex;align-items:center;gap:6px;margin-top:6px;min-height:44px;padding:0;border:0;background:none;font:500 14px var(--sans);color:var(--ink);cursor:pointer;justify-self:start}
+  .enmapa svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+  .post.flash .marco,.post.flash .gen{animation:flash 1100ms var(--ease)}
+  @keyframes flash{0%{box-shadow:0 0 0 4px var(--accent)}100%{box-shadow:0 0 0 0 transparent,0 12px 32px rgba(38,42,74,.12)}}
+
+  /* Mapa, series y pasados */
+  h3{font-size:22px;font-weight:700;margin-bottom:14px}
+  #mapa{height:340px;border-radius:18px;border:1px solid var(--line);z-index:0;scroll-margin-top:20px}
+  .leaflet-container{font-family:var(--sans);background:var(--soft)}
+  .leaflet-popup-content{font-size:14px;line-height:1.4;margin:12px 14px}
+  .leaflet-popup-content a{color:var(--accent-t);font-weight:600}
+  .pop{display:flex;gap:10px;align-items:flex-start;min-width:200px}.pop img{flex:none;width:54px;height:68px;object-fit:cover;border-radius:3px}
+  .pie{display:grid;gap:40px}
+  .fila{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:16px 0;border-top:1px solid var(--line);color:inherit;text-decoration:none;font-size:18px;font-weight:600;min-height:44px}
+  .fila small{font-size:14px;color:var(--muted);font-weight:400;text-align:right}
+  .fila:last-child{border-bottom:1px solid var(--line)}
+  .vacio{color:var(--muted);font-size:18px;padding:20px 0;border-top:1px solid var(--line)}
+  a.volver{display:inline-flex;align-items:center;min-height:44px;color:var(--muted);font-size:15px}
+
   @media (hover:hover) and (pointer:fine){
-    .cats button:hover{color:var(--ink)}
-    .zonas button:not([aria-pressed=true]):hover{border-color:var(--ink)}
-    .card:hover b{color:var(--accent)}
-    .serie:hover{background:#ECEEF6}
-    .hero .go{transition:transform 160ms var(--ease-out),background-color 150ms ease}
-    .hero:hover .go{background:#F4F5FA}
+    .post>a:hover b,.fila:hover,.dest>a:hover~.info h2{color:var(--accent-t)}
+    .go:hover{background:var(--accent-t)}.enmapa:hover{color:var(--accent-t)}
+    .cal .cab button:hover{border-color:#C9CDE0}
   }
-  .leaflet-container{font-family:inherit}
-  .leaflet-popup-content{font-size:14px;line-height:1.4}
-  .leaflet-popup-content a{color:var(--accent);font-weight:600}
-  @media (prefers-reduced-motion:reduce){*{transition-property:color,background-color,border-color,opacity!important}}
+  @media (min-width:900px){
+    .pag{grid-template-columns:repeat(12,minmax(0,1fr));column-gap:32px;row-gap:72px;padding:56px 48px 48px;
+      grid-template-areas:"intro intro intro intro intro mapa mapa mapa mapa mapa mapa mapa" "dest dest dest dest dest dest dest dest dest dest dest dest" "muro muro muro muro muro muro muro muro muro muro muro muro" "pie pie pie pie pie pie pie pie pie pie pie pie"}
+    .mapa{position:relative}
+    #mapa{position:absolute;inset:0;height:auto;min-height:420px}
+    .dest{grid-template-columns:6fr 5fr;gap:64px}
+    .muro{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 40px}
+    .pie{grid-template-columns:1fr 1fr 1fr;gap:56px;align-items:start}
+  }
+  @media (prefers-reduced-motion:reduce){.press{transition:none}.post.flash .marco,.post.flash .gen{animation:none}}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <a class="hero" id="hero" hidden></a>
-  <div class="top" id="top" hidden><b>MI TIENDA BEAUTY · EVENTOS</b></div>
-  <nav class="cats" id="cats" aria-label="Categorías"></nav>
-  <div class="zonas" id="zonas" role="group" aria-label="Filtrar por zona"></div>
-  <div id="secs"><p class="empty">Cargando eventos…</p></div>
-  <section id="secMapa" hidden><div class="sh"><h2>Cerca de ti</h2></div><div id="mapa"></div></section>
-  <div id="secSeries"></div>
-  <div id="secPasados"></div>
-  <a class="back" href="../">← Volver a Mi Tienda Beauty</a>
-</div>
+<main class="pag" id="app"><div class="intro"><div class="marca">EQUIPO SVH</div><h1>Eventos</h1><p>Cargando eventos…</p></div></main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (async()=>{
-  const $=id=>document.getElementById(id), TZ="America/Mexico_City", esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const $=id=>document.getElementById(id), TZ="America/Mexico_City", reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+  const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
   const part=(d,o)=>new Intl.DateTimeFormat("es-MX",{timeZone:TZ,...o}).format(d);
-  const hora=d=>part(d,{hour:"numeric",minute:"2-digit",hour12:true}).replace(":00","").replace(/\s*([ap])\.?\s*m\.?/i," $1. m.");
+  const h24=d=>part(d,{hour:"2-digit",minute:"2-digit",hourCycle:"h23"});
+  const dia=d=>{const [y,m,x]=part(d,{year:"numeric",month:"2-digit",day:"2-digit"}).split("/").reverse();return Date.UTC(+y,+m-1,+x);};
   const corta=d=>(part(d,{weekday:"short"})+" "+part(d,{day:"numeric"})+" "+part(d,{month:"short"})).replace(/\./g,"");
-  const bg=e=>(e.color?`--c:${esc(e.color)};`:"")+(e.imagen?`background-image:url('${esc(e.imagen)}');`:"");
-  // Íconos de categoría (los que no estén aquí usan el de estrella)
-  const IC={Todos:'<path d="M4 5h16v14H4zM4 10h16"/>',Flores:'<circle cx="12" cy="8" r="4"/><path d="M12 12v9M12 17c-2-2-5-2-6-1M12 19c2-2 5-2 6-1"/>',
-    Maquillaje:'<rect x="9" y="3" width="6" height="18" rx="2"/><path d="M9 9h6"/>',Reuniones:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.8.7 3 2.5 3.5 5.2"/>',
-    Skincare:'<path d="M8 3h8v4l2 3v11H6V10l2-3z"/>',Lanzamientos:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
-    Capacitación:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>'};
-  const icon=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">${IC[k]||IC.Lanzamientos}</svg>`;
+  const cuando=d=>{const n=Math.round((dia(d)-dia(new Date()))/864e5);return n<0?"Ya empezó":n===0?"Hoy":n===1?"Mañana":"En "+n+" días";};
+  const lista_y=a=>a.length>1?a.slice(0,-1).join(", ")+" y "+a.at(-1):a[0]||"";
 
   let D={eventos:[],series:{}};
   try{ D=await (await fetch("../_data/eventos.json?v="+Date.now())).json(); }catch(_){}
   const S=D.series||{}, now=new Date();
   const ev=(D.eventos||[]).map(e=>{const s=S[e.serie]||{};return {...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde),
-    nombre:e.serie&&s.nombre?s.nombre+(e.edicion?" · "+e.edicion:""):e.titulo,
-    href:"/eventos/"+(e.serie?e.serie+"/":"")+e.slug+"/",cat:e.categoria||""};});
-  const vivos=ev.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a);
-  const cats=[...new Set(vivos.map(e=>e.cat).filter(Boolean))], zonas=[...new Set(vivos.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
-  const q=new URLSearchParams(location.search); let cat=cats.includes(q.get("cat"))?q.get("cat"):"", zona=zonas.includes(q.get("zona"))?q.get("zona"):"";
-  const url=()=>{const p=new URLSearchParams();if(cat)p.set("cat",cat);if(zona)p.set("zona",zona);history.replaceState(null,"",p.toString()?"?"+p:location.pathname);};
+    nombre:e.serie&&s.nombre?s.nombre+(e.edicion?" · "+e.edicion:""):e.titulo,serieN:s.nombre||"",
+    href:"/eventos/"+(e.serie?e.serie+"/":"")+e.slug+"/"};});
+  const vivos=ev.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a), pasados=ev.filter(e=>e.b<now).sort((x,y)=>y.a-x.a);
+  const zonas=[...new Set(vivos.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
+  const q=new URLSearchParams(location.search); let zona=zonas.includes(q.get("zona"))?q.get("zona"):"", mes=null, mapa=null, marcas={};
+  const lugar=e=>[e.lugar,e.zona].filter(Boolean).join(" · ");
+  const cartel=e=>e.flyer
+    ? `<div class="marco" style="--img:url('${esc(e.flyer)}')"><img src="${esc(e.flyer)}" alt="Flyer de ${esc(e.nombre)}" loading="lazy"></div>`
+    : `<div class="gen" style="--c:${esc(e.color||"#262A4A")}${e.imagen?`;background-image:url('${esc(e.imagen)}')`:""}"><span class="num">${esc(corta(e.a))}</span><b>${esc(e.nombre)}</b></div>`;
+  const pin='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
 
-  let mapa=null, capa=null;
-  if(window.L&&vivos.some(e=>e.mapa)){ $("secMapa").hidden=false; mapa=L.map("mapa",{scrollWheelZoom:false}); capa=L.layerGroup().addTo(mapa);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(mapa); }
+  function calendario(L1){
+    if(!mes){ const d=L1[0]?.a||now; mes={y:+part(d,{year:"numeric"}),m:+part(d,{month:"numeric"})-1}; }
+    const ini=new Date(Date.UTC(mes.y,mes.m,1)), dias=new Date(Date.UTC(mes.y,mes.m+1,0)).getUTCDate(), off=ini.getUTCDay(), hoy=dia(now), porDia={};
+    L1.forEach(e=>{(porDia[dia(e.a)]??=[]).push(e);});
+    let g=["D","L","M","M","J","V","S"].map(x=>`<span class="dn" aria-hidden="true">${x}</span>`).join("")+"<span></span>".repeat(off);
+    for(let x=1;x<=dias;x++){ const t=Date.UTC(mes.y,mes.m,x), w=(off+x-1)%7, h=porDia[t], cls=`d${w===0||w===6?" fin":""}${t===hoy?" hoy":""}${h?" ev":""}`;
+      g+=h?`<button class="${cls}" data-ir="${esc(h[0].slug)}" style="--c:${esc(h[0].color||"#262A4A")}" aria-label="${x}: ${esc(h.map(e=>e.nombre).join(", "))}">${x}<i></i></button>`:`<span class="${cls}">${x}</span>`; }
+    const nom=new Intl.DateTimeFormat("es-MX",{month:"long",year:"numeric",timeZone:"UTC"}).format(ini).replace(" de "," ");
+    return `<div class="cal" aria-label="Calendario"><div class="cab"><button id="mAnt" aria-label="Mes anterior">‹</button><b>${esc(nom[0].toUpperCase()+nom.slice(1))}</b><button id="mSig" aria-label="Mes siguiente">›</button></div><div class="g">${g}</div></div>`;
+  }
 
-  const card=e=>`<a class="card" href="${esc(e.href)}"><div class="img" style="${bg(e)}">${e.cat||e.tipo?`<span>${esc(e.cat||e.tipo)}</span>`:""}</div>
-    <span class="d">${esc(corta(e.a))} · ${esc(hora(e.a))}</span><b>${esc(e.nombre)}</b><small>${esc([e.lugar,e.zona].filter(Boolean).join(" · "))}</small></a>`;
-  const rail=(t,l,cls)=>l.length?`<section class="${cls||""}"><div class="sh"><h2>${t}</h2></div><div class="rail">${l.map(card).join("")}</div></section>`:"";
-  const falta=ms=>{const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5);return d?`faltan ${d} día${d>1?"s":""}`:h?`faltan ${h} h`:"empieza pronto";};
+  function pinta(){
+    if(mapa){ mapa.remove(); mapa=null; marcas={}; }
+    const L1=vivos.filter(e=>!zona||e.zona===zona), d=L1[0], resto=L1.slice(1), se=Object.entries(S).filter(([k])=>!k.startsWith("_"));
+    $("app").innerHTML=`
+      <div class="intro"><div class="marca">EQUIPO SVH</div><h1>Eventos</h1>
+        <p>Talleres, clases y fiestas en persona, en la Ciudad de México. Entra al que te guste y aparta tu lugar.</p>
+        ${zonas.length?`<label class="filtro" for="zona">Ver eventos en <select id="zona">${["",...zonas].map(z=>`<option value="${esc(z)}"${z===zona?" selected":""}>${esc(z||"todas las zonas")}</option>`).join("")}</select></label>`:""}
+        ${L1.length?calendario(L1):""}</div>
+      ${d?`<section class="dest post" id="ev-${esc(d.slug)}" aria-label="Próximo evento"><a class="press" href="${esc(d.href)}" aria-label="${esc(d.nombre)}">${cartel(d)}</a>
+        <div class="info"><div class="eti">${esc(cuando(d.a))} · ${esc(part(d.a,{weekday:"long"}))}</div>
+          <div class="big num">${esc(part(d.a,{day:"2-digit"}))}.${esc(part(d.a,{month:"2-digit"}))}</div>
+          <h2>${esc(d.nombre)}</h2><div class="lug"><span class="num">${esc(h24(d.a))}${d.b>d.a?"–"+esc(h24(d.b)):""}</span> h · ${esc(lugar(d))}</div>
+          ${d.resumen?`<p>${esc(d.resumen)}</p>`:""}
+          ${(d.aportacion||[]).length?`<div class="apo">${d.aportacion.map(x=>`<span>${esc(x.etiqueta)} <b class="num">${esc(x.precio)}</b></span>`).join("")}</div>`:""}
+          ${d.regalo?`<p class="reg">${esc(d.regalo)}</p>`:""}${(d.colaboran||[]).length?`<div class="con">Con ${esc(lista_y(d.colaboran))}</div>`:""}
+          <a class="go press" href="${esc(d.href)}">Ver y apartar <span aria-hidden="true">→</span></a></div></section>`
+        :`<p class="vacio dest">${zona?"No hay eventos en "+esc(zona)+" por ahora. Prueba con todas las zonas.":"Pronto anunciamos el siguiente evento."}</p>`}
+      <div class="muro">${resto.map(e=>`<article class="post" id="ev-${esc(e.slug)}"><a class="press" href="${esc(e.href)}">${cartel(e)}
+        <div class="cap"><span class="num">${esc(corta(e.a).toUpperCase())} · ${esc(h24(e.a))}</span><b>${esc(e.nombre)}</b><span>${esc(lugar(e))}</span></div></a>
+        ${e.mapa?`<button class="enmapa" data-mapa="${esc(e.slug)}">${pin}Ver en el mapa</button>`:""}</article>`).join("")}</div>
+      <div class="mapa">${L1.some(e=>e.mapa)?`<div id="mapa" role="region" aria-label="Mapa de eventos"></div>`:""}</div>
+      <div class="pie">
+        ${se.length?`<section><h3>Series</h3>${se.map(([k,s])=>{const eds=ev.filter(e=>e.serie===k), p=eds.filter(e=>e.b>=now)[0];
+          return `<a class="fila" href="/eventos/${esc(k)}/"><span>${esc(s.nombre)}</span><small>${eds.length} edici${eds.length===1?"ón":"ones"}${p?" · próxima "+esc(corta(p.a)):""}</small></a>`;}).join("")}</section>`:""}
+        <section><h3>Ya pasaron</h3>${pasados.length?pasados.slice(0,6).map(e=>`<a class="fila" href="${esc(e.href)}"><span>${esc(e.nombre)}</span><small class="num">${esc(corta(e.a))}</small></a>`).join(""):`<p class="vacio">Aquí van a quedar los eventos que ya pasaron.</p>`}</section>
+        <div><a class="volver" href="/">← Mi Tienda Beauty</a></div></div>`;
 
-  const pinta=()=>{
-    const ok=e=>(!cat||e.cat===cat)&&(!zona||e.zona===zona);
-    const L1=vivos.filter(ok), dest=L1[0];
-    // Destacado: el próximo evento (o el que está pasando)
-    const H=$("hero"); H.hidden=!dest; $("top").hidden=!!dest;
-    if(dest){ H.href=dest.href; H.className="hero"+(dest.imagen?"":" sinfoto"); H.setAttribute("style",bg(dest));
-      H.innerHTML=`<span class="brand">MI TIENDA BEAUTY · EVENTOS</span><span class="pill">${dest.a<=now?"Está pasando ahora":falta(dest.a-now).replace(/^f/,"F").replace(/^e/,"E")}</span>
-        <h1>${esc(dest.nombre)}</h1><p>${esc(corta(dest.a))} · ${esc(hora(dest.a))}${dest.lugar?" · "+esc(dest.lugar):""}</p>${dest.resumen?`<p>${esc(dest.resumen)}</p>`:""}<span class="go">Ver evento y apartar</span>`; }
-    // Categorías y zonas
-    $("cats").innerHTML=cats.length?["Todos",...cats].map(k=>`<button aria-pressed="${(k==="Todos"?"":k)===cat}" data-k="${esc(k==="Todos"?"":k)}">${icon(k)}${esc(k)}</button>`).join(""):"";
-    $("cats").hidden=!cats.length;
-    $("zonas").innerHTML=zonas.length?["",...zonas].map(z=>`<button aria-pressed="${z===zona}" data-z="${esc(z)}">${esc(z||"Todas las zonas")}</button>`).join(""):"";
-    document.querySelectorAll("#cats button").forEach(b=>b.onclick=()=>{cat=b.dataset.k;url();pinta();});
-    document.querySelectorAll("#zonas button").forEach(b=>b.onclick=()=>{zona=b.dataset.z;url();pinta();});
-    // Carruseles (sin repetir el destacado)
-    const resto=L1.slice(1), sem=+now+7*864e5;
-    let h=rail("Esta semana",resto.filter(e=>e.a<=sem))+rail("Más adelante",resto.filter(e=>e.a>sem));
-    if(!L1.length) h=`<p class="empty">${cat||zona?"No hay eventos con esos filtros por ahora.":"Pronto anunciamos el siguiente evento."}</p>`;
-    $("secs").innerHTML=h;
-    // Mapa
-    if(mapa){ capa.clearLayers(); const pts=L1.filter(e=>e.mapa); $("secMapa").hidden=!pts.length;
-      pts.forEach(e=>L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1}).bindPopup(`<b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(hora(e.a))}<br><a href="${esc(e.href)}">Ver evento</a>`).addTo(capa));
-      if(pts.length){ setTimeout(()=>{mapa.invalidateSize(); pts.length===1?mapa.setView(pts[0].mapa,13):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[30,30]});},0); } }
-  };
+    if($("zona")) $("zona").onchange=()=>{ zona=$("zona").value; mes=null; const p=new URLSearchParams(); if(zona)p.set("zona",zona); history.replaceState(null,"",p.toString()?"?"+p:location.pathname); pinta(); };
+    const mov=k=>{ mes.m+=k; if(mes.m<0){mes.m=11;mes.y--;} if(mes.m>11){mes.m=0;mes.y++;} const c=document.querySelector(".cal"); c.outerHTML=calendario(L1); enlazaCal(); };
+    const enlazaCal=()=>{ $("mAnt")&&($("mAnt").onclick=()=>mov(-1)); $("mSig")&&($("mSig").onclick=()=>mov(1));
+      document.querySelectorAll(".cal [data-ir]").forEach(b=>b.onclick=()=>{ const t=$("ev-"+b.dataset.ir); if(!t) return;
+        t.scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"}); t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); vuela(b.dataset.ir,false); }); };
+    enlazaCal();
+
+    // Mapa: cada evento con su color; "Ver en el mapa" lleva el mapa a su lugar
+    const pts=L1.filter(e=>e.mapa);
+    if(pts.length&&window.L&&$("mapa")){
+      mapa=L.map("mapa",{scrollWheelZoom:false});
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{maxZoom:19,subdomains:"abcd",attribution:"© OpenStreetMap · © CARTO"}).addTo(mapa);
+      pts.forEach(e=>{ const m=marcas[e.slug]=L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1})
+        .bindPopup(`<div class="pop">${e.flyer?`<img src="${esc(e.flyer)}" alt="">`:""}<div><b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">Ver y apartar</a></div></div>`).addTo(mapa);
+        // Del mapa al evento: tocar el punto marca su cartel
+        m.on("click",()=>{ const t=$("ev-"+e.slug); if(t){ t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); } });
+        m.bindTooltip(e.nombre,{direction:"top",offset:[0,-10]}); });
+      // Del evento al mapa: pasar sobre el cartel resalta su punto
+      document.querySelectorAll(".post[id^=ev-]").forEach(p=>{ const m=marcas[p.id.slice(3)]; if(!m) return;
+        p.addEventListener("mouseenter",()=>{ m.setStyle({radius:15,weight:4}); m.bringToFront(); });
+        p.addEventListener("mouseleave",()=>m.setStyle({radius:10,weight:3})); });
+      setTimeout(()=>{ mapa.invalidateSize(); pts.length===1?mapa.setView(pts[0].mapa,14):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[36,36]}); },0);
+    }
+    function vuela(slug,bajar){ const m=marcas[slug]; if(!mapa||!m) return;
+      if(bajar){ const r=$("mapa").getBoundingClientRect(); if(r.top<0||r.bottom>innerHeight) $("mapa").scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"}); }
+      mapa.flyTo(m.getLatLng(),15,{duration:reduce?0:.7}); setTimeout(()=>m.openPopup(),reduce?0:700); }
+    document.querySelectorAll("[data-mapa]").forEach(b=>b.onclick=()=>vuela(b.dataset.mapa,true));
+  }
   pinta();
-
-  // Series y pasados (no dependen de los filtros)
-  const ser=Object.entries(S).filter(([k])=>!k.startsWith("_")).map(([k,s])=>{const eds=ev.filter(e=>e.serie===k), prox=eds.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a)[0];
-    return `<a class="serie" href="/eventos/${esc(k)}/"><i style="${bg(s)}"></i><span><b>${esc(s.nombre)}</b><small>${eds.length} edici${eds.length===1?"ón":"ones"}${prox?" · próxima: "+esc(corta(prox.a)):""}</small></span></a>`;});
-  $("secSeries").innerHTML=ser.length?`<section><div class="sh"><h2>Series</h2></div>${ser.join("")}</section>`:"";
-  $("secPasados").innerHTML=rail("Ya pasaron",ev.filter(e=>e.b<now).sort((x,y)=>y.a-x.a).slice(0,8),"past");
 })();
 </script>
 </body>
