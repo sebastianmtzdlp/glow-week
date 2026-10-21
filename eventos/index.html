@@ -1,0 +1,172 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Eventos · Mi Tienda Beauty</title>
+<meta name="description" content="Talleres, mañanas y reuniones en persona del equipo Farmasi. Elige tu zona y aparta tu lugar.">
+<meta property="og:title" content="Eventos · Mi Tienda Beauty">
+<meta property="og:description" content="Talleres, mañanas y reuniones en persona del equipo Farmasi. Elige tu zona y aparta tu lugar.">
+<meta property="og:url" content="https://mitienda.beauty/eventos/">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root{--bg:#FFFFFF;--card:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--accent:#DB414C;--red:#C7303B;--soft:#F4F5FA}
+  *{box-sizing:border-box;margin:0}
+  :root{--ease-out:cubic-bezier(.23,1,.32,1)}
+  a,button{-webkit-tap-highlight-color:transparent}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:6px}
+  body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;line-height:1.45;-webkit-text-size-adjust:100%}
+  .wrap{max-width:640px;margin:0 auto;padding:0 0 60px}
+  .pad{padding:0 18px}
+  /* Destacado */
+  .hero{position:relative;display:flex;flex-direction:column;justify-content:flex-end;min-height:440px;padding:22px 18px;color:#fff;text-decoration:none;background:var(--c,#262A4A) center/cover no-repeat;overflow:hidden}
+  .hero::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.32),rgba(0,0,0,0) 22%,rgba(0,0,0,0) 38%,rgba(0,0,0,.6))}
+  .hero.sinfoto{background-image:repeating-linear-gradient(135deg,rgba(255,255,255,.07) 0 16px,transparent 16px 32px)}
+  .hero>*{position:relative}
+  .hero .brand{position:absolute;top:18px;left:18px;font-size:12px;font-weight:800;letter-spacing:.16em;text-shadow:0 1px 10px rgba(0,0,0,.45)}
+  .hero .pill{align-self:flex-start;font-size:12px;font-weight:700;background:#fff;color:var(--c,#262A4A);padding:5px 11px;border-radius:999px}
+  .hero h1{font-size:clamp(30px,8.5vw,40px);font-weight:800;line-height:1.05;margin-top:10px;text-wrap:balance;letter-spacing:-.01em}
+  .hero .pill{font-variant-numeric:tabular-nums}
+  .hero p{font-size:15px;margin-top:6px;opacity:.95;max-width:34ch}
+  .hero .go{align-self:flex-start;margin-top:14px;background:#fff;color:var(--ink);font-weight:700;padding:12px 20px;border-radius:12px;transition:transform 160ms var(--ease-out)}
+  .hero:active .go{transform:scale(.97)}
+  .top{display:flex;justify-content:space-between;align-items:center;padding:22px 18px 4px}
+  .top b{font-size:12px;font-weight:800;letter-spacing:.16em}
+  /* Categorías (iconos) y zonas */
+  .cats{display:flex;gap:22px;overflow-x:auto;padding:16px 18px 0;border-bottom:1px solid var(--line);scrollbar-width:none}
+  .cats button{flex:none;display:flex;flex-direction:column;align-items:center;gap:4px;font:inherit;font-size:12px;font-weight:500;color:var(--muted);background:none;border:0;border-bottom:2px solid transparent;padding:2px 0 10px;cursor:pointer}
+  .cats button svg{width:24px;height:24px}
+  .cats button[aria-pressed=true]{color:var(--ink);font-weight:700;border-bottom-color:var(--ink)}
+  .zonas{display:flex;gap:8px;overflow-x:auto;padding:14px 18px 0;scrollbar-width:none}
+  .zonas button{flex:none;font:inherit;font-size:13px;font-weight:600;padding:9px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;color:var(--ink);cursor:pointer}
+  .zonas button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+  /* Secciones */
+  section{margin-top:26px}
+  .sh{display:flex;justify-content:space-between;align-items:baseline;padding:0 18px;margin-bottom:12px}
+  .sh h2{font-size:20px;font-weight:800}
+  .rail{display:flex;gap:12px;overflow-x:auto;padding:0 18px 6px;scroll-snap-type:x mandatory;scroll-padding-inline:18px;scrollbar-width:none}
+  .card{flex:none;width:min(220px,62vw);scroll-snap-align:start;text-decoration:none;color:inherit;display:flex;flex-direction:column;gap:3px}
+  .card .img{height:140px;border-radius:14px;background:var(--c,var(--soft)) center/cover no-repeat;position:relative;margin-bottom:5px}
+  .card .img span{position:absolute;top:10px;left:10px;background:#fff;border-radius:999px;font-size:11px;font-weight:700;padding:4px 9px}
+  .card .d{font-size:12px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.03em}
+  .card b{font-weight:700;line-height:1.25}
+  .card small{font-size:13px;color:var(--muted)}
+  #mapa{height:240px;border-radius:18px;margin:0 18px;border:1px solid var(--line);z-index:0}
+  .serie{display:flex;gap:12px;align-items:center;text-decoration:none;color:inherit;background:var(--soft);border-radius:16px;padding:12px;margin:0 18px 10px}
+  .serie i{flex:none;width:56px;height:56px;border-radius:12px;background:var(--c,var(--ink)) center/cover}
+  .serie b{display:block}.serie small{color:var(--muted);font-size:13px}
+  .past .card .img{filter:grayscale(.7);opacity:.8}
+  .past .card .d{color:var(--muted)}
+  .empty{margin:18px;color:var(--muted);background:var(--soft);border-radius:16px;padding:18px;text-align:center}
+  [hidden]{display:none!important}
+  a.back{display:block;margin:30px 18px 0;font-size:14px;color:var(--muted)}
+  @media (min-width:640px){.hero{border-radius:0 0 24px 24px}}
+  /* Respuesta al toque y al cursor */
+  .cats button,.zonas button{transition:color 150ms ease,background-color 150ms ease,border-color 150ms ease,transform 120ms var(--ease-out)}
+  .zonas button:active,.cats button:active{transform:scale(.96)}
+  .card .img{overflow:hidden;transition:transform 160ms var(--ease-out)}
+  .card:active .img{transform:scale(.98)}
+  .serie{transition:background-color 150ms ease,transform 160ms var(--ease-out)}
+  .serie:active{transform:scale(.98)}
+  @media (hover:hover) and (pointer:fine){
+    .cats button:hover{color:var(--ink)}
+    .zonas button:not([aria-pressed=true]):hover{border-color:var(--ink)}
+    .card:hover b{color:var(--accent)}
+    .serie:hover{background:#ECEEF6}
+    .hero .go{transition:transform 160ms var(--ease-out),background-color 150ms ease}
+    .hero:hover .go{background:#F4F5FA}
+  }
+  .leaflet-container{font-family:inherit}
+  .leaflet-popup-content{font-size:14px;line-height:1.4}
+  .leaflet-popup-content a{color:var(--accent);font-weight:600}
+  @media (prefers-reduced-motion:reduce){*{transition-property:color,background-color,border-color,opacity!important}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="hero" id="hero" hidden></a>
+  <div class="top" id="top" hidden><b>MI TIENDA BEAUTY · EVENTOS</b></div>
+  <nav class="cats" id="cats" aria-label="Categorías"></nav>
+  <div class="zonas" id="zonas" role="group" aria-label="Filtrar por zona"></div>
+  <div id="secs"><p class="empty">Cargando eventos…</p></div>
+  <section id="secMapa" hidden><div class="sh"><h2>Cerca de ti</h2></div><div id="mapa"></div></section>
+  <div id="secSeries"></div>
+  <div id="secPasados"></div>
+  <a class="back" href="../">← Volver a Mi Tienda Beauty</a>
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(async()=>{
+  const $=id=>document.getElementById(id), TZ="America/Mexico_City", esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const part=(d,o)=>new Intl.DateTimeFormat("es-MX",{timeZone:TZ,...o}).format(d);
+  const hora=d=>part(d,{hour:"numeric",minute:"2-digit",hour12:true}).replace(":00","").replace(/\s*([ap])\.?\s*m\.?/i," $1. m.");
+  const corta=d=>(part(d,{weekday:"short"})+" "+part(d,{day:"numeric"})+" "+part(d,{month:"short"})).replace(/\./g,"");
+  const bg=e=>(e.color?`--c:${esc(e.color)};`:"")+(e.imagen?`background-image:url('${esc(e.imagen)}');`:"");
+  // Íconos de categoría (los que no estén aquí usan el de estrella)
+  const IC={Todos:'<path d="M4 5h16v14H4zM4 10h16"/>',Flores:'<circle cx="12" cy="8" r="4"/><path d="M12 12v9M12 17c-2-2-5-2-6-1M12 19c2-2 5-2 6-1"/>',
+    Maquillaje:'<rect x="9" y="3" width="6" height="18" rx="2"/><path d="M9 9h6"/>',Reuniones:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.5 3.4-5.5 6.5-5.5s5.7 2 6.5 5.5M16 4.5a3.5 3.5 0 0 1 0 7M18 14.8c1.8.7 3 2.5 3.5 5.2"/>',
+    Skincare:'<path d="M8 3h8v4l2 3v11H6V10l2-3z"/>',Lanzamientos:'<path d="M12 3l2.6 5.6 6 .7-4.5 4.1 1.2 6L12 16.4 6.7 19.4l1.2-6L3.4 9.3l6-.7z"/>',
+    Capacitación:'<path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11v5c3 2 9 2 12 0v-5"/>'};
+  const icon=k=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true">${IC[k]||IC.Lanzamientos}</svg>`;
+
+  let D={eventos:[],series:{}};
+  try{ D=await (await fetch("../_data/eventos.json?v="+Date.now())).json(); }catch(_){}
+  const S=D.series||{}, now=new Date();
+  const ev=(D.eventos||[]).map(e=>{const s=S[e.serie]||{};return {...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde),
+    nombre:e.serie&&s.nombre?s.nombre+(e.edicion?" · "+e.edicion:""):e.titulo,
+    href:"/eventos/"+(e.serie?e.serie+"/":"")+e.slug+"/",cat:e.categoria||""};});
+  const vivos=ev.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a);
+  const cats=[...new Set(vivos.map(e=>e.cat).filter(Boolean))], zonas=[...new Set(vivos.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
+  const q=new URLSearchParams(location.search); let cat=cats.includes(q.get("cat"))?q.get("cat"):"", zona=zonas.includes(q.get("zona"))?q.get("zona"):"";
+  const url=()=>{const p=new URLSearchParams();if(cat)p.set("cat",cat);if(zona)p.set("zona",zona);history.replaceState(null,"",p.toString()?"?"+p:location.pathname);};
+
+  let mapa=null, capa=null;
+  if(window.L&&vivos.some(e=>e.mapa)){ $("secMapa").hidden=false; mapa=L.map("mapa",{scrollWheelZoom:false}); capa=L.layerGroup().addTo(mapa);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(mapa); }
+
+  const card=e=>`<a class="card" href="${esc(e.href)}"><div class="img" style="${bg(e)}">${e.cat||e.tipo?`<span>${esc(e.cat||e.tipo)}</span>`:""}</div>
+    <span class="d">${esc(corta(e.a))} · ${esc(hora(e.a))}</span><b>${esc(e.nombre)}</b><small>${esc([e.lugar,e.zona].filter(Boolean).join(" · "))}</small></a>`;
+  const rail=(t,l,cls)=>l.length?`<section class="${cls||""}"><div class="sh"><h2>${t}</h2></div><div class="rail">${l.map(card).join("")}</div></section>`:"";
+  const falta=ms=>{const d=Math.floor(ms/864e5),h=Math.floor(ms%864e5/36e5);return d?`faltan ${d} día${d>1?"s":""}`:h?`faltan ${h} h`:"empieza pronto";};
+
+  const pinta=()=>{
+    const ok=e=>(!cat||e.cat===cat)&&(!zona||e.zona===zona);
+    const L1=vivos.filter(ok), dest=L1[0];
+    // Destacado: el próximo evento (o el que está pasando)
+    const H=$("hero"); H.hidden=!dest; $("top").hidden=!!dest;
+    if(dest){ H.href=dest.href; H.className="hero"+(dest.imagen?"":" sinfoto"); H.setAttribute("style",bg(dest));
+      H.innerHTML=`<span class="brand">MI TIENDA BEAUTY · EVENTOS</span><span class="pill">${dest.a<=now?"Está pasando ahora":falta(dest.a-now).replace(/^f/,"F").replace(/^e/,"E")}</span>
+        <h1>${esc(dest.nombre)}</h1><p>${esc(corta(dest.a))} · ${esc(hora(dest.a))}${dest.lugar?" · "+esc(dest.lugar):""}</p>${dest.resumen?`<p>${esc(dest.resumen)}</p>`:""}<span class="go">Ver evento y apartar</span>`; }
+    // Categorías y zonas
+    $("cats").innerHTML=cats.length?["Todos",...cats].map(k=>`<button aria-pressed="${(k==="Todos"?"":k)===cat}" data-k="${esc(k==="Todos"?"":k)}">${icon(k)}${esc(k)}</button>`).join(""):"";
+    $("cats").hidden=!cats.length;
+    $("zonas").innerHTML=zonas.length?["",...zonas].map(z=>`<button aria-pressed="${z===zona}" data-z="${esc(z)}">${esc(z||"Todas las zonas")}</button>`).join(""):"";
+    document.querySelectorAll("#cats button").forEach(b=>b.onclick=()=>{cat=b.dataset.k;url();pinta();});
+    document.querySelectorAll("#zonas button").forEach(b=>b.onclick=()=>{zona=b.dataset.z;url();pinta();});
+    // Carruseles (sin repetir el destacado)
+    const resto=L1.slice(1), sem=+now+7*864e5;
+    let h=rail("Esta semana",resto.filter(e=>e.a<=sem))+rail("Más adelante",resto.filter(e=>e.a>sem));
+    if(!L1.length) h=`<p class="empty">${cat||zona?"No hay eventos con esos filtros por ahora.":"Pronto anunciamos el siguiente evento."}</p>`;
+    $("secs").innerHTML=h;
+    // Mapa
+    if(mapa){ capa.clearLayers(); const pts=L1.filter(e=>e.mapa); $("secMapa").hidden=!pts.length;
+      pts.forEach(e=>L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1}).bindPopup(`<b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(hora(e.a))}<br><a href="${esc(e.href)}">Ver evento</a>`).addTo(capa));
+      if(pts.length){ setTimeout(()=>{mapa.invalidateSize(); pts.length===1?mapa.setView(pts[0].mapa,13):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[30,30]});},0); } }
+  };
+  pinta();
+
+  // Series y pasados (no dependen de los filtros)
+  const ser=Object.entries(S).filter(([k])=>!k.startsWith("_")).map(([k,s])=>{const eds=ev.filter(e=>e.serie===k), prox=eds.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a)[0];
+    return `<a class="serie" href="/eventos/${esc(k)}/"><i style="${bg(s)}"></i><span><b>${esc(s.nombre)}</b><small>${eds.length} edici${eds.length===1?"ón":"ones"}${prox?" · próxima: "+esc(corta(prox.a)):""}</small></span></a>`;});
+  $("secSeries").innerHTML=ser.length?`<section><div class="sh"><h2>Series</h2></div>${ser.join("")}</section>`:"";
+  $("secPasados").innerHTML=rail("Ya pasaron",ev.filter(e=>e.b<now).sort((x,y)=>y.a-x.a).slice(0,8),"past");
+})();
+</script>
+</body>
+</html>

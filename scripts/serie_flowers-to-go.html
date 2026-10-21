@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<!-- Generada por scripts/eventos.py desde _data/eventos.json con scripts/serie_flowers-to-go.html. No la edites a mano. -->
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{TITULO}} · Ediciones</title>
+<meta name="description" content="Todas las ediciones de {{TITULO}}: fechas, lugares y cómo apartar tu lugar.">
+<meta property="og:title" content="{{TITULO}}">
+<meta property="og:description" content="Todas las ediciones de {{TITULO}}: fechas, lugares y cómo apartar tu lugar.">
+<meta property="og:url" content="https://mitienda.beauty/{{RUTA}}/">
+<meta name="theme-color" content="#F4EFE6">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#EAE2D4;--paper:#F4EFE6;--ink:#2A2420;--muted:#6B6158;--line:#C9BDA9;--terra:#A6461F}
+  *{box-sizing:border-box;margin:0}
+  a,button{-webkit-tap-highlight-color:transparent}
+  :focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+  body{background:var(--bg);color:var(--ink);font-family:Jost,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+  .wrap{max-width:480px;margin:0 auto;padding:18px 16px 56px}
+  a{color:var(--terra)}
+  a.top{display:inline-block;font-size:14px;color:var(--muted);text-decoration:none;margin-bottom:14px}
+  .serif{font-family:"Cormorant Garamond",Georgia,serif}
+  .caps{letter-spacing:.28em;text-transform:uppercase}
+  header{text-align:center;padding:14px 0 6px}
+  header .inv{font-size:11px}
+  header h1{font-style:italic;font-weight:500;font-size:clamp(46px,15vw,64px);line-height:1;color:var(--terra);margin:6px 0 4px}
+  header .sub{font-size:13px}
+  .rule{width:48px;height:1px;background:var(--line);margin:16px auto}
+  h2{font-size:11px;font-weight:500;color:var(--terra);margin:22px 0 10px}
+  .ed{display:flex;text-decoration:none;color:inherit;background:var(--paper);margin-top:10px;--c:var(--terra);--flor:#D9792B}
+  .ed .f{flex:none;width:86px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-right:2px dashed var(--line);padding:14px 0}
+  .ed .f span{font-size:11px;letter-spacing:.2em}
+  .ed .f b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:44px;line-height:1;color:var(--c)}
+  .ed .t{padding:14px 16px;display:flex;flex-direction:column;gap:2px;min-width:0}
+  .ed .t strong{font-family:"Cormorant Garamond",serif;font-weight:600;font-size:22px;letter-spacing:.14em;line-height:1.15;text-transform:uppercase}
+  .ed .t small{font-size:13px;color:var(--muted)}
+  .ed.main{flex-direction:column;text-align:center;padding:24px 20px 22px;box-shadow:0 8px 24px rgba(42,36,32,.10)}
+  .ed.main .k{font-size:11px;color:var(--c)}
+  .ed.main strong{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:28px;letter-spacing:.24em;text-transform:uppercase;margin-top:6px}
+  .ed.main p{font-size:16px;margin-top:6px}
+  .ed.main svg{display:block;width:150px;height:auto;margin:12px auto 4px}
+  .ed.main .q{font-size:15px;letter-spacing:.06em}
+  .ed.main .go{display:inline-block;margin:14px auto 0;padding:12px 22px;background:var(--c);color:#fff;font-weight:500}
+  .pet{fill:var(--flor);stroke:color-mix(in srgb,var(--flor),#000 12%)}.cen{fill:color-mix(in srgb,var(--flor),#fff 25%)}.ojo{fill:color-mix(in srgb,var(--flor),#000 30%)}
+  .past .ed{opacity:.7}
+  .ed{transition:transform 160ms cubic-bezier(.23,1,.32,1),box-shadow 200ms ease}
+  .ed:active{transform:scale(.98)}
+  .ed.main .go{transition:filter 150ms ease}
+  @media (hover:hover) and (pointer:fine){.ed:not(.main):hover{box-shadow:0 6px 18px rgba(42,36,32,.10)}.ed.main:hover .go{filter:brightness(.9)}a.top:hover,a.back:hover{color:var(--terra)}}
+  @media (prefers-reduced-motion:reduce){.ed{transition-property:box-shadow}}
+  .empty{text-align:center;color:var(--muted);background:var(--paper);padding:20px;margin-top:10px}
+  a.back{display:block;margin-top:24px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="top" href="/eventos/">← Todos los eventos</a>
+  <header><div class="inv caps">Te invitamos a</div><h1 class="serif" id="nom"></h1><div class="sub caps">Todas las ediciones</div><div class="rule"></div></header>
+  <div id="list"></div>
+  <a class="back" href="/">← Volver a Mi Tienda Beauty</a>
+</div>
+<script id="serie" type="application/json">{{DATOS_JSON}}</script>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(()=>{
+  const S=JSON.parse(document.getElementById("serie").textContent), TZ="America/Mexico_City";
+  const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const part=(d,o)=>new Intl.DateTimeFormat("es-MX",{timeZone:TZ,...o}).format(d);
+  const hora=d=>part(d,{hour:"numeric",minute:"2-digit",hour12:true}).replace(":00","").replace(/\s*([ap])\.?\s*m\.?/i," $1. m.");
+  const css=e=>(e.color?`--c:${esc(e.color)};`:"")+(e.flor?`--flor:${esc(e.flor)};`:"");
+  document.getElementById("nom").textContent=S.nombre;
+  const now=new Date(), E=(S.ediciones||[]).map(e=>({...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde)}));
+  const vienen=E.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a), pasadas=E.filter(e=>e.b<now).sort((x,y)=>y.a-x.a);
+  const flores=`<svg viewBox="0 0 200 220" aria-hidden="true"><g stroke="#6E7B4F" stroke-width="2" fill="none"><path d="M100 215 L72 62"/><path d="M100 215 L128 72"/><path d="M100 215 L46 122"/><path d="M100 215 L158 112"/><path d="M100 215 L100 132"/></g>
+    <g class="pet" stroke-dasharray="3 2.5"><circle cx="72" cy="62" r="22" stroke-width="6"/><circle cx="128" cy="72" r="22" stroke-width="6"/><circle cx="46" cy="122" r="18" stroke-width="5"/><circle cx="158" cy="112" r="18" stroke-width="5"/><circle cx="100" cy="132" r="24" stroke-width="6"/></g>
+    <g class="cen"><circle cx="72" cy="62" r="12"/><circle cx="128" cy="72" r="12"/><circle cx="46" cy="122" r="10"/><circle cx="158" cy="112" r="10"/><circle cx="100" cy="132" r="13"/></g>
+    <g class="ojo"><circle cx="72" cy="62" r="5"/><circle cx="128" cy="72" r="5"/><circle cx="46" cy="122" r="4"/><circle cx="158" cy="112" r="4"/><circle cx="100" cy="132" r="5"/></g></svg>`;
+  const fila=e=>`<a class="ed" href="${esc(e.url)}" style="${css(e)}"><div class="f"><span>${esc(part(e.a,{weekday:"short"}).replace(".","").toUpperCase())}</span><b>${part(e.a,{day:"numeric"})}</b><span>${esc(part(e.a,{month:"short"}).replace(".","").toUpperCase())}</span></div>
+    <div class="t"><strong>Edición ${esc(e.edicion||e.titulo)}</strong>${e.resumen?`<span>${esc(e.resumen)}</span>`:""}<small>${esc([e.lugar,hora(e.a)+(e.b>e.a?" a "+hora(e.b):"")].filter(Boolean).join(" · "))}</small></div></a>`;
+  let h="";
+  if(vienen.length){ const p=vienen[0], ya=p.a<=now;
+    h+=`<a class="ed main" href="${esc(p.url)}" style="${css(p)}"><span class="k caps">${ya?"Está pasando ahora":"Próxima edición"}</span><strong>Edición ${esc(p.edicion||p.titulo)}</strong>${p.resumen?`<p>${esc(p.resumen)}</p>`:""}${flores}
+      <span class="q">${esc(part(p.a,{weekday:"long",day:"numeric",month:"long"}))} · ${esc(hora(p.a))}${p.lugar?" · "+esc(p.lugar):""}</span><span class="go">Ver la edición y apartar</span></a>`;
+    if(vienen.length>1) h+=`<h2 class="caps">Después</h2>`+vienen.slice(1).map(fila).join("");
+  } else h+=`<p class="empty">Pronto anunciamos la siguiente edición.</p>`;
+  if(pasadas.length) h+=`<div class="past"><h2 class="caps">Ediciones pasadas</h2>${pasadas.map(fila).join("")}</div>`;
+  document.getElementById("list").innerHTML=h;
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<!-- Generada por scripts/eventos.py desde _data/eventos.json con scripts/evento_flowers-to-go.html. No la edites a mano. -->
+<link rel="icon" href="/favicon.svg?v=2" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=2" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=2">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Flowers to Go · Edición Altar</title>
+<meta name="description" content="Una mañana de pan, cafecito y un ramo para tu altar.">
+<meta property="og:title" content="Flowers to Go · Edición Altar">
+<meta property="og:description" content="Una mañana de pan, cafecito y un ramo para tu altar.">
+<meta property="og:url" content="https://mitienda.beauty/eventos/flowers-to-go/altar/">
+<meta name="theme-color" content="#F4EFE6">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  :root{--bg:#EAE2D4;--paper:#F4EFE6;--ink:#2A2420;--muted:#6B6158;--line:#C9BDA9;--terra:#A6461F;--terra-d:#7E3415;--flor:#D9792B}
+  *{box-sizing:border-box;margin:0}
+  a,button{-webkit-tap-highlight-color:transparent}
+  :focus-visible{outline:2px solid var(--terra);outline-offset:3px}
+  body{background:var(--bg);color:var(--ink);font-family:Jost,system-ui,sans-serif;line-height:1.5;-webkit-text-size-adjust:100%}
+  .wrap{max-width:480px;margin:0 auto;padding:18px 16px 56px}
+  a{color:var(--terra)}
+  a.top{display:inline-block;font-size:14px;color:var(--muted);text-decoration:none;margin-bottom:14px}
+  .serif{font-family:"Cormorant Garamond",Georgia,serif}
+  .caps{letter-spacing:.28em;text-transform:uppercase}
+  .flyer{background:var(--paper);padding:30px 22px 24px;text-align:center;box-shadow:0 8px 24px rgba(42,36,32,.10)}
+  .flyer .inv{font-size:11px}
+  .flyer h1{font-style:italic;font-weight:500;font-size:clamp(44px,14vw,60px);line-height:1;color:var(--terra);margin:6px 0 2px}
+  .flyer .ed{font-weight:500;font-size:clamp(20px,6.4vw,26px)}
+  .rule{width:48px;height:1px;background:var(--line);margin:14px auto}
+  .flyer .lead{font-size:17px;max-width:300px;margin:0 auto;text-wrap:balance}
+  .flores .pet{fill:var(--flor);stroke:color-mix(in srgb,var(--flor),#000 12%)}.flores .cen{fill:color-mix(in srgb,var(--flor),#fff 25%)}.flores .ojo{fill:color-mix(in srgb,var(--flor),#000 30%)}
+  .flores{display:block;width:210px;max-width:62%;height:auto;margin:10px auto 6px}
+  .fecha{display:flex;align-items:center;justify-content:center;gap:16px}
+  .fecha span{font-size:13px;font-weight:500;letter-spacing:.26em}
+  .fecha i{width:1px;height:56px;background:var(--line)}
+  .fecha b{font-variant-numeric:lining-nums;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:58px;line-height:1;color:var(--terra)}
+  .hora{font-size:15px;letter-spacing:.06em;margin-top:6px}
+  .colab{font-style:italic;font-size:18px;margin-top:12px;line-height:1.35}
+  .st{display:inline-block;margin-top:16px;font-size:13px;font-weight:500;padding:6px 12px;border:1px solid var(--line);color:var(--terra)}
+  .stub{background:var(--paper);border-top:2px dashed var(--line);padding:16px 18px}
+  .stub p{font-size:14px;color:#4F463E}
+  #mapa{height:200px;margin-top:12px;background:#ECE4D6;z-index:0}
+  .btns{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+  .btn{display:block;text-align:center;text-decoration:none;font:inherit;font-weight:500;font-size:15px;padding:14px 10px;cursor:pointer;border:1.5px solid var(--terra);background:transparent;color:var(--terra)}
+  .btn.fill{background:var(--terra);color:#fff}
+  .btn{transition:transform 160ms cubic-bezier(.23,1,.32,1),background-color 150ms ease,color 150ms ease}
+  .btn:active{transform:scale(.97)}
+  @media (hover:hover) and (pointer:fine){.btn:hover{background:color-mix(in srgb,var(--terra),transparent 90%)}.btn.fill:hover{background:var(--terra-d)}a.top:hover,a.back:hover{color:var(--terra)}}
+  .leaflet-container{font-family:inherit}
+  @media (prefers-reduced-motion:reduce){.btn{transition-property:background-color,color}}
+  .btn.full{grid-column:1/-1}
+  .aviso{text-align:center;font-size:15px;margin-top:14px}
+  .links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:15px}
+  .links button{font:inherit;color:var(--terra);background:none;border:0;text-decoration:underline;cursor:pointer;padding:0}
+  [hidden]{display:none!important}
+  a.back{display:block;margin-top:24px;font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="top" href="/eventos/" id="volver">← Todos los eventos</a>
+  <section class="flyer">
+    <div class="inv caps">Te invitamos a</div>
+    <h1 class="serif" id="serie"></h1>
+    <div class="ed serif caps" id="ed"></div>
+    <div class="rule"></div>
+    <p class="lead" id="res"></p>
+    <svg class="flores" viewBox="0 0 200 220" aria-hidden="true">
+      <g stroke="#6E7B4F" stroke-width="2" fill="none"><path d="M100 215 L72 62"/><path d="M100 215 L128 72"/><path d="M100 215 L46 122"/><path d="M100 215 L158 112"/><path d="M100 215 L100 132"/><path d="M100 215 L78 108"/><path d="M100 215 L140 145"/></g>
+      <g class="pet" stroke-dasharray="3 2.5">
+        <circle cx="72" cy="62" r="22" stroke-width="6"/><circle cx="128" cy="72" r="22" stroke-width="6"/>
+        <circle cx="46" cy="122" r="18" stroke-width="5"/><circle cx="158" cy="112" r="18" stroke-width="5"/>
+        <circle cx="100" cy="132" r="24" stroke-width="6"/><circle cx="78" cy="108" r="11" stroke-width="4"/><circle cx="140" cy="145" r="13" stroke-width="4"/>
+      </g>
+      <g class="cen"><circle cx="72" cy="62" r="12"/><circle cx="128" cy="72" r="12"/><circle cx="46" cy="122" r="10"/><circle cx="158" cy="112" r="10"/><circle cx="100" cy="132" r="13"/></g>
+      <g class="ojo"><circle cx="72" cy="62" r="5"/><circle cx="128" cy="72" r="5"/><circle cx="46" cy="122" r="4"/><circle cx="158" cy="112" r="4"/><circle cx="100" cy="132" r="5"/><circle cx="78" cy="108" r="5"/><circle cx="140" cy="145" r="5"/></g>
+    </svg>
+    <div class="fecha"><span id="dia"></span><i></i><b id="num"></b><i></i><span id="mes"></span></div>
+    <div class="hora" id="hora"></div>
+    <div class="colab serif" id="colab" hidden></div>
+    <div class="st" id="st"></div>
+  </section>
+  <section class="stub">
+    <p><b id="lugar"></b><span id="zona"></span><br>Al apartar te mandamos la dirección exacta.</p>
+    <div id="mapa" hidden></div>
+  </section>
+  <div class="btns" id="btns"></div>
+  <p class="aviso" id="aviso">Aparta tu lugar por WhatsApp o DM en Instagram.</p>
+  <div class="links"><a id="gcal" target="_blank" rel="noopener">Google Calendar</a><button id="ics">Calendario del cel</button><a id="share" target="_blank" rel="noopener">Compartir</a></div>
+  <a class="back" href="/">← Volver a Mi Tienda Beauty</a>
+</div>
+<script id="evento" type="application/json">{"serie": "flowers-to-go", "slug": "altar", "edicion": "Altar", "titulo": "Flowers to Go · Edición Altar", "tipo": "Taller", "categoria": "Flores", "imagen": "/eventos/fotos/altar.jpg", "color": "#A6461F", "desde": "2026-10-31T11:00:00-06:00", "hasta": "2026-10-31T13:00:00-06:00", "zona": "Benito Juárez", "lugar": "Col. Nápoles", "mapa": [19.3937, -99.177], "resumen": "Una mañana de pan, cafecito y un ramo para tu altar.", "colaboran": ["Teresita Flwrs", "Nutriplus", "Cima Vision"], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/flowers-to-go/altar/", "serie_nombre": "Flowers to Go", "serie_url": "/eventos/flowers-to-go/"}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(()=>{
+  const e=JSON.parse(document.getElementById("evento").textContent), $=id=>document.getElementById(id), TZ="America/Mexico_City";
+  const part=(d,o)=>new Intl.DateTimeFormat("es-MX",{timeZone:TZ,...o}).format(d);
+  const a=new Date(e.desde), b=new Date(e.hasta||e.desde);
+  const hora=d=>part(d,{hour:"numeric",minute:"2-digit",hour12:true}).replace(":00","").replace(/\s*([ap])\.?\s*m\.?/i," $1. m.");
+  const gc=(p,t)=>{const go=()=>{try{window.goatcounter.count({path:"eventos/"+e.slug+"/"+p,title:t,event:true})}catch(_){}};if(window.goatcounter&&window.goatcounter.count)go();else window.addEventListener("load",()=>setTimeout(go,300));};
+
+  // Cada edición puede tener sus colores: "color" (letras y botones) y "flor" (el ramo)
+  if(e.color) document.documentElement.style.setProperty("--terra",e.color);
+  if(e.flor) document.documentElement.style.setProperty("--flor",e.flor);
+  if(e.serie_url){ $("volver").href=e.serie_url; $("volver").textContent="← Todas las ediciones de "+e.serie_nombre; }
+  $("serie").textContent=e.serie_nombre||e.titulo; $("ed").textContent=e.edicion?"Edición "+e.edicion:"";
+  $("res").textContent=e.resumen||"";
+  $("dia").textContent=part(a,{weekday:"long"}).toUpperCase(); $("num").textContent=part(a,{day:"numeric"}); $("mes").textContent=part(a,{month:"long"}).toUpperCase();
+  $("hora").textContent="De "+hora(a)+(b>a?" a "+hora(b):"");
+  if((e.colaboran||[]).length){ $("colab").innerHTML="En colaboración con<br>"; $("colab").append(e.colaboran.join(" · ")); $("colab").hidden=false; }
+  $("lugar").textContent=e.lugar||""; $("zona").textContent=e.zona?" · "+e.zona:"";
+
+  // Cuenta regresiva
+  const falta=ms=>{const m=Math.max(0,Math.round(ms/6e4)),d=Math.floor(m/1440),h=Math.floor(m%1440/60),mi=m%60;return d?`${d} día${d>1?"s":""}${h?` y ${h} h`:""}`:h?`${h} h ${mi} min`:`${mi} min`;};
+  const tick=()=>{const n=new Date(); $("st").textContent=n<a?"Faltan "+falta(a-n):n<=b?"¡Está pasando ahora!":"Esta edición ya pasó"; $("st").dataset.fin=n>b?"1":"";};
+  tick(); setInterval(tick,30000);
+
+  // Apartar
+  const ap=e.apartar||{}, msg=`Hola, quiero apartar mi lugar para ${e.titulo} (${part(a,{weekday:"long",day:"numeric",month:"long"})}).`;
+  let bt="";
+  if(ap.whatsapp) bt+=`<a class="btn fill" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${String(ap.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent(msg)}">Apartar por WhatsApp</a>`;
+  if(ap.instagram) bt+=`<a class="btn${ap.whatsapp?"":" fill"}" id="bIg" target="_blank" rel="noopener" href="https://ig.me/m/${encodeURIComponent(String(ap.instagram).replace(/^@/,""))}">DM en Instagram</a>`;
+  $("btns").innerHTML=bt; if(bt){ if(!(ap.whatsapp&&ap.instagram)) $("btns").firstElementChild.classList.add("full"); $("aviso").hidden=true; }
+  $("bWa")&&($("bWa").onclick=()=>gc("apartar-whatsapp","Apartar por WhatsApp")); $("bIg")&&($("bIg").onclick=()=>gc("apartar-instagram","Apartar por Instagram"));
+  if(new Date()>b){ $("btns").hidden=true; $("aviso").hidden=true; }
+
+  // Mapa (zona aproximada; la dirección exacta se manda al apartar)
+  if(e.mapa&&window.L){ $("mapa").hidden=false;
+    const m=L.map("mapa",{scrollWheelZoom:false,attributionControl:true}).setView(e.mapa,15);
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
+    L.circle(e.mapa,{radius:250,color:e.color||"#A6461F",weight:2,fillColor:e.flor||"#D9792B",fillOpacity:.25}).addTo(m); }
+
+  // Calendario y compartir
+  const utc=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""), fin=b>a?b:new Date(+a+36e5);
+  const det=(e.resumen?e.resumen+"\n\n":"")+e.url;
+  $("gcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.titulo)+"&dates="+utc(a)+"/"+utc(fin)+"&details="+encodeURIComponent(det)+(e.lugar?"&location="+encodeURIComponent(e.lugar):"");
+  $("gcal").onclick=()=>gc("calendario","Google Calendar");
+  $("ics").onclick=()=>{const t=s=>String(s||"").replace(/[\\,;]/g,x=>"\\"+x).replace(/\n/g,"\\n");
+    const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//mitienda.beauty//eventos//ES","BEGIN:VEVENT","UID:"+e.slug+"@mitienda.beauty","DTSTAMP:"+utc(new Date()),"DTSTART:"+utc(a),"DTEND:"+utc(fin),
+      "SUMMARY:"+t(e.titulo),"DESCRIPTION:"+t(det),e.lugar?"LOCATION:"+t(e.lugar):"","URL:"+e.url,"END:VEVENT","END:VCALENDAR"].filter(Boolean).join("\r\n");
+    const l=document.createElement("a"); l.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"})); l.download=e.slug+".ics"; l.click(); gc("calendario","Calendario del cel");};
+  $("share").href="https://wa.me/?text="+encodeURIComponent(e.titulo+" · "+(e.resumen||"")+"\n"+e.url); $("share").onclick=()=>gc("compartir","WhatsApp");
+})();
+</script>
+</body>
+</html>
