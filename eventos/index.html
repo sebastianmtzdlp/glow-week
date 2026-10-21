@@ -124,7 +124,7 @@
 </style>
 </head>
 <body>
-<main class="pag" id="app"><div class="intro"><div class="marca">MI EQUIPO</div><h1>Eventos</h1><p>Cargando eventos…</p></div></main>
+<main class="pag" id="app"><div class="intro"><div class="marca">EQUIPO SVH</div><h1>Eventos</h1><p>Cargando eventos…</p></div></main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
@@ -168,7 +168,7 @@
     if(mapa){ mapa.remove(); mapa=null; marcas={}; }
     const L1=vivos.filter(e=>!zona||e.zona===zona), d=L1[0], resto=L1.slice(1), se=Object.entries(S).filter(([k])=>!k.startsWith("_"));
     $("app").innerHTML=`
-      <div class="intro"><div class="marca">MI EQUIPO</div><h1>Eventos</h1>
+      <div class="intro"><div class="marca">EQUIPO SVH</div><h1>Eventos</h1>
         <p>Talleres, clases y fiestas en persona, en la Ciudad de México. Entra al que te guste y aparta tu lugar.</p>
         ${zonas.length?`<label class="filtro" for="zona">Ver eventos en <select id="zona">${["",...zonas].map(z=>`<option value="${esc(z)}"${z===zona?" selected":""}>${esc(z||"todas las zonas")}</option>`).join("")}</select></label>`:""}
         ${L1.length?calendario(L1):""}</div>
