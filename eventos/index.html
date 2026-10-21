@@ -15,6 +15,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&family=Cormorant+Garamond:ital,wght@0,500;1,500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <style>
   /* Cartelera: la página cuelga el flyer de cada evento; la marca (estilo Farmasi) queda callada alrededor. */
   :root{color-scheme:light;
@@ -96,7 +97,14 @@
   h3{font-size:22px;font-weight:700;margin-bottom:14px}
   #mapa{height:340px;border-radius:18px;border:1px solid var(--line);z-index:0;scroll-margin-top:20px}
   .leaflet-container{font-family:var(--sans);background:var(--soft)}
-  .leaflet-tile-pane{filter:grayscale(.7) contrast(.92) brightness(1.04)}
+  .osm-gris{filter:grayscale(.7) contrast(.92) brightness(1.04)}
+  /* Pin con la fecha del evento */
+  .leaflet-div-icon.pinw{background:none;border:0}
+  .pin{display:inline-flex;align-items:center;gap:6px;padding:5px 9px 5px 6px;border-radius:999px;background:#fff;color:var(--ink);
+    font:700 12px/1 var(--mono);letter-spacing:.02em;text-transform:uppercase;white-space:nowrap;cursor:pointer;
+    box-shadow:0 1px 2px rgba(38,42,74,.18),0 4px 14px rgba(38,42,74,.14);transform-origin:10px 50%;transition:transform 200ms var(--ease)}
+  .pin i{width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--c)}
+  .pin.on{transform:scale(1.18)}
   .leaflet-popup-content{font-size:14px;line-height:1.4;margin:12px 14px}
   .leaflet-popup-content a{color:var(--accent-t);font-weight:600}
   .pop{display:flex;gap:10px;align-items:flex-start;min-width:200px}.pop img{flex:none;width:54px;height:68px;object-fit:cover;border-radius:3px}
@@ -127,6 +135,9 @@
 <body>
 <main class="pag" id="app"><div class="intro"><div class="marca">EQUIPO SVH</div><h1>Eventos</h1><p>Cargando eventos…</p></div></main>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"></script>
+<script src="/eventos/plano.js"></script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (async()=>{
@@ -203,17 +214,20 @@
     const pts=L1.filter(e=>e.mapa);
     if(pts.length&&window.L&&$("mapa")){
       mapa=L.map("mapa",{scrollWheelZoom:false});
-      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(mapa);
-      pts.forEach(e=>{ const m=marcas[e.slug]=L.circleMarker(e.mapa,{radius:10,color:"#fff",weight:3,fillColor:e.color||"#DB414C",fillOpacity:1})
+      const encuadra=()=>pts.length===1?mapa.setView(pts[0].mapa,14):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[48,48]});
+      encuadra(); planoClaro(mapa,"claro");
+      pts.forEach(e=>{ const dia=part(e.a,{day:"2-digit"})+" "+part(e.a,{month:"short"}).replace(/\./g,"");
+        const m=marcas[e.slug]=L.marker(e.mapa,{title:e.nombre,riseOnHover:true,icon:L.divIcon({className:"pinw",iconSize:null,iconAnchor:[10,12],popupAnchor:[0,-14],
+          html:`<span class="pin" style="--c:${esc(e.color||"#DB414C")}"><i></i>${esc(dia)}</span>`})})
         .bindPopup(`<div class="pop">${e.flyer?`<img src="${esc(e.flyer)}" alt="">`:""}<div><b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">Ver y apartar</a></div></div>`).addTo(mapa);
         // Del mapa al evento: tocar el punto marca su cartel
-        m.on("click",()=>{ const t=$("ev-"+e.slug); if(t){ t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); } });
-        m.bindTooltip(e.nombre,{direction:"top",offset:[0,-10]}); });
+        m.on("click",()=>{ const t=$("ev-"+e.slug); if(t){ t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); } }); });
       // Del evento al mapa: pasar sobre el cartel resalta su punto
       document.querySelectorAll(".post[id^=ev-]").forEach(p=>{ const m=marcas[p.id.slice(3)]; if(!m) return;
-        p.addEventListener("mouseenter",()=>{ m.setStyle({radius:15,weight:4}); m.bringToFront(); });
-        p.addEventListener("mouseleave",()=>m.setStyle({radius:10,weight:3})); });
-      setTimeout(()=>{ mapa.invalidateSize(); pts.length===1?mapa.setView(pts[0].mapa,14):mapa.fitBounds(pts.map(e=>e.mapa),{padding:[36,36]}); },0);
+        const pin=()=>m.getElement()&&m.getElement().querySelector(".pin");
+        p.addEventListener("mouseenter",()=>{ pin()&&pin().classList.add("on"); m.setZIndexOffset(1000); });
+        p.addEventListener("mouseleave",()=>{ pin()&&pin().classList.remove("on"); m.setZIndexOffset(0); }); });
+      setTimeout(()=>{ mapa.invalidateSize(); encuadra(); },0);
     }
     function vuela(slug,bajar){ const m=marcas[slug]; if(!mapa||!m) return;
       if(bajar){ const r=$("mapa").getBoundingClientRect(); if(r.top<0||r.bottom>innerHeight) $("mapa").scrollIntoView({behavior:reduce?"auto":"smooth",block:"center"}); }
