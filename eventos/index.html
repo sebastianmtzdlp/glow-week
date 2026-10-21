@@ -104,6 +104,10 @@
   /* Destacado */
   .dest{display:grid;gap:24px;align-items:center}
   .dest>a{display:block}
+  .dest2 .par{display:grid;gap:48px;margin-top:24px}
+  .dest2 .post>a.press{display:block;margin-bottom:18px}
+  .dest2 .marco,.dest2 .gen{max-width:440px}
+  @media (max-width:899px){.dest2 .post+.post{border-top:1px solid var(--line);padding-top:32px}}
   .eti{font-size:14px;color:var(--accent-t);font-weight:500}
   .big{font:700 clamp(44px,9vw,84px)/.95 var(--mono);letter-spacing:-.04em;margin-top:6px}
   .info h2{font-size:clamp(26px,3vw,34px);font-weight:800;line-height:1.1;margin-top:14px;text-wrap:balance}
@@ -135,6 +139,17 @@
   .enmapa{display:inline-flex;align-items:center;gap:6px;margin-top:6px;min-height:44px;padding:0;border:0;background:none;font:500 14px var(--sans);color:var(--ink);cursor:pointer;justify-self:start}
   .enmapa svg{width:18px;height:18px;stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
   .post.flash .marco,.post.flash .gen{animation:flash 1100ms var(--ease)}
+  /* Apartar directo: un botón por responsable, todas con el mismo peso */
+  .wa{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;margin-top:8px}
+  .wa .wl{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-right:2px}
+  .wa a{display:inline-flex;align-items:center;gap:6px;min-height:40px;padding:0 14px;border-radius:999px;background:var(--tint);color:var(--accent-t);font-weight:600;font-size:15px;text-decoration:none;transition:transform 160ms var(--ease),background-color 150ms ease}
+  .wa a:active{transform:scale(.97)}
+  .wa svg{width:17px;height:17px;flex:none;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+  .info .wa{margin-top:22px;gap:10px}.info .wa .wl{flex-basis:100%}.info .wa a{min-height:52px;border-radius:14px;padding:0 20px;font-size:16px}
+  .info .wa a.fill{background:var(--accent);color:#fff}
+  .info .det{display:inline-flex;align-items:center;gap:8px;min-height:44px;margin-top:10px;color:var(--ink);font-weight:500;font-size:15px}
+  .fe .wa{margin-top:4px}.fe .wa a{min-height:36px;padding:0 12px;font-size:14px}
+  .pop .wa{margin-top:6px}.pop .wa a{min-height:32px;padding:0 10px;font-size:13px;color:var(--accent-t)}
   @keyframes flash{0%{box-shadow:0 0 0 4px var(--accent)}100%{box-shadow:0 0 0 0 transparent,0 12px 32px rgba(38,42,74,.12)}}
 
   /* Mapa, series y pasados */
@@ -160,7 +175,7 @@
 
   @media (hover:hover) and (pointer:fine){
     .post>a:hover b,.fila:hover,.dest>a:hover~.info h2{color:var(--accent-t)}
-    .go:hover{background:var(--accent-t)}.enmapa:hover{color:var(--accent-t)}
+    .go:hover{background:var(--accent-t)}.wa a:hover{background:#FADDE1}.info .wa a.fill:hover{background:var(--accent-t)}.info .det:hover{color:var(--accent-t)}.enmapa:hover{color:var(--accent-t)}
     .mes .cab button:hover{border-color:#C9CDE0}
     .seg button[aria-pressed=false]:hover{color:var(--ink);background:var(--soft)}
     .mes .chip:hover b,.fe a:hover b{color:var(--accent-t)}.vmap .todos:hover,.agenda .otro:hover{text-decoration:underline}
@@ -172,6 +187,7 @@
     .vistas{margin:0 -48px;padding:12px 48px}
     #vista{gap:72px}
     .dest{grid-template-columns:6fr 5fr;gap:64px}
+    .dest2 .par{grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:56px}
     .muro{grid-template-columns:repeat(3,minmax(0,1fr));gap:48px 40px}
     .pie{grid-template-columns:1fr 1fr 1fr;gap:56px;align-items:start;margin-top:40px}
     .vcal{grid-template-columns:8fr 4fr;gap:56px;align-items:start}
@@ -185,7 +201,7 @@
     .vmap .cajamapa{order:2;margin:0;height:calc(100vh - 120px);min-height:480px;position:sticky;top:90px;border-radius:18px;overflow:hidden;border:1px solid var(--line)}
     .vmap .lista{order:1}
   }
-  @media (prefers-reduced-motion:reduce){.press{transition:none}.post.flash .marco,.post.flash .gen,.fe.flash{animation:none}.seg button{transition:none}}
+  @media (prefers-reduced-motion:reduce){.press{transition:none}.wa a{transition:none}.post.flash .marco,.post.flash .gen,.fe.flash{animation:none}.seg button{transition:none}}
 </style>
 </head>
 <body>
@@ -206,12 +222,18 @@
   const cuando=d=>{const n=Math.round((dia(d)-dia(new Date()))/864e5);return n<0?"Ya empezó":n===0?"Hoy":n===1?"Mañana":"En "+n+" días";};
   const lista_y=a=>a.length>1?a.slice(0,-1).join(", ")+" y "+a.at(-1):a[0]||"";
 
+  // ?de=<slug>: link de quien invitó; en todo el sitio de eventos solo sale su botón
+  const de=new URLSearchParams(location.search).get("de")||"", DE=de?"?de="+encodeURIComponent(de):"";
   let D={eventos:[],series:{}};
   try{ D=await (await fetch("../_data/eventos.json?v="+Date.now())).json(); }catch(_){}
+  // Números de WhatsApp de cada responsable: _data/equipo.json (la misma fuente que usan las páginas de cada evento)
+  let EQ={}; try{ (await (await fetch("../_data/equipo.json?v="+Date.now())).json()).consultoras.forEach(c=>EQ[c.slug]=c); }catch(_){}
   const S=D.series||{}, now=new Date();
   const ev=(D.eventos||[]).map(e=>{const s=S[e.serie]||{};return {...e,a:new Date(e.desde),b:new Date(e.hasta||e.desde),
     nombre:e.serie&&s.nombre?s.nombre+(e.edicion?" · "+e.edicion:""):e.titulo,serieN:s.nombre||"",
-    href:"/eventos/"+(e.serie?e.serie+"/":"")+e.slug+"/"};});
+    href:"/eventos/"+(e.serie?e.serie+"/":"")+e.slug+"/"+DE,
+    rs:(e.responsables||[]).map(r=>typeof r==="string"?{slug:r,...EQ[r]}:{slug:String(r.nombre||"").toLowerCase(),...r})
+      .map(r=>({...r,whatsapp:String(r.whatsapp||"").replace(/\D/g,"")})).filter(r=>r.nombre&&r.whatsapp)};});
   const vivos=ev.filter(e=>e.b>=now).sort((x,y)=>x.a-y.a), pasados=ev.filter(e=>e.b<now).sort((x,y)=>y.a-x.a);
   // Filtro por ciudad y luego por zona: "cdmx" y "fuera" agrupan; lo demás es una zona exacta
   const unicas=a=>[...new Set(a.map(e=>e.zona).filter(Boolean))].sort((x,y)=>x.localeCompare(y,"es"));
@@ -228,6 +250,13 @@
   const cartel=e=>e.flyer
     ? `<div class="marco" style="--img:url('${esc(e.flyer)}')"><img src="${esc(e.flyer)}" alt="Flyer de ${esc(e.nombre)}" loading="lazy"></div>`
     : `<div class="gen" style="--c:${esc(e.color||"#262A4A")}${e.imagen?`;background-image:url('${esc(e.imagen)}')`:""}"><span class="num">${esc(corta(e.a))}</span><b>${esc(e.nombre)}</b></div>`;
+  const quien=e=>e.rs.some(r=>r.slug===de)?e.rs.filter(r=>r.slug===de):e.rs;
+  const habla='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4.5 19.5l1.2-3.6A7.5 7.5 0 1 1 8.4 18.6z"/></svg>';
+  const msgWa=(e,r)=>`https://wa.me/${r.whatsapp}?text=${encodeURIComponent(`Hola ${r.nombre}, estoy interesada en el evento ${e.titulo} (${part(e.a,{weekday:"long",day:"numeric",month:"long"})}).`)}`;
+  // Botones para apartar sin entrar al evento. grande: los del evento destacado
+  const apartar=(e,grande)=>{ const q=quien(e); if(!q.length||e.b<now) return "";
+    return `<div class="wa">${grande?`<span class="wl">${q.length>1?"¿Quién te invitó?":"Aparta tu lugar"}</span>`:`<span class="wl">Aparta con</span>`}${q.map(r=>
+      `<a${grande&&q.length===1?' class="fill"':""} href="${esc(msgWa(e,r))}" target="_blank" rel="noopener" data-wa="${esc(e.slug)}|${esc(r.slug)}">${habla}${grande?"Escríbele a ":""}${esc(r.nombre)}</a>`).join("")}</div>`; };
   const pin='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg>';
 
   const VISTAS=[["cartelera","Cartelera",'<rect x="3.5" y="3.5" width="7" height="8.5" rx="1"/><rect x="13.5" y="3.5" width="7" height="8.5" rx="1"/><path d="M3.5 16h7M3.5 20h5M13.5 16h7M13.5 20h5"/>'],
@@ -238,21 +267,29 @@
   const flash=t=>{ if(!t) return; t.classList.remove("flash"); void t.offsetWidth; t.classList.add("flash"); };
   const fila=e=>`<div class="fe" id="fe-${esc(e.slug)}" data-slug="${esc(e.slug)}">${cartel(e)}<div style="min-width:0;display:grid">
     <a href="${esc(e.href)}"><span class="num">${esc(corta(e.a).toUpperCase())} · ${esc(h24(e.a))}</span><b>${esc(e.nombre)}</b><span class="l">${esc(lugar(e))}</span></a>
-    ${e.mapa&&vista!=="mapa"?`<button class="enmapa" data-mapa="${esc(e.slug)}">${pin}Ver en el mapa</button>`:""}</div></div>`;
+    ${apartar(e)}${e.mapa&&vista!=="mapa"?`<button class="enmapa" data-mapa="${esc(e.slug)}">${pin}Ver en el mapa</button>`:""}</div></div>`;
 
-  function cartelera(L1){ const d=L1[0], resto=L1.slice(1);
-    return `${d?`<section class="dest post" id="ev-${esc(d.slug)}" aria-label="Próximo evento"><a class="press" href="${esc(d.href)}" aria-label="${esc(d.nombre)}">${cartel(d)}</a>
-        <div class="info"><div class="eti">${esc(cuando(d.a))} · ${esc(part(d.a,{weekday:"long"}))}</div>
-          <div class="big num">${esc(part(d.a,{day:"2-digit"}))}.${esc(part(d.a,{month:"2-digit"}))}</div>
-          <h2>${esc(d.nombre)}</h2><div class="lug"><span class="num">${esc(h24(d.a))}${d.b>d.a?"–"+esc(h24(d.b)):""}</span> h · ${esc(lugar(d))}</div>
+  // Datos de un evento destacado (también se usa cuando hay varios el mismo día)
+  const ficha=d=>`<h2>${esc(d.nombre)}</h2><div class="lug"><span class="num">${esc(h24(d.a))}${d.b>d.a?"–"+esc(h24(d.b)):""}</span> h · ${esc(lugar(d))}</div>
           ${d.resumen?`<p>${esc(d.resumen)}</p>`:""}
           ${(d.aportacion||[]).length?`<div class="apo">${d.aportacion.map(x=>`<span>${esc(x.etiqueta)} <b class="num">${esc(x.precio)}</b></span>`).join("")}</div>`:""}
           ${d.regalo?`<p class="reg">${esc(d.regalo)}</p>`:""}${(d.colaboran||[]).length?`<div class="con">Con ${esc(lista_y(d.colaboran))}</div>`:""}
           ${d.mapa?`<button class="enmapa" data-mapa="${esc(d.slug)}">${pin}Ver en el mapa</button><br>`:""}
-          <a class="go press" href="${esc(d.href)}">Ver y apartar <span aria-hidden="true">→</span></a></div></section>`:""}
-      <div class="muro">${resto.map(e=>`<article class="post" id="ev-${esc(e.slug)}"><a class="press" href="${esc(e.href)}">${cartel(e)}
+          ${quien(d).length?`${apartar(d,true)}<a class="det" href="${esc(d.href)}">Ver detalles <span aria-hidden="true">→</span></a>`:`<a class="go press" href="${esc(d.href)}">Ver y apartar <span aria-hidden="true">→</span></a>`}`;
+  function cartelera(L1){ const d=L1[0], mismo=d?L1.filter(e=>dia(e.a)===dia(d.a)):[], resto=L1.slice(mismo.length);
+    // Dos o más eventos el próximo día: comparten la fecha y van lado a lado
+    if(mismo.length>1) return `<section class="dest2" aria-label="Próximos eventos"><div class="eti">${esc(cuando(d.a))} · ${esc(part(d.a,{weekday:"long"}))} · ${mismo.length} eventos</div>
+        <div class="big num">${esc(part(d.a,{day:"2-digit"}))}.${esc(part(d.a,{month:"2-digit"}))}</div>
+        <div class="par" style="--n:${Math.min(mismo.length,3)}">${mismo.map(e=>`<article class="post info" id="ev-${esc(e.slug)}"><a class="press" href="${esc(e.href)}" aria-label="${esc(e.nombre)}">${cartel(e)}</a>${ficha(e)}</article>`).join("")}</div></section>
+      <div class="muro">${resto.map(muro).join("")}</div>`;
+    return `${d?`<section class="dest post" id="ev-${esc(d.slug)}" aria-label="Próximo evento"><a class="press" href="${esc(d.href)}" aria-label="${esc(d.nombre)}">${cartel(d)}</a>
+        <div class="info"><div class="eti">${esc(cuando(d.a))} · ${esc(part(d.a,{weekday:"long"}))}</div>
+          <div class="big num">${esc(part(d.a,{day:"2-digit"}))}.${esc(part(d.a,{month:"2-digit"}))}</div>
+          ${ficha(d)}</div></section>`:""}
+      <div class="muro">${resto.map(muro).join("")}</div>`; }
+  const muro=e=>`<article class="post" id="ev-${esc(e.slug)}"><a class="press" href="${esc(e.href)}">${cartel(e)}
         <div class="cap"><span class="num">${esc(corta(e.a).toUpperCase())} · ${esc(h24(e.a))}</span><b>${esc(e.nombre)}</b><span>${esc(lugar(e))}</span></div></a>
-        ${e.mapa?`<button class="enmapa" data-mapa="${esc(e.slug)}">${pin}Ver en el mapa</button>`:""}</article>`).join("")}</div>`; }
+        ${apartar(e)}${e.mapa?`<button class="enmapa" data-mapa="${esc(e.slug)}">${pin}Ver en el mapa</button>`:""}</article>`;
 
   const enMes=(L1,m)=>L1.filter(e=>+part(e.a,{year:"numeric"})===m.y&&+part(e.a,{month:"numeric"})-1===m.m);
   function calendario(L1){
@@ -333,7 +370,7 @@
     pts.forEach(e=>{ const dia=part(e.a,{day:"2-digit"})+" "+part(e.a,{month:"short"}).replace(/\./g,"")+(e.ciudad?" · "+e.ciudad:"");
       const m=marcas[e.slug]=L.marker(e.mapa,{title:e.nombre,riseOnHover:true,icon:L.divIcon({className:"pinw",iconSize:null,iconAnchor:[10,12],popupAnchor:[0,-14],
         html:`<span class="pin" style="--c:${esc(e.color||"#DB414C")}"><i></i>${esc(dia)}</span>`})})
-      .bindPopup(`<div class="pop">${e.flyer?`<img src="${esc(e.flyer)}" alt="">`:""}<div><b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">Ver y apartar</a></div></div>`).addTo(mapa);
+      .bindPopup(`<div class="pop">${e.flyer?`<img src="${esc(e.flyer)}" alt="">`:""}<div><b>${esc(e.nombre)}</b><br>${esc(corta(e.a))} · ${esc(h24(e.a))}<br>${esc(lugar(e))}<br><a href="${esc(e.href)}">${quien(e).length?"Ver detalles":"Ver y apartar"}</a>${apartar(e)}</div></div>`).addTo(mapa);
       // Del mapa a la lista: tocar el pin marca su renglón
       m.on("click",()=>{ const r=fe(e.slug); if(!r) return; r.scrollIntoView({behavior:reduce?"auto":"smooth",block:"nearest",inline:"start"}); flash(r); }); });
     // De la lista al mapa: pasar encima resalta el pin; tocar el cartel lo ubica
@@ -353,6 +390,8 @@
   }
   function vuela(slug){ const m=marcas[slug]; if(!mapa||!m) return;
     mapa.flyTo(m.getLatLng(),15,{duration:reduce?0:.7}); setTimeout(()=>m.openPopup(),reduce?0:750); }
+  document.addEventListener("click",ev=>{ const a=ev.target.closest("[data-wa]"); if(!a) return; const [s,r]=a.dataset.wa.split("|");
+    try{ window.goatcounter.count({path:"eventos/"+s+"/whatsapp-"+r,title:"Escríbele a "+r+" (desde "+vista+")",event:true}); }catch(_){} });
   pinta();
 })();
 </script>
