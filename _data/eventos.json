@@ -1,11 +1,12 @@
 {
- "_nota": "Eventos presenciales. Todos salen en mitienda.beauty/eventos (con mapa y filtro por zona). Evento suelto: /eventos/<slug>/. Si es de una serie (\"serie\": una de \"series\"), sale en /eventos/<serie>/<slug>/ y la serie tiene su página con todas las ediciones en /eventos/<serie>/. Al cambiar este archivo las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). \"mapa\" = [latitud, longitud]. \"plantilla\" elige el diseño (scripts/evento_<plantilla>.html y scripts/serie_<plantilla>.html). Opcionales: categoria (filtro con íconos), imagen, serie, edicion, lugar, zona, mapa, descripcion, puntos, colaboran, apartar, boton, color.",
+ "_nota": "Eventos presenciales. Todos salen en mitienda.beauty/eventos (con mapa y filtro por zona). Evento suelto: /eventos/<slug>/. Si es de una serie (\"serie\": una de \"series\"), sale en /eventos/<serie>/<slug>/ y la serie tiene su página con todas las ediciones en /eventos/<serie>/. Al cambiar este archivo las páginas se regeneran solas (o corre: python3 scripts/eventos.py). Fechas con hora de México (-06:00). \"mapa\" = [latitud, longitud]. \"plantilla\" elige el diseño (scripts/evento_<plantilla>.html y scripts/serie_<plantilla>.html). Opcionales: flyer (imagen del flyer completo), icono (ilustración chica, PNG sin fondo), aportacion (lista de {etiqueta, precio}), regalo, categoria (filtro con íconos), imagen, serie, edicion, lugar, zona, mapa, descripcion, puntos, colaboran, apartar, boton, color.",
  "series": {
   "flowers-to-go": {
    "nombre": "Flowers to Go",
    "plantilla": "flowers-to-go",
    "imagen": "/eventos/fotos/altar.jpg",
-   "color": "#A6461F"
+   "color": "#A6461F",
+   "icono": "/eventos/fotos/altar-ramo.png"
   }
  },
  "eventos": [
@@ -17,15 +18,39 @@
    "tipo": "Taller",
    "categoria": "Flores",
    "imagen": "/eventos/fotos/altar.jpg",
+   "flyer": "/eventos/fotos/altar-flyer.jpg",
+   "icono": "/eventos/fotos/altar-ramo.png",
    "color": "#A6461F",
    "desde": "2026-10-31T11:00:00-06:00",
    "hasta": "2026-10-31T13:00:00-06:00",
    "zona": "Benito Juárez",
    "lugar": "Col. Nápoles",
-   "mapa": [19.3937, -99.1770],
+   "mapa": [
+    19.3937,
+    -99.177
+   ],
    "resumen": "Una mañana de pan, cafecito y un ramo para tu altar.",
-   "colaboran": ["Teresita Flwrs", "Nutriplus", "Cima Vision"],
-   "apartar": {"whatsapp": "", "instagram": ""}
+   "aportacion": [
+    {
+     "etiqueta": "Preventa",
+     "precio": "$250"
+    },
+    {
+     "etiqueta": "Previo al evento",
+     "precio": "$300"
+    }
+   ],
+   "regalo": "Los primeros 10 lugares se llevan un regalo sorpresa de Farmasi.",
+   "colaboran": [
+    "Verbalia Floral",
+    "Teresita Flowers",
+    "Nutriplus",
+    "Cima Vision"
+   ],
+   "apartar": {
+    "whatsapp": "",
+    "instagram": ""
+   }
   }
  ]
 }

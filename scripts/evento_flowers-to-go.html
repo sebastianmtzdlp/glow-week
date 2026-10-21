@@ -40,6 +40,10 @@
   .fecha i{width:1px;height:56px;background:var(--line)}
   .fecha b{font-variant-numeric:lining-nums;font-family:"Cormorant Garamond",serif;font-weight:500;font-size:58px;line-height:1;color:var(--terra)}
   .hora{font-size:15px;letter-spacing:.06em;margin-top:6px}
+  .apo{display:flex;justify-content:center;align-items:baseline;flex-wrap:wrap;gap:6px 18px;margin:16px -6px 0;padding:10px 0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);font-size:14px}
+  .apo .k{font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:500;width:100%}
+  .apo b{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:28px;color:var(--terra);margin-left:6px;font-variant-numeric:lining-nums}
+  .reg{font-style:italic;font-size:19px;color:var(--terra);margin-top:12px;line-height:1.3}
   .colab{font-style:italic;font-size:18px;margin-top:12px;line-height:1.35}
   .st{display:inline-block;margin-top:16px;font-size:13px;font-weight:500;padding:6px 12px;border:1px solid var(--line);color:var(--terra)}
   .stub{background:var(--paper);border-top:2px dashed var(--line);padding:16px 18px}
@@ -56,9 +60,21 @@
   .btn.full{grid-column:1/-1}
   .aviso{text-align:center;font-size:15px;margin-top:14px}
   .links{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;margin-top:16px;font-size:15px}
+  .links a,.links button{min-height:44px;display:inline-flex;align-items:center}
   .links button{font:inherit;color:var(--terra);background:none;border:0;text-decoration:underline;cursor:pointer;padding:0}
   [hidden]{display:none!important}
-  a.back{display:block;margin-top:24px;font-size:14px;color:var(--muted)}
+  a.back{display:inline-flex;align-items:center;min-height:44px;margin-top:20px;font-size:14px;color:var(--muted)}
+  @media (min-width:900px){
+    body{padding-top:24px}
+    .wrap{max-width:1040px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:56px;align-items:start}
+    .wrap>a.top{grid-column:1/-1}
+    .flyer{grid-column:1;grid-row:2/span 6;position:sticky;top:24px}
+    .stub,.btns,.aviso,.links,.wrap>a.back{grid-column:2}
+    .stub{border-top:0;padding:24px 24px 20px;box-shadow:0 8px 24px rgba(42,36,32,.08)}
+    .stub p{font-size:16px}
+    #mapa{height:300px}
+    .links{justify-content:flex-start}.aviso{text-align:left}
+  }
 </style>
 </head>
 <body>
@@ -70,7 +86,8 @@
     <div class="ed serif caps" id="ed"></div>
     <div class="rule"></div>
     <p class="lead" id="res"></p>
-    <svg class="flores" viewBox="0 0 200 220" aria-hidden="true">
+    <img class="flores" id="ramo" alt="" hidden>
+    <svg class="flores" id="ramoSvg" viewBox="0 0 200 220" aria-hidden="true">
       <g stroke="#6E7B4F" stroke-width="2" fill="none"><path d="M100 215 L72 62"/><path d="M100 215 L128 72"/><path d="M100 215 L46 122"/><path d="M100 215 L158 112"/><path d="M100 215 L100 132"/><path d="M100 215 L78 108"/><path d="M100 215 L140 145"/></g>
       <g class="pet" stroke-dasharray="3 2.5">
         <circle cx="72" cy="62" r="22" stroke-width="6"/><circle cx="128" cy="72" r="22" stroke-width="6"/>
@@ -82,6 +99,8 @@
     </svg>
     <div class="fecha"><span id="dia"></span><i></i><b id="num"></b><i></i><span id="mes"></span></div>
     <div class="hora" id="hora"></div>
+    <div class="apo" id="apo" hidden></div>
+    <p class="reg serif" id="reg" hidden></p>
     <div class="colab serif" id="colab" hidden></div>
     <div class="st" id="st"></div>
   </section>
@@ -113,6 +132,9 @@
   $("res").textContent=e.resumen||"";
   $("dia").textContent=part(a,{weekday:"long"}).toUpperCase(); $("num").textContent=part(a,{day:"numeric"}); $("mes").textContent=part(a,{month:"long"}).toUpperCase();
   $("hora").textContent="De "+hora(a)+(b>a?" a "+hora(b):"");
+  if(e.icono){ $("ramo").src=e.icono; $("ramo").hidden=false; $("ramoSvg").remove(); }
+  if((e.aportacion||[]).length){ $("apo").innerHTML='<span class="k">Aportación</span>'+e.aportacion.map(x=>`<span>${String(x.etiqueta).replace(/[<&]/g,"")} <b>${String(x.precio).replace(/[<&]/g,"")}</b></span>`).join(""); $("apo").hidden=false; }
+  if(e.regalo){ $("reg").textContent=e.regalo; $("reg").hidden=false; }
   if((e.colaboran||[]).length){ $("colab").innerHTML="En colaboración con<br>"; $("colab").append(e.colaboran.join(" · ")); $("colab").hidden=false; }
   $("lugar").textContent=e.lugar||""; $("zona").textContent=e.zona?" · "+e.zona:"";
 
@@ -133,7 +155,7 @@
   // Mapa (zona aproximada; la dirección exacta se manda al apartar)
   if(e.mapa&&window.L){ $("mapa").hidden=false;
     const m=L.map("mapa",{scrollWheelZoom:false,attributionControl:true}).setView(e.mapa,15);
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
+    L.tileLayer("https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png",{maxZoom:19,subdomains:"abcd",attribution:"© OpenStreetMap · © CARTO"}).addTo(m);
     L.circle(e.mapa,{radius:250,color:e.color||"#A6461F",weight:2,fillColor:e.flor||"#D9792B",fillOpacity:.25}).addTo(m); }
 
   // Calendario y compartir

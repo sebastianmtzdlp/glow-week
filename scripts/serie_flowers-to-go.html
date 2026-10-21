@@ -43,7 +43,7 @@
   .ed.main .k{font-size:11px;color:var(--c)}
   .ed.main strong{font-family:"Cormorant Garamond",serif;font-weight:500;font-size:28px;letter-spacing:.24em;text-transform:uppercase;margin-top:6px}
   .ed.main p{font-size:16px;margin-top:6px}
-  .ed.main svg{display:block;width:150px;height:auto;margin:12px auto 4px}
+  .ed.main svg,.ed.main .ramo{display:block;width:170px;height:auto;margin:12px auto 4px}
   .ed.main .q{font-size:15px;letter-spacing:.06em}
   .ed.main .go{display:inline-block;margin:14px auto 0;padding:12px 22px;background:var(--c);color:#fff;font-weight:500}
   .pet{fill:var(--flor);stroke:color-mix(in srgb,var(--flor),#000 12%)}.cen{fill:color-mix(in srgb,var(--flor),#fff 25%)}.ojo{fill:color-mix(in srgb,var(--flor),#000 30%)}
@@ -54,7 +54,8 @@
   @media (hover:hover) and (pointer:fine){.ed:not(.main):hover{box-shadow:0 6px 18px rgba(42,36,32,.10)}.ed.main:hover .go{filter:brightness(.9)}a.top:hover,a.back:hover{color:var(--terra)}}
   @media (prefers-reduced-motion:reduce){.ed{transition-property:box-shadow}}
   .empty{text-align:center;color:var(--muted);background:var(--paper);padding:20px;margin-top:10px}
-  a.back{display:block;margin-top:24px;font-size:14px;color:var(--muted)}
+  a.back{display:inline-flex;align-items:center;min-height:44px;margin-top:20px;font-size:14px;color:var(--muted)}
+  @media (min-width:900px){.wrap{max-width:760px;padding-top:36px}header h1{font-size:88px}.ed.main{padding:40px 48px 36px}.ed.main .ramo,.ed.main svg{width:220px}}
 </style>
 </head>
 <body>
@@ -84,7 +85,7 @@
     <div class="t"><strong>Edición ${esc(e.edicion||e.titulo)}</strong>${e.resumen?`<span>${esc(e.resumen)}</span>`:""}<small>${esc([e.lugar,hora(e.a)+(e.b>e.a?" a "+hora(e.b):"")].filter(Boolean).join(" · "))}</small></div></a>`;
   let h="";
   if(vienen.length){ const p=vienen[0], ya=p.a<=now;
-    h+=`<a class="ed main" href="${esc(p.url)}" style="${css(p)}"><span class="k caps">${ya?"Está pasando ahora":"Próxima edición"}</span><strong>Edición ${esc(p.edicion||p.titulo)}</strong>${p.resumen?`<p>${esc(p.resumen)}</p>`:""}${flores}
+    h+=`<a class="ed main" href="${esc(p.url)}" style="${css(p)}"><span class="k caps">${ya?"Está pasando ahora":"Próxima edición"}</span><strong>Edición ${esc(p.edicion||p.titulo)}</strong>${p.resumen?`<p>${esc(p.resumen)}</p>`:""}${p.icono?`<img class="ramo" src="${esc(p.icono)}" alt="">`:flores}
       <span class="q">${esc(part(p.a,{weekday:"long",day:"numeric",month:"long"}))} · ${esc(hora(p.a))}${p.lugar?" · "+esc(p.lugar):""}</span><span class="go">Ver la edición y apartar</span></a>`;
     if(vienen.length>1) h+=`<h2 class="caps">Después</h2>`+vienen.slice(1).map(fila).join("");
   } else h+=`<p class="empty">Pronto anunciamos la siguiente edición.</p>`;
