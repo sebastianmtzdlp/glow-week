@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Jost:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <style>
   :root{--bg:#EAE2D4;--paper:#F4EFE6;--ink:#2A2420;--muted:#6B6158;--line:#C9BDA9;--terra:#A6461F;--terra-d:#7E3415;--flor:#D9792B}
   *{box-sizing:border-box;margin:0}
@@ -56,7 +57,7 @@
   .btn:active{transform:scale(.97)}
   @media (hover:hover) and (pointer:fine){.btn:hover{background:color-mix(in srgb,var(--terra),transparent 90%)}.btn.fill:hover{background:var(--terra-d)}a.top:hover,a.back:hover{color:var(--terra)}}
   .leaflet-container{font-family:inherit}
-  .leaflet-tile-pane{filter:sepia(.25) grayscale(.45) contrast(.95)}
+  .osm-gris{filter:sepia(.25) grayscale(.45) contrast(.95)}
   @media (prefers-reduced-motion:reduce){.btn{transition-property:background-color,color}}
   .btn.full{grid-column:1/-1}
   .aviso{text-align:center;font-size:15px;margin-top:14px}
@@ -116,6 +117,9 @@
 </div>
 <script id="evento" type="application/json">{{DATOS_JSON}}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"></script>
+<script src="/eventos/plano.js"></script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (()=>{
@@ -156,7 +160,7 @@
   // Mapa (zona aproximada; la dirección exacta se manda al apartar)
   if(e.mapa&&window.L){ $("mapa").hidden=false;
     const m=L.map("mapa",{scrollWheelZoom:false,attributionControl:true}).setView(e.mapa,15);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
+    planoClaro(m,"papel");
     L.circle(e.mapa,{radius:250,color:e.color||"#A6461F",weight:2,fillColor:e.flor||"#D9792B",fillOpacity:.25}).addTo(m); }
 
   // Calendario y compartir

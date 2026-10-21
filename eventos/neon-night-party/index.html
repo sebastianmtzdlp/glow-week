@@ -16,6 +16,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
 <style>
   /* Estilo Farmasi: blanco, azul marino, rojo coral; Outfit para texto y Plex Mono para cifras. Un solo botón en acento. */
   :root{color-scheme:light;--bg:#FFFFFF;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;
@@ -46,7 +47,7 @@
   .cuenta span{color:var(--ink);font-size:15px}
   #mapa{height:200px;border-top:1px solid var(--line);z-index:0}
   .leaflet-container{font-family:inherit;background:var(--soft)}
-  .leaflet-tile-pane{filter:grayscale(.7) contrast(.92) brightness(1.04)}
+  .osm-gris{filter:grayscale(.7) contrast(.92) brightness(1.04)}
   .txt{margin-top:24px;font-size:17px}
   .txt p+p{margin-top:12px}.txt a{color:var(--accent-t)}
   .txt ul{list-style:none;padding:0;margin-top:14px;display:grid;gap:8px}
@@ -112,6 +113,9 @@
 </main>
 <script id="evento" type="application/json">{"slug": "neon-night-party", "titulo": "Neon Night Party", "tipo": "Fiesta", "categoria": "Pilates", "flyer": "/eventos/fotos/neon-night-party.jpg", "color": "#C2185B", "desde": "2026-11-19T18:30:00-06:00", "hasta": "2026-11-19T22:30:00-06:00", "zona": "Álvaro Obregón", "lugar": "Umaah Haus", "direccion": "Fernando M. Villalpando 98, Guadalupe Inn.", "mapa": [19.3612, -99.1851], "resumen": "Mat pilates, beauty, música, experiencias exclusivas, regalos y muchas sorpresas.", "puntos": ["Dresscode: colores neón", "Cupo limitado", "Usuarias de Wellhub y TotalPass: manda DM para tu precio especial"], "aportacion": [{"etiqueta": "Precio regular", "precio": "$500"}], "colaboran": ["La Mat Party", "Catarsis"], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/neon-night-party/"}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"></script>
+<script src="/eventos/plano.js"></script>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 <script>
 (()=>{
@@ -160,7 +164,7 @@
   // Mapa (zona aproximada)
   if(e.mapa&&window.L){ $("mapa").hidden=false;
     const m=L.map("mapa",{scrollWheelZoom:false,dragging:!L.Browser.mobile,attributionControl:true}).setView(e.mapa,15);
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",{maxZoom:19,attribution:"© OpenStreetMap"}).addTo(m);
+    planoClaro(m,"claro");
     L.circle(e.mapa,{radius:250,color:e.color||"#DB414C",weight:2,fillColor:e.color||"#DB414C",fillOpacity:.15}).addTo(m); }
 
   // Calendario y compartir

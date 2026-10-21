@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex">
+<title>Mapa de eventos · Opciones</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<style>
+  /* Tres mapas sin clave para el hub de eventos, lado a lado. */
+  :root{color-scheme:light;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;
+    --sans:Outfit,system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace}
+  *{box-sizing:border-box;margin:0}
+  html,body{background:#fff}
+  body{color:var(--ink);font-family:var(--sans);line-height:1.45}
+  .pag{max-width:1280px;margin:0 auto;padding:36px 16px 56px}
+  .marca{font-weight:300;font-size:12px;letter-spacing:.24em;color:var(--muted)}
+  h1{font-size:clamp(36px,5vw,56px);font-weight:700;letter-spacing:-.02em;line-height:1;margin:14px 0 10px}
+  .pag>p{color:var(--muted);max-width:60ch;font-size:17px}
+  .ops{display:grid;gap:40px;margin-top:40px}
+  .op h2{display:flex;gap:12px;align-items:baseline;font-size:22px;font-weight:600}
+  .op h2 .num{font-family:var(--mono);font-size:14px;color:var(--accent)}
+  .op p{color:var(--muted);margin:6px 0 14px;max-width:62ch}
+  .m{height:440px;border-radius:18px;border:1px solid var(--line);overflow:hidden}
+  @media (min-width:960px){.ops{grid-template-columns:1fr 1fr}.op:first-child{grid-column:1/-1}.op:first-child .m{height:520px}}
+
+  /* Pin con la fecha: el mismo para las tres opciones */
+  .pin{display:flex;align-items:center;gap:6px;padding:5px 9px 5px 6px;border-radius:999px;background:#fff;color:var(--ink);
+    font:700 12px/1 var(--mono);letter-spacing:.02em;box-shadow:0 1px 2px rgba(38,42,74,.18),0 4px 14px rgba(38,42,74,.14);white-space:nowrap;cursor:pointer}
+  .pin i{width:12px;height:12px;border-radius:50%;background:var(--c);box-shadow:0 0 0 2px #fff,0 0 0 3px var(--c)}
+  .noche .pin{background:#262A4A;color:#fff;box-shadow:0 0 0 1px rgba(255,255,255,.14),0 6px 18px rgba(0,0,0,.35)}
+  .noche .pin i{box-shadow:0 0 0 2px #262A4A,0 0 10px 2px var(--c)}
+  .leaflet-div-icon{background:none;border:0}
+  .maplibregl-ctrl-attrib,.leaflet-control-attribution{font-family:var(--sans);font-size:11px}
+</style>
+</head>
+<body>
+<main class="pag">
+  <div class="marca">EQUIPO SVH</div>
+  <h1>Mapa de eventos</h1>
+  <p>Tres estilos para el mapa de /eventos. Ninguno pide clave ni cuesta. Los cuatro eventos están marcados con su fecha; mueve y acerca cada mapa para comparar.</p>
+  <div class="ops">
+    <section class="op"><h2><span class="num">01</span>Plano claro</h2>
+      <p>Blanco con calles en lila muy suave, agua azul pálido y nombres de colonias en el azul de la marca. Sin tiendas ni íconos; solo resaltan los eventos.</p>
+      <div class="m" id="m1"></div></section>
+    <section class="op noche"><h2><span class="num">02</span>Noche</h2>
+      <p>Fondo azul marino de la marca con calles apenas marcadas. Los puntos brillan; va bien con las fiestas de noche.</p>
+      <div class="m" id="m2"></div></section>
+    <section class="op"><h2><span class="num">03</span>Gris sencillo</h2>
+      <p>Mapa gris neutro de Esri. Es el cambio más chico: deja el mapa casi como está ahora, pero limpio.</p>
+      <div class="m" id="m3"></div></section>
+  </div>
+</main>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script>
+const EV=[
+  {n:"Flowers to Go · Altar",f:"31 OCT",c:"#A6461F",p:[19.3937,-99.177]},
+  {n:"Holiday Glam",f:"14 NOV",c:"#8E2C3E",p:[19.4317,-99.1803]},
+  {n:"Neon Night Party",f:"19 NOV",c:"#C2185B",p:[19.3612,-99.1851]},
+  {n:"Starlight Ride",f:"05 DIC",c:"#1D3A8F",p:[19.427,-99.1677]}];
+function pinEl(e){const d=document.createElement("div");d.className="pin";d.style.setProperty("--c",e.c);d.title=e.n;d.innerHTML=`<i></i>${e.f}`;return d}
+
+// Recolorea el estilo Positron de OpenFreeMap capa por capa
+function tinta(map,t){
+  for(const l of map.getStyle().layers){
+    const id=l.id, set=(k,v)=>{try{map.setPaintProperty(id,k,v)}catch(_){}};
+    if(/poi|aeroway|rail|transit|housenumber|boundary/.test(id)){map.setLayoutProperty(id,"visibility","none");continue}
+    if(l.type==="background") set("background-color",t.tierra);
+    else if(l.type==="fill"){
+      if(/water/.test(id)) set("fill-color",t.agua);
+      else if(/park|wood|grass|landcover|green/.test(id)) set("fill-color",t.parque);
+      else if(/building/.test(id)) {set("fill-color",t.edificio);set("fill-outline-color",t.edificio)}
+      else set("fill-color",t.tierra);
+    }
+    else if(l.type==="line"){
+      if(/water/.test(id)) set("line-color",t.agua);
+      else if(/casing/.test(id)) set("line-color",t.borde);
+      else if(/motorway|trunk|major|primary/.test(id)) set("line-color",t.via);
+      else set("line-color",t.calle);
+    }
+    else if(l.type==="symbol"){
+      if(/highway|road|transportation/.test(id)&&!t.nombresCalles){map.setLayoutProperty(id,"visibility","none");continue}
+      set("text-color",/place_(city|town)/.test(id)?t.titulo:t.texto);set("text-halo-color",t.halo);set("text-halo-width",1.4);
+      try{map.setLayoutProperty(id,"text-font",["Noto Sans Regular"])}catch(_){}
+    }
+  }
+}
+const bounds=EV.reduce((b,e)=>b.extend([e.p[1],e.p[0]]),new maplibregl.LngLatBounds());
+function vector(id,t){
+  const map=new maplibregl.Map({container:id,style:"https://tiles.openfreemap.org/styles/positron",bounds,fitBoundsOptions:{padding:70},
+    attributionControl:{compact:true},cooperativeGestures:true});
+  map.addControl(new maplibregl.NavigationControl({showCompass:false}),"top-left");
+  map.on("style.load",()=>tinta(map,t));
+  EV.forEach(e=>new maplibregl.Marker({element:pinEl(e),anchor:"left",offset:[-10,0]}).setLngLat([e.p[1],e.p[0]])
+    .setPopup(new maplibregl.Popup({offset:14,closeButton:false}).setText(e.n)).addTo(map));
+}
+vector("m1",{tierra:"#FFFFFF",agua:"#DCE4F5",parque:"#EEF3EC",edificio:"#F4F5F9",calle:"#ECEDF4",via:"#E0E2EE",borde:"#E6E8F0",
+  texto:"#8A8EA8",titulo:"#262A4A",halo:"#FFFFFF",nombresCalles:true});
+vector("m2",{tierra:"#262A4A",agua:"#1C2040",parque:"#2B3052",edificio:"#2D3154",calle:"#343963",via:"#454B7A",borde:"#262A4A",
+  texto:"#8F94B8",titulo:"#E6E8F0",halo:"#262A4A",nombresCalles:false});
+
+const m3=L.map("m3",{scrollWheelZoom:false});
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Base/MapServer/tile/{z}/{y}/{x}",{maxZoom:16,attribution:"Esri, HERE, Garmin, © OpenStreetMap"}).addTo(m3);
+L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Light_Gray_Reference/MapServer/tile/{z}/{y}/{x}",{maxZoom:16}).addTo(m3);
+EV.forEach(e=>L.marker(e.p,{icon:L.divIcon({html:pinEl(e).outerHTML,className:"",iconSize:null,iconAnchor:[10,12]})}).bindPopup(e.n).addTo(m3));
+m3.fitBounds(EV.map(e=>e.p),{padding:[60,60]});
+</script>
+</body>
+</html>
