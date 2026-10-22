@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-22",
- "hora": "15:18",
+ "hora": "17:40",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 456,
+  "visitas": 459,
   "agregados": 26,
   "pedidos": 5,
   "wa": 0
@@ -39,7 +39,7 @@
   },
   {
    "d": "2026-10-22",
-   "v": 43
+   "v": 46
   }
  ],
  "consultoras": [
@@ -67,7 +67,7 @@
   {
    "slug": "moni",
    "nombre": "Moni",
-   "visitas": 5,
+   "visitas": 6,
    "catalogo": 0,
    "pedidos": 0
   },
@@ -275,6 +275,16 @@
     {
      "code": "1000272",
      "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+     "n": 1
+    }
+   ]
+  },
+  "moni": {
+   "agregados": [],
+   "vistos": [
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
      "n": 1
     }
    ]
