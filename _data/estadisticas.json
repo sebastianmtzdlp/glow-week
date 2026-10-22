@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-22",
- "hora": "08:26",
+ "hora": "09:36",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 418,
+  "visitas": 419,
   "agregados": 26,
   "pedidos": 5,
   "wa": 0
@@ -39,14 +39,14 @@
   },
   {
    "d": "2026-10-22",
-   "v": 5
+   "v": 6
   }
  ],
  "consultoras": [
   {
    "slug": "viri",
    "nombre": "Viri",
-   "visitas": 42,
+   "visitas": 43,
    "catalogo": 3,
    "pedidos": 1
   },
