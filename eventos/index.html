@@ -390,7 +390,15 @@
   }
   function vuela(slug){ const m=marcas[slug]; if(!mapa||!m) return;
     mapa.flyTo(m.getLatLng(),15,{duration:reduce?0:.7}); setTimeout(()=>m.openPopup(),reduce?0:750); }
+  // Quién le escribió a quién y quién la invitó (?de=): tabla privada eventos_interesadas en Supabase
+  const anota=(ev,r,origen)=>{ try{ const K="sb_publishable_ltaNA7nnVozoSCOcZIjg", inv=new URLSearchParams(location.search).get("de");
+    let d=null; try{ d=localStorage.getItem("eventos_disp")||crypto.randomUUID(); localStorage.setItem("eventos_disp",d); }catch(_){}
+    fetch("https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/eventos_interesadas",{method:"POST",keepalive:true,
+      headers:{"Content-Type":"application/json",apikey:K,Authorization:"Bearer "+K,Prefer:"return=minimal"},
+      body:JSON.stringify({evento:ev,responsable:String(r||"").slice(0,40)||null,invito:/^[a-z0-9-]{1,40}$/.test(inv||"")?inv:null,origen,dispositivo:d})}).catch(()=>{});
+  }catch(_){} };
   document.addEventListener("click",ev=>{ const a=ev.target.closest("[data-wa]"); if(!a) return; const [s,r]=a.dataset.wa.split("|");
+    anota(s,r,vista);
     try{ window.goatcounter.count({path:"eventos/"+s+"/whatsapp-"+r,title:"Escríbele a "+r+" (desde "+vista+")",event:true}); }catch(_){} });
   pinta();
 })();

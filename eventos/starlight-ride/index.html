@@ -113,7 +113,7 @@
   </aside>
   <a class="back" href="/eventos/">← Todos los eventos</a>
 </main>
-<script id="evento" type="application/json">{"slug": "starlight-ride", "titulo": "Starlight Ride", "tipo": "Rodada de spinning", "categoria": "Fitness", "flyer": "/eventos/fotos/starlight-ride-2.jpg", "color": "#1D3A8F", "desde": "2026-12-05T17:00:00-06:00", "zona": "Cuauhtémoc", "lugar": "Helipuerto Reforma", "mapa": [19.427, -99.1677], "resumen": "Spinning al atardecer en un helipuerto, con la ciudad abajo.", "puntos": ["Boletos a la venta"], "aportacion": [{"etiqueta": "Boleto", "precio": "$650"}], "responsables": [{"slug": "nancy", "nombre": "Nancy", "whatsapp": "525541352371"}], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/starlight-ride/"}</script>
+<script id="evento" type="application/json">{"slug": "starlight-ride", "titulo": "Starlight Ride", "tipo": "Rodada de spinning", "categoria": "Fitness", "flyer": "/eventos/fotos/starlight-ride-2.jpg", "color": "#8A2846", "desde": "2026-12-05T17:00:00-06:00", "zona": "Cuauhtémoc", "lugar": "Helipuerto Reforma", "mapa": [19.427, -99.1677], "resumen": "Spinning al atardecer en un helipuerto, con la ciudad abajo.", "puntos": ["Boletos a la venta"], "aportacion": [{"etiqueta": "Boleto", "precio": "$650"}], "responsables": [{"slug": "nancy", "nombre": "Nancy", "whatsapp": "525541352371"}], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/starlight-ride/"}</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
 <script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"></script>
@@ -158,7 +158,14 @@
   if(ap.instagram) bt+=`<a class="btn${bt?"":" fill"}" id="bIg" target="_blank" rel="noopener" href="https://ig.me/m/${encodeURIComponent(String(ap.instagram).replace(/^@/,""))}">Apartar por Instagram</a>`;
   if(e.boton&&e.boton.url) bt+=`<a class="btn${bt?"":" fill"}" id="bOtro" href="${esc(e.boton.url)}" target="_blank" rel="noopener">${esc(e.boton.texto||"Quiero ir")}</a>`;
   $("btns").innerHTML=bt; if(!bt){ $("aviso").textContent="Muy pronto te decimos cómo apartar tu lugar."; $("aviso").hidden=false; }
-  $("btns").querySelectorAll("[data-r]").forEach(x=>x.onclick=()=>gc("whatsapp-"+x.dataset.r,x.textContent));
+  // Quién le escribió a quién y quién la invitó (?de=): tabla privada eventos_interesadas en Supabase
+  const anota=(ev,r,origen)=>{ try{ const K="sb_publishable_ltaNA7nnVozoSCOcZIjg", inv=new URLSearchParams(location.search).get("de");
+    let d=null; try{ d=localStorage.getItem("eventos_disp")||crypto.randomUUID(); localStorage.setItem("eventos_disp",d); }catch(_){}
+    fetch("https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/eventos_interesadas",{method:"POST",keepalive:true,
+      headers:{"Content-Type":"application/json",apikey:K,Authorization:"Bearer "+K,Prefer:"return=minimal"},
+      body:JSON.stringify({evento:ev,responsable:String(r||"").slice(0,40)||null,invito:/^[a-z0-9-]{1,40}$/.test(inv||"")?inv:null,origen,dispositivo:d})}).catch(()=>{});
+  }catch(_){} };
+  $("btns").querySelectorAll("[data-r]").forEach(x=>x.onclick=()=>{ gc("whatsapp-"+x.dataset.r,x.textContent); anota(e.slug,x.dataset.r,"evento"); });
   $("bWa")&&($("bWa").onclick=()=>gc("apartar-whatsapp","Apartar por WhatsApp")); $("bIg")&&($("bIg").onclick=()=>gc("apartar-instagram","Apartar por Instagram")); $("bOtro")&&($("bOtro").onclick=()=>gc("boton",e.boton.texto||"Botón"));
 
   // Cuenta regresiva: primero el número
