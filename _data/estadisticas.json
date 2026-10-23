@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-22",
- "hora": "19:56",
+ "hora": "20:16",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 460,
+  "visitas": 470,
   "agregados": 26,
   "pedidos": 5,
   "wa": 0
@@ -39,7 +39,7 @@
   },
   {
    "d": "2026-10-22",
-   "v": 47
+   "v": 57
   }
  ],
  "consultoras": [
@@ -53,8 +53,8 @@
   {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 26,
-   "catalogo": 1,
+   "visitas": 40,
+   "catalogo": 2,
    "pedidos": 4
   },
   {
@@ -313,5 +313,66 @@
   "nueva": 2,
   "importado": 2,
   "empezar": 1
+ },
+ "eventos": {
+  "hub": 102,
+  "series": {
+   "flowers-to-go": 6
+  },
+  "nombres": {
+   "sel": "Selene",
+   "viri": "Viri",
+   "nancy": "Nancy",
+   "laura": "Laura",
+   "danny": "Danny"
+  },
+  "lista": [
+   {
+    "slug": "altar",
+    "titulo": "Flowers to Go · Edición Altar",
+    "desde": "2026-10-31T11:00:00-06:00",
+    "visitas": 16,
+    "clics": {
+     "whatsapp-sel": 4,
+     "whatsapp-viri": 3
+    }
+   },
+   {
+    "slug": "starlight-ride",
+    "titulo": "Starlight Ride",
+    "desde": "2026-12-05T17:00:00-06:00",
+    "visitas": 7,
+    "clics": {
+     "whatsapp-nancy": 5,
+     "calendario": 1
+    }
+   },
+   {
+    "slug": "holiday-glam",
+    "titulo": "Holiday Glam",
+    "desde": "2026-11-14T10:00:00-06:00",
+    "visitas": 7,
+    "clics": {
+     "whatsapp-nancy": 2,
+     "whatsapp-laura": 1
+    }
+   },
+   {
+    "slug": "master-class-tendencias-2027",
+    "titulo": "Master Class Tendencias 2027",
+    "desde": "2026-10-25T11:00:00-06:00",
+    "visitas": 7,
+    "clics": {
+     "whatsapp-danny": 2
+    }
+   },
+   {
+    "slug": "neon-night-party",
+    "titulo": "Neon Night Party",
+    "desde": "2026-11-19T18:30:00-06:00",
+    "visitas": 1,
+    "clics": {}
+   }
+  ]
  }
 }
