@@ -81,6 +81,7 @@
     <button class="tab" role="tab" aria-selected="false" data-p="cons">Consultoras</button>
     <button class="tab" role="tab" aria-selected="false" data-p="prod">Productos</button>
     <button class="tab" role="tab" aria-selected="false" data-p="ritmo">Ritmo de Puntos</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="eventos">Eventos</button>
   </div>
 
   <section class="pane" id="p-resumen">
@@ -103,6 +104,11 @@
   <section class="pane" id="p-ritmo" hidden>
     <div class="tiles" id="rTiles"></div>
     <div class="card"><h2>Ritmo de Puntos</h2><p class="sub">Uso de <a href="../herramientas/ritmo-de-puntos/" style="color:inherit">la herramienta</a> desde que se movió al sitio. Solo conteos: los puntos y nombres de cada quien se quedan en su celular.</p><div id="rList"></div></div>
+  </section>
+
+  <section class="pane" id="p-eventos" hidden>
+    <div class="tiles" id="eTiles"></div>
+    <div class="card"><h2>Por evento</h2><p class="sub">Visitas a la página de <a href="../eventos/" style="color:inherit">cada evento</a> y clics en sus botones. Los clics a «Aparta con» desde la cartelera cuentan para su evento.</p><div id="eList"></div></div>
   </section>
 
   <section class="pane" id="p-prod" hidden>
@@ -178,6 +184,29 @@
   $("rList").innerHTML = rs.some(x => x[1]) || rv("visitas")
     ? rs.map(([l,n]) => `<div class="row" style="grid-template-columns:1fr auto"><div><div class="nm">${l}</div><div class="track"><i style="width:${n/rmax*100}%"></i></div></div><div class="val">${fmt(n)}</div></div>`).join("")
     : `<div class="empty"><b>Aún no hay uso registrado.</b>Cuando el equipo abra Ritmo de Puntos en mitienda.beauty, aquí verás cuántas lo usan.</div>`;
+
+  // Eventos
+  const E = D.eventos || {hub: 0, series: {}, nombres: {}, lista: []}, EN = E.nombres || {};
+  const eClics = e => Object.values(e.clics).reduce((a, b) => a + b, 0);
+  const eApartar = e => Object.entries(e.clics).filter(([k]) => k.startsWith("whatsapp-") || k.startsWith("apartar-")).reduce((a, [, n]) => a + n, 0);
+  const eVis = E.lista.reduce((a, e) => a + e.visitas, 0) + Object.values(E.series).reduce((a, b) => a + b, 0);
+  const eAp = E.lista.reduce((a, e) => a + eApartar(e), 0);
+  $("eTiles").innerHTML = [
+    ["Cartelera", fmt(E.hub), "visitas a /eventos", false],
+    ["Eventos", fmt(eVis), "visitas a las páginas de los eventos", false],
+    ["Quieren apartar", fmt(eAp), "clics para escribir por WhatsApp o Instagram", true],
+    ["De visita a apartar", (eVis ? Math.round(eAp / eVis * 1000) / 10 : 0).toLocaleString("es-MX") + "%", "clics para apartar por cada 100 visitas", false],
+  ].map(([l,n,d,h]) => `<div class="tile"><div class="label">${l}</div><div class="n${h?" hl":""}">${n}</div><div class="d">${d}</div></div>`).join("");
+  const ACC = {"apartar-whatsapp": "Apartar por WhatsApp", "apartar-instagram": "Apartar por Instagram", "calendario": "Lo guardaron en su calendario", "compartir": "Lo compartieron", "boton": "Botón del evento"};
+  const accion = k => k.startsWith("whatsapp-") ? "Escribieron a " + (EN[k.slice(9)] || k.slice(9)) : (ACC[k] || k);
+  const fechaEv = s => s ? dia(s.slice(0, 10)) : "";
+  const emax = Math.max(1, ...E.lista.map(e => e.visitas));
+  $("eList").innerHTML = E.hub || E.lista.some(e => e.visitas + eClics(e))
+    ? E.lista.map((e,i) => {
+        const ap = eApartar(e), cl = Object.entries(e.clics).sort((a, b) => b[1] - a[1]);
+        return `<div class="row"><div class="rk${i<3&&e.visitas?" top":""}">${i+1}</div><div><div class="nm">${esc(e.titulo)}${ap?`<span class="pill">${ap} para apartar</span>`:""}</div><div class="meta">${fechaEv(e.desde)} · ${fmt(eClics(e))} ${eClics(e)===1?"clic":"clics"}</div><div class="track"><i style="width:${e.visitas/emax*100}%"></i></div></div><div class="val">${fmt(e.visitas)}<small>visitas</small></div></div>${cl.length ? `<div class="cdet"><div class="dt">${cl.map(([k,n]) => `<span>${esc(accion(k))} <em>×${n}</em></span>`).join("")}</div></div>` : ""}`;
+      }).join("")
+    : `<div class="empty"><b>Aún no hay visitas a eventos.</b>Cuando compartan la cartelera o el link de un evento, aquí verás cuántas lo abren y cuántas escriben para apartar.</div>`;
 })();
 </script>
 </body>

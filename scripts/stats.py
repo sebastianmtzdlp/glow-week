@@ -38,9 +38,23 @@ except Exception: pass
 
 board, cat, adds, orders, wa = {}, {}, {}, {}, 0
 ritmo = {"visitas": 0}  # Ritmo de Puntos: visitas a la página y conteo de cada evento ritmo-puntos/<accion>
+# Eventos: visitas a /eventos, a cada serie y a cada evento, y clics eventos/<slug>/<accion>
+EV = {e["slug"]: e for e in J("_data/eventos.json")["eventos"]}
+SERIES = set(J("_data/eventos.json").get("series", {}))
+ev = {"hub": 0, "series": {}, "por_evento": {k: {"visitas": 0, "clics": {}} for k in EV}}
 xc = {}  # por consultora: {slug: {"agregar": {code: n}, "ver": {code: n}}}
 for h in hits:
-    p, n = h["path"].strip("/"), h["count"]
+    p, n = h["path"].split("?")[0].split("#")[0].strip("/"), h["count"]
+    if p == "eventos" or p.startswith("eventos/"):
+        if p.startswith("eventos/propuestas"): continue
+        partes = p.split("/")
+        if h.get("event"):
+            if len(partes) == 3 and partes[1] in EV:
+                c = ev["por_evento"][partes[1]]["clics"]; c[partes[2]] = c.get(partes[2], 0) + n
+        elif p == "eventos": ev["hub"] += n
+        elif partes[-1] in EV: ev["por_evento"][partes[-1]]["visitas"] += n
+        elif len(partes) == 2 and partes[1] in SERIES: ev["series"][partes[1]] = ev["series"].get(partes[1], 0) + n
+        continue
     if h.get("event"):
         m = re.fullmatch(r"c/([a-z0-9]+)/(agregar|ver)/(\d+)", p)
         if m:
@@ -63,11 +77,17 @@ cons.sort(key=lambda x: (-x["visitas"]-x["catalogo"], x["nombre"]))
 top = sorted(adds.items(), key=lambda x: -x[1])
 productos = [{"code": c, "name": prod.get(c, c), "agregados": n} for c, n in top[:20]]
 now = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None) - dt.timedelta(hours=6)
+eventos = {"hub": ev["hub"], "series": ev["series"],
+    "nombres": {c.split("-", 1)[1]: names.get(c.split("-", 1)[1], c.split("-", 1)[1].capitalize())
+                for v in ev["por_evento"].values() for c in v["clics"] if c.startswith("whatsapp-")},
+    "lista": sorted(
+    ({"slug": k, "titulo": EV[k]["titulo"], "desde": EV[k].get("desde"), **v} for k, v in ev["por_evento"].items()),
+    key=lambda x: -(x["visitas"] + sum(x["clics"].values())))}
 def topn(d, k=5): return [{"code": c, "name": prod.get(c, c), "n": n} for c, n in sorted(d.items(), key=lambda x: -x[1])[:k]]
 por = {s: {"agregados": topn(v["agregar"]), "vistos": topn(v["ver"])} for s, v in xc.items()}
 out = {"actualizado": now.strftime("%Y-%m-%d"), "hora": now.strftime("%H:%M"), "desde": START[:10],
        "totales": {"visitas": tot.get("total", 0), "agregados": sum(adds.values()), "pedidos": sum(orders.values()), "wa": wa},
-       "dias": dias, "consultoras": cons, "productos": productos, "por_consultora": por, "ritmo": ritmo}
+       "dias": dias, "consultoras": cons, "productos": productos, "por_consultora": por, "ritmo": ritmo, "eventos": eventos}
 def guardar(ruta, nuevo, ignorar=()):
     """Escribe solo si cambió algo (sin contar fecha/hora), para no llenar el historial de commits."""
     f = os.path.join(ROOT, ruta)
