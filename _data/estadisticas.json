@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-23",
- "hora": "15:06",
+ "hora": "15:35",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 539,
+  "visitas": 540,
   "agregados": 26,
   "pedidos": 5,
   "wa": 0
@@ -43,7 +43,7 @@
   },
   {
    "d": "2026-10-23",
-   "v": 36
+   "v": 37
   }
  ],
  "consultoras": [
@@ -319,7 +319,7 @@
   "empezar": 1
  },
  "eventos": {
-  "hub": 162,
+  "hub": 163,
   "series": {
    "flowers-to-go": 7
   },
