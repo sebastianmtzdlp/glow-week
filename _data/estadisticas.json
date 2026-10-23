@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-22",
- "hora": "17:40",
+ "hora": "19:56",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 459,
+  "visitas": 460,
   "agregados": 26,
   "pedidos": 5,
   "wa": 0
@@ -39,7 +39,7 @@
   },
   {
    "d": "2026-10-22",
-   "v": 46
+   "v": 47
   }
  ],
  "consultoras": [
@@ -67,7 +67,7 @@
   {
    "slug": "moni",
    "nombre": "Moni",
-   "visitas": 6,
+   "visitas": 7,
    "catalogo": 0,
    "pedidos": 0
   },
