@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-22",
- "hora": "20:16",
+ "hora": "20:22",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 470,
+  "visitas": 475,
   "agregados": 26,
   "pedidos": 5,
   "wa": 0
@@ -39,7 +39,7 @@
   },
   {
    "d": "2026-10-22",
-   "v": 57
+   "v": 62
   }
  ],
  "consultoras": [
@@ -315,9 +315,9 @@
   "empezar": 1
  },
  "eventos": {
-  "hub": 102,
+  "hub": 106,
   "series": {
-   "flowers-to-go": 6
+   "flowers-to-go": 7
   },
   "nombres": {
    "sel": "Selene",
