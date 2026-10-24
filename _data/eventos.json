@@ -37,6 +37,29 @@
    }
   },
   {
+   "slug": "automaquillaje-party-eyes",
+   "titulo": "Taller de Automaquillaje · Party eyes make up",
+   "tipo": "Taller de automaquillaje",
+   "categoria": "Maquillaje",
+   "flyer": "/eventos/fotos/automaquillaje-party-eyes.jpg",
+   "color": "#B0102A",
+   "desde": "2026-10-31T11:00:00-06:00",
+   "hasta": "2026-10-31T12:30:00-06:00",
+   "zona": "Miguel Hidalgo",
+   "lugar": "Silvia Mata Estudio, Polanco",
+   "direccion": "Av. Homero 421, Int. 103, Polanco, CDMX.",
+   "mapa": [19.4336, -99.1938],
+   "resumen": "Aprende a crear looks versátiles, elegantes y duraderos para brillar en todas tus celebraciones.",
+   "puntos": ["Técnicas profesionales", "Paso a paso para tu tipo de piel", "Looks para el día, la noche y eventos especiales", "Recomendaciones de productos y tips personalizados", "Trae tus brochas y esponjas limpias (habrá herramientas a la venta)", "Habrá muestras de maquillaje"],
+   "aportacion": [{"etiqueta": "Costo de recuperación", "precio": "$150"}],
+   "colaboran": ["Silvia Mata Estudio"],
+   "responsables": ["silvia"],
+   "apartar": {
+    "whatsapp": "",
+    "instagram": ""
+   }
+  },
+  {
    "slug": "holiday-glam",
    "titulo": "Holiday Glam",
    "tipo": "Self-makeup experience",
