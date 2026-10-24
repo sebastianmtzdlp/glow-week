@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-24",
- "hora": "01:10",
+ "hora": "01:40",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 555,
+  "visitas": 556,
   "agregados": 26,
   "pedidos": 5,
   "wa": 0
@@ -47,7 +47,7 @@
   },
   {
    "d": "2026-10-24",
-   "v": 1
+   "v": 2
   }
  ],
  "consultoras": [
