@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-24",
- "hora": "11:58",
+ "hora": "12:54",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 563,
+  "visitas": 564,
   "agregados": 26,
   "pedidos": 5,
   "wa": 0
@@ -47,7 +47,7 @@
   },
   {
    "d": "2026-10-24",
-   "v": 9
+   "v": 10
   }
  ],
  "consultoras": [
@@ -339,7 +339,7 @@
     "slug": "altar",
     "titulo": "Flowers to Go · Edición Altar",
     "desde": "2026-10-31T11:00:00-06:00",
-    "visitas": 18,
+    "visitas": 19,
     "clics": {
      "whatsapp-sel": 4,
      "whatsapp-viri": 3
