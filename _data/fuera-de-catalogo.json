@@ -1,6 +1,6 @@
 {
  "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
- "actualizado": "2026-10-23",
+ "actualizado": "2026-10-24",
  "grupos": [
   {
    "titulo": "Edición limitada y de temporada",
@@ -54,7 +54,7 @@
    "nota": "Programas completos de nutrición.",
    "items": [
     [
-     "PK102556",
+     "PK102767",
      "Body System",
      3857.14
     ],
@@ -294,6 +294,11 @@
     [
      "1000241",
      "Bálsamo Hidratante Arándanos",
+     80.5
+    ],
+    [
+     "1000242",
+     "Perfecting Balm Aloe Pleasure",
      80.5
     ],
     [
@@ -605,6 +610,11 @@
      "1002618",
      "Air Blush Duo Pink Bloom",
      550.0
+    ],
+    [
+     "1001504",
+     "Full Blast Volume Mascara New",
+     282.5
     ]
    ]
   },
@@ -625,7 +635,7 @@
     [
      "1000306",
      "Crema Depilatoria",
-     315.0
+     252.0
     ],
     [
      "1000331",
@@ -660,7 +670,7 @@
     [
      "1000812",
      "Dr. C. Tuna Gel para Masaje Alaska",
-     350.0
+     210.0
     ],
     [
      "1000856",
@@ -720,7 +730,7 @@
     [
      "1001990",
      "Crema de masaje con Glucosamina",
-     530.0
+     318.0
     ],
     [
      "1002343",
@@ -735,7 +745,7 @@
     [
      "1002855",
      "Paprika Massage Soap",
-     250.0
+     175.0
     ],
     [
      "1107541",
@@ -791,10 +801,10 @@
     [
      "9000700",
      "Delish Café Mezcla de Achicoria en Sobres",
-     450.0
+     270.0
     ]
    ]
   }
  ],
- "hora": "09:08"
+ "hora": "09:06"
 }
