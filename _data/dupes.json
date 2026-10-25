@@ -909,6 +909,1839 @@
      "https://scentverdict.com/perfume/farmasi-her-passion-eau-de-parfum"
     ]
    ]
+  },
+  {
+   "id": "f1",
+   "cat": "Labios",
+   "farmasi": "Creamy Lipstick",
+   "catalogo": "Creamy Lipstick",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Barra de labios de fórmula super cremosa que hidrata y aporta color intenso de larga duración. Ingredientes clave: Ciclopentasiloxano, Isododecano, Mica, Ozoquerita, Polietileno.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Ciclopentasiloxano, Isododecano, Mica, Ozoquerita, Polietileno.",
+   "nota": "Descripción e ingredientes tomados de ficha_oficial del archivo de entrada (sin URL). No se encontró una barra cremosa comparable con precio verificable."
+  },
+  {
+   "id": "f2",
+   "cat": "Labios",
+   "farmasi": "Lip Liner",
+   "catalogo": "Lip Liner",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Lápiz para delinear labios con definición precisa, color de larga duración, aplicación suave y acabado resistente a las manchas, según la página.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Descríbelo por lo que dice su ficha.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-make-up-lip-liner-220-precise-definition-and-long-lasting-color-smooth-application-and-smudge-proof-formula-1-1g-0-04oz/"
+    ]
+   ],
+   "nota": "Fuente es un listado de tercero (kiwla.com), no el sitio de Farmasi; la página no tiene lista de ingredientes. Sin referencia con precio verificado."
+  },
+  {
+   "id": "f3",
+   "cat": "Ojos y cejas",
+   "farmasi": "Intense Lift Mascara",
+   "catalogo": "Intense Lift Mascara",
+   "tam": "",
+   "ref": {
+    "marca": "Maybelline",
+    "producto": "Máscara para pestañas The Falsies Lash Lift",
+    "precio": 299,
+    "tam": "no indicado en la página",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/m%C3%A1scara-para-pesta%C3%B1as-maybelline-the-falsies-lash-lift/1103293550"
+   },
+   "parecido": "algo",
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se encontró página de Farmasi leída para este producto; descripción y fuente sin datos. Referencia comparable sólo por efecto de levantado/curvado; fórmula no verificada. Precio leído en Liverpool MX."
+  },
+  {
+   "id": "f4",
+   "cat": "Ojos y cejas",
+   "farmasi": "Double Lash Extended Mascara",
+   "catalogo": "Double Lash Extended Mascara",
+   "tam": "",
+   "ref": {
+    "marca": "Maybelline",
+    "producto": "Máscara para pestañas a prueba de agua Sky High",
+    "precio": 315,
+    "tam": "no indicado en la página",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/m%C3%A1scara-de-pesta%C3%B1as-a-prueba-de-agua-maybelline-sky-high/1113310940?gfeed=true"
+   },
+   "parecido": "algo",
+   "base": "Máscara con aplicación en dos pasos y cepillo de silicona giratorio para alargar y dar volumen a las pestañas, con acabado que no se corre ni descama.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Se parece más a Maybelline Máscara para pestañas a prueba de agua Sky High: mismo tipo de producto y efecto parecido. No es la misma fórmula, así que no lo digas como igual.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-double-lash-extend-mascara-2-step-special-brush-for-lengthening-volumizing-false-lash-effect-buildable-formula-no-clumping-defines-multiplies-eyelashes-black-0-41-fl-oz/"
+    ]
+   ],
+   "nota": "Fuente de Farmasi es listado de tercero (kiwla.com); sin lista de ingredientes. La referencia es a prueba de agua y la fórmula de Farmasi no está verificada. Precio leído en Liverpool MX."
+  },
+  {
+   "id": "f5",
+   "cat": "Ojos y cejas",
+   "farmasi": "Zen Mascara",
+   "catalogo": "Zen Mascara",
+   "tam": "",
+   "ref": {
+    "marca": "Sheglam",
+    "producto": "Máscara para pestañas All-In-One Volume & Length",
+    "precio": 229,
+    "tam": "no indicado en la página",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/M%C3%A1scara-para-pesta%C3%B1as-All-In-One-Volume-&-Length/1154306061?jml_model=T_prod"
+   },
+   "parecido": "algo",
+   "base": "Máscara negra que separa, define y alarga las pestañas, con acabado sin grumos ni descamación y cepillo de silicona; la página menciona vitamina E. Ingredientes clave: Vitamina E (mencionada en la descripción).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Se parece más a Sheglam Máscara para pestañas All-In-One Volume & Length: mismo tipo de producto y efecto parecido. No es la misma fórmula, así que no lo digas como igual.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-zen-extension-lash-mascara-deep-black-eyelash-volumizer-with-smudge-no-clump-all-day-finish-flake-resistant-makeup-fuller-longer-and-thicker-lashes-8-ml-double/"
+    ]
+   ],
+   "nota": "Fuente de Farmasi es listado de tercero (kiwla.com); sin lista de ingredientes. La referencia es de Sheglam (no Maybelline) y su formula no se verificó. Precio leído en Liverpool MX."
+  },
+  {
+   "id": "f6",
+   "cat": "Ojos y cejas",
+   "farmasi": "Infinilash Mascara",
+   "catalogo": "Infinilash Mascara",
+   "tam": "",
+   "ref": {
+    "marca": "Maybelline",
+    "producto": "Máscara para pestañas a prueba de agua Sky High",
+    "precio": 315,
+    "tam": "no indicado en la página",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/m%C3%A1scara-de-pesta%C3%B1as-a-prueba-de-agua-maybelline-sky-high/1113310940?gfeed=true"
+   },
+   "parecido": "confirmar",
+   "base": "Máscara de negro intenso con cepillo de doble vórtice que alarga y define las pestañas en una sola pasada, sin grumos ni descamación, según la página. Ingredientes clave: Aceite de ricino, cera de cáscara de naranja, goma de acacia (Acacia senegal).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "No podemos confirmar que sea equivalente a Maybelline Máscara para pestañas a prueba de agua Sky High. Solo coincide el tipo de producto.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-mascara-infinilash-ultra-black-finish-weightless-length-makeup-twin-vortex-design-brush-volumizing-lash-mascarano-clumping-0-30-fl-oz/"
+    ]
+   ],
+   "nota": "Ingredientes son los 'hero actives' del listado de tercero, no una lista INCI completa. La referencia es de alargamiento, no de volumen; sólo comparten la categoría."
+  },
+  {
+   "id": "f7",
+   "cat": "Ojos y cejas",
+   "farmasi": "Eye Pencil",
+   "catalogo": "Eye Pencil",
+   "tam": "",
+   "ref": {
+    "marca": "NYX Professional Makeup",
+    "producto": "Delineador para ojos mate Epic Wear",
+    "precio": 319,
+    "tam": "no indicado en la página",
+    "tienda": "Liverpool (identidad del producto sin confirmar)",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/delineador-para-ojos-mate-nyx-professional-makeup-epic-wear/1097786168"
+   },
+   "parecido": "confirmar",
+   "base": "Lápiz delineador de color intenso que traza líneas precisas en una sola pasada; fácil de aplicar, según la página. Ingredientes clave: Triglicéridos C10-18, polietileno, cera microcristalina, talco, tocoferol.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "No podemos confirmar que sea equivalente a NYX Professional Makeup Delineador para ojos mate Epic Wear. Solo coincide el tipo de producto.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.notino.co.uk/farmasi/express-long-lasting-eye-pencil/"
+    ]
+   ],
+   "nota": "El listado es 'Express Long Lasting Eye Pencil' (Notino UK); la identidad con 'Eye Pencil' (códigos 1001451/1001456) no está confirmada. Referencia es un delineador mate tipo stick, no un lápiz. Precio leído en Liverpool MX."
+  },
+  {
+   "id": "f8",
+   "cat": "Ojos y cejas",
+   "farmasi": "Oasis Collection - Desert Sands / Rose Dune",
+   "catalogo": "Oasis Collection - Desert Sands / Rose Dune",
+   "tam": "",
+   "ref": {
+    "marca": "MAC",
+    "producto": "Paleta de sombras para ojos Connect In Colour (12 tonos)",
+    "precio": 1390,
+    "tam": "no indicado en la página",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/paleta-de-sombras-para-ojos-m.a.c-connect-in-colour-12-tonos/1135422499"
+   },
+   "parecido": "confirmar",
+   "base": "Paleta de 9 tonos rosados con 5 mates, 2 pearl, 1 reflectante y 1 glitter, de textura sedosa y fácil de difuminar.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "No podemos confirmar que sea equivalente a MAC Paleta de sombras para ojos Connect In Colour (12 tonos). Solo coincide el tipo de producto.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-oasis-collection-eyeshadow-palette-makeup-eye-shadow-versatile-eyeshadow-palette-for-hypnotizing-from-soft-to-intense-matte-shimmery-finishes-0-28-oz-rose-dune/"
+    ]
+   ],
+   "nota": "La descripción leída es de la variante Rose Dune; Desert Sands no verificada. Fuente de tercero (kiwla.com); sin lista de ingredientes. Sólo coincide el tipo (paleta de sombras)."
+  },
+  {
+   "id": "f9",
+   "cat": "Ojos y cejas",
+   "farmasi": "Mirage Palette",
+   "catalogo": "Mirage Palette",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta paleta. Se asume paleta de sombras por el nombre y resultados de búsqueda; no verificado."
+  },
+  {
+   "id": "f10",
+   "cat": "Ojos y cejas",
+   "farmasi": "Violet Skies Palette",
+   "catalogo": "Violet Skies Palette",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta paleta. Tipo asumido por el nombre; no verificado."
+  },
+  {
+   "id": "f11",
+   "cat": "Ojos y cejas",
+   "farmasi": "Velvet Dusk Palette",
+   "catalogo": "Velvet Dusk Palette",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta paleta. Tipo asumido por el nombre; no verificado."
+  },
+  {
+   "id": "f12",
+   "cat": "Rostro",
+   "farmasi": "BB Cream Beauty Balm",
+   "catalogo": "BB Cream Beauty Balm",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Crema de belleza multifuncional que combina maquillaje y cuidado de la piel en un solo paso; hidrata, protege y disimula imperfecciones, con acabado suave, natural y semimate. Contenido 30 ml. Ingredientes clave: Dióxido de titanio 3.5% (filtro solar mineral), carragenina sódica, ésteres de jojoba, vitamina E, sal marina.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Dióxido de titanio 3.5% (filtro solar mineral), carragenina sódica, ésteres de jojoba, vitamina E, sal marina.",
+   "nota": "Descripción e ingredientes tomados de ficha_oficial del archivo de entrada (sin URL). La lista de ingredientes de la fuente está desordenada y tiene errores tipográficos. No se encontró BB cream con precio verificado."
+  },
+  {
+   "id": "f13",
+   "cat": "Rostro",
+   "farmasi": "BB Powder",
+   "catalogo": "BB Powder",
+   "tam": "",
+   "ref": {
+    "marca": "Maybelline",
+    "producto": "Polvo compacto traslúcido Fit Me",
+    "precio": 371,
+    "tam": "no indicado en la página",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/polvo-compacto-trasl%C3%BAcido-fit-me/1103292740"
+   },
+   "parecido": "algo",
+   "base": "Polvos compactos todo en uno que fijan el maquillaje, cubren imperfecciones y dejan un acabado mate aterciopelado con efecto soft focus. Ingredientes clave: Mica, fluorflogopita sintética, sílice, dimeticona, escualeno.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Se parece más a Maybelline Polvo compacto traslúcido Fit Me: mismo tipo de producto y efecto parecido. No es la misma fórmula, así que no lo digas como igual.",
+   "nota": "Descripción e ingredientes tomados de ficha_oficial (sin URL). La referencia es un polvo traslúcido de fijación; la página muestra también un precio de 482.30 que no se usó. Fórmula de Farmasi no comparada."
+  },
+  {
+   "id": "f14",
+   "cat": "Rostro",
+   "farmasi": "Blush Stick",
+   "catalogo": "Blush Stick",
+   "tam": "",
+   "ref": {
+    "marca": "NYX Professional Makeup",
+    "producto": "Blush en barra Professional Makeup",
+    "precio": 400,
+    "tam": "no indicado en la página",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/blush-en-barra-nyx-professional-makeup-wsb/1121915647"
+   },
+   "parecido": "confirmar",
+   "base": "Barra de rubor de acabado mate en tono frío para contornear y definir, con aceite de aguacate, vitamina E y aceite de coco, según la página. Ingredientes clave: Aceite de aguacate, vitamina E, aceite de coco.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "No podemos confirmar que sea equivalente a NYX Professional Makeup Blush en barra Professional Makeup. Solo coincide el tipo de producto.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-blush-stick-vibrant-bold-vitamin-e-enriched-dermatologically-tested-matte-finish-for-lips-cheeks-0-14-oz-4-g-play/"
+    ]
+   ],
+   "nota": "La página leída es de la variante 'Play' en listado de tercero (kiwla.com); no hay lista de ingredientes. La referencia no indica acabado en la página; sólo coincide el tipo (rubor en barra)."
+  },
+  {
+   "id": "f15",
+   "cat": "Rostro",
+   "farmasi": "All In One Palette (Fair to Medium / Medium to Deep)",
+   "catalogo": "All In One Palette (Fair to Medium / Medium to Deep)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Paleta versátil con rubor, bronzer e iluminador en tonos para piel clara a media. Ingredientes clave: Mica, sílice, escualeno.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Mica, sílice, escualeno.",
+   "nota": "Descripción e ingredientes tomados de ficha_oficial (sin URL); los ingredientes de la ficha son genéricos. No se encontró paleta de rubor/bronzer/iluminador con precio verificado."
+  },
+  {
+   "id": "f16",
+   "cat": "Rostro",
+   "farmasi": "Peach Perfect Palette",
+   "catalogo": "Peach Perfect Palette",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se encontró página de Farmasi leída para este producto."
+  },
+  {
+   "id": "f17",
+   "cat": "Brochas",
+   "farmasi": "Brocha para delinear",
+   "catalogo": "Brocha para delinear",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta brocha. La referencia no especifica el tipo de brocha; sólo coincide la categoría."
+  },
+  {
+   "id": "f18",
+   "cat": "Brochas",
+   "farmasi": "Brocha plana para definir",
+   "catalogo": "Brocha plana para definir",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta brocha. La referencia no especifica el tipo de brocha; sólo coincide la categoría."
+  },
+  {
+   "id": "f19",
+   "cat": "Brochas",
+   "farmasi": "Brocha para difuminar",
+   "catalogo": "Brocha para difuminar",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Brocha de mayor tamaño, ligeramente cónica y de fibras suaves para aplicar y difuminar sombras de ojos. Ingredientes clave: Pelo sintético vegano, aluminio (ensamble), plástico (mango).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Pelo sintético vegano, aluminio (ensamble), plástico (mango).",
+   "nota": "Descripción y materiales tomados de ficha_oficial (sin URL). La referencia no especifica el tipo de brocha; sólo coincide la categoría."
+  },
+  {
+   "id": "f20",
+   "cat": "Brochas",
+   "farmasi": "Brocha para sombras",
+   "catalogo": "Brocha para sombras",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta brocha. La referencia no especifica el tipo de brocha; sólo coincide la categoría."
+  },
+  {
+   "id": "f21",
+   "cat": "Brochas",
+   "farmasi": "Brocha diagonal",
+   "catalogo": "Brocha diagonal",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta brocha. La referencia no especifica el tipo de brocha; sólo coincide la categoría."
+  },
+  {
+   "id": "f22",
+   "cat": "Brochas",
+   "farmasi": "Brocha para corrector",
+   "catalogo": "Brocha para corrector",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta brocha. La referencia no especifica el tipo de brocha; sólo coincide la categoría."
+  },
+  {
+   "id": "f23",
+   "cat": "Brochas",
+   "farmasi": "Brocha para iluminador",
+   "catalogo": "Brocha para iluminador",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta brocha. La referencia no especifica el tipo de brocha; sólo coincide la categoría."
+  },
+  {
+   "id": "f24",
+   "cat": "Brochas",
+   "farmasi": "Brocha para base de maquillaje",
+   "catalogo": "Brocha para base de maquillaje",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para esta brocha. La referencia no especifica el tipo de brocha; sólo coincide la categoría."
+  },
+  {
+   "id": "f25",
+   "cat": "Brochas",
+   "farmasi": "Brocha para polvo y/o rubor",
+   "catalogo": "Brocha para polvo y/o rubor",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Brocha multitareas para aplicar polvo y rubor, que deja el cutis con acabado natural. Ingredientes clave: Pelo sintético vegano, aluminio (ensamble), plástico (mango).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Pelo sintético vegano, aluminio (ensamble), plástico (mango).",
+   "nota": "Descripción y materiales tomados de ficha_oficial (sin URL). La referencia no especifica el tipo de brocha; sólo coincide la categoría."
+  },
+  {
+   "id": "f26",
+   "cat": "Perfumes",
+   "farmasi": "His Power Eau de Parfum (100 ml)",
+   "catalogo": "His Power Eau de Parfum (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi con notas olfativas. Precio mostrado como 'a partir de $3,280' en la página. Notas de la referencia: pomelo, nardo salado, cuero."
+  },
+  {
+   "id": "f27",
+   "cat": "Perfumes",
+   "farmasi": "Shooter's Man Eau de Parfum (100 ml)",
+   "catalogo": "Shooter's Man Eau de Parfum (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi con notas olfativas (la página de Notino no cargó). Precio 'a partir de $3,280'. Sólo coincide la categoría (EDP 100 ml masculino)."
+  },
+  {
+   "id": "f28",
+   "cat": "Perfumes",
+   "farmasi": "Masculine Eau de Parfum (100 ml)",
+   "catalogo": "Masculine Eau de Parfum (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi con notas olfativas. Precio 'a partir de $3,280'. Sólo coincide la categoría (EDP 100 ml masculino)."
+  },
+  {
+   "id": "f29",
+   "cat": "Hombre",
+   "farmasi": "Masculine Shampoo & Body Wash (100 ml)",
+   "catalogo": "Masculine Shampoo & Body Wash (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "La única página encontrada (marketplace) estaba cerrada y sin datos. No se verificó precio de referencia (la página de Nivea Men 3 en 1 en Farmacias del Ahorro no cargó)."
+  },
+  {
+   "id": "f30",
+   "cat": "Hombre",
+   "farmasi": "Masculine After Shave Balm (100 g)",
+   "catalogo": "Masculine After Shave Balm (100 g)",
+   "tam": "",
+   "ref": {
+    "marca": "Nivea Men",
+    "producto": "Loción después de afeitar Deep",
+    "precio": 118.5,
+    "tam": "100 ml",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/nivea-men-after-shave-locion-despues-de-afeitar-deep-100-ml.html"
+   },
+   "parecido": "algo",
+   "base": "Bálsamo post-afeitado que calma y refresca la piel tras afeitar, reduce la irritación y el enrojecimiento, hidrata y ayuda a minimizar la irritación de la navaja; apto para todo tipo de piel, según la página.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Se parece más a Nivea Men Loción después de afeitar Deep: mismo tipo de producto y efecto parecido. No es la misma fórmula, así que no lo digas como igual.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-masculine-aftershave-balm-for-men-100ml-3-38floz-soothing-and-refreshing-post-shave-care-reduces-irritation-and-hydrates-skin/"
+    ]
+   ],
+   "nota": "Fuente de Farmasi es listado de tercero (kiwla.com), sin lista de ingredientes. Farmasi es bálsamo (100 g) y la referencia es loción (100 ml); la fórmula no está comparada."
+  },
+  {
+   "id": "f31",
+   "cat": "Hombre",
+   "farmasi": "Masculine Hand Wash (325 ml)",
+   "catalogo": "Masculine Hand Wash (325 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se encontró página de Farmasi leída para este producto."
+  },
+  {
+   "id": "f32",
+   "cat": "Hombre",
+   "farmasi": "Masculine Massage Oil (225 ml)",
+   "catalogo": "Masculine Massage Oil (225 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se encontró página de Farmasi leída para este producto."
+  },
+  {
+   "id": "f33",
+   "cat": "Hombre",
+   "farmasi": "Masculine Hair Wax (100 g)",
+   "catalogo": "Masculine Hair Wax (100 g)",
+   "tam": "",
+   "ref": {
+    "marca": "Suavecito Pomade",
+    "producto": "Cera para cabello para fijar",
+    "precio": 430,
+    "tam": "113 g",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/cera-para-cabello-suavecito-pomade-113-g/1084254017"
+   },
+   "parecido": "confirmar",
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "No se leyó página de Farmasi para este producto. Comparación sólo por tipo (cera de fijación para cabello masculino)."
+  },
+  {
+   "id": "f34",
+   "cat": "Hombre",
+   "farmasi": "Masculine Roll-On (50 ml)",
+   "catalogo": "Masculine Roll-On (50 ml)",
+   "tam": "",
+   "ref": {
+    "marca": "Nivea Men",
+    "producto": "Desodorante Black & White Invisible roll-on",
+    "precio": 57,
+    "tam": "50 ml",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/desodorante-nivea-men-black-and-white-invisible-50-ml-roll-on.html"
+   },
+   "parecido": "algo",
+   "base": "Desodorante roll-on masculino de protección contra el olor durante 24 horas, de secado rápido y sin residuo pegajoso, según la página.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Se parece más a Nivea Men Desodorante Black & White Invisible roll-on: mismo tipo de producto y efecto parecido. No es la misma fórmula, así que no lo digas como igual.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-mens-roller-deodorant-masculine-50ml-1-69floz-long-lasting-freshness-for-active-lifestyles-quick-drying-skin-friendly-and-ideal-for-many-skin-types/"
+    ]
+   ],
+   "nota": "Fuente de Farmasi es listado de tercero (kiwla.com); sin lista de ingredientes. La referencia es antitranspirante (en su descripción la llaman spray); Farmasi no se verificó como antitranspirante. Precio leído en Farmacias del Ahorro."
+  },
+  {
+   "id": "f35",
+   "cat": "Cuerpo",
+   "farmasi": "Whitening Toothpaste (112 g)",
+   "catalogo": "Whitening Toothpaste (112 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Pasta dental blanqueadora. La unica fuente encontrada es una etiqueta OTC de Farmasi US LLC, que no incluye descripcion comercial. Ingredientes clave: Fluoruro de sodio 0.24%, silice hidratada, aceite de arbol de te, extracto de ginseng, jugo de aloe.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Fluoruro de sodio 0.24%, silice hidratada, aceite de arbol de te, extracto de ginseng, jugo de aloe.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://otclabels.com/lib/otc/otc-meds/farmasi-whitening/"
+    ]
+   ],
+   "nota": "Etiqueta de EE. UU. de terceros; el tamano 112 g no esta confirmado para la version MX. Sin comparable con precio verificado (candidato sin verificar: pasta blanqueadora Colgate Luminous White)."
+  },
+  {
+   "id": "f36",
+   "cat": "Cuerpo",
+   "farmasi": "Calendula Soap (125 g)",
+   "catalogo": "Calendula Soap (125 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Jabon de aceite de calendula para rostro y cuerpo, segun una tienda de terceros; la tienda lo describe como natural, vegano y organico (claim no verificado).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Descríbelo por lo que dice su ficha.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-dr-c-tuna-calendula-soap-soothes-dry-hydrating-skin-care-face-body-soap-441-fl-oz/"
+    ]
+   ],
+   "nota": "Sin lista de ingredientes en la fuente. Sin comparable verificado."
+  },
+  {
+   "id": "f37",
+   "cat": "Cuerpo",
+   "farmasi": "Tea Tree Soap (125 g)",
+   "catalogo": "Tea Tree Soap (125 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Barra limpiadora de arbol de te para rostro y cuerpo, de uso diario, que segun una tienda de terceros remueve impurezas y exceso de aceite con suavidad.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Descríbelo por lo que dice su ficha.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-dr-c-tuna-tea-tree-soap-refreshing-hydrating-face-body-cleansing-bar-gentle-daily-care-4-41-oz-pack-of-1/"
+    ]
+   ],
+   "nota": "Sin lista de ingredientes en la fuente (solo se menciona aceite de arbol de te). Sin comparable verificado."
+  },
+  {
+   "id": "f38",
+   "cat": "Cuerpo",
+   "farmasi": "Stay Fresh Deo Roll On (Varios)",
+   "catalogo": "Stay Fresh Deo Roll On (Varios)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Desodorante roll-on; segun un listado de terceros tiene 21 ingredientes y menciona exfoliantes. La fuente no describe su efecto de forma detallada. Ingredientes clave: Clorohidrato de aluminio, glicerina, tierra de diatomeas, citral, limoneno.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Clorohidrato de aluminio, glicerina, tierra de diatomeas, citral, limoneno.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://skinsort.com/products/farmasi/stay-fresh-deo-roll-on-cotton"
+    ]
+   ],
+   "nota": "Lista de la variante Cotton; no confirmada para las dos codificaciones (1000790 y 1000789). Contiene clorohidrato de aluminio (antitranspirante). Sin comparable verificado (candidato sin verificar: roll-on antitranspirante de Nivea)."
+  },
+  {
+   "id": "f39",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Resurface Refining Cleanser (100 ml)",
+   "catalogo": "Dr. C. Tuna Resurface Refining Cleanser (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Limpiador facial cremoso que limpia los poros y retira la suciedad, el aceite y las impurezas sin resecar la piel. Segun la ficha, mejora la elasticidad y firmeza de la piel. Ingredientes clave: Extracto de hoja de achicoria, glicerina, cocamidopropil betaina, acido estearico, Ceteareth-20.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Extracto de hoja de achicoria, glicerina, cocamidopropil betaina, acido estearico, Ceteareth-20.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). El claim de +172% de elastina viene de la ficha y no fue verificado. Sin comparable verificado (candidato sin verificar: limpiador hidratante CeraVe)."
+  },
+  {
+   "id": "f40",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Resurface Hydrasooth Essence (100 ml)",
+   "catalogo": "Dr. C. Tuna Resurface Hydrasooth Essence (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Esencia calmante que hidrata y, segun la ficha, ayuda a disminuir la apariencia opaca causada por resequedad, dando un aspecto saludable y luminoso. Ingredientes clave: Niacinamida, agua mineral de Auvernia, extracto de Chlorella vulgaris, agua de manzanilla, PCA de sodio.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Niacinamida, agua mineral de Auvernia, extracto de Chlorella vulgaris, agua de manzanilla, PCA de sodio.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). Sin comparable verificado."
+  },
+  {
+   "id": "f41",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Resurface Advanced Eye Cream (15 ml)",
+   "catalogo": "Dr. C. Tuna Resurface Advanced Eye Cream (15 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Pendiente de leer: https://mx.farmasi.com/farmasi/product-detail/resurface-crema-contorno-de-ojos-avanzada?pid=1000282 . Sin comparable verificado."
+  },
+  {
+   "id": "f42",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Resurface Essential Day Cream (50 ml)",
+   "catalogo": "Dr. C. Tuna Resurface Essential Day Cream (50 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Incidecoder lo lista como Essential Day Cream SPF 30 (pagina no leida): https://incidecoder.com/products/dr-c-tuna-resurface-essential-day-cream-spf-30 . Sin comparable verificado."
+  },
+  {
+   "id": "f43",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Resurface Reset Night Cream (50 ml)",
+   "catalogo": "Dr. C. Tuna Resurface Reset Night Cream (50 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Pagina pendiente de leer: https://incidecoder.com/products/dr-c-tuna-resurface-reset-night-cream . Sin comparable verificado."
+  },
+  {
+   "id": "f44",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Age Reversist Exfoliating Cleanser (80 ml)",
+   "catalogo": "Dr. C. Tuna Age Reversist Exfoliating Cleanser (80 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Limpiador exfoliante con micropartriculas que limpia sin danar la piel; segun la ficha, ayuda a mantener el rostro hidratado, fresco y terso. Ingredientes clave: Extracto de Laminaria digitata, carragenina sodica, arcilla de caolin, acido poliláctico, glicerina.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Extracto de Laminaria digitata, carragenina sodica, arcilla de caolin, acido poliláctico, glicerina.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). Sin comparable verificado."
+  },
+  {
+   "id": "f45",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Age Reversist Beauty Essence Tonic (100 ml)",
+   "catalogo": "Dr. C. Tuna Age Reversist Beauty Essence Tonic (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Tonico que, segun la ficha, brinda tonicidad, disminuye el tamano de los poros y reafirma la piel. Ingredientes clave: Carragenina sodica, agua de manzanilla organica, agua de hamamelis organica, glicerina, butilenglicol.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Carragenina sodica, agua de manzanilla organica, agua de hamamelis organica, glicerina, butilenglicol.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). Sin comparable verificado."
+  },
+  {
+   "id": "f46",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Age Reversist Eye Cream (15 ml)",
+   "catalogo": "Dr. C. Tuna Age Reversist Eye Cream (15 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha ni comparable verificados."
+  },
+  {
+   "id": "f47",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Age Reversist Serum (30 ml)",
+   "catalogo": "Dr. C. Tuna Age Reversist Serum (30 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Serum que, segun la ficha, ayuda a suavizar la piel y mejorar su textura; su formula ligera penetra facilmente y deja un aspecto mas joven. Ingredientes clave: Extracto de Laminaria digitata, carragenina sodica, PCA de sodio, goma xantana, acetato de tocoferilo.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Extracto de Laminaria digitata, carragenina sodica, PCA de sodio, goma xantana, acetato de tocoferilo.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). Sin comparable verificado (candidato sin verificar: serum antiedad de L'Oreal Revitalift)."
+  },
+  {
+   "id": "f48",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Age Reversist Rich Moisturizer (30 ml)",
+   "catalogo": "Dr. C. Tuna Age Reversist Rich Moisturizer (30 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Pagina oficial pendiente de leer: https://www.mx.farmasi.com/farmasi/product-detail/age-reversist-crema-hidratante?pid=1000271 . Sin comparable verificado."
+  },
+  {
+   "id": "f49",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Age Reversist All Night Beauty Mask (50 ml)",
+   "catalogo": "Dr. C. Tuna Age Reversist All Night Beauty Mask (50 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Mascarilla de belleza de noche con vitamina C que, segun la ficha, aporta ultra-nutricion mientras duermes; la ficha cita un aumento de colageno del 52% en un estudio. Ingredientes clave: Complejo de vitamina C (acido ascorbico, glutation, oro coloidal), complejo multivitaminico A/C/E/F, PCA de sodio, carragenina sodica, extracto de Laminaria digitata.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Complejo de vitamina C (acido ascorbico, glutation, oro coloidal), complejo multivitaminico A/C/E/F, PCA de sodio, carragenina sodica, extracto de Laminaria digitata.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). El dato de 52% es claim de la ficha, no verificado. Sin comparable verificado."
+  },
+  {
+   "id": "f50",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Age Reversist Instant Perfecting Cream (30 Sachets)",
+   "catalogo": "Dr. C. Tuna Age Reversist Instant Perfecting Cream (30 Sachets)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Crema en sobres (30 sachets) de efecto alisador inmediato de lineas finas, hidratante y con extracto de plancton marino. Ingredientes clave: Extracto de plancton marino, poliacriloil-dimetil taurato, silicato de magnesio y aluminio, goma xantana, acetato de tocoferilo.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Extracto de plancton marino, poliacriloil-dimetil taurato, silicato de magnesio y aluminio, goma xantana, acetato de tocoferilo.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-dr-c-tuna-age-reversist-exceptional-cream-instant-wrinkle-smoothing-gel-cream-with-marine-plankton-extract-anti-aging-face-treatment-30-sachets-x-0-01-fl-oz/"
+    ]
+   ],
+   "nota": "Descripcion de kiwla (tienda de terceros). Ingredientes de belezanaweb (sachets, en portugues, parece ser el mismo producto): https://www.belezanaweb.com.br/farmasi-dr-c-tuna-age-reversist-creme-facial-30-saches/ . Sin comparable verificado."
+  },
+  {
+   "id": "f51",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Lumi Radiance Gel Cleanser (100 ml)",
+   "catalogo": "Dr. C. Tuna Lumi Radiance Gel Cleanser (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Limpiador en gel de la linea Lumi Radiance (iluminadora). La fuente consultada no muestra descripcion comercial verificada. Ingredientes clave: Extracto de papaya, extracto de alga hidrolizada, extracto de Pancratium maritimum, glicerina, cocamidopropil betaina.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Extracto de papaya, extracto de alga hidrolizada, extracto de Pancratium maritimum, glicerina, cocamidopropil betaina.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.skincarisma.com/products/farmasi/dr-c-tuna-lumi-radiance-brightening-gel-cleanser/ingredient_list"
+    ]
+   ],
+   "nota": "Lista INCI de SkinCarisma (terceros, no de Farmasi). Sin comparable verificado (candidato sin verificar: limpiador en gel con vitamina C de Garnier Light Complete)."
+  },
+  {
+   "id": "f52",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Lumi Radiance Brightening Toner (125 ml)",
+   "catalogo": "Dr. C. Tuna Lumi Radiance Brightening Toner (125 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Tonico iluminador que, segun la ficha, ayuda a eliminar residuos y deja la piel con apariencia fresca y suave. Ingredientes clave: Extracto de gayuba (alfa arbutina), extracto de alga hidrolizada, extracto de Pancratium maritimum, glicerina, PCA de sodio.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Extracto de gayuba (alfa arbutina), extracto de alga hidrolizada, extracto de Pancratium maritimum, glicerina, PCA de sodio.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). Sin comparable verificado."
+  },
+  {
+   "id": "f53",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Lumi Radiance Eye Balm (20 ml)",
+   "catalogo": "Dr. C. Tuna Lumi Radiance Eye Balm (20 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Producto para contorno de ojos de la linea Lumi Radiance; la fuente de terceros lo clasifica como cuidado ocular. Ingredientes clave: Extracto de Pancratium maritimum, aceite de girasol, extracto de Chlorella vulgaris, extracto de romero, glicerina.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Extracto de Pancratium maritimum, aceite de girasol, extracto de Chlorella vulgaris, extracto de romero, glicerina.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.skincarisma.com/products/dr-c-tuna/lumi-radiance-brightening-eye-balm"
+    ]
+   ],
+   "nota": "Lista INCI de terceros (SkinCarisma), no de Farmasi. Sin comparable verificado."
+  },
+  {
+   "id": "f54",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Lumi Radiance Brightening Cream (50 ml)",
+   "catalogo": "Dr. C. Tuna Lumi Radiance Brightening Cream (50 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Crema iluminadora de la linea Lumi Radiance; sin descripcion ni ingredientes verificados.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Descríbelo por lo que dice su ficha.",
+   "nota": "Pagina oficial pendiente de leer: https://www.mx.farmasi.com/farmasi/product-detail/dr-c-tuna-lumi-radiance-crema-iluminadora?pid=1000297 . Sin comparable verificado."
+  },
+  {
+   "id": "f55",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Aqua Restoring Gel Cleanser (100 ml)",
+   "catalogo": "Dr. C. Tuna Aqua Restoring Gel Cleanser (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Limpiador suave que elimina suciedad, impurezas y residuos de maquillaje sin resecar; segun la ficha, es ideal para pieles deshidratadas. Ingredientes clave: Alginato y pululano (PatcH2O), acido hialuronico, acido latico, trehalosa, urea.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Alginato y pululano (PatcH2O), acido hialuronico, acido latico, trehalosa, urea.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). Sin comparable verificado (candidato sin verificar: limpiador en gel hidratante con acido hialuronico de Neutrogena Hydro Boost)."
+  },
+  {
+   "id": "f56",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Aqua Revitalizing Eye Cream (20 ml)",
+   "catalogo": "Dr. C. Tuna Aqua Revitalizing Eye Cream (20 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha ni comparable verificados."
+  },
+  {
+   "id": "f57",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Aqua Hydrating Cream (50 ml)",
+   "catalogo": "Dr. C. Tuna Aqua Hydrating Cream (50 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Pagina de tienda pendiente de leer: https://kiwla.com/farmasi-dr-c-tuna-aqua-hydrating-cream-basic-care-intensive-facial-moisturizer-for-all-skin-types-dryness-induced-line-maintenance-fast-absorption-1-7-fl-oz-50-ml/ . Sin comparable verificado."
+  },
+  {
+   "id": "f58",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Calendula Face Wash (100 ml)",
+   "catalogo": "Dr. C. Tuna Calendula Face Wash (100 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Limpiador suave para piel seca y sensible de todas las edades; elimina maquillaje y limpia poros sin resecar, segun la ficha. Ingredientes clave: Extracto de semilla de uva, glicerina, extracto de flor de calendula, aceite de soya, tocoferol.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Extracto de semilla de uva, glicerina, extracto de flor de calendula, aceite de soya, tocoferol.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). Sin comparable verificado (candidato sin verificar: limpiador hidratante para piel seca)."
+  },
+  {
+   "id": "f59",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Calendula Oil (30 ml)",
+   "catalogo": "Dr. C. Tuna Calendula Oil (30 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Aceite de calendula de la linea Dr. C. Tuna; sin descripcion ni ingredientes verificados.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Descríbelo por lo que dice su ficha.",
+   "nota": "Pagina oficial pendiente de leer: https://mx.farmasi.com/farmasi/product-detail/dr-c-tuna-aceite-de-calendula?pid=1000287 . Sin comparable verificado."
+  },
+  {
+   "id": "f60",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Calendula Face Cream (50 ml)",
+   "catalogo": "Dr. C. Tuna Calendula Face Cream (50 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Crema facial a base de calendula para piel sensible o irritada; segun una tienda de terceros, hidrata, calma y se absorbe rapido.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Descríbelo por lo que dice su ficha.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-dr-c-tuna-calendula-oil-face-cream-deep-hydration-soothing-moisturizer-for-sensitive-skin-1-7-fl-oz-50-ml/"
+    ]
+   ],
+   "nota": "La tienda la llama Calendula Oil Face Cream 50 ml; se asume el mismo producto sin confirmar. Sin lista de ingredientes. Sin comparable verificado."
+  },
+  {
+   "id": "f61",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Calendula Cream Balsam (80 ml)",
+   "catalogo": "Dr. C. Tuna Calendula Cream Balsam (80 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Balsamo-crema rico, de textura no grasa, para piel seca y sensible de rostro y cuerpo; segun la tienda, con extracto de calendula y libre de parabenos. Ingredientes clave: Extracto de calendula, aceite de soya, extracto de zanahoria, tocoferol, petrolato.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Extracto de calendula, aceite de soya, extracto de zanahoria, tocoferol, petrolato.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://pacifiko.com/compras-en-linea/farmasi-dr-c-tuna-calendula-cream-balsam-rich-moisturizing-cream-for-dry-and-sensitive-skin-with-calendula-and-botanical-oils-soothes-and-softens-face-and-body-2-7-fl-oz&pid=ODEzOGZiMG"
+    ]
+   ],
+   "nota": "Ingredientes de skinsignal.com (9 ingredientes, incluye petrolato y aceite mineral): https://skinsignal.com/products/dr-c-tuna-calendula-oil-cream-balsam . Pacifiko menciona aguacate y camelia, que no aparecen en esa lista: confirmar en la ficha oficial. Sin comparable verificado."
+  },
+  {
+   "id": "f62",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Tea Tree Face Toner (125 ml)",
+   "catalogo": "Dr. C. Tuna Tea Tree Face Toner (125 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Tonico que, segun la ficha, ayuda a controlar el exceso de grasa en pieles mixtas, afina poros y deja la piel mate sin resecarla. Ingredientes clave: Aceite de arbol de te, extracto de tomillo, exopolisacarido marino, glicerina, propilenglicol.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Aceite de arbol de te, extracto de tomillo, exopolisacarido marino, glicerina, propilenglicol.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). Sin comparable verificado."
+  },
+  {
+   "id": "f63",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Tea Tree Face Cream (50 ml)",
+   "catalogo": "Dr. C. Tuna Tea Tree Face Cream (50 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.gopicky.com/product/2158/farmasi-dr-c-tuna-tea-tree-face-cream"
+    ]
+   ],
+   "nota": "Gopicky muestra 17 ingredientes sin nombrarlos. No se pudo leer la ficha oficial. Sin comparable verificado."
+  },
+  {
+   "id": "f64",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Absolute Super Elixir (25 ml)",
+   "catalogo": "Dr. C. Tuna Absolute Super Elixir (25 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Pagina oficial pendiente de leer: https://mx.farmasi.com/farmasi/product-detail/dr-c-tuna-absolute-super-elixir?pid=1000991 . El titulo de la ficha italiana sugiere aceite seco multiuso (no leido). Sin comparable verificado."
+  },
+  {
+   "id": "f65",
+   "cat": "Cuerpo",
+   "farmasi": "Dr. C. Tuna Paprika & Chili Balsam (150 ml)",
+   "catalogo": "Dr. C. Tuna Paprika & Chili Balsam (150 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Balsamo para masaje vigorizante con chile rojo, jengibre, ortiga, mentol y aceites esenciales; segun la ficha, es calmante, energetico y deja sensacion de frescura. Ingredientes clave: Pimenton, extracto de jengibre, extracto de chile, mentol, alcanfor.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: Pimenton, extracto de jengibre, extracto de chile, mentol, alcanfor.",
+   "nota": "Fuente: ficha_oficial del archivo de entrada (sin URL). Sin comparable verificado (candidato sin verificar: balsamo de masaje mentolado Tiger Balm)."
+  },
+  {
+   "id": "f66",
+   "cat": "Cuerpo",
+   "farmasi": "Dr. C. Tuna Pferde Horse Chestnut Balsam (150 ml)",
+   "catalogo": "Dr. C. Tuna Pferde Horse Chestnut Balsam (150 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha ni comparable verificados (candidato sin verificar: gel de masaje mentolado Tiger Balm)."
+  },
+  {
+   "id": "f67",
+   "cat": "Cabello",
+   "farmasi": "Dr. C. Tuna Reviving Shampoo (225 ml)",
+   "catalogo": "Dr. C. Tuna Reviving Shampoo (225 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Gopicky (https://www.gopicky.com/product/1000018292/farmasi-dr-c-tuna-reviving-shampoo) muestra 38 ingredientes sin nombrarlos. Ficha oficial pendiente: https://www.mx.farmasi.com/farmasi/product-detail/reviving-shampoo?pid=1000309 . Sin comparable verificado (candidato sin verificar: shampoo reparador de Pantene)."
+  },
+  {
+   "id": "f68",
+   "cat": "Cabello",
+   "farmasi": "Dr. C. Tuna Reviving Hair Mask (200 ml)",
+   "catalogo": "Dr. C. Tuna Reviving Hair Mask (200 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Mascarilla para cabello opaco y sin vida que, segun una tienda de terceros, aporta suavidad, brillo e hidratacion gracias al aceite de camelia; se usa en cabello humedo de 5 a 10 minutos, 1 o 2 veces por semana.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Descríbelo por lo que dice su ficha.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://kiwla.com/farmasi-dr-c-tuna-reviving-hair-mask-200ml-6-76floz-deep-repair-hair-nourishment-strengthens-hair-revitalizes-hair-garlic-extract-hair-care-improves-elasticity/"
+    ]
+   ],
+   "nota": "Solo se nombra el aceite de camelia; sin lista de ingredientes. Sin comparable verificado (candidato sin verificar: mascarilla reparadora de Pantene)."
+  },
+  {
+   "id": "f69",
+   "cat": "Cabello",
+   "farmasi": "Dr. C. Tuna Intensive Repair Shampoo (225 ml)",
+   "catalogo": "Dr. C. Tuna Intensive Repair Shampoo (225 ml)",
+   "tam": "",
+   "ref": {
+    "marca": "L'Oréal Professionnel",
+    "producto": "Shampoo reparador Absolut Repair Molecular",
+    "precio": 775,
+    "tam": "300 ml",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/shampoo-reparador-para-cabello-l'oreal-professionnel-absolut-repair-molecular/1142497774"
+   },
+   "parecido": "algo",
+   "base": "Champú reparador para cabello dañado o quebradizo; según la ficha sella puntas abiertas y restaura la vitalidad del cabello procesado. Ingredientes clave: queratina vegetal hidrolizada, complejo de aminoácidos, complejo de color.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Se parece más a L'Oréal Professionnel Shampoo reparador Absolut Repair Molecular: mismo tipo de producto y efecto parecido. No es la misma fórmula, así que no lo digas como igual.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/dr-c-tuna-intensive-repair-shampoo?pid=1000885"
+    ]
+   ],
+   "nota": "Ref de salón, distinto formato (300 ml) y sin ingredientes leídos. Farmasi: el tamaño 225 ml viene del archivo; la ficha MX no lo indica."
+  },
+  {
+   "id": "f70",
+   "cat": "Cabello",
+   "farmasi": "Dr. C. Tuna Intensive Repair Leave-in-Conditioner (125 ml)",
+   "catalogo": "Dr. C. Tuna Intensive Repair Leave-in-Conditioner (125 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Acondicionador ligero sin enjuague para cabello seco o dañado; ayuda a sellar puntas abiertas y restaurar el brillo. Se aplica de medios a puntas, se deja 3 a 5 minutos y no se enjuaga. Ingredientes clave: behentrimonio cloruro, alcohol cetearílico, proteína vegetal hidrolizada, extracto de Adansonia digitata hidrolizado, bioflavonoides.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: behentrimonio cloruro, alcohol cetearílico, proteína vegetal hidrolizada, extracto de Adansonia digitata hidrolizado, bioflavonoides.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/dr-c-tuna-intensive-repair-leave-in-cond?pid=1000887"
+    ]
+   ],
+   "nota": "Ficha MX sin cantidades. Sin referencia verificada."
+  },
+  {
+   "id": "f71",
+   "cat": "Cabello",
+   "farmasi": "Dr. C. Tuna Intensive Repair Hair Mask (200 ml)",
+   "catalogo": "Dr. C. Tuna Intensive Repair Hair Mask (200 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Mascarilla que protege el cabello del daño externo, ayuda a restaurar la elasticidad perdida, previene puntas abiertas y restaura el brillo. Ingredientes clave: queratina vegetal hidrolizada, complejo de aminoácidos, complejo de color.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: queratina vegetal hidrolizada, complejo de aminoácidos, complejo de color.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/dr-c-tuna-intensive-repair-hair-mask?pid=1000886"
+    ]
+   ],
+   "nota": "Ficha MX sin cantidades. Sin referencia verificada."
+  },
+  {
+   "id": "f72",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Pre-Workout (200 g)",
+   "catalogo": "Nutriplus Pre-Workout (200 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Pre-entrenamiento de alto rendimiento pensado para resistencia, flujo sanguíneo y enfoque mental; sabor Tropical Mix. Ingredientes clave: citrulina malato (2:1), beta-alanina, betaína anhidra, taurina, cafeína.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: citrulina malato (2:1), beta-alanina, betaína anhidra, taurina, cafeína.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/nutriplus-pre-workout?pid=1002732"
+    ]
+   ],
+   "nota": "Descripción tomada de la ficha ES (farmasi.es, pid 1002734). Ficha MX sin cantidades. Cafeína: no recomendado a personas sensibles a la cafeína ni con antecedentes de infarto (según la ficha ES). Sin referencia verificada."
+  },
+  {
+   "id": "f73",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Creatina (153 g)",
+   "catalogo": "Nutriplus Creatina (153 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Creatina monohidratada en polvo; contenido neto 153 g. La ficha no incluye descripción comercial. Ingredientes clave: creatina monohidratada (99,97%), clorhidrato de piridoxina (vitamina B6) (0,03%).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: creatina monohidratada (99,97%), clorhidrato de piridoxina (vitamina B6) (0,03%).",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/nutriplus-creatina?pid=1002724"
+    ]
+   ],
+   "nota": "Referencia (Optimum Nutrition creatina 300 g) pendiente: no se pudo leer su precio (El Palacio dio error; Liverpool no leída)."
+  },
+  {
+   "id": "f74",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Gummies Apple Cider Vinegar (60 gomitas)",
+   "catalogo": "Nutriplus Gummies Apple Cider Vinegar (60 gomitas)",
+   "tam": "",
+   "ref": {
+    "marca": "Goli",
+    "producto": "Gomitas Vinagre de Manzana con Vitamina B12 y B9",
+    "precio": 306.75,
+    "tam": "60 piezas",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/goli-gomitas-vinagre-de-manzana-con-vitamina-b12-b9-60-pz.html"
+   },
+   "parecido": "algo",
+   "base": "Gomitas sin azúcar añadido de vinagre de manzana con granada y vitamina B12, orientadas a digestión y bienestar intestinal, según la página. Ingredientes clave: vinagre de manzana (1000 mg por 2 gomitas), polvo de manzana, polvo de granada, ácido fólico, vitamina B12.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Se parece más a Goli Gomitas Vinagre de Manzana con Vitamina B12 y B9: mismo tipo de producto y efecto parecido. No es la misma fórmula, así que no lo digas como igual.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://ibspot.com/products/farmasi-nutriplus-gummies-apple-cider-vinegar-60-gummies"
+    ]
+   ],
+   "nota": "Fuente Farmasi es un revendedor (ibspot), no la ficha oficial. Inulina en la fuente aparece como 180 g (posible error), no incluida. Ref: la página no lista ingredientes completos."
+  },
+  {
+   "id": "f75",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Gummies Focuscore (60 gomitas)",
+   "catalogo": "Nutriplus Gummies Focuscore (60 gomitas)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f76",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Gummies Red & Green (60 gomitas)",
+   "catalogo": "Nutriplus Gummies Red & Green (60 gomitas)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f77",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Gummies Deligomy Kids (60 gomitas)",
+   "catalogo": "Nutriplus Gummies Deligomy Kids (60 gomitas)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f78",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Cycle+ Gummies (60 gomitas)",
+   "catalogo": "Nutriplus Cycle+ Gummies (60 gomitas)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f79",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Guarana & Taurine (210 g)",
+   "catalogo": "Nutriplus Guarana & Taurine (210 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f80",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Citrus & Mineral (240 g)",
+   "catalogo": "Nutriplus Citrus & Mineral (240 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f81",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Complete Blend (Cream Caramel / Cookie Crunch)",
+   "catalogo": "Nutriplus Complete Blend (Cream Caramel / Cookie Crunch)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f82",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Complete Blend (Chocolate / Vainilla / Fresa)",
+   "catalogo": "Nutriplus Complete Blend (Chocolate / Vainilla / Fresa)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f83",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Lily Shaker (400 ml)",
+   "catalogo": "Nutriplus Lily Shaker (400 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f84",
+   "cat": "Nutrición",
+   "farmasi": "Aloe Glow (Mango / Mandarina 450 ml)",
+   "catalogo": "Aloe Glow (Mango / Mandarina 450 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Bebida de aloe vera en sabor mandarina; según la ficha no contiene aloína ni antraquinona. Ingredientes clave: jugo concentrado de hoja de aloe vera, extracto de manzanilla, glucósidos de steviol, ácido málico.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: jugo concentrado de hoja de aloe vera, extracto de manzanilla, glucósidos de steviol, ácido málico.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/aloe-glow-mandarin?pid=1002302"
+    ]
+   ],
+   "nota": "Ficha MX con precio 690 MXN (coincide con el precio de Farmasi del archivo). Sin referencia verificada. Sabor mango no leído."
+  },
+  {
+   "id": "f85",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Collagen Shot (15 botellas x 50 ml)",
+   "catalogo": "Nutriplus Collagen Shot (15 botellas x 50 ml)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "La ficha MX (pid 1001038) no pudo leerse (error de cliente). Pendiente."
+  },
+  {
+   "id": "f86",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Collagen Tablets (30 tabletas)",
+   "catalogo": "Nutriplus Collagen Tablets (30 tabletas)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Tabletas de péptido de colágeno con vitamina C; la ficha no incluye descripción comercial. Ingredientes clave: péptido de colágeno, vitamina C (ácido L-ascórbico), celulosa microcristalina, estearato de magnesio, dióxido de silicio.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: péptido de colágeno, vitamina C (ácido L-ascórbico), celulosa microcristalina, estearato de magnesio, dióxido de silicio.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/nutriplus-collagen-tablet?pid=1000904"
+    ]
+   ],
+   "nota": "Ficha MX sin cantidades. Sin referencia verificada."
+  },
+  {
+   "id": "f87",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus CA-MG + Collagen II Tablets (30 tabletas)",
+   "catalogo": "Nutriplus CA-MG + Collagen II Tablets (30 tabletas)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f88",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Electrolyte Drink Mix (14 tabletas)",
+   "catalogo": "Nutriplus Electrolyte Drink Mix (14 tabletas)",
+   "tam": "",
+   "ref": {
+    "marca": "Liquid IV",
+    "producto": "Electrolitos sabor Lima Limón (8 sobres de 16 g)",
+    "precio": 233,
+    "tam": "8 sobres de 16 g",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/liquid-iv-electrolitos-sabor-lima-limon-8-pack-de-16-gr.html"
+   },
+   "parecido": "algo",
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída; comparación por concepto (tabletas/sobres de electrolitos). Formato distinto. La página de Liquid IV lista vitaminas B3, B5, B6, B12 y C, sin lista de electrolitos."
+  },
+  {
+   "id": "f89",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Sambucus Effervescent Tablets (15 tabletas)",
+   "catalogo": "Nutriplus Sambucus Effervescent Tablets (15 tabletas)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Sin ficha Farmasi leída ni referencia."
+  },
+  {
+   "id": "f90",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Spirulina (60 tabletas)",
+   "catalogo": "Nutriplus Spirulina (60 tabletas)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/nutriplus-spirulina?pid=1000997"
+    ]
+   ],
+   "nota": "La ficha MX (pid 1000997) no trae descripción ni lista de ingredientes. Sin referencia verificada."
+  },
+  {
+   "id": "f91",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Omega-3 (30 cápsulas)",
+   "catalogo": "Nutriplus Omega-3 (30 cápsulas)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Cápsulas blandas de aceite de pescado con EPA y DHA (30 cápsulas). Ingredientes clave: aceite de pescado (EPA, DHA), gelatina de bovino (cápsula), triglicéridos de cadena media, tocoferoles concentrados.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: aceite de pescado (EPA, DHA), gelatina de bovino (cápsula), triglicéridos de cadena media, tocoferoles concentrados.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/omega-3?pid=1000996"
+    ]
+   ],
+   "nota": "Descripción a partir del nombre y la lista de la ficha MX. Ficha sin cantidades. Sin referencia verificada."
+  },
+  {
+   "id": "f92",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Turmeric (30 cápsulas)",
+   "catalogo": "Nutriplus Turmeric (30 cápsulas)",
+   "tam": "",
+   "ref": {
+    "marca": "Curcuyin",
+    "producto": "Curcuyin 100% Turmeric Cúrcuma Lemon Cochella",
+    "precio": 1200,
+    "tam": "30 tabletas",
+    "tienda": "Liverpool",
+    "url": "https://www.liverpool.com.mx/tienda/pdp/set-curcuyin-100-turmeric-curcuma-de-30-tabletas/999681957405"
+   },
+   "parecido": "algo",
+   "base": "Cápsulas de extracto de raíz de cúrcuma (Curcuma longa) con extracto de pimienta negra (Piper nigrum); 30 cápsulas. Ingredientes clave: extracto de raíz de cúrcuma, extracto de pimienta negra (Piper nigrum), maltodextrina, estearato de magnesio, dióxido de silicio.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Compara por tamaño, no solo por precio; la fórmula no la hemos probado lado a lado.",
+   "decirle": "Se parece más a Curcuyin Curcuyin 100% Turmeric Cúrcuma Lemon Cochella: mismo tipo de producto y efecto parecido. No es la misma fórmula, así que no lo digas como igual.",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/turmeric?pid=1001894"
+    ]
+   ],
+   "nota": "Ingredientes de la referencia no confirmados en la página (sección colapsada). Formato tableta vs cápsula. Precio de referencia alto frente a Farmasi."
+  },
+  {
+   "id": "f93",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Matcha Tea (100 g)",
+   "catalogo": "Nutriplus Matcha Tea (100 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Ficha MX (pid 1001892) no pudo leerse (error de cliente). Pendiente."
+  },
+  {
+   "id": "f94",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Delish Café (Hongos y Achicoria 105 g)",
+   "catalogo": "Nutriplus Delish Café (Hongos y Achicoria 105 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Ficha MX (pid 1002736) no pudo leerse (error de cliente). Pendiente."
+  },
+  {
+   "id": "f95",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Delish Café (Fibra 100 g)",
+   "catalogo": "Nutriplus Delish Café (Fibra 100 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Alternativa al café tradicional elaborada con granos de cebada y centeno, según la ficha. Ingredientes clave: café instantáneo (40%), cebada en polvo (30%), centeno en polvo (30%).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: café instantáneo (40%), cebada en polvo (30%), centeno en polvo (30%).",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/delish-cafe-mezcla-de-fibra?pid=9000851"
+    ]
+   ],
+   "nota": "Sin referencia verificada. Ficha MX con cantidades."
+  },
+  {
+   "id": "f96",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Delish Café (Achicoria 100 g)",
+   "catalogo": "Nutriplus Delish Café (Achicoria 100 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Todavía no tenemos una descripción verificada de este producto.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "Todavía no tenemos la descripción ni los ingredientes verificados de este producto. Consulta con el equipo antes de contestar.",
+   "nota": "Ficha MX (pid 9000850) no pudo leerse (error de cliente). Pendiente."
+  },
+  {
+   "id": "f97",
+   "cat": "Nutrición",
+   "farmasi": "Nutriplus Delish Café (Achicoria con Colágeno 100 g)",
+   "catalogo": "Nutriplus Delish Café (Achicoria con Colágeno 100 g)",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Mezcla soluble de achicoria y café instantáneo con colágeno bovino hidrolizado; según la ficha, tiene menos cafeína que el café tradicional. Ingredientes clave: achicoria soluble (51%), café instantáneo (34%), colágeno bovino hidrolizado tipo I (15%).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: achicoria soluble (51%), café instantáneo (34%), colágeno bovino hidrolizado tipo I (15%).",
+   "fuentes": [
+    [
+     "Ficha Farmasi",
+     "https://www.mx.farmasi.com/farmasi/product-detail/delish-cafe-mezcla-de-achicoria-con-colageno?pid=9000852"
+    ]
+   ],
+   "nota": "La descripción menciona colágeno tipo I y III; la lista de ingredientes sólo tipo I. Sin referencia verificada."
+  },
+  {
+   "id": "f98",
+   "cat": "Labios",
+   "farmasi": "Royal Cherry Lip Gloss",
+   "catalogo": "Royal Cherry Lip Gloss",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Gloss ultra hidratante en tono rosa baya con brillo luminoso, con aceites naturales y vitaminas, de 8 ml. Ingredientes clave: aceite de aguacate, manteca de murumuru, aceite de ricino, manteca de karité.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: aceite de aguacate, manteca de murumuru, aceite de ricino, manteca de karité.",
+   "nota": "Fuente: ficha oficial incluida en el archivo de entrada (sin URL)."
+  },
+  {
+   "id": "f99",
+   "cat": "Ojos y cejas",
+   "farmasi": "Royal Cherry Eyeshadow Palette",
+   "catalogo": "Royal Cherry Eyeshadow Palette",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Paleta de 9 tonos cereza, vino, burdeos y neutros cálidos con acabados mate, satinado y metálico. Ingredientes clave: mica, sílice, dimeticona, pigmentos (dióxido de titanio y óxidos de hierro).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: mica, sílice, dimeticona, pigmentos (dióxido de titanio y óxidos de hierro).",
+   "nota": "Fuente: ficha oficial incluida en el archivo de entrada (sin URL). Sin referencia verificada."
+  },
+  {
+   "id": "f100",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Glow Beauty Box",
+   "catalogo": "Glow Beauty Box",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Set navideño de edición limitada con trío de sombras (Naughty Or Nice), tinte para mejillas y labios (Merry & Bright) y labial líquido mate (Sleigh All The Way).",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Descríbelo por lo que dice su ficha.",
+   "nota": "Fuente: ficha oficial incluida en el archivo de entrada (sin URL). Ficha sin lista de ingredientes."
+  },
+  {
+   "id": "f101",
+   "cat": "Cuerpo",
+   "farmasi": "Paprika Massage Soap",
+   "catalogo": "Paprika Massage Soap",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Jabón de masaje con nodos masajeadores y partículas exfoliantes de semilla de albaricoque, con mentol, alcanfor y paprika; contenido 110 g. Ingredientes clave: extracto de hoja de menta, alcanfor, exfoliante de semilla de albaricoque, extracto de hierba de San Juan.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: extracto de hoja de menta, alcanfor, exfoliante de semilla de albaricoque, extracto de hierba de San Juan.",
+   "nota": "Fuente: ficha oficial incluida en el archivo de entrada (sin URL). Sin referencia verificada."
+  },
+  {
+   "id": "f102",
+   "cat": "Cuerpo",
+   "farmasi": "Flaunt It! Body Sculpting Gel",
+   "catalogo": "Flaunt It! Body Sculpting Gel",
+   "tam": "",
+   "ref": null,
+   "parecido": null,
+   "base": "Gel reafirmante corporal con extractos de eucalipto y romero; el aceite de gaulteria facilita el masaje, según la ficha. Ingredientes clave: extracto de eucalipto, extracto de romero, extracto de tomillo, aceite de gaulteria, vanillyl butyl ether.",
+   "dif": [],
+   "favor": [],
+   "ojo": "Sin comparación de precio: no tenemos un producto de referencia verificado.",
+   "decirle": "No tenemos una comparación confiable con otra marca. Lo que sí podemos decir: extracto de eucalipto, extracto de romero, extracto de tomillo, aceite de gaulteria, vanillyl butyl ether.",
+   "nota": "Fuente: ficha oficial incluida en el archivo de entrada (sin URL). Sin referencia verificada."
   }
  ],
  "sin_comparacion": "Todavía sin comparación confiable: His Power, Shooter's Man y Masculine (perfumes de hombre), suplementos Nutriplus, brochas, jabones y la línea Masculine de cuidado. Si te preguntan por ellos, descríbelos por lo que hacen."
