@@ -1,6 +1,6 @@
 {
  "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
- "actualizado": "2026-10-24",
+ "actualizado": "2026-10-25",
  "grupos": [
   {
    "titulo": "Edición limitada y de temporada",
@@ -294,11 +294,6 @@
     [
      "1000241",
      "Bálsamo Hidratante Arándanos",
-     80.5
-    ],
-    [
-     "1000242",
-     "Perfecting Balm Aloe Pleasure",
      80.5
     ],
     [
@@ -610,11 +605,6 @@
      "1002618",
      "Air Blush Duo Pink Bloom",
      550.0
-    ],
-    [
-     "1001504",
-     "Full Blast Volume Mascara New",
-     282.5
     ]
    ]
   },
@@ -806,5 +796,5 @@
    ]
   }
  ],
- "hora": "09:06"
+ "hora": "14:30"
 }
