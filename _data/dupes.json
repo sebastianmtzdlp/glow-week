@@ -1,0 +1,915 @@
+{
+ "_nota": "Comparaciones de productos Farmasi con productos conocidos, para que el equipo responda preguntas de clientas. Son comparaciones nuestras por tipo de producto, acabado, ingredientes publicados y opiniones públicas; no son pruebas de laboratorio y Farmasi no tiene relación con estas marcas. El precio Farmasi se toma de _data/catalogo.json con el campo 'catalogo' (nombre exacto). parecido: 'mucho' | 'algo' | 'confirmar'. Para actualizar un precio de referencia cambia ref.precio, ref.url y precios_revisados.",
+ "precios_revisados": "2026-10-25",
+ "precio_farmasi_fuente": "Catálogo Farmasi México 2026 (precio público), revisado el 16 oct 2026",
+ "productos": [
+  {
+   "id": "base-vfx-pro",
+   "cat": "Rostro",
+   "farmasi": "VFX PRO Camera Ready Foundation",
+   "catalogo": "VFX PRO Camera Ready Foundation",
+   "ref": {
+    "marca": "Estée Lauder",
+    "producto": "Double Wear Stay-in-Place",
+    "precio": 1035,
+    "tam": "30 ml",
+    "tienda": "El Palacio de Hierro",
+    "url": "https://www.elpalaciodehierro.com/estee-lauder-base-de-maquillaje-double-wear-stay-in-p2c2-pale-almond-30-ml-39935184.html"
+   },
+   "parecido": "algo",
+   "base": "Las dos son bases líquidas de cobertura alta, acabado mate y larga duración, con fórmula a base de siliconas.",
+   "dif": [
+    "Double Wear tiene muchos más tonos para elegir.",
+    "La de Farmasi lleva agua de mar con minerales (Earth Marine Water) como ingrediente destacado."
+   ],
+   "favor": [
+    "Cuesta aproximadamente la mitad.",
+    "Mismo tipo de acabado mate de cobertura total."
+   ],
+   "ojo": "Con menos tonos, a algunas clientas les va a costar encontrar el suyo exacto. Como toda base mate de alta cobertura, en piel muy seca puede marcar resequedad si no se hidrata antes.",
+   "decirle": "Se parece más a la Double Wear de Estée Lauder: cobertura alta, mate y de larga duración. No te puedo decir que sea igual, pero es el mismo tipo de base y cuesta como la mitad."
+  },
+  {
+   "id": "primer-iluminador",
+   "cat": "Rostro",
+   "farmasi": "VFX PRO Illuminating Primer",
+   "catalogo": "VFX PRO Illuminating Primer",
+   "tam": "25 ml",
+   "ref": {
+    "marca": "Charlotte Tilbury",
+    "producto": "Hollywood Flawless Filter",
+    "precio": 1300,
+    "tam": "",
+    "tienda": "Sephora México (aparecía agotado)",
+    "url": "https://www.sephora.com.mx/products-88993756.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos dan un brillo natural a la piel con pigmentos iluminadores y se pueden usar debajo de la base.",
+   "dif": [
+    "El Flawless Filter viene en varios tonos y mucha gente lo usa solo o mezclado con la base; el de Farmasi es una prebase de un solo tono.",
+    "El de Farmasi está pensado para alisar textura y alargar la duración del maquillaje."
+   ],
+   "favor": [
+    "Cuesta menos de una tercera parte.",
+    "Cumple doble función: prebase y luz."
+   ],
+   "ojo": "No da color ni cobertura, así que no reemplaza al Flawless Filter si la clienta lo usa como base ligera.",
+   "decirle": "Se parece al Hollywood Flawless Filter en el efecto glow debajo del maquillaje. La diferencia es que este es prebase de un solo tono, no da color."
+  },
+  {
+   "id": "primer-blur",
+   "cat": "Rostro",
+   "farmasi": "VFX PRO Blur Primer",
+   "catalogo": "VFX PRO Blur Primer",
+   "ref": {
+    "marca": "Benefit",
+    "producto": "The POREfessional",
+    "precio": 350,
+    "precio_desde": true,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products/benefit-cosmetics-the-porefessional-face-primer-7624.html"
+   },
+   "parecido": "algo",
+   "base": "Las dos son prebases que difuminan poros y dejan la piel lisa antes de la base.",
+   "dif": [
+    "El POREfessional es muy conocido por su textura de bálsamo y su tono beige translúcido.",
+    "No tenemos la lista completa de ingredientes del Blur Primer para comparar fórmula."
+   ],
+   "favor": [
+    "Mismo objetivo: piel más lisa y poros menos visibles."
+   ],
+   "ojo": "Sephora muestra el POREfessional 'a partir de $350', que puede ser el tamaño mini; el tamaño completo cuesta más. Revisa el tamaño antes de hablar de ahorro.",
+   "decirle": "Es del mismo tipo que el POREfessional de Benefit: prebase para difuminar poros. No te puedo confirmar que la textura sea igual."
+  },
+  {
+   "id": "corrector-vfx",
+   "cat": "Rostro",
+   "farmasi": "VFX PRO Liquid Concealer",
+   "catalogo": "VFX PRO Liquid Concealer",
+   "ref": {
+    "marca": "NARS",
+    "producto": "Radiant Creamy Concealer",
+    "precio": 815,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products/nars-radiant-creamy-concealer-8029.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son correctores líquidos cremosos para ojeras e imperfecciones, con acabado natural.",
+   "dif": [
+    "El de NARS tiene una gama de tonos mucho más amplia.",
+    "El de Farmasi incluye extractos marinos y botánicos pensados para disimular líneas finas y bolsas."
+   ],
+   "favor": [
+    "Cuesta como una tercera parte.",
+    "Fórmula cremosa que se difumina fácil."
+   ],
+   "ojo": "La cobertura y la duración no las hemos comparado lado a lado; si la clienta busca cobertura total para tatuajes o manchas muy marcadas, mejor que lo pruebe primero.",
+   "decirle": "Se parece más al Radiant Creamy de NARS: cremoso y de acabado natural. No es la misma fórmula, pero cumple lo mismo por mucho menos."
+  },
+  {
+   "id": "fijador",
+   "cat": "Rostro",
+   "farmasi": "VFX PRO Time Locker Fixing Spray",
+   "catalogo": "VFX PRO Time Locker Fixing Spray",
+   "ref": {
+    "marca": "Urban Decay",
+    "producto": "All Nighter Setting Spray",
+    "precio": null,
+    "tam": "",
+    "tienda": "Sephora México (sin precio, no disponible el día de la revisión)",
+    "url": "https://www.sephora.com.mx/products/urban-decay-all-nighter-makeup-setting-spray-9231.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son sprays fijadores que se aplican al final para que el maquillaje dure más.",
+   "dif": [
+    "El All Nighter es el fijador más conocido y tiene versiones mate, glow y con vitamina C.",
+    "No tenemos la lista de ingredientes del Time Locker para comparar fórmula."
+   ],
+   "favor": [
+    "Precio accesible para usar diario."
+   ],
+   "ojo": "No podemos decir que dure las mismas horas que el All Nighter; eso no lo hemos probado.",
+   "decirle": "Es del mismo tipo que el All Nighter de Urban Decay: spray fijador. No te puedo prometer la misma duración, pero ayuda a que el maquillaje aguante más."
+  },
+  {
+   "id": "cc-cream",
+   "cat": "Rostro",
+   "farmasi": "CC Cream Color Control",
+   "catalogo": "CC Cream Color Control",
+   "ref": {
+    "marca": "IT Cosmetics",
+    "producto": "Your Skin But Better CC+ SPF 50+",
+    "precio": 1040,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products/it-cosmetics-your-skin-but-better-cc-plus-with-spf-50-plus-14752.html"
+   },
+   "parecido": "algo",
+   "base": "Las dos son CC cream: unifican el tono, iluminan y traen filtro solar.",
+   "dif": [
+    "La de IT Cosmetics tiene SPF 50+; la de Farmasi SPF 25 con filtros minerales.",
+    "La de IT Cosmetics da más cobertura según la propia marca."
+   ],
+   "favor": [
+    "Cuesta menos de una tercera parte.",
+    "Lleva multiminerales (magnesio, zinc, cobre y calcio) y extracto de lirio de arena."
+   ],
+   "ojo": "SPF 25 no sustituye un bloqueador si la clienta va a estar al sol. Si lo que busca es la cobertura de la CC+, esta se siente más ligera.",
+   "decirle": "Es del estilo de la CC+ de IT Cosmetics: unifica e ilumina con filtro solar. Ojo: esta trae SPF 25, la otra 50+, así que conviene usar bloqueador aparte."
+  },
+  {
+   "id": "contorno-stick",
+   "cat": "Rostro",
+   "farmasi": "Contour Stick (Smize / Wink)",
+   "catalogo": "Contour Stick (Smize / Wink)",
+   "ref": {
+    "marca": "Fenty Beauty",
+    "producto": "Match Stix Matte Skinstick",
+    "precio": 775,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products/fenty-match-stix-matte-skinstick-11949.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son contornos en barra cremosa que se aplican directo y se difuminan con brocha, esponja o dedos.",
+   "dif": [
+    "Fenty tiene más tonos de contorno.",
+    "No tenemos la ficha de ingredientes del Contour Stick para comparar fórmula."
+   ],
+   "favor": [
+    "Cuesta como la mitad.",
+    "Mismo formato práctico de barra."
+   ],
+   "ojo": "Solo hay dos tonos (Smize y Wink); en piel muy clara o muy oscura puede no quedar el tono ideal.",
+   "decirle": "Es del mismo tipo que los Match Stix de Fenty: contorno en barra cremosa. Hay menos tonos, pero cuesta como la mitad."
+  },
+  {
+   "id": "paleta-glow",
+   "cat": "Rostro",
+   "farmasi": "Effortless Glow Palette",
+   "catalogo": "Effortless Glow Palette",
+   "ref": {
+    "marca": "Anastasia Beverly Hills",
+    "producto": "Glow Kit",
+    "precio": 995,
+    "tam": "7.4 g",
+    "tienda": "Sephora México (aparecía agotado)",
+    "url": "https://www.sephora.com.mx/products/anastasia-beverly-hills-glow-kit-9003.html"
+   },
+   "parecido": "confirmar",
+   "base": "Las dos son paletas de iluminadores en polvo para dar luz al rostro.",
+   "dif": [
+    "Los tonos y la intensidad del brillo son distintos; no las hemos comparado lado a lado."
+   ],
+   "favor": [
+    "Fórmula ligera que se difumina fácil, para brillo sutil o intenso."
+   ],
+   "ojo": "Solo coinciden en el tipo de producto. No digas que es el Glow Kit.",
+   "decirle": "No te puedo confirmar que sea como el Glow Kit de Anastasia; las dos son paletas de iluminador, pero los tonos son distintos."
+  },
+  {
+   "id": "esponja",
+   "cat": "Rostro",
+   "farmasi": "Esponja para maquillaje",
+   "catalogo": "Esponja para maquillaje",
+   "ref": {
+    "marca": "Beautyblender",
+    "producto": "The Original",
+    "precio": 705,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products/beautyblender-the-original-beautyblender-7585.html"
+   },
+   "parecido": "algo",
+   "base": "Las dos son esponjas suaves sin látex que se usan húmedas para difuminar la base.",
+   "dif": [
+    "La forma y la densidad pueden variar; no las hemos comparado lado a lado."
+   ],
+   "favor": [
+    "Sin látex.",
+    "También se puede usar seca con polvos y cremas."
+   ],
+   "ojo": "Como toda esponja, hay que lavarla seguido y cambiarla cada pocos meses.",
+   "decirle": "Es del mismo tipo que la Beautyblender: esponja suave sin látex que se usa húmeda."
+  },
+  {
+   "id": "cera-cejas",
+   "cat": "Ojos y cejas",
+   "farmasi": "Brow Setting Wax",
+   "catalogo": "Brow Setting Wax",
+   "ref": {
+    "marca": "Anastasia Beverly Hills",
+    "producto": "Brow Freeze",
+    "precio": 310,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products-33330091.html",
+    "precio_desde": true
+   },
+   "parecido": "algo",
+   "base": "Las dos son ceras para peinar y fijar las cejas hacia arriba, con efecto laminado.",
+   "dif": [
+    "No tenemos la ficha de ingredientes de la cera de Farmasi para comparar fórmula."
+   ],
+   "favor": [
+    "Mismo uso: cejas peinadas y fijas todo el día."
+   ],
+   "ojo": "El nivel de fijación no lo hemos comparado; si la clienta tiene cejas muy rebeldes, que lo pruebe primero.",
+   "decirle": "Se parece al Brow Freeze de Anastasia: cera para fijar las cejas con efecto laminado. No te puedo confirmar que fije igual."
+  },
+  {
+   "id": "lapiz-cejas",
+   "cat": "Ojos y cejas",
+   "farmasi": "Precision Brow Pencil",
+   "catalogo": "Precision Brow Pencil",
+   "ref": {
+    "marca": "Anastasia Beverly Hills",
+    "producto": "Brow Wiz",
+    "precio": 750,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products/anastasia-beverly-hills-brow-wiz-7551.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son lápices de punta ultrafina para dibujar pelito por pelito y rellenar la ceja.",
+   "dif": [
+    "El Brow Wiz tiene más tonos.",
+    "El de Farmasi es de fórmula de larga duración con ceras y vitamina E."
+   ],
+   "favor": [
+    "Punta fina para un trazo natural."
+   ],
+   "ojo": "Revisa que el tono le quede a la clienta; hay menos opciones.",
+   "decirle": "Se parece al Brow Wiz de Anastasia: lápiz de punta ultrafina para dibujar pelito por pelito."
+  },
+  {
+   "id": "serum-pestanas",
+   "cat": "Ojos y cejas",
+   "farmasi": "Eyebrow & Lash Capixyl Serum",
+   "catalogo": "Eyebrow & Lash Capixyl Serum",
+   "ref": {
+    "marca": "The Ordinary",
+    "producto": "Multi-Peptide Lash and Brow Serum",
+    "precio": 365,
+    "tam": "5 ml",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/the-ordinary-multi-peptide-lash-and-brow-serum-suero-para-pestanas-y-cejas-con-peptidos.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son sérums para pestañas y cejas con péptidos, para que se vean más llenas.",
+   "dif": [
+    "El de Farmasi usa Capixyl, un complejo con péptido y extracto de trébol rojo.",
+    "Algunos sérums famosos (como RevitaLash) usan otro tipo de activo; este no es igual a esos."
+   ],
+   "favor": [
+    "Mismo enfoque de péptidos, que suele ser suave para el ojo."
+   ],
+   "ojo": "Ningún sérum de este tipo da resultados de un día para otro; no prometas cuánto van a crecer. El de The Ordinary cuesta menos; si la clienta compara por precio, díselo con honestidad.",
+   "decirle": "Es del estilo del sérum de péptidos de The Ordinary. No es como RevitaLash, que usa otro activo. Los resultados se ven con constancia, en semanas."
+  },
+  {
+   "id": "mascara-volumen",
+   "cat": "Ojos y cejas",
+   "farmasi": "Full Blast Volume Mascara",
+   "catalogo": "Full Blast Volume Mascara",
+   "ref": {
+    "marca": "Too Faced",
+    "producto": "Better Than Sex",
+    "precio": 685,
+    "tam": "8 ml",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products/too-faced-better-than-sex-mascara-8261.html"
+   },
+   "parecido": "confirmar",
+   "base": "Las dos son máscaras de volumen intenso para un look dramático.",
+   "dif": [
+    "El cepillo y la fórmula son distintos; no las hemos comparado lado a lado."
+   ],
+   "favor": [
+    "Pensada para dar volumen desde la primera capa."
+   ],
+   "ojo": "Solo coinciden en el objetivo (volumen). No digas que es la Better Than Sex.",
+   "decirle": "No te puedo confirmar que sea como la Better Than Sex; las dos son de volumen dramático, pero son fórmulas distintas."
+  },
+  {
+   "id": "paletas-9",
+   "cat": "Ojos y cejas",
+   "farmasi": "Paletas de 9 sombras (Lost Lagoon, Mirage, Royal Cherry…)",
+   "catalogo": "Lost Lagoon Palette",
+   "ref": {
+    "marca": "Huda Beauty",
+    "producto": "Nude Obsessions",
+    "precio": 560,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products/huda-beauty-nude-obsessions-eyeshadow-palette-paleta-de-sobras-de-ojos-17660.html"
+   },
+   "parecido": "confirmar",
+   "base": "Las dos son paletas compactas de 9 sombras con una gama de color por paleta.",
+   "dif": [
+    "Los tonos y acabados de cada paleta son distintos.",
+    "Lost Lagoon es de 9 mates tierra; Royal Cherry combina mate, satinado y metálico."
+   ],
+   "favor": [
+    "Formato de 9 tonos fácil de llevar.",
+    "Lost Lagoon es libre de talco."
+   ],
+   "ojo": "Solo coinciden en el formato. Compara por tonos, no por marca.",
+   "decirle": "Son paletas de 9 sombras como las Obsessions de Huda, pero los tonos son propios. Dime qué colores buscas y te digo cuál te queda."
+  },
+  {
+   "id": "delineador-ink",
+   "cat": "Ojos y cejas",
+   "farmasi": "Ink Liner",
+   "catalogo": "Ink Liner",
+   "ref": {
+    "marca": "Stila",
+    "producto": "Stay All Day Waterproof Liquid Eye Liner",
+    "precio": null,
+    "tam": "",
+    "tienda": "Amazon México (no pudimos leer el precio)",
+    "url": "https://www.amazon.com.mx/Stila-Stay-All-Day-impermeable/dp/B0031NNE56"
+   },
+   "parecido": "confirmar",
+   "base": "Los dos son delineadores líquidos de punta para trazo preciso.",
+   "dif": [
+    "No tenemos la ficha del Ink Liner para saber si es a prueba de agua."
+   ],
+   "favor": [
+    "Trazo preciso para delineado fino o cat eye."
+   ],
+   "ojo": "No digas que es a prueba de agua mientras no lo confirmemos.",
+   "decirle": "Es un delineador líquido de punta como el Stay All Day de Stila. No te puedo confirmar que sea igual de resistente al agua."
+  },
+  {
+   "id": "latina-lip-liquor",
+   "cat": "Labios",
+   "farmasi": "Latina Lip Liquor",
+   "catalogo": "Latina Lip Liquor",
+   "ref": {
+    "marca": "Dior",
+    "producto": "Addict Lip Glow",
+    "precio": 910,
+    "tam": "3.5 g",
+    "tienda": "El Palacio de Hierro",
+    "url": "https://www.elpalaciodehierro.com/dior-balsamo-de-labios-hidratante-dior-addict-lip-glow-3.5-gr-41805241.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos cambian de tono al combinarse con el pH de tus labios, así que el color queda un poco distinto en cada persona.",
+   "dif": [
+    "El Lip Glow de Dior es un bálsamo en barra; el Latina Lip Liquor es líquido, con acabado más brilloso.",
+    "El Latina lleva manteca de karité en la fórmula."
+   ],
+   "favor": [
+    "Cuesta menos de la mitad.",
+    "Mismo efecto de color personalizado."
+   ],
+   "ojo": "La textura no es igual: si la clienta quiere el bálsamo en barra de Dior, este se siente más como gloss.",
+   "decirle": "Se parece al Lip Glow de Dior en que el color cambia con el pH de tus labios. La diferencia es que este es líquido, más tipo gloss, y cuesta menos de la mitad."
+  },
+  {
+   "id": "lip-oil",
+   "cat": "Labios",
+   "farmasi": "Lip Oil",
+   "catalogo": "Lip Oil",
+   "ref": {
+    "marca": "Dior",
+    "producto": "Addict Lip Glow Oil",
+    "precio": 970,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products-88995313.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son aceites labiales con brillo que hidratan con aceites vegetales.",
+   "dif": [
+    "El de Farmasi lleva aceite de macadamia, aguacate y girasol con vitamina E.",
+    "El de Dior es el más conocido de este formato y tiene más tonos."
+   ],
+   "favor": [
+    "Cuesta como una tercera parte.",
+    "Hay versión transparente para solo brillo e hidratación."
+   ],
+   "ojo": "No los hemos comparado en duración ni en qué tan pegajosos se sienten.",
+   "decirle": "Se parece más al Lip Glow Oil de Dior: aceite labial con brillo que hidrata. No es la misma fórmula, pero es el mismo tipo de producto por como una tercera parte del precio."
+  },
+  {
+   "id": "lip-plumper",
+   "cat": "Labios",
+   "farmasi": "Tinted Lip Plumper",
+   "catalogo": "Tinted Lip Plumper",
+   "tam": "8 ml",
+   "ref": {
+    "marca": "Dior",
+    "producto": "Addict Lip Maximizer",
+    "precio": 970,
+    "tam": "6 ml",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products-88990738.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son glosses con color que buscan que los labios se vean más llenos.",
+   "dif": [
+    "El Lip Maximizer es famoso por el cosquilleo que da el efecto volumen.",
+    "En la ficha publicada del de Farmasi no aparece un activo voluminizador entre los primeros ingredientes."
+   ],
+   "favor": [
+    "Trae más producto (8 ml contra 6 ml) por menos de la mitad del precio."
+   ],
+   "ojo": "No podemos confirmar que el efecto de volumen sea tan marcado como el del Lip Maximizer. Véndelo por el color y el brillo.",
+   "decirle": "Es del estilo del Lip Maximizer de Dior: gloss con color que hace ver los labios más llenos. No te puedo prometer el mismo efecto de volumen."
+  },
+  {
+   "id": "gloss",
+   "cat": "Labios",
+   "farmasi": "Ultimate Shine Lip Gloss",
+   "catalogo": "Ultimate Shine Lip Gloss",
+   "ref": {
+    "marca": "Fenty Beauty",
+    "producto": "Gloss Bomb",
+    "precio": 525,
+    "tam": "9 ml",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products/fenty-gloss-bomb-universal-lip-luminizer-11954.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son glosses de brillo intenso que se sienten cómodos y no pegajosos.",
+   "dif": [
+    "El de Farmasi lleva manteca de karité, aceite de aguacate y manteca de murumuru.",
+    "El Gloss Bomb tiene el aplicador grande y un aroma muy característico."
+   ],
+   "favor": [
+    "Cuesta menos.",
+    "Mantecas y aceites que hidratan."
+   ],
+   "ojo": "No sabemos el tamaño exacto del Ultimate Shine; compáralo por pieza, no por mililitro.",
+   "decirle": "Se parece al Gloss Bomb de Fenty: brillo intenso y nada pegajoso. Este además lleva karité y aguacate."
+  },
+  {
+   "id": "peptide-lip-balm",
+   "cat": "Labios",
+   "farmasi": "Glowy Peptide Lip Balm",
+   "catalogo": "Glowy Peptide Lip Balm",
+   "ref": {
+    "marca": "Rhode",
+    "producto": "Peptide Lip Treatment",
+    "precio": 460,
+    "tam": "",
+    "tienda": "rhodeskin.com (México)",
+    "url": "https://www.rhodeskin.com/en-mx/collections/peptide-lip-treatment",
+    "nota": "Precio mostrado en el sitio de Rhode para México; la página no indica la moneda."
+   },
+   "parecido": "algo",
+   "base": "Los dos son bálsamos labiales con péptidos que hidratan y dejan los labios con brillo.",
+   "dif": [
+    "No tenemos la ficha de ingredientes del bálsamo de Farmasi para comparar fórmula."
+   ],
+   "favor": [
+    "Mismo concepto de tratamiento labial con brillo."
+   ],
+   "ojo": "Rhode se volvió famoso por este producto; no digas que es el mismo, solo del mismo tipo.",
+   "decirle": "Es del mismo tipo que el Peptide Lip Treatment de Rhode: bálsamo con péptidos que hidrata y da brillo. No te puedo confirmar que sea igual."
+  },
+  {
+   "id": "labial-mate",
+   "cat": "Labios",
+   "farmasi": "Matte Liquid Lipstick",
+   "catalogo": "Matte Liquid Lipstick",
+   "ref": {
+    "marca": "Huda Beauty",
+    "producto": "Liquid Matte",
+    "precio": 600,
+    "tam": "",
+    "tienda": "Sephora México (aparecía agotado)",
+    "url": "https://www.sephora.com.mx/products-1122059.html"
+   },
+   "parecido": "confirmar",
+   "base": "Los dos son labiales líquidos mate de larga duración.",
+   "dif": [
+    "Huda describe el suyo como ultracómodo y a prueba de transferencia; no lo hemos comparado."
+   ],
+   "favor": [
+    "Color intenso y mate que dura todo el día.",
+    "Aplicador en forma de almendra."
+   ],
+   "ojo": "Como muchos mates de larga duración, puede resecar; recomienda exfoliar e hidratar antes.",
+   "decirle": "Hay muchos labiales líquidos mate como el de Huda; no te puedo confirmar que sea igual, pero es mate, intenso y de larga duración."
+  },
+  {
+   "id": "agua-micelar",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Micellar Water",
+   "catalogo": "Dr. C. Tuna Micellar Water (225 ml)",
+   "tam": "225 ml",
+   "ref": {
+    "marca": "Bioderma",
+    "producto": "Sensibio H2O",
+    "precio": 348.6,
+    "tam": "250 ml (la página también dice 100 ml)",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/bioderma-sensibio-h2o-250-ml.html"
+   },
+   "parecido": "algo",
+   "base": "Las dos son aguas micelares para desmaquillar y limpiar sin enjuague.",
+   "dif": [
+    "Sensibio está formulada especialmente para piel sensible y es la referencia en farmacia.",
+    "No tenemos la ficha de ingredientes del agua micelar de Farmasi."
+   ],
+   "favor": [
+    "Mismo uso diario para desmaquillar."
+   ],
+   "ojo": "Si la clienta tiene piel muy sensible o reactiva, que haga prueba en una zona pequeña primero.",
+   "decirle": "Es del mismo tipo que la Sensibio de Bioderma: agua micelar para desmaquillar sin enjuagar."
+  },
+  {
+   "id": "tonico-calendula",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Calendula Face Toner",
+   "catalogo": "Dr. C. Tuna Calendula Face Toner (125 ml)",
+   "tam": "125 ml",
+   "ref": {
+    "marca": "Kiehl's",
+    "producto": "Calendula Herbal-Extract Toner",
+    "precio": 800,
+    "tam": "250 ml",
+    "tienda": "El Palacio de Hierro",
+    "url": "https://www.elpalaciodehierro.com/kiehls-tonico-facial-calendula-herbal-extract-toner-250-ml-44146844.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son tónicos calmantes de caléndula para piel seca o sensible.",
+   "dif": [
+    "El de Kiehl's es conocido porque trae pétalos de caléndula dentro del frasco.",
+    "El de Farmasi lleva PCA de sodio para hidratar y agua de manzanilla."
+   ],
+   "favor": [
+    "Calma y refresca piel seca o sensible.",
+    "Trae PCA de sodio, que ayuda a retener la hidratación."
+   ],
+   "ojo": "Compara por mililitro: el de Farmasi trae 125 ml.",
+   "decirle": "Se parece al tónico de caléndula de Kiehl's: calma y refresca, ideal para piel seca o sensible."
+  },
+  {
+   "id": "tea-tree-serum",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Tea Tree Serum",
+   "catalogo": "Dr. C. Tuna Tea Tree Serum (10 ml)",
+   "tam": "10 ml",
+   "ref": {
+    "marca": "The Body Shop",
+    "producto": "Tea Tree Oil",
+    "precio": null,
+    "tam": "10 ml",
+    "tienda": "Amazon México (no pudimos leer el precio)",
+    "url": "https://www.amazon.com.mx/Body-Shop-Tree-Oil-Vegan/dp/B00L2QFR22"
+   },
+   "parecido": "algo",
+   "base": "Los dos son productos de árbol de té en frasco pequeño para aplicar en granitos e imperfecciones.",
+   "dif": [
+    "No tenemos la ficha del sérum de Farmasi para comparar concentración."
+   ],
+   "favor": [
+    "Mismo tamaño (10 ml) y mismo uso puntual."
+   ],
+   "ojo": "El árbol de té puede irritar piel sensible; se aplica solo en la zona.",
+   "decirle": "Es del mismo tipo que el Tea Tree Oil de The Body Shop: árbol de té para aplicar directo en granitos."
+  },
+  {
+   "id": "tea-tree-wash",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Tea Tree Face Wash",
+   "catalogo": "Dr. C. Tuna Tea Tree Face Wash (100 ml)",
+   "tam": "100 ml",
+   "ref": {
+    "marca": "The Body Shop",
+    "producto": "Tea Tree Skin Clearing Facial Wash",
+    "precio": null,
+    "tam": "250 ml",
+    "tienda": "Amazon México (no pudimos leer el precio)",
+    "url": "https://www.amazon.com.mx/Body-Shop-Clearing-Facial-Regular/dp/B002K8W58K"
+   },
+   "parecido": "algo",
+   "base": "Los dos son limpiadores faciales de árbol de té para piel mixta o grasa con imperfecciones.",
+   "dif": [
+    "The Body Shop tiene la línea Tea Tree más conocida; la de Farmasi es de la línea Dr. C. Tuna."
+   ],
+   "favor": [
+    "Línea completa (limpiador, tónico, crema, sérum) para armar rutina."
+   ],
+   "ojo": "Compara por mililitro: el de Farmasi trae 100 ml.",
+   "decirle": "Es del estilo de la línea Tea Tree de The Body Shop: limpiador para piel grasa o con granitos."
+  },
+  {
+   "id": "balsamo-crema",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Cream Balsam (Tea Tree o Calendula)",
+   "catalogo": "Dr. C. Tuna Tea Tree Cream Balsam (80 ml)",
+   "tam": "80 ml",
+   "ref": {
+    "marca": "La Roche-Posay",
+    "producto": "Cicaplast Baume B5",
+    "precio": 461,
+    "tam": "40 ml",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/la-roche-posay-cicaplast-baume-b5-40-ml.html"
+   },
+   "parecido": "confirmar",
+   "base": "Los dos son bálsamos espesos de «rescate» para piel reseca o irritada, en rostro o cuerpo.",
+   "dif": [
+    "Cicaplast se basa en pantenol y es de uso dermatológico; el de Farmasi se basa en escualeno, vaselina y aceites."
+   ],
+   "favor": [
+    "Trae el doble de producto (80 ml)."
+   ],
+   "ojo": "Las fórmulas son distintas. Para piel lastimada o irritada por tratamientos, que lo consulte con su dermatólogo.",
+   "decirle": "No te puedo confirmar que sea como el Cicaplast; los dos son bálsamos para piel reseca, pero la fórmula es distinta."
+  },
+  {
+   "id": "hydra-drops",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Aqua Boosting Hydra Drops",
+   "catalogo": "Dr. C. Tuna Aqua Boosting Hydra Drops (30 ml)",
+   "tam": "30 ml",
+   "ref": {
+    "marca": "Vichy",
+    "producto": "Minéral 89",
+    "precio": 622,
+    "tam": "50 ml",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/vichy-mineral-89-con-50-ml.html"
+   },
+   "parecido": "algo",
+   "base": "Los dos son sérums ligeros de ácido hialurónico para hidratar piel deshidratada.",
+   "dif": [
+    "Minéral 89 se basa en agua volcánica y ácido hialurónico.",
+    "El de Farmasi usa PatcH2O (alginato, pululano y ácido hialurónico)."
+   ],
+   "favor": [
+    "Textura ligera de absorción rápida.",
+    "Probado dermatológicamente."
+   ],
+   "ojo": "Por mililitro, Minéral 89 sale más barato (50 ml contra 30 ml). Véndelo por la textura y la rutina Aqua completa.",
+   "decirle": "Se parece al Minéral 89 de Vichy: sérum ligero con ácido hialurónico para hidratar. No es la misma fórmula."
+  },
+  {
+   "id": "retinol",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Resurface Retinol Reviving Serum",
+   "catalogo": "Dr. C. Tuna Resurface Retinol Reviving Serum (30 ml)",
+   "tam": "30 ml",
+   "ref": {
+    "marca": "La Roche-Posay",
+    "producto": "Retinol B3 Serum",
+    "precio": 1675,
+    "tam": "30 ml",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/suero-antiedad-para-arrugas-profundas-la-roche-posay-retinol-b3-serum-30-ml.html"
+   },
+   "parecido": "confirmar",
+   "base": "Los dos son sérums de retinol para noche, enfocados en líneas finas y textura.",
+   "dif": [
+    "No tenemos la concentración de retinol del sérum de Farmasi para comparar."
+   ],
+   "favor": [
+    "Parte de una rutina completa (Resurface)."
+   ],
+   "ojo": "Este sérum de Farmasi cuesta más que la referencia. Con retinol siempre se usa bloqueador de día y se empieza poco a poco.",
+   "decirle": "No te puedo confirmar que sea como el Retinol B3 de La Roche-Posay; los dos son sérums de retinol de noche, pero no conocemos la concentración."
+  },
+  {
+   "id": "lumi-serum",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Lumi Radiance Brightening Serum",
+   "catalogo": "Dr. C. Tuna Lumi Radiance Brightening Serum (30 ml)",
+   "tam": "30 ml",
+   "ref": {
+    "marca": "The Ordinary",
+    "producto": "Alpha Arbutin 2% + HA",
+    "precio": 316,
+    "tam": "",
+    "tienda": "Farmacias del Ahorro",
+    "url": "https://www.fahorro.com/the-ordinary-alpha-arbutin-2-ha-suero-antihiperpigmentacion-con-alfa-arbutina.html"
+   },
+   "parecido": "confirmar",
+   "base": "La línea Lumi Radiance usa extracto de gayuba (fuente de alfa arbutina) para iluminar; el de The Ordinary es alfa arbutina al 2 %.",
+   "dif": [
+    "No tenemos la ficha del sérum Lumi para saber cuánta arbutina lleva."
+   ],
+   "favor": [
+    "Línea completa para iluminar (limpiador, tónico, sérum, crema, contorno)."
+   ],
+   "ojo": "The Ordinary suele ser más barato. Si la clienta solo quiere el activo, díselo con honestidad; si quiere rutina completa, aquí la tiene.",
+   "decirle": "No te puedo confirmar que sea como el Alpha Arbutin de The Ordinary; la línea Lumi usa gayuba, que es fuente de arbutina, pero no conocemos la concentración."
+  },
+  {
+   "id": "vitamina-c",
+   "cat": "Cuidado de la piel",
+   "farmasi": "Dr. C. Tuna Vitamin C Glow Serum",
+   "catalogo": "Dr. C. Tuna Vitamin C Glow Serum (30 ml)",
+   "tam": "30 ml",
+   "ref": {
+    "marca": "SkinCeuticals",
+    "producto": "C E Ferulic",
+    "precio": null,
+    "tam": "30 ml",
+    "tienda": "sin precio verificado",
+    "url": ""
+   },
+   "parecido": "confirmar",
+   "base": "Los dos son sérums de vitamina C para dar luminosidad.",
+   "dif": [
+    "C E Ferulic tiene una fórmula específica (vitamina C, vitamina E y ácido ferúlico) con estudios propios; no conocemos la del sérum de Farmasi."
+   ],
+   "favor": [
+    "Sérum de vitamina C dentro de la línea Dr. C. Tuna, para sumar a una rutina."
+   ],
+   "ojo": "No digas que es equivalente al de SkinCeuticals.",
+   "decirle": "No te puedo confirmar que sea como el C E Ferulic de SkinCeuticals. Es un sérum de vitamina C para luminosidad, pero no es la misma fórmula."
+  },
+  {
+   "id": "aceite-cabello",
+   "cat": "Cabello",
+   "farmasi": "Dr. C. Tuna Reviving Hair Oil",
+   "catalogo": "Dr. C. Tuna Reviving Hair Oil (30 ml)",
+   "tam": "30 ml",
+   "ref": {
+    "marca": "Moroccanoil",
+    "producto": "Treatment",
+    "precio": 500,
+    "tam": "",
+    "tienda": "Sephora México",
+    "url": "https://www.sephora.com.mx/products-11220259.html",
+    "precio_desde": true
+   },
+   "parecido": "confirmar",
+   "base": "Los dos son aceites capilares ligeros para puntas, brillo y frizz.",
+   "dif": [
+    "Moroccanoil se basa en aceite de argán; no tenemos la ficha del aceite de Farmasi."
+   ],
+   "favor": [
+    "Frasco pequeño para probar."
+   ],
+   "ojo": "Solo coinciden en el tipo de producto.",
+   "decirle": "No te puedo confirmar que sea como el Moroccanoil; los dos son aceites para puntas y brillo, pero la fórmula es distinta."
+  },
+  {
+   "id": "reina",
+   "cat": "Perfumes",
+   "farmasi": "Reina Eau de Parfum",
+   "catalogo": "Reina Eau de Parfum (45 ml)",
+   "tam": "45 ml",
+   "ref": {
+    "marca": "Yves Saint Laurent",
+    "producto": "Black Opium",
+    "precio": null,
+    "tam": "",
+    "tienda": "Sephora México (sin precio, no disponible el día de la revisión)",
+    "url": "https://www.sephora.com.mx/products/yves-saint-laurent-black-opium-eau-de-parfum-intense-15643.html"
+   },
+   "parecido": "algo",
+   "base": "La pirámide publicada de Reina Midnight (pera, pimienta rosa, café, jazmín, azahar, vainilla, pachulí, cedro) es muy parecida a la de Black Opium. En ScentVerdict lo comparan directamente con Black Opium y en Parfumo lo relacionan con Black Opium Nuit Blanche.",
+   "dif": [
+    "Black Opium es más conocido por su duración y estela; no lo hemos comparado lado a lado.",
+    "Revisa en la caja si es Reina o Reina Midnight: las notas de arriba son de Reina Midnight."
+   ],
+   "favor": [
+    "Misma familia: café con vainilla y flores blancas.",
+    "Precio mucho menor."
+   ],
+   "ojo": "No digas que huele igual. Di que es de la misma familia.",
+   "decirle": "Se parece más a Black Opium de YSL: café, vainilla y flores blancas. No te digo que huela idéntico, pero va en la misma línea.",
+   "fuentes": [
+    [
+     "ScentVerdict",
+     "https://scentverdict.com/perfume/farmasi-reina-midnight-eau-de-parfum"
+    ],
+    [
+     "Parfumo",
+     "https://www.parfumo.com/Perfumes/Farmasi/Reina_Midnight"
+    ]
+   ]
+  },
+  {
+   "id": "baoli",
+   "cat": "Perfumes",
+   "farmasi": "Baoli Eau de Parfum (hombre)",
+   "catalogo": "Baoli Eau de Parfum (90 ml)",
+   "tam": "90 ml",
+   "ref": {
+    "marca": "Abercrombie & Fitch",
+    "producto": "Fierce",
+    "precio": 2200,
+    "tam": "100 ml",
+    "tienda": "El Palacio de Hierro",
+    "url": "https://www.elpalaciodehierro.com/abercrombie-fitch-perfume-af-fierce-cologne-eau-de-toilette-100-ml-para-hombre-43369644.html"
+   },
+   "parecido": "algo",
+   "base": "Fresco, aromático y amaderado (lavanda, naranja amarga, salvia, abeto, musgo de roble, vetiver). En Parfumo varios usuarios lo comparan con Fierce de Abercrombie & Fitch, y algunos con Montblanc Legend.",
+   "dif": [
+    "La comparación viene de opiniones de usuarios, no de la marca.",
+    "Algunos lo sienten más acuático que Fierce."
+   ],
+   "favor": [
+    "Muy bien calificado en Parfumo (8.1 de 10 con 48 votos)."
+   ],
+   "ojo": "Si el cliente busca exactamente Fierce, que lo huela primero.",
+   "decirle": "Se parece más a Fierce de Abercrombie: fresco y amaderado. Hay quien también le encuentra algo de Montblanc Legend. No te digo que sea idéntico.",
+   "fuentes": [
+    [
+     "Parfumo",
+     "https://www.parfumo.com/Perfumes/Farmasi/baoli"
+    ]
+   ]
+  },
+  {
+   "id": "hera",
+   "cat": "Perfumes",
+   "farmasi": "Hera Eau de Parfum",
+   "catalogo": "Hera Eau de Parfum (65 ml)",
+   "tam": "65 ml",
+   "ref": null,
+   "parecido": "confirmar",
+   "base": "Floral blanco suave: grosella negra, mandarina y neroli; azahar y jazmín; almizcle, haba tonka y ámbar.",
+   "dif": [],
+   "favor": [
+    "Floral fácil de usar de día."
+   ],
+   "ojo": "No encontramos una comparación confiable con un perfume de marca. Descríbelo por sus notas.",
+   "decirle": "No te puedo comparar Hera con uno de marca. Es un floral blanco suave, con azahar, jazmín y un fondo de almizcle y ámbar.",
+   "fuentes": [
+    [
+     "Parfumo",
+     "https://www.parfumo.com/Perfumes/Farmasi/hera"
+    ],
+    [
+     "ScentVerdict",
+     "https://scentverdict.com/perfume/farmasi-hera-eau-de-parfum"
+    ]
+   ]
+  },
+  {
+   "id": "her-passion",
+   "cat": "Perfumes",
+   "farmasi": "Her Passion Eau de Parfum",
+   "catalogo": "Her Passion Eau de Parfum (60 ml)",
+   "tam": "60 ml",
+   "ref": null,
+   "parecido": "confirmar",
+   "base": "Floral dulce: notas verdes, frutales y bergamota; jazmín, lirio e ylang-ylang; ámbar, caramelo y almizcle.",
+   "dif": [],
+   "favor": [
+    "Floral con fondo dulce de caramelo."
+   ],
+   "ojo": "No encontramos una comparación confiable con un perfume de marca. Descríbelo por sus notas.",
+   "decirle": "No te puedo comparar Her Passion con uno de marca. Es un floral dulce, con jazmín e ylang-ylang y un fondo de caramelo.",
+   "fuentes": [
+    [
+     "ScentVerdict",
+     "https://scentverdict.com/perfume/farmasi-her-passion-eau-de-parfum"
+    ]
+   ]
+  }
+ ],
+ "sin_comparacion": "Todavía sin comparación confiable: His Power, Shooter's Man y Masculine (perfumes de hombre), suplementos Nutriplus, brochas, jabones y la línea Masculine de cuidado. Si te preguntan por ellos, descríbelos por lo que hacen."
+}
