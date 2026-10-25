@@ -1,11 +1,11 @@
 {
  "actualizado": "2026-10-25",
- "hora": "12:11",
+ "hora": "12:41",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 584,
-  "agregados": 26,
-  "pedidos": 5,
+  "visitas": 605,
+  "agregados": 27,
+  "pedidos": 6,
   "wa": 0
  },
  "dias": [
@@ -51,7 +51,7 @@
   },
   {
    "d": "2026-10-25",
-   "v": 13
+   "v": 34
   }
  ],
  "consultoras": [
@@ -89,6 +89,13 @@
    "visitas": 2,
    "catalogo": 0,
    "pedidos": 0
+  },
+  {
+   "slug": "danny",
+   "nombre": "Danny",
+   "visitas": 1,
+   "catalogo": 0,
+   "pedidos": 1
   },
   {
    "slug": "mar",
@@ -135,13 +142,6 @@
   {
    "slug": "andrea",
    "nombre": "Andrea",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "danny",
-   "nombre": "Danny",
    "visitas": 0,
    "catalogo": 0,
    "pedidos": 0
@@ -224,6 +224,11 @@
    "agregados": 2
   },
   {
+   "code": "1002161",
+   "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+   "agregados": 1
+  },
+  {
    "code": "PK102736",
    "name": "Protección Mística Kit de skincare",
    "agregados": 1
@@ -287,6 +292,27 @@
     {
      "code": "1000272",
      "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+     "n": 1
+    }
+   ]
+  },
+  "danny": {
+   "agregados": [
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    }
+   ],
+   "vistos": [
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    },
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
      "n": 1
     }
    ]
