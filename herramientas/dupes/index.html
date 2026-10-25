@@ -71,6 +71,8 @@ h1{font-size:clamp(32px,8vw,44px);line-height:1.04;font-weight:800;letter-spacin
 .fila small{display:block;color:var(--muted);font-size:14px;margin-top:2px}
 .fila small em{font-style:normal;color:var(--ink);font-weight:500}
 .fila .der{display:flex;align-items:center;gap:12px;flex:none}
+.fila .foto{width:52px;height:52px;flex:none;object-fit:contain;background:#f6f6f8;border-radius:10px}
+.f-foto{display:block;width:100%;max-height:220px;object-fit:contain;background:#f6f6f8;border-radius:14px;margin:6px 0 12px}
 .delta{font-family:var(--f-num);font-variant-numeric:tabular-nums;font-size:14px;min-width:52px;text-align:right;color:var(--muted);line-height:1.15}
 .delta small{display:block;font-family:var(--f-ui);font-size:12px;color:var(--muted);font-weight:400;margin:0}
 .delta.baja{color:var(--accent-text);font-weight:500}
@@ -197,9 +199,14 @@ const fechaLarga=iso=>{try{return new Date(iso+"T12:00:00").toLocaleDateString("
 const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const gc=(path,title)=>{const go=()=>{try{window.goatcounter.count({path:"dupes/"+path,title:title||path,event:true});}catch(_){}};if(window.goatcounter&&window.goatcounter.count)go();else window.addEventListener("load",()=>setTimeout(go,300));};
 
-let D,C={};
+let D,C={},K={};
 try{D=await (await fetch("../../_data/dupes.json?v="+Date.now())).json();}catch(_){ $("#lista").innerHTML='<p class="vacio">No se pudieron cargar las comparaciones. Revisa tu conexión y vuelve a abrir la página.</p>';return; }
-try{(await (await fetch("../../_data/catalogo.json?v="+Date.now())).json()).productos.forEach(p=>C[p.nombre]=p.precio);}catch(_){}
+try{(await (await fetch("../../_data/catalogo.json?v="+Date.now())).json()).productos.forEach(p=>{C[p.nombre]=p.precio;K[p.nombre]=p.codigos&&p.codigos[0];});}catch(_){}
+
+// Fotos de producto: mismas rutas y respaldos que usan las páginas de ventas.
+const fotoRutas=c=>["_400","_400_1","_250","_250_1"].map(x=>`https://content.mx.farmasi.com/Product/${c}${x}.webp`).concat([`https://content.mx.farmasi.com/Product/${c.toLowerCase()}_250_1.webp`,`https://content.mx.farmasi.com/Product/${c}_250.png`]);
+const fotoTag=(p,cls)=>{const c=K[p.catalogo];if(!c)return "";const r=fotoRutas(c);return `<img class="${cls}" src="${r[0]}" data-f="${esc(r.slice(1).join("|"))}" alt="" loading="lazy" decoding="async">`;};
+document.addEventListener("error",e=>{const im=e.target;if(!(im instanceof HTMLImageElement)||!im.dataset.f)return;const [sig,...resto]=im.dataset.f.split("|");if(sig){im.src=sig;im.dataset.f=resto.join("|");}else{im.remove();}},true);
 
 const N={mucho:3,algo:2,confirmar:1};
 const P=D.productos.map(p=>{
@@ -239,7 +246,7 @@ function pintar(){
   const grupos=[...new Set(vis.map(p=>p.cat))];
   $("#lista").innerHTML=grupos.map(g=>`<section class="grupo"><h2>${esc(g)}</h2>${vis.filter(p=>p.cat===g).map(p=>`
     <button type="button" class="fila" data-id="${p.id}" aria-current="${actual===p.id}">
-      <span class="txt"><b>${esc(p.farmasi)}</b><small>${lineaRef(p)}</small></span>
+      ${fotoTag(p,"foto")}<span class="txt"><b>${esc(p.farmasi)}</b><small>${lineaRef(p)}</small></span>
       <span class="der"><span class="delta${p.pct!=null&&p.pct<0?" baja":""}" title="${p.pct!=null?(p.porUnidad?"Diferencia por ml o g":"Diferencia por pieza"):""}">${deltaTxt(p)}</span>
       <span class="meter" data-n="${p.n}" aria-label="${["","No podemos confirmar","Se parece en lo principal","Se parece mucho"][p.n]}"><i></i><i></i><i></i></span></span>
     </button>`).join("")}</section>`).join("");
@@ -290,6 +297,7 @@ function abrir(id,usuario){
   document.querySelectorAll(".fila").forEach(f=>f.setAttribute("aria-current",f.dataset.id===id));
   const L=(t,arr)=>arr&&arr.length?`<div class="bloque"><h3>${t}</h3><ul>${arr.map(x=>`<li>${esc(x)}</li>`).join("")}</ul></div>`:"";
   $("#ficha").innerHTML=`<div class="asa"></div>
+    ${fotoTag(p,"f-foto")}
     <div class="f-top"><span>${esc(p.cat)}</span><button type="button" class="cerrar" id="cerrar" aria-label="Cerrar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6 6 18"/></svg></button></div>
     <h2 class="f-nombre" id="fNombre">${esc(p.farmasi)}</h2>
     <div class="f-vs"><span class="meter" data-n="${p.n}" aria-hidden="true"><i></i><i></i><i></i></span>
