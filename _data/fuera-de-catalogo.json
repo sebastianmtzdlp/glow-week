@@ -1,6 +1,6 @@
 {
  "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
- "actualizado": "2026-10-25",
+ "actualizado": "2026-10-26",
  "grupos": [
   {
    "titulo": "Edición limitada y de temporada",
@@ -163,11 +163,6 @@
      "1002877",
      "FRM CC BODY LOTION LIGHT 110ML",
      1500.0
-    ],
-    [
-     "1002907",
-     "Nutriplus Shake - Strawberry Supreme 27 g",
-     50.0
     ],
     [
      "1002915",
@@ -400,11 +395,6 @@
      "1001360",
      "Vfx Pro Foundation W08",
      560.0
-    ],
-    [
-     "1001389",
-     "Creamy Lipstick 03 Bittersweet",
-     180.0
     ],
     [
      "1001498",
@@ -796,5 +786,5 @@
    ]
   }
  ],
- "hora": "14:30"
+ "hora": "09:06"
 }
