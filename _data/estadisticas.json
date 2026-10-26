@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-25",
- "hora": "20:14",
+ "hora": "22:30",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 613,
+  "visitas": 614,
   "agregados": 27,
   "pedidos": 6,
   "wa": 0
@@ -51,7 +51,7 @@
   },
   {
    "d": "2026-10-25",
-   "v": 42
+   "v": 43
   }
  ],
  "consultoras": [
@@ -399,7 +399,7 @@
     "slug": "master-class-tendencias-2027",
     "titulo": "Master Class Tendencias 2027",
     "desde": "2026-10-25T11:00:00-06:00",
-    "visitas": 8,
+    "visitas": 9,
     "clics": {
      "whatsapp-danny": 2
     }
