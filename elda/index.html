@@ -458,6 +458,8 @@
   .cd-dots{display:flex;gap:5px;margin-top:10px}
   .cd-dots i{width:100%;max-width:18px;height:6px;border-radius:99px;background:var(--line)}
   .cd-dots i.on{background:var(--accent)}
+  .cd.siempre .cd-n,.cd.siempre .cd-dots{display:none}
+  .cd.siempre .cd-l{font-size:17px}
   .cd-dots i.now{background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
   .facts{margin-top:12px;grid-template-columns:1fr 1fr}
   .fact:has(#days){display:none}
@@ -976,7 +978,7 @@
       const idx = Math.max(0, Math.min(total-1, Math.floor((now - start)/864e5)));
       $("cdDots").innerHTML = Array.from({length:total}, (_,i) => `<i class="${ms<=0 || i<idx ? "on" : i===idx ? "now" : ""}"></i>`).join("");
       let n, u, l;
-      if (ms <= 0) { n = "0"; u = "días"; l = tema ? `${SALE} ya terminó. Escríbeme y vemos qué sigue.` : "Las promociones ya terminaron. Escríbeme y vemos qué sigue."; }
+      if (ms <= 0) { n = ""; u = ""; l = "Siempre hay promociones. Escríbeme y te digo cuáles tengo hoy."; $("cd").classList.add("siempre"); } // sin venta vigente: nunca decir que terminaron
       else if (ms < 864e5) { const h = Math.max(1, Math.ceil(ms/36e5)); n = h; u = h === 1 ? "hora" : "horas"; l = tema ? `Último día de ${SALE}` : "Último día de las promociones"; }
       else { n = Math.ceil(ms/864e5); u = n === 1 ? "día" : "días"; l = tema ? `para que termine ${SALE}` : "para que terminen las promociones"; }
       $("cdN").textContent = n; $("cdU").textContent = u; $("cdL").textContent = l;
@@ -993,7 +995,7 @@
 
   const left = Math.ceil((END - new Date())/864e5);
   if (left > 0 && left <= 10) $("days").textContent = left===1 ? "hoy" : `en ${left} días`;
-  else if (left <= 0) $("days").textContent = "terminó";
+  else if (left <= 0) { $("days").textContent = "Siempre"; $("days").previousElementSibling.textContent = "Promos"; }
 
   $("goalTxt").textContent = money(GOAL).replace(".00","");
   $("giftItems").innerHTML = GIFT_ITEMS.map((g,gi)=>`<div class="gift-item" data-gift="${gi}" role="button" tabindex="0"><img src="${IMG}${hd(g.img)}.webp" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>${g.name[0]}</div>'">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
@@ -1198,7 +1200,7 @@
   if (TIENDA) { $("bName").hidden = true; document.querySelector(".top .dot").hidden = true; $("bSeller").textContent = TIENDA; }
   if (D.instagram) { $("ig").textContent = "@" + D.instagram; $("ig").href = "https://instagram.com/" + D.instagram; } else $("ig").hidden = true;
   if (D.instagram) $("soc").innerHTML = `<a href="https://instagram.com/${D.instagram}" target="_blank" rel="noopener">@${D.instagram}</a>`;
-  $("vLabel").textContent = (tema ? "Venta especial" : "Promociones") + " · " + D.venta.fechas;
+  $("vLabel").textContent = END - new Date() <= 0 ? "Promociones de Farmasi" : (tema ? "Venta especial" : "Promociones") + " · " + D.venta.fechas;
   $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who";
     if (TIENDA && !tema) { const w = TIENDA.split(" "), last = w.length > 1 ? w.pop() : ""; who.textContent = last; $("vTitle").append(w.join(" "), document.createElement("br"), who); }
     else { who.textContent = D.venta.subtitulo; $("vTitle").append(TITULO, document.createElement("br"), who); } }
