@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Genera la carpeta de cada consultora a partir de _template y _data/equipo.json.
 Uso: python3 build.py   (no borra promos.json existentes; solo crea los que falten y renueva los HTML)."""
-import hashlib, json, os
+import hashlib, html, json, os
 try:
     import segno
 except ImportError:
@@ -20,12 +20,12 @@ _activa = True
 if _term:
     try: _activa = datetime.now(timezone.utc) <= datetime.fromisoformat(_term).astimezone(timezone.utc)
     except Exception: _activa = True
-def textos(nombre):
+def textos(nombre, tienda=""):
     if _activa and _max:
         desc = "%s: hasta %d%% de descuento. Siempre hay promos para ti: arma tu pedido y mándalo por WhatsApp." % (_ven.get("nombre", "Promos"), _max)
     else:
         desc = "Pronto llega un nuevo evento, y siempre hay promos para ti. Arma tu pedido y mándalo por WhatsApp."
-    return {"title": "Farmasi con " + nombre, "desc": desc, "eyebrow": _ven.get("nombre", "Farmasi") if _activa else "Farmasi"}
+    return {"title": tienda or "Farmasi con " + nombre, "desc": desc, "eyebrow": _ven.get("nombre", "Farmasi") if _activa else "Farmasi"}
 os.makedirs(os.path.join(ROOT, "og"), exist_ok=True)
 TXT = {}
 tpl = open(os.path.join(ROOT, "_template/index.html"), encoding="utf-8").read()
@@ -34,9 +34,9 @@ tar = open(os.path.join(ROOT, "_template/tarjeta/index.html"), encoding="utf-8")
 for c in eq["consultoras"]:
     d = os.path.join(ROOT, c["slug"]); os.makedirs(os.path.join(d, "catalogo"), exist_ok=True)
     ogp = os.path.join(ROOT, "og", c["slug"] + ".png")  # versión = huella de la imagen: WhatsApp vuelve a leerla al cambiar
-    TXT[c["slug"]] = textos(c["nombre"])
+    TXT[c["slug"]] = textos(c["nombre"], c.get("tienda", ""))
     ogv = hashlib.md5(open(ogp, "rb").read()).hexdigest()[:8] if os.path.exists(ogp) else "1"
-    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(tpl.replace("{{NOMBRE}}", c["nombre"]).replace("{{SLUG}}", c["slug"]).replace("{{OGV}}", ogv).replace("{{OGT}}", TXT[c["slug"]]["title"]).replace("{{OGD}}", TXT[c["slug"]]["desc"]))
+    open(os.path.join(d, "index.html"), "w", encoding="utf-8").write(tpl.replace("{{NOMBRE}}", c["nombre"]).replace("{{SLUG}}", c["slug"]).replace("{{TIENDA}}", html.escape(c.get("tienda", ""))).replace("{{TITLE}}", html.escape(TXT[c["slug"]]["title"])).replace("{{OGV}}", ogv).replace("{{OGT}}", html.escape(TXT[c["slug"]]["title"])).replace("{{OGD}}", TXT[c["slug"]]["desc"]))
     open(os.path.join(d, "catalogo/index.html"), "w", encoding="utf-8").write(cat)
     if segno:
         q = segno.make("https://mitienda.beauty/%s/" % c["slug"], error="m", boost_error=False); m = list(q.matrix); qn = len(m)
