@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-27",
- "hora": "03:20",
+ "hora": "05:50",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 664,
+  "visitas": 665,
   "agregados": 29,
   "pedidos": 7,
   "wa": 1
@@ -59,7 +59,7 @@
   },
   {
    "d": "2026-10-27",
-   "v": 2
+   "v": 3
   }
  ],
  "consultoras": [
@@ -92,15 +92,15 @@
    "pedidos": 0
   },
   {
-   "slug": "anaofelia",
-   "nombre": "Ana Ofelia",
+   "slug": "pao",
+   "nombre": "Pao",
    "visitas": 4,
-   "catalogo": 0,
+   "catalogo": 1,
    "pedidos": 0
   },
   {
-   "slug": "pao",
-   "nombre": "Pao",
+   "slug": "anaofelia",
+   "nombre": "Ana Ofelia",
    "visitas": 4,
    "catalogo": 0,
    "pedidos": 0
