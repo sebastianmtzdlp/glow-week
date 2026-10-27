@@ -1,11 +1,11 @@
 {
  "actualizado": "2026-10-26",
- "hora": "12:13",
+ "hora": "20:08",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 619,
-  "agregados": 27,
-  "pedidos": 6,
+  "visitas": 636,
+  "agregados": 29,
+  "pedidos": 7,
   "wa": 0
  },
  "dias": [
@@ -55,7 +55,7 @@
   },
   {
    "d": "2026-10-26",
-   "v": 5
+   "v": 22
   }
  ],
  "consultoras": [
@@ -69,9 +69,9 @@
   {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 41,
+   "visitas": 42,
    "catalogo": 2,
-   "pedidos": 4
+   "pedidos": 5
   },
   {
    "slug": "elda",
@@ -85,6 +85,13 @@
    "nombre": "Moni",
    "visitas": 7,
    "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "sebas",
+   "nombre": "Sebas",
+   "visitas": 2,
+   "catalogo": 1,
    "pedidos": 0
   },
   {
@@ -109,8 +116,8 @@
    "pedidos": 0
   },
   {
-   "slug": "sebas",
-   "nombre": "Sebas",
+   "slug": "pao",
+   "nombre": "Pao",
    "visitas": 1,
    "catalogo": 0,
    "pedidos": 0
@@ -172,13 +179,6 @@
    "pedidos": 0
   },
   {
-   "slug": "pao",
-   "nombre": "Pao",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
    "slug": "yazmin",
    "nombre": "Yazmin",
    "visitas": 0,
@@ -195,7 +195,7 @@
   {
    "code": "PK102734",
    "name": "Besos de Bruja Kit de labios · 7 tonos",
-   "agregados": 3
+   "agregados": 4
   },
   {
    "code": "1000265",
@@ -226,6 +226,11 @@
    "code": "1002598",
    "name": "Precision Brow Pencil Soft Brown",
    "agregados": 2
+  },
+  {
+   "code": "PK102724",
+   "name": "Hechizo de Juventud Kit de cuerpo y rostro",
+   "agregados": 1
   },
   {
    "code": "1002161",
@@ -357,7 +362,7 @@
   "empezar": 1
  },
  "eventos": {
-  "hub": 187,
+  "hub": 189,
   "series": {
    "flowers-to-go": 7
   },
@@ -393,7 +398,7 @@
     "slug": "holiday-glam",
     "titulo": "Holiday Glam",
     "desde": "2026-11-14T10:00:00-06:00",
-    "visitas": 9,
+    "visitas": 10,
     "clics": {
      "whatsapp-nancy": 2,
      "whatsapp-laura": 1
