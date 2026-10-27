@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-27",
- "hora": "11:07",
+ "hora": "11:46",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 697,
+  "visitas": 699,
   "agregados": 30,
   "pedidos": 7,
   "wa": 1
@@ -59,7 +59,7 @@
   },
   {
    "d": "2026-10-27",
-   "v": 35
+   "v": 37
   }
  ],
  "consultoras": [
@@ -78,17 +78,17 @@
    "pedidos": 5
   },
   {
+   "slug": "pao",
+   "nombre": "Pao",
+   "visitas": 14,
+   "catalogo": 3,
+   "pedidos": 0
+  },
+  {
    "slug": "elda",
    "nombre": "Elda",
    "visitas": 15,
    "catalogo": 1,
-   "pedidos": 0
-  },
-  {
-   "slug": "pao",
-   "nombre": "Pao",
-   "visitas": 13,
-   "catalogo": 3,
    "pedidos": 0
   },
   {
@@ -427,7 +427,7 @@
     "desde": "2026-12-05T17:00:00-06:00",
     "visitas": 13,
     "clics": {
-     "whatsapp-nancy": 7,
+     "whatsapp-nancy": 8,
      "compartir": 1,
      "calendario": 1
     }
