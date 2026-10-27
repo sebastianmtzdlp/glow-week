@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-26",
- "hora": "21:12",
+ "hora": "21:45",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 647,
+  "visitas": 656,
   "agregados": 29,
   "pedidos": 7,
   "wa": 1
@@ -55,14 +55,14 @@
   },
   {
    "d": "2026-10-26",
-   "v": 33
+   "v": 42
   }
  ],
  "consultoras": [
   {
    "slug": "viri",
    "nombre": "Viri",
-   "visitas": 52,
+   "visitas": 54,
    "catalogo": 3,
    "pedidos": 1
   },
@@ -95,6 +95,27 @@
    "pedidos": 0
   },
   {
+   "slug": "anaofelia",
+   "nombre": "Ana Ofelia",
+   "visitas": 3,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "pao",
+   "nombre": "Pao",
+   "visitas": 3,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "sam",
+   "nombre": "Sam",
+   "visitas": 3,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
    "slug": "sebas",
    "nombre": "Sebas",
    "visitas": 2,
@@ -102,22 +123,8 @@
    "pedidos": 0
   },
   {
-   "slug": "anaofelia",
-   "nombre": "Ana Ofelia",
-   "visitas": 2,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
    "slug": "gaby",
    "nombre": "Gaby",
-   "visitas": 2,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "pao",
-   "nombre": "Pao",
    "visitas": 2,
    "catalogo": 0,
    "pedidos": 0
