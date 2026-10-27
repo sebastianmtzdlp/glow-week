@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-26",
- "hora": "21:45",
+ "hora": "22:54",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 656,
+  "visitas": 659,
   "agregados": 29,
   "pedidos": 7,
   "wa": 1
@@ -55,7 +55,7 @@
   },
   {
    "d": "2026-10-26",
-   "v": 42
+   "v": 45
   }
  ],
  "consultoras": [
@@ -369,7 +369,7 @@
   "empezar": 1
  },
  "eventos": {
-  "hub": 191,
+  "hub": 192,
   "series": {
    "flowers-to-go": 7
   },
@@ -395,9 +395,10 @@
     "slug": "starlight-ride",
     "titulo": "Starlight Ride",
     "desde": "2026-12-05T17:00:00-06:00",
-    "visitas": 10,
+    "visitas": 11,
     "clics": {
      "whatsapp-nancy": 5,
+     "compartir": 1,
      "calendario": 1
     }
    },
