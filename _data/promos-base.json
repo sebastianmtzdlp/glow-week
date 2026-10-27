@@ -17,24 +17,8 @@
  },
  "meta": {
   "monto": 3000,
-  "regalo": "el set Complete Care",
-  "regalo_items": [
-   {
-    "name": "Gel de Masaje Pimentón y Chile",
-    "retail": 290,
-    "img": "1000305_250"
-   },
-   {
-    "name": "Paprika Massage Soap",
-    "retail": 250,
-    "img": "1002855_250_1"
-   },
-   {
-    "name": "Flaunt It! Body Sculpting Gel",
-    "retail": 725,
-    "img": "1000866_250"
-   }
-  ]
+  "regalo": "un regalo sorpresa",
+  "regalo_items": []
  },
  "productos": [
   {
