@@ -8,6 +8,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <title>Farmasi con Selene</title>
+<meta name="tienda" content="">
 <meta name="description" content="Venta especial de maquillaje con Selene. Elige tus productos y manda tu pedido por WhatsApp.">
 <meta property="og:title" content="Farmasi con Selene">
 <meta property="og:description" content="Pronto llega un nuevo evento, y siempre hay promos para ti. Arma tu pedido y mándalo por WhatsApp.">
@@ -1189,12 +1190,17 @@
   if (tema) { document.documentElement.dataset.tema = tema; if (DECO[tema]) $("deco").innerHTML = DECO[tema]; }
   requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.remove("notrans")));
   // Portada desde promos.json
-  document.title = `${TITULO} ${D.venta.subtitulo}`.trim();
+  // Nombre de la tienda (_data/equipo.json "tienda"): reemplaza "Farmasi con <nombre>" en el titular y el encabezado
+  const TIENDA = (D.tienda || document.querySelector('meta[name="tienda"]')?.content || "").trim();
+  document.title = TIENDA && !tema ? TIENDA : `${TITULO} ${D.venta.subtitulo}`.trim();
   $("bName").textContent = SALE; $("bSeller").textContent = SELLER;
+  if (TIENDA) { $("bName").hidden = true; document.querySelector(".top .dot").hidden = true; $("bSeller").textContent = TIENDA; }
   if (D.instagram) { $("ig").textContent = "@" + D.instagram; $("ig").href = "https://instagram.com/" + D.instagram; } else $("ig").hidden = true;
   if (D.instagram) $("soc").innerHTML = `<a href="https://instagram.com/${D.instagram}" target="_blank" rel="noopener">@${D.instagram}</a>`;
   $("vLabel").textContent = (tema ? "Venta especial" : "Promociones") + " · " + D.venta.fechas;
-  $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who"; who.textContent = D.venta.subtitulo; $("vTitle").append(TITULO, document.createElement("br"), who); }
+  $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who";
+    if (TIENDA && !tema) { const w = TIENDA.split(" "), last = w.length > 1 ? w.pop() : ""; who.textContent = last; $("vTitle").append(w.join(" "), document.createElement("br"), who); }
+    else { who.textContent = D.venta.subtitulo; $("vTitle").append(TITULO, document.createElement("br"), who); } }
   $("vWelcome").textContent = D.venta.bienvenida;
   $("nProds").textContent = products.length;
   $("maxOff").textContent = "−" + Math.max(...products.map(pct)) + "%";
