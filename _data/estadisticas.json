@@ -1,10 +1,10 @@
 {
  "actualizado": "2026-10-27",
- "hora": "09:31",
+ "hora": "10:18",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 679,
-  "agregados": 29,
+  "visitas": 693,
+  "agregados": 30,
   "pedidos": 7,
   "wa": 1
  },
@@ -59,7 +59,7 @@
   },
   {
    "d": "2026-10-27",
-   "v": 17
+   "v": 31
   }
  ],
  "consultoras": [
@@ -87,14 +87,14 @@
   {
    "slug": "pao",
    "nombre": "Pao",
-   "visitas": 10,
+   "visitas": 13,
    "catalogo": 3,
    "pedidos": 0
   },
   {
    "slug": "anaofelia",
    "nombre": "Ana Ofelia",
-   "visitas": 6,
+   "visitas": 7,
    "catalogo": 2,
    "pedidos": 0
   },
@@ -209,6 +209,11 @@
    "agregados": 4
   },
   {
+   "code": "1002161",
+   "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+   "agregados": 2
+  },
+  {
    "code": "1000265",
    "name": "Dr. C. Tuna Aqua Gel Limpiador Hidratación · 100 ml",
    "agregados": 2
@@ -241,11 +246,6 @@
   {
    "code": "PK102724",
    "name": "Hechizo de Juventud Kit de cuerpo y rostro",
-   "agregados": 1
-  },
-  {
-   "code": "1002161",
-   "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
    "agregados": 1
   },
   {
@@ -312,6 +312,32 @@
     {
      "code": "1000272",
      "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+     "n": 1
+    }
+   ]
+  },
+  "pao": {
+   "agregados": [
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    }
+   ],
+   "vistos": [
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    },
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
+     "n": 1
+    },
+    {
+     "code": "1000291",
+     "name": "Dr. C. Tuna Tea Tree Bálsamo Crema Piel grasa · 80 ml",
      "n": 1
     }
    ]
@@ -399,9 +425,9 @@
     "slug": "starlight-ride",
     "titulo": "Starlight Ride",
     "desde": "2026-12-05T17:00:00-06:00",
-    "visitas": 12,
+    "visitas": 13,
     "clics": {
-     "whatsapp-nancy": 5,
+     "whatsapp-nancy": 6,
      "compartir": 1,
      "calendario": 1
     }
