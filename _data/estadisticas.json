@@ -1,10 +1,10 @@
 {
  "actualizado": "2026-10-27",
- "hora": "13:08",
+ "hora": "13:44",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 700,
-  "agregados": 30,
+  "visitas": 705,
+  "agregados": 31,
   "pedidos": 7,
   "wa": 1
  },
@@ -59,7 +59,7 @@
   },
   {
    "d": "2026-10-27",
-   "v": 38
+   "v": 43
   }
  ],
  "consultoras": [
@@ -94,7 +94,7 @@
   {
    "slug": "anaofelia",
    "nombre": "Ana Ofelia",
-   "visitas": 8,
+   "visitas": 9,
    "catalogo": 2,
    "pedidos": 0
   },
@@ -244,6 +244,11 @@
    "agregados": 2
   },
   {
+   "code": "PK102731",
+   "name": "Toque Fantasma Kit de rostro",
+   "agregados": 1
+  },
+  {
    "code": "PK102724",
    "name": "Hechizo de Juventud Kit de cuerpo y rostro",
    "agregados": 1
@@ -312,6 +317,16 @@
     {
      "code": "1000272",
      "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+     "n": 1
+    }
+   ]
+  },
+  "anaofelia": {
+   "agregados": [],
+   "vistos": [
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
      "n": 1
     }
    ]
