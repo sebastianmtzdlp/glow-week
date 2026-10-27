@@ -124,11 +124,11 @@
   try { const B = await (await fetch("_data/promos-base.json?v=" + Date.now(), {cache:"no-store"})).json();
     const dis = p => 1 - p.price/p.retail, seen = new Set(), pics = B.productos.filter(p => p.cat !== "Kits").sort((a,b) => dis(b)-dis(a)).filter(p => !seen.has(p.cat) && seen.add(p.cat)).slice(0,4);
     const fin = B.venta.termina ? new Date(B.venta.termina).getTime() : 0;
-    $("sale").innerHTML = `<div class="hd"><div><b>${B.venta.nombre}</b><div class="fe">${B.venta.fechas}</div></div>${fin?'<span class="cd" id="cd"></span>':""}</div>
+    $("sale").innerHTML = `<div class="hd"><div><b>${fin && Date.now() > fin ? "Promociones" : B.venta.nombre}</b><div class="fe">${fin && Date.now() > fin ? "Cada semana hay algo nuevo" : B.venta.fechas}</div></div>${fin?'<span class="cd" id="cd"></span>':""}</div>
       <div class="ph">${pics.map(p=>`<span><img src="https://content.mx.farmasi.com/Product/${String(p.img).replace("_250","_400")}.webp" alt="" loading="lazy" onerror="this.parentNode.style.visibility='hidden'"></span>`).join("")}</div>
       <p class="tp">Maquillaje y kits con <b>hasta 50% de descuento</b>.</p>
       <div class="bt"><button type="button" id="goPick">Elegir mi consultora</button><button type="button" class="alt" id="goRand">🎲 Asígname una al azar</button></div>`;
-    if (fin) { const t = () => { let d = fin - Date.now(); const el = $("cd"); if (!el) return; if (d <= 0) { el.textContent = "Terminó"; return; } const dd = Math.floor(d/864e5), h = Math.floor(d%864e5/36e5), m = Math.floor(d%36e5/6e4); el.textContent = "Termina en " + (dd ? dd+"d " : "") + h + "h " + m + "m"; }; t(); setInterval(t, 30000); }
+    if (fin) { const t = () => { let d = fin - Date.now(); const el = $("cd"); if (!el) return; if (d <= 0) { el.textContent = "Siempre hay promos"; return; } const dd = Math.floor(d/864e5), h = Math.floor(d%864e5/36e5), m = Math.floor(d%36e5/6e4); el.textContent = "Termina en " + (dd ? dd+"d " : "") + h + "h " + m + "m"; }; t(); setInterval(t, 30000); }
     $("goPick").onclick = () => { $("equipo").scrollIntoView({behavior:"smooth", block:"center"}); setTimeout(() => $("q").focus({preventScroll:true}), 450); };
     $("goRand").onclick = () => { const L = E.consultoras; if (!L.length) return; const pick = L[Math.floor(Math.random()*L.length)], b = $("goRand"); b.disabled = true; let n = 0;
       const iv = setInterval(() => { b.textContent = "🎲 " + L[Math.floor(Math.random()*L.length)].nombre + "…"; if (++n > 12) { clearInterval(iv); b.textContent = "🎲 ¡" + pick.nombre + "!"; try { window.goatcounter && window.goatcounter.count({path:"azar/"+pick.slug, title:"Al azar", event:true}); } catch(_){} setTimeout(() => location.href = pick.slug + "/" + location.search, 650); } }, 90); };
