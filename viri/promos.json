@@ -4,5 +4,52 @@
  "consultora": "Viri",
  "whatsapp": "525517970538",
  "instagram": "",
- "referidas": []
+ "referidas": [],
+ "venta": {
+  "bienvenida": "Mi favorita es la Creatina Nutriplus+, y junto con la Taurina, el Aloe y el Elixir son lo que más recomiendo. Arma tu pedido aquí y me llega directo a WhatsApp. Pregúntame cómo tomar la creatina."
+ },
+ "aviso": {
+  "texto": "Creatina Nutriplus+: la favorita de Viri",
+  "desde": null,
+  "hasta": null,
+  "filtro": "Los favoritos de Viri"
+ },
+ "favoritos": {
+  "titulo": "Los favoritos de Viri",
+  "texto": "Empieza por la Creatina Nutriplus+, mi favorita. Escríbeme y te cuento cómo tomarla y con qué combinarla.",
+  "productos": [
+   {
+    "name": "Creatina Nutriplus+",
+    "shade": "153 g · mi favorita",
+    "code": "1002724",
+    "retail": 550,
+    "price": 550,
+    "img": "1002724_250"
+   },
+   {
+    "name": "Guaraná y Taurina Nutriplus",
+    "shade": "210 g",
+    "code": "1001862",
+    "retail": 920,
+    "price": 920,
+    "img": "1001862_250"
+   },
+   {
+    "name": "Aloe Glow Nutriplus",
+    "shade": "450 ml",
+    "code": "1001319",
+    "retail": 690,
+    "price": 690,
+    "img": "1001319_250"
+   },
+   {
+    "name": "Absolute Super Elixir Dr. C. Tuna",
+    "shade": "25 ml",
+    "code": "1000991",
+    "retail": 1450,
+    "price": 1450,
+    "img": "1000991_250"
+   }
+  ]
+ }
 }
