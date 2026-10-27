@@ -243,7 +243,7 @@
   } catch(e) {}
   WA = C.whatsapp || ""; SELLER = C.consultora || "";
   if (SELLER) { document.title = "Catálogo Farmasi con " + SELLER; $("brandSub").textContent = "Con precios de hoy · pedidos con " + SELLER; $("foot").textContent = `Catálogo oficial Farmasi México 2026. Compartido por ${SELLER}, ${C.genero==="m"?"consultor":"consultora"} independiente. Precios sujetos a existencias.`; }
-  let GOAL = C.meta.monto, GIFT = C.meta.regalo, GIFT_ITEMS = C.meta.regalo_items || [];
+  let GOAL = C.meta.monto, GIFT = /regalo/i.test(C.meta.regalo) ? C.meta.regalo : C.meta.regalo + " de regalo", GIFT_ITEMS = C.meta.regalo_items || [];
   // Membresía: 50% en Dr. C. Tuna (páginas de skincare y masaje), 30% en lo demás; se aplica sobre el precio que ve la clienta
   const M = Object.assign({mostrar:true, meta_monto:2000, costo:499}, C.membresia || {});
   let yaSocia = false; try { yaSocia = localStorage.getItem("glow_socia") === "1"; } catch(_){}
@@ -381,7 +381,7 @@
   // ---------- Pedido ----------
   const totals = () => { let n=0,t=0,r=0; for (const [c,q] of Object.entries(cart)) { n+=q; t+=q*P[c][1]; r+=q*P[c][2]; } return {n,t,r,s:r-t}; };
   function goalHTML(t){ const left = GOAL - t, done = left <= 0;
-    return {done, html: done ? `<b>Ya tienes envío gratis y ${GIFT} de regalo</b>` : `Te faltan <b class="num">${money(left)}</b> para envío gratis y ${GIFT} de regalo`, w: Math.min(100, t/GOAL*100)}; }
+    return {done, html: done ? `<b>Ya tienes envío gratis y ${GIFT}</b>` : `Te faltan <b class="num">${money(left)}</b> para envío gratis y ${GIFT}`, w: Math.min(100, t/GOAL*100)}; }
   function paintBar(){
     const {n,t,s} = totals();
     $("cartbar").hidden = !n; $("hint").hidden = !!n;
@@ -406,7 +406,7 @@
     const items = Object.entries(cart).map(([c,q]) => `• ${q} x ${shortName(P[c][0])} (${c}) — ${money(P[c][1])}`);
     let ent = `Entrega: ${v("cDel")}`;
     if (isShip()) ent += `\nDirección: ${v("aStreet")}, Col. ${v("aCol")}, C.P. ${v("aCP")}, ${v("aCity")}` + (v("aRef") ? `\nReferencias: ${v("aRef")}` : "");
-    const meta = t >= GOAL ? `Mi pedido pasa de ${money(GOAL)}: envío gratis y ${GIFT} de regalo.` : `Me faltan ${money(GOAL - t)} para el envío gratis.`;
+    const meta = t >= GOAL ? `Mi pedido pasa de ${money(GOAL)}: envío gratis y ${GIFT}.` : `Me faltan ${money(GOAL - t)} para el envío gratis.`;
     const mc = mCalc();
     const msg = `Hola ${SELLER}${v("cName") ? ", soy " + v("cName") : ""}${curRef() ? `, vengo de parte de ${curRef()},` : "."} ${curRef() ? "q" : "Q"}uiero este pedido del catálogo:\n\n${items.join("\n")}\n\nTotal: ${money(t)}${s>0 ? " (ahorro " + money(s) + ")" : ""}\n${meta}\n\n${ent}`
       + (yaSocia && !$("mWant")?.checked ? "\n\nYa soy afiliada de Farmasi." : "")

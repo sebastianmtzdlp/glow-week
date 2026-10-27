@@ -545,7 +545,7 @@
     </details>
     <div class="gift">
       <div class="gift-head"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S9 8 12 8zm0 0c2-4 6-4 6-1.5S15 8 12 8z"/></svg>
-        <div>Con <b class="num" id="goalTxt">$3,000</b> o más, el envío es gratis y te llevas de regalo <b id="giftName"></b>.</div></div>
+        <div>Con <b class="num" id="goalTxt">$3,000</b> o más, el envío es gratis y te llevas <b id="giftName"></b>.</div></div>
       <div class="gift-items" id="giftItems"></div>
       <div class="gift-val">Son <b class="num" id="giftVal"></b> en productos que te llevas sin pagar.</div>
     </div>
@@ -708,7 +708,7 @@
   const hd = s => String(s).replace("_250","_400"); // Farmasi solo publica 250 y 400 px: usamos la más nítida
   const END = new Date(D.venta.termina);
   let GOAL = D.meta.monto;
-  const GIFT = D.meta.regalo + " de regalo";
+  const GIFT = /regalo/i.test(D.meta.regalo) ? D.meta.regalo : D.meta.regalo + " de regalo"; // "un regalo sorpresa" no repite "de regalo"
   const GIFT_ITEMS = D.meta.regalo_items || [];
 
   // Productos activos. Flash sale: mientras esté vigente usa su precio; al terminar regresa al precio normal.
@@ -998,6 +998,7 @@
   $("goalTxt").textContent = money(GOAL).replace(".00","");
   $("giftItems").innerHTML = GIFT_ITEMS.map((g,gi)=>`<div class="gift-item" data-gift="${gi}" role="button" tabindex="0"><img src="${IMG}${hd(g.img)}.webp" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>${g.name[0]}</div>'">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
   $("giftVal").textContent = money(GIFT_ITEMS.reduce((a,g)=>a+g.retail,0));
+  if (!GIFT_ITEMS.length) { $("giftItems").style.display = "none"; document.querySelector(".gift-val").style.display = "none"; } // regalo sorpresa: sin productos que mostrar
   // ---------- Asistente "Ayúdame a elegir" ----------
   const HQ = [
     {k:"cats", multi:true, q:"¿Qué te gustaría renovar?", o:[
@@ -1007,7 +1008,7 @@
     {k:"look", q:"¿Qué look buscas?", o:[
       ["natural","Natural, para diario"],["glam","Glam, para salir"],["ambos","Un poco de los dos"]]},
     {k:"budget", q:"¿Cuánto quieres invertir?", o:[
-      ["500","Hasta $500"],["1500","Hasta $1,500"],["3000","Hasta $3,000"],["gift","Llegar a $3,000 por el regalo",`Envío gratis y el set Complete Care`]]},
+      ["500","Hasta $500"],["1500","Hasta $1,500"],["3000","Hasta $3,000"],["gift","Llegar a $3,000 por el regalo",`Envío gratis y ${D.meta.regalo}`]]},
   ];
   let hs = 0, ha = {cats:[]}, hpick = new Set(), hrecs = [];
   const check = '<svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>';
@@ -1079,7 +1080,7 @@
     const sub = sel.reduce((a,r)=>a+r.q*r.p.price,0), save = sel.reduce((a,r)=>a+r.q*(r.p.retail-r.p.price),0);
     const after = totals().t + sub;
     $("hsum").innerHTML = `Selección: <b class="num">${money(sub)}</b> · ahorras <b class="num">${money(save)}</b><br>` +
-      (after>=GOAL ? `<span class="ok">Con esto llegas a ${money(GOAL).replace(".00","")}: envío gratis y el set Complete Care de regalo.</span>`
+      (after>=GOAL ? `<span class="ok">Con esto llegas a ${money(GOAL).replace(".00","")}: envío gratis y ${GIFT}.</span>`
                    : `Con tu pedido quedarías en <b class="num">${money(after)}</b>. Te faltarían <b class="num">${money(GOAL-after)}</b> para el regalo.`);
     $("helpNav").innerHTML = `<button class="back" data-hback>Atrás</button><button class="send" data-hadd ${sel.length?"":"disabled"}>Agregar ${sel.length} al pedido</button>`;
   }
@@ -1204,7 +1205,7 @@
   $("vWelcome").textContent = D.venta.bienvenida;
   $("nProds").textContent = products.length;
   $("maxOff").textContent = "−" + Math.max(...products.map(pct)) + "%";
-  $("giftName").textContent = D.meta.regalo;
+  $("giftName").textContent = GIFT;
   if (!$("days").textContent) $("days").textContent = END.toLocaleDateString("es-MX",{day:"numeric",month:"short"}).replace(".","");
   if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta)) {
     $("bannerTxt").textContent = D.aviso.texto; $("banner").hidden = false;
