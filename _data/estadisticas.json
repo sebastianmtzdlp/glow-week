@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-28",
- "hora": "07:33",
+ "hora": "08:25",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 724,
+  "visitas": 760,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -63,7 +63,7 @@
   },
   {
    "d": "2026-10-28",
-   "v": 2
+   "v": 38
   }
  ],
  "consultoras": [
@@ -409,13 +409,13 @@
   }
  },
  "ritmo": {
-  "visitas": 10,
-  "registro": 16,
-  "abrir": 8,
+  "visitas": 24,
+  "registro": 19,
+  "nueva": 15,
+  "abrir": 10,
+  "empezar": 5,
   "importar-omitido": 3,
-  "nueva": 2,
-  "importado": 2,
-  "empezar": 1
+  "importado": 2
  },
  "eventos": {
   "hub": 196,
