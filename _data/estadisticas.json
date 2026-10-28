@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-27",
- "hora": "21:48",
+ "hora": "22:26",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 717,
+  "visitas": 719,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -59,7 +59,7 @@
   },
   {
    "d": "2026-10-27",
-   "v": 55
+   "v": 57
   }
  ],
  "consultoras": [
@@ -80,7 +80,7 @@
   {
    "slug": "pao",
    "nombre": "Pao",
-   "visitas": 17,
+   "visitas": 18,
    "catalogo": 3,
    "pedidos": 0
   },
@@ -134,6 +134,13 @@
    "pedidos": 0
   },
   {
+   "slug": "laura",
+   "nombre": "Laura",
+   "visitas": 2,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
    "slug": "mar",
    "nombre": "Mar",
    "visitas": 2,
@@ -153,13 +160,6 @@
    "visitas": 1,
    "catalogo": 0,
    "pedidos": 1
-  },
-  {
-   "slug": "laura",
-   "nombre": "Laura",
-   "visitas": 1,
-   "catalogo": 0,
-   "pedidos": 0
   },
   {
    "slug": "silvia",
