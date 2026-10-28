@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-27",
- "hora": "18:53",
+ "hora": "20:24",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 708,
+  "visitas": 712,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -59,7 +59,7 @@
   },
   {
    "d": "2026-10-27",
-   "v": 46
+   "v": 50
   }
  ],
  "consultoras": [
@@ -414,7 +414,7 @@
   "empezar": 1
  },
  "eventos": {
-  "hub": 194,
+  "hub": 196,
   "series": {
    "flowers-to-go": 7
   },
@@ -430,7 +430,7 @@
     "slug": "altar",
     "titulo": "Flowers to Go · Edición Altar",
     "desde": "2026-10-31T11:00:00-06:00",
-    "visitas": 19,
+    "visitas": 20,
     "clics": {
      "whatsapp-sel": 4,
      "whatsapp-viri": 3
@@ -461,7 +461,7 @@
     "slug": "master-class-tendencias-2027",
     "titulo": "Master Class Tendencias 2027",
     "desde": "2026-10-25T11:00:00-06:00",
-    "visitas": 10,
+    "visitas": 11,
     "clics": {
      "whatsapp-danny": 2
     }
