@@ -88,6 +88,7 @@ h2{font:400 clamp(34px,8vw,52px)/1 var(--serif);letter-spacing:-.015em;margin:0}
 .precio{margin:2px 0 0;font-size:15px;color:var(--muted)}
 .precio .num{font-size:19px;font-weight:600;color:var(--ink)}
 .precio small{font-size:14px}
+.apertura{margin:8px 0 0;font:600 12px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink)}
 .precio .antes{font-size:15px;font-weight:400;color:var(--muted);text-decoration-thickness:1.5px;margin-right:2px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .para{margin:4px 0 0;max-width:36em}
@@ -333,6 +334,7 @@ document.getElementById("bloques").innerHTML = BLOQUES.map(b => `
       return `<article class="cita" id="${o.id}">
         <div class="formato">${o.formato.split(" · ").map(x => `<span style="white-space:nowrap">${x}</span>`).join(" · ")}</div>
         <h3>${o.nombre}</h3>
+        ${o.antes ? `<p class="apertura">Precio especial de apertura</p>` : ""}
         <p class="precio">${o.antes ? `<s class="antes num"><span class="sr">Antes </span>$${o.antes}</s> ` : ""}<span class="num">$${o.precio}</span> MXN${o.nota ? ` <small>${o.nota}</small>` : ""}</p>
         <p class="para">${o.para}</p>
         <ul class="incluye" aria-label="Incluye">${o.incluye.map(i => `<li>${palomita}<span>${i}</span></li>`).join("")}</ul>
