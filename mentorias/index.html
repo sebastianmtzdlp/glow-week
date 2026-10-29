@@ -246,7 +246,8 @@ footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
     <details>
       <summary>¿Cuál me conviene?</summary>
       <ul>
-        <li>Tienes una duda puntual: <b>Llamada de enfoque</b>.</li>
+        <li>Tienes una sola pregunta y quieres resolverla rápido: <b>Café con Sel</b>.</li>
+        <li>Tienes una duda puntual y quieres salir con plan: <b>Llamada de enfoque</b>.</li>
         <li>Quieres alguien que te revise cada semana: <b>Llamadas semanales</b>.</li>
         <li>Quieres armar tu equipo con un plan propio: <b>Mentoría personalizada</b>.</li>
         <li>Quieres aprender un tema a fondo, solo tú: <b>Curso a tu medida</b>.</li>
@@ -285,6 +286,9 @@ const AVISO = "https://formsubmit.co/ajax/selene.vehe@gmail.com"; // correo a Se
 
 const BLOQUES = [
   {id:"uno", titulo:"Uno a uno", sub:"Solo tú y Sel.", opciones:[
+    {id:"cafe", precio:"350", antes:"500", nota:"", nombre:"Café con Sel", formato:"1 llamada · 30 min",
+     para:"Media hora para destrabar una sola cosa: la pregunta que traes dándole vueltas desde hace días.",
+     incluye:["Le mandas tu pregunta antes para ir directo al punto","30 minutos por videollamada","Tu siguiente paso por escrito ese mismo día"]},
     {id:"llamada", precio:"850", antes:"1,200", nota:"", nombre:"Llamada de enfoque", formato:"1 llamada · 90 min",
      para:"Para una duda concreta: cómo arrancar tu equipo, cómo cerrar tu meta del mes o cómo llevar una conversación difícil.",
      incluye:["Cuestionario antes de la llamada para llegar al punto","90 minutos por videollamada, con grabación","Plan de 3 pasos por escrito al día siguiente"]},
