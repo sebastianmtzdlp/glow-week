@@ -94,14 +94,6 @@ h2{font:400 clamp(34px,8vw,52px)/1 var(--serif);letter-spacing:-.015em;margin:0}
 .para{margin:4px 0 0;max-width:36em}
 .incluye{list-style:none;padding:0;margin:10px 0 0;display:grid;gap:6px;font-size:15.5px}
 .incluye li{display:grid;grid-template-columns:18px 1fr;gap:8px;align-items:start}
-.paquetes{border:1px solid var(--line);border-radius:14px;margin-top:14px;max-width:36em}
-.paquetes summary{padding:12px 40px 12px 14px;font-size:15.5px}
-.paquetes summary::after{right:16px}
-.paquetes ol{margin:0;padding:0 14px 6px 34px;display:grid;gap:12px}
-.paquetes li{padding-bottom:12px;border-bottom:1px solid var(--line);font-size:15px}
-.paquetes li:last-child{border-bottom:0}
-.paquetes li b{display:block;font-weight:600}
-.paquetes li small{display:block;margin-top:2px;font-size:12.5px;color:var(--muted)}
 .incluye svg{width:16px;height:16px;margin-top:4px;stroke:var(--ink);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
 .cita .enlace{justify-self:start;margin-top:12px;font-size:15px;background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline}
 
@@ -257,7 +249,7 @@ footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
         <li>Tienes una sola pregunta y quieres resolverla rápido: <b>Café con Sel</b>.</li>
         <li>Tienes una duda puntual y quieres salir con plan: <b>Llamada de enfoque</b>.</li>
         <li>Quieres alguien que te revise cada semana: <b>Llamadas semanales</b>.</li>
-        <li>Quieres empezar tu negocio con producto, tu propia tienda en línea y acompañamiento: <b>Arranca tu negocio digital</b>.</li>
+        <li>Quieres empezar tu negocio con tu kit de inicio, tu propia tienda en línea y acompañamiento: <b>Arranca tu negocio digital</b>.</li>
         <li>Quieres aprender un tema a fondo, solo tú: <b>Curso a tu medida</b>.</li>
         <li>Te gusta avanzar acompañada de otras: <b>Círculo semanal</b> o <b>Curso grupal en vivo</b>.</li>
         <li>Ya tienes equipo y quieres que Sel les dé una sesión: <b>Taller para tu equipo</b>.</li>
@@ -303,16 +295,9 @@ const BLOQUES = [
     {id:"semanales", precio:"1,260", antes:"1,800", nota:"el mes · $315 por llamada", nombre:"Llamadas semanales", formato:"4 llamadas · 45 min · 1 por semana",
      para:"Un mes con alguien que revisa contigo cada semana qué hiciste, qué salió y qué sigue.",
      incluye:["Una llamada cada semana durante un mes","Revisión de tus números de la semana","Tareas para los siguientes 7 días","WhatsApp entre llamadas, con respuesta en 24 h hábiles"]},
-    {id:"arranca", precio:"3,500", antes:"5,000", nota:"o 3 pagos de $1,200", nombre:"Arranca tu negocio digital", formato:"3 meses · 1:1 · productos incluidos",
-     para:"Para empezar tu negocio con producto en mano, tu propia tienda en línea y Sel a tu lado los primeros 90 días.",
-     incluye:["Un paquete de productos a elegir, con valor de $2,000 a precio de socia","Tu franquicia digital: tu propia página en mitienda.beauty con tus promociones, tu catálogo y tu tarjeta digital","Plan de arranque de 90 días a tu medida","Una llamada cada 2 semanas (6 en total)","WhatsApp directo con Sel"],
-     paquetes:[
-       {nombre:"Labios que se venden solos", publico:"2,850", trae:"Kit Besos de Bruja (7 Latina Lip Liquor) y un Creamy Lipstick"},
-       {nombre:"Energía Nutriplus", publico:"2,830", trae:"Kit Poción Energética: Malteada Complete Blend, Guaraná y Taurina, Citrus & Mineral"},
-       {nombre:"Piel antiedad", publico:"3,940", trae:"Age Reversist Suero, Mascarilla de Noche y Spray Tónico, y Aqua Gel Limpiador"},
-       {nombre:"Maquillaje para tus lives", publico:"2,830", trae:"Base VFX Pro, corrector, primer, BB Powder, paleta All in One y máscara Full Blast"},
-       {nombre:"Perfume y glam", publico:"3,045", trae:"Kit Pasión Encantada (perfume Her Passion, paleta y suero iluminador), Tinted Lip Plumper y brocha difuminadora"}
-     ]},
+    {id:"arranca", precio:"3,500", antes:"5,000", nota:"o 3 pagos de $1,200", nombre:"Arranca tu negocio digital", formato:"3 meses · 1:1 · kit de inicio incluido",
+     para:"Para empezar tu negocio con tu kit de inicio, tu propia tienda en línea y Sel a tu lado los primeros 90 días.",
+     incluye:["Un kit de inicio de Farmasi a elegir","Tu franquicia digital: tu propia página en mitienda.beauty con tus promociones, tu catálogo y tu tarjeta digital","Plan de arranque de 90 días a tu medida","Una llamada cada 2 semanas (6 en total)","WhatsApp directo con Sel"]},
     {id:"curso-medida", precio:"1,750", antes:"2,500", nota:"", nombre:"Curso a tu medida", formato:"4 sesiones · 60 min",
      para:"Eliges el tema (invitar, primeras ventas, redes o liderar) y Sel arma un curso corto solo para ti.",
      incluye:["Temario armado a partir de tu caso","4 sesiones en vivo","Ejercicios entre sesiones","El material para que te lo quedes"]}
@@ -357,7 +342,6 @@ document.getElementById("bloques").innerHTML = BLOQUES.map(b => `
         <p class="precio">${o.antes ? `<s class="antes num"><span class="sr">Antes </span>$${o.antes}</s> ` : ""}<span class="num">$${o.precio}</span> MXN${o.nota ? ` <small>${o.nota}</small>` : ""}</p>
         <p class="para">${o.para}</p>
         <ul class="incluye" aria-label="Incluye">${o.incluye.map(i => `<li>${palomita}<span>${i}</span></li>`).join("")}</ul>
-        ${o.paquetes ? `<details class="paquetes"><summary>Elige tu paquete (${o.paquetes.length} opciones)</summary><ol>${o.paquetes.map(k => `<li><b>${k.nombre}</b><span>${k.trae}</span><small class="num">Vale $${k.publico} a precio público</small></li>`).join("")}</ol></details>` : ""}
         <button class="enlace" type="button" data-elegir="${o.id}">${a ? "Apuntarme a la lista" : "Apartar lugar"}</button>
         <div class="sello${a ? "" : " abierto"}" role="status"><b>${a ? "AGOTADO" : "ABIERTO"}</b><small>${a ? "abre " + corta(d) : "hay lugares"}</small></div>
       </article>`;}).join("")}</div>
