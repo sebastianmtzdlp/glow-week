@@ -84,6 +84,7 @@ h2{font:400 clamp(34px,8vw,52px)/1 var(--serif);letter-spacing:-.015em;margin:0}
 .cita{position:relative;display:grid;gap:6px;padding:22px 0 24px;border-bottom:1px solid var(--line)}
 .cita:target{background:var(--tint);margin:0 -16px;padding-left:16px;padding-right:16px}
 .formato{font:500 13px/1.4 var(--mono);color:var(--muted);padding-right:118px}
+.formato .seg{white-space:nowrap}
 .cita h3{font:400 28px/1.1 var(--serif);letter-spacing:-.01em;margin:2px 0 0;padding-right:118px}
 .precio{margin:2px 0 0;font-size:15px;color:var(--muted)}
 .precio .num{font-size:19px;font-weight:600;color:var(--ink)}
@@ -151,12 +152,14 @@ footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
   .portada{grid-template-columns:1.15fr 1fr;align-items:end;gap:56px;padding:64px 0 72px}
   .cifra{padding:26px}
   .bloque{display:grid;grid-template-columns:190px 1fr;gap:0 36px;margin-top:44px}
-  .bloque-head{position:sticky;top:24px;align-self:start;padding-top:22px}
+  .bloque-head{position:sticky;top:24px;align-self:start;padding-top:30px}
   .cita{grid-template-columns:160px 1fr;column-gap:28px;padding:26px 150px 28px 0}
   .cita:target{margin:0;padding-left:16px;padding-right:150px}
   .cita>*{grid-column:2}
   .cita .formato{grid-column:1;grid-row:1 / span 5;padding:8px 0 0;border-right:1px solid #F1C7CB;padding-right:16px;align-self:stretch}
   .cita h3,.formato{padding-right:0}
+  .cita .formato .seg{display:block}
+  .cita .formato .sep{display:none}
   .cita h3{font-size:32px}
   .sello{top:26px}
   .espera{grid-template-columns:1fr 1.2fr;gap:48px;padding:40px}
@@ -336,7 +339,7 @@ document.getElementById("bloques").innerHTML = BLOQUES.map(b => `
     <div>${b.opciones.map(o => {
       const a = agotado(o), d = o.abre || ABRE;
       return `<article class="cita" id="${o.id}">
-        <div class="formato">${o.formato.split(" · ").map(x => `<span style="white-space:nowrap">${x}</span>`).join(" · ")}</div>
+        <div class="formato">${o.formato.split(" · ").map(x => `<span class="seg">${x}</span>`).join(`<span class="sep"> · </span>`)}</div>
         <h3>${o.nombre}</h3>
         ${o.antes ? `<p class="apertura">Precio especial de apertura</p>` : ""}
         <p class="precio">${o.antes ? `<s class="antes num"><span class="sr">Antes </span>$${o.antes}</s> ` : ""}<span class="num">$${o.precio}</span> MXN${o.nota ? ` <small>${o.nota}</small>` : ""}</p>
