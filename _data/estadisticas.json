@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-28",
- "hora": "22:40",
+ "hora": "23:23",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 881,
+  "visitas": 886,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -63,7 +63,7 @@
   },
   {
    "d": "2026-10-28",
-   "v": 159
+   "v": 164
   }
  ],
  "consultoras": [
@@ -84,7 +84,7 @@
   {
    "slug": "pao",
    "nombre": "Pao",
-   "visitas": 21,
+   "visitas": 24,
    "catalogo": 3,
    "pedidos": 0
   },
@@ -409,8 +409,8 @@
   }
  },
  "ritmo": {
-  "visitas": 65,
-  "nueva": 56,
+  "visitas": 66,
+  "nueva": 57,
   "registro": 28,
   "abrir": 15,
   "empezar": 13,
