@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-29",
- "hora": "17:15",
+ "hora": "17:51",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 918,
+  "visitas": 919,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -67,7 +67,7 @@
   },
   {
    "d": "2026-10-29",
-   "v": 32
+   "v": 33
   }
  ],
  "consultoras": [
@@ -88,7 +88,7 @@
   {
    "slug": "pao",
    "nombre": "Pao",
-   "visitas": 32,
+   "visitas": 33,
    "catalogo": 4,
    "pedidos": 0
   },
@@ -422,7 +422,7 @@
   "importado": 2
  },
  "eventos": {
-  "hub": 198,
+  "hub": 199,
   "series": {
    "flowers-to-go": 7
   },
