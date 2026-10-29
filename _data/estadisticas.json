@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-29",
- "hora": "07:23",
+ "hora": "08:20",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 893,
+  "visitas": 895,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -67,7 +67,7 @@
   },
   {
    "d": "2026-10-29",
-   "v": 7
+   "v": 9
   }
  ],
  "consultoras": [
@@ -88,8 +88,8 @@
   {
    "slug": "pao",
    "nombre": "Pao",
-   "visitas": 26,
-   "catalogo": 3,
+   "visitas": 27,
+   "catalogo": 4,
    "pedidos": 0
   },
   {
