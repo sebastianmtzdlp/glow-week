@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lista de espera · Mentorías</title>
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;1,9..144,400&family=Outfit:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF;--ink:#262A4A;--muted:#62668A;--line:#E6E8F0;--soft:#F3F4F9;
+  --accent:#DB414C;--accent-ink:#C8323F;--tint:#FDEEF0;--ok:#1B8A5A;
+  --serif:"Fraunces",Georgia,serif;--body:"Outfit",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 16px/1.5 var(--body)}
+a{color:inherit}
+button,input,select,textarea{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+[hidden]{display:none!important}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.barra{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 0 0;font-size:14px;color:var(--muted)}
+.marca{font:300 12px/1 var(--body);letter-spacing:.22em}
+h1{font:400 clamp(38px,9vw,60px)/1 var(--serif);letter-spacing:-.02em;margin:28px 0 8px}
+h1 em{font-style:italic}
+.sub{margin:0;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:0;border-radius:14px;background:var(--accent);color:#fff;font-weight:600;cursor:pointer;transition:transform 160ms var(--ease);text-decoration:none}
+.btn:active{transform:scale(.97)}
+.btn[disabled]{opacity:.6;cursor:progress}
+.liga{background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:4px;font-size:14px;color:var(--muted)}
+input[type=email],select,textarea{border:1px solid #D5D8E4;border-radius:12px;background:#fff;padding:11px 14px;font-size:16px}
+
+/* entrar */
+.entrar{max-width:420px;margin:36px 0 60px;display:grid;gap:14px}
+.entrar label{font-weight:600;font-size:15px}
+.entrar input{width:100%}
+.aviso{margin:0;font-size:15px}
+.aviso.mal{color:var(--accent-ink)}
+
+/* resumen */
+.resumen{display:flex;flex-wrap:wrap;gap:8px;margin:26px 0 14px;padding:0;list-style:none}
+.resumen button{display:flex;align-items:baseline;gap:8px;padding:8px 14px;border-radius:999px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:14px;transition:transform 160ms var(--ease)}
+.resumen button:active{transform:scale(.97)}
+.resumen button .num{font-weight:500}
+.resumen button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.herr{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:10px 16px;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.herr select{min-height:42px;padding:8px 12px;font-size:15px}
+
+/* filas */
+.fila{display:grid;gap:4px 18px;padding:18px 0;border-bottom:1px solid var(--line);grid-template-columns:44px 1fr}
+.fila .n{font:500 13px/1.6 var(--mono);color:var(--muted);grid-row:span 4}
+.fila h2{font:600 18px/1.3 var(--body);margin:0}
+.fila .meta{font:400 13px/1.5 var(--mono);color:var(--muted);margin:0}
+.fila .tema{margin:4px 0 0;max-width:40em}
+.fila .acc{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;margin-top:8px}
+.fila .acc a{font-size:14px;font-weight:500;text-underline-offset:4px}
+.estado{min-height:38px;padding:6px 10px;font-size:14px}
+.fila[data-estado=contactada] .n,.fila[data-estado=inscrita] .n{color:var(--ok)}
+.fila[data-estado=descartada]{opacity:.55}
+.notas{width:100%;max-width:40em;min-height:40px;font-size:14px;padding:8px 12px;resize:vertical}
+.vacio{padding:40px 0;color:var(--muted)}
+footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
+@media (hover:hover) and (pointer:fine){ .resumen button:hover{border-color:var(--ink)} }
+@media (min-width:900px){
+  .fila{grid-template-columns:56px 1.1fr 1fr;align-items:start}
+  .fila .n{grid-row:span 3}
+  .fila .tema,.fila .notas-box{grid-column:3;grid-row:1 / span 3}
+}
+@media (prefers-reduced-motion:reduce){ *{transition-duration:0ms!important} }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <span class="marca">EQUIPO SVH</span>
+    <span id="quien" hidden><span id="correoSesion"></span> · <button class="liga" type="button" id="salir">Salir</button></span>
+  </div>
+
+  <h1>Lista de <em>espera</em></h1>
+  <p class="sub">Quién se apuntó en <a href="/mentorias/">mitienda.beauty/mentorias</a>, en orden de llegada.</p>
+
+  <form class="entrar" id="entrar" hidden>
+    <label for="email">Tu correo</label>
+    <input type="email" id="email" autocomplete="email" required>
+    <div><button class="btn" type="submit" id="mandar">Mandarme el link</button></div>
+    <p class="aviso" id="avisoEntrar">Te llega un link a tu correo; ábrelo en este mismo teléfono o compu y entras sin contraseña.</p>
+  </form>
+
+  <section id="panel" hidden>
+    <ul class="resumen" id="resumen"></ul>
+    <div class="herr">
+      <label><span class="sr" style="position:absolute;left:-9999px">Opción</span>
+        <select id="filtroTipo"><option value="">Todas las opciones</option></select></label>
+      <button class="liga" type="button" id="csv">Descargar Excel (CSV)</button>
+    </div>
+    <div id="filas"></div>
+  </section>
+
+  <footer>Solo Sel y Pasha pueden ver esta lista.</footer>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
+<script>
+// Datos: supabase/mentorias_espera.sql. Quién entra: tabla mentorias_admins (Sel y Pasha).
+const SB = "https://ctutqqstqjdngxdjzckf.supabase.co", SB_KEY = "sb_publishable_ltaNA7nnVozoSCOcZIjg";
+const NOMBRES = {"llamada":"Llamada de enfoque","semanales":"Llamadas semanales","personalizada":"Mentoría personalizada",
+  "curso-medida":"Curso a tu medida","circulo":"Círculo semanal","curso-grupal":"Curso grupal en vivo","taller":"Taller para tu equipo","no-se":"Aún no sé"};
+const ESTADOS = [["nueva","Nuevas"],["contactada","Contactadas"],["inscrita","Inscritas"],["descartada","Descartadas"]];
+const sb = supabase.createClient(SB, SB_KEY);
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? "").replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const fechaCorta = s => new Date(s).toLocaleString("es-MX",{day:"numeric",month:"short",hour:"2-digit",minute:"2-digit",timeZone:"America/Mexico_City"});
+let filas = [], filtroEstado = "nueva";
+
+async function arrancar(){
+  const { data:{ session } } = await sb.auth.getSession();
+  if (!session) { $("entrar").hidden = false; $("panel").hidden = true; $("quien").hidden = true; return; }
+  $("entrar").hidden = true; $("quien").hidden = false; $("correoSesion").textContent = session.user.email;
+  cargar();
+}
+
+async function cargar(){
+  const { data, error } = await sb.from("mentorias_espera").select("*").order("creado", {ascending:true});
+  $("panel").hidden = false;
+  if (error) { $("filas").innerHTML = `<p class="vacio">No se pudo cargar la lista (${esc(error.message)}).</p>`; return; }
+  filas = data.map((f, i) => ({...f, n: i + 1}));
+  if (!filas.length && !(await sb.rpc("es_admin_mentorias")).data)
+    { $("filas").innerHTML = `<p class="vacio">Este correo no tiene acceso a la lista. Pídele a Pasha que lo agregue.</p>`; return; }
+  const tipos = [...new Set(filas.map(f => f.tipo))];
+  $("filtroTipo").innerHTML = `<option value="">Todas las opciones</option>` + tipos.map(t => `<option value="${esc(t)}">${esc(NOMBRES[t] || t)}</option>`).join("");
+  pintar();
+}
+
+function pintar(){
+  const tipo = $("filtroTipo").value;
+  const base = filas.filter(f => !tipo || f.tipo === tipo);
+  $("resumen").innerHTML = [["", "Todas"], ...ESTADOS].map(([e, t]) =>
+    `<li><button type="button" data-filtro="${e}" aria-pressed="${filtroEstado === e}">${t} <span class="num">${base.filter(f => !e || f.estado === e).length}</span></button></li>`).join("");
+  const vis = base.filter(f => !filtroEstado || f.estado === filtroEstado);
+  $("filas").innerHTML = vis.length ? vis.map(f => {
+    const opcion = NOMBRES[f.tipo] || f.tipo;
+    const msg = `Hola ${f.nombre.split(" ")[0]}, soy Sel. Te escribo porque te apuntaste a la lista de espera de ${f.tipo === "no-se" ? "mis mentorías" : opcion}.`;
+    return `<article class="fila" data-id="${f.id}" data-estado="${f.estado}">
+      <span class="n">#${f.n}</span>
+      <h2>${esc(f.nombre)}</h2>
+      <p class="meta">${esc(opcion)} · ${fechaCorta(f.creado)}</p>
+      <div class="acc">
+        <a href="https://wa.me/${esc(f.whatsapp)}?text=${encodeURIComponent(msg)}" target="_blank" rel="noopener">WhatsApp ${esc(f.whatsapp.replace(/^52/, ""))}</a>
+        ${f.correo ? `<a href="mailto:${esc(f.correo)}">${esc(f.correo)}</a>` : ""}
+        <select class="estado" aria-label="Estado de ${esc(f.nombre)}">${ESTADOS.map(([e]) => `<option value="${e}"${e === f.estado ? " selected" : ""}>${e[0].toUpperCase() + e.slice(1)}</option>`).join("")}</select>
+      </div>
+      <div class="notas-box">
+        ${f.tema ? `<p class="tema">${esc(f.tema)}</p>` : ""}
+        <textarea class="notas" placeholder="Notas de Sel" aria-label="Notas sobre ${esc(f.nombre)}">${esc(f.notas)}</textarea>
+      </div>
+    </article>`;}).join("") : `<p class="vacio">${filas.length ? "Nadie en este filtro." : "Todavía nadie se ha apuntado."}</p>`;
+}
+
+async function guardar(id, cambios){
+  const { error } = await sb.from("mentorias_espera").update({...cambios, actualizado: new Date().toISOString()}).eq("id", id);
+  if (error) { alert("No se guardó el cambio: " + error.message); return false; }
+  Object.assign(filas.find(f => f.id === id), cambios);
+  return true;
+}
+
+$("entrar").addEventListener("submit", async e => {
+  e.preventDefault();
+  const b = $("mandar"), aviso = $("avisoEntrar");
+  b.disabled = true; b.textContent = "Mandando…";
+  const { error } = await sb.auth.signInWithOtp({ email: $("email").value.trim().toLowerCase(),
+    options: { emailRedirectTo: location.origin + location.pathname, shouldCreateUser: false } });
+  b.disabled = false; b.textContent = "Mandarme el link";
+  aviso.classList.toggle("mal", !!error);
+  aviso.textContent = error ? "Ese correo no tiene acceso todavía, o hubo un error. Revisa que esté bien escrito." : "Listo. Revisa tu correo (y la carpeta de spam) y abre el link.";
+});
+$("salir").addEventListener("click", async () => { await sb.auth.signOut(); location.reload(); });
+$("filtroTipo").addEventListener("change", pintar);
+$("resumen").addEventListener("click", e => { const b = e.target.closest("[data-filtro]"); if (b) { filtroEstado = b.dataset.filtro; pintar(); } });
+$("filas").addEventListener("change", async e => {
+  const art = e.target.closest(".fila"); if (!art) return;
+  if (e.target.matches(".estado") && await guardar(art.dataset.id, {estado: e.target.value})) pintar();
+  if (e.target.matches(".notas")) guardar(art.dataset.id, {notas: e.target.value.slice(0, 2000) || null});
+});
+$("csv").addEventListener("click", () => {
+  const cols = [["n","#"],["creado","Fecha"],["nombre","Nombre"],["whatsapp","WhatsApp"],["correo","Correo"],["tipo","Opción"],["tema","Qué quiere resolver"],["estado","Estado"],["notas","Notas"]];
+  const cel = v => `"${String(v ?? "").replace(/"/g, '""')}"`;
+  const txt = [cols.map(c => cel(c[1])).join(","), ...filas.map(f => cols.map(([k]) => cel(k === "tipo" ? NOMBRES[f.tipo] || f.tipo : k === "creado" ? fechaCorta(f.creado) : f[k])).join(","))].join("\n");
+  const a = Object.assign(document.createElement("a"), {href: URL.createObjectURL(new Blob(["﻿" + txt], {type:"text/csv"})), download:"lista-espera-mentorias.csv"});
+  a.click(); URL.revokeObjectURL(a.href);
+});
+sb.auth.onAuthStateChange((ev) => { if (ev === "SIGNED_IN" || ev === "SIGNED_OUT") arrancar(); });
+arrancar();
+</script>
+</body>
+</html>
