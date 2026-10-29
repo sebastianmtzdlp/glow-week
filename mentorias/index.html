@@ -246,7 +246,8 @@ footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
     <details>
       <summary>¿Cuál me conviene?</summary>
       <ul>
-        <li>Tienes una duda puntual: <b>Llamada de enfoque</b>.</li>
+        <li>Tienes una sola pregunta y quieres resolverla rápido: <b>Café con Sel</b>.</li>
+        <li>Tienes una duda puntual y quieres salir con plan: <b>Llamada de enfoque</b>.</li>
         <li>Quieres alguien que te revise cada semana: <b>Llamadas semanales</b>.</li>
         <li>Quieres armar tu equipo con un plan propio: <b>Mentoría personalizada</b>.</li>
         <li>Quieres aprender un tema a fondo, solo tú: <b>Curso a tu medida</b>.</li>
@@ -285,29 +286,32 @@ const AVISO = "https://formsubmit.co/ajax/selene.vehe@gmail.com"; // correo a Se
 
 const BLOQUES = [
   {id:"uno", titulo:"Uno a uno", sub:"Solo tú y Sel.", opciones:[
-    {id:"llamada", precio:"850", antes:"1,200", nota:"", nombre:"Llamada de enfoque", formato:"1 llamada · 90 min",
+    {id:"cafe", precio:"250", antes:"350", nota:"", nombre:"Café con Sel", formato:"1 llamada · 30 min",
+     para:"Media hora para destrabar una sola cosa: la pregunta que traes dándole vueltas desde hace días.",
+     incluye:["Le mandas tu pregunta antes para ir directo al punto","30 minutos por videollamada","Tu siguiente paso por escrito ese mismo día"]},
+    {id:"llamada", precio:"490", antes:"700", nota:"", nombre:"Llamada de enfoque", formato:"1 llamada · 90 min",
      para:"Para una duda concreta: cómo arrancar tu equipo, cómo cerrar tu meta del mes o cómo llevar una conversación difícil.",
      incluye:["Cuestionario antes de la llamada para llegar al punto","90 minutos por videollamada, con grabación","Plan de 3 pasos por escrito al día siguiente"]},
-    {id:"semanales", precio:"2,240", antes:"3,200", nota:"el mes · $560 por llamada", nombre:"Llamadas semanales", formato:"4 llamadas · 45 min · 1 por semana",
+    {id:"semanales", precio:"1,260", antes:"1,800", nota:"el mes · $315 por llamada", nombre:"Llamadas semanales", formato:"4 llamadas · 45 min · 1 por semana",
      para:"Un mes con alguien que revisa contigo cada semana qué hiciste, qué salió y qué sigue.",
      incluye:["Una llamada cada semana durante un mes","Revisión de tus números de la semana","Tareas para los siguientes 7 días","WhatsApp entre llamadas, con respuesta en 24 h hábiles"]},
-    {id:"personalizada", precio:"6,200", antes:"8,900", nota:"o 3 pagos de $2,100", nombre:"Mentoría personalizada", formato:"3 meses · 1:1",
+    {id:"personalizada", precio:"3,500", antes:"5,000", nota:"o 3 pagos de $1,200", nombre:"Mentoría personalizada", formato:"3 meses · 1:1",
      para:"Para construir tu equipo con un plan hecho desde tu punto de partida, no una receta general.",
      incluye:["Diagnóstico inicial de 90 min","Plan de 90 días a tu medida","Una llamada cada 2 semanas (6 en total)","Revisión mensual y ajustes al plan","WhatsApp directo con Sel"]},
-    {id:"curso-medida", precio:"3,150", antes:"4,500", nota:"", nombre:"Curso a tu medida", formato:"4 sesiones · 60 min",
+    {id:"curso-medida", precio:"1,750", antes:"2,500", nota:"", nombre:"Curso a tu medida", formato:"4 sesiones · 60 min",
      para:"Eliges el tema (invitar, primeras ventas, redes o liderar) y Sel arma un curso corto solo para ti.",
      incluye:["Temario armado a partir de tu caso","4 sesiones en vivo","Ejercicios entre sesiones","El material para que te lo quedes"]}
   ]},
   {id:"grupo", titulo:"En grupo", sub:"Avanzas con otras que van en lo mismo.", opciones:[
-    {id:"circulo", precio:"1,350", antes:"1,900", nota:"por persona", nombre:"Círculo semanal", formato:"6 semanas · máximo 8",
+    {id:"circulo", precio:"770", antes:"1,100", nota:"por persona", nombre:"Círculo semanal", formato:"6 semanas · máximo 8",
      para:"Un grupo pequeño que se ve cada semana: cada una trae su avance y sale con su siguiente paso.",
      incluye:["6 llamadas grupales de 75 min","Grupo de WhatsApp del círculo","Hoja de seguimiento semanal"]},
-    {id:"curso-grupal", precio:"690", antes:"990", nota:"por persona", nombre:"Curso grupal en vivo", formato:"4 clases · hasta 25",
+    {id:"curso-grupal", precio:"390", antes:"550", nota:"por persona", nombre:"Curso grupal en vivo", formato:"4 clases · hasta 25",
      para:"Lo que hizo Sel en sus primeros meses, paso a paso: cómo invitar, cómo acompañar a tus primeras personas y cómo armar tu ritmo de trabajo.",
      incluye:["4 clases en vivo de 90 min","Grabación de cada clase","Ejercicios por clase","Sesión final de preguntas"]}
   ]},
   {id:"equipo", titulo:"Para tu equipo", sub:"Si ya lideras a otras.", opciones:[
-    {id:"taller", precio:"2,450", antes:"3,500", nota:"por grupo, en línea", nombre:"Taller para tu equipo", formato:"1 sesión · 2 h",
+    {id:"taller", precio:"1,400", antes:"2,000", nota:"por grupo, en línea", nombre:"Taller para tu equipo", formato:"1 sesión · 2 h",
      para:"Sel le da una sesión a tu equipo sobre el tema que necesiten: arranque, metas del mes o cómo invitar.",
      incluye:["Llamada previa de 20 min contigo","Tema y ejemplos pensados para tu equipo","Material para compartir después"]}
   ]}
