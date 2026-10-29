@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-29",
- "hora": "12:20",
+ "hora": "13:17",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 910,
+  "visitas": 914,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -67,7 +67,7 @@
   },
   {
    "d": "2026-10-29",
-   "v": 24
+   "v": 28
   }
  ],
  "consultoras": [
@@ -88,7 +88,7 @@
   {
    "slug": "pao",
    "nombre": "Pao",
-   "visitas": 28,
+   "visitas": 30,
    "catalogo": 4,
    "pedidos": 0
   },
@@ -109,7 +109,7 @@
   {
    "slug": "anagomez",
    "nombre": "Ana Gómez",
-   "visitas": 9,
+   "visitas": 11,
    "catalogo": 2,
    "pedidos": 0
   },
