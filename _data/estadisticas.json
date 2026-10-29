@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-29",
- "hora": "14:01",
+ "hora": "14:41",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 915,
+  "visitas": 916,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -67,7 +67,7 @@
   },
   {
    "d": "2026-10-29",
-   "v": 29
+   "v": 30
   }
  ],
  "consultoras": [
@@ -109,7 +109,7 @@
   {
    "slug": "anagomez",
    "nombre": "Ana Gómez",
-   "visitas": 11,
+   "visitas": 12,
    "catalogo": 2,
    "pedidos": 0
   },
