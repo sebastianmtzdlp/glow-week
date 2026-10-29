@@ -10,10 +10,247 @@
   "bienvenida": "Elige mis favoritos de maquillaje que hoy tienen descuento. Arma tu pedido aquí y me llega directo a WhatsApp. Gracias por tu apoyo."
  },
  "aviso": {
-  "texto": "Promos de Miedo: kits con hasta 50% de descuento",
+  "texto": "Venta de Día de Muertos: Nutriplus, skincare y maquillaje",
   "desde": null,
   "hasta": null,
-  "filtro": "Kits"
+  "filtro": "Venta de Día de Muertos"
+ },
+ "especial": {
+  "_nota": "Categoría especial: sale primero en todos los tableros, con su propio chip. 'grupo' arma los apartados dentro de la sección. Para quitarla borra este bloque o pon 'hasta'.",
+  "titulo": "Venta de Día de Muertos",
+  "texto": "Lo que elegimos para Día de Muertos: Nutriplus, cuidado de la piel y maquillaje, con precios de la venta. Arma tu pedido y me llega por WhatsApp.",
+  "desde": null,
+  "hasta": null,
+  "productos": [
+   {
+    "grupo": "Nutriplus",
+    "name": "Complete Blend Nutriplus",
+    "shade": "4 sabores · 540 g",
+    "code": "1002691",
+    "retail": 990,
+    "price": 990,
+    "img": "1002691_250",
+    "variante": "sabor"
+   },
+   {
+    "grupo": "Nutriplus",
+    "name": "Creatina Nutriplus+",
+    "shade": "153 g",
+    "code": "1002724",
+    "retail": 550,
+    "price": 550,
+    "img": "1002724_250"
+   },
+   {
+    "grupo": "Nutriplus",
+    "name": "Pre-Workout Nutriplus+",
+    "shade": "Antes de entrenar",
+    "code": "1002732",
+    "retail": 800,
+    "price": 480,
+    "img": "1002732_250"
+   },
+   {
+    "grupo": "Nutriplus",
+    "name": "L-Carnitina Nutriplus",
+    "shade": "2 sabores",
+    "code": "1002770",
+    "retail": 620,
+    "price": 620,
+    "img": "1002770_250",
+    "variante": "sabor"
+   },
+   {
+    "grupo": "Nutriplus",
+    "name": "Gomitas de Vinagre de Manzana Nutriplus",
+    "shade": "Apple Cider Gummy",
+    "code": "1001900",
+    "retail": 625,
+    "price": 625,
+    "img": "1001900_250"
+   },
+   {
+    "grupo": "Nutriplus",
+    "name": "Aloe Glow Nutriplus",
+    "shade": "2 sabores · 450 ml",
+    "code": "1001319",
+    "retail": 690,
+    "price": 690,
+    "img": "1001319_250",
+    "variante": "sabor"
+   },
+   {
+    "grupo": "Nutriplus",
+    "name": "Shot de Colágeno Nutriplus",
+    "shade": "Collagen Shot",
+    "code": "1001038",
+    "retail": 1250,
+    "price": 1000,
+    "img": "1001038_250"
+   },
+   {
+    "grupo": "Nutriplus",
+    "name": "Colágeno en Tabletas Nutriplus",
+    "shade": "Collagen Tablet",
+    "code": "1000904",
+    "retail": 450,
+    "price": 270,
+    "img": "1000904_250"
+   },
+   {
+    "grupo": "Cuidado de la piel",
+    "name": "Vitamina C Glow Serum Dr. C. Tuna",
+    "shade": "Suero iluminador",
+    "code": "1002167",
+    "retail": 1100,
+    "price": 900,
+    "img": "1002167_250"
+   },
+   {
+    "grupo": "Cuidado de la piel",
+    "name": "Protector Solar Facial FPS 50+ Dr. C. Tuna",
+    "shade": "Sun Face Cream",
+    "code": "1001330",
+    "retail": 430,
+    "price": 430,
+    "img": "1001330_250"
+   },
+   {
+    "grupo": "Cuidado de la piel",
+    "name": "Protector Solar Corporal FPS 50 Dr. C. Tuna",
+    "shade": "Sun Body Lotion",
+    "code": "1001333",
+    "retail": 650,
+    "price": 650,
+    "img": "1001333_250"
+   },
+   {
+    "grupo": "Cuidado de la piel",
+    "name": "Dr. C. Tuna Age Reversist Crema Hidratante",
+    "shade": "Antiedad",
+    "code": "1000271",
+    "retail": 900,
+    "price": 650,
+    "img": "1000271_250"
+   },
+   {
+    "grupo": "Cuidado de la piel",
+    "name": "Dr. C. Tuna Glow Face Mist",
+    "shade": "Bruma facial",
+    "code": "1002871",
+    "retail": 750,
+    "price": 600,
+    "img": "1002871_250"
+   },
+   {
+    "grupo": "Cuidado de la piel",
+    "name": "Absolute Super Elixir Dr. C. Tuna",
+    "shade": "25 ml",
+    "code": "1000991",
+    "retail": 1450,
+    "price": 1100,
+    "img": "1000991_250"
+   },
+   {
+    "grupo": "Cuidado de la piel",
+    "name": "Dr. C. Tuna Caléndula Limpiador Facial",
+    "shade": "Piel sensible · 100 ml",
+    "code": "1000283",
+    "retail": 300,
+    "price": 210,
+    "img": "1000283_250"
+   },
+   {
+    "grupo": "Cuidado de la piel",
+    "name": "Dr. C. Tuna Caléndula Crema Facial",
+    "shade": "Piel sensible",
+    "code": "1000285",
+    "retail": 400,
+    "price": 400,
+    "img": "1000285_250"
+   },
+   {
+    "grupo": "Cuidado de la piel",
+    "name": "Jabón de Caléndula",
+    "shade": "Barra",
+    "code": "1000329",
+    "retail": 150,
+    "price": 150,
+    "img": "1000329_250"
+   },
+   {
+    "grupo": "Maquillaje",
+    "name": "CC Cream",
+    "shade": "01 Light",
+    "code": "1001491",
+    "retail": 320,
+    "price": 224,
+    "img": "1001491_250_1"
+   },
+   {
+    "grupo": "Maquillaje",
+    "name": "BB Cream",
+    "shade": "01 Light",
+    "code": "1001485",
+    "retail": 275,
+    "price": 220,
+    "img": "1001485_250"
+   },
+   {
+    "grupo": "Maquillaje",
+    "name": "Labial Líquido Matte",
+    "shade": "Chocolate 218",
+    "code": "1001801",
+    "retail": 345,
+    "price": 241.5,
+    "img": "1001801_250"
+   },
+   {
+    "grupo": "Maquillaje",
+    "name": "Midnight Touch",
+    "shade": "Iluminador y rubor",
+    "code": "1001535",
+    "retail": 400,
+    "price": 400,
+    "img": "1001535_250"
+   },
+   {
+    "grupo": "Maquillaje",
+    "name": "Lip Oil",
+    "shade": "Transparent",
+    "code": "1002515",
+    "retail": 345,
+    "price": 207,
+    "img": "1002515_250"
+   },
+   {
+    "grupo": "Maquillaje",
+    "name": "All in One Palette",
+    "shade": "Fair-Medium",
+    "code": "1002157",
+    "retail": 570,
+    "price": 456,
+    "img": "1002157_250"
+   },
+   {
+    "grupo": "Maquillaje",
+    "name": "Glowy Peptide Lip Balm",
+    "shade": "Bálsamo con péptidos",
+    "code": "1002609",
+    "retail": 340,
+    "price": 340,
+    "img": "1002609_250"
+   },
+   {
+    "grupo": "Maquillaje",
+    "name": "Suero para Cejas y Pestañas",
+    "shade": "Cejas y pestañas",
+    "code": "1301292",
+    "retail": 550,
+    "price": 550,
+    "img": "1301292_250"
+   }
+  ]
  },
  "meta": {
   "monto": 3000,
