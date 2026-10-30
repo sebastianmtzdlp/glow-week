@@ -1,12 +1,12 @@
 {
  "actualizado": "2026-10-29",
- "hora": "23:13",
+ "hora": "23:55",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 960,
-  "agregados": 32,
+  "visitas": 968,
+  "agregados": 33,
   "pedidos": 7,
-  "wa": 3
+  "wa": 4
  },
  "dias": [
   {
@@ -67,7 +67,7 @@
   },
   {
    "d": "2026-10-29",
-   "v": 74
+   "v": 82
   }
  ],
  "consultoras": [
@@ -130,7 +130,7 @@
   {
    "slug": "nancy",
    "nombre": "Nancy",
-   "visitas": 3,
+   "visitas": 4,
    "catalogo": 0,
    "pedidos": 0
   },
@@ -252,6 +252,11 @@
    "agregados": 2
   },
   {
+   "code": "1000269",
+   "name": "Dr. C. Tuna Age Reversist Mascarilla de Noche Antiedad · 50 ml",
+   "agregados": 1
+  },
+  {
    "code": "PK102725",
    "name": "Poción Energética Kit Nutriplus",
    "agregados": 1
@@ -330,6 +335,27 @@
     {
      "code": "1000272",
      "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+     "n": 1
+    }
+   ]
+  },
+  "nancy": {
+   "agregados": [
+    {
+     "code": "1000269",
+     "name": "Dr. C. Tuna Age Reversist Mascarilla de Noche Antiedad · 50 ml",
+     "n": 1
+    }
+   ],
+   "vistos": [
+    {
+     "code": "1000269",
+     "name": "Dr. C. Tuna Age Reversist Mascarilla de Noche Antiedad · 50 ml",
+     "n": 1
+    },
+    {
+     "code": "1002691",
+     "name": "Complete Blend Cream Caramel",
      "n": 1
     }
    ]
