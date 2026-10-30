@@ -1,12 +1,12 @@
 {
  "actualizado": "2026-10-29",
- "hora": "21:01",
+ "hora": "21:45",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 938,
-  "agregados": 31,
+  "visitas": 954,
+  "agregados": 32,
   "pedidos": 7,
-  "wa": 1
+  "wa": 2
  },
  "dias": [
   {
@@ -67,7 +67,7 @@
   },
   {
    "d": "2026-10-29",
-   "v": 52
+   "v": 68
   }
  ],
  "consultoras": [
@@ -79,18 +79,18 @@
    "pedidos": 1
   },
   {
-   "slug": "pao",
-   "nombre": "Pao",
-   "visitas": 41,
-   "catalogo": 4,
-   "pedidos": 0
-  },
-  {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 42,
+   "visitas": 46,
    "catalogo": 2,
    "pedidos": 5
+  },
+  {
+   "slug": "pao",
+   "nombre": "Pao",
+   "visitas": 43,
+   "catalogo": 4,
+   "pedidos": 0
   },
   {
    "slug": "anaofelia",
@@ -121,6 +121,13 @@
    "pedidos": 0
   },
   {
+   "slug": "laura",
+   "nombre": "Laura",
+   "visitas": 3,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
    "slug": "sam",
    "nombre": "Sam",
    "visitas": 3,
@@ -137,13 +144,6 @@
   {
    "slug": "gaby",
    "nombre": "Gaby",
-   "visitas": 2,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "laura",
-   "nombre": "Laura",
    "visitas": 2,
    "catalogo": 0,
    "pedidos": 0
@@ -170,6 +170,13 @@
    "pedidos": 1
   },
   {
+   "slug": "nancy",
+   "nombre": "Nancy",
+   "visitas": 1,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
    "slug": "silvia",
    "nombre": "Silvia",
    "visitas": 1,
@@ -179,13 +186,6 @@
   {
    "slug": "andi",
    "nombre": "Andi",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "nancy",
-   "nombre": "Nancy",
    "visitas": 0,
    "catalogo": 0,
    "pedidos": 0
@@ -250,6 +250,11 @@
    "code": "1002598",
    "name": "Precision Brow Pencil Soft Brown",
    "agregados": 2
+  },
+  {
+   "code": "PK102725",
+   "name": "Poción Energética Kit Nutriplus",
+   "agregados": 1
   },
   {
    "code": "PK102731",
