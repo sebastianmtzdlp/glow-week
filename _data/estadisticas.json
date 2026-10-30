@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-29",
- "hora": "21:45",
+ "hora": "22:27",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 954,
+  "visitas": 957,
   "agregados": 32,
   "pedidos": 7,
   "wa": 2
@@ -67,7 +67,7 @@
   },
   {
    "d": "2026-10-29",
-   "v": 68
+   "v": 71
   }
  ],
  "consultoras": [
@@ -128,6 +128,13 @@
    "pedidos": 0
   },
   {
+   "slug": "nancy",
+   "nombre": "Nancy",
+   "visitas": 3,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
    "slug": "sam",
    "nombre": "Sam",
    "visitas": 3,
@@ -168,13 +175,6 @@
    "visitas": 1,
    "catalogo": 0,
    "pedidos": 1
-  },
-  {
-   "slug": "nancy",
-   "nombre": "Nancy",
-   "visitas": 1,
-   "catalogo": 0,
-   "pedidos": 0
   },
   {
    "slug": "silvia",
