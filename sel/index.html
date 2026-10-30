@@ -91,7 +91,7 @@
   .esp-nav a:focus-visible{outline:2px solid #F6C36A;outline-offset:2px}
   @media(hover:hover) and (pointer:fine){.esp-nav a:hover{background:rgba(255,255,255,.1)}}
   .esp-g{font-size:16px;font-weight:700;margin:20px 0 10px;display:flex;align-items:baseline;gap:8px;scroll-margin-top:110px}
-  #espTop{padding-top:16px}
+  #espTop{padding-top:20px}
   .esp-top .esp-head{padding-bottom:16px}
   .rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,44%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 8px;scroll-padding-inline:16px;scrollbar-width:thin}
   .rail>.card{scroll-snap-align:start}
@@ -438,7 +438,9 @@
   @media(min-width:1000px){
     .wrap{max-width:1240px;padding:0 40px}
     .hero{display:grid;grid-template-columns:minmax(0,1fr) 440px;column-gap:64px;align-items:start;padding-top:34px}
-    .hero>.banner{grid-column:1/-1}
+    .hero>.banner{grid-column:1/-1;grid-row:1}
+    .hero>.hmain{grid-row:2}.hero>.hside{grid-row:2}
+    .hero>#espTop{grid-column:1/-1;grid-row:3}
     .hmain{display:block;grid-column:1}
     .hside{display:flex;flex-direction:column;gap:2px;grid-column:2;position:sticky;top:78px;padding-top:6px}
     .hside>*{max-width:none!important;width:100%;margin-top:12px}.hside>:first-child{margin-top:0}
@@ -533,7 +535,6 @@
 </div></div>
 
 <main>
-  <div class="wrap" id="espTop" hidden></div>
   <div class="wrap hero">
     <button class="banner" id="banner" hidden><span id="bannerTxt"></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     <div class="hmain">
@@ -551,6 +552,7 @@
       <div class="fact"><div class="k">Termina</div><div class="v" id="days"></div></div>
     </div>
     </div>
+    <div id="espTop" hidden></div>
     <aside class="hside">
     <button class="helpcta" data-help>
       <svg class="i" viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
