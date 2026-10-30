@@ -82,8 +82,8 @@
   /* Sección especial (Venta de Día de Muertos): cabecera marino con papel picado; las tarjetas son las de siempre */
   .esp-head{position:relative;background:#262A4A;color:#FFFFFF;border-radius:18px;padding:58px 18px 18px;margin-bottom:6px;overflow:hidden}
   .esp-head .picado{position:absolute;top:0;left:0;width:1560px;height:52px;transform-origin:50% 0}
-  section.cat .esp-head h2{display:block;font-size:26px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin:0 0 8px;color:#FFFFFF;text-wrap:balance}
-  section.cat .esp-head h2 span{color:#F6C36A;margin-left:8px;white-space:nowrap}
+  .esp .esp-head h2{display:block;font-size:26px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin:0 0 8px;color:#FFFFFF;text-wrap:balance}
+  .esp .esp-head h2 span{color:#F6C36A;margin-left:8px;white-space:nowrap;font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:0}
   .esp-head p{color:#D9DBEA;max-width:56ch;font-size:15px;line-height:1.45}
   .esp-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   .esp-nav a{color:#FFFFFF;text-decoration:none;font-size:14px;font-weight:600;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);min-height:44px;display:inline-flex;align-items:center;transition:transform 160ms var(--ease),background-color 160ms ease}
@@ -91,8 +91,14 @@
   .esp-nav a:focus-visible{outline:2px solid #F6C36A;outline-offset:2px}
   @media(hover:hover) and (pointer:fine){.esp-nav a:hover{background:rgba(255,255,255,.1)}}
   .esp-g{font-size:16px;font-weight:700;margin:20px 0 10px;display:flex;align-items:baseline;gap:8px;scroll-margin-top:110px}
+  #espTop{padding-top:16px}
+  .esp-top .esp-head{padding-bottom:16px}
+  .rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,44%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 8px;scroll-padding-inline:16px;scrollbar-width:thin}
+  .rail>.card{scroll-snap-align:start}
+  @media(min-width:640px){.rail{grid-auto-columns:minmax(190px,30%)}}
+  @media(min-width:900px){.rail{grid-auto-columns:220px}}
   .esp-g span{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
-  @media(min-width:900px){.esp-head{padding:66px 28px 24px}.esp-head .picado{width:1820px;height:60px}section.cat .esp-head h2{font-size:32px}}
+  @media(min-width:900px){.esp-head{padding:66px 28px 24px}.esp-head .picado{width:1820px;height:60px}.esp .esp-head h2{font-size:32px}}
   @media(prefers-reduced-motion:no-preference){.esp-head .picado{animation:picado 700ms cubic-bezier(.23,1,.32,1) both}}
   @keyframes picado{from{transform:scaleY(.6);opacity:0}to{transform:none;opacity:1}}
   section.cat h2 span{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
@@ -527,6 +533,7 @@
 </div></div>
 
 <main>
+  <div class="wrap" id="espTop" hidden></div>
   <div class="wrap hero">
     <button class="banner" id="banner" hidden><span id="bannerTxt"></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     <div class="hmain">
@@ -835,6 +842,7 @@
       groups = realCats.map(c=>[c, products.filter(p=>p.cat===c)]);
       ["Nuevos","Flash sale","Más pedidos"].forEach(k => { const l = products.filter(SPECIAL[k]); if (l.length) groups.unshift([k, l]); });
       [FAVT, ESPT].forEach(t => { if (!t) return; const k = groups.findIndex(g => g[0] === t); if (k > 0) groups.unshift(groups.splice(k, 1)[0]); });
+      if (ESPT) groups = groups.filter(g => g[0] !== ESPT); // ya sale hasta arriba de la página (espTop)
     }
     else if (SPECIAL[filter]) groups = [[filter, products.filter(SPECIAL[filter]).sort((a,b)=>pct(b)-pct(a))]];
     else groups = [[filter, products.filter(p=>p.cat===filter)]];
@@ -851,6 +859,14 @@
   function espSection(list){
     const gs = [...new Set(list.map(p => p.grupo || ""))];
     return `<section class="cat esp" id="s-${ESPT}"><header class="esp-head">${PICADO}<h2>${hx(ESPT)}<span>${list.length}</span></h2>${ESP.texto ? `<p>${hx(ESP.texto)}</p>` : ""}${gs.length > 1 ? `<nav class="esp-nav" aria-label="Apartados de ${hx(ESPT)}">${gs.map((g,k)=>`<a href="#esp-${k}">${hx(g)}</a>`).join("")}</nav>` : ""}</header>${gs.map((g,k)=>{ const l = list.filter(p => (p.grupo||"") === g); return `${g ? `<h3 class="esp-g" id="esp-${k}">${hx(g)}<span>${l.length}</span></h3>` : ""}<div class="grid">${l.map(p=>card(p)).join("")}</div>`; }).join("")}</section>`;
+  }
+
+  // Hasta arriba de la página: la venta especial con sus productos en filas que se deslizan, para que sea lo primero que se ve
+  function renderTop(){
+    const el = $("espTop"); if (!ESPT) return;
+    const list = products.filter(p => p.cat === ESPT), gs = [...new Set(list.map(p => p.grupo || ""))];
+    el.innerHTML = `<section class="esp esp-top" aria-label="${hx(ESPT)}"><header class="esp-head">${PICADO}<h2>${hx(ESPT)}<span>${list.length}</span></h2>${ESP.texto ? `<p>${hx(ESP.texto)}</p>` : ""}</header>${gs.map(g=>{ const l = list.filter(p => (p.grupo||"") === g); return `${g ? `<h3 class="esp-g">${hx(g)}<span>${l.length}</span></h3>` : ""}<div class="rail">${l.map(p=>card(p)).join("")}</div>`; }).join("")}</section>`;
+    el.hidden = false;
   }
 
   function totals(){
@@ -1256,7 +1272,7 @@
   $("maxOff").textContent = "−" + Math.max(...products.map(pct)) + "%";
   $("giftName").textContent = GIFT;
   if (!$("days").textContent) $("days").textContent = END.toLocaleDateString("es-MX",{day:"numeric",month:"short"}).replace(".","");
-  if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta)) {
+  if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta) && !(ESPT && D.aviso.filtro === ESPT)) { // si el aviso solo lleva a la venta especial, no hace falta: ya está arriba
     $("bannerTxt").textContent = D.aviso.texto; $("banner").hidden = false;
     // Al tocar el aviso: filtra la sección indicada (p. ej. "Kits") o abre un link
     $("banner").onclick = () => {
@@ -1302,7 +1318,7 @@
     $("pagoList").innerHTML = L.map(x=>`<li>${hx(x)}</li>`).join(""); })();
   $("sort").addEventListener("change", e=>{ sortM=e.target.value; renderCatalog(); });
   $("wafab").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola "+SELLER+", tengo una duda sobre tu tablero.")}`;
-  renderChips(); renderCatalog(); syncForm(); update(); tick();
+  renderChips(); renderTop(); renderCatalog(); syncForm(); update(); tick();
   { const pq = new URLSearchParams(location.search).get("p"); if (pq) { const k = ALL.findIndex(x=>x.code===pq); if (k>=0) showProduct(k); } }
 })();
 </script>
