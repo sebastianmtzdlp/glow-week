@@ -441,6 +441,7 @@
     .hero>.banner{grid-column:1/-1;grid-row:1}
     .hero>.hmain{grid-row:2}.hero>.hside{grid-row:2}
     .hero>#espTop{grid-column:1/-1;grid-row:3}
+    .hero.con-esp .hside{position:static} /* con la venta abajo, las tarjetas no se quedan pegadas encima de ella al bajar */
     .hmain{display:block;grid-column:1}
     .hside{display:flex;flex-direction:column;gap:2px;grid-column:2;position:sticky;top:78px;padding-top:6px}
     .hside>*{max-width:none!important;width:100%;margin-top:12px}.hside>:first-child{margin-top:0}
@@ -868,7 +869,7 @@
     const el = $("espTop"); if (!ESPT) return;
     const list = products.filter(p => p.cat === ESPT), gs = [...new Set(list.map(p => p.grupo || ""))];
     el.innerHTML = `<section class="esp esp-top" aria-label="${hx(ESPT)}"><header class="esp-head">${PICADO}<h2>${hx(ESPT)}<span>${list.length}</span></h2>${ESP.texto ? `<p>${hx(ESP.texto)}</p>` : ""}</header>${gs.map(g=>{ const l = list.filter(p => (p.grupo||"") === g); return `${g ? `<h3 class="esp-g">${hx(g)}<span>${l.length}</span></h3>` : ""}<div class="rail">${l.map(p=>card(p)).join("")}</div>`; }).join("")}</section>`;
-    el.hidden = false;
+    el.hidden = false; el.closest(".hero").classList.add("con-esp");
   }
 
   function totals(){
