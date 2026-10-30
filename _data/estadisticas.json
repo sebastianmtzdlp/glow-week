@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-29",
- "hora": "19:26",
+ "hora": "21:01",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 926,
+  "visitas": 938,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -67,7 +67,7 @@
   },
   {
    "d": "2026-10-29",
-   "v": 40
+   "v": 52
   }
  ],
  "consultoras": [
@@ -79,18 +79,18 @@
    "pedidos": 1
   },
   {
+   "slug": "pao",
+   "nombre": "Pao",
+   "visitas": 41,
+   "catalogo": 4,
+   "pedidos": 0
+  },
+  {
    "slug": "sel",
    "nombre": "Selene",
    "visitas": 42,
    "catalogo": 2,
    "pedidos": 5
-  },
-  {
-   "slug": "pao",
-   "nombre": "Pao",
-   "visitas": 34,
-   "catalogo": 4,
-   "pedidos": 0
   },
   {
    "slug": "anaofelia",
@@ -413,9 +413,9 @@
   }
  },
  "ritmo": {
-  "visitas": 73,
-  "nueva": 63,
-  "registro": 32,
+  "visitas": 74,
+  "nueva": 64,
+  "registro": 33,
   "abrir": 17,
   "empezar": 13,
   "importar-omitido": 3,
