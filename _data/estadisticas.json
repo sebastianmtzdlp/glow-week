@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-30",
- "hora": "02:27",
+ "hora": "04:08",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 976,
+  "visitas": 983,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -71,7 +71,7 @@
   },
   {
    "d": "2026-10-30",
-   "v": 8
+   "v": 15
   }
  ],
  "consultoras": [
@@ -85,7 +85,7 @@
   {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 47,
+   "visitas": 48,
    "catalogo": 3,
    "pedidos": 5
   },
@@ -337,6 +337,11 @@
      "n": 2
     },
     {
+     "code": "1002724",
+     "name": "Nutriplus+ Creatina",
+     "n": 1
+    },
+    {
      "code": "1000272",
      "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
      "n": 1
@@ -448,8 +453,8 @@
   }
  },
  "ritmo": {
-  "visitas": 77,
-  "nueva": 66,
+  "visitas": 78,
+  "nueva": 67,
   "registro": 33,
   "abrir": 18,
   "empezar": 13,
