@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-30",
- "hora": "01:37",
+ "hora": "02:27",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 974,
+  "visitas": 976,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -71,7 +71,7 @@
   },
   {
    "d": "2026-10-30",
-   "v": 6
+   "v": 8
   }
  ],
  "consultoras": [
@@ -85,8 +85,8 @@
   {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 46,
-   "catalogo": 2,
+   "visitas": 47,
+   "catalogo": 3,
    "pedidos": 5
   },
   {
