@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-29",
- "hora": "17:51",
+ "hora": "19:26",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 919,
+  "visitas": 926,
   "agregados": 31,
   "pedidos": 7,
   "wa": 1
@@ -67,7 +67,7 @@
   },
   {
    "d": "2026-10-29",
-   "v": 33
+   "v": 40
   }
  ],
  "consultoras": [
@@ -88,8 +88,15 @@
   {
    "slug": "pao",
    "nombre": "Pao",
-   "visitas": 33,
+   "visitas": 34,
    "catalogo": 4,
+   "pedidos": 0
+  },
+  {
+   "slug": "anaofelia",
+   "nombre": "Ana Ofelia",
+   "visitas": 13,
+   "catalogo": 3,
    "pedidos": 0
   },
   {
@@ -97,13 +104,6 @@
    "nombre": "Elda",
    "visitas": 15,
    "catalogo": 1,
-   "pedidos": 0
-  },
-  {
-   "slug": "anaofelia",
-   "nombre": "Ana Ofelia",
-   "visitas": 12,
-   "catalogo": 3,
    "pedidos": 0
   },
   {
@@ -413,10 +413,10 @@
   }
  },
  "ritmo": {
-  "visitas": 71,
-  "nueva": 62,
-  "registro": 31,
-  "abrir": 16,
+  "visitas": 73,
+  "nueva": 63,
+  "registro": 32,
+  "abrir": 17,
   "empezar": 13,
   "importar-omitido": 3,
   "importado": 2
