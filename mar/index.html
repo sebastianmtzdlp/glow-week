@@ -79,6 +79,22 @@
   section.cat{padding-top:24px;scroll-margin-top:60px}
   section.cat h2{font-size:20px;font-weight:700;margin-bottom:12px;display:flex;align-items:baseline;gap:8px}
   .favtxt{margin:-4px 0 14px;color:var(--muted);max-width:60ch}
+  /* Sección especial (Venta de Día de Muertos): cabecera marino con papel picado; las tarjetas son las de siempre */
+  .esp-head{position:relative;background:#262A4A;color:#FFFFFF;border-radius:18px;padding:58px 18px 18px;margin-bottom:6px;overflow:hidden}
+  .esp-head .picado{position:absolute;top:0;left:0;width:1560px;height:52px;transform-origin:50% 0}
+  section.cat .esp-head h2{display:block;font-size:26px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin:0 0 8px;color:#FFFFFF;text-wrap:balance}
+  section.cat .esp-head h2 span{color:#F6C36A;margin-left:8px;white-space:nowrap}
+  .esp-head p{color:#D9DBEA;max-width:56ch;font-size:15px;line-height:1.45}
+  .esp-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .esp-nav a{color:#FFFFFF;text-decoration:none;font-size:14px;font-weight:600;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);min-height:44px;display:inline-flex;align-items:center;transition:transform 160ms var(--ease),background-color 160ms ease}
+  .esp-nav a:active{transform:scale(.97)}
+  .esp-nav a:focus-visible{outline:2px solid #F6C36A;outline-offset:2px}
+  @media(hover:hover) and (pointer:fine){.esp-nav a:hover{background:rgba(255,255,255,.1)}}
+  .esp-g{font-size:16px;font-weight:700;margin:20px 0 10px;display:flex;align-items:baseline;gap:8px;scroll-margin-top:110px}
+  .esp-g span{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
+  @media(min-width:900px){.esp-head{padding:66px 28px 24px}.esp-head .picado{width:1820px;height:60px}section.cat .esp-head h2{font-size:32px}}
+  @media(prefers-reduced-motion:no-preference){.esp-head .picado{animation:picado 700ms cubic-bezier(.23,1,.32,1) both}}
+  @keyframes picado{from{transform:scaleY(.6);opacity:0}to{transform:none;opacity:1}}
   section.cat h2 span{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
   @media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr);gap:14px}}
@@ -245,6 +261,7 @@
   .oosb{position:absolute;left:8px;bottom:8px;background:var(--ink);color:var(--on-ink);font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em}
   .add:disabled{opacity:.5;cursor:not-allowed}
   .resume{display:flex;align-items:center;gap:10px;background:var(--tint);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 10px;font-size:14px}
+  .resume[hidden]{display:none}
   .resume span{flex:1}.resume button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:8px 12px;background:var(--accent);color:var(--on-ink);cursor:pointer}
   .resume .rx{background:transparent;color:var(--muted);padding:6px 8px;font-size:18px;line-height:1}
   .fill{margin:10px 0;padding:12px;border:1.5px dashed var(--accent);border-radius:16px}
@@ -720,6 +737,10 @@
   // Favoritos de la consultora (promos.json "favoritos"): productos propios que salen primero, con su propio chip
   const FAVT = D.favoritos && (D.favoritos.productos||[]).length ? (D.favoritos.titulo || "Mis favoritos") : "";
   if (FAVT) D.productos = [...D.favoritos.productos.map(p => ({...p, cat: FAVT, fav: true})), ...D.productos];
+  // Categoría especial del equipo (promos-base.json "especial", p. ej. Venta de Día de Muertos): sale antes que todo, con apartados por "grupo"
+  const ESP = D.especial && (D.especial.productos||[]).length && inWindow(D.especial.desde, D.especial.hasta) ? D.especial : null;
+  const ESPT = ESP ? (ESP.titulo || "Venta especial") : "";
+  if (ESPT) D.productos = [...ESP.productos.map(p => ({...p, cat: ESPT, esp: true})), ...D.productos];
   const products = D.productos
     .filter(p => inWindow(p.desde, p.hasta))
     .map(p => {
@@ -736,6 +757,8 @@
     p.ntonos = t.length; });
   const famOf = i => ALL[i].par!=null ? ALL[i].par : i;
 
+  // Variantes: casi todas son tonos; en promos.json "variante": "sabor" dice "4 sabores" y "Elegir sabor"
+  const VT = p => p.variante || "tono", VTS = p => VT(p) + (/[aeiou]$/.test(VT(p)) ? "s" : "es");
   const money = n => "$" + n.toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2});
   const pct = p => Math.round((1 - p.price/p.retail)*100);
   const initials = p => p.name.split(" ").map(w=>w[0]).join("").slice(0,2);
@@ -754,7 +777,7 @@
     "Nuevos": p => !!p.nuevo,
     "Mejores descuentos": p => pct(p) >= 40,
   };
-  const cats = ["Todo", ...(FAVT ? [FAVT] : []), ...Object.keys(SPECIAL).filter(k => products.some(SPECIAL[k])), ...realCats.filter(c => c !== FAVT)];
+  const cats = ["Todo", ...(ESPT ? [ESPT] : []), ...(FAVT ? [FAVT] : []), ...Object.keys(SPECIAL).filter(k => products.some(SPECIAL[k])), ...realCats.filter(c => c !== FAVT && c !== ESPT)];
 
   function renderChips(){
     $("chips").innerHTML = cats.map(c=>{
@@ -774,11 +797,11 @@
       </div>
       <div class="body">
         <div class="name">${p.name}</div>
-        <div class="shade">${hit ? "Tono: "+hx(hit) : p.ntonos?p.ntonos+" tonos":p.shade}</div>
+        <div class="shade">${hit ? "Tono: "+hx(hit) : p.ntonos?p.ntonos+" "+VTS(p):p.shade}</div>
         ${p.incluye ? `<details class="inc"><summary>Qué incluye</summary><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul></details>` : ""}
         <div class="price"><span class="now">${money(p.price)}</span>${p.retail>p.price?`<span class="was">${money(p.retail)}</span>`:""}</div>
         ${p.flashEnds ? `<div class="flash-left" data-ends="${p.flashEnds}"></div>` : ""}
-        ${p.ntonos ? (allOut ? `<button class="add" disabled>Agotado por ahora</button>` : `<button class="add pick" data-tono-open="${i}">${q?`En tu pedido (${q}) · Cambiar`:"Elegir tono"}</button>`) : q ? `<div class="qty"><button class="step-btn" data-d="-1" data-i="${i}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="step-btn" data-d="1" data-i="${i}" aria-label="Agregar otro">${plus}</button></div>`
+        ${p.ntonos ? (allOut ? `<button class="add" disabled>Agotado por ahora</button>` : `<button class="add pick" data-tono-open="${i}">${q?`En tu pedido (${q}) · Cambiar`:"Elegir "+VT(p)}</button>`) : q ? `<div class="qty"><button class="step-btn" data-d="-1" data-i="${i}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="step-btn" data-d="1" data-i="${i}" aria-label="Agregar otro">${plus}</button></div>`
             : p.agotado ? `<button class="add" disabled>Agotado por ahora</button>` : `<button class="add" data-add="${i}">${plus} Agregar</button>`}
       </div></article>`;
   }
@@ -803,12 +826,23 @@
     else if (filter==="Todo") {
       groups = realCats.map(c=>[c, products.filter(p=>p.cat===c)]);
       ["Nuevos","Flash sale","Más pedidos"].forEach(k => { const l = products.filter(SPECIAL[k]); if (l.length) groups.unshift([k, l]); });
-      if (FAVT) { const k = groups.findIndex(g => g[0] === FAVT); if (k > 0) groups.unshift(groups.splice(k, 1)[0]); }
+      [FAVT, ESPT].forEach(t => { if (!t) return; const k = groups.findIndex(g => g[0] === t); if (k > 0) groups.unshift(groups.splice(k, 1)[0]); });
     }
     else if (SPECIAL[filter]) groups = [[filter, products.filter(SPECIAL[filter]).sort((a,b)=>pct(b)-pct(a))]];
     else groups = [[filter, products.filter(p=>p.cat===filter)]];
     if (terms.length && !groups[0][1].length) { $("catalog").innerHTML = `<p class="empty">No encontré "${hx(qry)}". Prueba con otra palabra (labial, suero, rubor…) o escríbeme por WhatsApp.</p>`; return; }
-    $("catalog").innerHTML = groups.map(([c,list])=>`<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2>${c===FAVT && D.favoritos.texto ? `<p class="favtxt">${hx(D.favoritos.texto)}</p>` : ""}<div class="grid">${srt(list).map(p=>card(p, tonoHit(p))).join("")}</div></section>`).join("");
+    $("catalog").innerHTML = groups.map(([c,list])=> c===ESPT && !terms.length && !sortM ? espSection(list) : `<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2>${c===FAVT && D.favoritos.texto ? `<p class="favtxt">${hx(D.favoritos.texto)}</p>` : ""}<div class="grid">${srt(list).map(p=>card(p, tonoHit(p))).join("")}</div></section>`).join("");
+  }
+
+  // Sección especial: cabecera con papel picado y los productos en sus apartados (Nutriplus, Cuidado de la piel, Maquillaje)
+  const PICADO = (() => {
+    const col = Array.from({length:52}, (_,i) => ["#F29A0E","#D6457A","#7A4BB0","#1E9A8F"][i%4]); // banderitas de tamaño fijo: en pantallas anchas salen más, no más grandes
+    const cut = i => i%3===0 ? "M15 16a5 5 0 1 0 0.01 0zM9 30h12l-6 7z" : i%3===1 ? "M15 12l3 6 6 1-4.5 4 1 6-5.5-3-5.5 3 1-6L6 19l6-1z" : "M8 14h14v4H8zM10 22h10v4H10zM12 30h6v4h-6z";
+    return `<svg class="picado" viewBox="0 0 1560 52" aria-hidden="true" focusable="false"><path d="M0 3H1560" stroke="#F6E7C8" stroke-width="1.5"/>${col.map((c,i)=>`<g transform="translate(${i*30+1} ${3+(i%2)})"><path fill="${c}" fill-rule="evenodd" d="M1 0h28v40l-3.5 6-3.5-6-3.5 6-3.5-6-3.5 6-3.5-6-3.5 6L1 40z${cut(i)}"/></g>`).join("")}</svg>`;
+  })();
+  function espSection(list){
+    const gs = [...new Set(list.map(p => p.grupo || ""))];
+    return `<section class="cat esp" id="s-${ESPT}"><header class="esp-head">${PICADO}<h2>${hx(ESPT)}<span>${list.length}</span></h2>${ESP.texto ? `<p>${hx(ESP.texto)}</p>` : ""}${gs.length > 1 ? `<nav class="esp-nav" aria-label="Apartados de ${hx(ESPT)}">${gs.map((g,k)=>`<a href="#esp-${k}">${hx(g)}</a>`).join("")}</nav>` : ""}</header>${gs.map((g,k)=>{ const l = list.filter(p => (p.grupo||"") === g); return `${g ? `<h3 class="esp-g" id="esp-${k}">${hx(g)}<span>${l.length}</span></h3>` : ""}<div class="grid">${l.map(p=>card(p)).join("")}</div>`; }).join("")}</section>`;
   }
 
   function totals(){
@@ -943,7 +977,7 @@
 
   document.addEventListener("click", e=>{
     const chip = e.target.closest(".chip");
-    if (chip){ filter = chip.dataset.c; renderChips(); renderCatalog(); window.scrollTo({top:$("catalog").offsetTop-70}); return; }
+    if (chip){ filter = chip.dataset.c; renderChips(); renderCatalog(); window.scrollTo({top:$("catalog").offsetTop-(document.querySelector(".filters").offsetHeight||70)-8}); return; }
     const add = e.target.closest("[data-add]");
     if (add){ const i=+add.dataset.add; if (ALL[i].agotado) return; cart[i]=1; gc('agregar/'+ALL[i].code, ALL[i].name); gcs('agregar', ALL[i].code, ALL[i].name); refreshCard(i); update(); return; }
     const st = e.target.closest(".step-btn");
@@ -1136,7 +1170,7 @@
     const ids = (D.combina||{})[base.code] || []; const items = ids.map(c => products.findIndex(x => x.code === c)).filter(k => k >= 0);
     if (!items.length) { el.innerHTML = ""; return; }
     el.innerHTML = `<div class="combo"><h5>Combina con</h5>${items.map(k => { const x = products[k], q2 = cart[k]||0, hasT = !!x.ntonos;
-      return `<div class="cb"><img src="${IMG}${hd(x.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><b>${x.name}</b><span>${hx(hasT ? x.ntonos+" tonos" : (x.shade||""))} · <span class="num">${money(x.price)}</span></span></div>${
+      return `<div class="cb"><img src="${IMG}${hd(x.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><b>${x.name}</b><span>${hx(hasT ? x.ntonos+" "+VTS(x) : (x.shade||""))} · <span class="num">${money(x.price)}</span></span></div>${
         x.agotado ? `<button type="button" disabled>Agotado</button>` : hasT ? `<button type="button" data-showp="${k}">Elegir</button>` : q2 ? `<button type="button" data-showp="${k}">En pedido (${q2})</button>` : `<button type="button" data-fill="${k}">Agregar</button>`}</div>`; }).join("")}</div>`;
   }
   let CUR = -1;
@@ -1146,7 +1180,7 @@
     $("prodHead").textContent = p.cat;
     openProd(`<div class="pd-pic"><img id="pdMain" src="${IMG}${hd(p.img)}.webp" alt="${p.name}" onerror="this.style.visibility='hidden'"></div><div class="pd-thumbs" id="pdThumbs" hidden></div>
       <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
-      ${fam ? `<div class="tonos"><h5>Tono · ${fam.length} opciones</h5><div class="tchips">${fam.map(k=>{const v=ALL[k]; return `<button type="button" class="tchip${v.agotado?" out":""}" data-tono="${k}" aria-current="${k===i}" title="${hx(v.shade)}${v.agotado?" · agotado":""}"><img src="https://content.mx.farmasi.com/Variant/${v.code}.png" alt="" onerror="this.style.display='none'"><span>${hx(v.shade)}</span></button>`}).join("")}</div></div>` : ""}
+      ${fam ? `<div class="tonos"><h5>${VT(p)[0].toUpperCase()+VT(p).slice(1)} · ${fam.length} opciones</h5><div class="tchips">${fam.map(k=>{const v=ALL[k]; return `<button type="button" class="tchip${v.agotado?" out":""}" data-tono="${k}" aria-current="${k===i}" title="${hx(v.shade)}${v.agotado?" · agotado":""}"><img src="https://content.mx.farmasi.com/Variant/${v.code}.png" alt="" onerror="this.style.display='none'"><span>${hx(v.shade)}</span></button>`}).join("")}</div></div>` : ""}
       <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="pill">-${d}%</span></div>
       ${p.incluye ? `<h5>Qué incluye</h5><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}<button type="button" class="shr" data-share="${i}">Mandar a una amiga</button><div id="pdCombo"></div><div id="pdDet"></div></div>`,
       q ? `<button class="send" data-pclose>Listo, ya está en tu pedido (${q})</button>` : p.agotado ? `<button class="send" disabled>Agotado por ahora</button>` : `<button class="send" data-padd="${i}">Agregar al pedido</button>`);
