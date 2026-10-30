@@ -82,8 +82,8 @@
   /* Sección especial (Venta de Día de Muertos): cabecera marino con papel picado; las tarjetas son las de siempre */
   .esp-head{position:relative;background:#262A4A;color:#FFFFFF;border-radius:18px;padding:58px 18px 18px;margin-bottom:6px;overflow:hidden}
   .esp-head .picado{position:absolute;top:0;left:0;width:1560px;height:52px;transform-origin:50% 0}
-  section.cat .esp-head h2{display:block;font-size:26px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin:0 0 8px;color:#FFFFFF;text-wrap:balance}
-  section.cat .esp-head h2 span{color:#F6C36A;margin-left:8px;white-space:nowrap}
+  .esp .esp-head h2{display:block;font-size:26px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin:0 0 8px;color:#FFFFFF;text-wrap:balance}
+  .esp .esp-head h2 span{color:#F6C36A;margin-left:8px;white-space:nowrap;font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:0}
   .esp-head p{color:#D9DBEA;max-width:56ch;font-size:15px;line-height:1.45}
   .esp-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   .esp-nav a{color:#FFFFFF;text-decoration:none;font-size:14px;font-weight:600;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);min-height:44px;display:inline-flex;align-items:center;transition:transform 160ms var(--ease),background-color 160ms ease}
@@ -91,8 +91,14 @@
   .esp-nav a:focus-visible{outline:2px solid #F6C36A;outline-offset:2px}
   @media(hover:hover) and (pointer:fine){.esp-nav a:hover{background:rgba(255,255,255,.1)}}
   .esp-g{font-size:16px;font-weight:700;margin:20px 0 10px;display:flex;align-items:baseline;gap:8px;scroll-margin-top:110px}
+  #espTop{padding-top:16px}
+  .esp-top .esp-head{padding-bottom:16px}
+  .rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,44%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 8px;scroll-padding-inline:16px;scrollbar-width:thin}
+  .rail>.card{scroll-snap-align:start}
+  @media(min-width:640px){.rail{grid-auto-columns:minmax(190px,30%)}}
+  @media(min-width:900px){.rail{grid-auto-columns:220px}}
   .esp-g span{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
-  @media(min-width:900px){.esp-head{padding:66px 28px 24px}.esp-head .picado{width:1820px;height:60px}section.cat .esp-head h2{font-size:32px}}
+  @media(min-width:900px){.esp-head{padding:66px 28px 24px}.esp-head .picado{width:1820px;height:60px}.esp .esp-head h2{font-size:32px}}
   @media(prefers-reduced-motion:no-preference){.esp-head .picado{animation:picado 700ms cubic-bezier(.23,1,.32,1) both}}
   @keyframes picado{from{transform:scaleY(.6);opacity:0}to{transform:none;opacity:1}}
   section.cat h2 span{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
@@ -527,6 +533,7 @@
 </div></div>
 
 <main>
+  <div class="wrap" id="espTop" hidden></div>
   <div class="wrap hero">
     <button class="banner" id="banner" hidden><span id="bannerTxt"></span><svg class="i" viewBox="0 0 24 24" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></button>
     <div class="hmain">
@@ -725,7 +732,15 @@
   const SALE = tema ? D.venta.nombre : "Farmasi";
   const TITULO = tema ? D.venta.titulo : "Farmasi";
   const IMG = "https://content.mx.farmasi.com/Product/";
-  const hd = s => String(s).replace("_250","_400"); // Farmasi solo publica 250 y 400 px: usamos la más nítida
+  const hd = s => String(s).replace("_250","_400");
+  // Si una foto no existe con ese nombre, prueba las otras formas en que Farmasi las publica (_400, _400_1, _250, _250_1, .png); al final pone las iniciales o la oculta
+  window.imgAlt = el => {
+    if (!el.dataset.alt) { const m = el.src.match(/\/Product\/([^_/]+)_/); if (!m) { el.dataset.alt = "[]"; } else { const c = m[1];
+      el.dataset.alt = JSON.stringify(["_400","_400_1","_250","_250_1"].map(x => IMG + c + x + ".webp").concat([IMG + c.toLowerCase() + "_250_1.webp", IMG + c + "_250.png"]).filter(u => u !== el.src)); } }
+    const L = JSON.parse(el.dataset.alt);
+    if (L.length) { el.dataset.alt = JSON.stringify(L.slice(1)); el.src = L[0]; return; }
+    el.onerror = null; if (el.dataset.ph) el.outerHTML = `<div class=ph>${el.dataset.ph}</div>`; else el.style.visibility = "hidden";
+  }; // Farmasi solo publica 250 y 400 px: usamos la más nítida
   const END = new Date(D.venta.termina);
   let GOAL = D.meta.monto;
   const GIFT = /regalo/i.test(D.meta.regalo) ? D.meta.regalo : D.meta.regalo + " de regalo"; // "un regalo sorpresa" no repite "de regalo"
@@ -791,7 +806,7 @@
     const allOut = fam.every(k=>ALL[k].agotado);
     return `<article class="card${q?" in":""}${allOut?" oos":""}" data-i="${i}">
       <div class="pic">
-        <img src="${IMG}${hd(p.img)}.webp" alt="${p.name} ${p.shade}" loading="lazy" onerror="this.outerHTML='<div class=ph>${initials(p)}</div>'">
+        <img src="${IMG}${hd(p.img)}.webp" alt="${p.name} ${p.shade}" loading="lazy" data-ph="${initials(p)}" onerror="imgAlt(this)">
         ${d>0?`<span class="off${d>=40?" big":""}">-${d}%</span>`:""}${allOut?'<span class="oosb">Agotado</span>':""}
         ${(p.flashEnds||p.nuevo||MAS.has(p.code)||p.cat==="Kits") ? `<span class="tags">${p.flashEnds?'<span class="tag flash">Flash</span>':""}${p.nuevo?'<span class="tag">Nuevo</span>':""}${MAS.has(p.code)?'<span class="tag">Más pedido</span>':""}</span>` : ""}${p.cat==="Kits"?'<span class="tag lim">Tiempo limitado</span>':""}
       </div>
@@ -827,6 +842,7 @@
       groups = realCats.map(c=>[c, products.filter(p=>p.cat===c)]);
       ["Nuevos","Flash sale","Más pedidos"].forEach(k => { const l = products.filter(SPECIAL[k]); if (l.length) groups.unshift([k, l]); });
       [FAVT, ESPT].forEach(t => { if (!t) return; const k = groups.findIndex(g => g[0] === t); if (k > 0) groups.unshift(groups.splice(k, 1)[0]); });
+      if (ESPT) groups = groups.filter(g => g[0] !== ESPT); // ya sale hasta arriba de la página (espTop)
     }
     else if (SPECIAL[filter]) groups = [[filter, products.filter(SPECIAL[filter]).sort((a,b)=>pct(b)-pct(a))]];
     else groups = [[filter, products.filter(p=>p.cat===filter)]];
@@ -843,6 +859,14 @@
   function espSection(list){
     const gs = [...new Set(list.map(p => p.grupo || ""))];
     return `<section class="cat esp" id="s-${ESPT}"><header class="esp-head">${PICADO}<h2>${hx(ESPT)}<span>${list.length}</span></h2>${ESP.texto ? `<p>${hx(ESP.texto)}</p>` : ""}${gs.length > 1 ? `<nav class="esp-nav" aria-label="Apartados de ${hx(ESPT)}">${gs.map((g,k)=>`<a href="#esp-${k}">${hx(g)}</a>`).join("")}</nav>` : ""}</header>${gs.map((g,k)=>{ const l = list.filter(p => (p.grupo||"") === g); return `${g ? `<h3 class="esp-g" id="esp-${k}">${hx(g)}<span>${l.length}</span></h3>` : ""}<div class="grid">${l.map(p=>card(p)).join("")}</div>`; }).join("")}</section>`;
+  }
+
+  // Hasta arriba de la página: la venta especial con sus productos en filas que se deslizan, para que sea lo primero que se ve
+  function renderTop(){
+    const el = $("espTop"); if (!ESPT) return;
+    const list = products.filter(p => p.cat === ESPT), gs = [...new Set(list.map(p => p.grupo || ""))];
+    el.innerHTML = `<section class="esp esp-top" aria-label="${hx(ESPT)}"><header class="esp-head">${PICADO}<h2>${hx(ESPT)}<span>${list.length}</span></h2>${ESP.texto ? `<p>${hx(ESP.texto)}</p>` : ""}</header>${gs.map(g=>{ const l = list.filter(p => (p.grupo||"") === g); return `${g ? `<h3 class="esp-g">${hx(g)}<span>${l.length}</span></h3>` : ""}<div class="rail">${l.map(p=>card(p)).join("")}</div>`; }).join("")}</section>`;
+    el.hidden = false;
   }
 
   function totals(){
@@ -894,12 +918,12 @@
     $("tSave").textContent = "−" + money(s);
     $("tTotal").textContent = money(t);
     $("lines").innerHTML = ALL.map((p,i)=>{const q=cart[i]; if(!q) return "";
-      return `<div class="line"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><div class="n">${p.name}</div><div class="d">${p.shade} · <span class="num">${money(p.price)}</span></div></div>
+      return `<div class="line"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="imgAlt(this)"><div><div class="n">${p.name}</div><div class="d">${p.shade} · <span class="num">${money(p.price)}</span></div></div>
       <div class="q"><button class="step-btn" data-d="-1" data-i="${i}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="step-btn" data-d="1" data-i="${i}" aria-label="Agregar otro">${plus}</button></div></div>`}).join("");
     (function(){ const fb=$("fillBox"), left=GOAL-t; if(!n || left<=0 || left>500){ fb.hidden=true; fb.innerHTML=""; return; }
       const seen=new Set(), L=products.map((p,i)=>({p,i})).filter(x=>!x.p.agotado && !cart[x.i] && x.p.cat!=="Kits" && x.p.price>=left && !(FAM[x.i]&&FAM[x.i].some(k=>cart[k]))).sort((a,b)=>a.p.price-b.p.price).filter(x=>!seen.has(x.p.cat)&&seen.add(x.p.cat)).slice(0,3);
       if(!L.length){ fb.hidden=true; return; }
-      fb.hidden=false; fb.innerHTML=`<h6>Te faltan ${money(left)}: con cualquiera de estos llegas al envío gratis</h6>`+L.map(({p,i})=>`<div class="fi"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><b>${p.name}</b>${p.ntonos?p.ntonos+" tonos":hx(p.shade||"")} · <span class="num">${money(p.price)}</span></div><button type="button" ${p.ntonos?`data-tono-open="${i}"`:`data-fill="${i}"`}>${p.ntonos?"Elegir":"Agregar"}</button></div>`).join(""); })();
+      fb.hidden=false; fb.innerHTML=`<h6>Te faltan ${money(left)}: con cualquiera de estos llegas al envío gratis</h6>`+L.map(({p,i})=>`<div class="fi"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="imgAlt(this)"><div><b>${p.name}</b>${p.ntonos?p.ntonos+" tonos":hx(p.shade||"")} · <span class="num">${money(p.price)}</span></div><button type="button" ${p.ntonos?`data-tono-open="${i}"`:`data-fill="${i}"`}>${p.ntonos?"Elegir":"Agregar"}</button></div>`).join(""); })();
     $("sendBtn").href = waLink();
     if (!n) closeSheet();
   }
@@ -1037,7 +1061,7 @@
   else if (left <= 0) { $("days").textContent = "Siempre"; $("days").previousElementSibling.textContent = "Promos"; }
 
   $("goalTxt").textContent = money(GOAL).replace(".00","");
-  $("giftItems").innerHTML = GIFT_ITEMS.map((g,gi)=>`<div class="gift-item" data-gift="${gi}" role="button" tabindex="0"><img src="${IMG}${hd(g.img)}.webp" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>${g.name[0]}</div>'">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
+  $("giftItems").innerHTML = GIFT_ITEMS.map((g,gi)=>`<div class="gift-item" data-gift="${gi}" role="button" tabindex="0"><img src="${IMG}${hd(g.img)}.webp" alt="" loading="lazy" data-ph="${g.name[0]}" onerror="imgAlt(this)">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
   $("giftVal").textContent = money(GIFT_ITEMS.reduce((a,g)=>a+g.retail,0));
   if (!GIFT_ITEMS.length) { $("giftItems").style.display = "none"; document.querySelector(".gift-val").style.display = "none"; } // regalo sorpresa: sin productos que mostrar
   // ---------- Asistente "Ayúdame a elegir" ----------
@@ -1108,7 +1132,7 @@
     }
     body.innerHTML = `<div class="hq"><div class="count">Tu selección</div><h4>Esto te recomiendo</h4></div>
       <div class="lines">${hrecs.map(r=>`<div class="rec">
-        <img src="${IMG}${hd(r.p.img)}.webp" alt="" onerror="this.style.visibility='hidden'">
+        <img src="${IMG}${hd(r.p.img)}.webp" alt="" onerror="imgAlt(this)">
         <div><div class="n">${r.p.name}${r.q>1?` × ${r.q}`:""}</div><div class="d">${r.p.shade} · <span class="num">${money(r.p.price)}</span> <span class="was num">${money(r.p.retail)}</span></div><span class="why">${r.why}</span></div>
         <button class="pick" data-pick="${r.i}" aria-pressed="${hpick.has(r.i)}" aria-label="Incluir">${hpick.has(r.i)?check:""}</button>
       </div>`).join("")}</div>
@@ -1170,7 +1194,7 @@
     const ids = (D.combina||{})[base.code] || []; const items = ids.map(c => products.findIndex(x => x.code === c)).filter(k => k >= 0);
     if (!items.length) { el.innerHTML = ""; return; }
     el.innerHTML = `<div class="combo"><h5>Combina con</h5>${items.map(k => { const x = products[k], q2 = cart[k]||0, hasT = !!x.ntonos;
-      return `<div class="cb"><img src="${IMG}${hd(x.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><b>${x.name}</b><span>${hx(hasT ? x.ntonos+" "+VTS(x) : (x.shade||""))} · <span class="num">${money(x.price)}</span></span></div>${
+      return `<div class="cb"><img src="${IMG}${hd(x.img)}.webp" alt="" onerror="imgAlt(this)"><div><b>${x.name}</b><span>${hx(hasT ? x.ntonos+" "+VTS(x) : (x.shade||""))} · <span class="num">${money(x.price)}</span></span></div>${
         x.agotado ? `<button type="button" disabled>Agotado</button>` : hasT ? `<button type="button" data-showp="${k}">Elegir</button>` : q2 ? `<button type="button" data-showp="${k}">En pedido (${q2})</button>` : `<button type="button" data-fill="${k}">Agregar</button>`}</div>`; }).join("")}</div>`;
   }
   let CUR = -1;
@@ -1178,7 +1202,7 @@
     CUR = i; const p = ALL[i], d = pct(p), q = cart[i]||0, fi = famOf(i), fam = FAM[fi];
     gc("ver/"+p.code, p.name); gcs("ver", p.code, p.name);
     $("prodHead").textContent = p.cat;
-    openProd(`<div class="pd-pic"><img id="pdMain" src="${IMG}${hd(p.img)}.webp" alt="${p.name}" onerror="this.style.visibility='hidden'"></div><div class="pd-thumbs" id="pdThumbs" hidden></div>
+    openProd(`<div class="pd-pic"><img id="pdMain" src="${IMG}${hd(p.img)}.webp" alt="${p.name}" onerror="imgAlt(this)"></div><div class="pd-thumbs" id="pdThumbs" hidden></div>
       <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
       ${fam ? `<div class="tonos"><h5>${VT(p)[0].toUpperCase()+VT(p).slice(1)} · ${fam.length} opciones</h5><div class="tchips">${fam.map(k=>{const v=ALL[k]; return `<button type="button" class="tchip${v.agotado?" out":""}" data-tono="${k}" aria-current="${k===i}" title="${hx(v.shade)}${v.agotado?" · agotado":""}"><img src="https://content.mx.farmasi.com/Variant/${v.code}.png" alt="" onerror="this.style.display='none'"><span>${hx(v.shade)}</span></button>`}).join("")}</div></div>` : ""}
       <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="pill">-${d}%</span></div>
@@ -1190,7 +1214,7 @@
     const g = GIFT_ITEMS[gi]; if(!g) return;
     gc("ver/regalo", g.name);
     $("prodHead").textContent = "Regalo del mes";
-    openProd(`<div class="pd-pic"><img src="${IMG}${hd(g.img)}.webp" alt="${g.name}" onerror="this.style.visibility='hidden'"></div>
+    openProd(`<div class="pd-pic"><img src="${IMG}${hd(g.img)}.webp" alt="${g.name}" onerror="imgAlt(this)"></div>
       <div class="pd-body"><div class="eyebrow">Regalo</div><h4 id="prodName">${g.name}</h4>
       <div class="pr"><b>Gratis</b><s>${money(g.retail)}</s></div>
       <div class="note">Te lo llevas sin pagar al llegar a ${money(GOAL)} en tu pedido (${GIFT}).</div><div id="pdDet"></div></div>`,
@@ -1248,7 +1272,7 @@
   $("maxOff").textContent = "−" + Math.max(...products.map(pct)) + "%";
   $("giftName").textContent = GIFT;
   if (!$("days").textContent) $("days").textContent = END.toLocaleDateString("es-MX",{day:"numeric",month:"short"}).replace(".","");
-  if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta)) {
+  if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta) && !(ESPT && D.aviso.filtro === ESPT)) { // si el aviso solo lleva a la venta especial, no hace falta: ya está arriba
     $("bannerTxt").textContent = D.aviso.texto; $("banner").hidden = false;
     // Al tocar el aviso: filtra la sección indicada (p. ej. "Kits") o abre un link
     $("banner").onclick = () => {
@@ -1294,7 +1318,7 @@
     $("pagoList").innerHTML = L.map(x=>`<li>${hx(x)}</li>`).join(""); })();
   $("sort").addEventListener("change", e=>{ sortM=e.target.value; renderCatalog(); });
   $("wafab").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola "+SELLER+", tengo una duda sobre tu tablero.")}`;
-  renderChips(); renderCatalog(); syncForm(); update(); tick();
+  renderChips(); renderTop(); renderCatalog(); syncForm(); update(); tick();
   { const pq = new URLSearchParams(location.search).get("p"); if (pq) { const k = ALL.findIndex(x=>x.code===pq); if (k>=0) showProduct(k); } }
 })();
 </script>
