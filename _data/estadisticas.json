@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-31",
- "hora": "14:45",
+ "hora": "16:53",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1011,
+  "visitas": 1012,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -75,7 +75,7 @@
   },
   {
    "d": "2026-10-31",
-   "v": 17
+   "v": 18
   }
  ],
  "consultoras": [
@@ -138,7 +138,7 @@
   {
    "slug": "nancy",
    "nombre": "Nancy",
-   "visitas": 4,
+   "visitas": 5,
    "catalogo": 0,
    "pedidos": 0
   },
