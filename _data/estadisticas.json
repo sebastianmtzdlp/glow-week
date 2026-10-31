@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-31",
- "hora": "09:50",
+ "hora": "10:19",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1003,
+  "visitas": 1009,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -75,7 +75,7 @@
   },
   {
    "d": "2026-10-31",
-   "v": 9
+   "v": 15
   }
  ],
  "consultoras": [
@@ -143,6 +143,13 @@
    "pedidos": 0
   },
   {
+   "slug": "andrea",
+   "nombre": "Andrea",
+   "visitas": 2,
+   "catalogo": 1,
+   "pedidos": 0
+  },
+  {
    "slug": "sam",
    "nombre": "Sam",
    "visitas": 3,
@@ -167,13 +174,6 @@
    "slug": "mar",
    "nombre": "Mar",
    "visitas": 2,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "andrea",
-   "nombre": "Andrea",
-   "visitas": 1,
    "catalogo": 0,
    "pedidos": 0
   },
@@ -352,6 +352,37 @@
     }
    ]
   },
+  "pao": {
+   "agregados": [
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    }
+   ],
+   "vistos": [
+    {
+     "code": "1002871",
+     "name": "Dr. C. Tuna Glow Face Mist",
+     "n": 1
+    },
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    },
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
+     "n": 1
+    },
+    {
+     "code": "1000291",
+     "name": "Dr. C. Tuna Tea Tree Bálsamo Crema Piel grasa · 80 ml",
+     "n": 1
+    }
+   ]
+  },
   "nancy": {
    "agregados": [
     {
@@ -379,32 +410,6 @@
     {
      "code": "1002157",
      "name": "All in One Palette Fair-Medium",
-     "n": 1
-    }
-   ]
-  },
-  "pao": {
-   "agregados": [
-    {
-     "code": "1002161",
-     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
-     "n": 1
-    }
-   ],
-   "vistos": [
-    {
-     "code": "1002161",
-     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
-     "n": 1
-    },
-    {
-     "code": "1002157",
-     "name": "All in One Palette Fair-Medium",
-     "n": 1
-    },
-    {
-     "code": "1000291",
-     "name": "Dr. C. Tuna Tea Tree Bálsamo Crema Piel grasa · 80 ml",
      "n": 1
     }
    ]
@@ -466,7 +471,7 @@
   "importado": 2
  },
  "eventos": {
-  "hub": 200,
+  "hub": 201,
   "series": {
    "flowers-to-go": 7
   },
