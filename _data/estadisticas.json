@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-31",
- "hora": "13:42",
+ "hora": "14:45",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1010,
+  "visitas": 1011,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -75,7 +75,7 @@
   },
   {
    "d": "2026-10-31",
-   "v": 16
+   "v": 17
   }
  ],
  "consultoras": [
@@ -131,7 +131,7 @@
   {
    "slug": "laura",
    "nombre": "Laura",
-   "visitas": 4,
+   "visitas": 5,
    "catalogo": 1,
    "pedidos": 0
   },
