@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-10-31",
- "hora": "06:49",
+ "hora": "09:50",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1001,
+  "visitas": 1003,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -75,7 +75,7 @@
   },
   {
    "d": "2026-10-31",
-   "v": 7
+   "v": 9
   }
  ],
  "consultoras": [
@@ -96,7 +96,7 @@
   {
    "slug": "pao",
    "nombre": "Pao",
-   "visitas": 44,
+   "visitas": 45,
    "catalogo": 4,
    "pedidos": 0
   },
@@ -482,7 +482,7 @@
     "slug": "altar",
     "titulo": "Flowers to Go · Edición Altar",
     "desde": "2026-10-31T11:00:00-06:00",
-    "visitas": 20,
+    "visitas": 21,
     "clics": {
      "whatsapp-sel": 4,
      "whatsapp-viri": 3
