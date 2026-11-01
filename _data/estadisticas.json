@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-11-01",
- "hora": "08:57",
+ "hora": "09:27",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1018,
+  "visitas": 1020,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -79,7 +79,7 @@
   },
   {
    "d": "2026-11-01",
-   "v": 5
+   "v": 7
   }
  ],
  "consultoras": [
@@ -466,10 +466,10 @@
   }
  },
  "ritmo": {
-  "visitas": 85,
+  "visitas": 86,
   "nueva": 73,
   "registro": 35,
-  "abrir": 20,
+  "abrir": 21,
   "empezar": 14,
   "importar-omitido": 3,
   "importado": 2
