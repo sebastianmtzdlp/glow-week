@@ -1,5 +1,5 @@
 {
-  "_nota": "Logros del mes. Solo nombre, nivel y título (nunca PV, GV, contactos ni órdenes). Las de 0% no van. 'foto' = nombre del archivo en fotos/ (el de su tienda si ya tiene, si no nombre-con-guiones.jpg); si el archivo no existe salen sus iniciales. Una sola 'nota' por nivel, con un dato real. Corre: python3 scripts/logros.py",
+  "_nota": "Logros del mes. Solo nombre, nivel y título (nunca PV, GV, contactos ni órdenes). Las de 0% no van. 'foto' = nombre del archivo en fotos/ (el de su tienda si ya tiene, si no nombre-con-guiones.jpg); si el archivo no existe salen sus iniciales. Una sola 'nota' por nivel, con un dato real. Corre: python3 scripts/logros.py 'ig' = usuario de Instagram sin @ (solo si ella lo tiene público); sale en su story. 'ig_equipo' = crédito en todas las stories.",
   "mes": "octubre",
   "anio": 2026,
   "equipo": "Selene",
@@ -10,7 +10,8 @@
           "nombre": "Selene Velazquez Hernandez",
           "iniciales": "SV",
           "titulo": "Bronze Director",
-          "foto": "sel.jpg"
+          "foto": "sel.jpg",
+          "ig": "selene_vehe"
         },
         {
           "nombre": "Nancy Liliana Rodriguez Ortiz",
@@ -105,5 +106,6 @@
         }
       ]
     }
-  }
+  },
+  "ig_equipo": ""
 }

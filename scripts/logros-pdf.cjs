@@ -1,4 +1,4 @@
-// PDFs de logros: la página del mes (una hoja larga, ancho de celular) y un
+// PDFs e imágenes de logros (stories 1080x1920): la página del mes (una hoja larga, ancho de celular) y un
 // certificado por persona. Corre después de scripts/logros.py:
 //   node scripts/logros-pdf.cjs octubre-2026
 // Necesita Playwright con Chromium y red para Google Fonts.
@@ -34,6 +34,16 @@ const srv = http.createServer((q, r) => {
     await p.evaluate(() => document.fonts.ready);
     await p.pdf({ path: path.join(cdir, f.replace('.html', '.pdf')), width: '540px', height: '675px', printBackground: true, pageRanges: '1' });
     console.log('escrito', `logros/${mes}/certificados/${f.replace('.html', '.pdf')}`);
+  }
+  const sdir = path.join(dir, 'stories');
+  if (fs.existsSync(sdir)) {
+    const sp = await b.newPage({ viewport: { width: 540, height: 960 }, deviceScaleFactor: 2 });
+    for (const f of fs.readdirSync(sdir).filter(x => x.endsWith('.html'))) {
+      await sp.goto(`${base}/logros/${mes}/stories/${f}`, { waitUntil: 'networkidle' });
+      await sp.evaluate(() => document.fonts.ready);
+      await sp.screenshot({ path: path.join(sdir, f.replace('.html', '.png')) });
+      console.log('escrito', `logros/${mes}/stories/${f.replace('.html', '.png')}`);
+    }
   }
   await b.close(); srv.close();
 })();

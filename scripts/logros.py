@@ -104,6 +104,7 @@ h1 em{font-style:normal;color:var(--accent)}
 .note{font-family:var(--hand);font-weight:600;font-size:25px;line-height:1.1;color:var(--accent-t);margin:14px 0 0 70px;transform:rotate(-1.5deg);transform-origin:left}
 .note::before{content:"";display:inline-block;width:18px;height:14px;margin-right:6px;border-left:1.75px solid currentColor;border-bottom:1.75px solid currentColor;border-bottom-left-radius:10px;vertical-align:4px}
 
+.card .cert+.cert{margin-left:0}
 .card .cert{margin-left:auto;flex:none;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:44px;min-height:44px;justify-content:center;border-radius:12px;color:var(--accent-t);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.04em}
 .card .cert:focus-visible{outline:2px solid var(--accent-t);outline-offset:2px}
 @media (hover:hover){.card .cert:hover{background:var(--tint)}}
@@ -172,6 +173,10 @@ def pslug(nombre):
     return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
 
 
+STORY = ('<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" '
+         'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/>'
+         '<path d="M12 8v6"/><path d="m9.5 11.5 2.5 2.5 2.5-2.5"/></svg>')
+
 WA = ('<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" '
       'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12Z"/>'
       '<path d="M8.5 10.5h7M8.5 14h4"/></svg>')
@@ -194,7 +199,9 @@ def tarjeta(p):
     return (f'<li class="card"><div class="ava" aria-hidden="true">{e(p["iniciales"])}{img}</div>'
             f'<div class="who"><strong>{e(p["nombre"])}</strong><span>{e(p["titulo"])}{nueva}</span></div>'
             f'<a class="cert" href="certificados/{pslug(p["nombre"])}.pdf" download '
-            f'aria-label="Descargar el certificado de {e(p["nombre"])}">{ICONO}<span>PDF</span></a></li>')
+            f'aria-label="Descargar el certificado de {e(p["nombre"])}">{ICONO}<span>PDF</span></a>'
+            f'<a class="cert" href="stories/{pslug(p["nombre"])}.png" download '
+            f'aria-label="Descargar la imagen para stories de {e(p["nombre"])}">{STORY}<span>STORY</span></a></li>')
 
 
 def pagina_mes(d, slug):
@@ -257,7 +264,7 @@ def pagina_mes(d, slug):
       <div class="tile"><b>{nuevas}</b><span>{nuevas_txt}</span></div>
     </div>
     <a class="dl" href="logros-{slug}.pdf" download>{ICONO}Descargar PDF</a>
-    <p class="dl-note">Cada tarjeta tiene su certificado en PDF.</p>
+    <p class="dl-note">Cada tarjeta trae su certificado en PDF y su imagen para stories.</p>
   </header>
 
   <nav class="idx" aria-label="Niveles">
@@ -279,6 +286,7 @@ def pagina_mes(d, slug):
 </html>
 """
     certificados(d, slug)
+    stories(d, slug)
     return out, total, dirs
 
 
@@ -335,6 +343,71 @@ def certificados(d, slug):
   <p class="pct">{k}<small>%</small></p>
 </div>
 <div class="band"><p>Gracias por tu trabajo de este mes · Equipo de {e(eq)}</p><p class="url">mitienda.beauty/logros/{slug}</p></div>
+</div></body></html>
+"""
+            (dest / f"{pslug(p['nombre'])}.html").write_text(h, encoding="utf-8")
+
+
+STORY_CSS = """
+:root{--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;color-scheme:light}
+*{box-sizing:border-box;margin:0}
+html,body{background:#fff;width:540px;height:960px;overflow:hidden}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--ink)}
+.s{width:540px;height:960px;display:flex;flex-direction:column;background:#fff}
+/* zonas seguras de stories: ~125px arriba y abajo sin texto importante */
+.top{height:150px;background:var(--tint);display:flex;align-items:flex-end;justify-content:center;padding-bottom:22px}
+.brand{font-weight:300;letter-spacing:.18em;font-size:13px;color:var(--muted)}
+.brand b{font-weight:600;letter-spacing:.08em;color:var(--accent-t);margin-left:6px}
+.in{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:0 40px}
+.eyebrow{font-size:14px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-t)}
+.ava{margin-top:26px;width:170px;height:170px;border-radius:50%;overflow:hidden;background:var(--soft);display:grid;place-items:center;font-weight:600;font-size:52px;position:relative;box-shadow:0 0 0 8px #fff,0 0 0 9.5px #F2B8BE}
+.ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+h1{margin-top:28px;font-size:38px;line-height:1.08;font-weight:800;letter-spacing:-.02em;text-wrap:balance;max-width:14ch}
+.t{margin-top:8px;font-size:17px;color:var(--muted)}
+.t span{display:inline-block;margin-left:6px;padding:2px 10px;border-radius:999px;background:var(--tint);color:var(--accent-t);font-size:14px;font-weight:600}
+.ig{margin-top:12px;font-family:"IBM Plex Mono",ui-monospace,monospace;font-size:18px;font-weight:500;color:var(--accent-t)}
+.lvl{margin-top:30px;font-size:18px;color:var(--muted)}
+.pct{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;font-weight:500;font-size:132px;line-height:1;letter-spacing:-.04em;margin-top:6px}
+.pct small{font-size:.5em;color:var(--accent)}
+.band{height:190px;background:var(--accent);color:#fff;text-align:center;padding:26px 40px 0}
+.band p{font-size:16px;font-weight:600}
+.band .url{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:14px;margin-top:6px;opacity:.95}
+"""
+
+
+def stories(d, slug):
+    mes, anio, eq = d["mes"], d["anio"], d["equipo"]
+    cred = d.get("ig_equipo", "").strip().lstrip("@")
+    dest = RAIZ / "logros" / slug / "stories"
+    dest.mkdir(parents=True, exist_ok=True)
+    for k in NIVELES:
+        for p in d["niveles"][k]["personas"]:
+            foto = p.get("foto")
+            img = f'<img src="/fotos/{e(foto)}" alt="">' if foto and (RAIZ / "fotos" / foto).exists() else ""
+            nueva = "<span>nueva</span>" if p.get("nueva") else ""
+            ig = p.get("ig", "").strip().lstrip("@")
+            ig_html = f'<p class="ig">@{e(ig)}</p>' if ig else ""
+            nivel_txt = f"cerró {e(mes)} {anio} en dirección, con" if k == "25" else f"cerró {e(mes)} {anio} en el nivel"
+            credito = f" · @{e(cred)}" if cred else ""
+            h = f"""<!doctype html>
+<html lang="es-MX"><head><meta charset="utf-8">
+<meta name="viewport" content="width=540">
+<meta name="robots" content="noindex">
+<title>Story de {e(mes)} {anio} · {e(p['nombre'])}</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>{STORY_CSS}</style></head>
+<body><div class="s">
+<div class="top"><p class="brand">MI EQUIPO<b>Farmasi</b></p></div>
+<div class="in">
+  <p class="eyebrow">Logros de {e(mes)} {anio}</p>
+  <div class="ava" aria-hidden="true">{e(p['iniciales'])}{img}</div>
+  <h1>{e(p['nombre'])}</h1>
+  <p class="t">{e(p['titulo'])}{nueva}</p>
+  {ig_html}
+  <p class="lvl">{nivel_txt}</p>
+  <p class="pct">{k}<small>%</small></p>
+</div>
+<div class="band"><p>Equipo de {e(eq)}{credito}</p><p class="url">mitienda.beauty/logros/{slug}</p></div>
 </div></body></html>
 """
             (dest / f"{pslug(p['nombre'])}.html").write_text(h, encoding="utf-8")
