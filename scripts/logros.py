@@ -201,7 +201,7 @@ def tarjeta(p):
             f'<div class="who"><strong>{e(p["nombre"])}</strong><span>{e(p["titulo"])}{nueva}</span></div>'
             f'<a class="cert" href="certificados/{pslug(p["nombre"])}.pdf" download '
             f'aria-label="Descargar el certificado de {e(p["nombre"])}">{ICONO}<span>PDF</span></a>'
-            f'<a class="cert" href="stories/{pslug(p["nombre"])}.png" download '
+            f'<a class="cert story" href="stories/{pslug(p["nombre"])}.png" download '
             f'aria-label="Descargar la imagen para stories de {e(p["nombre"])}">{STORY}<span>STORY</span></a></li>')
 
 
@@ -284,6 +284,24 @@ def pagina_mes(d, slug):
     <p class="fine">Niveles del Back Office al cierre de {e(mes)}. Hecho por el equipo; no es material oficial de Farmasi. <a href="/logros/">Ver otros meses</a></p>
   </div>
 </footer>
+<script>
+// En el celular, STORY abre el menú de compartir con la imagen (Instagram, guardar, WhatsApp).
+// Si el navegador no puede, se descarga como siempre.
+document.querySelectorAll('a.story').forEach(function (a) {{
+  a.addEventListener('click', function (ev) {{
+    if (!navigator.canShare) return;
+    ev.preventDefault();
+    fetch(a.href).then(function (r) {{ return r.blob(); }}).then(function (b) {{
+      var f = new File([b], a.href.split('/').pop(), {{ type: 'image/png' }});
+      if (navigator.canShare({{ files: [f] }})) return navigator.share({{ files: [f] }});
+      throw new Error('no-share');
+    }}).catch(function (err) {{
+      if (err && err.name === 'AbortError') return;
+      var t = document.createElement('a'); t.href = a.href; t.download = ''; document.body.appendChild(t); t.click(); t.remove();
+    }});
+  }});
+}});
+</script>
 </body>
 </html>
 """
