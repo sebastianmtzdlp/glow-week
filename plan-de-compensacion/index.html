@@ -82,6 +82,9 @@ h3{font-size:18px;font-weight:700;margin-top:24px}
 .key .mono{font-weight:500}
 .pc{display:inline-block;font-size:11px;font-weight:600;color:var(--warn);border:1px solid #E8CFA3;background:#FFF8EC;border-radius:999px;padding:1px 8px;vertical-align:2px;white-space:nowrap}
 .src{font-size:13px;color:var(--muted);margin-top:14px}
+.ref{display:inline-block;font-size:11px;font-weight:600;color:var(--muted);border:1px solid var(--line);border-radius:999px;padding:1px 8px;vertical-align:2px;white-space:nowrap}
+table.small{font-size:12px}.scroll table.small{min-width:420px}table.small td,table.small th{padding:6px 4px}
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:14px -16px 0;padding:0 16px}.scroll table{margin-top:0}
 
 table{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px}
 th,td{text-align:left;padding:9px 8px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
@@ -275,7 +278,7 @@ footer a{color:var(--muted)}
     <ul>
       <li>Una sola línea fuerte no te da laterales. Necesitas al menos dos líneas creciendo.</li>
       <li>Cuando una socia se vuelve directora, sus puntos salen de tus laterales. Antes de que suba, ya debes estar creciendo otra línea.</li>
-      <li>Si tus propios pedidos cuentan como laterales <span class="pc">por confirmar</span>. Aquí no los contamos, para no inflar el número.</li>
+      <li>Si tus propios pedidos cuentan como laterales <span class="pc">por confirmar</span>. La única descripción que encontramos (una reseña de Estados Unidos, no oficial) calcula los laterales restando de tu grupo las líneas en 25% y tu línea fuerte, y así tus pedidos sí quedarían dentro. Como no es fuente oficial de México, aquí no los contamos.</li>
     </ul>
   </section>
 
@@ -329,21 +332,52 @@ footer a{color:var(--muted)}
 
     <h3>Bono de liderazgo</h3>
     <p>Empieza en dirección. Te paga un porcentaje sobre el volumen de las directoras que salen de tu equipo y de las que salen de ellas, por generaciones. Es lo que sustituye a la diferencia cuando tus socias llegan al 25%.</p>
-    <p>El Back Office muestra este volumen por generación, hasta 7 generaciones ("Leadership GV"). Qué porcentaje se paga en cada generación y cuántas cobras en cada rango <span class="pc">por confirmar</span></p>
+    <p>El Back Office muestra este volumen por generación, hasta 7 generaciones ("Leadership GV"). Los porcentajes de México <span class="pc">por confirmar</span></p>
+    <p>Como referencia, así paga el plan de Estados Unidos <span class="ref">referencia EE. UU.</span>. Cada rango cobra más generaciones y un porcentaje más alto en cada una. En el celular, desliza la tabla:</p>
+    <div class="scroll"><table class="small" aria-label="Bono de liderazgo por generación, plan de Estados Unidos">
+      <thead><tr><th>Rango</th><th class="n">1ª</th><th class="n">2ª</th><th class="n">3ª</th><th class="n">4ª</th><th class="n">5ª</th><th class="n">6ª</th><th class="n">7ª</th></tr></thead>
+      <tbody>
+        <tr><td>Dirección</td><td class="n">4%</td><td class="n">3%</td><td class="n">2%</td><td class="n">1.5%</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td>Bronce</td><td class="n">4.5%</td><td class="n">3.25%</td><td class="n">2.25%</td><td class="n">1.75%</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td>Oro</td><td class="n">5%</td><td class="n">3.5%</td><td class="n">2.5%</td><td class="n">2%</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td>Platino</td><td class="n">5.5%</td><td class="n">4%</td><td class="n">2.75%</td><td class="n">2.2%</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td>Esmeralda</td><td class="n">6%</td><td class="n">4.5%</td><td class="n">3%</td><td class="n">2.5%</td><td class="n">—</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td>Diamante</td><td class="n">6.5%</td><td class="n">5%</td><td class="n">3.25%</td><td class="n">2.75%</td><td class="n">1.5%</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td>Vicepresidencia</td><td class="n">7%</td><td class="n">5.5%</td><td class="n">3.5%</td><td class="n">3%</td><td class="n">1.75%</td><td class="n">—</td><td class="n">—</td></tr>
+        <tr><td>Presidencia</td><td class="n">7.5%</td><td class="n">6%</td><td class="n">3.75%</td><td class="n">3.25%</td><td class="n">2%</td><td class="n">0.75%</td><td class="n">—</td></tr>
+        <tr><td>Boss</td><td class="n">8%</td><td class="n">6.5%</td><td class="n">4%</td><td class="n">3.5%</td><td class="n">2.25%</td><td class="n">1%</td><td class="n">—</td></tr>
+        <tr><td>Boss ejecutivo</td><td class="n">8.5%</td><td class="n">7%</td><td class="n">4.25%</td><td class="n">3.75%</td><td class="n">2.5%</td><td class="n">1.25%</td><td class="n">0.5%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="src">Fuente: guías del plan de Estados Unidos (no oficiales). Los rangos coinciden con los del Back Office de México, pero los porcentajes pueden cambiar por país.</p>
 
     <h3>Apoyo para auto</h3>
     <div class="key">Empieza en Directora Oro: <span class="mono">$5,250</span> al mes mientras mantengas el rango.</div>
-    <p>El monto sube con cada rango arriba de Oro. Los montos de esos rangos <span class="pc">por confirmar</span></p>
+    <p>Los <span class="num">$5,250</span> de Oro están en la página de registro de Farmasi México. El monto sube con cada rango arriba de Oro; los montos de México <span class="pc">por confirmar</span></p>
+    <p>Como referencia, en Estados Unidos <span class="ref">referencia EE. UU.</span> también empieza en Oro y sube <span class="num">$50</span> dólares por rango: Oro $350, Platino $400, Esmeralda $450, Diamante $500, Vicepresidencia $550, Presidencia $600, Boss $650 y Boss ejecutivo $700 al mes, en dólares.</p>
 
     <h3>Bono en efectivo por rango</h3>
-    <p>Un pago único cada vez que conquistas un rango nuevo y lo sostienes 3 meses. Va desde <span class="num">$20,000</span> hasta <span class="num">$500,000</span> o más en los rangos más altos. El monto de cada rango <span class="pc">por confirmar</span></p>
+    <p>Un pago único cada vez que conquistas un rango nuevo y lo sostienes 3 meses. Va desde <span class="num">$20,000</span> hasta <span class="num">$500,000</span> o más en los rangos más altos. El monto de cada rango en México <span class="pc">por confirmar</span></p>
+    <p>Como referencia, en Estados Unidos <span class="ref">referencia EE. UU.</span> se paga así, en dólares:</p>
+    <table class="small" aria-label="Bono en efectivo por rango, plan de Estados Unidos">
+      <thead><tr><th>Rango</th><th class="n">Pago único</th><th>Rango</th><th class="n">Pago único</th></tr></thead>
+      <tbody>
+        <tr><td>Dirección</td><td class="n">$1,000</td><td>Vicepresidencia</td><td class="n">$50,000</td></tr>
+        <tr><td>Bronce</td><td class="n">$1,000</td><td>Presidencia</td><td class="n">$100,000</td></tr>
+        <tr><td>Oro</td><td class="n">$2,000</td><td>Boss</td><td class="n">$250,000</td></tr>
+        <tr><td>Platino</td><td class="n">$4,000</td><td>Boss ejecutivo</td><td class="n">$500,000</td></tr>
+        <tr><td>Esmeralda</td><td class="n">$10,000</td><td></td><td class="n"></td></tr>
+        <tr><td>Diamante</td><td class="n">$25,000</td><td></td><td class="n"></td></tr>
+      </tbody>
+    </table>
+    <p class="src">Si México sigue la misma escala, el primer bono de Dirección sería el de $20,000 que anuncia Farmasi México. Es una suposición, no un dato.</p>
 
     <h3>Viaje</h3>
     <p>Si sostienes Directora Oro 3 meses seguidos, Farmasi México anuncia un viaje con todo pagado. El destino puede cambiar cada año.</p>
 
     <h3>Por invitar a alguien</h3>
     <p>Cada persona que invites en el mes y haga un pedido de <span class="num">50</span> puntos o más te da un producto de regalo, con valor aproximado de <span class="num">$620</span>.</p>
-    <p class="src">Fuente de esta sección: página de registro de Farmasi México. Las tablas con los montos completos están en el plan oficial y en tu Back Office.</p>
+    <p class="src">Fuentes de esta sección: página de registro de Farmasi México (auto en Oro, bono en efectivo de $20,000 a $500,000, viaje y regalo) y guías del plan de Estados Unidos para las tablas de referencia. Las tablas de México con los montos completos están en el plan oficial y en tu Back Office.</p>
   </section>
 
   <section class="ch" id="calculadora">
@@ -372,17 +406,17 @@ footer a{color:var(--muted)}
   <section class="ch" id="confirmar">
     <div class="ch-n">09</div>
     <h2>Lo que falta confirmar</h2>
-    <p>Esto todavía no tiene una fuente oficial de México. Mientras, confírmalo en tu Back Office o con tu líder. La página se actualiza en cuanto lo tengamos.</p>
+    <p>Esto todavía no tiene una fuente oficial de México. Buscamos en la web el 2 de noviembre de 2026: las páginas de Farmasi México no publican el plan completo y las tablas de la página de registro son imágenes. Lo que sí encontramos es el plan de Estados Unidos, que dejamos como referencia. Mientras, confírmalo en tu Back Office o con tu líder.</p>
     <ol class="faltan">
-      <li>Si tus propios pedidos cuentan como laterales.</li>
-      <li>Los porcentajes del bono de liderazgo por generación.</li>
-      <li>Los montos del apoyo para auto arriba de Oro y del bono en efectivo de cada rango.</li>
+      <li>Si tus propios pedidos cuentan como laterales. Una reseña no oficial sugiere que sí.</li>
+      <li>Los porcentajes del bono de liderazgo por generación en México. Hay tabla de referencia de Estados Unidos arriba.</li>
+      <li>Los montos en pesos del apoyo para auto arriba de Oro y del bono en efectivo de cada rango. Hay referencia de Estados Unidos arriba.</li>
     </ol>
   </section>
 
   <footer>
     <p>Esta página la hizo el equipo para estudiar el plan. No es material oficial de Farmasi. Lo que manda es el plan de compensación vigente en tu Back Office.</p>
-    <p style="margin-top:8px">Fuentes consultadas: Guía de inscripción México de Farmasi, <a href="https://www.farmasidemexico.com/" rel="noopener">página de registro de Farmasi México</a>, <a href="https://farmasi-join.com/business" rel="noopener">guía de Estados Unidos (no oficial)</a> y <a href="https://vivaelnetworking.com/empresas/farmasi/" rel="noopener">vivaelnetworking (no oficial)</a>.</p>
+    <p style="margin-top:8px">Fuentes consultadas: Guía de inscripción México de Farmasi, <a href="https://www.farmasidemexico.com/" rel="noopener">página de registro de Farmasi México</a>, <a href="https://farmasi-join.com/business" rel="noopener">guía de Estados Unidos (no oficial)</a>, <a href="https://mlm-explorer.com/companies/farmasi/farmasi-compensation-plan/" rel="noopener">mlm-explorer (no oficial)</a>, <a href="https://beautyinfluencer-global.com/es/oportunidad/" rel="noopener">beautyinfluencer-global (no oficial, en dólares)</a>, <a href="https://behindmlm.com/mlm-reviews/farmasi-review-250-forced-not-a-pharmacy-product-orders/" rel="noopener">reseña de BehindMLM (no oficial)</a> y <a href="https://vivaelnetworking.com/empresas/farmasi/" rel="noopener">vivaelnetworking (no oficial)</a>.</p>
   </footer>
 </div>
 
