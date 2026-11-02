@@ -100,7 +100,7 @@ h1 em{font-style:normal;color:var(--accent)}
 .talk{grid-column:1/-1;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:14px;background:var(--ink);color:#fff;font-weight:600;font-size:16px;text-decoration:none;transition:transform 160ms var(--ease)}
 .talk:active{transform:scale(.97)}
 .talk:focus-visible,.plan:focus-visible{outline:2px solid var(--accent-t);outline-offset:2px}
-.plan{grid-column:1/-1;justify-self:center;display:inline-flex;align-items:center;min-height:44px;margin-bottom:-6px;font-size:14px;font-weight:600;color:var(--accent-t);text-underline-offset:3px}
+.plan{grid-column:2;justify-self:start;margin-top:2px;display:inline-flex;align-items:center;min-height:44px;margin-bottom:-6px;font-size:14px;font-weight:600;color:var(--accent-t);text-underline-offset:3px}
 .note{font-family:var(--hand);font-weight:600;font-size:25px;line-height:1.1;color:var(--accent-t);margin:14px 0 0 70px;transform:rotate(-1.5deg);transform-origin:left}
 .note::before{content:"";display:inline-block;width:18px;height:14px;margin-right:6px;border-left:1.75px solid currentColor;border-bottom:1.75px solid currentColor;border-bottom-left-radius:10px;vertical-align:4px}
 
@@ -181,7 +181,6 @@ def vacio(k, mes):
     return (f'<div class="empty"><div class="seat" aria-hidden="true">Tú</div>'
             f'<div class="empty-t"><p class="q">Aquí aún no hay nadie.</p><p class="q2">¿Quieres ser tú?</p>'
             f'<p class="sub">Habla con tu upline y armen juntas tu plan para llegar al {k}%.</p></div>'
-            f'<a class="talk" href="https://wa.me/" target="_blank" rel="noopener">{WA}Habla con tu upline</a>'
             f'<a class="plan" href="/plan-de-compensacion/">Ver qué pide cada nivel</a></div>')
 
 
