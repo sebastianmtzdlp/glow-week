@@ -178,12 +178,10 @@ WA = ('<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="curre
 
 
 def vacio(k, mes):
-    from urllib.parse import quote
-    msg = f"Hola, quiero llegar al {k}%. ¿Me ayudas?"
     return (f'<div class="empty"><div class="seat" aria-hidden="true">Tú</div>'
             f'<div class="empty-t"><p class="q">Aquí aún no hay nadie.</p><p class="q2">¿Quieres ser tú?</p>'
             f'<p class="sub">Habla con tu upline y armen juntas tu plan para llegar al {k}%.</p></div>'
-            f'<a class="talk" href="https://wa.me/?text={quote(msg)}" target="_blank" rel="noopener">{WA}Habla con tu upline</a>'
+            f'<a class="talk" href="https://wa.me/" target="_blank" rel="noopener">{WA}Habla con tu upline</a>'
             f'<a class="plan" href="/plan-de-compensacion/">Ver qué pide cada nivel</a></div>')
 
 
