@@ -264,8 +264,8 @@ def pagina_mes(d, slug):
       <div class="tile"><b>{dirs}</b><span>en dirección</span></div>
       <div class="tile"><b>{nuevas}</b><span>{nuevas_txt}</span></div>
     </div>
-    <a class="dl" href="logros-{slug}.pdf" download>{ICONO}Descargar PDF</a>
-    <p class="dl-links"><a href="presentacion-{slug}.pdf" download>Presentación 16:9 (PDF)</a><a href="stories-{slug}.zip" download>Todas las stories (ZIP)</a></p>
+    <a class="dl" href="presentacion-{slug}.pdf" download>{ICONO}Descargar PDF</a>
+    <p class="dl-links"><a href="logros-{slug}.pdf" download>Versión vertical (PDF)</a><a href="stories-{slug}.zip" download>Todas las stories (ZIP)</a></p>
     <p class="dl-note">Cada tarjeta trae su certificado en PDF y su imagen para stories.</p>
   </header>
 
