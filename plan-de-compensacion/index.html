@@ -175,7 +175,7 @@ footer a{color:var(--muted)}
     <p class="lead">Qué ganas por tus pedidos, qué ganas por los de tu equipo y qué pide cada rango. Con ejemplos y una calculadora para tu mes.</p>
 
     <div class="ladder" id="ladder" aria-label="Niveles de bono y puntos de grupo al mes"></div>
-    <p class="ladder-note">Puntos de grupo al mes. La barra es el tamaño real de cada meta. Los puntos en ámbar están por confirmar. Toca un nivel para ver un ejemplo.</p>
+    <p class="ladder-note">Puntos de grupo al mes. La barra es el tamaño real de cada meta. Toca un nivel para ver un ejemplo.</p>
   </header>
 
   <ol class="toc">
@@ -184,7 +184,7 @@ footer a{color:var(--muted)}
     <li><a href="#socias">Lo que ganas de tus socias</a></li>
     <li><a href="#direccion">Gerencia y dirección</a></li>
     <li><a href="#laterales">Puntos laterales</a></li>
-    <li><a href="#rangos">Bronce y Oro</a></li>
+    <li><a href="#rangos">Bronce, Oro y más</a></li>
     <li><a href="#premios">Liderazgo, auto y bonos</a></li>
     <li><a href="#calculadora">Haz tu cuenta</a></li>
     <li><a href="#confirmar">Lo que falta confirmar</a></li>
@@ -210,10 +210,10 @@ footer a{color:var(--muted)}
     <h3>Para cobrar, 75 puntos tuyos</h3>
     <p>Necesitas al menos <span class="num">75</span> puntos personales cada mes para cobrar bonos y comisiones ese mes. Y para que tu cuenta siga abierta, debes juntar al menos 75 puntos en cualquier periodo de 6 meses.</p>
     <table aria-label="Puntos por nivel">
-      <thead><tr><th>Nivel</th><th class="n">Puntos de grupo al mes</th><th>Estado</th></tr></thead>
+      <thead><tr><th>Nivel</th><th class="n">Puntos de grupo al mes</th><th class="n">Tuyos</th></tr></thead>
       <tbody id="tblNiveles"></tbody>
     </table>
-    <p class="src">El 3% desde 200 puntos y el 25% desde 5,000 los dice Farmasi México. El 18% y el 22% los confirmó el equipo. Los puntos del 6% al 15% vienen de una fuente no oficial. El valor del punto ($25 a precio de socia) y los 75 puntos para cobrar vienen de la Guía de inscripción México.</p>
+    <p class="src">Fuente: tabla de títulos del Back Office de Farmasi México ("Tuyos" son los puntos personales que pide cada nivel). El valor del punto ($25 a precio de socia) y los 75 puntos para cobrar vienen de la Guía de inscripción México.</p>
   </section>
 
   <section class="ch" id="socias">
@@ -270,7 +270,7 @@ footer a{color:var(--muted)}
         <tr class="tot"><td colspan="2">Laterales</td><td class="n">4,700</td><td></td></tr>
       </tbody>
     </table>
-    <p>Con <span class="num">4,700</span> laterales alcanza para Dirección (1,500) y para Oro (2,500).</p>
+    <p>Con <span class="num">4,700</span> laterales alcanza para Dirección (1,500) y para Oro (2,500). En tu Back Office está el "Informe de Puntos Laterales" con tu número real.</p>
     <h3>Lo que hay que cuidar</h3>
     <ul>
       <li>Una sola línea fuerte no te da laterales. Necesitas al menos dos líneas creciendo.</li>
@@ -281,28 +281,45 @@ footer a{color:var(--muted)}
 
   <section class="ch" id="rangos">
     <div class="ch-n">06</div>
-    <h2>Bronce y Oro</h2>
-    <p>Los dos siguientes rangos piden formar directoras. Los dos se consolidan con 3 meses seguidos.</p>
+    <h2>Bronce, Oro y lo que sigue</h2>
+    <p>Desde Bronce, cada rango pide socias de tu primera línea en 25% (en el Back Office aparece como "Número de 25 en primera línea"). Todos se consolidan con 3 meses seguidos y todos cobran el 25%.</p>
     <div class="ranks">
       <div class="rank">
         <h3>Directora Bronce</h3>
         <ul>
           <li><span class="mono">5,000</span><span>puntos de grupo, como en dirección</span></li>
-          <li><span class="mono">1</span><span>directora en tu línea</span></li>
+          <li><span class="mono">1</span><span>socia de tu primera línea en 25%</span></li>
           <li><span class="mono">1,500</span><span>puntos laterales</span></li>
         </ul>
       </div>
       <div class="rank">
         <h3>Directora Oro</h3>
         <ul>
-          <li><span class="mono">5,000</span><span>puntos de grupo</span></li>
-          <li><span class="mono">2</span><span>directoras directas a ti, sin contarte</span></li>
+          <li><span class="mono">10,000</span><span>puntos de grupo</span></li>
+          <li><span class="mono">2</span><span>socias de tu primera línea en 25%</span></li>
           <li><span class="mono">2,500</span><span>puntos laterales</span></li>
         </ul>
       </div>
     </div>
-    <p>Una guía de Estados Unidos pide además un volumen total de grupo: <span class="num">10,000</span> para Bronce y <span class="num">20,000</span> para Oro. Si en México también se piden <span class="pc">por confirmar</span></p>
-    <p class="src">Fuentes: lo que confirmó el equipo, y Farmasi México para Oro ("ayuda a 2 integrantes de tu equipo a conquistar el rango de director").</p>
+    <h3>Todos los rangos</h3>
+    <table aria-label="Requisitos de cada rango">
+      <thead><tr><th>Rango</th><th class="n">Puntos de grupo</th><th class="n">En 25%</th><th class="n">Laterales</th></tr></thead>
+      <tbody>
+        <tr><td>Dirección virtual</td><td class="n">5,000</td><td class="n">0</td><td class="n">0</td></tr>
+        <tr><td>Dirección</td><td class="n">5,000</td><td class="n">0</td><td class="n">1,500</td></tr>
+        <tr><td>Bronce</td><td class="n">5,000</td><td class="n">1</td><td class="n">1,500</td></tr>
+        <tr><td>Oro</td><td class="n">10,000</td><td class="n">2</td><td class="n">2,500</td></tr>
+        <tr><td>Platino</td><td class="n">20,000</td><td class="n">4</td><td class="n">2,500</td></tr>
+        <tr><td>Esmeralda</td><td class="n">40,000</td><td class="n">8</td><td class="n">5,000</td></tr>
+        <tr><td>Diamante</td><td class="n">60,000</td><td class="n">12</td><td class="n">5,000</td></tr>
+        <tr><td>Vicepresidencia</td><td class="n">80,000</td><td class="n">16</td><td class="n">10,000</td></tr>
+        <tr><td>Presidencia</td><td class="n">100,000</td><td class="n">20</td><td class="n">10,000</td></tr>
+        <tr><td>Boss</td><td class="n">150,000</td><td class="n">30</td><td class="n">10,000</td></tr>
+        <tr><td>Executive Boss</td><td class="n">200,000</td><td class="n">30</td><td class="n">10,000</td></tr>
+      </tbody>
+    </table>
+    <p>Todos piden además tus <span class="num">75</span> puntos personales del mes. "En 25%" son socias de tu primera línea que llegan al 25% ese mes.</p>
+    <p class="src">Fuente: tabla de títulos del Back Office de Farmasi México.</p>
   </section>
 
   <section class="ch" id="premios">
@@ -312,7 +329,7 @@ footer a{color:var(--muted)}
 
     <h3>Bono de liderazgo</h3>
     <p>Empieza en dirección. Te paga un porcentaje sobre el volumen de las directoras que salen de tu equipo y de las que salen de ellas, por generaciones. Es lo que sustituye a la diferencia cuando tus socias llegan al 25%.</p>
-    <p>Cuántas generaciones cobras en cada rango y qué porcentaje es cada una <span class="pc">por confirmar</span></p>
+    <p>El Back Office muestra este volumen por generación, hasta 7 generaciones ("Leadership GV"). Qué porcentaje se paga en cada generación y cuántas cobras en cada rango <span class="pc">por confirmar</span></p>
 
     <h3>Apoyo para auto</h3>
     <div class="key">Empieza en Directora Oro: <span class="mono">$5,250</span> al mes mientras mantengas el rango.</div>
@@ -355,10 +372,8 @@ footer a{color:var(--muted)}
   <section class="ch" id="confirmar">
     <div class="ch-n">09</div>
     <h2>Lo que falta confirmar</h2>
-    <p>Esto no lo encontramos en una fuente oficial de México. Si tienes el plan en PDF o lo ves en tu Back Office, con eso se completa.</p>
+    <p>Esto todavía no tiene una fuente oficial de México. Mientras, confírmalo en tu Back Office o con tu líder. La página se actualiza en cuanto lo tengamos.</p>
     <ol class="faltan">
-      <li>Los puntos exactos del 6%, 9%, 12% y 15%.</li>
-      <li>Si Bronce y Oro piden además 10,000 y 20,000 puntos de grupo en México.</li>
       <li>Si tus propios pedidos cuentan como laterales.</li>
       <li>Los porcentajes del bono de liderazgo por generación.</li>
       <li>Los montos del apoyo para auto arriba de Oro y del bono en efectivo de cada rango.</li>
@@ -374,8 +389,8 @@ footer a{color:var(--muted)}
 <script>
 (function(){
   var LV=[
-    {p:3,min:200,ok:true},{p:6,min:400},{p:9,min:600},{p:12,min:900},
-    {p:15,min:1400},{p:18,min:2200,ok:true},{p:22,min:3600,ok:true},{p:25,min:5000,ok:true}
+    {p:3,min:200,ok:true},{p:6,min:400,ok:true},{p:9,min:600,ok:true},{p:12,min:900,ok:true},
+    {p:15,min:1400,ok:true},{p:18,min:2200,ok:true},{p:22,min:3600,ok:true},{p:25,min:5000,ok:true}
   ];
   var fmt=function(n){return Math.round(n).toLocaleString('es-MX')};
   function level(pts){var r=null;LV.forEach(function(l){if(pts>=l.min)r=l});return r}
@@ -397,7 +412,7 @@ footer a{color:var(--muted)}
     });
     lad.appendChild(b);lad.appendChild(m);
     var tr=document.createElement('tr');
-    tr.innerHTML='<td class="num"><b>'+l.p+'%</b></td><td class="n">'+fmt(l.min)+(next?' a '+fmt(next.min-1):' o más')+'</td><td>'+(l.ok?'Confirmado':'<span class="pc">por confirmar</span>')+'</td>';
+    tr.innerHTML='<td class="num"><b>'+l.p+'%</b></td><td class="n">'+fmt(l.min)+(next?' a '+fmt(next.min-1):' o más')+'</td><td class="n">75</td>';
     tb.appendChild(tr);
   });
 
@@ -414,12 +429,11 @@ footer a{color:var(--muted)}
     team.innerHTML='';
     st.team.forEach(function(m,i){
       var w=document.createElement('div');w.className='member';
-      w.innerHTML='<div class="mem"><input type="text" aria-label="Nombre de la socia" placeholder="Nombre"><input type="number" inputmode="numeric" min="0" step="10" aria-label="Puntos de su grupo"><button type="button" class="del" aria-label="Quitar socia">×</button><div class="lvl"><label class="dir"><input type="checkbox"> Ya es directora</label><span class="mono"></span></div></div>';
+      w.innerHTML='<div class="mem"><input type="text" aria-label="Nombre de la socia" placeholder="Nombre"><input type="number" inputmode="numeric" min="0" step="10" aria-label="Puntos de su grupo"><button type="button" class="del" aria-label="Quitar socia">×</button><div class="lvl"><span></span><span class="mono"></span></div></div>';
       var f=w.querySelectorAll('input');
-      f[0].value=m.n;f[1].value=m.p;f[2].checked=!!m.d;
+      f[0].value=m.n;f[1].value=m.p;
       f[0].addEventListener('input',function(){m.n=f[0].value;calc()});
       f[1].addEventListener('input',function(){m.p=+f[1].value||0;calc()});
-      f[2].addEventListener('change',function(){m.d=f[2].checked;calc()});
       w.querySelector('.del').addEventListener('click',function(){st.team.splice(i,1);drawTeam();calc()});
       team.appendChild(w);
     });
@@ -437,7 +451,7 @@ footer a{color:var(--muted)}
     var rows='',bono=st.mine*my/100;
     rows+='<div class="row"><span>Tú · '+fmt(st.mine)+' × '+my+'%</span><b>'+fmt(st.mine*my/100)+'</b></div>';
     st.team.forEach(function(m){
-      var sp=m.d?25:pct(m.p||0),d=Math.max(0,my-sp),v=(m.p||0)*d/100;bono+=v;
+      var sp=pct(m.p||0),d=Math.max(0,my-sp),v=(m.p||0)*d/100;bono+=v;
       rows+='<div class="row"><span>'+esc(m.n||'Socia')+' · '+sp+'% · '+fmt(m.p||0)+' × '+d+'%</span><b>'+fmt(v)+'</b></div>';
     });
     rows+='<div class="row tot"><span>Tu bono, en puntos</span><b>'+fmt(bono)+'</b></div>';
@@ -445,17 +459,17 @@ footer a{color:var(--muted)}
     document.getElementById('oRec').innerHTML=rows;
 
     // niveles por socia
-    team.querySelectorAll('.member').forEach(function(w,k){var m=st.team[k];w.querySelector('.lvl .mono').textContent=m.d?'directora':pct(m.p||0)+'%'});
+    team.querySelectorAll('.member').forEach(function(w,k){var m=st.team[k];w.querySelector('.lvl .mono').textContent=pct(m.p||0)+'%'+(leg(m)?' · cuenta para Bronce':'')});
 
     // laterales
-    var nd=st.team.filter(function(m){return !m.d}).map(function(m){return m.p||0}).sort(function(a,b){return b-a});
+    var nd=st.team.filter(function(m){return !leg(m)}).map(function(m){return m.p||0}).sort(function(a,b){return b-a});
     var lat=nd.slice(1).reduce(function(a,b){return a+b},0);
-    var dirs=st.team.filter(function(m){return m.d}).length;
+    var dirs=st.team.filter(leg).length;
     var ch=[
       [total>=5000,'5,000 puntos de grupo','llevas '+fmt(total)],
       [lat>=1500,'1,500 laterales (dirección)','llevas '+fmt(lat)],
-      [dirs>=1,'1 directora en tu línea (Bronce)','tienes '+dirs],
-      [dirs>=2&&lat>=2500,'2 directoras directas y 2,500 laterales (Oro)','tienes '+dirs+' y '+fmt(lat)]
+      [dirs>=1,'1 socia en 25% en tu primera línea (Bronce)','tienes '+dirs],
+      [total>=10000&&dirs>=2&&lat>=2500,'10,000 de grupo, 2 socias en 25% y 2,500 laterales (Oro)','llevas '+fmt(total)+', '+dirs+' y '+fmt(lat)]
     ];
     document.getElementById('oChecks').innerHTML=ch.map(function(c){return '<li class="'+(c[0]?'ok':'')+'"><span>'+c[1]+' · <span class="why">'+c[2]+'</span></span></li>'}).join('');
 
@@ -463,6 +477,7 @@ footer a{color:var(--muted)}
     lad.querySelectorAll('.rung').forEach(function(r,k){r.classList.toggle('me',k===i)});
     save();
   }
+  function leg(m){return (m.p||0)>=5000}
   function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 
   mine.value=st.mine;mine.addEventListener('input',calc);
