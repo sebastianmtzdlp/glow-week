@@ -93,6 +93,9 @@ h1 em{font-style:normal;color:var(--accent)}
 .lvl.vac{padding-top:32px}
 .lvl.vac .lvl-h h2{color:var(--muted);font-size:40px}
 .empty{padding:14px 16px;border:1px dashed #CDD1E0;border-radius:18px;color:var(--muted);font-size:15px}
+.empty b{color:var(--ink);font-weight:600}
+.empty p+p{margin-top:2px}
+.empty a{display:inline-flex;align-items:center;min-height:44px;margin-bottom:-8px;font-weight:600;color:var(--accent-t);text-decoration:underline;text-underline-offset:3px}
 .note{font-family:var(--hand);font-weight:600;font-size:25px;line-height:1.1;color:var(--accent-t);margin:14px 0 0 70px;transform:rotate(-1.5deg);transform-origin:left}
 .note::before{content:"";display:inline-block;width:18px;height:14px;margin-right:6px;border-left:1.75px solid currentColor;border-bottom:1.75px solid currentColor;border-bottom-left-radius:10px;vertical-align:4px}
 
@@ -202,7 +205,9 @@ def pagina_mes(d, slug):
         ps = niv[k]["personas"]
         etiqueta = ("Directoras · " if k == "25" else "") + personas(len(ps))
         cuerpo = ('<ul class="cards">' + "".join(tarjeta(p) for p in ps) + "</ul>") if ps \
-            else '<p class="empty">Aún sin nadie en este nivel.</p>'
+            else ('<div class="empty"><p><b>Aquí aún no hay nadie.</b> ¿Quieres ser tú?</p>'
+                  '<p>Habla con tu upline y armen juntas tu plan para llegar.</p>'
+                  '<a href="/plan-de-compensacion/">Ver qué pide cada nivel</a></div>')
         nota = f'<p class="note">{e(niv[k]["nota"])}</p>' if niv[k].get("nota") else ""
         d25 = (" d25" if k == "25" else "") + ("" if ps else " vac")
         secs.append(f'<section class="lvl{d25}" id="n{k}" aria-labelledby="h{k}">'
