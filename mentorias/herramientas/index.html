@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Herramientas gratis de las mentorías</title>
-<meta name="description" content="Calculadora de nivel, mensajes para copiar, la hoja del día, el reto Mis primeros 200, el checklist de bienvenida y el 1 a 1 con tus líderes. Gratis, para ti y tu equipo.">
-<meta property="og:title" content="Herramientas gratis de las mentorías">
-<meta property="og:description" content="Tu nivel, tus mensajes, tu hoja del día, tu primer reto y tu bienvenida. Gratis, para ti y tu equipo.">
+<title>Centro de la socia</title>
+<meta name="description" content="Todo lo del equipo en un lugar: tu día, tu tienda, tu equipo y lo que mandas a quien quiere entrar. Herramientas gratis, planes Pro y el material de las mentorías con Sel.">
+<meta property="og:title" content="Centro de la socia">
+<meta property="og:description" content="Tu día, tu tienda, tu equipo y lo que mandas a quien quiere entrar. Todo en un lugar.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/">
@@ -85,6 +85,46 @@
   .pro{margin:56px 0 0;padding:52px 56px;display:grid;grid-template-columns:1fr 1fr;gap:0 56px;align-items:start}
   .pro ul{margin-top:0}
 }
+
+/* soy: tu nombre viaja en las ligas que compartes */
+.soy{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;align-items:center;margin-top:24px;max-width:26em}
+.soy label{font:400 22px/1 var(--serif);font-style:italic}
+.soy select{min-height:44px}
+.soy p{grid-column:1 / -1;margin:0;font-size:14px;color:var(--muted)}
+.pieza .trae li a.fila-l{font-weight:500}
+
+/* la ruta para quien quiere entrar */
+.ruta{padding:44px 0 8px}
+.ruta .cab{border-bottom:0;padding-bottom:0}
+.ruta ol{list-style:none;margin:22px 0 0;padding:0;position:relative}
+.ruta ol::before{content:"";position:absolute;left:19px;top:22px;bottom:22px;width:2px;background:var(--line)}
+.parada{position:relative;display:grid;grid-template-columns:40px 1fr;gap:4px 16px;padding:0 0 26px}
+.parada:last-child{padding-bottom:0}
+.parada .p{width:40px;height:40px;border-radius:50%;background:#fff;border:2px solid var(--ink);display:grid;place-items:center;font:500 15px/1 var(--mono);position:relative;z-index:1;grid-row:1 / span 3}
+.parada:first-child .p{background:var(--ink);color:#fff}
+.parada h3{margin:6px 0 0;font:400 clamp(24px,6vw,32px)/1.05 var(--serif)}
+.parada h3 em{font-style:italic}
+.parada p{margin:6px 0 0;font-size:16px;max-width:30em}
+.parada .lig{display:flex;flex-wrap:wrap;gap:8px 18px;margin-top:10px;font-size:15px}
+.parada .lig a{font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
+.parada .lig button{font-size:15px}
+.ruta .mandar{margin:24px 0 0 56px;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.ruta .mandar .nota{margin:0;flex-basis:100%}
+
+/* la puerta de Sel */
+.puerta{margin:48px 0 0;border:1.5px solid var(--ink);border-radius:24px;padding:26px 20px;display:grid;gap:16px;position:relative}
+.puerta .candado{width:28px;height:28px;color:var(--accent-ink)}
+.puerta h2 em{color:var(--accent-ink)}
+.puerta p{margin:0;font-size:16px;max-width:32em}
+.puerta ul{list-style:none;margin:0;padding:0;border-top:1px solid var(--line)}
+.puerta li{padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.puerta .acciones{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center}
+@media (min-width:900px){
+  .ruta{display:grid;grid-template-columns:.8fr 1.2fr;gap:0 56px;align-items:start;padding-top:64px}
+  .ruta ol{margin-top:0}
+  .ruta .mandar{grid-column:2}
+  .puerta{grid-template-columns:auto 1fr 1fr;gap:0 40px;padding:40px 48px;align-items:start}
+}
 </style>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -92,77 +132,104 @@
 <div class="wrap">
   <div class="barra">
     <a class="marca" href="/">EQUIPO SVH</a>
-    <a class="volver" href="/mentorias/">Mentorías</a>
+    <a class="volver" href="/mentorias/">Mentorías con Sel</a>
   </div>
 
   <header class="portada">
     <div>
-      <h1>Herramientas <em>gratis</em></h1>
-      <p class="bajada">Para tu día a día y el de tu equipo: tu lista, tu presentación, tus pedidos, tu mes y tu mapa. Todas empiezan gratis y sin registrarte; lo que llenas se guarda en tu celular. Las que dicen Pro tienen una versión con más.</p>
+      <h1>Centro de la <em>socia</em></h1>
+      <p class="bajada">Todo lo del equipo en un lugar: lo de tu día, tu tienda, tu equipo y lo que le mandas a quien quiere entrar. Todas empiezan gratis y sin registrarte; lo que llenas se guarda en tu celular. Las que dicen Pro tienen una versión con más.</p>
+      <div class="soy">
+        <label for="soy">Soy</label>
+        <select id="soy"><option value="">elige tu nombre</option></select>
+        <p id="soyNota">Así, las ligas que compartes desde aquí le escriben a ti.</p>
+      </div>
     </div>
     <nav class="indice" aria-label="Contenido">
-      <div class="indice-cab"><b>Contenido</b><span>24 herramientas</span></div>
+      <div class="indice-cab"><b>Contenido</b><span>27 herramientas</span></div>
       <ol>
-        <li style="--i:0"><a href="#empezar"><span>Si vas empezando</span><span class="g">01–03 · 10–12</span></a></li>
-        <li style="--i:1"><a href="#dia"><span>Para tu día</span><span class="g">04–05 · 13–14</span></a></li>
-        <li style="--i:2"><a href="#medir"><span>Para medir y vender</span><span class="g">06–08 · 15–18</span></a></li>
-        <li style="--i:3"><a href="#liderar"><span>Para liderar</span><span class="g">09 · 19–24</span></a></li>
-        <li style="--i:4" class="es-pro"><a href="#pro"><span>Los planes completos</span><span class="g">Pro</span></a></li>
+        <li style="--i:0"><a href="#empezar"><span>Si vas empezando</span><span class="g">01–06</span></a></li>
+        <li style="--i:1"><a href="#dia"><span>Para tu día</span><span class="g">07–09</span></a></li>
+        <li style="--i:2"><a href="#tienda"><span>Tu tienda</span><span class="g">10–17</span></a></li>
+        <li style="--i:3"><a href="#medir"><span>Para medir</span><span class="g">18–20</span></a></li>
+        <li style="--i:4"><a href="#liderar"><span>Para liderar</span><span class="g">21–27</span></a></li>
+        <li style="--i:5"><a href="#entrar"><span>Para quien quiere entrar</span><span class="g">3 pasos</span></a></li>
+        <li style="--i:6" class="es-pro"><a href="#pro"><span>Los planes completos</span><span class="g">Pro</span></a></li>
+        <li style="--i:7" class="es-pro"><a href="#sel"><span>Con Sel</span><span class="g">contraseña</span></a></li>
       </ol>
     </nav>
   </header>
 
   <div class="momentos">
-    <section class="momento" id="empezar" aria-labelledby="eTit">
-      <div class="cab"><h2 id="eTit">Si vas empezando</h2></div>
+    <section class="momento" id="empezar" aria-labelledby="empezarT">
+      <div class="cab"><h2 id="empezarT">Si vas empezando</h2></div>
       <a class="fila" href="/mentorias/herramientas/bienvenida/" data-cuenta="bienvenida"><span class="n">01</span><h3>Bienvenida, <em>socia</em></h3><p>Lo del primer día, la primera semana y los primeros meses: kit de $499, tus 75 puntos y el programa de bienvenida.</p><span class="tipo">checklist</span></a>
       <a class="fila" href="/mentorias/herramientas/primeros-200/" data-cuenta="primeros-200"><span class="n">02</span><h3>Reto Mis primeros <em>200</em></h3><p>200 puntos de grupo en 14 días, rumbo a 3%. Con marcador de puntos y de días.</p><span class="tipo">reto · 14 días</span></a>
       <a class="fila" href="/mentorias/herramientas/mensajes/" data-cuenta="mensajes"><span class="n">03</span><h3>Mensajes para <em>copiar</em></h3><p>Contactar, dar seguimiento, agendar y cerrar. Pones su nombre y lo que admiras de ella, y se arma solo.</p><span class="tipo">para copiar · WhatsApp</span></a>
-      <a class="fila" href="/mentorias/herramientas/lista/" data-cuenta="lista"><span class="n">10</span><h3>Mi lista <em>de 50</em></h3><p>Las personas a las que les vas a escribir, con su etapa, su siguiente paso y la fecha. Cada día te dice a quién le toca.</p><span class="tipo">lista · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/presentacion/" data-cuenta="presentacion"><span class="n">11</span><h3>La presentación <em>del negocio</em></h3><p>Seis pantallas para presentarlo en una llamada o mandarlo por WhatsApp, con tu nombre y tu link.</p><span class="tipo">presentación · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/objeciones/" data-cuenta="objeciones"><span class="n">12</span><h3>¿Y si me dice <em>que no?</em></h3><p>Qué contestar a las doce objeciones más comunes y con qué pregunta sigues.</p><span class="tipo">respuestas · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/lista/" data-cuenta="lista"><span class="n">04</span><h3>Mi lista <em>de 50</em></h3><p>Las personas a las que les vas a escribir, con su etapa, su siguiente paso y la fecha. Cada día te dice a quién le toca.</p><span class="tipo">lista · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/presentacion/" data-cuenta="presentacion"><span class="n">05</span><h3>La presentación <em>del negocio</em></h3><p>Seis pantallas para presentarlo en una llamada o mandarlo por WhatsApp, con tu nombre y tu link.</p><span class="tipo">presentación · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/objeciones/" data-cuenta="objeciones"><span class="n">06</span><h3>¿Y si me dice <em>que no?</em></h3><p>Qué contestar a las doce objeciones más comunes y con qué pregunta sigues.</p><span class="tipo">respuestas · Pro</span></a>
     </section>
-
-    <section class="momento" id="dia" aria-labelledby="dTit">
-      <div class="cab"><h2 id="dTit">Para tu día</h2></div>
-      <a class="fila" href="/mentorias/herramientas/hoja-diaria/" data-cuenta="hoja"><span class="n">04</span><h3>La hoja <em>del día</em></h3><p>El método de 10 actividades, tus contactos, seguimientos y presentaciones, y el marcador para cerrar el día.</p><span class="tipo">para llenar · imprimible</span></a>
-      <a class="fila" href="/herramientas/ritmo-de-puntos/" data-cuenta="ritmo"><span class="n">05</span><h3>Ritmo de <em>Puntos</em></h3><p>Reparte tu meta de puntos del mes y mira cada día cuántos te tocan.</p><span class="tipo">calendario</span></a>
-      <a class="fila" href="/mentorias/herramientas/contenido/" data-cuenta="contenido"><span class="n">13</span><h3>Qué publico <em>hoy</em></h3><p>Una idea para hoy y el calendario del mes según tu ritmo, con tu racha.</p><span class="tipo">contenido · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/pedidos/" data-cuenta="pedidos"><span class="n">14</span><h3>Pedidos <em>y cobros</em></h3><p>Cada pedido, quién ya pagó y qué falta por entregar. Siempre sabes cuánto te deben.</p><span class="tipo">seguimiento · Pro</span></a>
+    <section class="momento" id="dia" aria-labelledby="diaT">
+      <div class="cab"><h2 id="diaT">Para tu día</h2></div>
+      <a class="fila" href="/mentorias/herramientas/hoja-diaria/" data-cuenta="hoja"><span class="n">07</span><h3>La hoja <em>del día</em></h3><p>El método de 10 actividades, tus contactos, seguimientos y presentaciones, y el marcador para cerrar el día.</p><span class="tipo">para llenar · imprimible</span></a>
+      <a class="fila" href="/herramientas/ritmo-de-puntos/" data-cuenta="ritmo"><span class="n">08</span><h3>Ritmo de <em>Puntos</em></h3><p>Reparte tu meta de puntos del mes y mira cada día cuántos te tocan.</p><span class="tipo">calendario</span></a>
+      <a class="fila" href="/mentorias/herramientas/contenido/" data-cuenta="contenido"><span class="n">09</span><h3>Qué publico <em>hoy</em></h3><p>Una idea para hoy y el calendario del mes según tu ritmo, con tu racha.</p><span class="tipo">contenido · Pro</span></a>
     </section>
-
-    <section class="momento" id="medir" aria-labelledby="mTit">
-      <div class="cab"><h2 id="mTit">Para medir y vender</h2></div>
-      <a class="fila" href="/mentorias/herramientas/nivel/" data-cuenta="nivel"><span class="n">06</span><h3>¿En qué nivel <em>voy?</em></h3><p>Escribe tus puntos y ve tu nivel, lo que te falta para el siguiente y cuánto es en pedidos y por día.</p><span class="tipo">calculadora</span></a>
-      <a class="fila" href="/plan-de-compensacion/" data-cuenta="plan-comp"><span class="n">07</span><h3>Entiende el plan de <em>compensación</em></h3><p>Los niveles, los bonos y la dirección, explicados con números.</p><span class="tipo">explicación · calculadora</span></a>
-      <a class="fila" href="/herramientas/dupes/" data-cuenta="dupes"><span class="n">08</span><h3>¿A cuál se <em>parece?</em></h3><p>A qué producto conocido se parece cada producto, en qué cambia y cuánto cuesta cada uno.</p><span class="tipo">comparador</span></a>
-      <a class="fila" href="/mentorias/herramientas/mi-mes/" data-cuenta="mi-mes"><span class="n">15</span><h3>Mi <em>mes</em></h3><p>El cierre del mes en una hoja con tus números de la hoja del día, tu reto, lo que aprendiste y lo que mejoras.</p><span class="tipo">cierre · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/rutina/" data-cuenta="rutina"><span class="n">16</span><h3>Arma <em>su rutina</em></h3><p>La rutina de piel de tu clienta, de mañana y de noche, con precios. Sale una tarjeta para WhatsApp.</p><span class="tipo">tarjeta · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/inventario/" data-cuenta="inventario"><span class="n">17</span><h3>Lo que tengo <em>en casa</em></h3><p>Cuánto producto tienes, cuánto vale y qué se te está acabando.</p><span class="tipo">inventario · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/testimonios/" data-cuenta="testimonios"><span class="n">18</span><h3>Lo que dicen <em>mis clientas</em></h3><p>Un link para que tus clientas te dejen su testimonio y un mensaje para pedírselo.</p><span class="tipo">link · Pro</span></a>
+    <section class="momento" id="tienda" aria-labelledby="tiendaT">
+      <div class="cab"><h2 id="tiendaT">Tu tienda</h2></div>
+      <a class="fila" href="/mentorias/herramientas/mi-tienda/" data-cuenta="mi-tienda"><span class="n">10</span><h3>Mi <em>tienda</em></h3><p>Tu link y tu tarjeta, el mensaje para contestar cada pedido con el 50% de apartado y lo que está agotado.</p><span class="tipo">links · seguimiento · agotados</span></a>
+      <a class="fila" href="/mentorias/herramientas/pedidos/" data-cuenta="pedidos"><span class="n">11</span><h3>Pedidos <em>y cobros</em></h3><p>Cada pedido, quién ya pagó y qué falta por entregar. Siempre sabes cuánto te deben.</p><span class="tipo">seguimiento · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/rutina/" data-cuenta="rutina"><span class="n">12</span><h3>Arma <em>su rutina</em></h3><p>La rutina de piel de tu clienta, de mañana y de noche, con precios. Sale una tarjeta para WhatsApp.</p><span class="tipo">tarjeta · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/inventario/" data-cuenta="inventario"><span class="n">13</span><h3>Lo que tengo <em>en casa</em></h3><p>Cuánto producto tienes, cuánto vale y qué se te está acabando.</p><span class="tipo">inventario · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/testimonios/" data-cuenta="testimonios"><span class="n">14</span><h3>Lo que dicen <em>mis clientas</em></h3><p>Un link para que tus clientas te dejen su testimonio y un mensaje para pedírselo.</p><span class="tipo">link · Pro</span></a>
+      <a class="fila" href="/herramientas/dupes/" data-cuenta="dupes"><span class="n">15</span><h3>¿A cuál se <em>parece?</em></h3><p>A qué producto conocido se parece cada producto, en qué cambia y cuánto cuesta cada uno.</p><span class="tipo">comparador</span></a>
+      <a class="fila" href="/eventos/" data-cuenta="eventos" id="lEventos"><span class="n">16</span><h3>Eventos del <em>equipo</em></h3><p>Ventas especiales, lanzamientos y reuniones, con la liga para invitar a tus clientas.</p><span class="tipo">calendario · para compartir</span></a>
+      <a class="fila" href="/mentorias/herramientas/en-vivo/" data-cuenta="en-vivo"><span class="n">17</span><h3>Venta <em>en vivo</em></h3><p>Un live de 60 minutos con su guion minuto a minuto.</p><span class="tipo">guion · Pro</span></a>
     </section>
-
-    <section class="momento" id="liderar" aria-labelledby="lTit">
-      <div class="cab"><h2 id="lTit">Para liderar</h2></div>
+    <section class="momento" id="medir" aria-labelledby="medirT">
+      <div class="cab"><h2 id="medirT">Para medir</h2></div>
+      <a class="fila" href="/mentorias/herramientas/nivel/" data-cuenta="nivel"><span class="n">18</span><h3>¿En qué nivel <em>voy?</em></h3><p>Escribe tus puntos y ve tu nivel, lo que te falta para el siguiente y cuánto es en pedidos y por día.</p><span class="tipo">calculadora</span></a>
+      <a class="fila" href="/mentorias/herramientas/mi-mes/" data-cuenta="mi-mes"><span class="n">19</span><h3>Mi <em>mes</em></h3><p>El cierre del mes en una hoja con tus números de la hoja del día, tu reto, lo que aprendiste y lo que mejoras.</p><span class="tipo">cierre · Pro</span></a>
+      <a class="fila" href="/plan-de-compensacion/" data-cuenta="plan-comp"><span class="n">20</span><h3>Entiende el plan de <em>compensación</em></h3><p>Los niveles, los bonos y la dirección, explicados con números.</p><span class="tipo">explicación · calculadora</span></a>
+    </section>
+    <section class="momento" id="liderar" aria-labelledby="liderarT">
+      <div class="cab"><h2 id="liderarT">Para liderar</h2></div>
       <article class="pieza">
         <div>
-          <div class="fila" style="border:0;padding:22px 0 0"><span class="n">09</span><h3><a href="/mentorias/herramientas/1a1/">El 1 a 1 con tus <em>líderes</em></a></h3><p>Qué revisar en cada reunión con tus líderes, en seis pasos: primero los datos, después la conversación.</p></div>
+          <div class="fila" style="border:0;padding:22px 0 0"><span class="n">21</span><h3><a href="/mentorias/herramientas/1a1/" data-cuenta="1a1">El 1 a 1 con tus <em>líderes</em></a></h3><p>Qué revisar en cada reunión con tus líderes, en seis pasos: primero los datos, después la conversación.</p></div>
           <ul class="trae">
             <li><span>La guía de los seis pasos</span><span>en la página</span></li>
             <li><a href="/mentorias/1a1/checklist-lider.pdf" download data-cuenta="pdf-checklist">Checklist para tu líder</a><span>PDF · carta</span></li>
             <li><a href="/mentorias/herramientas/1a1/#materiales">Mensaje para agendar</a><span>WhatsApp</span></li>
           </ul>
-          <p class="extra">La hoja para llenar con tu líder y mandarle su plan viene en las <a href="/mentorias/">mentorías con Sel</a>.</p>
+          <p class="extra">La hoja completa para llenar con tu líder está en el <a href="#sel">material con Sel</a>.</p>
         </div>
       </article>
-      <a class="fila" href="/mentorias/herramientas/equipo/" data-cuenta="equipo"><span class="n">19</span><h3>Mapa de <em>mi equipo</em></h3><p>Tus líneas, tu nivel y tus puntos laterales del mes, y a quién escribirle.</p><span class="tipo">mapa · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/reto/" data-cuenta="reto"><span class="n">20</span><h3>Reto <em>en equipo</em></h3><p>La líder crea el reto, las socias se unen con un código y reportan cada día. Todas ven el tablero.</p><span class="tipo">reto · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/reconocimientos/" data-cuenta="reconocimientos"><span class="n">21</span><h3>Reconoci<em>mientos</em></h3><p>Una tarjeta para felicitar a tu equipo, lista para WhatsApp e Historias.</p><span class="tipo">tarjeta · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/reunion/" data-cuenta="reunion"><span class="n">22</span><h3>Mi <em>reunión</em></h3><p>Invitación, guion de 45 minutos y seguimiento a las 48 horas.</p><span class="tipo">reunión · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/capacitaciones/" data-cuenta="capacitaciones"><span class="n">23</span><h3>Capacitaciones <em>listas</em></h3><p>Una sesión de 45 minutos con guion, dinámica y tarea de la semana.</p><span class="tipo">sesión · Pro</span></a>
-      <a class="fila" href="/mentorias/herramientas/en-vivo/" data-cuenta="en-vivo"><span class="n">24</span><h3>Venta <em>en vivo</em></h3><p>Un live de 60 minutos con su guion minuto a minuto.</p><span class="tipo">guion · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/que-quiere/" data-cuenta="que-quiere"><span class="n">22</span><h3>¿Qué quiere <em>cada quien?</em></h3><p>Le gusta, va por algo o va por todo: descubre qué busca cada persona de tu equipo y cómo acompañarla a su ritmo.</p><span class="tipo">test · guía · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/equipo/" data-cuenta="equipo"><span class="n">23</span><h3>Mapa de <em>mi equipo</em></h3><p>Tus líneas, tu nivel y tus puntos laterales del mes, y a quién escribirle.</p><span class="tipo">mapa · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/reto/" data-cuenta="reto"><span class="n">24</span><h3>Reto <em>en equipo</em></h3><p>La líder crea el reto, las socias se unen con un código y reportan cada día. Todas ven el tablero.</p><span class="tipo">reto · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/reconocimientos/" data-cuenta="reconocimientos"><span class="n">25</span><h3>Reconoci<em>mientos</em></h3><p>Una tarjeta para felicitar a tu equipo, lista para WhatsApp e Historias.</p><span class="tipo">tarjeta · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/reunion/" data-cuenta="reunion"><span class="n">26</span><h3>Mi <em>reunión</em></h3><p>Invitación, guion de 45 minutos y seguimiento a las 48 horas.</p><span class="tipo">reunión · Pro</span></a>
+      <a class="fila" href="/mentorias/herramientas/capacitaciones/" data-cuenta="capacitaciones"><span class="n">27</span><h3>Capacitaciones <em>listas</em></h3><p>Una sesión de 45 minutos con guion, dinámica y tarea de la semana.</p><span class="tipo">sesión · Pro</span></a>
     </section>
   </div>
+
+  <section class="ruta" id="entrar" aria-labelledby="rTit">
+    <div class="cab">
+      <h2 id="rTit">Para quien quiere <em>entrar</em></h2>
+      <p>Cuando alguien te pregunte "¿y cómo es eso de Farmasi?", mándale la primera página. Las otras dos siguen solas, y al final te escribe a ti.</p>
+    </div>
+    <ol>
+      <li class="parada"><span class="p">1</span><h3>Lo que te <em>pierdes</em></h3><p>Lo que paga de más por no ser socia, con su compra de cada mes.</p><div class="lig"><a href="/unete/" data-ruta-l="/unete/">Ver</a><button class="enlace" type="button" data-manda="/unete/">Mandar por WhatsApp</button></div></li>
+      <li class="parada"><span class="p">2</span><h3>Entiende el <em>plan</em></h3><p>Niveles, bonos y dirección con números y una calculadora.</p><div class="lig"><a href="/plan-de-compensacion/" data-ruta-l="/plan-de-compensacion/">Ver</a><button class="enlace" type="button" data-manda="/plan-de-compensacion/">Mandar por WhatsApp</button></div></li>
+      <li class="parada"><span class="p">3</span><h3>Cómo se <em>inscribe</em></h3><p>Lo que cuesta, lo que le piden cada mes y sus primeros 4 meses.</p><div class="lig"><a href="/unete/inscripcion/" data-ruta-l="/unete/inscripcion/">Ver</a><button class="enlace" type="button" data-manda="/unete/inscripcion/">Mandar por WhatsApp</button></div></li>
+    </ol>
+    <div class="mandar">
+      <button class="btn" type="button" id="copiaRuta" data-cuenta="ruta-copiar">Copiar mi liga</button>
+      <p class="nota" id="rutaNota">Elige tu nombre arriba para que la liga te escriba a ti.</p>
+    </div>
+  </section>
 
   <section class="pro" id="pro" aria-labelledby="pTit">
     <div>
@@ -176,11 +243,25 @@
     <ul id="proLista" aria-label="Planes Pro"></ul>
   </section>
 
-  <section class="sigue" aria-label="Mentorías">
-    <a class="otra" href="/mentorias/" data-cuenta="mentorias"><b>¿Quieres que alguien te acompañe a aplicarlo?</b><span>Para eso están las mentorías con Sel.</span><i aria-hidden="true">→</i></a>
+  <section class="puerta" id="sel" aria-labelledby="sTit">
+    <svg class="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/><path d="M12 14.5v2.5"/></svg>
+    <div>
+      <h2 id="sTit">Con <em>Sel</em></h2>
+      <p style="margin-top:12px">El material que Sel trabaja contigo en sus mentorías. Se abre con la contraseña que te da en tu sesión.</p>
+    </div>
+    <div style="display:grid;gap:16px">
+      <ul>
+        <li>La hoja del 1 a 1 para llenar con tu líder y mandarle su plan</li>
+        <li>La guía completa de los seis bloques</li>
+      </ul>
+      <div class="acciones">
+        <a class="btn2" href="/mentorias/1a1/" data-cuenta="puerta-sel">Entrar con contraseña</a>
+        <a class="enlace" href="/mentorias/" data-cuenta="mentorias">Conocer las mentorías</a>
+      </div>
+    </div>
   </section>
 
-  <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi.</p></footer>
+  <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi. Lo que manda es lo vigente en tu Back Office.</p></footer>
 </div>
 <script src="/mentorias/herramientas/base.js"></script>
 <script src="/mentorias/herramientas/pro/pro.js"></script>
@@ -188,6 +269,27 @@
 document.getElementById("proLista").innerHTML = PRO.productos.concat([PRO.todo]).map(function(p){
   return '<li><a href="/mentorias/herramientas/pro/#' + p.s + '"><b>' + p.t + '</b><span>$' + H.fmt(p.precio) + '</span></a></li>';
 }).join("");
+(async function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var lista = await H.equipo();
+  $("soy").innerHTML += lista.map(function(c){ return '<option value="' + c.slug + '">' + H.esc(c.nombre) + '</option>'; }).join("");
+  function aplica(){
+    var s = H.miSlug(), c = lista.filter(function(x){ return x.slug === s; })[0];
+    $("soy").value = c ? s : "";
+    var suf = c ? "?de=" + s : "";
+    document.querySelectorAll("[data-ruta-l]").forEach(function(a){ a.href = a.dataset.rutaL + suf; });
+    $("lEventos").href = "/eventos/" + suf;
+    $("soyNota").textContent = c ? "Tus ligas para compartir le escriben a " + c.nombre + "." : "Así, las ligas que compartes desde aquí le escriben a ti.";
+    $("rutaNota").textContent = c ? "La liga lleva tu nombre: quien la abra te escribe a ti." : "Elige tu nombre arriba para que la liga te escriba a ti.";
+  }
+  $("soy").addEventListener("change", function(e){ H.miSlug(e.target.value); aplica(); H.cuenta("soy"); });
+  aplica();
+  var MSJ = {"/unete/": "Mira esto: lo que pagas de más por no ser socia de Farmasi, con números.", "/plan-de-compensacion/": "Te paso cómo funciona el plan de Farmasi, con números y una calculadora.", "/unete/inscripcion/": "Así te inscribes a Farmasi: lo que cuesta y tus primeros 4 meses."};
+  document.querySelectorAll("[data-manda]").forEach(function(b){
+    b.addEventListener("click", function(){ var r = b.dataset.manda; window.open(H.wa(MSJ[r] + "\n" + H.liga(r)), "_blank", "noopener"); H.cuenta("ruta-manda" + r.replace(/\//g, "-")); });
+  });
+  $("copiaRuta").addEventListener("click", function(){ H.copia(H.liga("/unete/"), "Liga copiada"); });
+})();
 </script>
 </body>
 </html>

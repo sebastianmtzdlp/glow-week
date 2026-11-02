@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Cómo te inscribes a Farmasi</title>
+<meta name="description" content="Lo que cuesta inscribirte ($499), lo que te piden cada mes (75 puntos), tus primeros 4 meses con el programa de bienvenida y a quién escribirle.">
+<meta property="og:title" content="Cómo te inscribes">
+<meta property="og:description" content="$499 de kit, 75 puntos al mes y tus primeros 4 meses, explicado paso a paso.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/unete/inscripcion/">
+<meta property="og:image" content="https://mitienda.beauty/og/unete-inscripcion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;
+  --accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;--good:#1B8A5A;--warn:#B26A00;
+  --ease:cubic-bezier(.23,1,.32,1);--mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--accent-t)}
+.wrap{max-width:620px;margin:0 auto;padding:0 16px 72px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0 0;font-size:14px}
+.top a{color:var(--muted);text-decoration:none}
+.brand{font-weight:300;letter-spacing:.18em;font-size:12px;color:var(--muted)}
+
+.hero{padding:30px 0 0}
+h1{font-size:clamp(36px,10vw,56px);line-height:1;font-weight:800;letter-spacing:-.02em}
+h1 .mono{font-weight:700;color:var(--accent);letter-spacing:-.03em}
+.lead{font-size:18px;color:var(--muted);margin-top:14px;max-width:34ch}
+
+/* El recibo de entrada: lo que pagas y lo que te piden */
+.recibo{margin-top:26px;border:1px solid var(--line);border-radius:18px;padding:6px 16px 10px;font-variant-numeric:tabular-nums}
+.recibo div{display:grid;grid-template-columns:1fr auto;gap:2px 14px;align-items:baseline;padding:11px 0;border-bottom:1px dashed var(--line)}
+.recibo div:last-child{border-bottom:0}
+.recibo b{font:700 22px/1.1 var(--mono);text-align:right}
+.recibo span{font-weight:600}
+.recibo small{grid-column:1/-1;color:var(--muted);font-size:14px}
+.recibo .primero b{color:var(--accent)}
+
+h2{font-size:28px;line-height:1.1;font-weight:800;letter-spacing:-.01em}
+.sec{margin-top:56px;scroll-margin-top:16px}
+.sec>p{margin-top:12px}
+.nota{font-size:14px;color:var(--muted);margin-top:12px}
+
+/* Pasos */
+.pasos{list-style:none;margin:18px 0 0;padding:0;border-top:1.5px solid var(--ink)}
+.pasos li{display:grid;grid-template-columns:40px 1fr;gap:2px 10px;padding:16px 0;border-bottom:1px solid var(--line)}
+.pasos .n{font:500 14px/1.6 var(--mono);color:var(--accent-t);grid-row:1/span 2}
+.pasos b{font-size:18px;line-height:1.3}
+.pasos p{color:var(--muted);font-size:15px;margin-top:4px}
+.pasos a{font-weight:600}
+
+/* Los cuatro meses */
+.meses{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-top:20px;align-items:end;height:170px}
+.mes{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.mes i{display:block;background:var(--soft);border-radius:10px 10px 4px 4px;height:var(--h);transform-origin:bottom;position:relative}
+.mes i::after{content:"";position:absolute;inset:auto 0 0 0;height:4px;background:var(--accent);border-radius:0 0 4px 4px}
+.mes b{font:700 20px/1 var(--mono);margin-top:8px}
+.mes span{font-size:13px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){
+  .mes i{animation:sube 560ms var(--ease) both;animation-delay:calc(var(--n) * 70ms)}
+}
+@keyframes sube{from{transform:scaleY(.2);opacity:.4}to{transform:none;opacity:1}}
+.reglas{list-style:none;margin:16px 0 0;padding:0}
+.reglas li{padding:10px 0;border-top:1px solid var(--line);font-size:15px}
+.reglas b{font-weight:600}
+
+/* Sets */
+table{width:100%;border-collapse:collapse;margin-top:16px;font-size:15px}
+th,td{text-align:left;padding:10px 8px 10px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums;padding-right:0}
+td.n s{color:var(--muted);text-decoration-color:var(--accent)}
+td small{display:block;color:var(--muted);font-size:13px}
+
+.apps{display:grid;gap:12px;margin-top:16px}
+.app{border:1px solid var(--line);border-radius:18px;padding:16px}
+.app b{font-size:18px}
+.app p{color:var(--muted);font-size:15px;margin-top:4px}
+.app a{display:inline-block;margin-top:8px;font-weight:600;font-family:var(--mono);font-size:14px;word-break:break-all}
+
+/* Cierre */
+.cierre{margin-top:56px;background:var(--soft);border-radius:18px;padding:22px 18px}
+.cierre h2{font-size:26px}
+.cierre p{margin-top:8px;color:var(--muted)}
+.quien{display:flex;align-items:center;gap:12px;margin-top:16px}
+.quien img,.quien .ini{width:52px;height:52px;border-radius:50%;object-fit:cover;flex:none;background:#fff;border:1px solid var(--line)}
+.quien .ini{display:grid;place-items:center;font-weight:700;color:var(--ink)}
+.quien b{display:block;font-size:17px}
+.quien span{font-size:14px;color:var(--muted)}
+.btn{display:flex;justify-content:center;align-items:center;gap:8px;width:100%;min-height:52px;margin-top:16px;border:0;border-radius:14px;background:var(--accent);color:#fff;font:600 16px/1 Outfit,system-ui,sans-serif;text-decoration:none;cursor:pointer;transition:transform 160ms var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px}
+.otra-vez{display:block;margin-top:12px;text-align:center;font-size:14px;color:var(--muted)}
+
+footer{margin-top:48px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:6px}
+@media (min-width:900px){
+  .wrap{max-width:760px}
+  .apps{grid-template-columns:1fr 1fr}
+  .meses{height:200px;gap:12px}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="/plan-de-compensacion/" id="atras">← El plan</a><span class="brand">MI EQUIPO</span></div>
+  <nav data-ruta="3"></nav>
+
+  <header class="hero">
+    <h1>Inscribirte cuesta <span class="mono">$499</span></h1>
+    <p class="lead">Es tu kit de inicio. Desde ese día compras a precio de socia y puedes vender. Esto es lo que pagas, lo que te piden y cómo son tus primeros 4 meses.</p>
+    <div class="recibo" aria-label="Lo esencial">
+      <div class="primero"><span>Kit de inicio</span><b>$499</b><small>Trae catálogo y muestras. Es el único pago para entrar.</small></div>
+      <div><span>Puntos al mes para cobrar</span><b>75</b><small>Con 75 puntos personales en el mes cobras tus comisiones y bonos de ese mes.</small></div>
+      <div><span>Para no perder tu cuenta</span><b>75</b><small>Al menos 75 puntos en cualquier periodo de 6 meses seguidos.</small></div>
+      <div><span>Lo que vale un punto</span><b>$25</b><small>75 puntos son unos $1,875 en productos a precio de socia.</small></div>
+      <div><span>Tu ganancia al vender</span><b>50%</b><small>Es la diferencia más alta entre tu precio y el de catálogo, según el producto.</small></div>
+    </div>
+  </header>
+
+  <section class="sec" aria-labelledby="pTit">
+    <h2 id="pTit">Paso a paso</h2>
+    <ol class="pasos">
+      <li><span class="n">01</span><b>Escríbele a quien te compartió esta página</b><p>Ella te registra en su equipo y te acompaña desde el primer día. Si nadie te la mandó, le escribes a Selene, líder del equipo.</p></li>
+      <li><span class="n">02</span><b>Pide tu kit de $499</b><p>Si quieres, súmale uno de los sets de inicio con descuento (abajo). No es obligatorio.</p></li>
+      <li><span class="n">03</span><b>Haz tus primeros 50 puntos</b><p>Es el primer escalón del programa de bienvenida. Pueden ser tus pedidos o los de tus clientas.</p></li>
+      <li><span class="n">04</span><b>Entra a la Academia y a Boards</b><p>Las dos apps de capacitación de Farmasi. Te registras con tu correo.</p></li>
+      <li><span class="n">05</span><b>Tu líder te manda tu bienvenida</b><p>La lista de tu primer día, tu primera semana y tus primeros meses. <a href="/mentorias/herramientas/bienvenida/">Ver la bienvenida</a></p></li>
+    </ol>
+  </section>
+
+  <section class="sec" aria-labelledby="mTit">
+    <h2 id="mTit">Tus primeros 4 meses</h2>
+    <p>El programa de bienvenida te regala un producto cada mes que llegas a los puntos de ese mes, además de tus comisiones.</p>
+    <div class="meses" role="img" aria-label="Mes 1: 50 puntos. Mes 2: 60. Mes 3: 70. Mes 4: 80.">
+      <div class="mes"><i style="--h:62%;--n:0"></i><b>50</b><span>mes 1</span></div>
+      <div class="mes"><i style="--h:74%;--n:1"></i><b>60</b><span>mes 2</span></div>
+      <div class="mes"><i style="--h:87%;--n:2"></i><b>70</b><span>mes 3</span></div>
+      <div class="mes"><i style="--h:100%;--n:3"></i><b>80</b><span>mes 4</span></div>
+    </div>
+    <ul class="reglas">
+      <li><b>Mes tras mes.</b> Si un mes no llegas, pierdes los regalos que siguen.</li>
+      <li><b>Segunda oportunidad.</b> Si no llegas en tu mes de ingreso, puedes lograrlo el mes siguiente y la cuenta empieza desde cero. Se llama periodo de gracia.</li>
+      <li><b>Qué te regalan.</b> Lo ves en tu Back Office; si cambia, manda lo que diga ahí.</li>
+    </ul>
+  </section>
+
+  <section class="sec" aria-labelledby="sTit">
+    <h2 id="sTit">Sets de inicio, si quieres más</h2>
+    <p>Se piden al inscribirte, junto con tu kit. Te sirven para probar y para mostrar.</p>
+    <table>
+      <thead><tr><th>Set</th><th class="n">Pagas</th><th class="n">En catálogo</th></tr></thead>
+      <tbody>
+        <tr><td>Salud<small>Suplementos y café</small></td><td class="n">$2,000</td><td class="n"><s>$5,275</s></td></tr>
+        <tr><td>Maquillaje<small>11 productos de maquillaje</small></td><td class="n">$1,850</td><td class="n"><s>$3,975</s></td></tr>
+        <tr><td>Cuidado facial y cabello<small>7 productos de piel y cabello</small></td><td class="n">$1,550</td><td class="n"><s>$4,925</s></td></tr>
+        <tr><td>Los más pedidos<small>12 productos de piel, cuerpo y maquillaje</small></td><td class="n">$2,000</td><td class="n"><s>$5,175</s></td></tr>
+      </tbody>
+    </table>
+    <p class="nota">Precios de la guía de inscripción de México. Los productos de cada set dependen de la existencia.</p>
+  </section>
+
+  <section class="sec" aria-labelledby="aTit">
+    <h2 id="aTit">Dónde aprendes</h2>
+    <div class="apps">
+      <div class="app"><b>Academia Farmasi</b><p>Más de 100 cursos de producto, negocio y crecimiento personal, y los módulos del programa de bienvenida.</p><a href="https://www.academiafarmasi.com" rel="noopener" target="_blank">academiafarmasi.com</a></div>
+      <div class="app"><b>Boards</b><p>Catálogo, promociones, videos de producto y contenido listo para tus redes.</p><a href="https://www.boards.com/farmasi-mexico-oficial" rel="noopener" target="_blank">boards.com/farmasi-mexico-oficial</a></div>
+    </div>
+    <p class="nota">Y del equipo: el <a href="/mentorias/herramientas/">Centro de la socia</a>, con tu hoja del día, mensajes para copiar y tu reto de los primeros 200 puntos.</p>
+  </section>
+
+  <section class="cierre" aria-labelledby="cTit">
+    <h2 id="cTit">¿Lista para empezar?</h2>
+    <p>Escríbele y te inscribe hoy. Si tienes dudas, también pregúntale; para eso está.</p>
+    <div class="quien" id="quien" hidden></div>
+    <a class="btn" id="wa" href="https://wa.me/525541456984" target="_blank" rel="noopener" data-cuenta="inscripcion-wa">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/></svg>
+      <span id="waTxt">Quiero inscribirme</span>
+    </a>
+    <a class="otra-vez" href="/plan-de-compensacion/" id="otraVez">Antes, quiero entender el plan</a>
+  </section>
+
+  <footer>
+    <p>Lo hizo el equipo con la Guía de inscripción de Farmasi México. No es material oficial de Farmasi; lo que manda es lo vigente en tu Back Office.</p>
+  </footer>
+</div>
+<script src="/unete/ruta.js"></script>
+<script>
+(function(){
+  var DEFAULT = {slug: "", nombre: "Selene", whatsapp: "525541456984"};
+  var de = window.RUTA ? RUTA.de : "";
+  if(de){ ["atras", "otraVez"].forEach(function(id){ var a = document.getElementById(id); a.href = a.getAttribute("href") + RUTA.suf; }); }
+  function pinta(c){
+    var msg = "Hola " + c.nombre.split(" ")[0] + ", vi la página de cómo inscribirme y quiero empezar. ¿Me ayudas?";
+    document.getElementById("wa").href = "https://wa.me/" + c.whatsapp + "?text=" + encodeURIComponent(msg);
+    document.getElementById("waTxt").textContent = "Escribirle a " + c.nombre.split(" ")[0];
+    var q = document.getElementById("quien");
+    var ini = c.nombre.split(" ").map(function(p){ return p[0]; }).join("").slice(0, 2);
+    q.innerHTML = (c.slug ? '<img src="/fotos/' + c.slug + '.jpg" alt="" onerror="this.outerHTML=\'<span class=ini>' + ini + '</span>\'">' : '<span class="ini">' + ini + '</span>')
+      + '<div><b>' + c.nombre + '</b><span>' + (c.slug ? "Te invitó a su equipo" : "Líder del equipo") + '</span></div>';
+    q.hidden = false;
+  }
+  if(!de){ pinta(DEFAULT); return; }
+  fetch("/_data/equipo.json").then(function(r){ return r.json(); }).then(function(d){
+    var c = (d.consultoras || []).filter(function(x){ return x.slug === de; })[0];
+    pinta(c ? {slug: c.slug, nombre: c.nombre, whatsapp: c.whatsapp} : DEFAULT);
+  }).catch(function(){ pinta(DEFAULT); });
+  document.getElementById("wa").addEventListener("click", function(){ try{ goatcounter.count({path: "unete/inscripcion-wa" + (de ? "-" + de : ""), title: "Escribir para inscribirse", event: true}); }catch(_){} });
+})();
+</script>
+</body>
+</html>
