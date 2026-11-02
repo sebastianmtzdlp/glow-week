@@ -97,6 +97,7 @@ tr.tot td{border-bottom:0;border-top:1.5px solid var(--ink);font-weight:700}
 .receipt .row span:first-child{color:var(--muted)}
 .receipt .row b{font-weight:500;color:var(--ink)}
 .receipt .tot{border-top:1.5px dashed var(--ink);margin-top:8px;padding-top:10px;font-size:16px}
+.receipt .tot+.tot{border-top:0;margin-top:0;padding-top:2px}
 .receipt .tot span:first-child{color:var(--ink)}
 .receipt .tot b{font-weight:700;color:var(--accent-t)}
 
@@ -195,8 +196,8 @@ footer a{color:var(--muted)}
     <p>Es la primera ganancia y no depende de ningún nivel: compras con descuento de socia y le vendes a tu clienta al precio de catálogo. La diferencia es tuya.</p>
     <div class="key">Descuento de <span class="mono">30%</span> en la mayoría de las líneas y hasta <span class="mono">50%</span> en algunas.</div>
     <p>Ejemplo: un producto de catálogo de <span class="num">$300</span> con 30% de descuento te cuesta <span class="num">$210</span>. Si lo vendes a precio de catálogo, ganas <span class="num">$90</span>.</p>
-    <p>Además, con pedidos de <span class="num">75</span> puntos o más tienes regalos y envío gratis en tus primeros meses. Revisa las promociones del mes en tu Back Office, porque cambian.</p>
-    <p class="src">Fuente: página de registro de Farmasi México. Los porcentajes por línea pueden cambiar con cada catálogo.</p>
+    <p>Para empezar pagas el kit de inicio de <span class="num">$499</span>. En tus primeros 4 meses, el programa de bienvenida te da un producto de regalo cada mes si llegas a <span class="num">50</span>, <span class="num">60</span>, <span class="num">70</span> y <span class="num">80</span> puntos personales. Si un mes no llegas, se pierde la racha.</p>
+    <p class="src">Fuentes: Guía de inscripción México de Farmasi (comisión hasta 50%, kit y programa de bienvenida) y página de registro de Farmasi México (30% y 50% por línea). Los porcentajes por línea pueden cambiar con cada catálogo.</p>
   </section>
 
   <section class="ch" id="bono">
@@ -204,12 +205,15 @@ footer a{color:var(--muted)}
     <h2>Tu bono de grupo</h2>
     <p>Cada mes se suman los puntos de tus pedidos, los de tus clientas registradas contigo y los de todo tu equipo hacia abajo. Ese total son tus <b>puntos de grupo</b>, y decide tu nivel: del <span class="num">3%</span> al <span class="num">25%</span>.</p>
     <p>Ese porcentaje se te regresa como saldo a favor sobre los pedidos de tu grupo. Es lo que algunas llaman "bono personal" y otras "bono de grupo": es el mismo bono, y se calcula con el total del grupo.</p>
-    <div class="key">Los puntos deciden tu porcentaje. El bono se paga sobre lo que valen los pedidos.</div>
+    <div class="key">Los puntos deciden tu porcentaje. Cada punto vale <span class="mono">$25</span>, así que el bono en pesos es: puntos × porcentaje × $25.</div>
+    <p>Ejemplo: si tu grupo hace <span class="num">1,000</span> puntos y todo es tuyo y de tus clientas, estás en 12%. Tu bono es 1,000 × 12% = <span class="num">120</span> puntos, o sea <span class="num">$3,000</span>.</p>
+    <h3>Para cobrar, 75 puntos tuyos</h3>
+    <p>Necesitas al menos <span class="num">75</span> puntos personales cada mes para cobrar bonos y comisiones ese mes. Y para que tu cuenta siga abierta, debes juntar al menos 75 puntos en cualquier periodo de 6 meses.</p>
     <table aria-label="Puntos por nivel">
       <thead><tr><th>Nivel</th><th class="n">Puntos de grupo al mes</th><th>Estado</th></tr></thead>
       <tbody id="tblNiveles"></tbody>
     </table>
-    <p class="src">El 3% desde 200 puntos y el 25% desde 5,000 los dice Farmasi México. El 18% y el 22% los confirmó el equipo. Los puntos del 6% al 15% vienen de una fuente no oficial.</p>
+    <p class="src">El 3% desde 200 puntos y el 25% desde 5,000 los dice Farmasi México. El 18% y el 22% los confirmó el equipo. Los puntos del 6% al 15% vienen de una fuente no oficial. El valor del punto ($25 a precio de socia) y los 75 puntos para cobrar vienen de la Guía de inscripción México.</p>
   </section>
 
   <section class="ch" id="socias">
@@ -225,9 +229,10 @@ footer a{color:var(--muted)}
       <div class="row"><span>Luz · 6% · 400 × (22−6)%</span><b>64</b></div>
       <div class="row"><span>Caro · 18% · 2,300 × (22−18)%</span><b>92</b></div>
       <div class="row tot"><span>Tu bono, en puntos</span><b>312</b></div>
+      <div class="row tot"><span>En pesos · 312 × $25</span><b>$7,800</b></div>
     </div>
-    <p>Esos <span class="num">312</span> puntos de bono se pagan en pesos, según lo que valieron los pedidos. Si tu socia llega a tu mismo nivel, la diferencia es cero: de su grupo ya no ganas bono de grupo, y a partir de la dirección eso se compensa con el bono de liderazgo.</p>
-    <p class="src">Así lo explica Farmasi ("la diferencia entre tu nivel de bonificación y el de tus socias"). El valor exacto en pesos de un punto <span class="pc">por confirmar</span></p>
+    <p>Si tu socia llega a tu mismo nivel, la diferencia es cero: de su grupo ya no ganas bono de grupo, y a partir de la dirección eso se compensa con el bono de liderazgo.</p>
+    <p class="src">Así lo explica Farmasi ("la diferencia entre tu nivel de bonificación y el de tus socias"). Un punto vale $25.</p>
   </section>
 
   <section class="ch" id="direccion">
@@ -331,7 +336,7 @@ footer a{color:var(--muted)}
     <div class="calc">
       <label for="mine">Tus puntos y los de tus clientas</label>
       <div class="field"><input type="number" id="mine" inputmode="numeric" min="0" step="10"></div>
-      <div class="thead" aria-hidden="true"><span>Socia directa</span><span>Puntos de su grupo</span><span></span></div>
+      <div class="thead" aria-hidden="true"><span>Socia directa</span><span>Puntos</span><span></span></div>
       <div class="team" id="team"></div>
       <div class="btns"><button class="btn line" id="add" type="button">+ Agregar socia</button><button class="btn line" id="reset" type="button">Volver al ejemplo</button></div>
 
@@ -342,7 +347,7 @@ footer a{color:var(--muted)}
         <div class="receipt" id="oRec"></div>
         <h3>Rumbo a dirección</h3>
         <ul class="checks" id="oChecks"></ul>
-        <p class="src">Los puntos de bono se pagan en pesos según lo que valieron los pedidos. Cada rango se consolida con 3 meses seguidos.</p>
+        <p class="src">Un punto vale $25 a precio de socia. Para cobrar necesitas al menos 75 puntos personales en el mes. Cada rango se consolida con 3 meses seguidos.</p>
       </div>
     </div>
   </section>
@@ -353,18 +358,16 @@ footer a{color:var(--muted)}
     <p>Esto no lo encontramos en una fuente oficial de México. Si tienes el plan en PDF o lo ves en tu Back Office, con eso se completa.</p>
     <ol class="faltan">
       <li>Los puntos exactos del 6%, 9%, 12% y 15%.</li>
-      <li>Cuánto vale un punto en pesos, y si el bono se calcula sobre el precio de catálogo o sobre el que pagas.</li>
       <li>Si Bronce y Oro piden además 10,000 y 20,000 puntos de grupo en México.</li>
       <li>Si tus propios pedidos cuentan como laterales.</li>
       <li>Los porcentajes del bono de liderazgo por generación.</li>
       <li>Los montos del apoyo para auto arriba de Oro y del bono en efectivo de cada rango.</li>
-      <li>Si hay un mínimo de puntos personales para cobrar bonos.</li>
     </ol>
   </section>
 
   <footer>
     <p>Esta página la hizo el equipo para estudiar el plan. No es material oficial de Farmasi. Lo que manda es el plan de compensación vigente en tu Back Office.</p>
-    <p style="margin-top:8px">Fuentes consultadas: <a href="https://www.farmasidemexico.com/" rel="noopener">página de registro de Farmasi México</a>, <a href="https://farmasi-join.com/business" rel="noopener">guía de Estados Unidos (no oficial)</a> y <a href="https://vivaelnetworking.com/empresas/farmasi/" rel="noopener">vivaelnetworking (no oficial)</a>.</p>
+    <p style="margin-top:8px">Fuentes consultadas: Guía de inscripción México de Farmasi, <a href="https://www.farmasidemexico.com/" rel="noopener">página de registro de Farmasi México</a>, <a href="https://farmasi-join.com/business" rel="noopener">guía de Estados Unidos (no oficial)</a> y <a href="https://vivaelnetworking.com/empresas/farmasi/" rel="noopener">vivaelnetworking (no oficial)</a>.</p>
   </footer>
 </div>
 
@@ -386,7 +389,7 @@ footer a{color:var(--muted)}
     b.innerHTML='<span class="pct">'+l.p+'%</span><span class="bar"><i></i></span><span class="pts'+(l.ok?'':' q')+'"><span>'+fmt(l.min)+'</span></span>';
     var m=document.createElement('div');m.className='rung-more';m.hidden=true;
     var next=LV[i+1];
-    m.innerHTML='Desde <b class="num">'+fmt(l.min)+'</b> puntos de grupo al mes. De cada <b class="num">$1,000</b> en pedidos de tu grupo, te regresan <b class="num">$'+(l.p*10)+'</b>'+(next?'. Para el '+next.p+'% te faltan '+fmt(next.min-l.min)+' puntos más.':'. Es el nivel más alto: desde aquí sigue la dirección.');
+    m.innerHTML='Desde <b class="num">'+fmt(l.min)+'</b> puntos de grupo al mes ($'+fmt(l.min*25)+'). Si todos fueran tuyos y de tus clientas, tu bono sería de <b class="num">$'+fmt(l.min*l.p/100*25)+'</b>'+(next?'. Para el '+next.p+'% te faltan '+fmt(next.min-l.min)+' puntos más.':'. Es el nivel más alto: desde aquí sigue la dirección.');
     b.addEventListener('click',function(){
       var exp=b.getAttribute('aria-expanded')==='true';
       if(open&&open!==b){open.setAttribute('aria-expanded','false');open.nextSibling.hidden=true}
@@ -438,6 +441,7 @@ footer a{color:var(--muted)}
       rows+='<div class="row"><span>'+esc(m.n||'Socia')+' · '+sp+'% · '+fmt(m.p||0)+' × '+d+'%</span><b>'+fmt(v)+'</b></div>';
     });
     rows+='<div class="row tot"><span>Tu bono, en puntos</span><b>'+fmt(bono)+'</b></div>';
+    rows+='<div class="row tot"><span>En pesos · × $25</span><b>$'+fmt(bono*25)+'</b></div>';
     document.getElementById('oRec').innerHTML=rows;
 
     // niveles por socia
