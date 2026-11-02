@@ -29,7 +29,7 @@ window.H = (function(){
      - Tu nombre se elige una vez (en el Centro o en "Mi tienda") y se guarda como glow_who.
      - Una página abierta con ?de=<slug> o ?c=<slug> escribe a esa consultora.
      - Sin nadie elegido, escribe a WA_DEFAULT. */
-  var WA_DEFAULT = {slug: "sebas", nombre: "Sebas", whatsapp: "525543506136"};
+  var WA_DEFAULT = {slug: "sel", nombre: "Selene", whatsapp: "525541456984"};
   function param(){ try{ var q = new URLSearchParams(location.search); return (q.get("de") || q.get("c") || "").replace(/[^a-z0-9-]/gi, "").toLowerCase(); }catch(_){ return ""; } }
   function miSlug(v){ try{ if(v !== undefined){ if(v) localStorage.setItem("glow_who", v); else localStorage.removeItem("glow_who"); return v; } return localStorage.getItem("glow_who") || ""; }catch(_){ return ""; } }
   /* Promesa con {slug, nombre, whatsapp}: la de la liga, si no tú, si no WA_DEFAULT. */
@@ -40,7 +40,7 @@ window.H = (function(){
       return c ? {slug: c.slug, nombre: c.nombre, whatsapp: c.whatsapp} : WA_DEFAULT;
     });
   }
-  /* Liga para compartir que lleva tu nombre: https://mitienda.beauty/unete/?de=sebas */
+  /* Liga para compartir que lleva tu nombre: https://mitienda.beauty/unete/?de=sel */
   function liga(ruta){ var s = miSlug(); return "https://mitienda.beauty" + ruta + (s ? (ruta.indexOf("?") < 0 ? "?" : "&") + "de=" + s : ""); }
   return {lee: lee, guarda: guarda, aviso: aviso, copia: copia, wa: wa, cuenta: cuenta, fmt: fmt, esc: esc, iso: iso, fecha: fecha, dias: dias, suma: suma, descarga: descarga, equipo: equipo,
           WA_DEFAULT: WA_DEFAULT, miSlug: miSlug, contacto: contacto, liga: liga, param: param};
