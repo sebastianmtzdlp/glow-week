@@ -97,3 +97,9 @@ footer p{margin:0 0 6px;max-width:44em}
 .pro-bloq{position:relative}
 .pro-bloq::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.2),#fff 85%);pointer-events:none}
 @media (min-width:900px){ .pro-acc{grid-template-columns:auto 1fr;align-items:center} }
+
+.pro-g{font:600 12px/1 var(--mono)!important;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 0!important}
+.pro-gana{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}
+.pro-gana li{position:relative;padding-left:22px;font-size:16px;line-height:1.4}
+.pro-gana li::before{content:"";position:absolute;left:2px;top:.5em;width:10px;height:6px;border-left:2px solid var(--good);border-bottom:2px solid var(--good);transform:rotate(-45deg)}
+.pro-caja .nota a{text-underline-offset:3px}
