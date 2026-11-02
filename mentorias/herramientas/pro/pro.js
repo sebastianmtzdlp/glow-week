@@ -112,12 +112,12 @@ window.PRO = (function(){
   function caja(el, slug, opts){
     opts = opts || {}; var p = busca(slug); if(!el || !p) return Promise.resolve({ok:false});
     function pintaCerrada(err){
-      el.innerHTML = '<div class="pro-caja"><div class="pro-cab"><span class="pro-etq">Pro</span><b>'+H.esc(opts.titulo || p.t.replace(" · Pro",""))+'</b><span class="pro-precio">$'+H.fmt(p.precio)+' una vez</span></div>'+
+      el.innerHTML = '<div class="pro-caja"><div class="pro-cab"><span class="pro-etq">Pro</span><b>'+H.esc(opts.titulo || p.t.replace(" · Pro",""))+'</b><span class="pro-precio">'+(PAGOS_ABIERTOS ? '$'+H.fmt(p.precio)+' una vez' : 'aún no se vende')+'</span></div>'+
         '<p>'+H.esc(opts.texto || p.d)+'</p>'+
         (G[slug] ? '<p class="pro-g">Con Pro ganas:</p><ul class="pro-gana">'+G[slug].map(function(x){ return '<li>'+H.esc(x)+'</li>'; }).join("")+'</ul>' : '')+
-        '<div class="pro-acc"><a class="btn" href="/mentorias/herramientas/pro/#'+p.s+'" data-cuenta="ver-pro">Quiero Pro · $'+H.fmt(p.precio)+'</a>'+
+        '<div class="pro-acc"><a class="btn" href="/mentorias/herramientas/pro/#'+p.s+'" data-cuenta="ver-pro">'+(PAGOS_ABIERTOS ? 'Quiero Pro · $'+H.fmt(p.precio) : 'Ver qué trae Pro')+'</a>'+
         '<form class="pro-cod" autocomplete="off"><input type="text" placeholder="SVH-XXXX-XXXX" aria-label="Tu código Pro" spellcheck="false"><button class="btn2" type="submit">Ya tengo código</button></form></div>'+
-        (err ? '<p class="nota pro-err">'+H.esc(err)+'</p>' : '')+'<p class="nota">Pago único, acceso personal e inmediato. <a href="/mentorias/herramientas/terminos/">Términos y condiciones</a></p></div>';
+        (err ? '<p class="nota pro-err">'+H.esc(err)+'</p>' : '')+'<p class="nota">'+(PAGOS_ABIERTOS ? 'Pago único, acceso personal e inmediato.' : 'Todavía no se cobra. Si el equipo te dio un código, escríbelo aquí.')+' <a href="/mentorias/herramientas/terminos/">Términos y condiciones</a></p></div>';
       el.querySelector("form").addEventListener("submit", function(e){
         e.preventDefault(); var c = el.querySelector("input").value.trim().toUpperCase().replace(/\s+/g, "");
         if(!c) return; codigo(c); el.querySelector("button").textContent = "Revisando…";
