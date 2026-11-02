@@ -101,6 +101,16 @@ dialog[open]{animation:sube 260ms var(--ease)}
   .plan.paquete{margin:36px 0 0;padding:44px}
   dialog{border-radius:22px;margin:auto}
 }
+.herr{margin-top:56px}
+.hr-l,#paq{list-style:none;margin:0;padding:0}
+#paq{display:grid;gap:12px;margin:18px 0 22px}
+.paq{display:grid;gap:6px 16px;grid-template-columns:1fr auto;align-items:center;background:var(--navy);color:var(--cream);border-radius:20px;padding:18px}
+.paq b{font:400 24px/1.1 var(--serif)}.paq span.pr{font:500 22px/1 var(--mono);grid-row:1 / span 2;grid-column:2;text-align:right}
+.paq small{grid-column:1;color:#C9CBE0;font-size:14px}.paq .btn{grid-column:1 / -1;margin-top:8px}
+.hr-l li{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
+.hr-l b{font:600 18px/1.25 var(--body)}.hr-l small{grid-column:1;color:var(--muted);font-size:15px;line-height:1.4}
+.hr-l .pr{grid-row:1 / span 2;grid-column:2;text-align:right;display:grid;gap:8px;justify-items:end}.hr-l .pr span{font:500 16px/1 var(--mono)}
+.hr-l .pr a.enlace{font-size:13px}
 </style>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -125,6 +135,12 @@ dialog[open]{animation:sube 260ms var(--ease)}
 <div class="wrap">
   <p class="aviso" id="aviso" hidden></p>
   <div class="planes" id="planes"></div>
+
+  <section class="herr" id="herramientas" aria-labelledby="hrTit">
+    <div class="cab"><h2 id="hrTit">Las herramientas Pro</h2><p>Cada una tiene su versión gratis. La Pro quita los límites y guarda lo tuyo con tu código.</p></div>
+    <div id="paq"></div>
+    <ul class="hr-l" id="hr"></ul>
+  </section>
 
   <section class="tengo" id="tengo" aria-labelledby="tTit">
     <div class="cab"><h2 id="tTit">Ya tengo mi código</h2><p>Te lo dimos al pagar. Empieza con SVH.</p></div>
@@ -189,6 +205,11 @@ dialog[open]{animation:sube 260ms var(--ease)}
       '<div class="der" style="display:grid;gap:16px"><ul>'+PRO.productos.map(function(p){ return '<li style="--c:'+C[p.s]+'">'+p.t+'</li>'; }).join("")+'</ul>'+
       '<div class="compra"><span class="precio"><s>$'+H.fmt(suma)+'</s>$'+H.fmt(PRO.todo.precio)+'<small>MXN, una vez</small></span><button class="btn" type="button" data-comprar="todo">Comprar todo</button></div></div></article>';
   }
+  function pintaHerr(){
+    $("paq").innerHTML = PRO.paquetes.filter(function(x){ return x.s !== "todo"; }).map(function(x){ var n = x.incluye.length; return '<div class="paq"><b>'+H.esc(x.t)+'</b><small>'+H.esc(x.para)+' '+n+' herramientas.</small><span class="pr">$'+H.fmt(x.precio)+'</span><button class="btn" type="button" data-comprar="'+x.s+'">Comprar '+H.esc(x.t)+'</button></div>'; }).join("");
+    $("hr").innerHTML = PRO.herramientas.map(function(x){ return '<li id="'+x.s+'"><b>'+H.esc(x.t.replace(" · Pro",""))+'</b><small>'+H.esc(x.d)+'</small><div class="pr"><span>$'+H.fmt(x.precio)+'</span><button class="btn2" type="button" data-comprar="'+x.s+'">Comprar</button><a class="enlace" href="'+x.ruta+'">Ver la gratis</a></div></li>'; }).join("");
+  }
+  pintaHerr();
   pinta({});
   fetch("/mentorias/herramientas/pro/indice.json").then(function(r){ return r.json(); }).then(pinta).catch(function(){});
 

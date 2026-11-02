@@ -18,6 +18,12 @@ window.H = (function(){
   function cuenta(path, title){ try{ window.goatcounter.count({path: pref + "/" + path, title: title || path, event: true}); }catch(_){} }
   function fmt(n){ return Math.round(n).toLocaleString("es-MX"); }
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function iso(d){ d = d || new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
+  function fecha(s, o){ if(!s) return ""; return new Date(s + "T12:00:00").toLocaleDateString("es-MX", o || {day:"numeric", month:"short"}); }
+  function dias(a, b){ return Math.round((new Date(b + "T12:00:00") - new Date(a + "T12:00:00")) / 864e5); }
+  function suma(s, n){ var d = new Date(s + "T12:00:00"); d.setDate(d.getDate() + n); return iso(d); }
+  function descarga(blob, nombre){ var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = nombre; document.body.appendChild(a); a.click(); setTimeout(function(){ URL.revokeObjectURL(a.href); a.remove(); }, 800); }
+  function equipo(){ return fetch("/_data/equipo.json").then(function(r){ return r.json(); }).then(function(d){ return d.consultoras || []; }).catch(function(){ return []; }); }
   document.addEventListener("click", function(e){ var a = e.target.closest && e.target.closest("[data-cuenta]"); if(a) cuenta(a.dataset.cuenta, (a.textContent || "").trim()); });
-  return {lee: lee, guarda: guarda, aviso: aviso, copia: copia, wa: wa, cuenta: cuenta, fmt: fmt, esc: esc};
+  return {lee: lee, guarda: guarda, aviso: aviso, copia: copia, wa: wa, cuenta: cuenta, fmt: fmt, esc: esc, iso: iso, fecha: fecha, dias: dias, suma: suma, descarga: descarga, equipo: equipo};
 })();

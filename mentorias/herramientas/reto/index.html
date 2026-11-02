@@ -1,0 +1,236 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-reto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Reto en equipo</title>
+<meta name="description" content="La líder crea el reto, sus socias se unen con un código y reportan cada día con un toque. Todas ven el tablero del equipo. Unirte a un reto es gratis.">
+<meta property="og:title" content="Reto en equipo">
+<meta property="og:description" content="Un reto, un tablero y todas reportando con un toque.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/reto/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-reto.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.panel{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px}
+.panel h2{color:#fff;font-size:clamp(28px,7vw,40px)}
+.panel h2 em{color:var(--pink)}
+.panel .sub{margin:6px 0 0;color:#C9CBE0;font-size:15px}
+.panel .btn{background:var(--accent)}
+.panel .btn2{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+.panel input[type=text]{background:#fff;color:var(--ink)}
+.hoyc{display:grid;gap:0;margin:16px 0 0;padding:0;list-style:none;border-top:1px solid rgba(255,255,255,.16)}
+.hoyc label{display:grid;grid-template-columns:24px 1fr;gap:12px;align-items:start;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12);cursor:pointer;font-size:17px;line-height:1.35}
+.hoyc input{width:22px;height:22px;margin-top:2px;accent-color:var(--pink)}
+.mi{display:grid;grid-template-columns:repeat(3,1fr);margin-top:16px;border-top:1px solid rgba(255,255,255,.16)}
+.mi div{padding:12px 8px 0 0}
+.mi div+div{padding-left:12px;border-left:1px solid rgba(255,255,255,.16)}
+.mi b{display:block;font:500 26px/1 var(--mono)}
+.mi span{display:block;font-size:12px;color:#C9CBE0;margin-top:4px;line-height:1.3}
+.tab{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.tab li{display:grid;grid-template-columns:28px 1fr auto;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.tab .pos{font:500 15px/1 var(--mono);color:var(--muted)}
+.tab b{font-weight:600;font-size:17px}
+.tab small{color:var(--muted);font-size:13px;grid-column:2}
+.tab .val{grid-row:1 / span 2;grid-column:3;text-align:right;font:500 22px/1 var(--mono)}
+.tab .val span{display:block;font-size:11px;color:var(--muted);margin-top:3px}
+.tab li.yo{background:var(--tint);margin:0 -16px;padding-left:16px;padding-right:16px}
+.tab li.callada .pos{color:var(--accent-ink)}
+.puntos{display:flex;flex-wrap:wrap;gap:3px;grid-column:2;margin-top:4px}
+.puntos i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.puntos i.s{background:var(--ink)}.puntos i.t{background:var(--good)}
+.form{display:grid;gap:12px;background:var(--soft);border-radius:20px;padding:16px;margin:0 -16px}
+.form .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.mis{list-style:none;margin:12px 0 0;padding:0}
+.mis li{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.mis small{color:var(--muted);grid-column:1}
+.mis button{grid-row:1 / span 2;grid-column:2}
+.cod{font:500 20px/1 var(--mono);letter-spacing:.06em}
+.acc{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:16px}
+.err{color:var(--accent-ink);font-size:15px;margin:10px 0 0}
+.panel .err{color:var(--pink)}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .form{margin:0;padding:22px}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Reto <em>en equipo</em></h1>
+      <p class="bajada" id="baj">La líder arma el reto, las socias se unen con un código y reportan cada día con un toque. Todas ven el tablero.</p>
+      <p class="nota" id="rEstado"></p>
+    </div>
+    <section class="panel" id="panel" aria-live="polite">
+      <h2>Unirte <em>a un reto</em></h2>
+      <p class="sub">Tu líder te pasó un código de reto. Es gratis para ti.</p>
+      <form id="unir" class="acc" style="display:grid;gap:10px" autocomplete="off">
+        <input type="text" id="uCod" placeholder="RETO-XXXXXX" aria-label="Código del reto" spellcheck="false" style="text-transform:uppercase;font-family:var(--mono)">
+        <input type="text" id="uNom" placeholder="Tu nombre" aria-label="Tu nombre" maxlength="40">
+        <button class="btn" type="submit">Unirme</button>
+      </form>
+      <p class="err" id="uErr"></p>
+    </section>
+  </header>
+
+  <div class="dos">
+    <section aria-labelledby="tTit">
+      <div class="cab"><h2 id="tTit">El tablero</h2><p id="tSub">Aparece cuando entras a un reto.</p></div>
+      <ol class="tab" id="tab"></ol>
+      <div class="acc" id="tAcc" hidden>
+        <a class="btn2" id="tWa" target="_blank" rel="noopener" data-cuenta="reto-mandar-tablero">Mandar el tablero</a>
+        <button class="btn2" type="button" id="tRef">Actualizar</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="lTit">
+      <div class="cab"><h2 id="lTit">Si eres la líder</h2><p>La versión Pro.</p></div>
+      <div id="pro"></div>
+      <div id="lider" hidden>
+        <form class="form" id="crea" style="margin-top:16px">
+          <label><span class="etq">Nombre del reto</span><input type="text" id="cNom" maxlength="60" placeholder="Todas a 3% en 30 días"></label>
+          <div class="fila">
+            <label><span class="etq">Empieza</span><input type="date" id="cIni"></label>
+            <label><span class="etq">Días</span><input type="number" id="cDias" min="3" max="60" value="14"></label>
+          </div>
+          <div><span class="etq">Qué reporta cada día (1 a 5)</span>
+            <div style="display:grid;gap:8px" id="cTareas"></div>
+          </div>
+          <button class="btn" type="submit">Crear el reto</button>
+          <p class="err" id="cErr"></p>
+        </form>
+        <h3 style="font:600 18px/1.2 var(--body);margin:24px 0 0">Tus retos</h3>
+        <ul class="mis" id="mis"></ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/primeros-200/" data-cuenta="ir-200"><b>Primeros 200 puntos</b><span>El reto de 14 días para quien arranca.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/reconocimientos/" data-cuenta="ir-reco"><b>Reconocimientos</b><span>La tarjeta para quien llegó a la meta.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · El tablero solo muestra tu nombre y tus días. Quien tenga el código del reto lo puede ver. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = "mtb-reto-v1", mem = H.lee(KEY, {}), q = new URLSearchParams(location.search), hoy = H.iso();
+  var actual = (q.get("r") || "").toUpperCase(), lider = false, T = null;
+  var base = location.origin + "/mentorias/herramientas/reto/";
+
+  function pideTab(){ return PRO.datos({accion: "reto.tablero", reto: actual, codigo: PRO.codigo()}); }
+  function dias(r){ var n = []; for(var i = 0; i < r.dias; i++) n.push(H.suma(r.inicio, i)); return n; }
+
+  function pintaPanel(){
+    var p = $("panel"), m = mem[actual];
+    if(!T){ return; }
+    var r = T.reto, d = H.dias(r.inicio, hoy) + 1, fin = H.suma(r.inicio, r.dias - 1);
+    if(!m){
+      p.innerHTML = '<h2>' + H.esc(r.nombre) + '</h2><p class="sub">Del ' + H.fecha(r.inicio) + ' al ' + H.fecha(fin) + ' · ' + T.socias.length + ' socias</p>' +
+        '<form id="un2" style="display:grid;gap:10px;margin-top:16px"><input type="text" id="u2" placeholder="Tu nombre" maxlength="40" aria-label="Tu nombre"><button class="btn" type="submit">Unirme al reto</button></form><p class="err" id="u2e"></p>';
+      $("un2").addEventListener("submit", function(e){ e.preventDefault(); une(actual, $("u2").value, $("u2e")); });
+      return;
+    }
+    var yo = T.socias.filter(function(s){ return s.nombre === m.nombre; })[0] || {tareas: 0, dias: 0, reportes: []};
+    var repHoy = (yo.reportes || []).filter(function(x){ return x.dia === hoy; })[0];
+    var enRango = hoy >= r.inicio && hoy <= fin && !r.cerrado;
+    var html = '<h2>' + H.esc(r.nombre) + '</h2><p class="sub">Hola ' + H.esc(m.nombre) + '. ' + (hoy < r.inicio ? 'Empieza el ' + H.fecha(r.inicio) + '.' : enRango ? 'Día ' + d + ' de ' + r.dias + '.' : 'El reto ya cerró.') + '</p>';
+    if(enRango){
+      html += '<ul class="hoyc">' + r.tareas.map(function(t, i){ return '<li><label><input type="checkbox" data-i="' + i + '"' + (repHoy && repHoy.hechas > i ? " checked" : "") + '><span>' + H.esc(t) + '</span></label></li>'; }).join("") + '</ul>' +
+        '<div class="acc"><button class="btn" id="rep" type="button">Reportar mi día</button></div><p class="err" id="repE"></p>';
+    }
+    html += '<div class="mi"><div><b>' + yo.dias + '</b><span>días reportados</span></div><div><b>' + yo.tareas + '</b><span>tareas hechas</span></div><div><b>' + rachaDe(yo.reportes || []) + '</b><span>días seguidos</span></div></div>';
+    p.innerHTML = html;
+    if(enRango) $("rep").addEventListener("click", function(){
+      var n = 0; p.querySelectorAll("input[type=checkbox]").forEach(function(c, i){ if(c.checked) n = Math.max(n, i + 1); });
+      var hechas = p.querySelectorAll("input[type=checkbox]:checked").length;
+      $("rep").disabled = true; $("rep").textContent = "Guardando…";
+      PRO.datos({accion: "reto.reporta", reto: actual, socia: m.socia, token: m.token, dia: hoy, hechas: hechas}).then(function(){ H.aviso("Reportado. ¡Bien!"); H.cuenta("reto-reporta"); carga(); }, function(e){ $("repE").textContent = e.message; $("rep").disabled = false; $("rep").textContent = "Reportar mi día"; });
+    });
+  }
+  function rachaDe(reps){ var s = {}; reps.forEach(function(x){ if(x.hechas > 0) s[x.dia] = 1; }); var d = hoy, n = 0; if(!s[d]) d = H.suma(d, -1); while(s[d]){ n++; d = H.suma(d, -1); } return n; }
+
+  function pintaTab(){
+    if(!T) return;
+    var r = T.reto, mm = mem[actual], ds = dias(r), lim = ds.length <= 31;
+    var s = T.socias.slice().sort(function(a, b){ return b.dias - a.dias || b.tareas - a.tareas; });
+    $("tSub").textContent = r.nombre + " · " + s.length + " socias";
+    $("tab").innerHTML = s.map(function(x, i){
+      var callada = hoy >= r.inicio && !r.cerrado && H.dias(x.ultimo || r.inicio, hoy) >= 2 && hoy <= H.suma(r.inicio, r.dias - 1);
+      var pts = lim ? '<span class="puntos" aria-hidden="true">' + ds.map(function(dd){ var rp = (x.reportes || []).filter(function(y){ return y.dia === dd; })[0]; return '<i class="' + (rp && rp.hechas >= r.tareas.length ? "t" : rp && rp.hechas > 0 ? "s" : "") + '"></i>'; }).join("") + '</span>' : "";
+      return '<li class="' + (mm && mm.nombre === x.nombre ? "yo " : "") + (callada ? "callada" : "") + '"><span class="pos">' + (i + 1) + '</span><b>' + H.esc(x.nombre) + '</b><small>' + x.tareas + ' tareas' + (callada && lider ? ' · lleva ' + H.dias(x.ultimo || r.inicio, hoy) + ' días sin reportar' : "") + '</small>' + pts + '<span class="val">' + x.dias + '<span>días</span></span></li>';
+    }).join("") || '<li><b>Nadie se ha unido todavía.</b></li>';
+    $("tAcc").hidden = false;
+    var top = s.slice(0, 3).map(function(x, i){ return (i + 1) + ". " + x.nombre + " · " + x.dias + " días"; }).join("\n");
+    $("tWa").href = H.wa("Así vamos en " + r.nombre + ":\n" + top + "\n\nEntra y reporta tu día: " + base + "?r=" + r.id);
+    $("rEstado").textContent = r.cerrado ? "Este reto ya cerró." : "";
+  }
+
+  function carga(){
+    if(!actual) return;
+    pideTab().then(function(j){ T = j; lider = !!j.lider; pintaPanel(); pintaTab(); }, function(e){ $("panel").innerHTML = '<h2>Ese código <em>no existe</em></h2><p class="sub">Revísalo con tu líder.</p>'; });
+  }
+  function une(cod, nom, errEl){
+    cod = (cod || "").trim().toUpperCase(); nom = (nom || "").trim();
+    if(!/^RETO-[A-Z0-9]{6}$/.test(cod)){ errEl.textContent = "El código se ve así: RETO-ABC123."; return; }
+    if(!nom){ errEl.textContent = "Escribe tu nombre."; return; }
+    errEl.textContent = "";
+    PRO.datos({accion: "reto.une", reto: cod, nombre: nom}).then(function(j){ mem[cod] = {socia: j.socia, token: j.token, nombre: nom}; H.guarda(KEY, mem); actual = cod; history.replaceState(null, "", "?r=" + cod); H.cuenta("reto-unirse"); carga(); }, function(e){ errEl.textContent = e.message; });
+  }
+  $("unir").addEventListener("submit", function(e){ e.preventDefault(); une($("uCod").value, $("uNom").value, $("uErr")); });
+  $("tRef").addEventListener("click", carga);
+  if(actual){ if(mem[actual]) { carga(); } else { carga(); } }
+  else { var ult = Object.keys(mem).pop(); if(ult){ actual = ult; carga(); } }
+
+  // Líder
+  var tareas = $("cTareas");
+  function campoTarea(v){ var i = document.createElement("input"); i.type = "text"; i.maxLength = 80; i.placeholder = "Escribí a 10 personas"; i.value = v || ""; i.setAttribute("aria-label", "Tarea del día"); tareas.appendChild(i); }
+  campoTarea("Escribí a 10 personas"); campoTarea("Hice una presentación");
+  var mas = document.createElement("button"); mas.type = "button"; mas.className = "enlace"; mas.textContent = "Agregar otra tarea"; mas.addEventListener("click", function(){ if(tareas.querySelectorAll("input").length < 5) campoTarea(""); if(tareas.querySelectorAll("input").length >= 5) mas.hidden = true; }); tareas.parentNode.appendChild(mas);
+  $("cIni").value = hoy;
+  function pintaMis(){
+    PRO.datos({accion: "reto.mios"}).then(function(j){
+      $("mis").innerHTML = (j.retos || []).map(function(r){ return '<li><b>' + H.esc(r.nombre) + '</b><small class="cod">' + r.id + (r.cerrado ? ' · cerrado' : '') + '</small><button class="btn2" type="button" data-r="' + r.id + '">Ver tablero</button></li>'; }).join("") || '<li><small>Todavía no has creado un reto.</small></li>';
+      $("mis").querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ actual = b.dataset.r; history.replaceState(null, "", "?r=" + actual); carga(); window.scrollTo({top: 0, behavior: "smooth"}); }); });
+    }).catch(function(){});
+  }
+  $("crea").addEventListener("submit", function(e){
+    e.preventDefault(); $("cErr").textContent = "";
+    var ts = Array.prototype.map.call(tareas.querySelectorAll("input"), function(i){ return i.value.trim(); }).filter(Boolean);
+    PRO.datos({accion: "reto.crea", nombre: $("cNom").value, inicio: $("cIni").value, dias: +$("cDias").value, tareas: ts}).then(function(j){
+      H.cuenta("reto-crea"); actual = j.reto; history.replaceState(null, "", "?r=" + actual);
+      var msj = "Te invito a nuestro reto \"" + $("cNom").value.trim() + "\". Entra, pon tu nombre y reporta cada día:\n" + base + "?r=" + j.reto + "\nCódigo: " + j.reto;
+      H.copia(msj, "Invitación copiada. Pégala en el grupo."); carga(); pintaMis();
+    }, function(er){ $("cErr").textContent = er.message; });
+  });
+  PRO.caja($("pro"), "reto", {titulo: "Crea el reto de tu equipo", activo: "Crea retos de hasta 60 días, ve quién lleva días sin reportar y manda el tablero al grupo."}).then(function(r){
+    if(!r.ok) return; $("lider").hidden = false; pintaMis(); if(actual) carga();
+  });
+})();
+</script>
+</body>
+</html>

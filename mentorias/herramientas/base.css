@@ -80,3 +80,20 @@ footer p{margin:0 0 6px;max-width:44em}
 }
 @media (min-width:900px){ .frase{padding:56px} }
 @media (prefers-reduced-motion:reduce){*{transition-duration:0ms!important;animation-duration:0ms!important;animation-delay:0ms!important}}
+
+/* la caja Pro que comparten las herramientas */
+.pro-caja{border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px;margin:28px 0 0;background:#fff}
+.pro-caja.on{border-color:var(--good);background:#F2FAF6}
+.pro-cab{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 12px}
+.pro-etq{font:600 11px/1 var(--mono);letter-spacing:.14em;color:#fff;background:var(--navy);border-radius:6px;padding:5px 7px}
+.pro-caja.on .pro-etq{background:var(--good)}
+.pro-cab b{font:400 22px/1.1 var(--serif)}
+.pro-precio{font:400 13px/1 var(--mono);color:var(--muted);margin-left:auto}
+.pro-caja p{margin:10px 0 0;font-size:16px;max-width:36em}
+.pro-acc{display:grid;gap:12px;margin-top:16px}
+.pro-cod{display:grid;grid-template-columns:1fr auto;gap:8px}
+.pro-cod input{min-height:46px;font-family:var(--mono);text-transform:uppercase}
+.pro-err{color:var(--accent-ink)}
+.pro-bloq{position:relative}
+.pro-bloq::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.2),#fff 85%);pointer-events:none}
+@media (min-width:900px){ .pro-acc{grid-template-columns:auto 1fr;align-items:center} }

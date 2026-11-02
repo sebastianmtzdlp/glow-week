@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-reconocimientos">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Reconocimientos · tarjeta para el grupo</title>
+<meta name="description" content="Una tarjeta de reconocimiento lista para WhatsApp o stories: su nombre, su logro y el estilo del equipo. Con el mensaje para el grupo. Gratis.">
+<meta property="og:title" content="Reconocimientos para tu equipo">
+<meta property="og:description" content="Su nombre, su logro y el estilo del equipo, en una tarjeta lista para el grupo o para stories.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/reconocimientos/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-reconocimientos.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 24px;max-width:38em}
+.taller{display:grid;gap:28px;padding:8px 0 24px}
+.form{display:grid;gap:14px;background:var(--soft);border-radius:24px;padding:22px 16px;margin:0 -16px}
+.form .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.estilos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;list-style:none;margin:0;padding:0}
+.estilos button{width:100%;min-height:54px;border-radius:14px;border:2px solid transparent;cursor:pointer;font:600 14px/1 var(--body);display:grid;place-items:center;transition:transform 160ms var(--ease)}
+.estilos button:active{transform:scale(.97)}
+.estilos button[aria-pressed=true]{border-color:var(--ink)}
+.estilos .e-coral{background:#fff;color:var(--accent-ink);border-color:#CFD2E0}
+.estilos .e-noche{background:var(--navy);color:var(--pink)}
+.estilos .e-papel{background:var(--cream);color:var(--bronze)}
+.lienzo{display:grid;gap:12px}
+.lienzo canvas{width:100%;max-width:440px;height:auto;display:block;border-radius:16px;border:1px solid var(--line);margin:0 auto}
+.acciones{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.msj{background:#fff;border:1px solid var(--line);border-radius:18px;padding:16px;margin-top:4px}
+.msj p{margin:0;white-space:pre-wrap;font-size:16px}
+.msj .btns{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:12px}
+.hist{list-style:none;margin:14px 0 0;padding:0}
+.hist li{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.hist li span:nth-child(2){font:400 13px/1 var(--mono);color:var(--muted)}
+.hist li button{border:0;background:none;color:var(--muted);font-size:18px;cursor:pointer;min-width:36px;min-height:36px;border-radius:8px}
+.subir{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.subir label{display:grid;gap:6px;border:1px dashed #CFD2E0;border-radius:14px;padding:12px;font-size:14px;cursor:pointer;text-align:center}
+.subir input{display:none}
+.subir img{width:56px;height:56px;object-fit:cover;border-radius:50%;margin:0 auto;background:var(--soft)}
+.subir img.logo{border-radius:8px;object-fit:contain}
+.pro-bloque[hidden]{display:none}
+@media (min-width:900px){
+  .portada{padding:56px 0 32px}
+  .taller{grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .form{margin:0;padding:28px}
+  .lienzo{position:sticky;top:20px}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <h1>Reconoce <em>hoy</em></h1>
+    <p class="bajada">Su nombre, su logro y el estilo del equipo en una tarjeta lista para el grupo o para stories. Un reconocimiento al día, sin abrir Canva.</p>
+  </header>
+
+  <section class="taller" aria-label="Arma la tarjeta">
+    <form class="form" id="f" autocomplete="off" onsubmit="return false">
+      <div class="fila">
+        <label><span class="etq">Su nombre</span><input type="text" id="nombre" placeholder="Nancy" maxlength="28"></label>
+        <label><span class="etq">De parte de</span><input type="text" id="de" placeholder="Tu nombre o el equipo" maxlength="28"></label>
+      </div>
+      <label><span class="etq">Su logro</span><select id="logro"></select></label>
+      <div class="fila">
+        <label id="otroL" hidden><span class="etq">Escríbelo</span><input type="text" id="otro" placeholder="dio su primera presentación" maxlength="60"></label>
+        <label><span class="etq">El dato (opcional)</span><input type="text" id="dato" placeholder="212 puntos" maxlength="16"></label>
+      </div>
+      <div>
+        <span class="etq">Estilo</span>
+        <ul class="estilos" id="estilos">
+          <li><button type="button" class="e-coral" data-e="coral" aria-pressed="true">Coral</button></li>
+          <li><button type="button" class="e-noche" data-e="noche" aria-pressed="false">Noche</button></li>
+          <li><button type="button" class="e-papel" data-e="papel" aria-pressed="false">Papel</button></li>
+        </ul>
+      </div>
+      <div>
+        <span class="etq">Formato</span>
+        <div class="seg" role="group" aria-label="Formato"><button type="button" data-m="w" aria-pressed="true">Para WhatsApp</button><button type="button" data-m="s" aria-pressed="false">Para Stories</button></div>
+      </div>
+      <div class="pro-bloque" id="proBloque" hidden>
+        <span class="etq">Con su foto y tu logo</span>
+        <div class="subir">
+          <label><img id="vFoto" alt=""><span>Su foto</span><input type="file" id="foto" accept="image/*"></label>
+          <label><img id="vLogo" class="logo" alt=""><span>Logo del equipo</span><input type="file" id="logoImg" accept="image/*"></label>
+        </div>
+        <div class="fila" style="margin-top:10px">
+          <label><span class="etq">Días de racha</span><input type="number" id="racha" inputmode="numeric" min="0" placeholder="0"></label>
+          <label style="align-self:end"><button class="btn2" type="button" id="quitarImg" style="width:100%">Quitar foto y logo</button></label>
+        </div>
+      </div>
+    </form>
+
+    <div class="lienzo">
+      <canvas id="cv" width="1080" height="1350" role="img" aria-label="La tarjeta"></canvas>
+      <div class="acciones">
+        <button class="btn" type="button" id="descargar" data-cuenta="descargar">Descargar imagen</button>
+        <button class="btn2" type="button" id="compartir" hidden data-cuenta="compartir">Compartir…</button>
+      </div>
+      <div class="msj">
+        <p id="texto"></p>
+        <div class="btns"><button class="btn2" type="button" id="copiar">Copiar mensaje</button><a class="enlace" id="wa" href="#" target="_blank" rel="noopener" data-cuenta="mandar">Mandar al grupo</a></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="dos">
+    <section aria-labelledby="hTit">
+      <div class="cab"><h2 id="hTit">Las que ya reconociste</h2><p>Para que a nadie se le olvide. Se guarda en tu celular.</p></div>
+      <ul class="hist" id="hist"></ul>
+    </section>
+    <section aria-labelledby="pTit">
+      <div class="cab"><h2 id="pTit">Cuadro de honor</h2><p>La versión Pro.</p></div>
+      <div id="pro"></div>
+      <div id="cuadro" hidden style="margin-top:14px">
+        <p class="nota" id="cuadroTxt"></p>
+        <div class="acciones" style="margin-top:10px"><button class="btn2" type="button" id="hacerCuadro">Armar el cuadro de honor del mes</button></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Para tener a quién reconocer</h2></div>
+    <a class="otra" href="/mentorias/herramientas/equipo/" data-cuenta="ir-equipo"><b>Mapa de mi equipo</b><span>Tus líneas con sus puntos: quién subió y quién ya tiene sus 75.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/reto/" data-cuenta="ir-reto"><b>Reto en equipo</b><span>Quién va avanzando en el reto, cada día.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Celebra hechos concretos: lo que hizo, no lo que es. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var LOGROS = [
+    ["pedido","hizo su primer pedido"],["200","llegó a 200 puntos"],["3","llegó a 3 %"],["6","llegó a 6 %"],["9","llegó a 9 %"],["12","llegó a 12 %"],["15","llegó a 15 %"],["18","llegó a 18 %"],["22","llegó a 22 %"],["25","llegó a 25 %"],
+    ["dir","ya es Directora"],["socia","arrancó a su primera socia"],["reto200","cumplió el reto Mis primeros 200"],["metodo","cumplió 14 días de método"],["75","cerró el mes con sus 75 puntos"],["pres","dio su primera presentación"],["rutina","vendió su primera rutina completa"],["racha","lleva una racha de marcadores"],["otro","otro logro…"]
+  ];
+  $("logro").innerHTML = LOGROS.map(function(l){ return '<option value="'+l[0]+'">'+l[1]+'</option>'; }).join("");
+  var KEY = "mtb-reco-v1", st = H.lee(KEY, {de:"", e:"coral", m:"w", hist:[], foto:"", logo:""});
+  $("de").value = st.de || ""; var E = st.e || "coral", M = st.m || "w", fotoImg = null, logoImg = null, pro = false;
+  var PAL = {
+    coral:{bg:"#FFFFFF", ink:"#262A4A", muted:"#62668A", acc:"#DB414C", soft:"#FDEEF0", line:"#E6E8F0"},
+    noche:{bg:"#1B1F3B", ink:"#F4F1EC", muted:"#B9BCD8", acc:"#F2B8BC", soft:"rgba(255,255,255,.08)", line:"rgba(255,255,255,.2)"},
+    papel:{bg:"#F4F1EC", ink:"#262A4A", muted:"#6E6A62", acc:"#8A5A2E", soft:"#EBE5DA", line:"#DED8CC"}
+  };
+  var cv = $("cv"), x = cv.getContext("2d");
+  function datos(){
+    var l = $("logro").value, lt = l === "otro" ? ($("otro").value.trim() || "logró algo importante") : LOGROS.filter(function(a){ return a[0] === l; })[0][1];
+    var dato = $("dato").value.trim(); if(!dato && /^\d+$/.test(l)) dato = l + "%"; if(!dato && l === "200") dato = "200";
+    return {nombre: $("nombre").value.trim() || "Tu socia", logro: lt, dato: dato, de: $("de").value.trim(), racha: +($("racha").value || 0)};
+  }
+  function lineas(txt, maxW, font){ x.font = font; var out = [], w = txt.split(" "), cur = ""; w.forEach(function(p){ var t = cur ? cur + " " + p : p; if(x.measureText(t).width > maxW && cur){ out.push(cur); cur = p; } else cur = t; }); if(cur) out.push(cur); return out; }
+  function ajusta(txt, maxW, px, fam){ var f; do { f = "italic 400 " + px + "px " + fam; x.font = f; px -= 6; } while(x.measureText(txt).width > maxW && px > 40); return f; }
+  function circulo(img, cx, cy, r){ x.save(); x.beginPath(); x.arc(cx, cy, r, 0, Math.PI*2); x.closePath(); x.clip(); var s = Math.max(2*r/img.width, 2*r/img.height); x.drawImage(img, cx - img.width*s/2, cy - img.height*s/2, img.width*s, img.height*s); x.restore(); }
+  function dibuja(){
+    var d = datos(), p = PAL[E], W = 1080, Hh = M === "s" ? 1920 : 1350; cv.height = Hh;
+    x.fillStyle = p.bg; x.fillRect(0, 0, W, Hh);
+    x.textAlign = "center"; x.textBaseline = "alphabetic";
+    var top = M === "s" ? 300 : 120, y = top;
+    // marca
+    x.fillStyle = p.muted; x.font = "300 26px Outfit"; if("letterSpacing" in x) x.letterSpacing = "9px"; x.fillText("EQUIPO SVH", W/2 + 4, y); if("letterSpacing" in x) x.letterSpacing = "0px";
+    // logo del equipo (Pro)
+    if(logoImg){ var lh = 90, lw = logoImg.width * lh / logoImg.height; if(lw > 300){ lw = 300; lh = logoImg.height * lw / logoImg.width; } x.drawImage(logoImg, W/2 - lw/2, y + 24, lw, lh); y += lh + 24; }
+    y += 110;
+    x.fillStyle = p.ink; x.font = "400 44px Outfit"; x.fillText("Hoy reconocemos a", W/2, y);
+    // foto (Pro)
+    if(fotoImg){ y += 60; circulo(fotoImg, W/2, y + 150, 150); x.strokeStyle = p.acc; x.lineWidth = 6; x.beginPath(); x.arc(W/2, y + 150, 156, 0, Math.PI*2); x.stroke(); y += 330; }
+    else y += 40;
+    // nombre
+    var fn = ajusta(d.nombre, W - 140, 150, "Fraunces"); x.font = fn; x.fillStyle = p.ink; y += 120; x.fillText(d.nombre, W/2, y);
+    // logro
+    y += 70; var ls = lineas(d.logro, W - 200, "500 50px Outfit"); x.fillStyle = p.ink; x.font = "500 50px Outfit"; ls.forEach(function(l){ x.fillText(l, W/2, y); y += 62; });
+    // el sello con el dato
+    if(d.dato){
+      var cy = y + 150, r = 118; x.save(); x.translate(W/2, cy); x.rotate(-0.12);
+      x.strokeStyle = p.acc; x.lineWidth = 7; x.beginPath(); x.arc(0, 0, r, 0, Math.PI*2); x.stroke();
+      x.beginPath(); x.arc(0, 0, r - 16, 0, Math.PI*2); x.lineWidth = 2; x.stroke();
+      x.fillStyle = p.acc; var px = d.dato.length > 6 ? 46 : (d.dato.length > 4 ? 60 : 78); x.font = "700 " + px + "px 'IBM Plex Mono'"; x.textBaseline = "middle"; x.fillText(d.dato, 0, 2); x.textBaseline = "alphabetic";
+      x.restore(); y = cy + r + 50;
+    } else y += 40;
+    if(pro && d.racha > 0){ x.fillStyle = p.acc; x.font = "600 30px 'IBM Plex Mono'"; x.fillText("Racha: " + d.racha + (d.racha === 1 ? " día" : " días") + " seguidos", W/2, y + 30); y += 70; }
+    // de parte de
+    var fecha = new Date().toLocaleDateString("es-MX", {day:"numeric", month:"long"});
+    x.fillStyle = p.muted; x.font = "400 30px Outfit"; x.fillText((d.de ? d.de + " · " : "") + fecha, W/2, Hh - (M === "s" ? 330 : 150));
+    x.strokeStyle = p.line; x.lineWidth = 2; x.beginPath(); x.moveTo(140, Hh - (M === "s" ? 290 : 110)); x.lineTo(W - 140, Hh - (M === "s" ? 290 : 110)); x.stroke();
+    x.fillStyle = p.muted; x.font = "500 26px 'IBM Plex Mono'"; x.fillText("mitienda.beauty", W/2, Hh - (M === "s" ? 240 : 60));
+    // mensaje
+    var txt = (d.nombre === "Tu socia" ? "Hoy reconocemos a [nombre]" : "Hoy reconocemos a " + d.nombre) + ": " + d.logro + (d.dato && !/%$/.test(d.dato) && d.logro.indexOf(d.dato) < 0 ? " (" + d.dato + ")" : "") + ".\nAsí se hace: un día a la vez, con método." + (d.de ? "\n— " + d.de : "");
+    $("texto").textContent = txt; $("wa").href = H.wa(txt);
+    $("copiar").onclick = function(){ H.copia(txt, "Mensaje copiado"); };
+  }
+  var listo = Promise.all([document.fonts.load("italic 400 120px Fraunces"), document.fonts.load("400 40px Outfit"), document.fonts.load("500 40px Outfit"), document.fonts.load("300 26px Outfit"), document.fonts.load("700 60px 'IBM Plex Mono'"), document.fonts.load("500 26px 'IBM Plex Mono'")]).catch(function(){});
+  listo.then(dibuja);
+  $("f").addEventListener("input", function(){ $("otroL").hidden = $("logro").value !== "otro"; st.de = $("de").value; H.guarda(KEY, st); dibuja(); });
+  $("estilos").addEventListener("click", function(e){ var b = e.target.closest("[data-e]"); if(!b) return; E = b.dataset.e; st.e = E; H.guarda(KEY, st); $("estilos").querySelectorAll("button").forEach(function(o){ o.setAttribute("aria-pressed", o === b); }); dibuja(); });
+  document.querySelector(".seg").addEventListener("click", function(e){ var b = e.target.closest("[data-m]"); if(!b) return; M = b.dataset.m; st.m = M; H.guarda(KEY, st); document.querySelectorAll(".seg button").forEach(function(o){ o.setAttribute("aria-pressed", o === b); }); dibuja(); });
+  document.querySelectorAll(".estilos button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.e === E); });
+  document.querySelectorAll(".seg button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.m === M); });
+
+  function blob(){ return new Promise(function(r){ cv.toBlob(r, "image/png"); }); }
+  function nombreArchivo(){ return "reconocimiento-" + datos().nombre.toLowerCase().replace(/[^a-z0-9]+/g, "-") + ".png"; }
+  $("descargar").addEventListener("click", function(){ blob().then(function(b){ H.descarga(b, nombreArchivo()); anota(); }); });
+  if(navigator.canShare && navigator.canShare({files:[new File([""], "a.png", {type:"image/png"})]})){
+    $("compartir").hidden = false;
+    $("compartir").addEventListener("click", function(){ blob().then(function(b){ navigator.share({files:[new File([b], nombreArchivo(), {type:"image/png"})], text: $("texto").textContent}).then(anota).catch(function(){}); }); });
+  }
+  function anota(){ var d = datos(); if(d.nombre === "Tu socia") return; st.hist = st.hist || []; st.hist.unshift({n:d.nombre, l:d.logro, f:H.iso()}); st.hist = st.hist.slice(0, 200); H.guarda(KEY, st); pintaHist(); }
+  function pintaHist(){
+    var h = st.hist || [];
+    $("hist").innerHTML = h.length ? h.slice(0, 30).map(function(r, i){ return '<li><span>'+H.esc(r.n)+' · '+H.esc(r.l)+'</span><span>'+H.fecha(r.f)+'</span><button type="button" data-x="'+i+'" aria-label="Quitar">×</button></li>'; }).join("") : '<li style="color:var(--muted);border:0">Aquí van apareciendo conforme descargas o compartes una tarjeta.</li>';
+  }
+  $("hist").addEventListener("click", function(e){ var b = e.target.closest("[data-x]"); if(!b) return; st.hist.splice(+b.dataset.x, 1); H.guarda(KEY, st); pintaHist(); });
+  pintaHist();
+
+  // Pro: foto, logo, racha y cuadro de honor
+  function cargaImg(src, cb){ if(!src){ cb(null); return; } var i = new Image(); i.onload = function(){ cb(i); }; i.onerror = function(){ cb(null); }; i.src = src; }
+  function lee(file, max, cb){ var r = new FileReader(); r.onload = function(){ var i = new Image(); i.onload = function(){ var c = document.createElement("canvas"), s = Math.min(1, max / Math.max(i.width, i.height)); c.width = Math.round(i.width * s); c.height = Math.round(i.height * s); c.getContext("2d").drawImage(i, 0, 0, c.width, c.height); cb(c.toDataURL(file.type === "image/png" ? "image/png" : "image/jpeg", .86)); }; i.src = r.result; }; r.readAsDataURL(file); }
+  PRO.caja($("pro"), "reconocimientos", {titulo:"Reconocimientos con foto y cuadro de honor", activo:"Arriba puedes subir su foto y tu logo, poner la racha y armar el cuadro de honor del mes con lo que tengas en Mapa de mi equipo."}).then(function(r){
+    if(!r.ok) return; pro = true;
+    $("proBloque").hidden = false; $("cuadro").hidden = false;
+    cargaImg(st.foto, function(i){ fotoImg = i; if(i) $("vFoto").src = st.foto; dibuja(); });
+    cargaImg(st.logo, function(i){ logoImg = i; if(i) $("vLogo").src = st.logo; dibuja(); });
+    $("foto").addEventListener("change", function(){ if(!this.files[0]) return; lee(this.files[0], 700, function(u){ st.foto = u; H.guarda(KEY, st); cargaImg(u, function(i){ fotoImg = i; $("vFoto").src = u; dibuja(); }); }); });
+    $("logoImg").addEventListener("change", function(){ if(!this.files[0]) return; lee(this.files[0], 600, function(u){ st.logo = u; H.guarda(KEY, st); cargaImg(u, function(i){ logoImg = i; $("vLogo").src = u; dibuja(); }); }); });
+    $("quitarImg").addEventListener("click", function(){ st.foto = ""; st.logo = ""; fotoImg = logoImg = null; $("vFoto").removeAttribute("src"); $("vLogo").removeAttribute("src"); H.guarda(KEY, st); dibuja(); });
+    var eq = H.lee("mtb-equipo-v1", null);
+    var lin = eq && eq.meses && eq.meses[eq.mes] ? eq.meses[eq.mes].lineas || [] : [];
+    $("cuadroTxt").textContent = lin.length ? "Con tus " + lin.length + " líneas de Mapa de mi equipo de este mes." : "Primero llena tus líneas en Mapa de mi equipo; con eso armo el cuadro.";
+    $("hacerCuadro").disabled = !lin.length;
+    $("hacerCuadro").addEventListener("click", function(){
+      var p = PAL[E], W = 1080, Hh = M === "s" ? 1920 : 1350; cv.height = Hh;
+      x.fillStyle = p.bg; x.fillRect(0, 0, W, Hh); x.textAlign = "center";
+      var y = M === "s" ? 300 : 120;
+      x.fillStyle = p.muted; x.font = "300 26px Outfit"; if("letterSpacing" in x) x.letterSpacing = "9px"; x.fillText("EQUIPO SVH", W/2 + 4, y); if("letterSpacing" in x) x.letterSpacing = "0px";
+      y += 130; x.fillStyle = p.ink; x.font = "italic 400 120px Fraunces"; x.fillText("Cuadro de honor", W/2, y);
+      y += 60; x.font = "400 36px Outfit"; x.fillStyle = p.muted; x.fillText(new Date().toLocaleDateString("es-MX", {month:"long", year:"numeric"}), W/2, y);
+      var top = lin.slice().filter(function(l){ return l.n; }).sort(function(a, b){ return (+b.p || 0) - (+a.p || 0); }).slice(0, 6);
+      y += 90; x.textAlign = "left";
+      top.forEach(function(l, i){
+        x.fillStyle = p.line; x.fillRect(120, y + 26, W - 240, 2);
+        x.fillStyle = i === 0 ? p.acc : p.ink; x.font = "500 44px Outfit"; x.fillText((i + 1) + ".  " + l.n, 120, y);
+        x.textAlign = "right"; x.fillStyle = p.ink; x.font = "500 40px 'IBM Plex Mono'"; x.fillText(H.fmt(+l.p || 0) + " pts" + (l.s ? " · 75 ✓" : ""), W - 120, y); x.textAlign = "left";
+        y += 86;
+      });
+      var con75 = lin.filter(function(l){ return l.s; }).length;
+      x.textAlign = "center"; x.fillStyle = p.ink; x.font = "400 36px Outfit"; x.fillText(con75 + " de " + lin.length + " con sus 75 puntos", W/2, y + 30);
+      x.fillStyle = p.muted; x.font = "500 26px 'IBM Plex Mono'"; x.fillText("mitienda.beauty", W/2, Hh - (M === "s" ? 240 : 60));
+      var txt = "Cuadro de honor de " + new Date().toLocaleDateString("es-MX", {month:"long"}) + ":\n" + top.map(function(l, i){ return (i + 1) + ". " + l.n + " · " + H.fmt(+l.p || 0) + " pts"; }).join("\n") + "\n" + con75 + " de " + lin.length + " con sus 75.";
+      $("texto").textContent = txt; $("wa").href = H.wa(txt); $("copiar").onclick = function(){ H.copia(txt, "Copiado"); };
+      H.cuenta("cuadro-honor");
+    });
+  });
+})();
+</script>
+</body>
+</html>

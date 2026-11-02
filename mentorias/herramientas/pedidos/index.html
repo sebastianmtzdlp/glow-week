@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-pedidos">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Pedidos y cobros</title>
+<meta name="description" content="Apunta cada pedido, quién ya pagó y qué falta por entregar. Te dice cuánto te deben y arma el mensaje de cobro. Gratis, se guarda en tu celular.">
+<meta property="og:title" content="Pedidos y cobros">
+<meta property="og:description" content="Qué pedidos tienes, quién ya pagó y qué falta por entregar.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/pedidos/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-pedidos.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.caja{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px}
+.caja h2{color:#fff;font-size:clamp(28px,7vw,40px)}
+.caja h2 em{color:var(--pink)}
+.caja .sub{margin:6px 0 0;color:#C9CBE0;font-size:15px}
+.cifras{display:grid;grid-template-columns:1fr 1fr;margin-top:16px;border-top:1px solid rgba(255,255,255,.16)}
+.cifras div{padding:14px 8px 4px 0}
+.cifras div:nth-child(even){padding-left:14px;border-left:1px solid rgba(255,255,255,.16)}
+.cifras b{display:block;font:500 28px/1 var(--mono)}
+.cifras span{display:block;font-size:13px;color:#C9CBE0;margin-top:4px;line-height:1.3}
+.cifras .debe b{color:var(--pink)}
+.alta{display:grid;gap:10px;background:var(--soft);border-radius:20px;padding:16px;margin:0 -16px}
+.alta .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.chip{min-height:36px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;padding:0 12px;font-size:14px;font-weight:500;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.peds{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.ped{border-bottom:1px solid var(--line)}
+.ped summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:12px 0;align-items:center}
+.ped summary::-webkit-details-marker{display:none}
+.ped summary b{font-weight:600;font-size:17px}
+.ped summary small{color:var(--muted);font-size:13px;grid-column:1}
+.ped summary .m{grid-row:1 / span 2;grid-column:2;text-align:right;font:500 18px/1 var(--mono)}
+.ped summary .m span{display:block;font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;margin-top:5px;color:var(--muted)}
+.ped.debe summary .m span{color:var(--accent-ink)}.ped.pagado summary .m span{color:var(--good)}
+.ped .ficha{display:grid;gap:10px;padding:0 0 16px}
+.ped .ficha .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.ped .ficha select,.ped .ficha input,.ped .ficha textarea{min-height:42px;font-size:15px}
+.ped .btns{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.lim,.nube{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.nube{color:var(--good)}
+.traer{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.traer li{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.traer small{color:var(--muted);grid-column:1}
+.traer button{grid-row:1 / span 2;grid-column:2}
+.resp{display:grid;gap:10px;margin-top:14px}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .alta{margin:0;padding:22px}
+  .dos{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
+}
+@media print{.barra,.alta,.filtros,.sigue,footer,.pro-caja,.btns,.resp{display:none!important}.ped .ficha{display:none}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Pedidos <em>y cobros</em></h1>
+      <p class="bajada">Cada pedido con su total, si ya pagó y si ya lo entregaste. Siempre sabes cuánto te deben y a quién cobrarle. Se guarda en tu celular.</p>
+    </div>
+    <section class="caja" aria-label="Cómo vas este mes">
+      <h2>Este mes <em id="mesNom"></em></h2>
+      <p class="sub" id="sub">Agrega tu primer pedido.</p>
+      <div class="cifras">
+        <div><b id="cVen">$0</b><span>vendido</span></div>
+        <div><b id="cCob">$0</b><span>ya cobrado</span></div>
+        <div class="debe"><b id="cDebe">$0</b><span>te deben</span></div>
+        <div><b id="cEnt">0</b><span>por entregar</span></div>
+      </div>
+    </section>
+  </header>
+
+  <div class="dos">
+    <section aria-labelledby="pTit">
+      <div class="cab"><h2 id="pTit">Tus pedidos</h2><p>Del más nuevo al más viejo.</p></div>
+      <form class="alta" id="alta" style="margin-top:16px">
+        <div class="fila">
+          <label><span class="etq">Clienta</span><input type="text" id="aN" maxlength="40" placeholder="Nombre" required></label>
+          <label><span class="etq">Total $</span><input type="number" id="aT" inputmode="decimal" min="0" placeholder="850" required></label>
+        </div>
+        <label><span class="etq">Qué lleva</span><input type="text" id="aQ" maxlength="140" placeholder="Base, rubor y 2 labiales"></label>
+        <button class="btn" type="submit">Agregar pedido</button>
+        <p class="lim" id="lim"></p>
+      </form>
+      <div class="filtros" id="filtros"></div>
+      <ol class="peds" id="peds"></ol>
+    </section>
+
+    <section aria-labelledby="proTit">
+      <div class="cab"><h2 id="proTit">Ganancia y tablero</h2><p>La versión Pro.</p></div>
+      <div id="pro"></div>
+      <p class="nube" id="nube"></p>
+      <div id="proCont" hidden>
+        <div class="cifras" style="border-top-color:var(--line)">
+          <div><b id="gGan" style="color:var(--ink)">$0</b><span style="color:var(--muted)">ganancia del mes</span></div>
+          <div><b id="gPct" style="color:var(--ink)">0%</b><span style="color:var(--muted)">sobre lo vendido</span></div>
+        </div>
+        <div class="acc" style="display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:16px"><button class="btn2" type="button" id="verTab">Traer pedidos de mi tablero</button><button class="btn2" type="button" id="exp">Exportar a hoja de cálculo</button></div>
+        <p class="nota" id="tabNota"></p>
+        <ul class="traer" id="traer"></ul>
+      </div>
+      <div class="resp">
+        <span class="etq" style="margin:0">Respaldo</span>
+        <div style="display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center"><button class="btn2" type="button" id="respCopia">Copiar respaldo</button><button class="enlace" type="button" id="respPega">Restaurar desde texto</button></div>
+        <textarea id="respTxt" hidden placeholder="Pega aquí tu respaldo"></textarea>
+      </div>
+    </section>
+  </div>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/mi-mes/" data-cuenta="ir-mi-mes"><b>Mi mes</b><span>El cierre del mes con tus números.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/lista/" data-cuenta="ir-lista"><b>Mi lista de 50</b><span>A quién le toca recomprar.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Los nombres y montos se quedan en tu celular. Con Pro, se guardan con tu código y solo tú los ves. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = "mtb-pedidos-v1", LIM = 15, st = H.lee(KEY, {peds: [], ts: 0}), pro = false, nube = null, tSave = null, filtro = "todos", mes = H.iso().slice(0, 7);
+  if(!st.peds) st = {peds: [], ts: 0};
+  var money = function(n){ return "$" + H.fmt(n || 0); };
+  var id = function(){ return Math.random().toString(36).slice(2, 9); };
+  function delMes(){ return st.peds.filter(function(p){ return (p.f || "").slice(0, 7) === mes; }); }
+  function debe(p){ return Math.max(0, (+p.t || 0) - (+p.pg || 0)); }
+  function guarda(){
+    st.ts = Date.now(); H.guarda(KEY, st);
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+  }
+  function pinta(){
+    var m = delMes(), ven = 0, cob = 0, dbe = 0, ent = 0, gan = 0;
+    m.forEach(function(p){ ven += +p.t || 0; cob += Math.min(+p.pg || 0, +p.t || 0); dbe += debe(p); if(!p.e) ent++; gan += +p.g || 0; });
+    $("mesNom").textContent = new Date(mes + "-15T12:00:00").toLocaleDateString("es-MX", {month: "long"});
+    $("cVen").textContent = money(ven); $("cCob").textContent = money(cob); $("cDebe").textContent = money(dbe); $("cEnt").textContent = ent;
+    $("sub").textContent = m.length ? m.length + (m.length === 1 ? " pedido este mes." : " pedidos este mes.") : "Agrega tu primer pedido.";
+    $("gGan").textContent = money(gan); $("gPct").textContent = ven ? Math.round(gan / ven * 100) + "%" : "0%";
+    var tope = !pro && st.peds.length >= LIM;
+    $("lim").textContent = pro ? "Sin límite de pedidos." : st.peds.length + " de " + LIM + " pedidos gratis."; $("lim").style.color = tope ? "var(--accent-ink)" : "";
+    $("alta").querySelector("button").disabled = tope;
+    var F = [["todos", "Todos"], ["debe", "Me deben"], ["entregar", "Por entregar"], ["listo", "Listos"]];
+    $("filtros").innerHTML = F.map(function(f){ return '<button class="chip" type="button" data-f="' + f[0] + '" aria-pressed="' + (filtro === f[0]) + '">' + f[1] + "</button>"; }).join("");
+    $("filtros").querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ filtro = b.dataset.f; pinta(); }); });
+    var vis = st.peds.filter(function(p){ return filtro === "todos" || (filtro === "debe" && debe(p) > 0) || (filtro === "entregar" && !p.e) || (filtro === "listo" && debe(p) === 0 && p.e); }).sort(function(a, b){ return (b.f || "").localeCompare(a.f || ""); });
+    $("peds").innerHTML = "";
+    vis.forEach(function(p){
+      var li = document.createElement("li"), d = debe(p), est = d > 0 ? "debe" : "pagado";
+      li.className = "ped " + est;
+      li.innerHTML = '<details><summary><b>' + H.esc(p.n) + '</b><small>' + H.fecha(p.f) + (p.q ? " · " + H.esc(p.q) : "") + (p.e ? " · entregado" : " · por entregar") + '</small><span class="m">' + money(p.t) + '<span>' + (d > 0 ? "debe " + money(d) : "pagado") + '</span></span></summary>' +
+        '<div class="ficha"><div class="fila"><label><span class="etq">Ya pagó $</span><input type="number" inputmode="decimal" min="0" data-k="pg" value="' + (+p.pg || 0) + '"></label>' +
+        '<label><span class="etq">Mi ganancia $</span><input type="number" inputmode="decimal" min="0" data-k="g" value="' + (p.g === "" || p.g == null ? "" : p.g) + '" placeholder="opcional"></label></div>' +
+        '<label style="display:flex;gap:10px;align-items:center"><input type="checkbox" data-k="e"' + (p.e ? " checked" : "") + ' style="width:20px;height:20px;min-height:0;accent-color:var(--ink)"> Ya lo entregué</label>' +
+        '<div class="btns"><a class="btn2" target="_blank" rel="noopener" data-cuenta="cobrar" href="' + H.wa(d > 0 ? "Hola " + p.n + ", ¿cómo estás? Te recuerdo tu pedido de " + money(p.t) + (+p.pg ? " (ya me diste " + money(p.pg) + ", faltan " + money(d) + ")" : "") + ". ¿Me confirmas cuándo te acomoda pagarlo? ¡Gracias!" : "Hola " + p.n + ", ya está listo tu pedido. ¿Cuándo te lo llevo?") + '">' + (d > 0 ? "Cobrar por WhatsApp" : "Avisar que está listo") + '</a><button class="enlace" type="button" data-x>Quitar</button></div></div></details>';
+      li.querySelectorAll("[data-k]").forEach(function(i){ i.addEventListener("change", function(){ p[i.dataset.k] = i.type === "checkbox" ? i.checked : (i.value === "" ? "" : +i.value); guarda(); pinta(); }); });
+      li.querySelector("[data-x]").addEventListener("click", function(){ if(confirm("¿Quitar el pedido de " + p.n + "?")){ st.peds = st.peds.filter(function(x){ return x !== p; }); guarda(); pinta(); } });
+      $("peds").appendChild(li);
+    });
+    if(!vis.length) $("peds").innerHTML = '<li class="ped"><div style="padding:14px 0;color:var(--muted)">' + (st.peds.length ? "Nada con este filtro." : "Todavía no hay pedidos.") + "</div></li>";
+  }
+  $("alta").addEventListener("submit", function(e){
+    e.preventDefault(); if(!pro && st.peds.length >= LIM) return;
+    st.peds.push({id: id(), n: $("aN").value.trim(), t: +$("aT").value || 0, q: $("aQ").value.trim(), f: H.iso(), pg: 0, g: "", e: false});
+    $("aN").value = $("aT").value = $("aQ").value = ""; guarda(); pinta(); H.cuenta("pedido-agrega"); $("aN").focus();
+  });
+  $("respCopia").addEventListener("click", function(){ H.copia("MTBPED1:" + btoa(unescape(encodeURIComponent(JSON.stringify(st)))), "Respaldo copiado. Pégalo en tu otro celular."); });
+  $("respPega").addEventListener("click", function(){ var t = $("respTxt"); if(t.hidden){ t.hidden = false; t.focus(); return; } var v = t.value.trim(); if(v.indexOf("MTBPED1:") !== 0){ H.aviso("Ese texto no es un respaldo"); return; } try{ var d = JSON.parse(decodeURIComponent(escape(atob(v.slice(8))))); if(d && d.peds){ st = d; guarda(); pinta(); t.hidden = true; t.value = ""; H.aviso("Pedidos restaurados"); } }catch(_){ H.aviso("No se pudo leer el respaldo"); } });
+  pinta();
+
+  PRO.caja($("pro"), "pedidos", {titulo: "Tus pedidos sin límite", activo: "Sin tope, ganancia del mes, pedidos de tu tablero que entran con un toque, y tus pedidos en la nube."}).then(function(r){
+    if(!r.ok) return; pro = true; nube = PRO.nube("pedidos"); $("proCont").hidden = false;
+    nube.lee().then(function(d){ if(d && d.peds && (d.ts || 0) > (st.ts || 0)){ st = d; H.guarda(KEY, st); $("nube").textContent = "Pedidos traídos de la nube."; } else if(st.peds.length){ nube.guarda(st).catch(function(){}); } pinta(); }).catch(function(){ pinta(); });
+    $("verTab").addEventListener("click", function(){
+      $("tabNota").textContent = "Buscando…";
+      PRO.datos({accion: "pedidos.lee"}).then(function(j){
+        var ya = {}; st.peds.forEach(function(p){ if(p.tab) ya[p.tab] = 1; });
+        var nuevos = (j.pedidos || []).filter(function(p){ return !ya[p.id]; });
+        $("tabNota").textContent = nuevos.length ? nuevos.length + " pedidos nuevos de tu tablero (últimos 90 días). Los nombres los escribió cada clienta." : "No hay pedidos nuevos en tu tablero.";
+        $("traer").innerHTML = "";
+        nuevos.forEach(function(p){
+          var li = document.createElement("li"), q = (p.items || []).map(function(i){ return (i.cantidad > 1 ? i.cantidad + " " : "") + i.nombre; }).join(", ");
+          li.innerHTML = "<b>" + H.esc(p.cliente || "Sin nombre") + " · " + money(p.total) + "</b><small>" + H.fecha(p.creado.slice(0, 10)) + " · " + H.esc(q).slice(0, 90) + '</small><button class="btn2" type="button">Agregar</button>';
+          li.querySelector("button").addEventListener("click", function(){ st.peds.push({id: id(), tab: p.id, n: p.cliente || "Sin nombre", t: +p.total || 0, q: q.slice(0, 140), f: p.creado.slice(0, 10), pg: 0, g: "", e: false}); guarda(); pinta(); li.remove(); H.cuenta("pedido-del-tablero"); });
+          $("traer").appendChild(li);
+        });
+      }, function(e){ $("tabNota").textContent = e.message; });
+    });
+    $("exp").addEventListener("click", function(){
+      var cab = ["Fecha", "Clienta", "Qué lleva", "Total", "Pagó", "Debe", "Ganancia", "Entregado"], filas = st.peds.slice().sort(function(a, b){ return (a.f || "").localeCompare(b.f || ""); }).map(function(p){ return [p.f, p.n, p.q, p.t, p.pg || 0, debe(p), p.g, p.e ? "sí" : "no"]; });
+      var csv = [cab].concat(filas).map(function(r){ return r.map(function(c){ return '"' + String(c == null ? "" : c).replace(/"/g, '""') + '"'; }).join(","); }).join("\n");
+      H.descarga(new Blob(["﻿" + csv], {type: "text/csv;charset=utf-8"}), "pedidos-" + H.iso() + ".csv"); H.cuenta("pedidos-exporta");
+    });
+  });
+})();
+</script>
+</body>
+</html>
