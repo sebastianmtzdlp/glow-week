@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>El 1 a 1 con tus líderes</title>
-<meta name="description" content="Qué revisar en un 1 a 1 con tus líderes, en seis pasos: primero los datos, después la conversación. Con la hoja para llenarla juntas y el checklist para tu líder, gratis.">
+<meta name="description" content="Material de las mentorías con Sel: el 1 a 1 con tus líderes en seis pasos, con la hoja para llenarla juntas y el checklist para tu líder.">
 <meta property="og:title" content="El 1 a 1 con tus líderes">
-<meta property="og:description" content="Seis pasos, primero los datos y después la conversación. Hoja y checklist gratis para descargar.">
+<meta property="og:description" content="Material de las mentorías con Sel: seis pasos, hoja para llenar y checklist.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:url" content="https://mitienda.beauty/mentorias/1a1/">
@@ -15,6 +15,46 @@
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="https://mitienda.beauty/og/mentorias-1a1.png">
+<!-- candado: pide contraseña antes de mostrar el 1 a 1 (material de las mentorías con Sel). Es protección del lado del navegador: no cifra nada. Para cambiarla, reemplaza H por el SHA-256 de la nueva en minúsculas. -->
+<meta name="robots" content="noindex,nofollow">
+<style>
+html.cerrado body>*:not(#candado){display:none!important}
+#candado{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:16px;background:#F3F4F9;color:#262A4A;font:17px/1.5 "Outfit",system-ui,sans-serif}
+html:not(.cerrado) #candado{display:none}
+#candado form{width:min(380px,100%);display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #E6E8F0;border-radius:18px;padding:28px 24px}
+#candado .m{font:300 12px/1 "Outfit";letter-spacing:.22em;color:#62668A}
+#candado h1{margin:0;font:400 40px/.95 "Fraunces",Georgia,serif;letter-spacing:-.02em}
+#candado h1 em{font-style:italic}
+#candado p{margin:0;color:#62668A;font-size:15px}
+#candado input{font:inherit;width:100%;min-height:48px;padding:10px 14px;border:1px solid #CFD2E0;border-radius:12px;background:#fff;color:inherit}
+#candado input:focus{outline:2px solid #262A4A;outline-offset:1px;border-color:transparent}
+#candado button{font:600 16px/1 "Outfit",system-ui,sans-serif;min-height:50px;border:0;border-radius:14px;background:#DB414C;color:#fff;cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1)}
+#candado button:active{transform:scale(.97)}
+#candado a{color:#262A4A;font-size:15px;font-weight:500;text-underline-offset:4px}
+#candado .err{color:#B42318;font-weight:600;min-height:1.4em}
+</style>
+<script>
+(function(){
+  var H="69110cefbfea018dfef9e466adfc18174f85539ae281711825c1c186cb448384",K="mentorias-1a1-ok";
+  var ok=false;try{ok=localStorage.getItem(K)===H;}catch(e){}
+  if(!ok)document.documentElement.classList.add("cerrado");
+  function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ("0"+b.toString(16)).slice(-2);}).join("");}
+  document.addEventListener("DOMContentLoaded",function(){
+    var f=document.getElementById("candado-f");if(!f)return;
+    var i=document.getElementById("candado-i"),m=document.getElementById("candado-m");
+    if(document.documentElement.classList.contains("cerrado"))i.focus();
+    f.onsubmit=function(ev){
+      ev.preventDefault();
+      var v=i.value.trim().toLowerCase();
+      if(!window.crypto||!crypto.subtle){m.textContent="Abre la página desde https://mitienda.beauty";return;}
+      crypto.subtle.digest("SHA-256",new TextEncoder().encode(v)).then(function(d){
+        if(hex(d)===H){try{localStorage.setItem(K,H);}catch(e){}document.documentElement.classList.remove("cerrado");}
+        else{m.textContent="Esa no es la contraseña.";i.select();}
+      });
+    };
+  });
+})();
+</script>
 <meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
@@ -226,16 +266,17 @@ footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
+<div id="candado"><form id="candado-f" autocomplete="off"><span class="m">MENTORÍAS CON SEL</span><h1>El 1 a 1 con tus <em>líderes</em></h1><p>Este material es para quienes llevan mentoría con Sel. Escribe la contraseña que te dio.</p><label for="candado-i" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Contraseña</label><input id="candado-i" type="password" placeholder="Contraseña" required><button type="submit">Entrar</button><p class="err" id="candado-m" role="alert"></p><a href="/mentorias/herramientas/1a1/">Ver la versión gratis</a></form></div>
 <div class="wrap">
   <div class="barra">
     <a class="marca" href="/">EQUIPO SVH</a>
-    <a class="gratis" href="/mentorias/herramientas/">Herramientas gratis</a>
+    <a class="gratis" href="/mentorias/">Mentorías con Sel</a>
   </div>
 
   <header class="portada">
     <div>
       <h1>El 1 a 1 con<br>tus <em>líderes</em></h1>
-      <p class="bajada">Qué revisar cuando te sientas con cada líder, en seis pasos y en este orden: primero los datos, después la conversación. Aquí tienes la hoja para llenarla juntas y el checklist que le mandas antes.</p>
+      <p class="bajada">Material de las mentorías con Sel. Qué revisar cuando te sientas con cada líder, en seis pasos y en este orden: primero los datos, después la conversación. Aquí tienes la hoja para llenarla juntas y el checklist que le mandas antes.</p>
       <div class="acciones">
         <a class="btn" href="#hoja" data-cuenta="portada">Llenar la hoja</a>
         <a class="enlace" href="#materiales">Descargar en PDF</a>
@@ -481,7 +522,7 @@ footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
   <section class="materiales" id="materiales" aria-labelledby="matTit">
     <div class="materiales-cab">
       <h2 id="matTit">Para descargar</h2>
-      <p>Gratis, para ti y para tus líderes. Imprímelos o compártelos tal cual.</p>
+      <p>Para ti y para tus líderes. Imprímelos o compártelos tal cual.</p>
     </div>
     <div class="lista">
       <article class="mat">
@@ -519,7 +560,7 @@ Primero vemos datos y luego platicamos de cómo vas. Te espero.</p>
 
   <section class="frase" aria-label="Para cerrar">
     <blockquote>Un 1 a 1 no es para animar líderes. Es para formar líderes que <em>produzcan resultados</em>.</blockquote>
-    <p>¿Quieres preparar tus 1 a 1 con alguien que ya los hace cada mes? <a href="/mentorias/" data-cuenta="mentorias">Ver las mentorías con Sel</a></p>
+    <p>Este material es parte de las mentorías con Sel. Cualquier duda de tu 1 a 1, llévala a tu próxima llamada. <a href="/mentorias/" data-cuenta="mentorias">Ir a mentorías</a></p>
   </section>
 
   <footer>Equipo SVH · mitienda.beauty</footer>
