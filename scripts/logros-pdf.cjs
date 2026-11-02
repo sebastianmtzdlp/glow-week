@@ -21,7 +21,7 @@ const srv = http.createServer((q, r) => {
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 420, height: 900 } });
   await p.goto(`${base}/logros/${mes}/`, { waitUntil: 'networkidle' });
-  await p.addStyleTag({ content: '.top a,.dl,.dl-note,.card .cert,.talk,.plan,.band .fine a{display:none!important}body{min-height:0}*{animation:none!important}' });
+  await p.addStyleTag({ content: '.top a,.dl,.dl-note,.card .cert,.dl-links,.talk,.plan,.band .fine a{display:none!important}body{min-height:0}*{animation:none!important}' });
   await p.evaluate(() => document.fonts.ready);
   const h = await p.evaluate(() => Math.ceil(document.documentElement.scrollHeight));
   await p.pdf({ path: path.join(dir, `logros-${mes}.pdf`), width: '420px', height: `${h + 2}px`, printBackground: true, pageRanges: '1' });
@@ -44,6 +44,21 @@ const srv = http.createServer((q, r) => {
       await sp.screenshot({ path: path.join(sdir, f.replace('.html', '.png')) });
       console.log('escrito', `logros/${mes}/stories/${f.replace('.html', '.png')}`);
     }
+  }
+  const deck = path.join(dir, 'presentacion.html');
+  if (fs.existsSync(deck)) {
+    const dp = await b.newPage({ viewport: { width: 1280, height: 720 } });
+    await dp.goto(`${base}/logros/${mes}/presentacion.html`, { waitUntil: 'networkidle' });
+    await dp.evaluate(() => document.fonts.ready);
+    await dp.pdf({ path: path.join(dir, `presentacion-${mes}.pdf`), width: '1280px', height: '720px', printBackground: true });
+    console.log('escrito', `logros/${mes}/presentacion-${mes}.pdf`);
+  }
+  if (fs.existsSync(sdir)) {
+    const zip = path.join(dir, `stories-${mes}.zip`);
+    require('child_process').execFileSync('python3', ['-c',
+      'import sys,zipfile,glob,os\nz=zipfile.ZipFile(sys.argv[1],"w",zipfile.ZIP_STORED)\n[z.write(f,os.path.basename(f)) for f in sorted(glob.glob(os.path.join(sys.argv[2],"*.png")))]\nz.close()',
+      zip, sdir]);
+    console.log('escrito', `logros/${mes}/stories-${mes}.zip`);
   }
   await b.close(); srv.close();
 })();

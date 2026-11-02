@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="es-MX"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<meta name="robots" content="noindex">
+<title>Presentación de logros · octubre 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+@page{size:1280px 720px;margin:0}
+*{box-sizing:border-box;margin:0}
+html,body{background:#fff}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.sl{width:1280px;height:720px;position:relative;overflow:hidden;background:#fff;page-break-after:always;break-after:page;display:flex;flex-direction:column;padding:56px 72px}
+.sl:last-child{page-break-after:auto;break-after:auto}
+.hd{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted)}
+.brand{font-weight:300;letter-spacing:.18em;font-size:14px}
+.brand b{font-weight:600;letter-spacing:.08em;color:var(--accent-t);margin-left:6px}
+.hd .pg{font-family:var(--mono);font-size:14px}
+.eyebrow{font-size:16px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-t)}
+/* portada */
+.cover{justify-content:space-between}
+.cover h1{font-size:120px;line-height:.95;font-weight:800;letter-spacing:-.03em;margin-top:18px}
+.cover h1 em{font-style:normal;color:var(--accent)}
+.cover .lead{font-size:28px;color:var(--muted);margin-top:22px}
+.cover .lead b{color:var(--ink)}
+.tiles{display:flex;gap:16px}
+.tile{background:var(--soft);border-radius:18px;padding:18px 24px;min-width:200px}
+.tile b{display:block;font-family:var(--mono);font-weight:500;font-size:48px;line-height:1}
+.tile span{display:block;font-size:18px;color:var(--muted);margin-top:6px}
+/* escalera */
+.ladder{margin-top:28px;border-top:2px solid var(--ink);flex:1;display:flex;flex-direction:column}
+.rung{flex:1;display:grid;grid-template-columns:130px 1fr 200px;align-items:center;gap:20px;border-bottom:1px solid var(--line)}
+.rung .p{font-family:var(--mono);font-weight:500;font-size:34px}
+.rung.v .p{color:var(--muted)}
+.rung .dots{display:flex;gap:9px}
+.rung .dots i{width:20px;height:20px;border-radius:50%;background:var(--accent)}
+.rung .dots .none{width:44px;height:3px;border-radius:2px;background:var(--line)}
+.rung .n{font-size:20px;color:var(--muted);text-align:right}
+.ttl{font-size:52px;font-weight:800;letter-spacing:-.02em;margin-top:14px}
+/* nivel */
+.lv-h{display:flex;align-items:flex-end;justify-content:space-between;margin-top:10px}
+.big{font-family:var(--mono);font-weight:500;font-size:150px;line-height:.9;letter-spacing:-.04em}
+.big small{font-size:.45em;color:var(--accent)}
+.lv-h p:not(.big){font-size:18px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:14px}
+.grid{flex:1;display:grid;gap:16px;margin-top:30px;align-content:center}
+.g1{grid-template-columns:1fr}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.card{display:flex;align-items:center;gap:20px;padding:20px 22px;border:1px solid var(--line);border-radius:22px}
+.d25 .card{background:var(--tint);border-color:#F6D3D7}
+.ava{flex:none;width:88px;height:88px;border-radius:50%;overflow:hidden;position:relative;background:var(--soft);display:grid;place-items:center;font-weight:600;font-size:28px}
+.d25 .ava{background:#fff}
+.ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card strong{display:block;font-size:25px;font-weight:700;line-height:1.15}
+.card span{display:block;font-size:18px;color:var(--muted);margin-top:4px}
+.card span i{font-style:normal;margin-left:8px;padding:2px 10px;border-radius:999px;background:var(--tint);color:var(--accent-t);font-size:15px;font-weight:600}
+.g3 .card strong{font-size:22px}.g3 .ava{width:76px;height:76px;font-size:24px}
+.empty{flex:1;margin-top:30px;display:flex;align-items:center;gap:40px;padding:40px 56px;border:2px dashed #EBA3AA;border-radius:28px;background:var(--tint)}
+.seat{flex:none;width:150px;height:150px;border-radius:50%;border:2px dashed var(--accent);background:#fff;display:grid;place-items:center;font-weight:700;font-size:40px;color:var(--accent-t)}
+.empty .q{font-size:54px;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.empty .q2{font-size:54px;font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--accent-t)}
+.empty .sub{font-size:24px;color:var(--muted);margin-top:14px}
+/* cierre */
+.end{background:var(--accent);color:#fff;justify-content:space-between}
+.end .brand,.end .hd{color:#fff}.end .brand b{color:#fff}
+.end h2{font-size:84px;line-height:1;font-weight:800;letter-spacing:-.03em}
+.end p{font-size:26px;font-weight:500;margin-top:18px}
+.end .url{font-family:var(--mono);font-size:26px}
+</style></head><body><section class="sl cover"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">01 / 11</span></div><div><p class="eyebrow">Equipo de Selene · octubre 2026</p><h1>Logros de<br><em>octubre</em></h1><p class="lead"><b>12 personas</b> cerraron octubre con nivel. Gracias por cada pedido.</p></div><div class="tiles"><div class="tile"><b>12</b><span>con nivel</span></div><div class="tile"><b>2</b><span>en dirección</span></div><div class="tile"><b>1</b><span>nueva con nivel</span></div></div></section><section class="sl"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">02 / 11</span></div><p class="ttl">Niveles del mes</p><div class="ladder"><div class="rung"><span class="p">25%</span><span class="dots"><i></i><i></i></span><span class="n">2 personas</span></div><div class="rung v"><span class="p">22%</span><span class="dots"><i class="none"></i></span><span class="n">aún nadie</span></div><div class="rung v"><span class="p">18%</span><span class="dots"><i class="none"></i></span><span class="n">aún nadie</span></div><div class="rung v"><span class="p">15%</span><span class="dots"><i class="none"></i></span><span class="n">aún nadie</span></div><div class="rung v"><span class="p">12%</span><span class="dots"><i class="none"></i></span><span class="n">aún nadie</span></div><div class="rung"><span class="p">9%</span><span class="dots"><i></i><i></i><i></i></span><span class="n">3 personas</span></div><div class="rung"><span class="p">6%</span><span class="dots"><i></i></span><span class="n">1 persona</span></div><div class="rung"><span class="p">3%</span><span class="dots"><i></i><i></i><i></i><i></i><i></i><i></i></span><span class="n">6 personas</span></div></div></section><section class="sl d25"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">03 / 11</span></div><div class="lv-h"><p class="big">25<small>%</small></p><p>Directoras · 2 personas</p></div><div class="grid g2"><div class="card"><div class="ava">SV<img src="/fotos/sel.jpg" alt=""></div><div><strong>Selene Velazquez Hernandez</strong><span>Bronze Director</span></div></div><div class="card"><div class="ava">NR<img src="/fotos/nancy.jpg" alt=""></div><div><strong>Nancy Liliana Rodriguez Ortiz</strong><span>Director</span></div></div></div></section><section class="sl"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">04 / 11</span></div><div class="lv-h"><p class="big">22<small>%</small></p><p>0 personas</p></div><div class="empty"><div class="seat">Tú</div><div><p class="q">Aquí aún no hay nadie.</p><p class="q2">¿Quieres ser tú?</p><p class="sub">Habla con tu upline y armen juntas tu plan para llegar al 22%.</p></div></div></section><section class="sl"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">05 / 11</span></div><div class="lv-h"><p class="big">18<small>%</small></p><p>0 personas</p></div><div class="empty"><div class="seat">Tú</div><div><p class="q">Aquí aún no hay nadie.</p><p class="q2">¿Quieres ser tú?</p><p class="sub">Habla con tu upline y armen juntas tu plan para llegar al 18%.</p></div></div></section><section class="sl"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">06 / 11</span></div><div class="lv-h"><p class="big">15<small>%</small></p><p>0 personas</p></div><div class="empty"><div class="seat">Tú</div><div><p class="q">Aquí aún no hay nadie.</p><p class="q2">¿Quieres ser tú?</p><p class="sub">Habla con tu upline y armen juntas tu plan para llegar al 15%.</p></div></div></section><section class="sl"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">07 / 11</span></div><div class="lv-h"><p class="big">12<small>%</small></p><p>0 personas</p></div><div class="empty"><div class="seat">Tú</div><div><p class="q">Aquí aún no hay nadie.</p><p class="q2">¿Quieres ser tú?</p><p class="sub">Habla con tu upline y armen juntas tu plan para llegar al 12%.</p></div></div></section><section class="sl"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">08 / 11</span></div><div class="lv-h"><p class="big">9<small>%</small></p><p>3 personas</p></div><div class="grid g3"><div class="card"><div class="ava">MM</div><div><strong>Maria Esther Morales Martinez</strong><span>Farmasi Influencer</span></div></div><div class="card"><div class="ava">ST<img src="/fotos/sam.jpg" alt=""></div><div><strong>Samantha Tello Garnica</strong><span>Farmasi Influencer</span></div></div><div class="card"><div class="ava">SR</div><div><strong>Silvia Veronica Romero Mata</strong><span>Farmasi Influencer</span></div></div></div></section><section class="sl"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">09 / 11</span></div><div class="lv-h"><p class="big">6<small>%</small></p><p>1 persona</p></div><div class="grid g1"><div class="card"><div class="ava">LM</div><div><strong>Laura Moreno Ruiz</strong><span>Farmasi Influencer</span></div></div></div></section><section class="sl"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">10 / 11</span></div><div class="lv-h"><p class="big">3<small>%</small></p><p>6 personas</p></div><div class="grid g3"><div class="card"><div class="ava">AL<img src="/fotos/anagomez.jpg" alt=""></div><div><strong>Ana Silvia Lopez Gomez</strong><span>Farmasi Influencer</span></div></div><div class="card"><div class="ava">DM</div><div><strong>Donaji Marhong</strong><span>Farmasi Influencer<i>nueva</i></span></div></div><div class="card"><div class="ava">AG<img src="/fotos/anaofelia.jpg" alt=""></div><div><strong>Ana Ofelia Garcia Silva</strong><span>Farmasi Influencer</span></div></div><div class="card"><div class="ava">NM</div><div><strong>Nancy Andrea Montiel Cruz</strong><span>Farmasi Influencer</span></div></div><div class="card"><div class="ava">AV<img src="/fotos/pao.jpg" alt=""></div><div><strong>Alejandra Paola Villedo Gonzalez</strong><span>Farmasi Influencer</span></div></div><div class="card"><div class="ava">AR</div><div><strong>Andrea Fernanda Raudales Padron</strong><span>Farmasi Influencer</span></div></div></div></section><section class="sl end"><div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">11 / 11</span></div><div><h2>Gracias, equipo.</h2><p>Nos vemos en los logros del próximo mes.</p></div><div><p class="url">mitienda.beauty/logros/octubre-2026</p><p>Equipo de Selene · octubre 2026</p></div></section></body></html>

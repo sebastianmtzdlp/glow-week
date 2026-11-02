@@ -112,6 +112,8 @@ h1 em{font-style:normal;color:var(--accent)}
 .dl{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;min-height:48px;border-radius:14px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;text-decoration:none;transition:transform 160ms var(--ease)}
 .dl:active{transform:scale(.97)}
 .dl:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.dl-links{display:flex;justify-content:center;flex-wrap:wrap;gap:4px 18px;margin-top:6px}
+.dl-links a{display:inline-flex;align-items:center;min-height:44px;font-size:15px;font-weight:600;color:var(--accent-t);text-underline-offset:3px}
 .dl-note{font-size:14px;color:var(--muted);margin-top:8px;text-align:center}
 
 /* Banda coral */
@@ -199,7 +201,7 @@ def tarjeta(p):
             f'<div class="who"><strong>{e(p["nombre"])}</strong><span>{e(p["titulo"])}{nueva}</span></div>'
             f'<a class="cert" href="certificados/{pslug(p["nombre"])}.pdf" download '
             f'aria-label="Descargar el certificado de {e(p["nombre"])}">{ICONO}<span>PDF</span></a>'
-            f'<a class="cert" href="stories/{pslug(p["nombre"])}.png" download '
+            f'<a class="cert story" href="stories/{pslug(p["nombre"])}.png" download '
             f'aria-label="Descargar la imagen para stories de {e(p["nombre"])}">{STORY}<span>STORY</span></a></li>')
 
 
@@ -263,6 +265,7 @@ def pagina_mes(d, slug):
       <div class="tile"><b>{nuevas}</b><span>{nuevas_txt}</span></div>
     </div>
     <a class="dl" href="logros-{slug}.pdf" download>{ICONO}Descargar PDF</a>
+    <p class="dl-links"><a href="presentacion-{slug}.pdf" download>Presentación 16:9 (PDF)</a><a href="stories-{slug}.zip" download>Todas las stories (ZIP)</a></p>
     <p class="dl-note">Cada tarjeta trae su certificado en PDF y su imagen para stories.</p>
   </header>
 
@@ -281,11 +284,30 @@ def pagina_mes(d, slug):
     <p class="fine">Niveles del Back Office al cierre de {e(mes)}. Hecho por el equipo; no es material oficial de Farmasi. <a href="/logros/">Ver otros meses</a></p>
   </div>
 </footer>
+<script>
+// En el celular, STORY abre el menú de compartir con la imagen (Instagram, guardar, WhatsApp).
+// Si el navegador no puede, se descarga como siempre.
+document.querySelectorAll('a.story').forEach(function (a) {{
+  a.addEventListener('click', function (ev) {{
+    if (!navigator.canShare) return;
+    ev.preventDefault();
+    fetch(a.href).then(function (r) {{ return r.blob(); }}).then(function (b) {{
+      var f = new File([b], a.href.split('/').pop(), {{ type: 'image/png' }});
+      if (navigator.canShare({{ files: [f] }})) return navigator.share({{ files: [f] }});
+      throw new Error('no-share');
+    }}).catch(function (err) {{
+      if (err && err.name === 'AbortError') return;
+      var t = document.createElement('a'); t.href = a.href; t.download = ''; document.body.appendChild(t); t.click(); t.remove();
+    }});
+  }});
+}});
+</script>
 </body>
 </html>
 """
     certificados(d, slug)
     stories(d, slug)
+    presentacion(d, slug)
     return out, total, dirs
 
 
@@ -410,6 +432,127 @@ def stories(d, slug):
 </div></body></html>
 """
             (dest / f"{pslug(p['nombre'])}.html").write_text(h, encoding="utf-8")
+
+
+DECK_CSS = """
+:root{--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;--mono:"IBM Plex Mono",ui-monospace,monospace;color-scheme:light}
+@page{size:1280px 720px;margin:0}
+*{box-sizing:border-box;margin:0}
+html,body{background:#fff}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.sl{width:1280px;height:720px;position:relative;overflow:hidden;background:#fff;page-break-after:always;break-after:page;display:flex;flex-direction:column;padding:56px 72px}
+.sl:last-child{page-break-after:auto;break-after:auto}
+.hd{display:flex;justify-content:space-between;align-items:center;font-size:14px;color:var(--muted)}
+.brand{font-weight:300;letter-spacing:.18em;font-size:14px}
+.brand b{font-weight:600;letter-spacing:.08em;color:var(--accent-t);margin-left:6px}
+.hd .pg{font-family:var(--mono);font-size:14px}
+.eyebrow{font-size:16px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-t)}
+/* portada */
+.cover{justify-content:space-between}
+.cover h1{font-size:120px;line-height:.95;font-weight:800;letter-spacing:-.03em;margin-top:18px}
+.cover h1 em{font-style:normal;color:var(--accent)}
+.cover .lead{font-size:28px;color:var(--muted);margin-top:22px}
+.cover .lead b{color:var(--ink)}
+.tiles{display:flex;gap:16px}
+.tile{background:var(--soft);border-radius:18px;padding:18px 24px;min-width:200px}
+.tile b{display:block;font-family:var(--mono);font-weight:500;font-size:48px;line-height:1}
+.tile span{display:block;font-size:18px;color:var(--muted);margin-top:6px}
+/* escalera */
+.ladder{margin-top:28px;border-top:2px solid var(--ink);flex:1;display:flex;flex-direction:column}
+.rung{flex:1;display:grid;grid-template-columns:130px 1fr 200px;align-items:center;gap:20px;border-bottom:1px solid var(--line)}
+.rung .p{font-family:var(--mono);font-weight:500;font-size:34px}
+.rung.v .p{color:var(--muted)}
+.rung .dots{display:flex;gap:9px}
+.rung .dots i{width:20px;height:20px;border-radius:50%;background:var(--accent)}
+.rung .dots .none{width:44px;height:3px;border-radius:2px;background:var(--line)}
+.rung .n{font-size:20px;color:var(--muted);text-align:right}
+.ttl{font-size:52px;font-weight:800;letter-spacing:-.02em;margin-top:14px}
+/* nivel */
+.lv-h{display:flex;align-items:flex-end;justify-content:space-between;margin-top:10px}
+.big{font-family:var(--mono);font-weight:500;font-size:150px;line-height:.9;letter-spacing:-.04em}
+.big small{font-size:.45em;color:var(--accent)}
+.lv-h p:not(.big){font-size:18px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);padding-bottom:14px}
+.grid{flex:1;display:grid;gap:16px;margin-top:30px;align-content:center}
+.g1{grid-template-columns:1fr}.g2{grid-template-columns:repeat(2,1fr)}.g3{grid-template-columns:repeat(3,1fr)}
+.card{display:flex;align-items:center;gap:20px;padding:20px 22px;border:1px solid var(--line);border-radius:22px}
+.d25 .card{background:var(--tint);border-color:#F6D3D7}
+.ava{flex:none;width:88px;height:88px;border-radius:50%;overflow:hidden;position:relative;background:var(--soft);display:grid;place-items:center;font-weight:600;font-size:28px}
+.d25 .ava{background:#fff}
+.ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.card strong{display:block;font-size:25px;font-weight:700;line-height:1.15}
+.card span{display:block;font-size:18px;color:var(--muted);margin-top:4px}
+.card span i{font-style:normal;margin-left:8px;padding:2px 10px;border-radius:999px;background:var(--tint);color:var(--accent-t);font-size:15px;font-weight:600}
+.g3 .card strong{font-size:22px}.g3 .ava{width:76px;height:76px;font-size:24px}
+.empty{flex:1;margin-top:30px;display:flex;align-items:center;gap:40px;padding:40px 56px;border:2px dashed #EBA3AA;border-radius:28px;background:var(--tint)}
+.seat{flex:none;width:150px;height:150px;border-radius:50%;border:2px dashed var(--accent);background:#fff;display:grid;place-items:center;font-weight:700;font-size:40px;color:var(--accent-t)}
+.empty .q{font-size:54px;font-weight:800;line-height:1.05;letter-spacing:-.02em}
+.empty .q2{font-size:54px;font-weight:800;line-height:1.05;letter-spacing:-.02em;color:var(--accent-t)}
+.empty .sub{font-size:24px;color:var(--muted);margin-top:14px}
+/* cierre */
+.end{background:var(--accent);color:#fff;justify-content:space-between}
+.end .brand,.end .hd{color:#fff}.end .brand b{color:#fff}
+.end h2{font-size:84px;line-height:1;font-weight:800;letter-spacing:-.03em}
+.end p{font-size:26px;font-weight:500;margin-top:18px}
+.end .url{font-family:var(--mono);font-size:26px}
+"""
+
+
+def presentacion(d, slug):
+    mes, anio, eq = d["mes"], d["anio"], d["equipo"]
+    niv = d["niveles"]
+    total = sum(len(niv[k]["personas"]) for k in NIVELES)
+    dirs = len(niv["25"]["personas"])
+    nuevas = sum(1 for k in NIVELES for p in niv[k]["personas"] if p.get("nueva"))
+    n_sl = 3 + len(NIVELES)
+
+    def hd(i):
+        return f'<div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">{i:02d} / {n_sl:02d}</span></div>'
+
+    sl = []
+    sl.append(f'<section class="sl cover">{hd(1)}<div><p class="eyebrow">Equipo de {e(eq)} · {e(mes)} {anio}</p>'
+              f'<h1>Logros de<br><em>{e(mes)}</em></h1>'
+              f'<p class="lead"><b>{total} personas</b> cerraron {e(mes)} con nivel. Gracias por cada pedido.</p></div>'
+              f'<div class="tiles"><div class="tile"><b>{total}</b><span>con nivel</span></div>'
+              f'<div class="tile"><b>{dirs}</b><span>en dirección</span></div>'
+              f'<div class="tile"><b>{nuevas}</b><span>{"nueva" if nuevas == 1 else "nuevas"} con nivel</span></div></div></section>')
+    rungs = ""
+    for k in NIVELES:
+        ps = niv[k]["personas"]
+        dots = "".join("<i></i>" for _ in ps) or '<i class="none"></i>'
+        rungs += (f'<div class="rung{"" if ps else " v"}"><span class="p">{k}%</span><span class="dots">{dots}</span>'
+                  f'<span class="n">{personas(len(ps)) if ps else "aún nadie"}</span></div>')
+    sl.append(f'<section class="sl">{hd(2)}<p class="ttl">Niveles del mes</p><div class="ladder">{rungs}</div></section>')
+    i = 3
+    for k in NIVELES:
+        ps = niv[k]["personas"]
+        etiqueta = ("Directoras · " if k == "25" else "") + personas(len(ps))
+        if ps:
+            cards = ""
+            for p in ps:
+                foto = p.get("foto")
+                img = f'<img src="/fotos/{e(foto)}" alt="">' if foto and (RAIZ / "fotos" / foto).exists() else ""
+                nueva = "<i>nueva</i>" if p.get("nueva") else ""
+                cards += (f'<div class="card"><div class="ava">{e(p["iniciales"])}{img}</div>'
+                          f'<div><strong>{e(p["nombre"])}</strong><span>{e(p["titulo"])}{nueva}</span></div></div>')
+            g = "g1" if len(ps) == 1 else ("g2" if len(ps) in (2, 4) else "g3")
+            body = f'<div class="grid {g}">{cards}</div>'
+        else:
+            body = (f'<div class="empty"><div class="seat">Tú</div><div><p class="q">Aquí aún no hay nadie.</p>'
+                    f'<p class="q2">¿Quieres ser tú?</p><p class="sub">Habla con tu upline y armen juntas tu plan para llegar al {k}%.</p></div></div>')
+        sl.append(f'<section class="sl{" d25" if k == "25" else ""}">{hd(i)}<div class="lv-h"><p class="big">{k}<small>%</small></p>'
+                  f'<p>{etiqueta}</p></div>{body}</section>')
+        i += 1
+    sl.append(f'<section class="sl end">{hd(i)}<div><h2>Gracias, equipo.</h2><p>Nos vemos en los logros del próximo mes.</p></div>'
+              f'<div><p class="url">mitienda.beauty/logros/{slug}</p><p>Equipo de {e(eq)} · {e(mes)} {anio}</p></div></section>')
+    h = f"""<!doctype html>
+<html lang="es-MX"><head><meta charset="utf-8">
+<meta name="viewport" content="width=1280">
+<meta name="robots" content="noindex">
+<title>Presentación de logros · {e(mes)} {anio}</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>{DECK_CSS}</style></head><body>{''.join(sl)}</body></html>
+"""
+    (RAIZ / "logros" / slug / "presentacion.html").write_text(h, encoding="utf-8")
 
 
 def orden(slug):
