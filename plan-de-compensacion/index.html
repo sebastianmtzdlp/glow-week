@@ -1,0 +1,490 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Entiende el plan de compensación · Mi Tienda Beauty</title>
+<meta name="description" content="Cuánto ganas por tus pedidos, por los de tu equipo y qué pide cada rango, con ejemplos y una calculadora.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Entiende el plan de compensación">
+<meta property="og:description" content="Niveles, bono de grupo, laterales, Bronce y Oro, con ejemplos y una calculadora para tu mes.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/plan-de-compensacion/">
+<meta property="og:image" content="https://mitienda.beauty/og/plan-de-compensacion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mitienda.beauty/og/plan-de-compensacion.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;
+  --accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;--good:#1B8A5A;--warn:#B26A00;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+.num,.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--accent-t)}
+.wrap{max-width:620px;margin:0 auto;padding:0 16px 72px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0 0;font-size:14px}
+.top a{color:var(--muted);text-decoration:none}
+.brand{font-weight:300;letter-spacing:.18em;font-size:12px;color:var(--muted)}
+
+/* Portada */
+.hero{padding:36px 0 8px}
+h1{font-size:clamp(34px,9vw,52px);line-height:1.02;font-weight:800;letter-spacing:-.02em}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{font-size:18px;color:var(--muted);margin-top:14px;max-width:34ch}
+
+/* La escalera */
+.ladder{margin-top:28px;border-top:1.5px solid var(--ink)}
+.rung{display:grid;grid-template-columns:62px 1fr 64px;align-items:center;gap:12px;width:100%;padding:9px 0;border:0;border-bottom:1px solid var(--line);background:none;font:inherit;color:inherit;text-align:left;cursor:pointer}
+.rung .pct{font-family:var(--mono);font-weight:700;font-size:20px}
+.rung .bar{height:8px;background:var(--soft);border-radius:999px;position:relative;overflow:hidden}
+.rung .bar i{position:absolute;inset:0 auto 0 0;width:var(--w);background:var(--ink);border-radius:999px;transform-origin:left;animation:grow 700ms var(--ease) both;animation-delay:calc(var(--n) * 45ms)}
+.rung .pts{font-family:var(--mono);font-size:14px;text-align:right;color:var(--muted)}
+.rung.me .pct{color:var(--accent)}
+.rung.me .bar i{background:var(--accent)}
+.rung.me .pts{color:var(--ink);font-weight:500}
+.rung[aria-expanded=true]{border-bottom-color:transparent}
+.rung .pts.q{color:var(--warn)}
+.rung .pts.q span{border-bottom:1.5px dotted var(--warn)}
+.rung-more{padding:0 0 14px 74px;font-size:15px;color:var(--muted);border-bottom:1px solid var(--line)}
+.rung-more b{color:var(--ink)}
+.ladder-note{font-size:13px;color:var(--muted);margin-top:10px}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* Índice */
+.toc{margin:40px 0 0;padding:0;list-style:none;counter-reset:t;columns:2;column-gap:20px}
+.toc li{counter-increment:t;break-inside:avoid;padding:6px 0;font-size:15px}
+.toc li::before{content:counter(t,decimal-leading-zero);font-family:var(--mono);font-size:12px;color:var(--accent-t);margin-right:8px}
+.toc a{color:var(--ink);text-decoration:none;border-bottom:1px solid var(--line)}
+
+/* Capítulos */
+.ch{margin-top:56px;scroll-margin-top:16px}
+.ch-n{font-family:var(--mono);font-size:13px;color:var(--accent-t)}
+h2{font-size:28px;line-height:1.1;font-weight:800;letter-spacing:-.01em;margin-top:4px}
+h3{font-size:18px;font-weight:700;margin-top:24px}
+.ch p{margin-top:12px}
+.ch ul,.ch ol{margin-top:10px;padding-left:20px}
+.ch li{margin-top:6px}
+.key{margin-top:16px;padding:14px 16px;background:var(--soft);border-radius:14px;font-size:17px;font-weight:600}
+.key .mono{font-weight:500}
+.pc{display:inline-block;font-size:11px;font-weight:600;color:var(--warn);border:1px solid #E8CFA3;background:#FFF8EC;border-radius:999px;padding:1px 8px;vertical-align:2px;white-space:nowrap}
+.src{font-size:13px;color:var(--muted);margin-top:14px}
+
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:15px}
+th,td{text-align:left;padding:9px 8px 9px 0;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:12px;font-weight:600;color:var(--muted);letter-spacing:.04em;text-transform:uppercase}
+td.n,th.n{text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+tr.x td{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--accent)}
+tr.x td:last-child{text-decoration:none}
+tr.tot td{border-bottom:0;border-top:1.5px solid var(--ink);font-weight:700}
+
+/* Recibo (ejemplo y calculadora) */
+.receipt{margin-top:16px;border:1px solid var(--line);border-radius:18px;padding:16px;font-family:var(--mono);font-size:14px;font-variant-numeric:tabular-nums}
+.receipt .row{display:flex;justify-content:space-between;gap:12px;padding:5px 0}
+.receipt .row span:first-child{color:var(--muted)}
+.receipt .row b{font-weight:500;color:var(--ink)}
+.receipt .tot{border-top:1.5px dashed var(--ink);margin-top:8px;padding-top:10px;font-size:16px}
+.receipt .tot+.tot{border-top:0;margin-top:0;padding-top:2px}
+.receipt .tot span:first-child{color:var(--ink)}
+.receipt .tot b{font-weight:700;color:var(--accent-t)}
+
+/* Bronce y Oro */
+.ranks{display:grid;gap:12px;margin-top:16px}
+.rank{border:1px solid var(--line);border-radius:18px;padding:16px}
+.rank h3{margin:0;display:flex;justify-content:space-between;align-items:baseline}
+.rank h3 small{font-family:var(--mono);font-size:12px;font-weight:500;color:var(--muted)}
+.ch .rank ul{list-style:none;padding:0;margin-top:10px}
+.rank li{display:flex;gap:10px;padding:6px 0;border-top:1px solid var(--line);font-size:15px}
+.rank li:first-child{border-top:0}
+.rank li .mono{min-width:56px;color:var(--accent-t);font-weight:500}
+
+/* Calculadora */
+.calc{margin-top:16px;border:1.5px solid var(--ink);border-radius:18px;padding:16px}
+.calc label{display:block;font-size:13px;font-weight:600;color:var(--muted)}
+.field{display:flex;align-items:center;gap:10px;margin-top:6px}
+input[type=number],input[type=text]{font:inherit;font-size:16px;color:var(--ink);background:#fff;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px;width:100%;min-width:0}
+input[type=number]{font-family:var(--mono)}
+input:focus-visible,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.team{margin-top:16px;display:grid;gap:0}
+.thead{display:grid;grid-template-columns:1fr 104px 40px;gap:8px;margin-top:18px;font-size:13px;font-weight:600;color:var(--muted)}
+.mem{display:grid;grid-template-columns:1fr 104px 40px;gap:8px;align-items:center}
+.mem .lvl{grid-column:1/-1;display:flex;justify-content:space-between;font-size:13px;color:var(--muted);margin-top:-2px}
+.dir{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink);cursor:pointer}
+.dir input{width:18px;height:18px;accent-color:var(--accent)}
+.del{width:40px;height:40px;border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--muted);font-size:20px;cursor:pointer;line-height:1}
+.member{padding:8px 0 10px;border-bottom:1px solid var(--line)}
+.btn{display:inline-flex;justify-content:center;align-items:center;gap:8px;border:0;border-radius:14px;padding:13px 16px;font:inherit;font-weight:600;font-size:15px;cursor:pointer;transition:transform 160ms var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn.line{background:#fff;color:var(--ink);border:1.5px solid var(--line)}
+.btns{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.out{margin-top:20px}
+.big{font-family:var(--mono);font-weight:700;font-size:44px;line-height:1;color:var(--accent)}
+.sub{color:var(--muted);font-size:15px;margin-top:6px}
+.prog{height:8px;background:var(--soft);border-radius:999px;margin-top:12px;overflow:hidden}
+.prog i{display:block;height:100%;background:var(--accent);border-radius:999px;transform-origin:left;transition:transform 240ms var(--ease)}
+.ch .checks{list-style:none;padding:0;margin-top:12px}
+.checks li{display:flex;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:15px}
+.checks li::before{content:"";flex:none;width:18px;height:18px;margin-top:2px;border-radius:50%;border:1.5px solid var(--line)}
+.checks li.ok::before{background:var(--good);border-color:var(--good);box-shadow:inset 0 0 0 3px #fff}
+.checks li.ok{color:var(--ink)}
+.checks li .why{color:var(--muted)}
+
+.ch .faltan{margin-top:14px;padding:0;list-style:none;counter-reset:f}
+.faltan li{counter-increment:f;display:grid;grid-template-columns:28px 1fr;padding:10px 0;border-top:1px solid var(--line)}
+.faltan li::before{content:counter(f);font-family:var(--mono);color:var(--warn);font-weight:700}
+footer{margin-top:56px;padding-top:16px;border-top:1px solid var(--line);font-size:13px;color:var(--muted)}
+footer a{color:var(--muted)}
+
+@media (hover:hover) and (pointer:fine){
+  .rung:hover .pct{color:var(--accent)}
+  .btn.line:hover{border-color:var(--ink)}
+}
+@media (min-width:900px){
+  .wrap{max-width:760px}
+  .ranks{grid-template-columns:1fr 1fr}
+  .rung{grid-template-columns:72px 1fr 80px}
+  .rung-more{padding-left:84px}
+}
+@media (prefers-reduced-motion:reduce){
+  .rung .bar i{animation:none}
+  .prog i,.btn{transition:none}
+}
+[hidden]{display:none!important}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="/herramientas/">← Herramientas</a><span class="brand">MI EQUIPO</span></div>
+
+  <header class="hero">
+    <h1>Entiende el plan de <em>compensación</em></h1>
+    <p class="lead">Qué ganas por tus pedidos, qué ganas por los de tu equipo y qué pide cada rango. Con ejemplos y una calculadora para tu mes.</p>
+
+    <div class="ladder" id="ladder" aria-label="Niveles de bono y puntos de grupo al mes"></div>
+    <p class="ladder-note">Puntos de grupo al mes. La barra es el tamaño real de cada meta. Toca un nivel para ver un ejemplo.</p>
+  </header>
+
+  <ol class="toc">
+    <li><a href="#venta">Tu ganancia por vender</a></li>
+    <li><a href="#bono">Tu bono de grupo</a></li>
+    <li><a href="#socias">Lo que ganas de tus socias</a></li>
+    <li><a href="#direccion">Gerencia y dirección</a></li>
+    <li><a href="#laterales">Puntos laterales</a></li>
+    <li><a href="#rangos">Bronce, Oro y más</a></li>
+    <li><a href="#premios">Liderazgo, auto y bonos</a></li>
+    <li><a href="#calculadora">Haz tu cuenta</a></li>
+    <li><a href="#confirmar">Lo que falta confirmar</a></li>
+  </ol>
+
+  <section class="ch" id="venta">
+    <div class="ch-n">01</div>
+    <h2>Tu ganancia por vender</h2>
+    <p>Es la primera ganancia y no depende de ningún nivel: compras con descuento de socia y le vendes a tu clienta al precio de catálogo. La diferencia es tuya.</p>
+    <div class="key">Descuento de <span class="mono">30%</span> en la mayoría de las líneas y hasta <span class="mono">50%</span> en algunas.</div>
+    <p>Ejemplo: un producto de catálogo de <span class="num">$300</span> con 30% de descuento te cuesta <span class="num">$210</span>. Si lo vendes a precio de catálogo, ganas <span class="num">$90</span>.</p>
+    <p>Para empezar pagas el kit de inicio de <span class="num">$499</span>. En tus primeros 4 meses, el programa de bienvenida te da un producto de regalo cada mes si llegas a <span class="num">50</span>, <span class="num">60</span>, <span class="num">70</span> y <span class="num">80</span> puntos personales. Si un mes no llegas, se pierde la racha.</p>
+    <p class="src">Fuentes: Guía de inscripción México de Farmasi (comisión hasta 50%, kit y programa de bienvenida) y página de registro de Farmasi México (30% y 50% por línea). Los porcentajes por línea pueden cambiar con cada catálogo.</p>
+  </section>
+
+  <section class="ch" id="bono">
+    <div class="ch-n">02</div>
+    <h2>Tu bono de grupo</h2>
+    <p>Cada mes se suman los puntos de tus pedidos, los de tus clientas registradas contigo y los de todo tu equipo hacia abajo. Ese total son tus <b>puntos de grupo</b>, y decide tu nivel: del <span class="num">3%</span> al <span class="num">25%</span>.</p>
+    <p>Ese porcentaje se te regresa como saldo a favor sobre los pedidos de tu grupo. Es lo que algunas llaman "bono personal" y otras "bono de grupo": es el mismo bono, y se calcula con el total del grupo.</p>
+    <div class="key">Los puntos deciden tu porcentaje. Cada punto vale <span class="mono">$25</span>, así que el bono en pesos es: puntos × porcentaje × $25.</div>
+    <p>Ejemplo: si tu grupo hace <span class="num">1,000</span> puntos y todo es tuyo y de tus clientas, estás en 12%. Tu bono es 1,000 × 12% = <span class="num">120</span> puntos, o sea <span class="num">$3,000</span>.</p>
+    <h3>Para cobrar, 75 puntos tuyos</h3>
+    <p>Necesitas al menos <span class="num">75</span> puntos personales cada mes para cobrar bonos y comisiones ese mes. Y para que tu cuenta siga abierta, debes juntar al menos 75 puntos en cualquier periodo de 6 meses.</p>
+    <table aria-label="Puntos por nivel">
+      <thead><tr><th>Nivel</th><th class="n">Puntos de grupo al mes</th><th class="n">Tuyos</th></tr></thead>
+      <tbody id="tblNiveles"></tbody>
+    </table>
+    <p class="src">Fuente: tabla de títulos del Back Office de Farmasi México ("Tuyos" son los puntos personales que pide cada nivel). El valor del punto ($25 a precio de socia) y los 75 puntos para cobrar vienen de la Guía de inscripción México.</p>
+  </section>
+
+  <section class="ch" id="socias">
+    <div class="ch-n">03</div>
+    <h2>Lo que ganas de tus socias</h2>
+    <p>Cuando una socia tuya tiene su propio nivel, ella cobra su porcentaje sobre su grupo. A ti te toca <b>la diferencia</b> entre tu porcentaje y el de ella, sobre los puntos de su grupo.</p>
+    <div class="key">Tu porcentaje − el de tu socia = lo que ganas de su grupo.</div>
+    <h3>Ejemplo</h3>
+    <p>Tu grupo hizo <span class="num">3,900</span> puntos, así que estás en <span class="num">22%</span>. De esos puntos, <span class="num">300</span> son tuyos y de tus clientas, y el resto viene de tres socias:</p>
+    <div class="receipt" aria-label="Ejemplo de cálculo">
+      <div class="row"><span>Tú y tus clientas · 300 × 22%</span><b>66</b></div>
+      <div class="row"><span>Ana · 12% · 900 × (22−12)%</span><b>90</b></div>
+      <div class="row"><span>Luz · 6% · 400 × (22−6)%</span><b>64</b></div>
+      <div class="row"><span>Caro · 18% · 2,300 × (22−18)%</span><b>92</b></div>
+      <div class="row tot"><span>Tu bono, en puntos</span><b>312</b></div>
+      <div class="row tot"><span>En pesos · 312 × $25</span><b>$7,800</b></div>
+    </div>
+    <p>Si tu socia llega a tu mismo nivel, la diferencia es cero: de su grupo ya no ganas bono de grupo, y a partir de la dirección eso se compensa con el bono de liderazgo.</p>
+    <p class="src">Así lo explica Farmasi ("la diferencia entre tu nivel de bonificación y el de tus socias"). Un punto vale $25.</p>
+  </section>
+
+  <section class="ch" id="direccion">
+    <div class="ch-n">04</div>
+    <h2>Gerencia y dirección</h2>
+    <p>Al llegar a <span class="num">5,000</span> puntos de grupo cobras el 25%, el más alto. Desde ahí hay dos caminos:</p>
+    <table>
+      <thead><tr><th>Rango</th><th>Qué pide al mes</th></tr></thead>
+      <tbody>
+        <tr><td><b>Dirección virtual</b></td><td><span class="num">5,000</span> puntos de grupo. Cobras el 25%, pero no cuentas como directora.</td></tr>
+        <tr><td><b>Dirección</b></td><td><span class="num">5,000</span> puntos de grupo y <span class="num">1,500</span> puntos laterales.</td></tr>
+      </tbody>
+    </table>
+    <p>Cada rango se gana primero como <b>gerencia</b>. Se vuelve <b>dirección</b> cuando lo sostienes <span class="num">3</span> meses seguidos. Pasa igual con Bronce y con Oro: el bono en efectivo de cada rango llega después de esos 3 meses.</p>
+    <p class="src">Fuentes: Farmasi México (3 meses para el bono en efectivo) y lo que confirmó el equipo.</p>
+  </section>
+
+  <section class="ch" id="laterales">
+    <div class="ch-n">05</div>
+    <h2>Puntos laterales</h2>
+    <p>Son los puntos de las líneas de tu equipo que <b>no</b> son directoras, quitando la línea no directora más alta. Sirven para que la dirección no dependa de una sola persona.</p>
+    <ol>
+      <li><b>Las líneas que ya son directoras no cuentan.</b> Sus puntos siguen en tu grupo, pero no en laterales.</li>
+      <li><b>De las que no son directoras, se quita la que más puntos tiene.</b> Esa es tu línea fuerte. Lo que queda son tus laterales.</li>
+    </ol>
+    <h3>Ejemplo con cinco líneas</h3>
+    <table aria-label="Ejemplo de laterales">
+      <thead><tr><th>Línea</th><th>Nivel</th><th class="n">Puntos</th><th>¿Cuenta?</th></tr></thead>
+      <tbody>
+        <tr class="x"><td>A</td><td>Directora</td><td class="n">6,000</td><td>No, es directora</td></tr>
+        <tr class="x"><td>B</td><td>Directora</td><td class="n">5,500</td><td>No, es directora</td></tr>
+        <tr class="x"><td>C</td><td>22%</td><td class="n">4,000</td><td>No, es la más alta</td></tr>
+        <tr><td>D</td><td>22%</td><td class="n">3,700</td><td>Sí</td></tr>
+        <tr><td>E</td><td>12%</td><td class="n">1,000</td><td>Sí</td></tr>
+        <tr class="tot"><td colspan="2">Laterales</td><td class="n">4,700</td><td></td></tr>
+      </tbody>
+    </table>
+    <p>Con <span class="num">4,700</span> laterales alcanza para Dirección (1,500) y para Oro (2,500). En tu Back Office está el "Informe de Puntos Laterales" con tu número real.</p>
+    <h3>Lo que hay que cuidar</h3>
+    <ul>
+      <li>Una sola línea fuerte no te da laterales. Necesitas al menos dos líneas creciendo.</li>
+      <li>Cuando una socia se vuelve directora, sus puntos salen de tus laterales. Antes de que suba, ya debes estar creciendo otra línea.</li>
+      <li>Si tus propios pedidos cuentan como laterales <span class="pc">por confirmar</span>. Aquí no los contamos, para no inflar el número.</li>
+    </ul>
+  </section>
+
+  <section class="ch" id="rangos">
+    <div class="ch-n">06</div>
+    <h2>Bronce, Oro y lo que sigue</h2>
+    <p>Desde Bronce, cada rango pide socias de tu primera línea en 25% (en el Back Office aparece como "Número de 25 en primera línea"). Todos se consolidan con 3 meses seguidos y todos cobran el 25%.</p>
+    <div class="ranks">
+      <div class="rank">
+        <h3>Directora Bronce</h3>
+        <ul>
+          <li><span class="mono">5,000</span><span>puntos de grupo, como en dirección</span></li>
+          <li><span class="mono">1</span><span>socia de tu primera línea en 25%</span></li>
+          <li><span class="mono">1,500</span><span>puntos laterales</span></li>
+        </ul>
+      </div>
+      <div class="rank">
+        <h3>Directora Oro</h3>
+        <ul>
+          <li><span class="mono">10,000</span><span>puntos de grupo</span></li>
+          <li><span class="mono">2</span><span>socias de tu primera línea en 25%</span></li>
+          <li><span class="mono">2,500</span><span>puntos laterales</span></li>
+        </ul>
+      </div>
+    </div>
+    <h3>Todos los rangos</h3>
+    <table aria-label="Requisitos de cada rango">
+      <thead><tr><th>Rango</th><th class="n">Puntos de grupo</th><th class="n">En 25%</th><th class="n">Laterales</th></tr></thead>
+      <tbody>
+        <tr><td>Dirección virtual</td><td class="n">5,000</td><td class="n">0</td><td class="n">0</td></tr>
+        <tr><td>Dirección</td><td class="n">5,000</td><td class="n">0</td><td class="n">1,500</td></tr>
+        <tr><td>Bronce</td><td class="n">5,000</td><td class="n">1</td><td class="n">1,500</td></tr>
+        <tr><td>Oro</td><td class="n">10,000</td><td class="n">2</td><td class="n">2,500</td></tr>
+        <tr><td>Platino</td><td class="n">20,000</td><td class="n">4</td><td class="n">2,500</td></tr>
+        <tr><td>Esmeralda</td><td class="n">40,000</td><td class="n">8</td><td class="n">5,000</td></tr>
+        <tr><td>Diamante</td><td class="n">60,000</td><td class="n">12</td><td class="n">5,000</td></tr>
+        <tr><td>Vicepresidencia</td><td class="n">80,000</td><td class="n">16</td><td class="n">10,000</td></tr>
+        <tr><td>Presidencia</td><td class="n">100,000</td><td class="n">20</td><td class="n">10,000</td></tr>
+        <tr><td>Boss</td><td class="n">150,000</td><td class="n">30</td><td class="n">10,000</td></tr>
+        <tr><td>Executive Boss</td><td class="n">200,000</td><td class="n">30</td><td class="n">10,000</td></tr>
+      </tbody>
+    </table>
+    <p>Todos piden además tus <span class="num">75</span> puntos personales del mes. "En 25%" son socias de tu primera línea que llegan al 25% ese mes.</p>
+    <p class="src">Fuente: tabla de títulos del Back Office de Farmasi México.</p>
+  </section>
+
+  <section class="ch" id="premios">
+    <div class="ch-n">07</div>
+    <h2>Liderazgo, auto y bonos</h2>
+    <p>Desde la dirección, el plan suma otros pagos además de tu bono de grupo.</p>
+
+    <h3>Bono de liderazgo</h3>
+    <p>Empieza en dirección. Te paga un porcentaje sobre el volumen de las directoras que salen de tu equipo y de las que salen de ellas, por generaciones. Es lo que sustituye a la diferencia cuando tus socias llegan al 25%.</p>
+    <p>El Back Office muestra este volumen por generación, hasta 7 generaciones ("Leadership GV"). Qué porcentaje se paga en cada generación y cuántas cobras en cada rango <span class="pc">por confirmar</span></p>
+
+    <h3>Apoyo para auto</h3>
+    <div class="key">Empieza en Directora Oro: <span class="mono">$5,250</span> al mes mientras mantengas el rango.</div>
+    <p>El monto sube con cada rango arriba de Oro. Los montos de esos rangos <span class="pc">por confirmar</span></p>
+
+    <h3>Bono en efectivo por rango</h3>
+    <p>Un pago único cada vez que conquistas un rango nuevo y lo sostienes 3 meses. Va desde <span class="num">$20,000</span> hasta <span class="num">$500,000</span> o más en los rangos más altos. El monto de cada rango <span class="pc">por confirmar</span></p>
+
+    <h3>Viaje</h3>
+    <p>Si sostienes Directora Oro 3 meses seguidos, Farmasi México anuncia un viaje con todo pagado. El destino puede cambiar cada año.</p>
+
+    <h3>Por invitar a alguien</h3>
+    <p>Cada persona que invites en el mes y haga un pedido de <span class="num">50</span> puntos o más te da un producto de regalo, con valor aproximado de <span class="num">$620</span>.</p>
+    <p class="src">Fuente de esta sección: página de registro de Farmasi México. Las tablas con los montos completos están en el plan oficial y en tu Back Office.</p>
+  </section>
+
+  <section class="ch" id="calculadora">
+    <div class="ch-n">08</div>
+    <h2>Haz tu cuenta</h2>
+    <p>Escribe tus puntos del mes y los de cada socia directa con su grupo. Se guarda solo en este celular.</p>
+    <div class="calc">
+      <label for="mine">Tus puntos y los de tus clientas</label>
+      <div class="field"><input type="number" id="mine" inputmode="numeric" min="0" step="10"></div>
+      <div class="thead" aria-hidden="true"><span>Socia directa</span><span>Puntos</span><span></span></div>
+      <div class="team" id="team"></div>
+      <div class="btns"><button class="btn line" id="add" type="button">+ Agregar socia</button><button class="btn line" id="reset" type="button">Volver al ejemplo</button></div>
+
+      <div class="out" aria-live="polite">
+        <div class="big" id="oPct">22%</div>
+        <div class="sub" id="oSub"></div>
+        <div class="prog"><i id="oProg"></i></div>
+        <div class="receipt" id="oRec"></div>
+        <h3>Rumbo a dirección</h3>
+        <ul class="checks" id="oChecks"></ul>
+        <p class="src">Un punto vale $25 a precio de socia. Para cobrar necesitas al menos 75 puntos personales en el mes. Cada rango se consolida con 3 meses seguidos.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="ch" id="confirmar">
+    <div class="ch-n">09</div>
+    <h2>Lo que falta confirmar</h2>
+    <p>Esto todavía no tiene una fuente oficial de México. Mientras, confírmalo en tu Back Office o con tu líder. La página se actualiza en cuanto lo tengamos.</p>
+    <ol class="faltan">
+      <li>Si tus propios pedidos cuentan como laterales.</li>
+      <li>Los porcentajes del bono de liderazgo por generación.</li>
+      <li>Los montos del apoyo para auto arriba de Oro y del bono en efectivo de cada rango.</li>
+    </ol>
+  </section>
+
+  <footer>
+    <p>Esta página la hizo el equipo para estudiar el plan. No es material oficial de Farmasi. Lo que manda es el plan de compensación vigente en tu Back Office.</p>
+    <p style="margin-top:8px">Fuentes consultadas: Guía de inscripción México de Farmasi, <a href="https://www.farmasidemexico.com/" rel="noopener">página de registro de Farmasi México</a>, <a href="https://farmasi-join.com/business" rel="noopener">guía de Estados Unidos (no oficial)</a> y <a href="https://vivaelnetworking.com/empresas/farmasi/" rel="noopener">vivaelnetworking (no oficial)</a>.</p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  var LV=[
+    {p:3,min:200,ok:true},{p:6,min:400,ok:true},{p:9,min:600,ok:true},{p:12,min:900,ok:true},
+    {p:15,min:1400,ok:true},{p:18,min:2200,ok:true},{p:22,min:3600,ok:true},{p:25,min:5000,ok:true}
+  ];
+  var fmt=function(n){return Math.round(n).toLocaleString('es-MX')};
+  function level(pts){var r=null;LV.forEach(function(l){if(pts>=l.min)r=l});return r}
+  function pct(pts){var l=level(pts);return l?l.p:0}
+
+  // Escalera
+  var lad=document.getElementById('ladder'),tb=document.getElementById('tblNiveles'),open=null;
+  LV.forEach(function(l,i){
+    var b=document.createElement('button');b.type='button';b.className='rung';b.setAttribute('aria-expanded','false');
+    b.style.setProperty('--w',(l.min/5000*100)+'%');b.style.setProperty('--n',i);
+    b.innerHTML='<span class="pct">'+l.p+'%</span><span class="bar"><i></i></span><span class="pts'+(l.ok?'':' q')+'"><span>'+fmt(l.min)+'</span></span>';
+    var m=document.createElement('div');m.className='rung-more';m.hidden=true;
+    var next=LV[i+1];
+    m.innerHTML='Desde <b class="num">'+fmt(l.min)+'</b> puntos de grupo al mes ($'+fmt(l.min*25)+'). Si todos fueran tuyos y de tus clientas, tu bono sería de <b class="num">$'+fmt(l.min*l.p/100*25)+'</b>'+(next?'. Para el '+next.p+'% te faltan '+fmt(next.min-l.min)+' puntos más.':'. Es el nivel más alto: desde aquí sigue la dirección.');
+    b.addEventListener('click',function(){
+      var exp=b.getAttribute('aria-expanded')==='true';
+      if(open&&open!==b){open.setAttribute('aria-expanded','false');open.nextSibling.hidden=true}
+      b.setAttribute('aria-expanded',String(!exp));m.hidden=exp;open=exp?null:b;
+    });
+    lad.appendChild(b);lad.appendChild(m);
+    var tr=document.createElement('tr');
+    tr.innerHTML='<td class="num"><b>'+l.p+'%</b></td><td class="n">'+fmt(l.min)+(next?' a '+fmt(next.min-1):' o más')+'</td><td class="n">75</td>';
+    tb.appendChild(tr);
+  });
+
+  // Calculadora
+  var KEY='mtb-plan-comp-v1';
+  var EJ={mine:300,team:[{n:'Ana',p:900,d:false},{n:'Luz',p:400,d:false},{n:'Caro',p:2300,d:false}]};
+  var st;
+  try{st=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+  if(!st||!Array.isArray(st.team))st=JSON.parse(JSON.stringify(EJ));
+  function save(){try{localStorage.setItem(KEY,JSON.stringify(st))}catch(e){}}
+  var mine=document.getElementById('mine'),team=document.getElementById('team');
+
+  function drawTeam(){
+    team.innerHTML='';
+    st.team.forEach(function(m,i){
+      var w=document.createElement('div');w.className='member';
+      w.innerHTML='<div class="mem"><input type="text" aria-label="Nombre de la socia" placeholder="Nombre"><input type="number" inputmode="numeric" min="0" step="10" aria-label="Puntos de su grupo"><button type="button" class="del" aria-label="Quitar socia">×</button><div class="lvl"><span></span><span class="mono"></span></div></div>';
+      var f=w.querySelectorAll('input');
+      f[0].value=m.n;f[1].value=m.p;
+      f[0].addEventListener('input',function(){m.n=f[0].value;calc()});
+      f[1].addEventListener('input',function(){m.p=+f[1].value||0;calc()});
+      w.querySelector('.del').addEventListener('click',function(){st.team.splice(i,1);drawTeam();calc()});
+      team.appendChild(w);
+    });
+  }
+
+  function calc(){
+    st.mine=+mine.value||0;
+    var total=st.mine;st.team.forEach(function(m){total+=m.p||0});
+    var my=pct(total),lv=level(total),i=lv?LV.indexOf(lv):-1,nx=LV[i+1];
+    document.getElementById('oPct').textContent=my+'%';
+    document.getElementById('oSub').textContent=fmt(total)+' puntos de grupo. '+(nx?'Te faltan '+fmt(nx.min-total)+' para el '+nx.p+'%.':'Ya estás en el nivel más alto.');
+    var base=i>=0?LV[i].min:0,top=nx?nx.min:5000,fr=nx?(total-base)/(top-base):1;
+    document.getElementById('oProg').style.transform='scaleX('+Math.max(0,Math.min(1,fr))+')';
+
+    var rows='',bono=st.mine*my/100;
+    rows+='<div class="row"><span>Tú · '+fmt(st.mine)+' × '+my+'%</span><b>'+fmt(st.mine*my/100)+'</b></div>';
+    st.team.forEach(function(m){
+      var sp=pct(m.p||0),d=Math.max(0,my-sp),v=(m.p||0)*d/100;bono+=v;
+      rows+='<div class="row"><span>'+esc(m.n||'Socia')+' · '+sp+'% · '+fmt(m.p||0)+' × '+d+'%</span><b>'+fmt(v)+'</b></div>';
+    });
+    rows+='<div class="row tot"><span>Tu bono, en puntos</span><b>'+fmt(bono)+'</b></div>';
+    rows+='<div class="row tot"><span>En pesos · × $25</span><b>$'+fmt(bono*25)+'</b></div>';
+    document.getElementById('oRec').innerHTML=rows;
+
+    // niveles por socia
+    team.querySelectorAll('.member').forEach(function(w,k){var m=st.team[k];w.querySelector('.lvl .mono').textContent=pct(m.p||0)+'%'+(leg(m)?' · cuenta para Bronce':'')});
+
+    // laterales
+    var nd=st.team.filter(function(m){return !leg(m)}).map(function(m){return m.p||0}).sort(function(a,b){return b-a});
+    var lat=nd.slice(1).reduce(function(a,b){return a+b},0);
+    var dirs=st.team.filter(leg).length;
+    var ch=[
+      [total>=5000,'5,000 puntos de grupo','llevas '+fmt(total)],
+      [lat>=1500,'1,500 laterales (dirección)','llevas '+fmt(lat)],
+      [dirs>=1,'1 socia en 25% en tu primera línea (Bronce)','tienes '+dirs],
+      [total>=10000&&dirs>=2&&lat>=2500,'10,000 de grupo, 2 socias en 25% y 2,500 laterales (Oro)','llevas '+fmt(total)+', '+dirs+' y '+fmt(lat)]
+    ];
+    document.getElementById('oChecks').innerHTML=ch.map(function(c){return '<li class="'+(c[0]?'ok':'')+'"><span>'+c[1]+' · <span class="why">'+c[2]+'</span></span></li>'}).join('');
+
+    // marca tu nivel en la escalera
+    lad.querySelectorAll('.rung').forEach(function(r,k){r.classList.toggle('me',k===i)});
+    save();
+  }
+  function leg(m){return (m.p||0)>=5000}
+  function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+
+  mine.value=st.mine;mine.addEventListener('input',calc);
+  document.getElementById('add').addEventListener('click',function(){st.team.push({n:'',p:0,d:false});drawTeam();calc();var ins=team.querySelectorAll('input[type=text]');ins[ins.length-1].focus()});
+  document.getElementById('reset').addEventListener('click',function(){st=JSON.parse(JSON.stringify(EJ));mine.value=st.mine;drawTeam();calc()});
+  drawTeam();calc();
+})();
+</script>
+</body>
+</html>
