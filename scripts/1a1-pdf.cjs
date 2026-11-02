@@ -85,7 +85,7 @@ const CHECK = `<!doctype html><html lang="es-MX"><head><meta charset="utf-8">${F
 .grande{font-size:11pt;gap:0}.grande li{padding:3pt 0;border-bottom:1px solid #E6E8F0;display:flex;align-items:center}
 .grande li .lin{flex:0 0 1.4in;margin-left:auto;height:14pt}
 </style></head><body><div class="pag">
-<div class="top"><span>EQUIPO SVH</span><span>mitienda.beauty/mentorias/1a1</span></div>
+<div class="top"><span>EQUIPO SVH</span><span>mitienda.beauty/mentorias/herramientas/1a1</span></div>
 <h1>Antes de tu <em>1 a 1</em></h1>
 <p class="sub">Tráelo listo. Primero vemos tus datos y luego platicamos de cómo vas.</p>
 <div class="dos"><div class="campo"><b>Tu nombre</b><div class="lin"></div></div><div class="campo"><b>Fecha del 1 a 1</b><div class="lin"></div></div></div>
@@ -102,7 +102,7 @@ const CHECK = `<!doctype html><html lang="es-MX"><head><meta charset="utf-8">${F
 
 <div class="bloque"><h2><span class="n c">4</span>Lo que quiero lograr este mes</h2>
 <div class="lin"></div><div class="lin"></div></div>
-<div class="pie"><span>El equipo copia, no obedece.</span><span>mitienda.beauty/mentorias/1a1</span></div>
+<div class="pie"><span>El equipo copia, no obedece.</span><span>mitienda.beauty/mentorias/herramientas/1a1</span></div>
 </div></body></html>`;
 
 const OG = `<!doctype html><html><head><meta charset="utf-8">${FUENTES}<style>
