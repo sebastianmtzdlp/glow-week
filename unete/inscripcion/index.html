@@ -137,7 +137,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   <section class="sec" aria-labelledby="pTit">
     <h2 id="pTit">Paso a paso</h2>
     <ol class="pasos">
-      <li><span class="n">01</span><b>Escríbele a quien te compartió esta página</b><p>Ella te registra en su equipo y te acompaña desde el primer día. Si nadie te la mandó, le escribes a Selene, líder del equipo.</p></li>
+      <li><span class="n">01</span><b>Escríbele a quien te compartió esta página</b><p>Ella te registra en su equipo y te acompaña desde el primer día. Si nadie te la mandó, el botón de abajo te lleva con el equipo.</p></li>
       <li><span class="n">02</span><b>Pide tu kit de $499</b><p>Si quieres, súmale uno de los sets de inicio con descuento (abajo). No es obligatorio.</p></li>
       <li><span class="n">03</span><b>Haz tus primeros 50 puntos</b><p>Es el primer escalón del programa de bienvenida. Pueden ser tus pedidos o los de tus clientas.</p></li>
       <li><span class="n">04</span><b>Entra a la Academia y a Boards</b><p>Las dos apps de capacitación de Farmasi. Te registras con tu correo.</p></li>
@@ -189,7 +189,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     <h2 id="cTit">¿Lista para empezar?</h2>
     <p>Escríbele y te inscribe hoy. Si tienes dudas, también pregúntale; para eso está.</p>
     <div class="quien" id="quien" hidden></div>
-    <a class="btn" id="wa" href="https://wa.me/525541456984" target="_blank" rel="noopener" data-cuenta="inscripcion-wa">
+    <a class="btn" id="wa" href="https://wa.me/525543506136" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 11.5a8 8 0 0 1-11.8 7L4 20l1.5-4.1A8 8 0 1 1 20 11.5Z"/></svg>
       <span id="waTxt">Quiero inscribirme</span>
     </a>
@@ -203,7 +203,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
 <script src="/unete/ruta.js"></script>
 <script>
 (function(){
-  var DEFAULT = {slug: "", nombre: "Selene", whatsapp: "525541456984"};
+  var DEFAULT = {slug: "sebas", nombre: "Sebas", whatsapp: "525543506136"}; /* igual que /unete/ y H.WA_DEFAULT */
   var de = window.RUTA ? RUTA.de : "";
   if(de){ ["atras", "otraVez"].forEach(function(id){ var a = document.getElementById(id); a.href = a.getAttribute("href") + RUTA.suf; }); }
   function pinta(c){
@@ -212,16 +212,16 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
     document.getElementById("waTxt").textContent = "Escribirle a " + c.nombre.split(" ")[0];
     var q = document.getElementById("quien");
     var ini = c.nombre.split(" ").map(function(p){ return p[0]; }).join("").slice(0, 2);
-    q.innerHTML = (c.slug ? '<img src="/fotos/' + c.slug + '.jpg" alt="" onerror="this.outerHTML=\'<span class=ini>' + ini + '</span>\'">' : '<span class="ini">' + ini + '</span>')
-      + '<div><b>' + c.nombre + '</b><span>' + (c.slug ? "Te invitó a su equipo" : "Líder del equipo") + '</span></div>';
+    q.innerHTML = ('<img src="/fotos/' + c.slug + '.jpg" alt="" onerror="this.outerHTML=\'<span class=ini>' + ini + '</span>\'">')
+      + '<div><b>' + c.nombre + '</b><span>' + (de && c.slug === de ? "Te invitó a su equipo" : "Del equipo Mi Tienda Beauty") + '</span></div>';
     q.hidden = false;
   }
+  document.getElementById("wa").addEventListener("click", function(){ try{ goatcounter.count({path: "unete/inscripcion-wa" + (de ? "-" + de : ""), title: "Escribir para inscribirse", event: true}); }catch(_){} });
   if(!de){ pinta(DEFAULT); return; }
   fetch("/_data/equipo.json").then(function(r){ return r.json(); }).then(function(d){
     var c = (d.consultoras || []).filter(function(x){ return x.slug === de; })[0];
     pinta(c ? {slug: c.slug, nombre: c.nombre, whatsapp: c.whatsapp} : DEFAULT);
   }).catch(function(){ pinta(DEFAULT); });
-  document.getElementById("wa").addEventListener("click", function(){ try{ goatcounter.count({path: "unete/inscripcion-wa" + (de ? "-" + de : ""), title: "Escribir para inscribirse", event: true}); }catch(_){} });
 })();
 </script>
 </body>
