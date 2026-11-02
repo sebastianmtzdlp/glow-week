@@ -51,7 +51,9 @@ window.PRO = (function(){
     {s:"testimonios", t:"Lo que dicen mis clientas · Pro", precio:99, tipo:"contenido", ruta:"/mentorias/herramientas/testimonios/", para:"Para quien tiene clientas contentas.",
      d:"Un link para que tus clientas te dejen su testimonio. Tú apruebas los que quieras y los copias para tus historias."},
     {s:"en-vivo", t:"Guion de venta en vivo · Pro", precio:99, tipo:"eventos", ruta:"/mentorias/herramientas/en-vivo/", para:"Para quien conduce lives.",
-     d:"El generador: eliges productos del catálogo y te arma el guion con orden, minutos, precios y el mensaje para después del live."}
+     d:"El generador: eliges productos del catálogo y te arma el guion con orden, minutos, precios y el mensaje para después del live."},
+    {s:"equipo-por-tipo", t:"Tu equipo, persona por persona", precio:149, tipo:"lider", ruta:"/mentorias/herramientas/que-quiere/", para:"Para la líder que quiere acompañar a cada quien a su ritmo.",
+     d:"El mapa de tu equipo según lo que quiere cada persona (le gusta, va por algo o va por todo), un plan de un mes para cada una, guiones de 1 a 1, mensajes de grupo y cómo notar cuando alguien cambia de ritmo."}
   ];
   var PAQ = [
     {s:"todo", t:"Los 5 planes", precio:699, tipo:"paquete", para:"Para la líder que va a usarlos con todo su equipo.", incluye:P.map(function(x){ return x.s; })},
