@@ -23,6 +23,10 @@ MESES = ["enero", "febrero", "marzo", "abril", "mayo", "junio", "julio",
 
 e = html.escape
 
+ICONO = ('<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" '
+         'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="m7 10 5 5 5-5"/>'
+         '<path d="M5 20h14"/></svg>')
+
 CSS = """
 :root{
   --bg:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;
@@ -87,10 +91,27 @@ h1 em{font-style:normal;color:var(--accent)}
 .d25 .card{background:var(--tint);border-color:#F6D3D7}
 .d25 .ava{background:#fff}
 .lvl.vac{padding-top:32px}
-.lvl.vac .lvl-h h2{color:var(--muted);font-size:40px}
-.empty{padding:14px 16px;border:1px dashed #CDD1E0;border-radius:18px;color:var(--muted);font-size:15px}
+.lvl.vac .lvl-h h2{font-size:40px}
+.empty{display:grid;grid-template-columns:56px 1fr;column-gap:14px;align-items:center;padding:16px;border:1.5px dashed #EBA3AA;border-radius:18px;background:var(--tint)}
+.seat{width:56px;height:56px;border-radius:50%;border:1.5px dashed var(--accent);background:#fff;display:grid;place-items:center;font-weight:700;font-size:17px;color:var(--accent-t)}
+.empty .q{font-size:19px;font-weight:700;line-height:1.2;color:var(--ink)}
+.empty .q2{font-size:19px;font-weight:700;line-height:1.2;color:var(--accent-t)}
+.empty .sub{font-size:15px;color:var(--muted);margin-top:4px}
+.talk{grid-column:1/-1;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:14px;background:var(--ink);color:#fff;font-weight:600;font-size:16px;text-decoration:none;transition:transform 160ms var(--ease)}
+.talk:active{transform:scale(.97)}
+.talk:focus-visible,.plan:focus-visible{outline:2px solid var(--accent-t);outline-offset:2px}
+.plan{grid-column:1/-1;justify-self:center;display:inline-flex;align-items:center;min-height:44px;margin-bottom:-6px;font-size:14px;font-weight:600;color:var(--accent-t);text-underline-offset:3px}
 .note{font-family:var(--hand);font-weight:600;font-size:25px;line-height:1.1;color:var(--accent-t);margin:14px 0 0 70px;transform:rotate(-1.5deg);transform-origin:left}
 .note::before{content:"";display:inline-block;width:18px;height:14px;margin-right:6px;border-left:1.75px solid currentColor;border-bottom:1.75px solid currentColor;border-bottom-left-radius:10px;vertical-align:4px}
+
+.card .cert{margin-left:auto;flex:none;display:flex;flex-direction:column;align-items:center;gap:1px;min-width:44px;min-height:44px;justify-content:center;border-radius:12px;color:var(--accent-t);text-decoration:none;font-size:11px;font-weight:600;letter-spacing:.04em}
+.card .cert:focus-visible{outline:2px solid var(--accent-t);outline-offset:2px}
+@media (hover:hover){.card .cert:hover{background:var(--tint)}}
+.d25 .card .cert{background:#fff}
+.dl{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:16px;min-height:48px;border-radius:14px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;text-decoration:none;transition:transform 160ms var(--ease)}
+.dl:active{transform:scale(.97)}
+.dl:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+.dl-note{font-size:14px;color:var(--muted);margin-top:8px;text-align:center}
 
 /* Banda coral */
 .band{margin-top:56px;background:var(--accent);color:#fff;border-radius:28px 28px 0 0;padding:28px 0 max(28px,env(safe-area-inset-bottom))}
@@ -145,6 +166,27 @@ def personas(n):
     return f"{n} persona" if n == 1 else f"{n} personas"
 
 
+def pslug(nombre):
+    import unicodedata, re
+    t = unicodedata.normalize("NFKD", nombre).encode("ascii", "ignore").decode().lower()
+    return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
+
+
+WA = ('<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" '
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12Z"/>'
+      '<path d="M8.5 10.5h7M8.5 14h4"/></svg>')
+
+
+def vacio(k, mes):
+    from urllib.parse import quote
+    msg = f"Hola, vi los logros de {mes} y aún no hay nadie en el {k}%. Quiero ser yo. ¿Me ayudas a armar mi plan para llegar?"
+    return (f'<div class="empty"><div class="seat" aria-hidden="true">Tú</div>'
+            f'<div class="empty-t"><p class="q">Aquí aún no hay nadie.</p><p class="q2">¿Quieres ser tú?</p>'
+            f'<p class="sub">Habla con tu upline y armen juntas tu plan para llegar al {k}%.</p></div>'
+            f'<a class="talk" href="https://wa.me/?text={quote(msg)}" target="_blank" rel="noopener">{WA}Habla con tu upline</a>'
+            f'<a class="plan" href="/plan-de-compensacion/">Ver qué pide cada nivel</a></div>')
+
+
 def tarjeta(p):
     foto = p.get("foto")
     img = ""
@@ -152,7 +194,9 @@ def tarjeta(p):
         img = f'<img src="/fotos/{e(foto)}" alt="" loading="lazy" width="56" height="56">'
     nueva = '<span class="nueva">nueva</span>' if p.get("nueva") else ""
     return (f'<li class="card"><div class="ava" aria-hidden="true">{e(p["iniciales"])}{img}</div>'
-            f'<div class="who"><strong>{e(p["nombre"])}</strong><span>{e(p["titulo"])}{nueva}</span></div></li>')
+            f'<div class="who"><strong>{e(p["nombre"])}</strong><span>{e(p["titulo"])}{nueva}</span></div>'
+            f'<a class="cert" href="certificados/{pslug(p["nombre"])}.pdf" download '
+            f'aria-label="Descargar el certificado de {e(p["nombre"])}">{ICONO}<span>PDF</span></a></li>')
 
 
 def pagina_mes(d, slug):
@@ -181,7 +225,7 @@ def pagina_mes(d, slug):
         ps = niv[k]["personas"]
         etiqueta = ("Directoras · " if k == "25" else "") + personas(len(ps))
         cuerpo = ('<ul class="cards">' + "".join(tarjeta(p) for p in ps) + "</ul>") if ps \
-            else '<p class="empty">Aún sin nadie en este nivel.</p>'
+            else vacio(k, mes)
         nota = f'<p class="note">{e(niv[k]["nota"])}</p>' if niv[k].get("nota") else ""
         d25 = (" d25" if k == "25" else "") + ("" if ps else " vac")
         secs.append(f'<section class="lvl{d25}" id="n{k}" aria-labelledby="h{k}">'
@@ -214,6 +258,8 @@ def pagina_mes(d, slug):
       <div class="tile"><b>{dirs}</b><span>en dirección</span></div>
       <div class="tile"><b>{nuevas}</b><span>{nuevas_txt}</span></div>
     </div>
+    <a class="dl" href="logros-{slug}.pdf" download>{ICONO}Descargar PDF</a>
+    <p class="dl-note">Cada tarjeta tiene su certificado en PDF.</p>
   </header>
 
   <nav class="idx" aria-label="Niveles">
@@ -234,7 +280,66 @@ def pagina_mes(d, slug):
 </body>
 </html>
 """
+    certificados(d, slug)
     return out, total, dirs
+
+
+CERT_CSS = """
+:root{--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;color-scheme:light}
+@page{size:540px 675px;margin:0}
+*{box-sizing:border-box;margin:0}
+html,body{background:#fff}
+body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);display:grid;place-items:center;min-height:100vh;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+.c{width:540px;height:675px;overflow:hidden;background:#fff;display:flex;flex-direction:column;padding:16px 16px 0}
+.in{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:24px 28px;border:1px solid var(--line);border-radius:22px}
+.brand{font-weight:300;letter-spacing:.18em;font-size:11px;color:var(--muted)}
+.brand b{font-weight:600;letter-spacing:.08em;color:var(--accent-t);margin-left:6px}
+.eyebrow{margin-top:26px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-t)}
+.ava{margin-top:22px;width:132px;height:132px;border-radius:50%;overflow:hidden;background:var(--soft);display:grid;place-items:center;font-weight:600;font-size:40px;position:relative;box-shadow:0 0 0 6px #fff,0 0 0 7px var(--line)}
+.ava img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+h1{margin-top:22px;font-size:30px;line-height:1.1;font-weight:800;letter-spacing:-.015em;text-wrap:balance;max-width:16ch}
+.t{margin-top:6px;font-size:15px;color:var(--muted)}
+.t span{display:inline-block;margin-left:6px;padding:1px 8px;border-radius:999px;background:var(--tint);color:var(--accent-t);font-size:12px;font-weight:600}
+.lvl{margin-top:18px;font-size:16px;color:var(--muted)}
+.pct{font-family:"IBM Plex Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums;font-weight:500;font-size:92px;line-height:1;letter-spacing:-.04em;color:var(--ink);margin-top:4px}
+.pct small{font-size:.5em;color:var(--accent)}
+.band{background:var(--accent);color:#fff;padding:18px 28px 22px;text-align:center;margin:16px -16px 0}
+.band p{font-size:14px;font-weight:600}
+.band .url{font-family:"IBM Plex Mono",ui-monospace,monospace;font-weight:500;font-size:12px;margin-top:4px;opacity:.95}
+"""
+
+
+def certificados(d, slug):
+    mes, anio, eq = d["mes"], d["anio"], d["equipo"]
+    dest = RAIZ / "logros" / slug / "certificados"
+    dest.mkdir(parents=True, exist_ok=True)
+    for k in NIVELES:
+        for p in d["niveles"][k]["personas"]:
+            foto = p.get("foto")
+            img = f'<img src="/fotos/{e(foto)}" alt="">' if foto and (RAIZ / "fotos" / foto).exists() else ""
+            nueva = "<span>nueva</span>" if p.get("nueva") else ""
+            nivel_txt = f"cerraste {e(mes)} {anio} en el nivel" if k != "25" else f"cerraste {e(mes)} {anio} en dirección, con"
+            h = f"""<!doctype html>
+<html lang="es-MX"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Certificado de {e(mes)} {anio} · {e(p['nombre'])}</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=IBM+Plex+Mono:wght@500&display=swap" rel="stylesheet">
+<style>{CERT_CSS}</style></head>
+<body><div class="c">
+<div class="in">
+  <p class="brand">MI EQUIPO<b>Farmasi</b></p>
+  <p class="eyebrow">Logros de {e(mes)} {anio}</p>
+  <div class="ava" aria-hidden="true">{e(p['iniciales'])}{img}</div>
+  <h1>{e(p['nombre'])}</h1>
+  <p class="t">{e(p['titulo'])}{nueva}</p>
+  <p class="lvl">{nivel_txt}</p>
+  <p class="pct">{k}<small>%</small></p>
+</div>
+<div class="band"><p>Gracias por tu trabajo de este mes · Equipo de {e(eq)}</p><p class="url">mitienda.beauty/logros/{slug}</p></div>
+</div></body></html>
+"""
+            (dest / f"{pslug(p['nombre'])}.html").write_text(h, encoding="utf-8")
 
 
 def orden(slug):
