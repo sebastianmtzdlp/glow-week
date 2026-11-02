@@ -263,12 +263,15 @@ body.llamada .salir{display:flex}
   }
   var de = q.get("de"), n = q.get("n"), wa = q.get("wa");
   if(!de && n && /^\d{10,13}$/.test(wa || "")){ pintaQuien({nombre:n, whatsapp: wa.length === 10 ? "52" + wa : wa}); }
-  else if(!de){ $("quiero").href = H.wa("Hola, vi la presentación del negocio del equipo y quiero saber más."); }
+  // Sin socia en el link, «Quiero saber más» le escribe a Sel.
+  var SEL = {nombre:"Selene", whatsapp:"525541456984"};
+  function aSel(){ $("quiero").href = H.wa("Hola " + SEL.nombre + ", vi la presentación del negocio del equipo y quiero saber más. ¿Cuándo podemos platicar 15 minutos?", SEL.whatsapp); }
+  if(!de && !(n && /^\d{10,13}$/.test(wa || ""))) aSel();
 
   H.equipo().then(function(eq){
     EQ = eq;
     $("yo").innerHTML = '<option value="">Elige tu nombre</option>' + eq.map(function(c){ return '<option value="'+c.slug+'">'+H.esc(c.nombre)+'</option>'; }).join("") + '<option value="otra">No estoy en la lista</option>';
-    if(de){ var p = eq.filter(function(c){ return c.slug === de; })[0]; if(p) pintaQuien(p); else $("quiero").href = H.wa("Hola, vi la presentación del negocio y quiero saber más."); }
+    if(de){ var p = eq.filter(function(c){ return c.slug === de; })[0]; if(p) pintaQuien(p); else aSel(); }
     if(st.yo){ $("yo").value = st.yo; }
     if(st.oNombre) $("oNombre").value = st.oNombre; if(st.oWa) $("oWa").value = st.oWa;
     link();
