@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-11-02",
- "hora": "16:02",
+ "hora": "16:40",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1039,
+  "visitas": 1043,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -83,7 +83,7 @@
   },
   {
    "d": "2026-11-02",
-   "v": 14
+   "v": 18
   }
  ],
  "consultoras": [
@@ -553,7 +553,11 @@
   "herramientas": {
    "hub": 0,
    "dupes": 11,
-   "ritmo": 90
+   "ritmo": 90,
+   "paginas": {
+    "pro": 1,
+    "que-quiere": 1
+   }
   },
   "mentorias": {
    "visitas": 12,
@@ -604,5 +608,8 @@
     "n": 1
    }
   ]
+ },
+ "herramientas": {
+  "presentacion": {}
  }
 }
