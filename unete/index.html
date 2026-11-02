@@ -1,0 +1,383 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Lo que pagas de más · Mi Tienda Beauty</title>
+<meta name="description" content="Haz la cuenta con lo que ya gastas en belleza: cuánto pagas de más cada mes por no ser socia Farmasi, y qué más incluye entrar.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Lo que pagas de más por no ser socia">
+<meta property="og:description" content="Pon lo que gastas al mes en belleza y ve cuánto se te va. Sin promesas, con tus números.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/unete/">
+<meta property="og:image" content="https://mitienda.beauty/og/unete.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mitienda.beauty/og/unete.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;
+  --accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;--good:#1B8A5A;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--accent-t)}
+.wrap{max-width:600px;margin:0 auto;padding:0 16px 120px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0 0;font-size:14px;color:var(--muted)}
+.top img{width:22px;height:22px;vertical-align:-6px;margin-right:6px}
+.brand{font-weight:300;letter-spacing:.18em;font-size:12px}
+
+/* Portada */
+.hero{padding:34px 0 0}
+h1{font-size:clamp(36px,10vw,56px);line-height:1;font-weight:800;letter-spacing:-.025em}
+h1 em{font-style:normal;color:var(--accent);position:relative;white-space:nowrap}
+h1 em::after{content:"";position:absolute;left:0;right:0;bottom:.02em;height:.08em;background:var(--accent);border-radius:9px;transform-origin:left;animation:tache 520ms var(--ease) 300ms both}
+.lead{font-size:18px;color:var(--muted);margin-top:14px;max-width:34ch}
+@keyframes tache{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+
+/* La cuenta */
+.calc{margin-top:28px;border-top:1.5px solid var(--ink);padding-top:18px}
+.q{font-weight:600;font-size:17px}
+.spend{display:flex;align-items:baseline;gap:8px;margin-top:6px}
+.spend output{font-family:var(--mono);font-weight:700;font-size:34px;letter-spacing:-.02em}
+.spend span{color:var(--muted);font-size:15px}
+input[type=range]{width:100%;margin:12px 0 4px;accent-color:var(--ink);height:32px}
+.ticks{display:flex;justify-content:space-between;font-family:var(--mono);font-size:12px;color:var(--muted)}
+.mix{display:flex;gap:4px;background:var(--soft);padding:4px;border-radius:999px;margin-top:16px}
+.mix button{flex:1;border:0;background:transparent;font:600 14px/1.2 Outfit,sans-serif;color:var(--ink);padding:10px 4px;border-radius:999px;cursor:pointer;transition:transform 140ms var(--ease)}
+.mix button[aria-checked=true]{background:#fff;color:var(--accent-t)}
+.mix button:active{transform:scale(.97)}
+.mixnote{font-size:13px;color:var(--muted);margin-top:8px}
+
+.res{margin-top:26px}
+.res .lbl{font-size:15px;color:var(--muted)}
+.big{font-family:var(--mono);font-weight:700;font-size:clamp(54px,17vw,84px);line-height:.95;letter-spacing:-.04em;color:var(--accent);font-variant-numeric:tabular-nums}
+.big small{font-size:.32em;letter-spacing:0;color:var(--muted);font-weight:400}
+.res p{margin-top:10px;max-width:40ch}
+
+/* El año en etiquetas */
+.year{margin-top:24px}
+.year h2{font-size:17px;font-weight:700}
+.year .sum{font-size:15px;color:var(--muted);margin-top:2px}
+.tags{display:grid;grid-template-columns:repeat(6,1fr);gap:10px 6px;margin-top:14px;padding:0;list-style:none}
+.tag{position:relative;height:66px;padding:13px 4px 6px;text-align:center;border:1.5px solid var(--line);color:var(--muted);
+  clip-path:polygon(22% 0,100% 0,100% 100%,0 100%,0 22%);border-radius:0 8px 8px 8px;background:#fff}
+.tag::before{content:"";position:absolute;top:6px;left:6px;width:5px;height:5px;border-radius:50%;background:currentColor;opacity:.5}
+.tag b{display:block;font-size:12px;font-weight:600}
+.tag i{display:block;font-style:normal;font-family:var(--mono);font-size:11.5px;margin-top:4px;font-variant-numeric:tabular-nums}
+.tag.past{background:var(--ink);border-color:var(--ink);color:#fff}
+.tag.now{background:var(--accent);border-color:var(--accent);color:#fff}
+.tags.go .tag{animation:drop 260ms var(--ease) both;animation-delay:calc(var(--n) * 40ms)}
+@keyframes drop{from{opacity:0;transform:translateY(-6px) rotate(-4deg)}to{opacity:1;transform:none}}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:13px;color:var(--muted);margin-top:12px}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:6px;vertical-align:-1px;background:var(--ink)}
+.legend span:nth-child(2)::before{background:var(--accent)}
+.legend span:nth-child(3)::before{background:#fff;border:1.5px solid var(--line)}
+
+.payback{margin-top:22px;padding:14px 16px;background:var(--soft);border-radius:14px;font-size:16px}
+.payback b{font-weight:700}
+.fine{font-size:13px;color:var(--muted);margin-top:10px}
+
+/* Capítulos */
+.ch{margin-top:64px;scroll-margin-top:16px}
+.ch h2{font-size:clamp(27px,7.5vw,34px);line-height:1.08;font-weight:800;letter-spacing:-.015em}
+.ch>p{margin-top:12px;color:var(--muted);max-width:40ch}
+
+.have{list-style:none;padding:0;margin-top:22px;border-top:1px solid var(--line)}
+.have li{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.have svg{width:24px;height:24px;stroke:var(--accent-t);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;margin-top:2px}
+.have b{display:block;font-size:17px;font-weight:700;line-height:1.3}
+.have p{color:var(--muted);font-size:15px;margin-top:4px}
+.have a{font-weight:600}
+.cmp{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:14px}
+.cmp div{border-radius:12px;padding:10px 12px;background:var(--soft)}
+.cmp div+div{background:var(--tint)}
+.cmp small{display:block;color:var(--muted);font-size:12px}
+.cmp .num{font-size:17px;font-weight:700}
+
+.ladder{margin-top:20px;border-top:1.5px solid var(--ink)}
+.rung{display:grid;grid-template-columns:54px 1fr 66px;align-items:center;gap:12px;padding:8px 0;border-bottom:1px solid var(--line)}
+.rung .pct{font-family:var(--mono);font-weight:700;font-size:17px}
+.rung .bar{height:7px;background:var(--soft);border-radius:999px;overflow:hidden}
+.rung .bar i{display:block;height:100%;width:var(--w);background:var(--ink);border-radius:999px}
+.rung .pts{font-family:var(--mono);font-size:14px;text-align:right;color:var(--muted)}
+.rules{margin-top:18px;display:grid;gap:8px}
+.rules div{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid var(--line);font-size:15px}
+.rules .num{font-weight:700;white-space:nowrap}
+.honest{margin-top:18px;padding:14px 16px;border:1.5px solid var(--ink);border-radius:14px;font-size:15px}
+
+details.f{border-bottom:1px solid var(--line)}
+details.f:first-of-type{border-top:1px solid var(--line);margin-top:20px}
+details.f summary{list-style:none;cursor:pointer;padding:15px 30px 15px 0;font-weight:600;font-size:16px;position:relative}
+details.f summary::-webkit-details-marker{display:none}
+details.f summary::after{content:"";position:absolute;right:6px;top:50%;width:8px;height:8px;border-right:1.75px solid var(--accent-t);border-bottom:1.75px solid var(--accent-t);transform:translateY(-70%) rotate(45deg);transition:transform 200ms var(--ease)}
+details.f[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+details.f p{padding:0 0 16px;color:var(--muted);font-size:15px}
+
+.end{margin-top:64px;padding:24px 18px;border-radius:18px;background:var(--ink);color:#fff}
+.end h2{font-size:28px;line-height:1.1;font-weight:800}
+.end p{color:#C9CBE0;margin-top:10px}
+.end .who{display:flex;align-items:center;gap:12px;margin-top:18px}
+.end .who img,.end .who .ini{width:48px;height:48px;border-radius:50%;object-fit:cover;background:#3A3F66;display:grid;place-items:center;font-weight:700;flex:none}
+.end .who small{display:block;color:#C9CBE0;font-size:13px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:14px;padding:15px;margin-top:18px;font:700 16px/1.2 Outfit,sans-serif;text-decoration:none;cursor:pointer;background:var(--accent);color:#fff;transition:transform 160ms var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.end .alt{display:block;text-align:center;margin-top:12px;color:#fff;font-size:14px}
+
+/* Barra fija en celular */
+.bar-fixed{position:fixed;left:0;right:0;bottom:0;z-index:5;background:#fff;border-top:1px solid var(--line);padding:10px 16px calc(10px + env(safe-area-inset-bottom));display:flex;align-items:center;gap:12px;
+  transform:translateY(110%);transition:transform 240ms var(--ease)}
+.bar-fixed.on{transform:none}
+.bar-fixed .t{flex:1;min-width:0;font-size:13px;color:var(--muted);line-height:1.25}
+.bar-fixed .t b{display:block;font-family:var(--mono);font-size:18px;color:var(--ink)}.bar-fixed .t small{font:500 13px Outfit,sans-serif;color:var(--muted)}
+.bar-fixed .btn{width:auto;margin:0;padding:12px 18px;font-size:15px}
+@media(min-width:900px){.bar-fixed{max-width:600px;margin:0 auto 16px;border:1px solid var(--line);border-radius:18px}}
+a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:2.5px solid var(--accent-t);outline-offset:2px;border-radius:6px}
+@media(hover:hover) and (pointer:fine){.mix button:hover{color:var(--accent-t)}.btn:hover{background:var(--accent-t)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><span><img src="/favicon.svg?v=3" alt="">Mi Tienda Beauty</span><span class="brand">MI EQUIPO</span></div>
+
+  <header class="hero">
+    <h1>Lo que pagas <em>de más</em> por no ser socia</h1>
+    <p class="lead">Haz la cuenta con lo que tú ya gastas en belleza. Sin promesas, con tus números.</p>
+  </header>
+
+  <section class="calc" aria-labelledby="qGasto">
+    <p class="q" id="qGasto">¿Cuánto gastas al mes en maquillaje y cuidado de la piel?</p>
+    <div class="spend"><output id="oGasto" class="num" for="gasto">$800</output><span>al mes, a precio normal</span></div>
+    <input type="range" id="gasto" min="200" max="5000" step="50" value="800" aria-labelledby="qGasto" aria-describedby="oGasto">
+    <div class="ticks" aria-hidden="true"><span>$200</span><span>$5,000</span></div>
+
+    <div class="mix" role="radiogroup" aria-label="¿Qué compras más?">
+      <button type="button" role="radio" aria-checked="false" data-s="0.75">Más skincare</button>
+      <button type="button" role="radio" aria-checked="true" data-s="0.5">De todo</button>
+      <button type="button" role="radio" aria-checked="false" data-s="0.25">Más maquillaje</button>
+    </div>
+    <p class="mixnote" id="mixNote">Como socia: 50% menos en skincare Dr. C. Tuna y 30% en maquillaje.</p>
+
+    <div class="res" aria-live="polite">
+      <p class="lbl">Pagas de más cada mes</p>
+      <div class="big" id="oMes">$320</div>
+      <p id="oFrase">Es lo que te quedaría en la bolsa si esas mismas compras las hicieras como socia.</p>
+    </div>
+
+    <div class="year">
+      <h2 id="yearTitle">Tu 2026, mes por mes</h2>
+      <p class="sum" id="oYear">En lo que va del año, unos $3,200 que ya no regresan.</p>
+      <ol class="tags" id="tags" aria-describedby="oYear"></ol>
+      <div class="legend" aria-hidden="true"><span>Ya pasó</span><span>Este mes</span><span>Todavía no</span></div>
+    </div>
+
+    <div class="payback" id="oPay"></div>
+    <p class="fine">Cálculo aproximado: algunos kits y promos tienen otro descuento. El precio de socia se suma a las promos del mes.</p>
+  </section>
+
+  <section class="ch" id="incluye">
+    <h2>Lo que ya tienen las socias del equipo</h2>
+    <p>El descuento es lo primero que se nota. Esto es lo demás que viene con entrar.</p>
+    <ul class="have">
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>
+        <div><b>Precio de socia, también en promos</b>
+          <p>El descuento se suma a lo que ya está rebajado.</p>
+          <div class="cmp"><div><small>Kit en promo</small><span class="num">$1,032.50</span></div><div><small>Como socia</small><span class="num">$516.25</span></div></div>
+        </div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7h11v9H3zM14 10h4l3 3v3h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></svg>
+        <div><b>Envío gratis y regalo con menos</b>
+          <p>A clientas se les pide $3,000 de producto. A socias, $2,000 a precio de socia.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-1.5-3-5-3.5-5-1s3 1 5 1c2 0 5 1.5 5-1s-3.5-2-5 1"/></svg>
+        <div><b>Un regalo en cada uno de tus primeros 4 meses</b>
+          <p>El programa de bienvenida te da un producto de regalo si llegas a 50, 60, 70 y 80 puntos tuyos. Es solo para socias nuevas.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10l1.5-5h13L20 10M4 10v10h16V10M4 10c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 4 3"/><path d="M10 20v-4h4v4"/></svg>
+        <div><b>Tu propia tienda en mitienda.beauty</b>
+          <p>Con tu nombre: catálogo, pedidos que te llegan por WhatsApp y tu tarjeta para compartir. <a href="/sebas/" id="exTienda">Ve una de ejemplo</a></p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19V5M4 19h16M8 15l3-4 3 2 5-6"/></svg>
+        <div><b>Las herramientas del equipo</b>
+          <p>Ritmo de puntos, calculadora de nivel, mensajes listos para copiar, la hoja del día y el reto de tus primeros 200 puntos. Gratis para el equipo.</p></div>
+      </li>
+      <li>
+        <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.2"/><path d="M3 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 14c2.5 0 4.5 2 4.5 4.5"/></svg>
+        <div><b>Un equipo que ya va adelante</b>
+          <p>Programas para aprender a vender en redes, eventos y llamadas uno a uno con líderes del equipo.</p></div>
+      </li>
+    </ul>
+  </section>
+
+  <section class="ch" id="vender">
+    <h2>Y si un día quieres vender</h2>
+    <p>No tienes que hacerlo. Si te animas, así se mide.</p>
+    <div class="rules">
+      <div><span>Cada punto equivale a</span><span class="num">$25</span></div>
+      <div><span>Para cobrar, puntos tuyos en el mes</span><span class="num">75</span></div>
+      <div><span>Apoyo para auto desde Directora Oro</span><span class="num">$5,250/mes</span></div>
+    </div>
+    <div class="ladder" id="ladder" aria-label="Bono por nivel y puntos de grupo que pide al mes"></div>
+    <p class="fine">Bono por nivel y puntos de grupo al mes (tuyos y de tu equipo), según la tabla de títulos de Farmasi México.</p>
+    <div class="honest">Lo que ganes depende de lo que vendas tú y tu equipo. Aquí no te prometemos una cifra: te enseñamos el plan completo para que hagas tu propia cuenta. <a href="/plan-de-compensacion/">Ver el plan de compensación</a></div>
+  </section>
+
+  <section class="ch" id="dudas">
+    <h2>Sin letra chiquita</h2>
+    <details class="f"><summary>¿Cuánto cuesta entrar?</summary><p>Pagas el kit de inicio de $499, una sola vez. Al entrar también hay kits de inicio con producto a precio muy reducido; te digo cuáles hay este mes.</p></details>
+    <details class="f"><summary>¿Tengo que vender?</summary><p>No. Muchas entran solo por el precio de socia para lo que ya compran. Si después quieres vender, ya tienes todo listo.</p></details>
+    <details class="f"><summary>¿Hay un mínimo de compra?</summary><p>Para que tu cuenta siga abierta, junta al menos 75 puntos en cualquier periodo de 6 meses. Son unos $1,875 a precio de socia en medio año.</p></details>
+    <details class="f"><summary>¿Qué pasa si un mes no compro?</summary><p>Tu cuenta sigue, mientras cumplas los 75 puntos en 6 meses. Si estás en tus primeros 4 meses, ese mes se corta la racha de regalos de bienvenida.</p></details>
+    <details class="f"><summary>¿Cómo me registro?</summary><p>Me escribes por WhatsApp, te mando tu link de registro y te acompaño en tu primer pedido. Tarda unos minutos.</p></details>
+  </section>
+
+  <section class="end" id="final">
+    <h2 id="endTitle">Tu próximo pedido ya puede ser a precio de socia</h2>
+    <p id="endSub">Escríbeme y te ayudo a registrarte. Te mando tu cuenta con los números de esta página.</p>
+    <div class="who"><span class="ini" id="whoIni">S</span><div><b id="whoName">Sebas</b><small id="whoRole">Consultor Farmasi · Mi Tienda Beauty</small></div></div>
+    <a class="btn" id="cta" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.1-4.5A9 9 0 1 1 21 12z"/></svg>
+      Quiero entrar</a>
+    <a class="alt" id="ctaQ" href="#" target="_blank" rel="noopener">Primero tengo una pregunta</a>
+  </section>
+</div>
+
+<div class="bar-fixed" id="barFixed" aria-hidden="true">
+  <div class="t"><b><span id="barNum">$320</span> <small>al mes</small></b>es lo que pagas de más</div>
+  <a class="btn" id="barCta" href="#final" tabindex="-1">Quiero entrar</a>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const MESES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
+  const COSTO = 499, SKIN = 50, MAQ = 30;
+  const fmt = n => "$" + Math.round(n).toLocaleString("es-MX");
+  const cuenta = (path, title) => { try{ window.goatcounter.count({path:"unete/"+path, title, event:true}); }catch(_){} };
+
+  // Quién comparte: ?de=<slug> usa el nombre y WhatsApp de _data/equipo.json; si no, Sebas.
+  let quien = {slug:"sebas", nombre:"Sebas", whatsapp:"525543506136", genero:"m"};
+  let skin = 0.5;
+  try{ const g = +localStorage.getItem("mtb-unete-gasto"); if (g >= 200 && g <= 5000) $("gasto").value = g; }catch(_){}
+
+  const hoy = new Date(), mesHoy = hoy.getMonth(), anio = hoy.getFullYear();
+  $("yearTitle").textContent = `Tu ${anio}, mes por mes`;
+
+  function calc(){
+    const g = +$("gasto").value;
+    const d = (skin * SKIN + (1 - skin) * MAQ) / 100;
+    const mes = g * d, socia = g - mes;
+    return {g, d, mes, socia, pasado: mes * mesHoy, anual: mes * 12 - COSTO};
+  }
+
+  function pintaTags(c, animar){
+    const ol = $("tags");
+    ol.innerHTML = MESES.map((m, i) => {
+      const cls = i < mesHoy ? "past" : i === mesHoy ? "now" : "";
+      const est = i < mesHoy ? "ya pasó" : i === mesHoy ? "este mes" : "todavía no";
+      return `<li class="tag ${cls}" style="--n:${i}" aria-label="${m}, ${est}: ${fmt(c.mes)}"><b>${m}</b><i>−${fmt(c.mes)}</i></li>`;
+    }).join("");
+    if (animar){ ol.classList.remove("go"); void ol.offsetWidth; ol.classList.add("go"); }
+  }
+
+  function pinta(animar){
+    const c = calc();
+    $("oGasto").textContent = fmt(c.g);
+    $("oMes").innerHTML = `${fmt(c.mes)}<small> /mes</small>`;
+    $("oFrase").textContent = `Esas mismas compras como socia te saldrían en unos ${fmt(c.socia)} en vez de ${fmt(c.g)}.`;
+    $("oYear").textContent = mesHoy === 0
+      ? `El año apenas empieza: si entras ahora, son unos ${fmt(c.mes * 12)} en 12 meses.`
+      : `En lo que va del año, unos ${fmt(c.pasado)} que ya no regresan. Lo que queda todavía se puede.`;
+    pintaTags(c, animar);
+    const pedidos = Math.ceil(COSTO / c.mes);
+    let pay = pedidos <= 1
+      ? `Los <b>$499</b> de inscripción los recuperas en tu primer pedido.`
+      : `Los <b>$499</b> de inscripción los recuperas en ${pedidos} meses comprando así.`;
+    pay += ` En un año, te quedan unos <b>${fmt(c.anual)}</b> ya con la inscripción.`;
+    if (c.socia >= 2000 && c.g < 3000) pay += ` Y ya te tocaría envío gratis y regalo, que como clienta no alcanzas.`;
+    $("oPay").innerHTML = pay;
+    $("barNum").textContent = fmt(c.mes);
+    links(c);
+  }
+
+  function links(c){
+    c = c || calc();
+    const msg = `Hola ${quien.nombre}, vi la página de mitienda.beauty/unete. Gasto como ${fmt(c.g)} al mes en belleza y me salió que como socia pagaría unos ${fmt(c.mes)} menos al mes. ¿Me ayudas a registrarme?`;
+    $("cta").href = `https://wa.me/${quien.whatsapp}?text=${encodeURIComponent(msg)}`;
+    $("ctaQ").href = `https://wa.me/${quien.whatsapp}?text=${encodeURIComponent(`Hola ${quien.nombre}, vi la página de mitienda.beauty/unete y tengo una pregunta sobre ser socia.`)}`;
+  }
+
+  // Escalera de niveles (México, confirmada)
+  const NIV = [[3,200],[6,400],[9,600],[12,900],[15,1400],[18,2200],[22,3600],[25,5000]];
+  $("ladder").innerHTML = NIV.map(([p, pts]) =>
+    `<div class="rung"><span class="pct">${p}%</span><span class="bar"><i style="--w:${(pts/5000*100).toFixed(1)}%"></i></span><span class="pts">${pts.toLocaleString("es-MX")}</span></div>`).join("");
+
+  // Controles
+  let t;
+  $("gasto").addEventListener("input", () => { pinta(false); clearTimeout(t); t = setTimeout(() => { try{ localStorage.setItem("mtb-unete-gasto", $("gasto").value); }catch(_){} }, 300); });
+  $("gasto").addEventListener("change", () => cuenta("gasto", $("gasto").value));
+  document.querySelectorAll(".mix button").forEach(b => b.addEventListener("click", () => {
+    document.querySelectorAll(".mix button").forEach(x => x.setAttribute("aria-checked", x === b ? "true" : "false"));
+    skin = +b.dataset.s; pinta(false);
+  }));
+  $("cta").addEventListener("click", () => cuenta("whatsapp/" + quien.slug, "Quiero entrar"));
+  $("ctaQ").addEventListener("click", () => cuenta("pregunta/" + quien.slug, "Tengo una pregunta"));
+  $("barCta").addEventListener("click", () => cuenta("barra", "Barra fija"));
+
+  // Barra fija: aparece después de la cuenta y se esconde al llegar al final
+  const bar = $("barFixed"); let pasoCuenta = false, finVisible = false;
+  const upd = () => { const on = pasoCuenta && !finVisible; bar.classList.toggle("on", on); bar.setAttribute("aria-hidden", on ? "false" : "true"); $("barCta").tabIndex = on ? 0 : -1; };
+  if ("IntersectionObserver" in window){
+    new IntersectionObserver(e => { pasoCuenta = !e[0].isIntersecting && e[0].boundingClientRect.top < 0; upd(); }).observe($("oPay"));
+    new IntersectionObserver(e => { finVisible = e[0].isIntersecting; upd(); }).observe($("final"));
+    // Las etiquetas caen una vez, cuando se ven
+    const io = new IntersectionObserver(e => { if (e[0].isIntersecting){ $("tags").classList.add("go"); io.disconnect(); } }, {threshold:.4});
+    io.observe($("tags"));
+  } else $("tags").classList.add("go");
+
+  pinta(false);
+  $("tags").classList.remove("go");
+
+  // Consultora que comparte
+  const slug = new URLSearchParams(location.search).get("de");
+  if (slug && /^[a-z0-9-]+$/.test(slug)){
+    fetch("/_data/equipo.json").then(r => r.json()).then(eq => {
+      const p = (eq.consultoras || []).find(x => x.slug === slug);
+      if (!p || !p.whatsapp) return;
+      quien = p;
+      $("whoName").textContent = p.tienda || p.nombre;
+      $("whoRole").textContent = (p.genero === "m" ? "Consultor" : "Consultora") + " Farmasi · Mi Tienda Beauty";
+      $("whoIni").textContent = p.nombre.charAt(0);
+      $("exTienda").href = `/${p.slug}/`;
+      $("exTienda").textContent = `Ve la de ${p.nombre}`;
+      const img = new Image(); img.alt = ""; img.onload = () => $("whoIni").replaceWith(img); img.src = `/fotos/${p.slug}.jpg`;
+      links();
+    }).catch(() => {});
+  } else {
+    const img = new Image(); img.alt = ""; img.onload = () => $("whoIni").replaceWith(img); img.src = "/fotos/sebas.jpg";
+  }
+})();
+</script>
+</body>
+</html>

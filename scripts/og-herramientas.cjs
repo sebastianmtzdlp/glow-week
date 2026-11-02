@@ -29,11 +29,16 @@ const OG = {
     lista("Para empezar", [["Kit de inicio", "$499"], ["Puntos al mes", "75"], ["Cada punto", "$25"], ["Bienvenida", "50·60·70·80"]])],
   "h-pro": ["Herramientas <em>Pro</em>", "Los planes completos, semana por semana: de 3% a Directora Oro.",
     lista("Los planes", [["Plan anual de 52 semanas", "$349"], ["Planes por nivel", "$249"], ["Tu ritmo y 32 enfoques", "$199"], ["Todo Pro", "$699", "a"]]), "navy"],
+  // /unete/ (página para quien todavía no es socia)
+  "unete": ["Lo que pagas <em>de más</em>", "Pon lo que gastas al mes en belleza y ve cuánto se te va por no ser socia.",
+    lista("Si gastas $800 al mes", [["Como clienta", "$800"], ["Como socia", "$480"], ["Pagas de más", "$320", "a"], ["Inscripción", "$499 una vez"]])],
 };
+const SOLO = process.argv.slice(2); // node scripts/og-herramientas.cjs unete  → solo esa
 (async () => {
-  const b = await chromium.launch();
+  const b = await chromium.launch(process.env.HTTPS_PROXY ? {proxy:{server:process.env.HTTPS_PROXY},args:["--ignore-certificate-errors"]} : {});
   const p = await b.newPage({ viewport: { width: 1200, height: 630 } });
   for (const [n, [h, sub, der, cls]] of Object.entries(OG)) {
+    if (SOLO.length && !SOLO.includes(n)) continue;
     await p.setContent(`<!doctype html><html><head><meta charset="utf-8">${FUENTES}<style>${CSS}</style></head><body class="${cls || ""}"><div><div class="m">EQUIPO SVH</div><h1>${h}</h1><p>${sub}</p></div>${der}</body></html>`, { waitUntil: "networkidle" });
     await p.waitForTimeout(300);
     await p.screenshot({ path: path.join(RAIZ, "og", n + ".png") });
