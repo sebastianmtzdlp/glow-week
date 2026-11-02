@@ -17,7 +17,7 @@ Uso:
 import json, pathlib, re, sys
 import markdown
 
-PRODUCTOS = ["plan-anual", "planes-nivel", "plan-compromiso", "plan-mentora", "plan-equipo"]
+PRODUCTOS = ["plan-anual", "planes-nivel", "plan-compromiso", "plan-mentora", "plan-equipo", "objeciones", "contenido", "capacitaciones"]
 CORTE = re.compile(r"^(# Parte .*|## .*|### Bloque .*)$", re.M)
 
 def capitulos(md):

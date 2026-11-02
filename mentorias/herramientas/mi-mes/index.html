@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-mi-mes">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mi mes</title>
+<meta name="description" content="El cierre de tu mes en una hoja: tus números de la hoja del día, tu nivel, si cumpliste tu reto, qué aprendiste y qué mejoras. Lo mandas a tu líder o lo imprimes. Gratis, todo en tu celular.">
+<meta property="og:title" content="Mi mes">
+<meta property="og:description" content="El cierre del mes en una hoja: números, reto, aprendizaje y mejora.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/mi-mes/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-mi-mes.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.cierre{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px}
+.cierre h2{color:#fff;font-size:clamp(28px,7vw,40px)}
+.cierre h2 em{color:var(--pink)}
+.cierre .sub{margin:6px 0 0;color:#C9CBE0;font-size:15px}
+.nums{display:grid;grid-template-columns:1fr 1fr;margin-top:16px;border-top:1px solid rgba(255,255,255,.16)}
+.nums div{padding:14px 8px 4px 0}
+.nums div:nth-child(even){padding-left:14px;border-left:1px solid rgba(255,255,255,.16)}
+.nums b{display:block;font:500 30px/1 var(--mono)}
+.nums span{display:block;font-size:13px;color:#C9CBE0;margin-top:4px;line-height:1.3}
+.nums small{display:block;font:400 12px/1.3 var(--mono);color:var(--pink);margin-top:3px}
+.campo{display:grid;gap:6px;margin-top:18px}
+.campo .seg{grid-auto-flow:row;grid-template-columns:repeat(3,1fr)}
+.fuente{font:400 13px/1.4 var(--mono);color:var(--muted);margin:10px 0 0}
+.tasas{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:14px}
+.tasas div{padding:12px 10px 12px 0}
+.tasas div+div{padding-left:12px;border-left:1px solid var(--line)}
+.tasas b{display:block;font:500 24px/1 var(--mono)}
+.tasas span{display:block;font-size:12px;color:var(--muted);margin-top:4px;line-height:1.3}
+.hist{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.hist li{display:grid;grid-template-columns:70px repeat(3,1fr);gap:8px;padding:10px 0;border-bottom:1px solid var(--line);font-size:14px;align-items:center}
+.hist li b{font:500 14px/1 var(--mono)}
+.hist li span{font:400 14px/1.2 var(--mono)}
+.hist li.cab2{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;border-top:0}
+.acc{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:18px}
+.nube{font:400 13px/1.4 var(--mono);color:var(--good)}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .dos{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+}
+@media print{.barra,.sigue,footer,.pro-caja,.acc,#pro,#proCont{display:none!important}.cierre{background:#fff;color:var(--ink);border:1px solid var(--ink)}.cierre h2,.cierre h2 em,.nums span,.nums small,.cierre .sub{color:var(--ink)}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Mi <em>mes</em></h1>
+      <p class="bajada">El cierre del mes en una hoja. Junto lo que ya llenaste en la hoja del día, tu nivel y tu lista, y tú me dices si cumpliste, qué aprendiste y qué mejoras.</p>
+      <label class="etq" for="mes" style="margin-top:18px">Mes</label>
+      <input type="month" id="mes" style="max-width:220px">
+    </div>
+    <section class="cierre" aria-label="Tus números del mes">
+      <h2>Tus números <em>del mes</em></h2>
+      <p class="sub" id="sub">Se arman con tu hoja del día.</p>
+      <div class="nums">
+        <div><b id="nCon">0</b><span>personas contactadas</span><small id="dCon"></small></div>
+        <div><b id="nPres">0</b><span>presentaciones</span><small id="dPres"></small></div>
+        <div><b id="nSoc">0</b><span>socias arrancadas</span><small id="dSoc"></small></div>
+        <div><b id="nVen">0</b><span>ventas o puntos</span><small id="dVen"></small></div>
+      </div>
+      <p class="fuente" id="fuente"></p>
+    </section>
+  </header>
+
+  <div class="dos">
+    <section aria-labelledby="cTit">
+      <div class="cab"><h2 id="cTit">Tu cierre</h2><p>Tres líneas, no un ensayo.</p></div>
+      <div class="campo">
+        <span class="etq" style="margin:0">¿Cumpliste tu reto del mes?</span>
+        <div class="seg" id="reto" role="group" aria-label="Reto del mes"><button type="button" data-v="si" aria-pressed="false">Sí</button><button type="button" data-v="casi" aria-pressed="false">Casi</button><button type="button" data-v="no" aria-pressed="false">Todavía no</button></div>
+      </div>
+      <label class="campo"><span class="etq" style="margin:0">Mi reto era</span><input type="text" id="meta" maxlength="120" placeholder="Llegar a 400 puntos de grupo"></label>
+      <label class="campo"><span class="etq" style="margin:0">Lo que aprendí</span><textarea id="apr" placeholder="Lo que sí funcionó y quiero repetir"></textarea></label>
+      <label class="campo"><span class="etq" style="margin:0">Lo que mejoro el mes que entra</span><textarea id="mej" placeholder="Una sola cosa, concreta"></textarea></label>
+      <label class="campo"><span class="etq" style="margin:0">Lo que celebro</span><textarea id="cel" placeholder="Aunque sea pequeño"></textarea></label>
+      <p class="guardado" id="guardado"></p>
+      <div class="acc">
+        <a class="btn" id="mandar" target="_blank" rel="noopener" data-cuenta="mandar-lider">Mandar a mi líder</a>
+        <button class="btn2" type="button" id="imp">Imprimir</button>
+        <button class="btn2" type="button" id="copia">Copiar texto</button>
+      </div>
+    </section>
+
+    <section aria-labelledby="nTit">
+      <div class="cab"><h2 id="nTit">De dónde sale</h2><p>Lo que guardaste en este celular.</p></div>
+      <ul class="checks" id="de" style="margin-top:8px"></ul>
+      <div class="tasas" id="tasas" hidden></div>
+    </section>
+  </div>
+
+  <section aria-labelledby="pTit">
+    <div class="cab"><h2 id="pTit">Meses, comparación y nube</h2><p>La versión Pro.</p></div>
+    <div id="pro"></div>
+    <p class="nube" id="nube"></p>
+    <div id="proCont" hidden>
+      <ol class="hist" id="hist"></ol>
+      <p class="nota">Cada mes comparado con el anterior. Las tasas son respuestas entre contactos, presentaciones entre contactos y socias entre presentaciones.</p>
+    </div>
+  </section>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/hoja-diaria/" data-cuenta="ir-hoja"><b>La hoja del día</b><span>De aquí salen tus números.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/equipo/" data-cuenta="ir-equipo"><b>Mapa de mi equipo</b><span>Tus líneas y tus laterales del mes.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/nivel/" data-cuenta="ir-nivel"><b>Calculadora de nivel</b><span>Cuánto te falta para el siguiente.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en tu celular. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = "mtb-mes-v1", st = H.lee(KEY, {meses: {}, ts: 0});
+  if(!st.meses) st = {meses: {}, ts: 0};
+  var mesSel = H.iso().slice(0, 7), pro = false, nube = null, tSave = null;
+  $("mes").value = mesSel;
+
+  function prev(m){ var d = new Date(m + "-15T12:00:00"); d.setMonth(d.getMonth() - 1); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0"); }
+  function num(v){ v = parseFloat(String(v == null ? "" : v).replace(/[^0-9.]/g, "")); return isNaN(v) ? 0 : v; }
+  // suma lo de la hoja del día en ese mes
+  function deHoja(m){
+    var h = H.lee("mtb-hoja-v1", {}), r = {con: 0, pres: 0, soc: 0, ven: 0, cont: 0, dias: 0};
+    Object.keys(h).forEach(function(k){
+      if(k.slice(0, 7) !== m) return;
+      var d = h[k], f = d.f || {}, hechos = (d.cont || []).filter(function(c){ return c && c.n; }).length, act = false;
+      var con = f.mContactos !== undefined && f.mContactos !== "" ? num(f.mContactos) : hechos;
+      var pr = num(f.mPres), so = num(f.mSocias), ve = num(f.mVentas), co = num(f.mCont);
+      if(con || pr || so || ve || co) act = true;
+      r.con += con; r.pres += pr; r.soc += so; r.ven += ve; r.cont += co; if(act) r.dias++;
+    });
+    return r;
+  }
+  function mesDe(m){ if(!st.meses[m]) st.meses[m] = {reto: "", meta: "", apr: "", mej: "", cel: ""}; return st.meses[m]; }
+  function tasa(a, b){ return b ? Math.round(a / b * 100) + "%" : "—"; }
+  function delta(a, b){ if(b == null) return ""; var d = a - b; return (d >= 0 ? "+" : "") + H.fmt(d) + " vs mes pasado"; }
+
+  function texto(){
+    var h = deHoja(mesSel), m = mesDe(mesSel), nom = H.fecha(mesSel + "-15", {month: "long", year: "numeric"});
+    var reto = {si: "Sí", casi: "Casi", no: "Todavía no"}[m.reto] || "—";
+    var nv = H.lee("mtb-nivel-v1", null);
+    return "Mi mes (" + nom + ")\n" +
+      "Contactadas: " + H.fmt(h.con) + "\nPresentaciones: " + H.fmt(h.pres) + "\nSocias arrancadas: " + H.fmt(h.soc) + "\nVentas o puntos: " + H.fmt(h.ven) + "\n" +
+      (nv && nv.g ? "Puntos de grupo: " + H.fmt(num(nv.g)) + "\n" : "") +
+      "\nMi reto: " + (m.meta || "—") + " · ¿Cumplí? " + reto +
+      (m.apr ? "\nAprendí: " + m.apr : "") + (m.mej ? "\nMejoro: " + m.mej : "") + (m.cel ? "\nCelebro: " + m.cel : "");
+  }
+
+  function pinta(){
+    var h = deHoja(mesSel), a = H.lee("mtb-hoja-v1", {}), hp = deHoja(prev(mesSel)), tienePrev = hp.dias > 0, m = mesDe(mesSel);
+    $("nCon").textContent = H.fmt(h.con); $("nPres").textContent = H.fmt(h.pres); $("nSoc").textContent = H.fmt(h.soc); $("nVen").textContent = H.fmt(h.ven);
+    $("dCon").textContent = tienePrev ? delta(h.con, hp.con) : ""; $("dPres").textContent = tienePrev ? delta(h.pres, hp.pres) : "";
+    $("dSoc").textContent = tienePrev ? delta(h.soc, hp.soc) : ""; $("dVen").textContent = tienePrev ? delta(h.ven, hp.ven) : "";
+    $("sub").textContent = h.dias ? "Con " + h.dias + (h.dias === 1 ? " día" : " días") + " llenados en tu hoja." : "Aún no hay días llenados este mes en la hoja del día.";
+    $("fuente").textContent = h.dias ? "" : "Sin hoja del día, puedes escribir tu cierre abajo igual.";
+    $("meta").value = m.meta || ""; $("apr").value = m.apr || ""; $("mej").value = m.mej || ""; $("cel").value = m.cel || "";
+    $("reto").querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.v === m.reto); });
+    $("mandar").href = H.wa(texto());
+
+    var nv = H.lee("mtb-nivel-v1", null), li = H.lee("mtb-lista-v1", null), eq = H.lee("mtb-equipo-v1", null), hoja = Object.keys(a).filter(function(k){ return k.slice(0, 7) === mesSel; }).length;
+    var el = [
+      [hoja > 0, "La hoja del día", hoja ? hoja + " días con registro" : "Todavía no hay días este mes"],
+      [!!(nv && nv.g), "Calculadora de nivel", nv && nv.g ? H.fmt(num(nv.g)) + " puntos de grupo" : "Sin puntos de grupo guardados"],
+      [!!(li && li.personas && li.personas.length), "Mi lista de 50", li && li.personas ? li.personas.length + " personas en tu lista" : "Aún sin lista"],
+      [!!(eq && eq.meses && eq.meses[mesSel]), "Mapa de mi equipo", eq && eq.meses && eq.meses[mesSel] ? eq.meses[mesSel].lineas.length + " líneas este mes" : "Sin líneas este mes"]
+    ];
+    $("de").innerHTML = el.map(function(x){ return '<li><label style="cursor:default"><input type="checkbox" disabled' + (x[0] ? " checked" : "") + "><span><b>" + x[1] + "</b><small>" + x[2] + "</small></span></label></li>"; }).join("");
+    if(pro){ $("tasas").hidden = false; $("tasas").innerHTML = '<div><b>' + tasa(h.pres, h.con) + '</b><span>presentaciones entre contactos</span></div><div><b>' + tasa(h.soc, h.pres) + '</b><span>socias entre presentaciones</span></div><div><b>' + (h.dias ? H.fmt(h.con / h.dias) : "0") + '</b><span>contactos por día activo</span></div>'; hist(); }
+  }
+  function hist(){
+    var h = H.lee("mtb-hoja-v1", {}), ms = {};
+    Object.keys(h).forEach(function(k){ ms[k.slice(0, 7)] = 1; }); Object.keys(st.meses).forEach(function(k){ ms[k] = 1; });
+    var ks = Object.keys(ms).sort().slice(-6).reverse();
+    $("hist").innerHTML = '<li class="cab2"><span>Mes</span><span>Contactos</span><span>Present.</span><span>Socias</span></li>' + ks.map(function(k){
+      var v = deHoja(k), p = deHoja(prev(k)), fl = function(a, b){ return p.dias ? (a >= b ? " ▲" : " ▼") : ""; };
+      return "<li><b>" + H.fecha(k + "-15", {month: "short", year: "2-digit"}) + "</b><span>" + H.fmt(v.con) + fl(v.con, p.con) + "</span><span>" + H.fmt(v.pres) + fl(v.pres, p.pres) + "</span><span>" + H.fmt(v.soc) + fl(v.soc, p.soc) + "</span></li>";
+    }).join("");
+  }
+  function guarda(){
+    st.ts = Date.now();
+    $("guardado").textContent = H.guarda(KEY, st) ? "Guardado en este teléfono" : "No se pudo guardar en este navegador";
+    $("mandar").href = H.wa(texto());
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+  }
+  [["meta"], ["apr"], ["mej"], ["cel"]].forEach(function(c){ $(c[0]).addEventListener("input", function(e){ mesDe(mesSel)[c[0]] = e.target.value; guarda(); }); });
+  $("reto").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; mesDe(mesSel).reto = b.dataset.v; guarda(); pinta(); });
+  $("mes").addEventListener("change", function(e){ if(e.target.value){ mesSel = e.target.value; pinta(); } });
+  $("imp").addEventListener("click", function(){ window.print(); });
+  $("copia").addEventListener("click", function(){ H.copia(texto(), "Cierre copiado"); });
+  pinta();
+
+  PRO.caja($("pro"), "mi-mes", {titulo: "Tus meses, uno junto a otro", activo: "Seis meses de historia, tasas mes a mes y tu cierre en la nube con tu código."}).then(function(r){
+    if(!r.ok) return; pro = true; nube = PRO.nube("mi-mes"); $("proCont").hidden = false;
+    nube.lee().then(function(d){ if(d && d.meses && (d.ts || 0) > (st.ts || 0)){ st = d; H.guarda(KEY, st); $("nube").textContent = "Cierres traídos de la nube."; } else if(Object.keys(st.meses).length){ nube.guarda(st).catch(function(){}); } pinta(); }).catch(function(){ pinta(); });
+  });
+})();
+</script>
+</body>
+</html>

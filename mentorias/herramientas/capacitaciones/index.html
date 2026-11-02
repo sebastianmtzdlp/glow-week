@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-capacitaciones">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Capacitaciones listas</title>
+<meta name="description" content="Una capacitación de 45 minutos para tu equipo, con guion, dinámica, tarea de la semana y el mensaje para convocar. Gratis la primera; con Pro, las doce del trimestre.">
+<meta property="og:title" content="Capacitaciones listas">
+<meta property="og:description" content="Una capacitación de 45 minutos lista para dar.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/capacitaciones/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-capacitaciones.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.datos{display:grid;gap:12px}
+.datos .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.acc{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:16px}
+.nube{font:400 13px/1.4 var(--mono);color:var(--good)}
+.lim{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.bloque{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px}
+.bloque h2{color:#fff;font-size:clamp(26px,7vw,38px)}
+.bloque h2 em{color:var(--pink)}
+.bloque .sub{margin:6px 0 0;color:#C9CBE0;font-size:15px}
+.bloque pre{white-space:pre-wrap;font:400 15px/1.5 var(--body);margin:14px 0 0;color:#fff}
+.tl{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.tl li{display:grid;grid-template-columns:64px 1fr;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.tl .t{font:500 14px/1.3 var(--mono);color:var(--bronze)}
+.tl b{font-weight:600}
+.tl small{grid-column:2;color:var(--muted);font-size:14px;line-height:1.4}
+.lst{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.lst li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.lst small{color:var(--muted);grid-column:1;font-size:13px}
+.lst .acc2{grid-row:1 / span 2;grid-column:2;display:flex;gap:6px}
+.lst .acc2 button,.lst .acc2 a{min-width:40px;min-height:40px;border-radius:10px;border:1px solid #CFD2E0;background:#fff;cursor:pointer;display:grid;place-items:center;text-decoration:none;font:600 13px/1 var(--body);padding:0 10px}
+.lst .acc2 .on{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+}
+@media print{.barra,.sigue,footer,.pro-caja,.acc,#pro,#proCont{display:none!important}}
+.sesion{border-bottom:1px solid var(--line)}
+.sesion summary{cursor:pointer;list-style:none;padding:14px 0;font:600 18px/1.3 var(--body)}
+.sesion summary::-webkit-details-marker{display:none}
+.sesion .cuerpo{padding:0 0 18px;font-size:16px}
+.sesion .cuerpo h3{font:600 14px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--bronze);margin:18px 0 4px}
+.sesion .cuerpo p,.sesion .cuerpo li{margin:6px 0}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Capacitaciones <em>listas</em></h1>
+      <p class="bajada">Una sesión de 45 minutos para tu equipo con todo resuelto: el guion, la dinámica, la tarea de la semana y el mensaje para convocar. Tú solo la das.</p>
+    </div>
+    <section class="bloque" aria-label="El mensaje para convocar">
+      <h2>Para <em>convocar</em></h2>
+      <p class="sub">Ponle día y hora y mándalo al grupo.</p>
+      <div class="datos" style="margin-top:12px"><div class="fila"><input type="date" id="cDia" aria-label="Día" style="color:var(--ink)"><input type="time" id="cHora" value="20:00" aria-label="Hora" style="color:var(--ink)"></div></div>
+      <pre id="conv"></pre>
+      <div class="acc"><button class="btn" type="button" id="cvCopia">Copiar mensaje</button></div>
+    </section>
+  </header>
+
+  <section aria-labelledby="s1T">
+    <div class="cab"><h2 id="s1T">Sesión 1 · Tu primera semana</h2><p>Gratis. 45 minutos.</p></div>
+    <ol class="tl" id="s1"></ol>
+    <div class="acc"><button class="btn2" type="button" id="s1Copia">Copiar el guion</button><button class="btn2" type="button" id="s1Imp">Imprimir</button></div>
+  </section>
+
+  <section aria-labelledby="pTit" style="margin-top:44px">
+    <div class="cab"><h2 id="pTit">Las doce sesiones</h2><p>La versión Pro.</p></div>
+    <div id="pro"></div>
+    <div id="proCont" hidden><p class="nota" id="pN">Cargando…</p><div id="sesiones"></div></div>
+  </section>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/equipo/" data-cuenta="ir-equipo"><b>Mapa de mi equipo</b><span>Para saber a quién dirigir cada sesión.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/reto/" data-cuenta="ir-reto"><b>Reto en equipo</b><span>La tarea de la semana, con tablero.</span><i aria-hidden="true">→</i></a>
+  </section>
+  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en tu celular. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var S1 = [["0–5", "Bienvenida", "Cada una dice su nombre y una cosa que hizo esta semana por su negocio, aunque sea pequeña."], ["5–15", "Para qué estamos aquí", "Pregunta: ¿qué te gustaría que fuera distinto en tu vida en 6 meses? Anótenlo. Esto es lo que da sentido a lo demás."], ["15–30", "Los tres hábitos de la semana uno", "Escribir a diez personas al día, mostrar el producto en historias y anotar todo en la hoja del día. Practican en parejas el primer mensaje."], ["30–40", "Dinámica: el primer mensaje", "Cada una escribe su mensaje a alguien de su lista y se lo lee a su pareja. La pareja dice qué cambiaría en una frase."], ["40–45", "Tarea y cierre", "Tarea: mandar sus 10 mensajes cada día durante 5 días y reportar en el grupo con un número. Cierren con una palabra cada una."]];
+  $("s1").innerHTML = S1.map(function(t){ return '<li><span class="t">' + t[0] + "</span><b>" + t[1] + "</b><small>" + t[2] + "</small></li>"; }).join("");
+  function conv(){
+    var d = $("cDia").value ? new Date($("cDia").value + "T12:00:00").toLocaleDateString("es-MX", {weekday: "long", day: "numeric", month: "long"}) : "[día]";
+    return "Hola equipo 💗 Esta semana tenemos capacitación: \"Tu primera semana\".\n\n📅 " + d + " a las " + ($("cHora").value || "[hora]") + "\n⏱ 45 minutos\n\nVengan con su lista de contactos abierta y sus ganas. Confirmen con un 👍.";
+  }
+  function pinta(){ $("conv").textContent = conv(); }
+  ["cDia", "cHora"].forEach(function(i){ $(i).addEventListener("input", pinta); });
+  $("cvCopia").addEventListener("click", function(){ H.copia(conv(), "Mensaje copiado"); });
+  $("s1Copia").addEventListener("click", function(){ H.copia("SESIÓN 1 · Tu primera semana\n\n" + S1.map(function(t){ return t[0] + " min · " + t[1] + "\n" + t[2]; }).join("\n\n"), "Guion copiado"); });
+  $("s1Imp").addEventListener("click", function(){ window.print(); });
+  pinta();
+  PRO.caja($("pro"), "capacitaciones", {titulo: "Un trimestre completo", activo: "Las doce sesiones de 45 minutos con guion, dinámica, tarea y mensaje para convocar."}).then(function(r){
+    if(!r.ok) return; $("proCont").hidden = false;
+    PRO.contenido("capacitaciones").then(function(caps){
+      $("pN").textContent = caps.length ? caps.length + " sesiones. Una por semana da un trimestre." : "Estamos terminando de cargar las sesiones. Vuelve en un rato.";
+      $("sesiones").innerHTML = caps.map(function(c){ return '<details class="sesion"><summary>' + H.esc(c.titulo) + '</summary><div class="cuerpo">' + c.html + "</div></details>"; }).join("");
+    }).catch(function(e){ $("pN").textContent = "No pude abrir las sesiones: " + e.message; });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-testimonios">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lo que dicen mis clientas</title>
+<meta name="description" content="Un link para que tus clientas te dejen su testimonio y un mensaje para pedírselo. Con Pro, los recibes y los apruebas aquí.">
+<meta property="og:title" content="Lo que dicen mis clientas">
+<meta property="og:description" content="Pídeles su testimonio con un link y un mensaje.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/testimonios/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-testimonios.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.datos{display:grid;gap:12px}
+.datos .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.acc{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:16px}
+.nube{font:400 13px/1.4 var(--mono);color:var(--good)}
+.lim{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.bloque{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px}
+.bloque h2{color:#fff;font-size:clamp(26px,7vw,38px)}
+.bloque h2 em{color:var(--pink)}
+.bloque .sub{margin:6px 0 0;color:#C9CBE0;font-size:15px}
+.bloque pre{white-space:pre-wrap;font:400 15px/1.5 var(--body);margin:14px 0 0;color:#fff}
+.tl{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.tl li{display:grid;grid-template-columns:64px 1fr;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.tl .t{font:500 14px/1.3 var(--mono);color:var(--bronze)}
+.tl b{font-weight:600}
+.tl small{grid-column:2;color:var(--muted);font-size:14px;line-height:1.4}
+.lst{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.lst li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.lst small{color:var(--muted);grid-column:1;font-size:13px}
+.lst .acc2{grid-row:1 / span 2;grid-column:2;display:flex;gap:6px}
+.lst .acc2 button,.lst .acc2 a{min-width:40px;min-height:40px;border-radius:10px;border:1px solid #CFD2E0;background:#fff;cursor:pointer;display:grid;place-items:center;text-decoration:none;font:600 13px/1 var(--body);padding:0 10px}
+.lst .acc2 .on{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+}
+@media print{.barra,.sigue,footer,.pro-caja,.acc,#pro,#proCont{display:none!important}}
+.sesion{border-bottom:1px solid var(--line)}
+.sesion summary{cursor:pointer;list-style:none;padding:14px 0;font:600 18px/1.3 var(--body)}
+.sesion summary::-webkit-details-marker{display:none}
+.sesion .cuerpo{padding:0 0 18px;font-size:16px}
+.sesion .cuerpo h3{font:600 14px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--bronze);margin:18px 0 4px}
+.sesion .cuerpo p,.sesion .cuerpo li{margin:6px 0}
+.cifras{display:grid;grid-template-columns:1fr 1fr;margin-top:16px;border-top:1px solid rgba(255,255,255,.16)}
+.cifras div{padding:14px 8px 4px 0}.cifras div:nth-child(even){padding-left:14px;border-left:1px solid rgba(255,255,255,.16)}
+.cifras b{display:block;font:500 28px/1 var(--mono)}.cifras span{display:block;font-size:13px;color:#C9CBE0;margin-top:4px;line-height:1.3}
+.alta{display:grid;gap:10px;background:var(--soft);border-radius:20px;padding:16px;margin:0 -16px}
+.alta .tres{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.it{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.it b{font-weight:600}.it small{grid-column:1;color:var(--muted);font-size:13px}.it.bajo small{color:var(--accent-ink)}
+.it .acc2{grid-row:1 / span 2;grid-column:2;display:flex;gap:6px;align-items:center}
+.it .acc2 button{min-width:40px;min-height:40px;border-radius:10px;border:1px solid #CFD2E0;background:#fff;cursor:pointer;font:600 15px/1 var(--body)}
+.it .acc2 .q{font:500 18px/1 var(--mono);min-width:28px;text-align:center}
+.alerta{background:var(--tint);border-radius:14px;padding:12px 14px;margin-top:14px;font-size:15px}
+@media (min-width:900px){.alta{margin:0;padding:22px}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <div id="vCl" hidden>
+    <header class="portada" style="grid-template-columns:1fr;max-width:34em">
+      <div>
+        <h1>Cuéntanos <em>cómo te fue</em></h1>
+        <p class="bajada" id="vClSub">Tu opinión ayuda a otras personas a decidir. Son dos líneas.</p>
+      </div>
+      <form class="datos" id="fCl" autocomplete="off">
+        <label><span class="etq">Tu nombre (como quieres que salga)</span><input type="text" id="tN" maxlength="40" required placeholder="Ana"></label>
+        <label><span class="etq">Qué te pareció</span><textarea id="tT" maxlength="400" required minlength="10" placeholder="Lo que compré, qué me gustó y a quién se lo recomendaría" style="min-height:110px"></textarea></label>
+        <input type="text" id="tW" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <p class="lim">Solo sale con tu nombre de pila, y solo si ella lo aprueba.</p>
+        <button class="btn" type="submit">Enviar</button>
+        <p class="nota" id="tE"></p>
+      </form>
+    </header>
+  </div>
+
+  <div id="vSo">
+  <header class="portada">
+    <div>
+      <h1>Lo que dicen <em>mis clientas</em></h1>
+      <p class="bajada">Un link para que cada clienta contenta te deje su testimonio, y un mensaje para pedírselo sin que se sienta incómoda.</p>
+      <label class="etq" for="yo" style="margin-top:18px">Quién eres</label>
+      <select id="yo" style="max-width:300px"><option value="">Elige tu nombre</option></select>
+    </div>
+    <section class="bloque" aria-label="Tu mensaje">
+      <h2>Para <em>pedirlo</em></h2>
+      <p class="sub">Mándalo cuando te digan que les fue bien.</p>
+      <pre id="msj">Elige tu nombre para armar tu link.</pre>
+      <div class="acc"><button class="btn" type="button" id="mCopia">Copiar mensaje</button></div>
+    </section>
+  </header>
+
+  <section aria-labelledby="pTit">
+    <div class="cab"><h2 id="pTit">Los que te dejaron</h2><p>La versión Pro.</p></div>
+    <div id="pro"></div>
+    <div id="proCont" hidden>
+      <p class="nota" id="pN">Cargando…</p>
+      <ul class="lst" id="tl2"></ul>
+      <p class="nota">Tú decides cuáles se publican. Copia los que quieras para tus historias.</p>
+    </div>
+  </section>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/contenido/" data-cuenta="ir-contenido"><b>Qué publico hoy</b><span>Un testimonio también es contenido.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/lista/" data-cuenta="ir-lista"><b>Mi lista de 50</b><span>Quién ya es clienta y a quién pedírselo.</span><i aria-hidden="true">→</i></a>
+  </section>
+  </div>
+  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en tu celular. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+
+
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var q = new URLSearchParams(location.search), c = (q.get("c") || "").toLowerCase().replace(/[^a-z0-9]/g, "");
+  if(c){
+    $("vCl").hidden = false; $("vSo").hidden = true;
+    H.equipo().then(function(eq){ var p = eq.filter(function(x){ return x.slug === c; })[0]; if(p) $("vClSub").textContent = "Cuéntale a " + p.nombre + " cómo te fue. Son dos líneas y ayuda a otras personas a decidir."; });
+    $("fCl").addEventListener("submit", function(e){
+      e.preventDefault(); $("tE").textContent = "Enviando…";
+      PRO.datos({accion: "testimonio.envia", consultora: c, nombre: $("tN").value, texto: $("tT").value, web: $("tW").value}).then(function(){ $("fCl").innerHTML = '<p class="bajada" style="margin:0">Gracias. Ya se lo hicimos llegar. 💗</p>'; H.cuenta("testimonio-enviado"); }, function(er){ $("tE").textContent = er.message; });
+    });
+    return;
+  }
+  var yo = H.lee("mtb-testimonios-v1", {yo: ""}).yo, EQ = [];
+  function msj(){
+    var p = EQ.filter(function(x){ return x.slug === yo; })[0];
+    if(!p) return "Elige tu nombre para armar tu link.";
+    return "Hola, me dio mucho gusto que te gustara lo que te llevaste. ¿Me regalas dos líneas contando cómo te fue? Ayuda mucho a otras personas a decidir y solo sale tu nombre de pila:\n" + location.origin + "/mentorias/herramientas/testimonios/?c=" + p.slug;
+  }
+  H.equipo().then(function(eq){ EQ = eq; $("yo").innerHTML = '<option value="">Elige tu nombre</option>' + eq.map(function(x){ return '<option value="' + x.slug + '">' + H.esc(x.nombre) + "</option>"; }).join(""); $("yo").value = yo; $("msj").textContent = msj(); });
+  $("yo").addEventListener("change", function(e){ yo = e.target.value; H.guarda("mtb-testimonios-v1", {yo: yo}); $("msj").textContent = msj(); });
+  $("mCopia").addEventListener("click", function(){ if(!yo){ H.aviso("Primero elige tu nombre"); return; } H.copia(msj(), "Mensaje copiado"); H.cuenta("testimonio-pide"); });
+
+  function lista(){
+    PRO.datos({accion: "testimonio.lista"}).then(function(j){
+      var t = j.testimonios || [];
+      $("pN").textContent = t.length ? t.length + " testimonios. Aprueba los que quieras que salgan." : "Todavía no te llega ninguno. Manda tu link a una clienta contenta.";
+      $("tl2").innerHTML = "";
+      t.forEach(function(x){
+        var li = document.createElement("li");
+        li.innerHTML = "<b>" + H.esc(x.nombre) + "</b><small>" + H.esc(x.texto) + " · " + (x.estado === "aprobado" ? "publicado" : "pendiente") + '</small><div class="acc2"><button type="button" data-e="aprobado" class="' + (x.estado === "aprobado" ? "on" : "") + '">Publicar</button><button type="button" data-e="oculto">Quitar</button><button type="button" data-c>Copiar</button></div>';
+        li.querySelector("[data-c]").addEventListener("click", function(){ H.copia("“" + x.texto + "” — " + x.nombre, "Testimonio copiado"); });
+        li.querySelectorAll("button[data-e]").forEach(function(b){ b.addEventListener("click", function(){ PRO.datos({accion: "testimonio.modera", id: x.id, estado: b.dataset.e}).then(lista, function(e){ H.aviso(e.message); }); }); });
+        $("tl2").appendChild(li);
+      });
+    }, function(e){ $("pN").textContent = e.message; });
+  }
+  PRO.caja($("pro"), "testimonios", {titulo: "Tus testimonios en tu tablero", activo: "Recibe lo que dicen tus clientas, aprueba los que quieras y cópialos para tus historias."}).then(function(r){ if(!r.ok) return; $("proCont").hidden = false; lista(); });
+})();
+</script>
+</body>
+</html>
