@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-11-02",
- "hora": "08:19",
+ "hora": "09:23",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1030,
+  "visitas": 1032,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -83,7 +83,7 @@
   },
   {
    "d": "2026-11-02",
-   "v": 5
+   "v": 7
   }
  ],
  "consultoras": [
@@ -548,8 +548,8 @@
   ]
  },
  "secciones": {
-  "escalera": 0,
-  "biblioteca": 0,
+  "escalera": 1,
+  "biblioteca": 1,
   "herramientas": {
    "hub": 0,
    "dupes": 11,
