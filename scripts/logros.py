@@ -91,11 +91,16 @@ h1 em{font-style:normal;color:var(--accent)}
 .d25 .card{background:var(--tint);border-color:#F6D3D7}
 .d25 .ava{background:#fff}
 .lvl.vac{padding-top:32px}
-.lvl.vac .lvl-h h2{color:var(--muted);font-size:40px}
-.empty{padding:14px 16px;border:1px dashed #CDD1E0;border-radius:18px;color:var(--muted);font-size:15px}
-.empty b{color:var(--ink);font-weight:600}
-.empty p+p{margin-top:2px}
-.empty a{display:inline-flex;align-items:center;min-height:44px;margin-bottom:-8px;font-weight:600;color:var(--accent-t);text-decoration:underline;text-underline-offset:3px}
+.lvl.vac .lvl-h h2{font-size:40px}
+.empty{display:grid;grid-template-columns:56px 1fr;column-gap:14px;align-items:center;padding:16px;border:1.5px dashed #EBA3AA;border-radius:18px;background:var(--tint)}
+.seat{width:56px;height:56px;border-radius:50%;border:1.5px dashed var(--accent);background:#fff;display:grid;place-items:center;font-weight:700;font-size:17px;color:var(--accent-t)}
+.empty .q{font-size:19px;font-weight:700;line-height:1.2;color:var(--ink)}
+.empty .q2{font-size:19px;font-weight:700;line-height:1.2;color:var(--accent-t)}
+.empty .sub{font-size:15px;color:var(--muted);margin-top:4px}
+.talk{grid-column:1/-1;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:8px;min-height:48px;border-radius:14px;background:var(--ink);color:#fff;font-weight:600;font-size:16px;text-decoration:none;transition:transform 160ms var(--ease)}
+.talk:active{transform:scale(.97)}
+.talk:focus-visible,.plan:focus-visible{outline:2px solid var(--accent-t);outline-offset:2px}
+.plan{grid-column:1/-1;justify-self:center;display:inline-flex;align-items:center;min-height:44px;margin-bottom:-6px;font-size:14px;font-weight:600;color:var(--accent-t);text-underline-offset:3px}
 .note{font-family:var(--hand);font-weight:600;font-size:25px;line-height:1.1;color:var(--accent-t);margin:14px 0 0 70px;transform:rotate(-1.5deg);transform-origin:left}
 .note::before{content:"";display:inline-block;width:18px;height:14px;margin-right:6px;border-left:1.75px solid currentColor;border-bottom:1.75px solid currentColor;border-bottom-left-radius:10px;vertical-align:4px}
 
@@ -167,6 +172,21 @@ def pslug(nombre):
     return re.sub(r"[^a-z0-9]+", "-", t).strip("-")
 
 
+WA = ('<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" '
+      'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.5 7.8L3 21l1.2-4.5A9 9 0 1 1 21 12Z"/>'
+      '<path d="M8.5 10.5h7M8.5 14h4"/></svg>')
+
+
+def vacio(k, mes):
+    from urllib.parse import quote
+    msg = f"Hola, vi los logros de {mes} y aún no hay nadie en el {k}%. Quiero ser yo. ¿Me ayudas a armar mi plan para llegar?"
+    return (f'<div class="empty"><div class="seat" aria-hidden="true">Tú</div>'
+            f'<div class="empty-t"><p class="q">Aquí aún no hay nadie.</p><p class="q2">¿Quieres ser tú?</p>'
+            f'<p class="sub">Habla con tu upline y armen juntas tu plan para llegar al {k}%.</p></div>'
+            f'<a class="talk" href="https://wa.me/?text={quote(msg)}" target="_blank" rel="noopener">{WA}Habla con tu upline</a>'
+            f'<a class="plan" href="/plan-de-compensacion/">Ver qué pide cada nivel</a></div>')
+
+
 def tarjeta(p):
     foto = p.get("foto")
     img = ""
@@ -205,9 +225,7 @@ def pagina_mes(d, slug):
         ps = niv[k]["personas"]
         etiqueta = ("Directoras · " if k == "25" else "") + personas(len(ps))
         cuerpo = ('<ul class="cards">' + "".join(tarjeta(p) for p in ps) + "</ul>") if ps \
-            else ('<div class="empty"><p><b>Aquí aún no hay nadie.</b> ¿Quieres ser tú?</p>'
-                  '<p>Habla con tu upline y armen juntas tu plan para llegar.</p>'
-                  '<a href="/plan-de-compensacion/">Ver qué pide cada nivel</a></div>')
+            else vacio(k, mes)
         nota = f'<p class="note">{e(niv[k]["nota"])}</p>' if niv[k].get("nota") else ""
         d25 = (" d25" if k == "25" else "") + ("" if ps else " vac")
         secs.append(f'<section class="lvl{d25}" id="n{k}" aria-labelledby="h{k}">'

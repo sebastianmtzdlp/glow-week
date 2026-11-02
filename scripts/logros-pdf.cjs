@@ -21,7 +21,7 @@ const srv = http.createServer((q, r) => {
   const b = await chromium.launch();
   const p = await b.newPage({ viewport: { width: 420, height: 900 } });
   await p.goto(`${base}/logros/${mes}/`, { waitUntil: 'networkidle' });
-  await p.addStyleTag({ content: '.top a,.dl,.dl-note,.card .cert,.band .fine a{display:none!important}body{min-height:0}*{animation:none!important}' });
+  await p.addStyleTag({ content: '.top a,.dl,.dl-note,.card .cert,.talk,.plan,.band .fine a{display:none!important}body{min-height:0}*{animation:none!important}' });
   await p.evaluate(() => document.fonts.ready);
   const h = await p.evaluate(() => Math.ceil(document.documentElement.scrollHeight));
   await p.pdf({ path: path.join(dir, `logros-${mes}.pdf`), width: '420px', height: `${h + 2}px`, printBackground: true, pageRanges: '1' });
