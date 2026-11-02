@@ -1,0 +1,341 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-hoja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>La hoja del día · 10 actividades</title>
+<meta name="description" content="El método de 10 actividades en una hoja: llénala en el celular o imprímela. Tus contactos, seguimientos, presentaciones y el marcador del día.">
+<meta property="og:title" content="La hoja del día">
+<meta property="og:description" content="El método de 10 actividades: para llenar en el celular o imprimir en una hoja carta.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/hoja-diaria/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-hoja.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;max-width:40em}
+.portada .acciones{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:22px}
+
+/* la hoja: se ve como página de agenda */
+.hoja{border:1px solid var(--line);border-radius:6px 22px 22px 6px;padding:20px 16px 18px;margin:20px 0 0;position:relative;background:#fff;box-shadow:inset 6px 0 0 var(--soft)}
+.hoja-top{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;flex-wrap:wrap;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.hoja-top h2{font-size:clamp(28px,7vw,40px)}
+.dia{display:flex;align-items:center;gap:8px}
+.dia input{width:auto;min-height:40px;font:500 15px/1 var(--mono)}
+.dia button{min-height:40px;min-width:40px;border:1px solid #CFD2E0;border-radius:10px;background:#fff;cursor:pointer;font:500 16px/1 var(--mono)}
+.encab{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.encab .ancho{grid-column:1 / -1}
+.energia{display:grid;grid-template-columns:repeat(10,1fr);gap:4px}
+.energia button{min-height:38px;border:1px solid #CFD2E0;border-radius:8px;background:#fff;font:500 14px/1 var(--mono);cursor:pointer;padding:0}
+.energia button[aria-pressed=true]{background:var(--accent);border-color:var(--accent);color:#fff}
+.blq{margin-top:22px}
+.blq h3{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 6px;font:600 17px/1.2 var(--body);padding-bottom:6px;border-bottom:1px solid var(--ink)}
+.blq h3 span{font:400 13px/1 var(--mono);color:var(--muted)}
+
+.metodo{list-style:none;margin:0;padding:0}
+.metodo li{border-bottom:1px solid var(--line)}
+.metodo label{display:grid;grid-template-columns:22px 1fr auto;gap:12px;align-items:center;padding:10px 0;cursor:pointer}
+.metodo input{width:20px;height:20px;margin:0;accent-color:var(--good)}
+.metodo .meta{font:500 14px/1 var(--mono);color:var(--muted);text-align:right;white-space:nowrap}
+.metodo input:checked ~ .q{text-decoration:line-through;text-decoration-color:var(--good);color:var(--muted)}
+.metodo input:checked ~ .meta{color:var(--good)}
+
+.tabla{width:100%;border-collapse:collapse;font-size:15px}
+.tabla th{font:500 12px/1.2 var(--body);color:var(--muted);text-align:left;padding:4px 6px 6px 0}
+.tabla td{padding:3px 6px 3px 0;vertical-align:middle}
+.tabla td.n{font:400 12px/1 var(--mono);color:var(--muted);width:18px}
+.tabla input,.tabla select{min-height:38px;padding:6px 8px;border-radius:9px;font-size:15px}
+.tabla select{padding-right:4px}
+.tabla .ok{width:46px;text-align:center}
+.tabla .ok input{width:20px;height:20px;min-height:0;accent-color:var(--good)}
+.mas{margin-top:8px}
+
+.temp{display:flex;gap:4px}
+.temp button{flex:1;min-height:36px;border:1px solid #CFD2E0;border-radius:9px;background:#fff;font-size:13px;cursor:pointer;padding:0 4px}
+.temp button[aria-pressed=true][data-v=t]{background:#FFF4E0;border-color:var(--warn);color:var(--warn)}
+.temp button[aria-pressed=true][data-v=c]{background:var(--tint);border-color:var(--accent);color:var(--accent-ink)}
+.temp button[aria-pressed=true][data-v=l]{background:#E6F4EC;border-color:var(--good);color:var(--good)}
+
+.marcador{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.marcador label{display:grid;gap:4px;background:var(--soft);border-radius:14px;padding:10px 10px 8px}
+.marcador span{font-size:12px;line-height:1.2;color:var(--muted)}
+.marcador input{border:0;background:transparent;min-height:34px;padding:0;font:500 24px/1 var(--mono)}
+.marcador input:focus{outline:2px solid var(--ink);outline-offset:2px}
+.cierre{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}
+.acciones-h{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:22px}
+.solo-print{display:none}
+.semana{padding:40px 0 0}
+.sem-tabla{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+.sem-tabla th,.sem-tabla td{padding:8px 4px;border-bottom:1px solid var(--line);text-align:right;font-family:var(--mono);font-variant-numeric:tabular-nums}
+.sem-tabla th:first-child,.sem-tabla td:first-child{text-align:left;font-family:var(--body)}
+.sem-tabla thead th{font:500 12px/1.2 var(--body);color:var(--muted)}
+.sem-tabla td.hoy{color:var(--accent-ink);font-weight:600}
+.sem-scroll{overflow-x:auto;margin:0 -16px;padding:0 16px}
+@media (min-width:900px){
+  .portada{padding:56px 0 24px}
+  .hoja{padding:32px 36px}
+  .hoja-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 36px;align-items:start}
+  .encab{grid-template-columns:1fr 1fr 2fr}
+  .encab .ancho{grid-column:auto}
+  .cierre{grid-template-columns:1fr 1fr}
+}
+@media print{
+  @page{size:letter;margin:10mm}
+  body{font-size:9.5pt}
+  .barra,.portada,.acciones-h,.semana,.sigue,footer,.toast,.dia button,.mas,.nota{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .hoja{border:0;box-shadow:none;padding:0;margin:0}
+  .hoja-top h2{font-size:20pt}
+  .solo-print{display:block;font-size:8pt;color:#666;margin:3px 0 0}
+  .hoja-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}
+  .blq{margin-top:8px;break-inside:avoid}
+  .blq h3{font-size:10pt;margin:0 0 2px;padding-bottom:2px}
+  .encab{grid-template-columns:1fr 1fr 2fr;gap:6px;margin-top:6px}
+  .etq{font-size:8pt;margin:0 0 1px}
+  input[type]:not([type=checkbox]),select,textarea{border:0;border-bottom:1px solid #999;border-radius:0;min-height:0!important;padding:1px 0!important;background:none;appearance:none;-webkit-appearance:none;font-size:9pt}
+  ::placeholder{color:transparent}
+  .metodo label{padding:2px 0;gap:6px}
+  .metodo input,.tabla .ok input{width:12px;height:12px}
+  .tabla td{padding:1px 4px 1px 0}
+  .temp button{min-height:0;padding:1px 2px;font-size:7.5pt}
+  .energia button{min-height:0;padding:2px 0;font-size:8pt}
+  .marcador{gap:4px}.marcador label{padding:4px 6px;border:1px solid #ccc;background:none}
+  .marcador input{font-size:12pt}
+  textarea{min-height:28px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <h1>La hoja <em>del día</em></h1>
+    <p class="bajada">El método de 10 actividades en una sola hoja. Elige tu ritmo, palomea lo que vas haciendo y cierra el día con tu marcador. Se guarda en tu celular, día por día.</p>
+    <div class="acciones">
+      <a class="btn" href="#hoja" data-cuenta="empezar">Llenar la de hoy</a>
+      <button class="enlace" type="button" id="blanco" data-cuenta="imprimir-blanco">Imprimir en blanco</button>
+    </div>
+  </header>
+
+  <form class="hoja" id="hoja" onsubmit="return false" aria-label="Hoja del día">
+    <div class="hoja-top">
+      <div>
+        <h2>Mi día</h2>
+        <p class="solo-print" id="pFecha"></p>
+      </div>
+      <div class="dia">
+        <button type="button" id="ant" aria-label="Día anterior">‹</button>
+        <input type="date" id="fecha" aria-label="Fecha">
+        <button type="button" id="sig" aria-label="Día siguiente">›</button>
+      </div>
+    </div>
+
+    <div class="encab">
+      <label><span class="etq">Hora de inicio</span><input type="text" data-f="hora" placeholder="8:30"></label>
+      <div>
+        <span class="etq" id="modTit">Mi ritmo de hoy</span>
+        <div class="seg" role="group" aria-labelledby="modTit" id="modalidad">
+          <button type="button" data-v="part" aria-pressed="true">Part</button>
+          <button type="button" data-v="medio" aria-pressed="false">Medio</button>
+          <button type="button" data-v="full" aria-pressed="false">Full</button>
+        </div>
+      </div>
+      <label class="ancho"><span class="etq">Mi por qué hoy</span><input type="text" data-f="porque" placeholder="Para qué lo hago hoy"></label>
+      <div class="ancho">
+        <span class="etq" id="enTit">Mi energía, del 1 al 10</span>
+        <div class="energia" role="group" aria-labelledby="enTit" id="energia"></div>
+      </div>
+    </div>
+
+    <div class="hoja-grid">
+      <div>
+        <div class="blq">
+          <h3>Las 10 actividades <span id="metaTit">Part Time</span></h3>
+          <ul class="metodo" id="metodo"></ul>
+        </div>
+        <div class="blq">
+          <h3>Seguimiento <span>tibia · caliente · lista</span></h3>
+          <table class="tabla" id="seg"><tbody></tbody></table>
+        </div>
+        <div class="blq">
+          <h3>Presentaciones <span>con siguiente paso</span></h3>
+          <table class="tabla" id="pres"><thead><tr><th></th><th>Con quién</th><th>Hora</th><th>Siguiente paso</th></tr></thead><tbody></tbody></table>
+        </div>
+      </div>
+      <div>
+        <div class="blq">
+          <h3>Mis contactos <span id="contTit">0 de 10</span></h3>
+          <table class="tabla" id="cont"><thead><tr><th></th><th>Nombre</th><th>Elogio real</th><th class="ok">Resp.</th></tr></thead><tbody></tbody></table>
+          <button type="button" class="enlace mas" id="masCont">Agregar renglón</button>
+        </div>
+        <div class="blq">
+          <h3>Mi marcador <span>al cerrar el día</span></h3>
+          <div class="marcador">
+            <label><span>Contactadas</span><input type="number" inputmode="numeric" min="0" data-f="mContactos" placeholder="0"></label>
+            <label><span>Presentaciones</span><input type="number" inputmode="numeric" min="0" data-f="mPres" placeholder="0"></label>
+            <label><span>Socias arrancadas</span><input type="number" inputmode="numeric" min="0" data-f="mSocias" placeholder="0"></label>
+            <label><span>Contenido publicado</span><input type="number" inputmode="numeric" min="0" data-f="mCont" placeholder="0"></label>
+            <label><span>Ventas o puntos</span><input type="number" inputmode="numeric" min="0" data-f="mVentas" placeholder="0"></label>
+            <label><span>Hora de cierre</span><input type="text" data-f="mCierre" placeholder="9:00" style="font-size:20px"></label>
+          </div>
+          <div class="cierre">
+            <label><span class="etq">Lo que sí funcionó hoy</span><textarea data-f="funciono"></textarea></label>
+            <label><span class="etq">Lo que voy a ajustar mañana</span><textarea data-f="ajusto"></textarea></label>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="acciones-h">
+      <a class="btn" id="mandar" href="#" target="_blank" rel="noopener" data-cuenta="mandar-marcador">Mandar mi marcador</a>
+      <button class="btn2" type="button" id="imprimir" data-cuenta="imprimir">Imprimir</button>
+      <button class="enlace" type="button" id="borrar">Borrar este día</button>
+    </div>
+    <p class="guardado" id="guardado" style="margin-top:10px"></p>
+    <p class="nota">Si contactas 20 o 30 personas al día, agrega renglones. El seguimiento sigue a las mismas personas de un día a otro.</p>
+  </form>
+
+  <section class="semana" aria-labelledby="semTit">
+    <div class="cab"><h2 id="semTit">Mis números de la semana</h2><p>Se suman solos con tu marcador de cada día.</p></div>
+    <div class="sem-scroll"><table class="sem-tabla" id="semana"></table></div>
+  </section>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Para llenar la hoja</h2></div>
+    <a class="otra" href="/mentorias/herramientas/mensajes/" data-cuenta="ir-mensajes"><b>Mensajes para copiar</b><span>Contactar, dar seguimiento, agendar y cerrar.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/herramientas/ritmo-de-puntos/" data-cuenta="ir-ritmo"><b>Ritmo de Puntos</b><span>Cuántos puntos te tocan cada día para llegar a tu meta.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · El método de 10 actividades es el del equipo: Part Time 10 contactos, 1 presentación y 1 pieza de contenido al día; Medio Tiempo 20, 2 y 2; Full Time 30, 3 y 3.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(function(){
+  var MET = [
+    ["Contactar", ["10 personas","20 personas","30 personas"]],
+    ["Seguimiento orgánico", ["10 min","20 min","40 min"]],
+    ["Buscar contenido", ["10 min","15 min","20 min"]],
+    ["Crear contenido", ["1 pieza","2 piezas","3 piezas"]],
+    ["Contestar mensajes", ["15 min","30 min","45 min"]],
+    ["Presentar el negocio", ["1","2","3"]],
+    ["Arrancar personas", ["30 min","1 hora","1.5 horas"]],
+    ["Capacitar al equipo", ["15 min","30 min","1 hora"]],
+    ["Libre", ["","",""]],
+    ["Libre", ["","",""]]
+  ];
+  var MOD = {part:0, medio:1, full:2}, NOMBRE = ["Part Time","Medio Tiempo","Full Time"], CONT = [10,20,30], PRES = [1,2,3];
+  var KEY = "mtb-hoja-v1", todo = H.lee(KEY, {}), $ = function(id){ return document.getElementById(id); };
+  function hoyISO(d){ d = d || new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
+  var fecha = hoyISO(), dia;
+  function nuevo(){ var prev = Object.keys(todo).sort().pop(); return {mod: prev ? todo[prev].mod : "part", met:[], cont:[], seg: prev ? (todo[prev].seg || []).filter(function(s){ return s.n && s.t !== "l"; }) : [], pres:[], f:{}, en:0, extra:0}; }
+
+  // energía
+  $("energia").innerHTML = Array.from({length:10}, function(_, i){ return '<button type="button" data-v="'+(i+1)+'" aria-pressed="false">'+(i+1)+'</button>'; }).join("");
+
+  function pinta(){
+    dia = todo[fecha] || nuevo();
+    var m = MOD[dia.mod] || 0;
+    $("fecha").value = fecha;
+    var f = new Date(fecha + "T12:00:00");
+    $("pFecha").textContent = f.toLocaleDateString("es-MX", {weekday:"long", day:"numeric", month:"long"}) + " · mitienda.beauty/mentorias/herramientas/hoja-diaria";
+    $("modalidad").querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.v === dia.mod); });
+    $("energia").querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", +b.dataset.v === dia.en); });
+    $("metaTit").textContent = NOMBRE[m];
+    $("metodo").innerHTML = MET.map(function(a, i){
+      return '<li><label><input type="checkbox" data-met="'+i+'"'+(dia.met[i]?' checked':'')+'><span class="q">'+(i+1)+'. '+a[0]+'</span><span class="meta">'+(a[1][m]||"").trim()+'</span></label></li>';
+    }).join("");
+    var nCont = Math.max(CONT[m], (dia.cont || []).length) + (dia.extra || 0);
+    $("cont").querySelector("tbody").innerHTML = Array.from({length:nCont}, function(_, i){
+      var c = dia.cont[i] || {};
+      return '<tr><td class="n">'+(i+1)+'</td><td><input type="text" data-c="'+i+'" data-k="n" value="'+H.esc(c.n)+'" aria-label="Nombre '+(i+1)+'"></td><td><input type="text" data-c="'+i+'" data-k="e" value="'+H.esc(c.e)+'" aria-label="Elogio '+(i+1)+'"></td><td class="ok"><input type="checkbox" data-c="'+i+'" data-k="r"'+(c.r?' checked':'')+' aria-label="Respondió '+(i+1)+'"></td></tr>';
+    }).join("");
+    $("seg").querySelector("tbody").innerHTML = Array.from({length:Math.max(5, (dia.seg||[]).length + 1)}, function(_, i){
+      var s = dia.seg[i] || {};
+      return '<tr><td class="n">'+(i+1)+'</td><td><input type="text" data-s="'+i+'" data-k="n" value="'+H.esc(s.n)+'" aria-label="Seguimiento '+(i+1)+'"></td><td style="width:58%"><div class="temp" role="group" aria-label="Cómo va">'+
+        [["t","Tibia"],["c","Caliente"],["l","Lista"]].map(function(t){ return '<button type="button" data-s="'+i+'" data-v="'+t[0]+'" aria-pressed="'+(s.t===t[0])+'">'+t[1]+'</button>'; }).join("")+'</div></td></tr>';
+    }).join("");
+    $("pres").querySelector("tbody").innerHTML = Array.from({length:Math.max(PRES[m], 3)}, function(_, i){
+      var p = dia.pres[i] || {};
+      return '<tr><td class="n">'+(i+1)+'</td><td><input type="text" data-p="'+i+'" data-k="n" value="'+H.esc(p.n)+'" aria-label="Presentación '+(i+1)+'"></td><td style="width:22%"><input type="text" data-p="'+i+'" data-k="h" value="'+H.esc(p.h)+'" aria-label="Hora"></td><td><input type="text" data-p="'+i+'" data-k="s" value="'+H.esc(p.s)+'" aria-label="Siguiente paso"></td></tr>';
+    }).join("");
+    document.querySelectorAll("[data-f]").forEach(function(i){ i.value = dia.f[i.dataset.f] || ""; });
+    resumen(); semana();
+  }
+  function hechos(){ return (dia.cont || []).filter(function(c){ return c && c.n; }).length; }
+  function resumen(){
+    var m = MOD[dia.mod] || 0, n = hechos();
+    $("contTit").textContent = n + " de " + CONT[m];
+    var f = dia.f, txt = "Mi marcador de hoy (" + new Date(fecha + "T12:00:00").toLocaleDateString("es-MX", {weekday:"long", day:"numeric", month:"short"}) + ", " + NOMBRE[m] + "):\n" +
+      "Contactadas: " + (f.mContactos || n) + "\nPresentaciones: " + (f.mPres || 0) + "\nSocias arrancadas: " + (f.mSocias || 0) + "\nContenido publicado: " + (f.mCont || 0) + "\nVentas o puntos: " + (f.mVentas || 0) +
+      (f.funciono ? "\nLo que funcionó: " + f.funciono : "") + (f.ajusto ? "\nMañana ajusto: " + f.ajusto : "");
+    $("mandar").href = H.wa(txt);
+  }
+  function guarda(){
+    todo[fecha] = dia;
+    var ks = Object.keys(todo).sort(); while(ks.length > 60){ delete todo[ks.shift()]; }
+    $("guardado").textContent = H.guarda(KEY, todo) ? "Guardado en este teléfono" : "No se pudo guardar en este navegador";
+    resumen(); semana();
+  }
+  var form = $("hoja");
+  form.addEventListener("input", function(e){
+    var t = e.target, d = t.dataset;
+    if(d.f){ dia.f[d.f] = t.value; }
+    else if(d.c != null){ dia.cont[d.c] = dia.cont[d.c] || {}; dia.cont[d.c][d.k] = t.type === "checkbox" ? t.checked : t.value; }
+    else if(d.s != null && t.tagName === "INPUT"){ dia.seg[d.s] = dia.seg[d.s] || {}; dia.seg[d.s].n = t.value; }
+    else if(d.p != null){ dia.pres[d.p] = dia.pres[d.p] || {}; dia.pres[d.p][d.k] = t.value; }
+    else if(d.met != null){ dia.met[d.met] = t.checked; }
+    else return;
+    guarda();
+  });
+  form.addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    if(b.parentNode.id === "modalidad"){ dia.mod = b.dataset.v; guarda(); pinta(); }
+    else if(b.parentNode.id === "energia"){ dia.en = +b.dataset.v; guarda(); $("energia").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x === b); }); }
+    else if(b.dataset.s != null && b.dataset.v){
+      var s = dia.seg[b.dataset.s] = dia.seg[b.dataset.s] || {}; s.t = s.t === b.dataset.v ? "" : b.dataset.v;
+      b.parentNode.querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x.dataset.v === s.t); }); guarda();
+    }
+  });
+  $("masCont").addEventListener("click", function(){ dia.extra = (dia.extra || 0) + 5; guarda(); pinta(); });
+  $("fecha").addEventListener("change", function(){ if(this.value){ fecha = this.value; pinta(); } });
+  function mueve(n){ var d = new Date(fecha + "T12:00:00"); d.setDate(d.getDate() + n); fecha = hoyISO(d); pinta(); }
+  $("ant").addEventListener("click", function(){ mueve(-1); });
+  $("sig").addEventListener("click", function(){ mueve(1); });
+  $("imprimir").addEventListener("click", function(){ window.print(); });
+  $("blanco").addEventListener("click", function(){
+    var guardaFecha = fecha, real = todo; todo = {}; fecha = "2000-01-01"; pinta(); $("pFecha").textContent = "Fecha: ____________  ·  mitienda.beauty/mentorias/herramientas/hoja-diaria";
+    var vuelve = function(){ window.removeEventListener("afterprint", vuelve); todo = real; fecha = guardaFecha; pinta(); };
+    window.addEventListener("afterprint", vuelve);
+    setTimeout(function(){ window.print(); }, 60);
+  });
+  $("borrar").addEventListener("click", function(){ if(confirm("¿Borrar lo que escribiste en este día?")){ delete todo[fecha]; H.guarda(KEY, todo); pinta(); H.aviso("Día borrado"); } });
+
+  function semana(){
+    var d = new Date(fecha + "T12:00:00"), lun = new Date(d); lun.setDate(d.getDate() - ((d.getDay() + 6) % 7));
+    var dias = Array.from({length:7}, function(_, i){ var x = new Date(lun); x.setDate(lun.getDate() + i); return hoyISO(x); });
+    var F = [["Contactadas","mContactos"],["Presentaciones","mPres"],["Socias arrancadas","mSocias"],["Contenido","mCont"],["Ventas o puntos","mVentas"]];
+    var L = ["L","M","M","J","V","S","D"];
+    var val = function(k, iso){ var x = todo[iso]; if(!x) return 0; var v = +(x.f[k] || 0); if(!v && k === "mContactos") v = (x.cont || []).filter(function(c){ return c && c.n; }).length; return v; };
+    $("semana").innerHTML = '<thead><tr><th></th>' + dias.map(function(iso, i){ return '<th>' + L[i] + ' ' + (+iso.slice(8)) + '</th>'; }).join("") + '<th>Total</th></tr></thead><tbody>' +
+      F.map(function(f){ var tot = 0; return '<tr><td>' + f[0] + '</td>' + dias.map(function(iso){ var v = val(f[1], iso); tot += v; return '<td' + (iso === fecha ? ' class="hoy"' : '') + '>' + (v ? H.fmt(v) : "·") + '</td>'; }).join("") + '<td><b>' + H.fmt(tot) + '</b></td></tr>'; }).join("") + '</tbody>';
+  }
+  pinta();
+})();
+</script>
+</body>
+</html>

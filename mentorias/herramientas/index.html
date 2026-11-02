@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="es-MX">
+<html lang="es-MX" data-cuenta="mentorias-herramientas">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Herramientas gratis de las mentorías</title>
-<meta name="description" content="Guías, hojas y checklists de las mentorías, gratis para ti y para tu equipo. Empieza con el 1 a 1 con tus líderes.">
+<meta name="description" content="Calculadora de nivel, mensajes para copiar, la hoja del día, el reto Mis primeros 200, el checklist de bienvenida y el 1 a 1 con tus líderes. Gratis, para ti y tu equipo.">
 <meta property="og:title" content="Herramientas gratis de las mentorías">
-<meta property="og:description" content="Guías, hojas y checklists para ti y tu equipo, gratis. Empieza con el 1 a 1 con tus líderes.">
+<meta property="og:description" content="Tu nivel, tus mensajes, tu hoja del día, tu primer reto y tu bienvenida. Gratis, para ti y tu equipo.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/">
@@ -21,72 +21,70 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
 <style>
-:root{
-  color-scheme:light;
-  --bg:#FFFFFF;--ink:#262A4A;--muted:#62668A;--line:#E6E8F0;--soft:#F3F4F9;
-  --accent:#DB414C;--accent-ink:#C8323F;--bronze:#8A5A2E;--navy:#1B1F3B;
-  --serif:"Fraunces",Georgia,serif;--body:"Outfit",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
-  --ease:cubic-bezier(.23,1,.32,1);
+.portada{display:grid;gap:28px;padding:40px 0 36px}
+/* índice de la portada: el momento de entrada */
+.indice{margin:0;border:1px solid var(--line);border-radius:18px;padding:20px 20px 14px}
+.indice-cab{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.indice-cab b{font:400 22px/1 var(--serif)}
+.indice-cab span{font:400 13px/1 var(--mono);color:var(--muted)}
+.indice ol{list-style:none;margin:0;padding:0}
+.indice li a{display:grid;grid-template-columns:1fr auto;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);text-decoration:none;align-items:baseline}
+.indice li:last-child a{border-bottom:0}
+.indice .g{font:400 12px/1 var(--mono);color:var(--muted)}
+.indice li.es-pro .g{color:var(--accent-ink)}
+@media (prefers-reduced-motion:no-preference){
+  .indice li{opacity:0;transform:translateY(6px);animation:entra 400ms var(--ease) forwards;animation-delay:calc(var(--i) * 55ms + 120ms)}
 }
-*{box-sizing:border-box}
-html{background:var(--bg);-webkit-text-size-adjust:100%}
-body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body)}
-a{color:inherit}
-:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
-.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
-.barra{display:flex;align-items:center;justify-content:space-between;padding:18px 0 0}
-.marca{font:300 12px/1 var(--body);letter-spacing:.22em;color:var(--muted);text-decoration:none}
-.volver{font:500 13px/1 var(--mono);color:var(--bronze);text-decoration:none}
-.portada{padding:40px 0 36px;max-width:40em}
-h1{font:400 clamp(46px,12.5vw,88px)/.95 var(--serif);letter-spacing:-.02em;margin:0;font-variation-settings:"opsz" 144}
-h1 em{font-style:italic}
-.bajada{font-size:19px;line-height:1.5;margin:18px 0 0;max-width:30em}
-h2{font:400 clamp(30px,7vw,44px)/1 var(--serif);letter-spacing:-.015em;margin:0}
-.cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:8px 24px;border-bottom:2px solid var(--ink);padding-bottom:14px}
-.cab p{margin:0;color:var(--muted);font-size:15px;max-width:26em}
+@keyframes entra{to{opacity:1;transform:none}}
 
-.pieza{display:grid;gap:20px;padding:28px 0 32px;border-bottom:1px solid var(--line)}
-.pieza-n{font:500 14px/1 var(--mono);color:var(--accent-ink)}
-.pieza h3{font:400 clamp(30px,7.5vw,46px)/1.02 var(--serif);letter-spacing:-.015em;margin:10px 0 0}
+.momento{padding:20px 0 12px}
+.fila{display:grid;grid-template-columns:44px 1fr;gap:4px 14px;padding:22px 0;border-bottom:1px solid var(--line);text-decoration:none;align-items:baseline}
+.fila .n{font:500 14px/1.6 var(--mono);color:var(--accent-ink);grid-row:1 / span 3}
+.fila h3{margin:0;font:400 clamp(26px,6.5vw,36px)/1.05 var(--serif);letter-spacing:-.01em}
+.fila h3 em{font-style:italic}
+.fila p{margin:6px 0 0;font-size:16px;max-width:32em}
+.fila .tipo{font:400 13px/1.3 var(--mono);color:var(--muted);margin-top:8px}
+.fila:active h3{transform:translateX(2px)}
+
+.pieza{display:grid;gap:20px;padding:24px 0 32px;border-bottom:1px solid var(--line)}
+.pieza h3{font:400 clamp(26px,6.5vw,36px)/1.05 var(--serif);letter-spacing:-.01em;margin:0}
 .pieza h3 a{text-decoration:none}
 .pieza h3 em{font-style:italic}
-.pieza .que{margin:12px 0 0;font-size:17px;max-width:30em}
-.trae{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.pieza .que{margin:10px 0 0;font-size:16px;max-width:32em}
+.trae{list-style:none;margin:14px 0 0;padding:0;border-top:1px solid var(--line)}
 .trae li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:16px}
 .trae li span:last-child{font:400 13px/1.2 var(--mono);color:var(--muted);text-align:right}
 .trae a{font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
-.extra{margin:14px 0 0;font-size:15px;color:var(--muted)}
+.pieza .trae,.extra{margin-left:58px}
+.extra{margin-top:14px;margin-bottom:0;margin-right:0;font-size:15px;color:var(--muted)}
 .extra a{color:var(--ink);font-weight:500;text-underline-offset:4px}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:14px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;text-decoration:none;margin-top:20px;transition:transform 160ms var(--ease)}
-.btn:active{transform:scale(.97)}
-.vista{display:none;max-width:245px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;transition:transform 200ms var(--ease)}
+.vista{display:none;max-width:245px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff}
 .vista img{display:block;width:100%;height:auto}
-.vista:active{transform:scale(.98)}
 
-.tambien{padding:44px 0 8px}
-.otra{display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line);text-decoration:none}
-.otra b{font:600 19px/1.25 var(--body)}
-.otra span{color:var(--muted);font-size:15px;grid-column:1}
-.otra i{grid-row:1 / span 2;grid-column:2;font-style:normal;font:500 14px/1 var(--mono);color:var(--muted)}
-
-.frase{background:var(--navy);color:#F4F1EC;border-radius:24px;padding:36px 22px;margin:44px 0 0}
-.frase p{margin:0;font:400 clamp(24px,6vw,36px)/1.18 var(--serif)}
-.frase p em{font-style:italic;color:#F2B8BC}
-.frase a{display:inline-block;margin-top:20px;color:#fff;font:500 16px/1.4 var(--body);text-underline-offset:4px}
-footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
-
+/* banda Pro */
+.pro{background:var(--navy);color:var(--cream);border-radius:24px;padding:30px 18px;margin:44px -16px 0}
+.pro h2{color:#fff}
+.pro h2 em{color:var(--pink)}
+.pro .bajada{color:#DCDDEA;font-size:17px}
+.pro ul{list-style:none;margin:20px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.18)}
+.pro li a{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:baseline;padding:13px 0;border-bottom:1px solid rgba(255,255,255,.12);text-decoration:none;color:#fff}
+.pro li b{font:400 19px/1.25 var(--serif)}
+.pro li span{font:500 15px/1 var(--mono);color:#B9BCD8}
+.pro .acciones{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:22px}
+.pro .enlace{color:#fff}
 @media (hover:hover) and (pointer:fine){
-  .vista:hover{transform:translateY(-2px)}
-  .otra:hover b{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+  .fila:hover h3,.pieza h3 a:hover{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+  .indice li a:hover span:first-child{text-decoration:underline;text-underline-offset:4px}
+  .pro li a:hover b{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
 }
 @media (min-width:900px){
-  .portada{padding:64px 0 48px}
-  .pieza{grid-template-columns:1fr 245px;gap:48px;align-items:start;padding:40px 0 44px}
-  .vista{display:block}
-  .frase{padding:56px}
+  .portada{grid-template-columns:1.1fr .9fr;gap:64px;align-items:center;padding:64px 0 56px}
+  .momentos{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
+  .pro{margin:56px 0 0;padding:52px 56px;display:grid;grid-template-columns:1fr 1fr;gap:0 56px;align-items:start}
+  .pro ul{margin-top:0}
 }
-@media (prefers-reduced-motion:reduce){*{transition-duration:0ms!important}}
 </style>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -98,54 +96,83 @@ footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
   </div>
 
   <header class="portada">
-    <h1>Herramientas <em>gratis</em></h1>
-    <p class="bajada">Guías, hojas y checklists de las mentorías, para que las uses con tu equipo desde hoy. Sin registrarte y sin costo.</p>
+    <div>
+      <h1>Herramientas <em>gratis</em></h1>
+      <p class="bajada">Para tu día a día y el de tu equipo: tu nivel, tus mensajes, tu hoja, tu primer reto y tu bienvenida. Sin registrarte y sin costo; lo que llenas se guarda en tu celular.</p>
+    </div>
+    <nav class="indice" aria-label="Contenido">
+      <div class="indice-cab"><b>Contenido</b><span>9 herramientas</span></div>
+      <ol>
+        <li style="--i:0"><a href="#empezar"><span>Si vas empezando</span><span class="g">01–03</span></a></li>
+        <li style="--i:1"><a href="#dia"><span>Para tu día</span><span class="g">04–05</span></a></li>
+        <li style="--i:2"><a href="#medir"><span>Para medir y vender</span><span class="g">06–08</span></a></li>
+        <li style="--i:3"><a href="#liderar"><span>Para liderar</span><span class="g">09</span></a></li>
+        <li style="--i:4" class="es-pro"><a href="#pro"><span>Los planes completos</span><span class="g">Pro</span></a></li>
+      </ol>
+    </nav>
   </header>
 
-  <section aria-labelledby="hTit">
-    <div class="cab">
-      <h2 id="hTit">Para liderar</h2>
-      <p>Para cuando ya tienes líderes y quieres que tu equipo crezca con orden.</p>
-    </div>
+  <div class="momentos">
+    <section class="momento" id="empezar" aria-labelledby="eTit">
+      <div class="cab"><h2 id="eTit">Si vas empezando</h2></div>
+      <a class="fila" href="/mentorias/herramientas/bienvenida/" data-cuenta="bienvenida"><span class="n">01</span><h3>Bienvenida, <em>socia</em></h3><p>Lo del primer día, la primera semana y los primeros meses: kit de $499, tus 75 puntos y el programa de bienvenida.</p><span class="tipo">checklist</span></a>
+      <a class="fila" href="/mentorias/herramientas/primeros-200/" data-cuenta="primeros-200"><span class="n">02</span><h3>Reto Mis primeros <em>200</em></h3><p>200 puntos de grupo en 14 días, rumbo a 3%. Con marcador de puntos y de días.</p><span class="tipo">reto · 14 días</span></a>
+      <a class="fila" href="/mentorias/herramientas/mensajes/" data-cuenta="mensajes"><span class="n">03</span><h3>Mensajes para <em>copiar</em></h3><p>Contactar, dar seguimiento, agendar y cerrar. Pones su nombre y lo que admiras de ella, y se arma solo.</p><span class="tipo">para copiar · WhatsApp</span></a>
+    </section>
 
-    <article class="pieza">
-      <div>
-        <div class="pieza-n">01</div>
-        <h3><a href="/mentorias/herramientas/1a1/">El 1 a 1 con tus <em>líderes</em></a></h3>
-        <p class="que">Qué revisar en cada reunión con tus líderes, en seis pasos: primero los datos, después la conversación. Y nunca cierres sin plan ni compromiso.</p>
-        <ul class="trae">
-          <li><span>La guía de los seis pasos</span><span>en la página</span></li>
-          <li><a href="/mentorias/1a1/checklist-lider.pdf" download data-cuenta="pdf-checklist">Checklist para tu líder</a><span>PDF · carta</span></li>
-          <li><a href="/mentorias/herramientas/1a1/#materiales">Mensaje para agendar</a><span>WhatsApp</span></li>
-        </ul>
-        <p class="extra">La hoja para llenar con tu líder y mandarle su plan viene en las <a href="/mentorias/">mentorías con Sel</a>.</p>
-        <a class="btn" href="/mentorias/herramientas/1a1/" data-cuenta="abrir-1a1">Abrir el 1 a 1</a>
+    <section class="momento" id="dia" aria-labelledby="dTit">
+      <div class="cab"><h2 id="dTit">Para tu día</h2></div>
+      <a class="fila" href="/mentorias/herramientas/hoja-diaria/" data-cuenta="hoja"><span class="n">04</span><h3>La hoja <em>del día</em></h3><p>El método de 10 actividades, tus contactos, seguimientos y presentaciones, y el marcador para cerrar el día.</p><span class="tipo">para llenar · imprimible</span></a>
+      <a class="fila" href="/herramientas/ritmo-de-puntos/" data-cuenta="ritmo"><span class="n">05</span><h3>Ritmo de <em>Puntos</em></h3><p>Reparte tu meta de puntos del mes y mira cada día cuántos te tocan.</p><span class="tipo">calendario</span></a>
+    </section>
+
+    <section class="momento" id="medir" aria-labelledby="mTit">
+      <div class="cab"><h2 id="mTit">Para medir y vender</h2></div>
+      <a class="fila" href="/mentorias/herramientas/nivel/" data-cuenta="nivel"><span class="n">06</span><h3>¿En qué nivel <em>voy?</em></h3><p>Escribe tus puntos y ve tu nivel, lo que te falta para el siguiente y cuánto es en pedidos y por día.</p><span class="tipo">calculadora</span></a>
+      <a class="fila" href="/plan-de-compensacion/" data-cuenta="plan-comp"><span class="n">07</span><h3>Entiende el plan de <em>compensación</em></h3><p>Los niveles, los bonos y la dirección, explicados con números.</p><span class="tipo">explicación · calculadora</span></a>
+      <a class="fila" href="/herramientas/dupes/" data-cuenta="dupes"><span class="n">08</span><h3>¿A cuál se <em>parece?</em></h3><p>A qué producto conocido se parece cada producto, en qué cambia y cuánto cuesta cada uno.</p><span class="tipo">comparador</span></a>
+    </section>
+
+    <section class="momento" id="liderar" aria-labelledby="lTit">
+      <div class="cab"><h2 id="lTit">Para liderar</h2></div>
+      <article class="pieza">
+        <div>
+          <div class="fila" style="border:0;padding:22px 0 0"><span class="n">09</span><h3><a href="/mentorias/herramientas/1a1/">El 1 a 1 con tus <em>líderes</em></a></h3><p>Qué revisar en cada reunión con tus líderes, en seis pasos: primero los datos, después la conversación.</p></div>
+          <ul class="trae">
+            <li><span>La guía de los seis pasos</span><span>en la página</span></li>
+            <li><a href="/mentorias/1a1/checklist-lider.pdf" download data-cuenta="pdf-checklist">Checklist para tu líder</a><span>PDF · carta</span></li>
+            <li><a href="/mentorias/herramientas/1a1/#materiales">Mensaje para agendar</a><span>WhatsApp</span></li>
+          </ul>
+          <p class="extra">La hoja para llenar con tu líder y mandarle su plan viene en las <a href="/mentorias/">mentorías con Sel</a>.</p>
+        </div>
+      </article>
+    </section>
+  </div>
+
+  <section class="pro" id="pro" aria-labelledby="pTit">
+    <div>
+      <h2 id="pTit">Los planes <em>completos</em></h2>
+      <p class="bajada">Semana por semana, con la meta en puntos y cómo medirla: del 3% a Directora Oro. Pagas una vez y son tuyos.</p>
+      <div class="acciones">
+        <a class="btn" href="/mentorias/herramientas/pro/" data-cuenta="pro">Ver las herramientas Pro</a>
+        <a class="enlace" href="/mentorias/herramientas/pro/#tengo">Ya tengo mi código</a>
       </div>
-      <a class="vista" href="/mentorias/herramientas/1a1/" tabindex="-1" aria-hidden="true"><img src="/mentorias/1a1/checklist-lider.png" alt="" width="245" height="317"></a>
-    </article>
-  </section>
-
-  <section class="tambien" aria-labelledby="tTit">
-    <div class="cab">
-      <h2 id="tTit">También te sirve</h2>
     </div>
-    <a class="otra" href="/herramientas/ritmo-de-puntos/" data-cuenta="ritmo">
-      <b>Ritmo de Puntos</b>
-      <span>Reparte tu meta de puntos del mes y mira cada día cuántos te tocan. Útil para traer tus números al 1 a 1.</span>
-      <i aria-hidden="true">→</i>
-    </a>
+    <ul id="proLista" aria-label="Planes Pro"></ul>
   </section>
 
-  <section class="frase" aria-label="Mentorías">
-    <p>Si quieres que alguien te acompañe a <em>aplicarlo</em> en tu equipo, para eso están las mentorías.</p>
-    <a href="/mentorias/" data-cuenta="mentorias">Ver las mentorías con Sel</a>
+  <section class="sigue" aria-label="Mentorías">
+    <a class="otra" href="/mentorias/" data-cuenta="mentorias"><b>¿Quieres que alguien te acompañe a aplicarlo?</b><span>Para eso están las mentorías con Sel.</span><i aria-hidden="true">→</i></a>
   </section>
 
-  <footer>Equipo SVH · mitienda.beauty</footer>
+  <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi.</p></footer>
 </div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
 <script>
-function cuenta(path, title){ try{ window.goatcounter.count({path:"mentorias-herramientas/"+path, title, event:true}); }catch(_){} }
-document.querySelectorAll("a[data-cuenta]").forEach(a => a.addEventListener("click", () => cuenta(a.dataset.cuenta, a.textContent.trim())));
+document.getElementById("proLista").innerHTML = PRO.productos.concat([PRO.todo]).map(function(p){
+  return '<li><a href="/mentorias/herramientas/pro/#' + p.s + '"><b>' + p.t + '</b><span>$' + H.fmt(p.precio) + '</span></a></li>';
+}).join("");
 </script>
 </body>
 </html>

@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-mensajes">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mensajes para contactar, seguir y agendar</title>
+<meta name="description" content="Mensajes listos para copiar: contactar, dar seguimiento sin presionar, agendar una presentación y cerrar. Escribe su nombre y lo que admiras de ella, y se arma solo.">
+<meta property="og:title" content="Mensajes listos para copiar">
+<meta property="og:description" content="Contactar, dar seguimiento, agendar y cerrar. Pones su nombre y se arma el mensaje.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/mensajes/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-mensajes.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 24px;max-width:38em}
+.reglas{display:flex;flex-wrap:wrap;gap:4px 18px;margin:18px 0 0;padding:0;list-style:none;font:400 clamp(20px,5vw,26px)/1.25 var(--serif)}
+.reglas li:nth-child(2){font-style:italic}
+.para{position:relative;z-index:4;background:rgba(255,255,255,.96);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);padding:12px 0 12px;border-bottom:1px solid var(--line);margin:0 -16px;padding-left:16px;padding-right:16px}
+.para .fila{display:grid;grid-template-columns:1fr 1fr;gap:8px 10px}
+.para .fila .ancho{grid-column:1 / -1}
+.para .etq{font-size:13px;margin-bottom:4px}
+.para input{min-height:42px;padding:8px 10px}
+.para details{margin-top:8px}
+.para summary{font:500 13px/1.4 var(--mono);color:var(--bronze);cursor:pointer;list-style:none}
+.para summary::-webkit-details-marker{display:none}
+.para details .fila{margin-top:8px}
+
+.momentos{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:22px -16px 0;padding:0 16px 4px}
+.momentos::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:40px;padding:0 14px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;font-size:15px;cursor:pointer;transition:transform 160ms var(--ease)}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+
+.grupo{padding:26px 0 8px}
+.grupo[hidden]{display:none}
+.grupo-cab{border-bottom:2px solid var(--ink);padding-bottom:12px}
+.grupo-cab h2{font-size:clamp(28px,7vw,40px)}
+.grupo-cab p{margin:8px 0 0;color:var(--muted);font-size:15px;max-width:34em}
+.msj{display:grid;gap:10px;padding:22px 0;border-bottom:1px solid var(--line)}
+.msj h3{margin:0;font:600 18px/1.25 var(--body)}
+.msj .cuando{margin:0;font-size:15px;color:var(--muted)}
+.texto{position:relative;white-space:pre-wrap;background:var(--soft);border-radius:4px 18px 18px 18px;padding:14px 16px;font-size:16px;line-height:1.5;margin:4px 0 0;max-width:34em}
+.texto mark{background:none;color:var(--accent-ink);font-weight:600;border-bottom:1.5px dashed var(--accent);padding:0 1px}
+.texto .lleno{color:var(--ink);font-weight:500}
+.msj .btns{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center}
+.msj .btn2{min-height:42px;font-size:14px}
+.msj .falta{font:400 13px/1.3 var(--mono);color:var(--accent-ink)}
+.ojo{margin:2px 0 0;font-size:14px;color:var(--bronze);font-style:italic;font-family:var(--serif)}
+@media (min-width:900px){
+  .portada{padding:56px 0 32px}
+  .para{position:sticky;top:0;margin:0;padding:14px 0;border-radius:0}
+  .para .fila{grid-template-columns:1fr 1fr 2fr}
+  .para .fila .ancho{grid-column:auto}
+  .grupo-list{display:grid;grid-template-columns:1fr 1fr;gap:0 40px}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <h1>Mensajes para <em>copiar</em></h1>
+    <p class="bajada">Escribe su nombre y lo que de verdad admiras de ella. Cada mensaje se arma solo, listo para copiar o mandar por WhatsApp.</p>
+    <ul class="reglas" aria-label="Tres reglas">
+      <li>Siempre personalizado.</li>
+      <li>Sin presionar.</li>
+      <li>Con un siguiente paso.</li>
+    </ul>
+  </header>
+
+  <form class="para" id="para" aria-label="Para quién es el mensaje" onsubmit="return false">
+    <div class="fila">
+      <label><span class="etq">Su nombre</span><input type="text" id="v-nombre" autocomplete="off" placeholder="Ana"></label>
+      <label><span class="etq">Tu nombre</span><input type="text" id="v-yo" autocomplete="given-name" placeholder="Tu nombre"></label>
+      <label class="ancho"><span class="etq">Por qué pensaste en ella</span><input type="text" id="v-elogio" autocomplete="off" placeholder="siempre te ves increíble y sabes de skincare"></label>
+    </div>
+    <details>
+      <summary>Más datos: tu link, día y hora</summary>
+      <div class="fila">
+        <label><span class="etq">Tu link o catálogo</span><input type="text" id="v-link" autocomplete="url" placeholder="mitienda.beauty/tunombre"></label>
+        <label><span class="etq">Día y hora que ofreces</span><input type="text" id="v-cuando" autocomplete="off" placeholder="el jueves a las 7 pm"></label>
+        <label class="ancho"><span class="etq">Otra opción de día</span><input type="text" id="v-otro" autocomplete="off" placeholder="el sábado a las 11 am"></label>
+      </div>
+    </details>
+  </form>
+
+  <nav class="momentos" aria-label="Momentos" id="momentos"></nav>
+  <div id="grupos"></div>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Para anotar a quién le escribiste</h2></div>
+    <a class="otra" href="/mentorias/herramientas/hoja-diaria/" data-cuenta="ir-hoja"><b>La hoja del día</b><span>Tus 10 contactos con su elogio y su respuesta, y quién va tibia, caliente o lista.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/primeros-200/" data-cuenta="ir-200"><b>Reto Mis primeros 200</b><span>10 contactos al día durante 14 días, con marcador.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Los mensajes salen del método diario del equipo: contactar con un elogio real, dar seguimiento sin presionar y cerrar con una pregunta clara.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(function(){
+  var M = [
+    {k:"contactar", t:"Contactar", d:"Para personas que necesitan ingresos, que no se quieren emplear o que buscan emprender. Un elogio real y distinto en cada mensaje.", m:[
+      {h:"El mensaje base", c:"Para invitar al negocio.", x:"Hola {nombre}, me emociona muchísimo mi nuevo negocio. Pensé en ti porque {elogio}. Me encantaría que fuéramos socias. ¿Puedo contarte un poco más? Si te late, buenísimo. Y si no, no hay problema."},
+      {h:"Para ofrecer producto", c:"A tus cercanas, cuando empiezas a vender.", x:"Hola {nombre}, ¿cómo estás? Ya tengo mi tienda de belleza y pensé en ti porque {elogio}. Te dejo mi catálogo por si algo te late: {link}\nSi quieres que te recomiende algo, me dices qué usas hoy y lo vemos."},
+      {h:"Para alguien que no ves hace tiempo", c:"Primero la conexión, después el negocio.", x:"Hola {nombre}, ¡qué gusto! Vi tus fotos y me acordé de ti, {elogio}. ¿Cómo has estado?", o:"Espera su respuesta antes de hablar del negocio."},
+      {h:"Cuando ella pregunta por un producto", c:"Para pasar de la venta a la invitación.", x:"¡Claro, {nombre}! Te lo aparto. Por cierto, yo lo pido a precio de socia y tú también podrías: hay gente que entra solo para comprar más barato y otras que lo hacen negocio. ¿Te cuento cómo funciona en 10 minutos?"}
+    ]},
+    {k:"seguir", t:"Seguimiento", d:"Seguimiento orgánico, sin intensear: felicitar, reaccionar, hacerte presente. Anota a cada una como tibia, caliente o lista.", m:[
+      {h:"Te dijo «luego te digo»", c:"Dos o tres días después.", x:"Hola {nombre}, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode."},
+      {h:"Hacerte presente", c:"Cuando publica algo suyo. Sin hablar del negocio.", x:"{nombre}, ¡qué bonito lo que publicaste! Me dio mucho gusto verlo."},
+      {h:"Después de la presentación", c:"El mismo día o al siguiente.", x:"{nombre}, gracias por tu tiempo hoy. ¿Qué fue lo que más te llamó la atención?"},
+      {h:"Si dijo que no", c:"La puerta queda abierta.", x:"Gracias por decírmelo, {nombre}, de verdad. Si más adelante cambia algo, aquí estoy. Y si un día quieres algún producto, con gusto te lo consigo."}
+    ]},
+    {k:"agendar", t:"Agendar", d:"Siempre con dos opciones de día y hora. Es más fácil elegir que inventar.", m:[
+      {h:"Agendar la presentación", c:"Cuando ya dijo que sí quiere saber más.", x:"¡Qué gusto, {nombre}! ¿Te late que te lo cuente en una llamada de 15 minutos? Puedo {cuando} o {otro}. ¿Cuál te acomoda?"},
+      {h:"Confirmar un día antes", c:"Baja mucho las faltas.", x:"Hola {nombre}, te confirmo nuestra llamada {cuando}. Te mando el enlace un ratito antes. ¡Nos vemos!"},
+      {h:"Si no llegó", c:"Sin reclamo, con nueva fecha.", x:"{nombre}, me imagino que se te complicó el día, pasa. ¿La movemos a {otro}?"},
+      {h:"Invitar a una presentación en grupo", c:"Para eventos o llamadas del equipo.", x:"Hola {nombre}, {cuando} vamos a explicar cómo funciona el negocio en una llamada corta, con otras personas que también están viendo si les late. Pensé en ti porque {elogio}. ¿Te aparto un lugar?"}
+    ]},
+    {k:"cerrar", t:"Cerrar", d:"Una pregunta de cierre clara. Nadie se queda sin respuesta ni sin siguiente paso.", m:[
+      {h:"La pregunta de cierre", c:"A quien ya está lista.", x:"{nombre}, con todo lo que platicamos, ¿arrancamos esta semana o prefieres que lo veamos el mes que entra?"},
+      {h:"Para la que está caliente pero no decide", c:"Pregunta qué falta, no presiones.", x:"{nombre}, ¿qué te falta para decidir? Si es una duda, la resolvemos ahorita."},
+      {h:"Bienvenida a tu nueva socia", c:"El mismo día que arranca.", x:"¡Bienvenida, {nombre}! Qué emoción tenerte en el equipo. Mañana te mando tu checklist de la primera semana y armamos juntas tu lista de 20 personas. Soy {yo} y cuentas conmigo."}
+    ]},
+    {k:"clientas", t:"Clientas", d:"Recompra: un mensaje personal a cada clienta que compró en los últimos tres meses, con una recomendación según lo que usa.", m:[
+      {h:"Para que vuelva a pedir", c:"A las 3 o 4 semanas de su compra.", x:"Hola {nombre}, ¿qué tal te fue con lo que te llevaste? Si ya se te está acabando, te lo aparto. Y si quieres probar algo nuevo, te recomiendo según lo que usas."},
+      {h:"Cuando hay promoción", c:"Solo si de verdad le sirve.", x:"{nombre}, me acordé de ti: este mes hay promoción en lo que te gusta. Te dejo mi catálogo: {link}\n¿Te aparto algo?"},
+      {h:"Para pedir que te recomiende", c:"A tus clientas contentas.", x:"{nombre}, gracias por tu confianza. Si conoces a alguien que esté buscando algo para su piel o maquillaje, me encantaría que le pasaras mi catálogo: {link}"}
+    ]},
+    {k:"volver", t:"Socias que se enfriaron", d:"Para socias sin pedido en 30 días o más. Sin presión: primero preguntar cómo están.", m:[
+      {h:"Preguntar cómo está", c:"El primer mensaje, nada de negocio.", x:"Hola {nombre}, me acordé de ti. ¿Cómo has estado?"},
+      {h:"Ofrecer un 1 a 1", c:"Si contesta y hay confianza.", x:"{nombre}, me encantaría que platicáramos 20 minutos de cómo vas y qué te sirve ahora. Sin compromiso. ¿Te late {cuando}?"},
+      {h:"Proponer un reto chico", c:"Para que regrese con un logro rápido.", x:"{nombre}, estamos haciendo el reto de los primeros 200 puntos en 14 días, con marcador y todo. ¿Te animas a hacerlo conmigo? Yo te acompaño."}
+    ]}
+  ];
+
+  var KEY = "mtb-mensajes-v1", st = H.lee(KEY, {}), V = ["nombre","yo","elogio","link","cuando","otro"];
+  V.forEach(function(k){ var i = document.getElementById("v-" + k); if(st[k]) i.value = st[k]; i.addEventListener("input", function(){ st[k] = i.value.trim(); H.guarda(KEY, st); pinta(); }); });
+  var ETQ = {nombre:"su nombre", yo:"tu nombre", elogio:"por qué pensaste en ella", link:"tu link", cuando:"día y hora", otro:"otra opción de día"};
+
+  var nav = document.getElementById("momentos"), cont = document.getElementById("grupos");
+  nav.innerHTML = M.map(function(g,i){ return '<button type="button" class="chip" data-k="'+g.k+'" aria-pressed="'+(i===0)+'">'+g.t+'</button>'; }).join("");
+  cont.innerHTML = M.map(function(g,i){
+    return '<section class="grupo" id="g-'+g.k+'"'+(i?' hidden':'')+' aria-labelledby="t-'+g.k+'"><div class="grupo-cab"><h2 id="t-'+g.k+'">'+g.t+'</h2><p>'+g.d+'</p></div><div class="grupo-list">'+
+      g.m.map(function(m,j){ return '<article class="msj"><div><h3>'+m.h+'</h3><p class="cuando">'+m.c+'</p></div><p class="texto" data-x="'+H.esc(m.x)+'"></p>'+(m.o?'<p class="ojo">'+m.o+'</p>':'')+'<div class="btns"><button type="button" class="btn2" data-copia>Copiar</button><a class="enlace" data-wa href="#" target="_blank" rel="noopener">Mandar por WhatsApp</a><span class="falta" aria-live="polite"></span></div></article>'; }).join("")+
+      '</div></section>';
+  }).join("");
+
+  function arma(x, html){
+    return x.replace(/\{(\w+)\}/g, function(_, k){
+      var v = st[k];
+      if(html) return v ? '<span class="lleno">'+H.esc(v)+'</span>' : '<mark>'+ETQ[k]+'</mark>';
+      return v || "[" + ETQ[k] + "]";
+    });
+  }
+  function pinta(){
+    document.querySelectorAll(".texto").forEach(function(p){
+      var x = p.dataset.x; p.innerHTML = arma(H.esc(x), true);
+      var faltan = (x.match(/\{(\w+)\}/g) || []).map(function(s){ return s.slice(1,-1); }).filter(function(k){ return !st[k]; });
+      var art = p.closest(".msj");
+      art.querySelector(".falta").textContent = faltan.length ? "Falta: " + faltan.filter(function(v,i,a){return a.indexOf(v)===i;}).map(function(k){return ETQ[k];}).join(", ") : "";
+      art.querySelector("[data-wa]").href = H.wa(arma(x, false));
+    });
+  }
+  cont.addEventListener("click", function(e){
+    var b = e.target.closest("[data-copia]"); if(!b) return;
+    var x = b.closest(".msj").querySelector(".texto").dataset.x;
+    H.copia(arma(x, false), "Mensaje copiado"); H.cuenta("copiar", b.closest(".msj").querySelector("h3").textContent);
+  });
+  nav.addEventListener("click", function(e){
+    var b = e.target.closest(".chip"); if(!b) return;
+    nav.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed", c === b); });
+    cont.querySelectorAll(".grupo").forEach(function(s){ s.hidden = s.id !== "g-" + b.dataset.k; });
+    history.replaceState(null, "", "#" + b.dataset.k);
+    H.cuenta("momento", b.dataset.k);
+  });
+  var h = location.hash.slice(1); if(h){ var b = nav.querySelector('[data-k="'+h+'"]'); if(b) b.click(); }
+  pinta();
+})();
+</script>
+</body>
+</html>

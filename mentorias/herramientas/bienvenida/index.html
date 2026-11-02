@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-bienvenida">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Checklist de bienvenida para socia nueva</title>
+<meta name="description" content="Lo que una socia nueva hace en su primer día, su primera semana y sus primeros meses: kit de $499, 75 puntos al mes y el programa de bienvenida de 50, 60, 70 y 80 puntos.">
+<meta property="og:title" content="Bienvenida, socia nueva">
+<meta property="og:description" content="Tu checklist del primer día, la primera semana y los primeros meses.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/bienvenida/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-bienvenida.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{display:grid;gap:28px;padding:36px 0 32px}
+/* tres números que tiene que saber */
+.sabe{display:grid;grid-template-columns:repeat(3,1fr);border-top:2px solid var(--ink);border-bottom:1px solid var(--line)}
+.sabe div{padding:16px 10px 16px 0}
+.sabe div+div{padding-left:12px;border-left:1px solid var(--line)}
+.sabe b{display:block;font:400 clamp(30px,8vw,48px)/1 var(--serif);font-variation-settings:"opsz" 144}
+.sabe span{display:block;font-size:14px;line-height:1.3;color:var(--muted);margin-top:6px}
+.avance{display:flex;align-items:center;gap:14px;margin:20px 0 0}
+.avance .barra-av{flex:1}
+.avance b{font:500 15px/1 var(--mono);white-space:nowrap}
+
+.tramo{display:grid;gap:8px;padding:26px 0 8px}
+.tramo-cab{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.tramo-cab .cuando{font:500 13px/1 var(--mono);color:var(--accent-ink);grid-row:1 / span 2;padding-top:6px;min-width:5.5em}
+.tramo-cab h2{font-size:clamp(26px,6.5vw,38px)}
+.tramo-cab p{margin:0;color:var(--muted);font-size:15px;grid-column:2}
+.checks a{text-underline-offset:3px}
+
+.escalones{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin:14px 0 4px;align-items:end}
+.escalones div{background:var(--soft);border-radius:10px 10px 4px 4px;display:flex;flex-direction:column;justify-content:flex-end;padding:8px 8px 10px}
+.escalones b{font:500 20px/1 var(--mono)}
+.escalones span{font-size:12px;color:var(--muted);margin-top:4px}
+.escalones div:nth-child(1){height:64px}.escalones div:nth-child(2){height:76px}.escalones div:nth-child(3){height:88px}.escalones div:nth-child(4){height:100px}
+.escalones div.ok{background:var(--tint)}
+.escalones div.ok b{color:var(--accent-ink)}
+
+.lider{background:var(--soft);border-radius:24px;padding:24px 18px;margin:40px -16px 0}
+.lider h2{font-size:clamp(26px,6.5vw,36px)}
+.lider p{margin:10px 0 0;max-width:34em}
+.lider .acciones{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:16px}
+@media (min-width:900px){
+  .portada{grid-template-columns:1.1fr .9fr;gap:56px;align-items:end;padding:56px 0 40px}
+  .tramos{display:grid;grid-template-columns:1fr 1fr;gap:0 48px}
+  .lider{margin:48px 0 0;padding:40px}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Bienvenida, <em>socia</em></h1>
+      <p class="bajada">Tu lista para los primeros días, la primera semana y los primeros meses. Palomea conforme avanzas; se guarda en tu celular.</p>
+      <div class="avance"><div class="barra-av" id="barra"><i></i></div><b id="cuantas">0 de 0</b></div>
+    </div>
+    <div class="sabe" aria-label="Tres números para empezar">
+      <div><b>$499</b><span>tu kit de inicio</span></div>
+      <div><b>75</b><span>puntos personales al mes para cobrar bonos</span></div>
+      <div><b>$25</b><span>vale cada punto a precio FI</span></div>
+    </div>
+  </header>
+
+  <div class="tramos" id="tramos">
+    <section class="tramo" aria-labelledby="t1">
+      <div class="tramo-cab"><span class="cuando">Día 1</span><h2 id="t1">Ya eres socia</h2><p>Lo primero, antes de vender nada.</p></div>
+      <ul class="checks">
+        <li><label><input type="checkbox" data-c="kit">Pedí mi kit de inicio de $499<small>Con él empiezas a probar y a mostrar producto.</small></label></li>
+        <li><label><input type="checkbox" data-c="bo">Entré a mi Back Office y lo exploré<small>Ahí ves tus puntos, tu equipo y el programa de bienvenida.</small></label></li>
+        <li><label><input type="checkbox" data-c="grupo">Estoy en el grupo del equipo</label></li>
+        <li><label><input type="checkbox" data-c="porque">Escribí mi por qué: para qué estoy haciendo esto</label></li>
+        <li><label><input type="checkbox" data-c="ritmo">Elegí mi ritmo: Part, Medio o Full Time<small>Part Time son 10 contactos, 1 presentación y 1 pieza de contenido al día.</small></label></li>
+      </ul>
+    </section>
+
+    <section class="tramo" aria-labelledby="t2">
+      <div class="tramo-cab"><span class="cuando">Semana 1</span><h2 id="t2">Primeros contactos</h2><p>Con tu líder a un lado.</p></div>
+      <ul class="checks">
+        <li><label><input type="checkbox" data-c="lista">Hice mi lista de 20 personas cercanas</label></li>
+        <li><label><input type="checkbox" data-c="cont">Mandé mis primeros 10 contactos<small><a href="/mentorias/herramientas/mensajes/">Mensajes listos para copiar</a></small></label></li>
+        <li><label><input type="checkbox" data-c="reto">Empecé el reto Mis primeros 200<small><a href="/mentorias/herramientas/primeros-200/">200 puntos en 14 días</a></small></label></li>
+        <li><label><input type="checkbox" data-c="hoja">Llené mi primera hoja del día<small><a href="/mentorias/herramientas/hoja-diaria/">La hoja del día</a></small></label></li>
+        <li><label><input type="checkbox" data-c="publi">Publiqué que empecé mi negocio</label></li>
+        <li><label><input type="checkbox" data-c="1a1">Tuve mi primer 1 a 1 con mi líder</label></li>
+      </ul>
+    </section>
+
+    <section class="tramo" aria-labelledby="t3">
+      <div class="tramo-cab"><span class="cuando">Cada mes</span><h2 id="t3">Tus 75 puntos</h2><p>Lo que te piden en cualquier nivel para cobrar tus bonos.</p></div>
+      <ul class="checks">
+        <li><label><input type="checkbox" data-c="p75">Hice mi pedido de 75 puntos este mes<small>75 puntos son unos $1,875 a precio FI.</small></label></li>
+        <li><label><input type="checkbox" data-c="meta">Puse mi meta de puntos del mes<small><a href="/mentorias/herramientas/nivel/">¿En qué nivel voy?</a> y <a href="/herramientas/ritmo-de-puntos/">Ritmo de Puntos</a></small></label></li>
+        <li><label><input type="checkbox" data-c="cierre">Cerré el mes con mi líder: qué funcionó y qué ajusto</label></li>
+      </ul>
+      <p class="nota">Si un mes no pides, tu cuenta no se cierra de inmediato: según la guía de inscripción, se mantiene con 75 puntos dentro de 6 meses.</p>
+    </section>
+
+    <section class="tramo" aria-labelledby="t4">
+      <div class="tramo-cab"><span class="cuando">Tus primeros meses</span><h2 id="t4">Programa de bienvenida</h2><p>Cuatro escalones de puntos, en este orden.</p></div>
+      <div class="escalones" id="escalones" aria-hidden="true">
+        <div data-e="b50"><b>50</b><span>puntos</span></div>
+        <div data-e="b60"><b>60</b><span>puntos</span></div>
+        <div data-e="b70"><b>70</b><span>puntos</span></div>
+        <div data-e="b80"><b>80</b><span>puntos</span></div>
+      </div>
+      <ul class="checks">
+        <li><label><input type="checkbox" data-c="b50">Escalón de 50 puntos</label></li>
+        <li><label><input type="checkbox" data-c="b60">Escalón de 60 puntos</label></li>
+        <li><label><input type="checkbox" data-c="b70">Escalón de 70 puntos</label></li>
+        <li><label><input type="checkbox" data-c="b80">Escalón de 80 puntos</label></li>
+      </ul>
+      <p class="nota">Las fechas de cada escalón y lo que te da los ves en tu Back Office. Si cambian, manda lo que diga ahí.</p>
+    </section>
+  </div>
+
+  <section class="lider" aria-labelledby="lTit">
+    <h2 id="lTit">¿Eres la líder?</h2>
+    <p>Manda esta página a tu socia el mismo día que se inscribe y revísenla juntas en su primer 1 a 1.</p>
+    <div class="acciones">
+      <a class="btn" id="mandar" href="#" target="_blank" rel="noopener" data-cuenta="mandar-socia">Mandar a mi socia</a>
+      <a class="enlace" href="/mentorias/herramientas/1a1/">Cómo hacer el 1 a 1</a>
+    </div>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Los datos del kit, los 75 puntos y el programa de bienvenida salen de la guía de inscripción de México. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(function(){
+  var KEY = "mtb-bienvenida-v1", st = H.lee(KEY, {}), cs = document.querySelectorAll("[data-c]");
+  function pinta(){
+    var n = 0; cs.forEach(function(c){ c.checked = !!st[c.dataset.c]; if(c.checked) n++; });
+    document.getElementById("cuantas").textContent = n + " de " + cs.length;
+    var b = document.getElementById("barra"); b.querySelector("i").style.transform = "scaleX(" + (n / cs.length) + ")"; b.classList.toggle("ok", n === cs.length);
+    document.querySelectorAll("[data-e]").forEach(function(e){ e.classList.toggle("ok", !!st[e.dataset.e]); });
+  }
+  document.getElementById("tramos").addEventListener("change", function(e){ var c = e.target; if(c.dataset.c){ st[c.dataset.c] = c.checked; H.guarda(KEY, st); pinta(); } });
+  document.getElementById("mandar").href = H.wa("¡Bienvenida al equipo! Aquí está tu lista para los primeros días, la primera semana y los primeros meses. Ve palomeando y lo revisamos juntas:\nhttps://mitienda.beauty/mentorias/herramientas/bienvenida/");
+  pinta();
+})();
+</script>
+</body>
+</html>
