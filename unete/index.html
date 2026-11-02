@@ -276,7 +276,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
   const fmt = n => "$" + Math.round(n).toLocaleString("es-MX");
   const cuenta = (path, title) => { try{ window.goatcounter.count({path:"unete/"+path, title, event:true}); }catch(_){} };
 
-  // Quién comparte: ?de=<slug> usa el nombre y WhatsApp de _data/equipo.json; si no, Sebas.
+  // Quién comparte: ?de=<slug> (o ?c=<slug>, como el resto del Centro de la socia) usa el nombre y WhatsApp de _data/equipo.json; si no, Sebas.
   let quien = {slug:"sebas", nombre:"Sebas", whatsapp:"525543506136", genero:"m"};
   let skin = 0.5;
   try{ const g = +localStorage.getItem("mtb-unete-gasto"); if (g >= 200 && g <= 5000) $("gasto").value = g; }catch(_){}
@@ -360,7 +360,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
   $("tags").classList.remove("go");
 
   // Consultora que comparte
-  const slug = new URLSearchParams(location.search).get("de");
+  const qs = new URLSearchParams(location.search), slug = qs.get("de") || qs.get("c");
   if (slug && /^[a-z0-9-]+$/.test(slug)){
     fetch("/_data/equipo.json").then(r => r.json()).then(eq => {
       const p = (eq.consultoras || []).find(x => x.slug === slug);
