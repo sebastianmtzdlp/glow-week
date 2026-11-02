@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-pro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Gracias por tu compra</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.caja{max-width:560px;padding:44px 0 24px}
+.caja h1{font-size:clamp(40px,11vw,64px)}
+.estado{margin:18px 0 0;font-size:18px}
+.boleto{border:1px solid var(--line);border-radius:18px;margin:26px 0 0;overflow:hidden}
+.boleto-top{background:var(--navy);color:var(--cream);padding:18px 18px 16px}
+.boleto-top span{font:400 13px/1 var(--mono);color:#B9BCD8}
+.boleto-top b{display:block;margin-top:10px;font:500 clamp(26px,8vw,34px)/1 var(--mono);letter-spacing:.04em;color:#fff;user-select:all}
+.boleto-pie{padding:16px 18px;display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+.espera{display:flex;gap:12px;align-items:center;margin-top:26px;color:var(--muted)}
+.espera i{width:18px;height:18px;border-radius:50%;border:2px solid var(--line);border-top-color:var(--accent);animation:gira 700ms linear infinite}
+@keyframes gira{to{transform:rotate(360deg)}}
+.pasos{margin:26px 0 0;padding:0 0 0 1.3em;display:grid;gap:8px}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra"><a class="marca" href="/">EQUIPO SVH</a><a class="volver" href="/mentorias/herramientas/pro/">Herramientas Pro</a></div>
+  <main class="caja" aria-live="polite">
+    <h1 id="tit">Revisando <em>tu pago</em></h1>
+    <p class="estado" id="estado">Un momento: estamos confirmando con Mercado Pago.</p>
+    <div class="espera" id="espera"><i aria-hidden="true"></i><span>Esto tarda unos segundos.</span></div>
+    <div class="boleto" id="boleto" hidden>
+      <div class="boleto-top"><span>TU CÓDIGO</span><b id="codigo"></b></div>
+      <div class="boleto-pie">
+        <a class="btn" href="/mentorias/herramientas/pro/ver/" id="abrir">Abrir mis planes</a>
+        <button class="btn2" type="button" id="copiar">Copiar código</button>
+        <a class="enlace" id="mandarme" href="#" target="_blank" rel="noopener">Mandármelo por WhatsApp</a>
+      </div>
+    </div>
+    <ol class="pasos" id="pasos" hidden>
+      <li>Ya quedó guardado en este teléfono.</li>
+      <li>En otro celular o computadora, abre mitienda.beauty/mentorias/herramientas/pro y escribe tu código.</li>
+      <li>Si lo pierdes, escríbenos con tu comprobante de Mercado Pago.</li>
+    </ol>
+    <p class="nota" id="ayuda" hidden></p>
+  </main>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var q = new URLSearchParams(location.search), compra = q.get("compra"), t = q.get("t"), pago = q.get("payment_id") || q.get("collection_id");
+  var intentos = 0;
+  function ayuda(txt){ $("ayuda").hidden = false; $("ayuda").innerHTML = txt + ' <a href="'+H.wa("Hola, pagué un plan Pro y no me aparece el código. Mi compra: " + (compra || "") + (pago ? " · pago " + pago : ""), PRO.soporte)+'" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>.'; }
+  function listo(j){
+    $("espera").hidden = true; $("tit").innerHTML = "¡Listo, ya <em>son tuyos</em>!";
+    $("estado").textContent = "Este es tu código para abrir tus planes cuando quieras.";
+    $("codigo").textContent = j.codigo; $("boleto").hidden = false; $("pasos").hidden = false;
+    PRO.codigo(j.codigo);
+    $("abrir").href = "/mentorias/herramientas/pro/ver/?c=" + encodeURIComponent(j.codigo) + (j.productos && j.productos.length === 1 ? "&p=" + j.productos[0] : "");
+    $("mandarme").href = H.wa("Mi código de Herramientas Pro: " + j.codigo + "\nmitienda.beauty/mentorias/herramientas/pro/ver/");
+    $("copiar").onclick = function(){ H.copia(j.codigo, "Código copiado"); };
+    H.cuenta("pagado");
+  }
+  function revisa(){
+    intentos++;
+    PRO.llama({accion:"estado", compra:compra, token:t, pago:pago}).then(function(j){
+      if(j.estado === "pagada") return listo(j);
+      if(j.estado === "rechazada"){ $("espera").hidden = true; $("tit").innerHTML = "No se <em>completó</em>"; $("estado").textContent = "Mercado Pago rechazó el pago y no se te cobró. Puedes intentarlo con otra forma de pago."; return; }
+      if(intentos < 12) return setTimeout(revisa, 2500);
+      $("espera").hidden = true;
+      $("estado").textContent = "Tu pago todavía no se acredita. Si pagaste en efectivo, puede tardar unas horas: vuelve a abrir esta misma página más tarde y aquí aparece tu código.";
+      ayuda("¿Pagaste con tarjeta y no aparece?");
+    }).catch(function(){
+      if(intentos < 4) return setTimeout(revisa, 2500);
+      $("espera").hidden = true; $("estado").textContent = "No pudimos revisar tu pago ahorita.";
+      ayuda("Guarda esta página y vuelve a abrirla en un rato.");
+    });
+  }
+  if(!compra || !t){ $("espera").hidden = true; $("tit").innerHTML = "Falta <em>tu compra</em>"; $("estado").textContent = "Esta página se abre sola al terminar de pagar en Mercado Pago."; ayuda("¿Pagaste y llegaste aquí sin código?"); }
+  else revisa();
+})();
+</script>
+</body>
+</html>

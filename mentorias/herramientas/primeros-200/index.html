@@ -1,0 +1,189 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-200">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Reto Mis primeros 200</title>
+<meta name="description" content="Tus primeros 200 puntos de grupo en 14 días, rumbo a 3%. Con marcador de puntos, los 14 días y lo que tienes que hacer cada uno.">
+<meta property="og:title" content="Reto Mis primeros 200">
+<meta property="og:description" content="200 puntos en 14 días, rumbo a 3%. Con marcador.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/primeros-200/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-200.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{display:grid;gap:28px;padding:36px 0 32px}
+.portada h1 .cifra{font-family:var(--mono);font-weight:500;letter-spacing:-.04em;font-style:normal}
+/* el marcador */
+.marc{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px 20px}
+.marc-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:400 13px/1 var(--mono);color:#B9BCD8}
+.cuenta{display:flex;align-items:baseline;gap:10px;margin:14px 0 6px}
+.cuenta b{font:700 clamp(64px,19vw,104px)/.9 var(--mono);letter-spacing:-.04em;color:#fff;font-variant-numeric:tabular-nums}
+.cuenta span{font:400 22px/1 var(--mono);color:#B9BCD8}
+.marc .barra-av{background:rgba(255,255,255,.14);height:10px}
+.marc .dice{margin:12px 0 0;font-size:16px;color:#E3E4F0}
+.dias{display:grid;grid-template-columns:repeat(7,1fr);gap:6px;margin:18px 0 0;padding:0;list-style:none}
+.dias button{width:100%;aspect-ratio:1;border-radius:10px;border:1px solid rgba(255,255,255,.18);background:transparent;color:#B9BCD8;font:500 14px/1 var(--mono);cursor:pointer;display:grid;place-items:center;padding:0;transition:transform 160ms var(--ease)}
+.dias button:active{transform:scale(.94)}
+.dias button.hoy{border-color:var(--accent);color:#fff}
+.dias button[aria-pressed=true]{background:var(--good);border-color:var(--good);color:#fff}
+.dias button.futuro{opacity:.45}
+.marc .ley{margin:8px 0 0;font-size:13px;color:#B9BCD8}
+
+.cuerpo{display:grid;gap:36px;padding:8px 0}
+.blq h2{font-size:clamp(28px,7vw,40px)}
+.pedido{display:grid;grid-template-columns:1fr 96px auto;gap:8px;margin-top:14px;align-items:end}
+.pedido .btn2{min-height:46px}
+.lista{list-style:none;margin:14px 0 0;padding:0}
+.lista li{display:grid;grid-template-columns:1fr auto auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line)}
+.lista .pts{font:500 16px/1 var(--mono)}
+.lista button{border:0;background:none;color:var(--muted);font-size:20px;line-height:1;cursor:pointer;min-width:36px;min-height:36px;border-radius:8px}
+.lista .vacia{display:block;color:var(--muted);font-size:15px;border:0}
+.reglas{counter-reset:r;list-style:none;margin:16px 0 0;padding:0}
+.reglas li{display:grid;grid-template-columns:44px 1fr;gap:4px 12px;padding:14px 0;border-bottom:1px solid var(--line)}
+.reglas li::before{counter-increment:r;content:counter(r);font:400 34px/.9 var(--serif);color:var(--accent-ink);grid-row:1 / span 2}
+.reglas b{font-weight:600}
+.reglas span{color:var(--muted);font-size:15px;grid-column:2}
+.despues{border-left:3px solid var(--accent);padding:6px 0 6px 16px;margin-top:18px}
+.despues p{margin:0}
+.despues p+p{margin-top:6px;color:var(--muted);font-size:15px}
+.acciones{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:18px}
+@media (prefers-reduced-motion:no-preference){
+  .dias li{opacity:0;transform:scale(.92);animation:aparece 300ms var(--ease) forwards}
+  .dias li:nth-child(n){animation-delay:calc(var(--i) * 28ms + 120ms)}
+}
+@keyframes aparece{to{opacity:1;transform:none}}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;align-items:center;gap:56px;padding:56px 0 48px}
+  .cuerpo{grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/herramientas/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Mis primeros <em class="cifra">200</em></h1>
+      <p class="bajada">El reto de arranque: 200 puntos de grupo en 14 días, rumbo a 3%. Lo importante no es el bono; es que en dos semanas ya tengas tu primer logro y el hábito hecho.</p>
+    </div>
+    <section class="marc" aria-label="Mi marcador">
+      <div class="marc-top"><span id="rango">Empieza hoy</span><span>meta 200</span></div>
+      <div class="cuenta"><b id="total">0</b><span>/ 200</span></div>
+      <div class="barra-av" id="barra"><i></i></div>
+      <p class="dice" id="dice" aria-live="polite">Te faltan 200 puntos y tienes 14 días.</p>
+      <ul class="dias" id="dias" aria-label="Los 14 días: toca un día cuando hiciste tus 10 contactos y llenaste tu marcador"></ul>
+      <p class="ley">Toca el día cuando hiciste tus 10 contactos y llenaste tu marcador.</p>
+    </section>
+  </header>
+
+  <div class="cuerpo">
+    <section class="blq" aria-labelledby="pTit">
+      <div class="cab"><h2 id="pTit">Mis puntos</h2><p>Anota cada pedido que entra: el tuyo y el de tus clientas.</p></div>
+      <form class="pedido" id="pedido" autocomplete="off">
+        <label><span class="etq">De quién</span><input type="text" id="quien" placeholder="Mi pedido" required></label>
+        <label><span class="etq">Puntos</span><input type="number" inputmode="numeric" min="1" id="pts" placeholder="75" required></label>
+        <button class="btn2" type="submit">Sumar</button>
+      </form>
+      <ul class="lista" id="lista"></ul>
+      <label style="display:block;margin-top:18px"><span class="etq">Empecé el</span><input type="date" id="inicio"></label>
+      <div class="acciones">
+        <a class="btn" id="mandar" href="#" target="_blank" rel="noopener" data-cuenta="mandar">Mandar mi avance</a>
+        <a class="enlace" href="/herramientas/ritmo-de-puntos/" data-cuenta="ritmo">Ritmo de Puntos</a>
+      </div>
+      <p class="guardado" id="guardado" style="margin-top:10px"></p>
+    </section>
+
+    <section class="blq" aria-labelledby="rTit">
+      <div class="cab"><h2 id="rTit">Lo que haces</h2></div>
+      <ol class="reglas" id="reglas">
+        <li><b>Tu lista de 20 personas cercanas</b><span>El día 1. Familia, amigas, compañeras: quien ya te conoce y te tiene confianza.</span></li>
+        <li><b>10 contactos al día ofreciendo producto</b><span>Con un elogio real y distinto en cada mensaje. <a href="/mentorias/herramientas/mensajes/#contactar">Mensajes listos</a>.</span></li>
+        <li><b>Tu propio pedido de 75 puntos o más</b><span>Son también tus 75 personales del mes.</span></li>
+        <li><b>2 clientas con pedido</b><span>Con eso y tu pedido, los 200 están cerca.</span></li>
+        <li><b>Tu marcador lleno los 14 días</b><span>Contactadas, presentaciones, contenido y ventas. <a href="/mentorias/herramientas/hoja-diaria/">La hoja del día</a>.</span></li>
+      </ol>
+      <ul class="checks" id="checks" style="margin-top:18px" aria-label="Mi avance">
+        <li><label><input type="checkbox" data-c="lista">Ya tengo mi lista de 20</label></li>
+        <li><label><input type="checkbox" data-c="propio">Hice mi pedido de 75 puntos o más</label></li>
+        <li><label><input type="checkbox" data-c="cli1">Primera clienta con pedido</label></li>
+        <li><label><input type="checkbox" data-c="cli2">Segunda clienta con pedido</label></li>
+      </ul>
+      <div class="despues">
+        <p><b>Cuando llegues a 200:</b> sigue con «Duplica a 400», rumbo a 6%, en 3 semanas.</p>
+        <p>Recompra de tus primeras clientas, 3 clientas nuevas y tu primera presentación de negocio. El plan completo viene en la <a href="/mentorias/herramientas/pro/">versión Pro</a>.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="frase" aria-label="Para líderes">
+    <p>¿Tienes socias nuevas este mes? Corre el reto <em>con todas a la vez</em> y reconoce cada día a quien avanza.</p>
+    <a href="#" id="invitar" target="_blank" rel="noopener" data-cuenta="invitar">Invitarlas por WhatsApp</a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · 1 punto son $25 a precio FI: 200 puntos son unos $5,000 en pedidos.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(function(){
+  var KEY = "mtb-200-v1", $ = function(id){ return document.getElementById(id); };
+  function iso(d){ return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
+  var st = H.lee(KEY, null) || {inicio: iso(new Date()), ped: [], dias: [], c: {}};
+  $("inicio").value = st.inicio;
+  function diaDe(n){ var d = new Date(st.inicio + "T12:00:00"); d.setDate(d.getDate() + n); return d; }
+  function hoyN(){ return Math.floor((new Date(iso(new Date()) + "T12:00:00") - new Date(st.inicio + "T12:00:00")) / 864e5); }
+
+  function pintaDias(){
+    var h = hoyN();
+    $("dias").innerHTML = Array.from({length:14}, function(_, i){
+      var d = diaDe(i), et = d.toLocaleDateString("es-MX", {weekday:"long", day:"numeric", month:"long"});
+      return '<li style="--i:'+i+'"><button type="button" data-d="'+i+'" aria-pressed="'+!!st.dias[i]+'" class="'+(i===h?'hoy ':'')+(i>h?'futuro':'')+'" aria-label="Día '+(i+1)+', '+et+'">'+(i+1)+'</button></li>';
+    }).join("");
+  }
+  function pinta(){
+    var tot = st.ped.reduce(function(a, p){ return a + (+p.p || 0); }, 0), falta = Math.max(0, 200 - tot), h = hoyN(), quedan = Math.max(0, 14 - Math.max(0, h));
+    $("total").textContent = H.fmt(tot);
+    $("barra").classList.toggle("ok", tot >= 200);
+    $("barra").querySelector("i").style.transform = "scaleX(" + Math.min(1, tot / 200) + ")";
+    var hechos = st.dias.filter(Boolean).length;
+    $("rango").textContent = h < 0 ? "Empiezas el " + new Date(st.inicio + "T12:00:00").toLocaleDateString("es-MX", {day:"numeric", month:"short"}) : (h < 14 ? "Día " + (h + 1) + " de 14" : "Terminó el reto");
+    $("dice").textContent = tot >= 200 ? "Llegaste a " + H.fmt(tot) + " puntos y llevas " + hechos + " de 14 días con marcador. Ya estás en 3%." :
+      (quedan > 0 ? "Te faltan " + H.fmt(falta) + " puntos y quedan " + quedan + (quedan === 1 ? " día" : " días") + ": unos " + Math.ceil(falta / quedan) + " al día." : "Llegaste a " + H.fmt(tot) + ". Te faltaron " + H.fmt(falta) + ". ¿Lo repetimos dos semanas más?");
+    $("lista").innerHTML = st.ped.length ? st.ped.map(function(p, i){ return '<li><span>'+H.esc(p.q)+'</span><span class="pts">+'+H.fmt(p.p)+'</span><button type="button" data-x="'+i+'" aria-label="Quitar pedido de '+H.esc(p.q)+'">×</button></li>'; }).join("") : '<li class="vacia">Todavía no hay pedidos. El primero suele ser el tuyo.</li>';
+    document.querySelectorAll("[data-c]").forEach(function(c){ c.checked = !!st.c[c.dataset.c]; });
+    var txt = "Reto Mis primeros 200 · " + (h >= 0 && h < 14 ? "día " + (h + 1) + " de 14" : "") + "\nLlevo " + H.fmt(tot) + " de 200 puntos.\nDías con marcador: " + hechos + "\n" + (tot >= 200 ? "¡Ya llegué a 3%!" : "Me faltan " + H.fmt(falta) + ".");
+    $("mandar").href = H.wa(txt);
+    $("guardado").textContent = H.guarda(KEY, st) ? "Guardado en este teléfono" : "";
+  }
+  $("pedido").addEventListener("submit", function(e){
+    e.preventDefault(); var q = $("quien").value.trim(), p = Math.round(+$("pts").value);
+    if(!q || !(p > 0)) return;
+    st.ped.push({q: q, p: p}); $("quien").value = ""; $("pts").value = ""; $("quien").focus();
+    if(/^(mi|yo)/i.test(q) && p >= 75) st.c.propio = true;
+    pinta(); H.aviso("+" + p + " puntos"); H.cuenta("pedido");
+  });
+  $("lista").addEventListener("click", function(e){ var b = e.target.closest("[data-x]"); if(!b) return; st.ped.splice(+b.dataset.x, 1); pinta(); });
+  $("dias").addEventListener("click", function(e){ var b = e.target.closest("[data-d]"); if(!b) return; var i = +b.dataset.d; st.dias[i] = !st.dias[i]; b.setAttribute("aria-pressed", !!st.dias[i]); pinta(); });
+  $("checks").addEventListener("change", function(e){ var c = e.target; if(c.dataset.c){ st.c[c.dataset.c] = c.checked; pinta(); } });
+  $("inicio").addEventListener("change", function(){ if(this.value){ st.inicio = this.value; pintaDias(); pinta(); } });
+  $("invitar").href = H.wa("¡Hola! Este mes hacemos el reto «Mis primeros 200»: 200 puntos en 14 días, rumbo a 3%. Con marcador para ver tu avance cada día:\nhttps://mitienda.beauty/mentorias/herramientas/primeros-200/\n¿Le entras? Empezamos el lunes.");
+  pintaDias(); pinta();
+})();
+</script>
+</body>
+</html>
