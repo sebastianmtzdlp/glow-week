@@ -89,9 +89,10 @@ insert into public.pro_productos (slug, titulo, precio, incluye) values
   ('inventario', 'Lo que tengo en casa · Pro', 99, array['inventario']),
   ('testimonios', 'Lo que dicen mis clientas · Pro', 99, array['testimonios']),
   ('en-vivo', 'Guion de venta en vivo · Pro', 99, array['en-vivo']),
+  ('equipo-por-tipo', 'Tu equipo, persona por persona', 149, array['equipo-por-tipo']),
   ('pack-ventas', 'Pro de ventas', 449, array['lista','presentacion','objeciones','rutina','pedidos']),
   ('pack-lider', 'Pro de líder', 599, array['equipo','reto','reconocimientos','reunion','capacitaciones']),
-  ('todo-pro', 'Todo Pro', 1299, array['plan-anual','planes-nivel','plan-compromiso','plan-mentora','plan-equipo','lista','presentacion','objeciones','rutina','pedidos','equipo','reto','reconocimientos','reunion','capacitaciones','contenido','mi-mes','inventario','testimonios','en-vivo'])
+  ('todo-pro', 'Todo Pro', 1299, array['plan-anual','planes-nivel','plan-compromiso','plan-mentora','plan-equipo','lista','presentacion','objeciones','rutina','pedidos','equipo','reto','reconocimientos','reunion','capacitaciones','contenido','mi-mes','inventario','testimonios','en-vivo','equipo-por-tipo'])
 on conflict (slug) do update set titulo = excluded.titulo, precio = excluded.precio, incluye = excluded.incluye;
 
 -- Para agregar una herramienta nueva a un código que ya compró (ejemplo):

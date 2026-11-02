@@ -1,5 +1,5 @@
 // Vistas de WhatsApp (1200x630) de /mentorias/herramientas/ y sus herramientas: og/mentorias-herramientas.png y og/h-*.png
-// Uso: node scripts/og-herramientas.cjs   (necesita red para Google Fonts)
+// Uso: node scripts/og-herramientas.cjs [nombre ...]   (necesita red para Google Fonts; sin nombres hace todas)
 const { chromium } = require("playwright");
 const path = require("path");
 const RAIZ = path.resolve(__dirname, "..");
@@ -47,6 +47,8 @@ const OG = {
   // /unete/ (página para quien todavía no es socia)
   "unete": ["Lo que pagas <em>de más</em>", "Pon lo que gastas al mes en belleza y ve cuánto se te va por no ser socia.",
     lista("Si gastas $800 al mes", [["Como clienta", "$800"], ["Como socia", "$480"], ["Pagas de más", "$320", "a"], ["Inscripción", "$499 una vez"]])],
+  "h-que-quiere": ["¿Qué quiere <em>cada quien?</em>", "Le gusta, va por algo o va por todo. Acompaña a cada una a su ritmo.",
+    `<div class="o"><b>De cada 100</b><div style="display:grid;grid-template-columns:repeat(20,1fr);gap:6px;border:0;padding:20px 0 14px">${Array.from({length:100},(_, i)=>{const c=i%20, r=Math.floor(i/20), k=c*5+r; return `<i style="display:block;aspect-ratio:1;border-radius:50%;background:${k<80?"#E9A1A8":k<95?"#DB414C":"#1B1F3B"}"></i>`;}).join("")}</div>${[["Le gusta","80"],["Va por algo","15"],["Va por todo","5"]].map(([a,b])=>`<div>${a}<span>${b}</span></div>`).join("")}</div>`],
 };
 const SOLO = process.argv.slice(2); // node scripts/og-herramientas.cjs unete  → solo esa
 (async () => {
