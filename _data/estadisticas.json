@@ -1,6 +1,6 @@
 {
  "actualizado": "2026-11-02",
- "hora": "04:27",
+ "hora": "08:19",
  "desde": "2026-10-16",
  "totales": {
   "visitas": 1030,
@@ -544,6 +544,64 @@
     "desde": "2026-10-31T11:00:00-06:00",
     "visitas": 0,
     "clics": {}
+   }
+  ]
+ },
+ "secciones": {
+  "escalera": 0,
+  "biblioteca": 0,
+  "herramientas": {
+   "hub": 0,
+   "dupes": 11,
+   "ritmo": 89
+  },
+  "mentorias": {
+   "visitas": 12,
+   "clics": {
+    "elegir-llamada": 2
+   }
+  },
+  "cursos": [],
+  "dupes_ver": [
+   {
+    "slug": "lip-oil",
+    "n": 2
+   },
+   {
+    "slug": "f3",
+    "n": 2
+   },
+   {
+    "slug": "paleta-glow",
+    "n": 1
+   },
+   {
+    "slug": "f30",
+    "n": 1
+   },
+   {
+    "slug": "f6",
+    "n": 1
+   },
+   {
+    "slug": "cera-cejas",
+    "n": 1
+   },
+   {
+    "slug": "peptide-lip-balm",
+    "n": 1
+   },
+   {
+    "slug": "cc-cream",
+    "n": 1
+   },
+   {
+    "slug": "her-passion",
+    "n": 1
+   },
+   {
+    "slug": "hera",
+    "n": 1
    }
   ]
  }

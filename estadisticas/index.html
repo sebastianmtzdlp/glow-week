@@ -82,6 +82,8 @@
     <button class="tab" role="tab" aria-selected="false" data-p="prod">Productos</button>
     <button class="tab" role="tab" aria-selected="false" data-p="ritmo">Ritmo de Puntos</button>
     <button class="tab" role="tab" aria-selected="false" data-p="eventos">Eventos</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="cursos">Biblioteca y cursos</button>
+    <button class="tab" role="tab" aria-selected="false" data-p="herr">Herramientas</button>
   </div>
 
   <section class="pane" id="p-resumen">
@@ -109,6 +111,17 @@
   <section class="pane" id="p-eventos" hidden>
     <div class="tiles" id="eTiles"></div>
     <div class="card"><h2>Por evento</h2><p class="sub">Visitas a la página de <a href="../eventos/" style="color:inherit">cada evento</a> y clics en sus botones. Los clics a «Aparta con» desde la cartelera cuentan para su evento.</p><div id="eList"></div></div>
+  </section>
+
+  <section class="pane" id="p-cursos" hidden>
+    <div class="tiles" id="cTiles"></div>
+    <div class="card"><h2>Por curso</h2><p class="sub">Visitas a la página de <a href="../programas/" style="color:inherit">cada programa</a>. Cuenta desde que se activó el conteo en estas páginas.</p><div id="cList"></div></div>
+  </section>
+
+  <section class="pane" id="p-herr" hidden>
+    <div class="tiles" id="hTiles"></div>
+    <div class="card"><h2>Por herramienta</h2><p class="sub">Visitas a <a href="../herramientas/" style="color:inherit">cada herramienta</a> y a Mentorías.</p><div id="hList"></div></div>
+    <div class="card"><h2>Dupes más vistos</h2><p class="sub">Los dupes que más abren.</p><div id="dList"></div></div>
   </section>
 
   <section class="pane" id="p-prod" hidden>
@@ -207,6 +220,21 @@
         return `<div class="row"><div class="rk${i<3&&e.visitas?" top":""}">${i+1}</div><div><div class="nm">${esc(e.titulo)}${ap?`<span class="pill">${ap} para apartar</span>`:""}</div><div class="meta">${fechaEv(e.desde)} · ${fmt(eClics(e))} ${eClics(e)===1?"clic":"clics"}</div><div class="track"><i style="width:${e.visitas/emax*100}%"></i></div></div><div class="val">${fmt(e.visitas)}<small>visitas</small></div></div>${cl.length ? `<div class="cdet"><div class="dt">${cl.map(([k,n]) => `<span>${esc(accion(k))} <em>×${n}</em></span>`).join("")}</div></div>` : ""}`;
       }).join("")
     : `<div class="empty"><b>Aún no hay visitas a eventos.</b>Cuando compartan la cartelera o el link de un evento, aquí verás cuántas lo abren y cuántas escriben para apartar.</div>`;
+  // Biblioteca y cursos
+  const S = D.secciones || {escalera: 0, biblioteca: 0, herramientas: {}, mentorias: {visitas: 0, clics: {}}, cursos: [], dupes_ver: []};
+  const cv = S.cursos.reduce((a, c) => a + c.visitas, 0);
+  const tiles = arr => arr.map(([l,n,d,h]) => `<div class="tile"><div class="label">${l}</div><div class="n${h?" hl":""}">${n}</div><div class="d">${d}</div></div>`).join("");
+  $("cTiles").innerHTML = tiles([["Biblioteca", fmt(S.biblioteca), "visitas a La Biblioteca", true], ["Cursos", fmt(cv), "visitas a las páginas de los programas", false], ["Escalera", fmt(S.escalera), "visitas a la Escalera de Programas", false]]);
+  const bar = (rows, unit) => { const m = Math.max(1, ...rows.map(r => r[1])); return rows.map(([l,n],i) => `<div class="row"><div class="rk${i<3&&n?" top":""}">${i+1}</div><div><div class="nm">${esc(l)}</div><div class="track"><i style="width:${n/m*100}%"></i></div></div><div class="val">${fmt(n)}<small>${unit}</small></div></div>`).join(""); };
+  $("cList").innerHTML = cv || S.biblioteca ? bar([["La Biblioteca", S.biblioteca], ...S.cursos.map(c => [c.nombre, c.visitas])].sort((a, b) => b[1] - a[1]), "visitas")
+    : `<div class="empty"><b>Aún no hay visitas.</b>El conteo empieza hoy: cuando abran La Biblioteca o un programa, aquí verás cuántas veces.</div>`;
+
+  // Herramientas
+  const H = S.herramientas || {}, M = S.mentorias || {visitas: 0, clics: {}};
+  const hrows = [["Ritmo de Puntos", H.ritmo || 0], ["Dupes", H.dupes || 0], ["Mentorías", M.visitas || 0], ["Portada de Herramientas", H.hub || 0]].sort((a, b) => b[1] - a[1]);
+  $("hTiles").innerHTML = tiles([["Herramientas", fmt((H.ritmo||0)+(H.dupes||0)+(H.hub||0)), "visitas a herramientas", false], ["Mentorías", fmt(M.visitas||0), "visitas", false], ["Eligieron llamada", fmt((M.clics||{})["elegir-llamada"]||0), "clics en Mentorías", true]]);
+  $("hList").innerHTML = hrows.some(r => r[1]) ? bar(hrows, "visitas") : `<div class="empty"><b>Aún no hay visitas.</b></div>`;
+  $("dList").innerHTML = S.dupes_ver.length ? bar(S.dupes_ver.map(x => [x.slug, x.n]), "vistas") : `<div class="empty"><b>Aún no hay dupes vistos.</b></div>`;
 })();
 </script>
 </body>

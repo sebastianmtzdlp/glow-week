@@ -71,6 +71,28 @@ for h in hits:
         m = re.fullmatch(r"([a-z0-9]+)", p)
         if m and m.group(1) in names: board[m.group(1)] = board.get(m.group(1), 0) + n
 
+# Biblioteca, cursos (programas), herramientas y mentorías: visitas por página y clics de eventos
+try: PN = {k: v["titulo"] for k, v in J("og/programas.json")["paginas"].items()}
+except Exception: PN = {}
+sec = {"escalera": 0, "biblioteca": 0, "cursos": {}, "herr_hub": 0, "dupes": 0, "dupes_ver": {}, "mentorias": 0, "mentorias_clics": {}}
+for h in hits:
+    p, n = h["path"].split("?")[0].split("#")[0].strip("/"), h["count"]
+    pa = p.split("/")
+    if h.get("event"):
+        if pa[0] == "dupes" and len(pa) == 3 and pa[2] == "ver": sec["dupes_ver"][pa[1]] = sec["dupes_ver"].get(pa[1], 0) + n
+        elif pa[0] == "mentorias" and len(pa) == 2: sec["mentorias_clics"][pa[1]] = sec["mentorias_clics"].get(pa[1], 0) + n
+    elif pa[0] == "programas":
+        if len(pa) == 1: sec["escalera"] += n
+        elif pa[1] == "biblioteca": sec["biblioteca"] += n
+        else: sec["cursos"][pa[1]] = sec["cursos"].get(pa[1], 0) + n
+    elif p == "herramientas": sec["herr_hub"] += n
+    elif p == "herramientas/dupes": sec["dupes"] += n
+    elif p == "mentorias": sec["mentorias"] += n
+secciones = {"escalera": sec["escalera"], "biblioteca": sec["biblioteca"], "herramientas": {"hub": sec["herr_hub"], "dupes": sec["dupes"], "ritmo": ritmo["visitas"]},
+    "mentorias": {"visitas": sec["mentorias"], "clics": sec["mentorias_clics"]},
+    "cursos": [{"slug": k, "nombre": PN.get(k, k), "visitas": v} for k, v in sorted(sec["cursos"].items(), key=lambda x: (-x[1], x[0]))],
+    "dupes_ver": [{"slug": k, "n": v} for k, v in sorted(sec["dupes_ver"].items(), key=lambda x: -x[1])[:10]]}
+
 dias = [{"d": s["day"], "v": s["daily"] if isinstance(s.get("daily"), int) else sum(s.get("hourly", []))} for s in tot.get("stats", [])]
 cons = [{"slug": s, "nombre": names[s], "visitas": board.get(s, 0), "catalogo": cat.get(s, 0), "pedidos": orders.get(s, 0)} for s in names]
 cons.sort(key=lambda x: (-x["visitas"]-x["catalogo"], x["nombre"]))
@@ -87,7 +109,7 @@ def topn(d, k=5): return [{"code": c, "name": prod.get(c, c), "n": n} for c, n i
 por = {s: {"agregados": topn(v["agregar"]), "vistos": topn(v["ver"])} for s, v in xc.items()}
 out = {"actualizado": now.strftime("%Y-%m-%d"), "hora": now.strftime("%H:%M"), "desde": START[:10],
        "totales": {"visitas": tot.get("total", 0), "agregados": sum(adds.values()), "pedidos": sum(orders.values()), "wa": wa},
-       "dias": dias, "consultoras": cons, "productos": productos, "por_consultora": por, "ritmo": ritmo, "eventos": eventos}
+       "dias": dias, "consultoras": cons, "productos": productos, "por_consultora": por, "ritmo": ritmo, "eventos": eventos, "secciones": secciones}
 def guardar(ruta, nuevo, ignorar=()):
     """Escribe solo si cambió algo (sin contar fecha/hora), para no llenar el historial de commits."""
     f = os.path.join(ROOT, ruta)
