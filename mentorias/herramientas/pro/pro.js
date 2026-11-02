@@ -55,6 +55,24 @@ window.PRO = (function(){
     {s:"equipo-por-tipo", t:"Tu equipo, persona por persona", precio:149, tipo:"lider", ruta:"/mentorias/herramientas/que-quiere/", para:"Para la líder que quiere acompañar a cada quien a su ritmo.",
      d:"El mapa de tu equipo según lo que quiere cada persona (le gusta, va por algo o va por todo), un plan de un mes para cada una, guiones de 1 a 1, mensajes de grupo y cómo notar cuando alguien cambia de ritmo."}
   ];
+  // Qué desbloquea Pro en cada herramienta (lo que la caja muestra junto al botón)
+  var G = {
+    lista:["Sin tope de 50 personas","Recompra por producto: te avisa cuándo le toca a cada clienta","Tus tasas de respuesta, citas y socias","Importar una lista pegada y tu lista en la nube, en todos tus celulares"],
+    presentacion:["Tu historia en tu link, que se ve cuando alguien lo abre","Cuántas veces se abrió cada link tuyo"],
+    objeciones:["Banco completo de 17 objeciones: negocio, reactivación y recompra","Tres tonos por cada una: cercano, directo y breve","Modo práctica para ensayar"],
+    rutina:["Todos los pasos: tónico, contorno de ojos y mascarilla","Tu tienda en la tarjeta","Un toque y la clienta queda en tu lista con fecha de recompra"],
+    pedidos:["Sin tope de 15 pedidos","Ganancia del mes y porcentaje sobre lo vendido","Trae los pedidos de tu tablero con un toque","Exportar a hoja de cálculo y respaldo en la nube"],
+    equipo:["Líneas sin tope (gratis: 8)","Seis meses de historia y comparación por línea","Todas las que bajaron, con su mensaje de WhatsApp","Tu mapa en la nube"],
+    reto:["Crear retos de hasta 60 días para tu equipo","Ver quién lleva días sin reportar","Mandar el tablero al grupo con un toque"],
+    reconocimientos:["Foto de la persona y tu logo en la tarjeta","Cuadro de honor del mes, desde tu Mapa de mi equipo","Racha e historial por persona"],
+    reunion:["Lista de invitadas: confirmó, vino y compró","Resultados de cada reunión","Proponer tu reunión a la cartelera del equipo"],
+    capacitaciones:["Las 12 sesiones de un trimestre, no solo la primera","Guion, dinámica, tarea y mensaje para convocar de cada una"],
+    contenido:["90 guiones completos: reels, historias y carruseles","Filtro por tipo y botón de copiar","Para no quedarte en blanco ningún día"],
+    "mi-mes":["Seis meses de historia, uno junto a otro","Tus tasas mes a mes","Tu cierre en la nube"],
+    inventario:["Sin tope de 20 productos","Aviso de lo que se acaba, con mínimo por producto","Ganancia de lo vendido e historial"],
+    testimonios:["Recibir lo que dicen tus clientas en tu link","Aprobar o quitar cada uno","Copiar los que apruebes para tus historias"],
+    "en-vivo":["El guion armado con los productos que vas a mostrar","Minutos, precios y cierre de cada producto","Mensaje para después del live"]
+  };
   var PAQ = [
     {s:"todo", t:"Los 5 planes", precio:699, tipo:"paquete", para:"Para la líder que va a usarlos con todo su equipo.", incluye:P.map(function(x){ return x.s; })},
     {s:"pack-ventas", t:"Pro de ventas", precio:449, tipo:"paquete", para:"Para la socia que vende cada semana.", incluye:["lista","presentacion","objeciones","rutina","pedidos"]},
@@ -96,9 +114,10 @@ window.PRO = (function(){
     function pintaCerrada(err){
       el.innerHTML = '<div class="pro-caja"><div class="pro-cab"><span class="pro-etq">Pro</span><b>'+H.esc(opts.titulo || p.t.replace(" · Pro",""))+'</b><span class="pro-precio">$'+H.fmt(p.precio)+' una vez</span></div>'+
         '<p>'+H.esc(opts.texto || p.d)+'</p>'+
-        '<div class="pro-acc"><a class="btn" href="/mentorias/herramientas/pro/#'+p.s+'" data-cuenta="ver-pro">Ver la versión Pro</a>'+
+        (G[slug] ? '<p class="pro-g">Con Pro ganas:</p><ul class="pro-gana">'+G[slug].map(function(x){ return '<li>'+H.esc(x)+'</li>'; }).join("")+'</ul>' : '')+
+        '<div class="pro-acc"><a class="btn" href="/mentorias/herramientas/pro/#'+p.s+'" data-cuenta="ver-pro">Quiero Pro · $'+H.fmt(p.precio)+'</a>'+
         '<form class="pro-cod" autocomplete="off"><input type="text" placeholder="SVH-XXXX-XXXX" aria-label="Tu código Pro" spellcheck="false"><button class="btn2" type="submit">Ya tengo código</button></form></div>'+
-        (err ? '<p class="nota pro-err">'+H.esc(err)+'</p>' : '')+'</div>';
+        (err ? '<p class="nota pro-err">'+H.esc(err)+'</p>' : '')+'<p class="nota">Pago único, acceso personal e inmediato. <a href="/mentorias/herramientas/terminos/">Términos y condiciones</a></p></div>';
       el.querySelector("form").addEventListener("submit", function(e){
         e.preventDefault(); var c = el.querySelector("input").value.trim().toUpperCase().replace(/\s+/g, "");
         if(!c) return; codigo(c); el.querySelector("button").textContent = "Revisando…";
@@ -106,7 +125,7 @@ window.PRO = (function(){
       });
     }
     return tiene(slug).then(function(r){
-      if(r.ok){ el.innerHTML = '<div class="pro-caja on"><div class="pro-cab"><span class="pro-etq">Pro</span><b>'+H.esc(opts.titulo || p.t.replace(" · Pro",""))+'</b><span class="pro-precio">activo con tu código</span></div>'+(opts.activo ? '<p>'+H.esc(opts.activo)+'</p>' : '')+'</div>'; }
+      if(r.ok){ el.innerHTML = '<div class="pro-caja on"><div class="pro-cab"><span class="pro-etq">Pro</span><b>'+H.esc(opts.titulo || p.t.replace(" · Pro",""))+'</b><span class="pro-precio">activo con tu código</span></div>'+(opts.activo ? '<p>'+H.esc(opts.activo)+'</p>' : '')+'<p class="nota"><a href="/mentorias/herramientas/terminos/">Términos y condiciones</a></p></div>'; }
       else pintaCerrada();
       return r;
     });
