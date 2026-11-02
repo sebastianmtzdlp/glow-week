@@ -1,4 +1,4 @@
-// Genera los descargables de /1a1/: hoja-1a1.pdf, checklist-lider.pdf, sus vistas .png y og/1a1.png.
+// Genera los descargables de /mentorias/1a1/ y las vistas de WhatsApp de /mentorias/1a1/ y /mentorias/herramientas/: hoja-1a1.pdf, checklist-lider.pdf, sus vistas .png y og/1a1.png.
 // Uso: node scripts/1a1-pdf.cjs   (necesita red para Google Fonts y Playwright con Chromium)
 const { chromium } = require("playwright");
 const path = require("path");
@@ -38,7 +38,7 @@ td:first-child{width:52%}
 `;
 
 const HOJA = `<!doctype html><html lang="es-MX"><head><meta charset="utf-8">${FUENTES}<style>${BASE}</style></head><body><div class="pag">
-<div class="top"><span>EQUIPO SVH</span><span>mitienda.beauty/1a1</span></div>
+<div class="top"><span>EQUIPO SVH</span><span>mitienda.beauty/mentorias/1a1</span></div>
 <h1>La hoja del <em>1 a 1</em></h1>
 <p class="sub">Primero los datos, después la conversación. No cierres sin el 5 y el 6.</p>
 <div class="dos"><div class="campo"><b>Líder</b><div class="lin"></div></div><div class="campo"><b>Fecha</b><div class="lin"></div></div></div>
@@ -85,7 +85,7 @@ const CHECK = `<!doctype html><html lang="es-MX"><head><meta charset="utf-8">${F
 .grande{font-size:11pt;gap:0}.grande li{padding:3pt 0;border-bottom:1px solid #E6E8F0;display:flex;align-items:center}
 .grande li .lin{flex:0 0 1.4in;margin-left:auto;height:14pt}
 </style></head><body><div class="pag">
-<div class="top"><span>EQUIPO SVH</span><span>mitienda.beauty/1a1</span></div>
+<div class="top"><span>EQUIPO SVH</span><span>mitienda.beauty/mentorias/1a1</span></div>
 <h1>Antes de tu <em>1 a 1</em></h1>
 <p class="sub">Tráelo listo. Primero vemos tus datos y luego platicamos de cómo vas.</p>
 <div class="dos"><div class="campo"><b>Tu nombre</b><div class="lin"></div></div><div class="campo"><b>Fecha del 1 a 1</b><div class="lin"></div></div></div>
@@ -102,7 +102,7 @@ const CHECK = `<!doctype html><html lang="es-MX"><head><meta charset="utf-8">${F
 
 <div class="bloque"><h2><span class="n c">4</span>Lo que quiero lograr este mes</h2>
 <div class="lin"></div><div class="lin"></div></div>
-<div class="pie"><span>El equipo copia, no obedece.</span><span>mitienda.beauty/1a1</span></div>
+<div class="pie"><span>El equipo copia, no obedece.</span><span>mitienda.beauty/mentorias/1a1</span></div>
 </div></body></html>`;
 
 const OG = `<!doctype html><html><head><meta charset="utf-8">${FUENTES}<style>
@@ -124,17 +124,22 @@ p{font-size:28px;line-height:1.35;margin:28px 0 0;color:#262A4A}
     await p.setViewportSize({ width: 816, height: 1056 });
     await p.setContent(html, { waitUntil: "networkidle" });
     await p.evaluate(() => document.fonts.ready);
-    await p.pdf({ path: path.join(RAIZ, "1a1", nombre + ".pdf"), format: "Letter", printBackground: true });
+    await p.pdf({ path: path.join(RAIZ, "mentorias", "1a1", nombre + ".pdf"), format: "Letter", printBackground: true });
     await p.screenshot({ path: path.join(process.env.REVISION || require("os").tmpdir(), nombre + "-grande.png") });
     const v = await b.newPage({ viewport: { width: 816, height: 1056 }, deviceScaleFactor: 0.3 });
     await v.setContent(html, { waitUntil: "networkidle" });
     await v.evaluate(() => document.fonts.ready);
-    await v.screenshot({ path: path.join(RAIZ, "1a1", nombre + ".png") });
+    await v.screenshot({ path: path.join(RAIZ, "mentorias", "1a1", nombre + ".png") });
     await v.close();
   }
   await p.setViewportSize({ width: 1200, height: 630 });
   await p.setContent(OG, { waitUntil: "networkidle" });
   await p.evaluate(() => document.fonts.ready);
-  await p.screenshot({ path: path.join(RAIZ, "og", "1a1.png") });
+  await p.screenshot({ path: path.join(RAIZ, "og", "mentorias-1a1.png") });
+  const OG2 = OG.replace(/<body>[\s\S]*<\/body>/, `<body><div><div class="m">EQUIPO SVH · MENTORÍAS</div><h1>Herramientas <em>gratis</em></h1><p>Guías, hojas y checklists para ti y tu equipo.</p></div>
+<div class="o"><b>Para liderar</b><div class="d"><span>01</span>El 1 a 1 con tus líderes</div><div><span>·</span>Hoja del 1 a 1</div><div><span>·</span>Checklist para tu líder</div><div><span>·</span>Mensaje para agendar</div></div></body>`);
+  await p.setContent(OG2, { waitUntil: "networkidle" });
+  await p.evaluate(() => document.fonts.ready);
+  await p.screenshot({ path: path.join(RAIZ, "og", "mentorias-herramientas.png") });
   await b.close();
 })();

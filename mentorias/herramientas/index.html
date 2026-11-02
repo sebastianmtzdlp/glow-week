@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Herramientas gratis de las mentorías</title>
+<meta name="description" content="Guías, hojas y checklists de las mentorías, gratis para ti y para tu equipo. Empieza con el 1 a 1 con tus líderes.">
+<meta property="og:title" content="Herramientas gratis de las mentorías">
+<meta property="og:description" content="Guías, hojas y checklists para ti y tu equipo, gratis. Empieza con el 1 a 1 con tus líderes.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/">
+<meta property="og:image" content="https://mitienda.beauty/og/mentorias-herramientas.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mitienda.beauty/og/mentorias-herramientas.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF;--ink:#262A4A;--muted:#62668A;--line:#E6E8F0;--soft:#F3F4F9;
+  --accent:#DB414C;--accent-ink:#C8323F;--bronze:#8A5A2E;--navy:#1B1F3B;
+  --serif:"Fraunces",Georgia,serif;--body:"Outfit",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body)}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.barra{display:flex;align-items:center;justify-content:space-between;padding:18px 0 0}
+.marca{font:300 12px/1 var(--body);letter-spacing:.22em;color:var(--muted);text-decoration:none}
+.volver{font:500 13px/1 var(--mono);color:var(--bronze);text-decoration:none}
+.portada{padding:40px 0 36px;max-width:40em}
+h1{font:400 clamp(46px,12.5vw,88px)/.95 var(--serif);letter-spacing:-.02em;margin:0;font-variation-settings:"opsz" 144}
+h1 em{font-style:italic}
+.bajada{font-size:19px;line-height:1.5;margin:18px 0 0;max-width:30em}
+h2{font:400 clamp(30px,7vw,44px)/1 var(--serif);letter-spacing:-.015em;margin:0}
+.cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:8px 24px;border-bottom:2px solid var(--ink);padding-bottom:14px}
+.cab p{margin:0;color:var(--muted);font-size:15px;max-width:26em}
+
+.pieza{display:grid;gap:20px;padding:28px 0 32px;border-bottom:1px solid var(--line)}
+.pieza-n{font:500 14px/1 var(--mono);color:var(--accent-ink)}
+.pieza h3{font:400 clamp(30px,7.5vw,46px)/1.02 var(--serif);letter-spacing:-.015em;margin:10px 0 0}
+.pieza h3 a{text-decoration:none}
+.pieza h3 em{font-style:italic}
+.pieza .que{margin:12px 0 0;font-size:17px;max-width:30em}
+.trae{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.trae li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:11px 0;border-bottom:1px solid var(--line);font-size:16px}
+.trae li span:last-child{font:400 13px/1.2 var(--mono);color:var(--muted);text-align:right}
+.trae a{font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:0 22px;border-radius:14px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;text-decoration:none;margin-top:20px;transition:transform 160ms var(--ease)}
+.btn:active{transform:scale(.97)}
+.vista{display:none;max-width:245px;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;transition:transform 200ms var(--ease)}
+.vista img{display:block;width:100%;height:auto}
+.vista:active{transform:scale(.98)}
+
+.tambien{padding:44px 0 8px}
+.otra{display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:center;padding:20px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.otra b{font:600 19px/1.25 var(--body)}
+.otra span{color:var(--muted);font-size:15px;grid-column:1}
+.otra i{grid-row:1 / span 2;grid-column:2;font-style:normal;font:500 14px/1 var(--mono);color:var(--muted)}
+
+.frase{background:var(--navy);color:#F4F1EC;border-radius:24px;padding:36px 22px;margin:44px 0 0}
+.frase p{margin:0;font:400 clamp(24px,6vw,36px)/1.18 var(--serif)}
+.frase p em{font-style:italic;color:#F2B8BC}
+.frase a{display:inline-block;margin-top:20px;color:#fff;font:500 16px/1.4 var(--body);text-underline-offset:4px}
+footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
+
+@media (hover:hover) and (pointer:fine){
+  .vista:hover{transform:translateY(-2px)}
+  .otra:hover b{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+}
+@media (min-width:900px){
+  .portada{padding:64px 0 48px}
+  .pieza{grid-template-columns:1fr 245px;gap:48px;align-items:start;padding:40px 0 44px}
+  .vista{display:block}
+  .frase{padding:56px}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:0ms!important}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/">Mentorías</a>
+  </div>
+
+  <header class="portada">
+    <h1>Herramientas <em>gratis</em></h1>
+    <p class="bajada">Guías, hojas y checklists de las mentorías, para que las uses con tu equipo desde hoy. Sin registrarte y sin costo.</p>
+  </header>
+
+  <section aria-labelledby="hTit">
+    <div class="cab">
+      <h2 id="hTit">Para liderar</h2>
+      <p>Para cuando ya tienes líderes y quieres que tu equipo crezca con orden.</p>
+    </div>
+
+    <article class="pieza">
+      <div>
+        <div class="pieza-n">01</div>
+        <h3><a href="/mentorias/1a1/">El 1 a 1 con tus <em>líderes</em></a></h3>
+        <p class="que">Qué revisar en cada reunión con tus líderes, en seis pasos: primero los datos, después la conversación. Y nunca cierres sin plan ni compromiso.</p>
+        <ul class="trae">
+          <li><span>La guía de los seis pasos</span><span>en la página</span></li>
+          <li><span>La hoja para llenar juntas y mandar por WhatsApp</span><span>en la página</span></li>
+          <li><a href="/mentorias/1a1/hoja-1a1.pdf" download data-cuenta="pdf-hoja">Hoja del 1 a 1 en blanco</a><span>PDF · carta</span></li>
+          <li><a href="/mentorias/1a1/checklist-lider.pdf" download data-cuenta="pdf-checklist">Checklist para tu líder</a><span>PDF · carta</span></li>
+          <li><a href="/mentorias/1a1/#materiales">Mensaje para agendar</a><span>WhatsApp</span></li>
+        </ul>
+        <a class="btn" href="/mentorias/1a1/" data-cuenta="abrir-1a1">Abrir el 1 a 1</a>
+      </div>
+      <a class="vista" href="/mentorias/1a1/" tabindex="-1" aria-hidden="true"><img src="/mentorias/1a1/hoja-1a1.png" alt="" width="245" height="317"></a>
+    </article>
+  </section>
+
+  <section class="tambien" aria-labelledby="tTit">
+    <div class="cab">
+      <h2 id="tTit">También te sirve</h2>
+    </div>
+    <a class="otra" href="/herramientas/ritmo-de-puntos/" data-cuenta="ritmo">
+      <b>Ritmo de Puntos</b>
+      <span>Reparte tu meta de puntos del mes y mira cada día cuántos te tocan. Útil para traer tus números al 1 a 1.</span>
+      <i aria-hidden="true">→</i>
+    </a>
+  </section>
+
+  <section class="frase" aria-label="Mentorías">
+    <p>Si quieres que alguien te acompañe a <em>aplicarlo</em> en tu equipo, para eso están las mentorías.</p>
+    <a href="/mentorias/" data-cuenta="mentorias">Ver las mentorías con Sel</a>
+  </section>
+
+  <footer>Equipo SVH · mitienda.beauty</footer>
+</div>
+<script>
+function cuenta(path, title){ try{ window.goatcounter.count({path:"mentorias-herramientas/"+path, title, event:true}); }catch(_){} }
+document.querySelectorAll("a[data-cuenta]").forEach(a => a.addEventListener("click", () => cuenta(a.dataset.cuenta, a.textContent.trim())));
+</script>
+</body>
+</html>
