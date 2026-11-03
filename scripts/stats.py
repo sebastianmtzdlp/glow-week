@@ -75,7 +75,7 @@ for h in hits:
 try: PN = {k: v["titulo"] for k, v in J("og/programas.json")["paginas"].items()}
 except Exception: PN = {}
 herr_pag, pres_ap = {}, {}
-sec = {"escalera": 0, "biblioteca": 0, "cursos": {}, "herr_hub": 0, "dupes": 0, "dupes_ver": {}, "mentorias": 0, "mentorias_clics": {}}
+sec = {"escalera": 0, "biblioteca": 0, "cursos": {}, "herr_hub": 0, "dupes": 0, "dupes_ver": {}, "mentorias": 0, "mentorias_clics": {}, "tt": 0, "tt_clics": {}}
 for h in hits:
     p, n = h["path"].split("?")[0].split("#")[0].strip("/"), h["count"]
     pa = p.split("/")
@@ -83,6 +83,7 @@ for h in hits:
         if pa[0] == "h-presentacion" and len(pa) == 2 and pa[1].startswith("de-"): pres_ap[pa[1][3:]] = pres_ap.get(pa[1][3:], 0) + n; continue
         if pa[0] == "dupes" and len(pa) == 3 and pa[2] == "ver": sec["dupes_ver"][pa[1]] = sec["dupes_ver"].get(pa[1], 0) + n
         elif pa[0] == "mentorias" and len(pa) == 2: sec["mentorias_clics"][pa[1]] = sec["mentorias_clics"].get(pa[1], 0) + n
+        elif pa[0] == "top-team" and len(pa) == 2: sec["tt_clics"][pa[1]] = sec["tt_clics"].get(pa[1], 0) + n
     elif pa[0] == "programas":
         if len(pa) == 1: sec["escalera"] += n
         elif pa[1] == "biblioteca": sec["biblioteca"] += n
@@ -90,9 +91,11 @@ for h in hits:
     elif len(pa) == 3 and pa[0] == "mentorias" and pa[1] == "herramientas": herr_pag[pa[2]] = herr_pag.get(pa[2], 0) + n
     elif p == "herramientas": sec["herr_hub"] += n
     elif p == "herramientas/dupes": sec["dupes"] += n
+    elif p == "herramientas/top-team": sec["tt"] += n
     elif p == "mentorias": sec["mentorias"] += n
 secciones = {"escalera": sec["escalera"], "biblioteca": sec["biblioteca"], "herramientas": {"hub": sec["herr_hub"], "dupes": sec["dupes"], "ritmo": ritmo["visitas"], "paginas": herr_pag},
     "mentorias": {"visitas": sec["mentorias"], "clics": sec["mentorias_clics"]},
+    "top_team": {"visitas": sec["tt"], "clics": sec["tt_clics"]},
     "cursos": [{"slug": k, "nombre": PN.get(k, k), "visitas": v} for k, v in sorted(sec["cursos"].items(), key=lambda x: (-x[1], x[0]))],
     "dupes_ver": [{"slug": k, "n": v} for k, v in sorted(sec["dupes_ver"].items(), key=lambda x: -x[1])[:10]]}
 
