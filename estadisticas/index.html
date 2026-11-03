@@ -121,7 +121,7 @@
   <section class="pane" id="p-herr" hidden>
     <div class="tiles" id="hTiles"></div>
     <div class="card"><h2>Por herramienta</h2><p class="sub">Visitas a <a href="/herramientas/gratis/" style="color:inherit">cada herramienta</a> y a Mentorías.</p><div id="hList"></div></div>
-    <div class="card"><h2>Adelanto para el Top Team</h2><p class="sub">Cuántas abren <a href="/herramientas/top-team/" style="color:inherit">la página del adelanto</a> y qué prueban.</p><div class="tiles" id="ttTiles" style="margin-top:12px"></div></div>
+    <div class="card"><h2>Herramientas básicas (Top Team)</h2><p class="sub">Cuántas abren <a href="/herramientas/top-team/" style="color:inherit">la página</a> y qué usan.</p><div class="tiles" id="ttTiles" style="margin-top:12px"></div></div>
     <div class="card"><h2>Dupes más vistos</h2><p class="sub">Los dupes que más abren.</p><div id="dList"></div></div>
   </section>
 
@@ -236,7 +236,7 @@
   $("hTiles").innerHTML = tiles([["Herramientas", fmt((H.ritmo||0)+(H.dupes||0)+(H.hub||0)), "visitas a herramientas", false], ["Mentorías", fmt(M.visitas||0), "visitas", false], ["Eligieron llamada", fmt((M.clics||{})["elegir-llamada"]||0), "clics en Mentorías", true]]);
   $("hList").innerHTML = hrows.some(r => r[1]) ? bar(hrows, "visitas") : `<div class="empty"><b>Aún no hay visitas.</b></div>`;
   const TT = S.top_team || {visitas: 0, clics: {}}, tc = k => fmt((TT.clics||{})[k] || 0);
-  $("ttTiles").innerHTML = tiles([["Visitas", fmt(TT.visitas||0), "abrieron la página", false], ["Nivel", tc("nivel"), "usaron la calculadora", true], ["Copias", tc("copiar"), "mensajes copiados", true], ["Actividades", tc("actividades"), "palomearon las 4", true]]);
+  $("ttTiles").innerHTML = tiles([["Visitas", fmt(TT.visitas||0), "abrieron la página", false], ["Nivel", tc("nivel"), "usaron la calculadora", true], ["Mensajes", fmt(((TT.clics||{}).copiar||0) + ((TT.clics||{}).whatsapp||0)), "copiados o mandados", true], ["Respuestas", tc("objecion"), "vieron otra respuesta", true], ["Mi día", tc("actividades"), "completaron las 4", true], ["Mi lista", tc("lista"), "empezaron su lista", true]]);
   $("dList").innerHTML = S.dupes_ver.length ? bar(S.dupes_ver.map(x => [x.slug, x.n]), "vistas") : `<div class="empty"><b>Aún no hay dupes vistos.</b></div>`;
 })();
 </script>

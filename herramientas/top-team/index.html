@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Un adelanto · mitienda.beauty</title>
+<title>Herramientas básicas de Sel · mitienda.beauty</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="Un poquito de lo que estamos por enseñarle al equipo. Cinco pruebas que se usan en segundos.">
-<meta property="og:title" content="Un adelanto de lo que viene">
+<meta name="description" content="Cinco herramientas básicas para tu día: tu nivel, mensajes, respuestas, tu día y tu lista. Se guardan en tu celular.">
+<meta property="og:title" content="Herramientas básicas para tu día, de Selene Velázquez">
 <meta property="og:description" content="Un poquito de lo que estamos por enseñarle al equipo.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
@@ -105,6 +105,37 @@ h2{font:600 20px/1.2 var(--body);letter-spacing:-.01em}
 .dias b{display:block;font-weight:600}
 .dias p{margin:4px 0 0;font-size:15px;color:var(--muted)}
 
+/* nombre y chips */
+.nombre{margin-top:14px}
+.nombre input,.lista input[type=text]{width:100%;min-height:46px;padding:0 14px;border:1px solid #CFD2E0;border-radius:12px;background:#fff;font-size:16px}
+.nombre label{display:block;font-size:14px;font-weight:500;margin:0 0 6px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 4px}
+.chips button{min-height:40px;padding:0 14px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;font-size:15px;cursor:pointer}
+.chips button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.wa{font-weight:500;font-size:14px;text-underline-offset:4px;color:var(--ink)}
+.btns{display:flex;align-items:center;gap:14px}
+/* lista */
+.lista{list-style:none;margin:12px 0 0;padding:0;counter-reset:n}
+.lista li{display:grid;grid-template-columns:22px 1fr 26px;gap:10px;align-items:center;padding:5px 0}
+.lista li::before{counter-increment:n;content:counter(n);font:500 13px/1 var(--mono);color:var(--muted);text-align:right}
+.lista input[type=text]{min-height:42px}
+.lista input[type=checkbox]{appearance:none;-webkit-appearance:none;width:24px;height:24px;margin:0;border:1.5px solid #B8BCD0;border-radius:7px;display:grid;place-content:center;cursor:pointer}
+.lista input[type=checkbox]::after{content:"";width:10px;height:6px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px) scale(0);transition:transform 160ms var(--ease)}
+.lista input[type=checkbox]:checked{background:var(--good);border-color:var(--good)}
+.lista input[type=checkbox]:checked::after{transform:rotate(-45deg) translate(1px,-1px) scale(1)}
+.guardado{margin:12px 0 0;font:500 13px/1.4 var(--mono);color:var(--muted)}
+.resto li{font-size:14px}
+
+/* la autora */
+.autora{display:flex;align-items:center;gap:14px;margin:22px 0 0;padding:14px 0 0;border-top:1px solid var(--line)}
+.autora img,.sel img{border-radius:50%;object-fit:cover;background:var(--soft)}
+.autora img{width:56px;height:56px}
+.autora b{display:block;font-weight:600;font-size:17px}
+.autora span{display:block;font-size:14px;line-height:1.35;color:var(--muted);margin-top:2px}
+.sel{display:flex;gap:10px;align-items:flex-start;margin:14px 2px 0;font-size:15px;line-height:1.45}
+.sel img{width:28px;height:28px;flex:none;margin-top:1px}
+.sel b{display:block;font:600 11px/1.4 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--accent-ink)}
+
 /* cierre */
 .cierre{margin:28px 0 0;background:var(--tint);border-radius:18px;padding:24px 20px}
 .cierre h2{font-size:22px}
@@ -129,19 +160,22 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
 </svg>
-<div class="cabecera"><div class="wrap"><span class="marca">MI EQUIPO</span><span class="num">Adelanto · 5 pruebas</span></div></div>
+<div class="cabecera"><div class="wrap"><span class="marca">MI EQUIPO</span><span class="num">5 herramientas básicas</span></div></div>
 
 <div class="wrap">
   <header class="portada">
-    <p class="hola">Chicas:</p>
-    <h1>Un poquito de lo que estamos por enseñarle al equipo.</h1>
-    <p class="baj">Todavía lo estamos probando. Les comparto cinco pruebas que se usan en segundos.</p>
-    <p class="chico">Lo demás sale cuando esté listo.</p>
+    <h1>Herramientas básicas para tu día.</h1>
+    <p class="baj">Tu nivel, mensajes listos, qué contestar, tu día y tu lista. Funcionan en tu celular y lo que llenas se queda guardado ahí.</p>
+    <p class="chico">Sin registrarte. Guárdala en tu pantalla de inicio.</p>
+    <div class="autora">
+      <img src="/fotos/sel.jpg" alt="" width="56" height="56">
+      <div><b>De Selene Velázquez</b><span>Directora en Farmasi. Así trabaja con su equipo.</span></div>
+    </div>
   </header>
 
   <ol class="pruebas">
     <li class="prueba">
-      <span class="etq">01 · Tu nivel</span>
+      <span class="etq">01 · Mi nivel</span>
       <div class="tarjeta">
         <h2>¿En qué nivel vas?</h2>
         <p>Escribe los puntos de grupo que llevas este mes.</p>
@@ -152,55 +186,35 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
         <p class="dato" id="dato" aria-live="polite"></p>
         <div class="barra-n" aria-hidden="true"><i id="barra"></i></div>
       </div>
-      <ul class="resto" aria-label="Todavía no sale">
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>Cuántos puntos por semana te faltan</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>Tus laterales, línea por línea</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>El plan de 52 semanas, de 3% a Directora Oro</li>
-      </ul>
+      <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: puntos por semana, laterales y plan a Directora</li></ul>
     </li>
 
     <li class="prueba">
       <span class="etq">02 · Mensajes</span>
       <div class="tarjeta">
-        <div class="msj">
-          <h2>Te dijo «luego te digo»</h2>
-          <p class="burbuja">Hola, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode.</p>
-          <div class="fila"><p class="cuando">Dos o tres días después.</p><button class="copiar" type="button">Copiar</button></div>
-        </div>
-        <div class="msj">
-          <h2>La pregunta de cierre</h2>
-          <p class="burbuja">Con todo lo que platicamos, ¿arrancamos esta semana o prefieres que lo veamos el mes que entra?</p>
-          <div class="fila"><p class="cuando">A quien ya está lista.</p><button class="copiar" type="button">Copiar</button></div>
-        </div>
+        <h2>Mensajes listos</h2>
+        <div class="nombre"><label for="nom">¿A quién le escribes?</label><input id="nom" type="text" placeholder="Su nombre" autocomplete="off"></div>
+        <div id="msjs"></div>
       </div>
-      <ul class="resto" aria-label="Todavía no sale">
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>Cuando ella pregunta por un producto</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>Bienvenida a tu nueva socia</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+17 mensajes, en 6 momentos</span></li>
-      </ul>
+<p class="sel"><img src="/fotos/sel.jpg" alt="" width="28" height="28"><span><b>Lo que enseña Sel</b>Un elogio real y distinto en cada mensaje.</span></p>
+      <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: 21 mensajes en 6 momentos</li></ul>
     </li>
 
     <li class="prueba">
       <span class="etq">03 · Si te dice que no</span>
       <div class="tarjeta">
-        <p class="dice">No tengo dinero ahorita</p>
-        <p class="porque">Es prioridad, no falta de interés. Quita la presión y deja una puerta con fecha.</p>
-        <div class="msj" style="margin-top:4px">
-          <p class="burbuja">Te entiendo, no hay prisa. Si quieres te lo aparto para la quincena, o empezamos con el más chico. Tú me dices.</p>
-          <div class="fila"><p class="cuando">Y cierra con: ¿cuándo te acomoda mejor?</p><button class="copiar" type="button">Copiar</button></div>
-        </div>
+        <h2>Qué contestar</h2>
+        <div class="chips" id="objChips" role="group" aria-label="Lo que te dijo"></div>
+        <div id="obj"></div>
       </div>
-      <ul class="resto" aria-label="Todavía no sale">
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>«Está caro»</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>«Mándame el catálogo y yo veo»</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+9 respuestas más</span></li>
-      </ul>
+<p class="sel"><img src="/fotos/sel.jpg" alt="" width="28" height="28"><span><b>Lo que enseña Sel</b>Nadie se queda sin respuesta ni sin siguiente paso.</span></p>
+      <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: 12 respuestas</li></ul>
     </li>
 
     <li class="prueba">
-      <span class="etq">04 · Tu día</span>
+      <span class="etq">04 · Mi día</span>
       <div class="tarjeta">
-        <h2>4 de las 10 actividades</h2>
+        <h2>4 actividades al día</h2>
         <ul class="acts">
           <li><label><input type="checkbox" class="act"><span>Contactar</span><em>10 personas</em></label></li>
           <li><label><input type="checkbox" class="act"><span>Seguimiento</span><em>10 min</em></label></li>
@@ -209,32 +223,27 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
         </ul>
         <p class="marcador" id="marcador" aria-live="polite">0 de 4 hoy</p>
       </div>
-      <ul class="resto" aria-label="Todavía no sale">
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>Arrancar personas</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>Capacitar al equipo</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+4 actividades, el marcador y la hoja para imprimir</span></li>
-      </ul>
+<p class="sel"><img src="/fotos/sel.jpg" alt="" width="28" height="28"><span><b>Lo que enseña Sel</b>Seguimiento sin intensear: felicitar, reaccionar, hacerte presente.</span></p>
+      <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: 10 actividades, marcador y hoja para imprimir</li></ul>
     </li>
 
     <li class="prueba">
-      <span class="etq">05 · El primer mes de una socia</span>
+      <span class="etq">05 · Mi lista</span>
       <div class="tarjeta">
-        <ol class="dias">
-          <li><span class="d"><small>DÍA</small>1</span><div><b>Pide tu kit y entra a tu Back Office</b><p>Antes de cerrar el día, escribe en una línea para qué estás haciendo esto.</p></div></li>
-          <li><span class="d"><small>DÍA</small>2</span><div><b>Arma tu tienda</b><p>Mándate tu link a ti misma para ver cómo lo recibe una clienta.</p></div></li>
-        </ol>
+        <h2>10 personas para escribirles</h2>
+        <p>Anota a quien ya te conoce y palomea cuando le escribas.</p>
+        <ol class="lista" id="lista"></ol>
+        <p class="guardado" id="listaN">0 de 10 contactadas</p>
       </div>
-      <ul class="resto" aria-label="Todavía no sale">
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>Día 3 · Tu lista de 20 y tu reto</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg>Día 4 · Tus primeros 10 mensajes</li>
-        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+26 días, con citas con tu líder</span></li>
-      </ul>
+<p class="sel"><img src="/fotos/sel.jpg" alt="" width="28" height="28"><span><b>Lo que enseña Sel</b>Empieza por quien ya te conoce. Ahí está tu primera venta.</span></p>
+      <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: lista de 50 con seguimiento</li></ul>
     </li>
   </ol>
 
   <section class="cierre">
-    <h2>Esto es una probadita.</h2>
-    <p>Lo estamos afinando con el equipo. Cuando esté listo, les cuento.</p>
+    <h2>Lo básico, para que arranques.</h2>
+    <p>Sel las arma para su equipo y las va afinando. Si algo no te funciona, avísale a quien te mandó esta página.</p>
+    <p style="margin-top:14px"><a href="/mentorias/" data-m style="font-weight:600;text-underline-offset:4px">Mentorías con Sel</a></p>
   </section>
 
   <footer>mitienda.beauty · No es material oficial de Farmasi. Lo que manda es lo vigente en tu Back Office.</footer>
@@ -243,46 +252,101 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
 <script>
 (function(){
   var $ = function(id){ return document.getElementById(id); };
+  function lee(k, d){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(_){ return d; } }
+  function guarda(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(_){} }
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   function cuenta(p){ try{ window.goatcounter.count({path:"top-team/" + p, title:p, event:true}); }catch(_){} }
+  var una = {}; function vez(p){ if(!una[p]){ una[p] = 1; cuenta(p); } }
   var t, toast;
   function aviso(txt){
     if(!toast){ toast = document.createElement("div"); toast.className = "toast"; toast.setAttribute("role","status"); document.body.appendChild(toast); }
     toast.textContent = txt; toast.classList.add("on"); clearTimeout(t); t = setTimeout(function(){ toast.classList.remove("on"); }, 2000);
   }
-
-  /* 01: puntos de grupo por nivel (los mismos de la calculadora del equipo) */
-  var N = [[3,200],[6,400],[9,600],[12,900],[15,1400],[18,2200],[22,3600],[25,5000]];
-  var fmt = function(n){ return Math.round(n).toLocaleString("es-MX"); };
-  var usado = false;
-  $("pts").addEventListener("input", function(){
-    var v = Math.max(0, +this.value || 0), d = $("dato"), b = $("barra");
-    if(!this.value){ d.innerHTML = ""; b.style.width = "0"; return; }
-    var actual = null, sig = null;
-    N.forEach(function(n){ if(v >= n[1]) actual = n; else if(!sig) sig = n; });
-    if(!usado){ usado = true; cuenta("nivel"); }
-    var desde = actual ? actual[1] : 0;
-    b.style.width = sig ? Math.min(100, (v - desde) / (sig[1] - desde) * 100) + "%" : "100%";
-    if(!actual){ d.innerHTML = "<b>0%</b>Te faltan " + fmt(sig[1] - v) + " para 3%."; return; }
-    d.innerHTML = "<b>" + actual[0] + "%</b>" + (sig ? "Te faltan " + fmt(sig[1] - v) + " para " + sig[0] + "%." : "Lo que sigue es dirección.");
-  });
-
-  /* copiar */
-  document.querySelectorAll(".copiar").forEach(function(btn){ btn.addEventListener("click", function(){
-    var x = btn.closest(".msj").querySelector(".burbuja").textContent;
+  function copia(x){
     var ok = function(){ aviso("Copiado"); };
     if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(x).then(ok, ok); }
     else { var a = document.createElement("textarea"); a.value = x; document.body.appendChild(a); a.select(); try{ document.execCommand("copy"); }catch(_){} a.remove(); ok(); }
-    cuenta("copiar");
-  }); });
+  }
+  function hoy(){ var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
 
-  /* 04: marcador */
-  var acts = document.querySelectorAll(".act");
-  acts.forEach(function(c){ c.addEventListener("change", function(){
+  document.addEventListener("click", function(e){ if(e.target.closest("[data-m]")) cuenta("mentorias"); });
+
+  /* 01 nivel: puntos de grupo por nivel (los mismos de la calculadora del equipo) */
+  var N = [[3,200],[6,400],[9,600],[12,900],[15,1400],[18,2200],[22,3600],[25,5000]];
+  var fmt = function(n){ return Math.round(n).toLocaleString("es-MX"); };
+  function nivel(){
+    var el = $("pts"), v = Math.max(0, +el.value || 0), d = $("dato"), b = $("barra");
+    guarda("mtb-tt-pts", el.value);
+    if(!el.value){ d.innerHTML = ""; b.style.width = "0"; return; }
+    var actual = null, sig = null;
+    N.forEach(function(n){ if(v >= n[1]) actual = n; else if(!sig) sig = n; });
+    var desde = actual ? actual[1] : 0;
+    b.style.width = sig ? Math.min(100, (v - desde) / (sig[1] - desde) * 100) + "%" : "100%";
+    d.innerHTML = "<b>" + (actual ? actual[0] : 0) + "%</b>" + (sig ? "Te faltan " + fmt(sig[1] - v) + " para " + sig[0] + "%." : "Lo que sigue es dirección.");
+  }
+  $("pts").value = lee("mtb-tt-pts", "") || "";
+  $("pts").addEventListener("input", function(){ nivel(); vez("nivel"); });
+  nivel();
+
+  /* 02 mensajes */
+  var M = [
+    {h:"Para ofrecer producto", c:"A tus cercanas.", x:"Hola {nombre}, ¿cómo estás? Ya tengo mi tienda de belleza y pensé en ti. Si quieres que te recomiende algo, me dices qué usas hoy y lo vemos."},
+    {h:"Te dijo «luego te digo»", c:"Dos o tres días después.", x:"Hola {nombre}, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode."},
+    {h:"La pregunta de cierre", c:"A quien ya está lista.", x:"{nombre}, con todo lo que platicamos, ¿arrancamos esta semana o prefieres que lo veamos el mes que entra?"},
+    {h:"Para que vuelva a pedir", c:"A las 3 o 4 semanas de su compra.", x:"Hola {nombre}, ¿qué tal te fue con lo que te llevaste? Si ya se te está acabando, te lo aparto."}
+  ];
+  function llena(x){ var n = ($("nom").value || "").trim(); return n ? x.replace(/\{nombre\}/g, n) : x.replace(/ \{nombre\}/g, "").replace(/^\{nombre\}, /, "").replace(/^./, function(c){ return c.toUpperCase(); }); }
+  function pinta(){
+    $("msjs").innerHTML = M.map(function(m, i){
+      var x = llena(m.x);
+      return '<div class="msj" style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line)"><h2>' + m.h + '</h2><p class="burbuja">' + esc(x) + '</p><div class="fila"><p class="cuando">' + m.c + '</p><div class="btns"><a class="wa" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(x) + '" data-i="' + i + '">WhatsApp</a><button class="copiar" type="button" data-i="' + i + '">Copiar</button></div></div></div>';
+    }).join("");
+  }
+  $("nom").addEventListener("input", pinta); pinta();
+  $("msjs").addEventListener("click", function(e){
+    var b = e.target.closest(".copiar"); if(b){ copia(llena(M[b.dataset.i].x)); cuenta("copiar"); }
+    if(e.target.closest(".wa")) cuenta("whatsapp");
+  });
+
+  /* 03 objeciones */
+  var O = [
+    {o:"No tengo dinero ahorita", r:"Es prioridad, no falta de interés. Quita la presión y deja una puerta con fecha.", x:"Te entiendo, no hay prisa. Si quieres te lo aparto para la quincena, o empezamos con el más chico. Tú me dices.", s:"¿Cuándo te acomoda mejor?"},
+    {o:"Está caro", r:"No ve el valor todavía, o lo compara con algo que ya usa.", x:"Te entiendo. Dime qué usas hoy para eso y cuánto te dura: a veces sale igual o menos por mes. Y si quieres, empezamos con uno solo para que lo pruebes.", s:"¿Qué usas hoy para eso?"},
+    {o:"Mándame el catálogo y yo veo", r:"Evita la conversación. Manda el catálogo, pero acorta el camino.", x:"Va, te lo mando. Para no marearte con tantas páginas, dime qué buscas y te marco tres.", s:"¿Qué quieres resolver primero?"}
+  ];
+  var oi = 0;
+  function obj(){
+    $("objChips").innerHTML = O.map(function(o, i){ return '<button type="button" data-i="' + i + '" aria-pressed="' + (i === oi) + '">' + o.o + '</button>'; }).join("");
+    var o = O[oi];
+    $("obj").innerHTML = '<p class="porque" style="margin:10px 0 0">' + o.r + '</p><div class="msj"><p class="burbuja">' + esc(o.x) + '</p><div class="fila"><p class="cuando">Y cierra con: ' + o.s.charAt(0).toLowerCase() + o.s.slice(1) + '</p><button class="copiar" type="button">Copiar</button></div></div>';
+  }
+  $("objChips").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; oi = +b.dataset.i; obj(); vez("objecion"); });
+  $("obj").addEventListener("click", function(e){ if(e.target.closest(".copiar")){ copia(O[oi].x + " " + O[oi].s); cuenta("copiar"); } });
+  obj();
+
+  /* 04 mi día: se guarda por fecha */
+  var DIA = lee("mtb-tt-dia-v1", {}), acts = document.querySelectorAll(".act"), H = hoy();
+  (DIA[H] || []).forEach(function(v, i){ if(acts[i]) acts[i].checked = !!v; });
+  function marcador(){
     var n = [].filter.call(acts, function(x){ return x.checked; }).length, m = $("marcador");
-    m.textContent = n === 4 ? "4 de 4. La hoja completa trae 10." : n + " de 4 hoy";
+    var llenos = Object.keys(DIA).filter(function(k){ return (DIA[k] || []).filter(Boolean).length === 4; }).length;
+    m.textContent = n + " de 4 hoy" + (llenos ? " · " + llenos + (llenos === 1 ? " día completo" : " días completos") : "");
     m.classList.toggle("lleno", n === 4);
-    if(n === 4) cuenta("actividades");
+  }
+  acts.forEach(function(c){ c.addEventListener("change", function(){
+    DIA[H] = [].map.call(acts, function(x){ return x.checked ? 1 : 0; }); guarda("mtb-tt-dia-v1", DIA); marcador();
+    if(DIA[H].filter(Boolean).length === 4) vez("actividades");
   }); });
+  marcador();
+
+  /* 05 mi lista */
+  var LI = lee("mtb-tt-lista-v1", []);
+  while(LI.length < 10) LI.push({n:"", ok:0});
+  $("lista").innerHTML = LI.map(function(p, i){ return '<li><input type="text" data-i="' + i + '" value="' + esc(p.n) + '" placeholder="Nombre" aria-label="Persona ' + (i+1) + '" autocomplete="off"><input type="checkbox" data-i="' + i + '"' + (p.ok ? " checked" : "") + ' aria-label="Ya le escribí"></li>'; }).join("");
+  function cuentaLista(){ $("listaN").textContent = LI.filter(function(p){ return p.ok; }).length + " de 10 contactadas"; }
+  $("lista").addEventListener("input", function(e){ var i = +e.target.dataset.i; if(e.target.type === "text") LI[i].n = e.target.value; else LI[i].ok = e.target.checked ? 1 : 0; guarda("mtb-tt-lista-v1", LI); cuentaLista(); vez("lista"); });
+  $("lista").addEventListener("change", function(e){ if(e.target.type === "checkbox"){ LI[+e.target.dataset.i].ok = e.target.checked ? 1 : 0; guarda("mtb-tt-lista-v1", LI); cuentaLista(); } });
+  cuentaLista();
 })();
 </script>
 </body>
