@@ -1,12 +1,12 @@
 // Miniaturas reales de cada herramienta para el Centro de la socia.
-// Lee las filas de mentorias/herramientas/index.html (href + data-cuenta), abre cada página
+// Lee las filas de herramientas/gratis/index.html (href + data-cuenta), abre cada página
 // en un celular de 390 px y guarda la parte de arriba en mentorias/herramientas/vistas/<cuenta>.png.
 // Uso: python3 -m http.server 8765 (en la raíz) y luego: node scripts/vistas-herramientas.cjs
 // Después: python3 scripts/vistas-herramientas.py  (las pasa a .webp de 240 px)
 const fs = require('fs');
 const { chromium } = require('playwright');
 const BASE = process.env.BASE || 'http://localhost:8765';
-const html = fs.readFileSync('mentorias/herramientas/index.html', 'utf8');
+const html = fs.readFileSync('herramientas/gratis/index.html', 'utf8');
 const filas = [...html.matchAll(/<a class="fila" href="([^"]+)" data-cuenta="([^"]+)"/g)].map(m => [m[1], m[2]]);
 const extra = [...html.matchAll(/<h3><a href="([^"]+)" data-cuenta="([^"]+)"/g)].map(m => [m[1], m[2]]);
 (async () => {
