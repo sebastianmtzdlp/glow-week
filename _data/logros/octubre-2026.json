@@ -3,6 +3,11 @@
   "mes": "octubre",
   "anio": 2026,
   "equipo": "Selene",
+  "ventas": {
+    "puntos": 7400,
+    "pesos_por_punto": 25,
+    "factor_publico": 1.4
+  },
   "niveles": {
     "25": {
       "personas": [

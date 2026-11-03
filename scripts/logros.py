@@ -59,6 +59,12 @@ h1 em{font-style:normal;color:var(--accent)}
 .tile{background:var(--soft);border-radius:14px;padding:12px}
 .tile b{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:26px;font-weight:500;line-height:1.1}
 .tile span{display:block;font-size:13px;color:var(--muted);margin-top:2px;line-height:1.25}
+.ventas{margin-top:16px;border:1.5px solid var(--ink);border-radius:16px;padding:14px 14px 12px}
+.ventas .v-h{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-t)}
+.ventas .v-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.ventas b{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:19px;font-weight:500;line-height:1.15;white-space:nowrap}
+.ventas span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.25}
+.ventas .v-n{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.35}
 
 /* Índice de niveles: una escalera, un punto por persona */
 .idx{margin-top:8px}
@@ -142,6 +148,8 @@ h1 em{font-style:normal;color:var(--accent)}
   .hero-mes .lead{font-size:21px}
   .hero-b .tiles{margin-top:0}
   .tile b{font-size:34px}
+  .ventas b{font-size:26px}
+  .ventas{padding:18px 20px 14px}
   .idx ol{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:12px}
   .idx h2{border-bottom:0;padding-bottom:0}
   .idx a{grid-template-columns:1fr;grid-template-rows:auto 18px auto;gap:8px;align-items:start;min-height:0;padding:14px 14px 12px;border:1px solid var(--line);border-radius:18px}
@@ -236,6 +244,32 @@ def tarjeta(p):
             f'aria-label="Descargar la imagen para stories de {e(p["nombre"])}">{STORY}<span>STORY</span></a></li>')
 
 
+def money(n):
+    return "$" + f"{round(n):,}"
+
+
+def ventas_datos(d):
+    v = d.get("ventas")
+    if not v:
+        return None
+    pts = v["puntos"]
+    inf = v.get("precio_influencer") or pts * v.get("pesos_por_punto", 25)
+    pub = inf * v.get("factor_publico", 1.4)
+    return pts, inf, pub, v.get("factor_publico", 1.4), v.get("pesos_por_punto", 25)
+
+
+def ventas_html(d, cls="ventas"):
+    vd = ventas_datos(d)
+    if not vd:
+        return ""
+    pts, inf, pub, f, ppp = vd
+    return (f'<div class="{cls}"><p class="v-h">Ventas del equipo en {e(d["mes"])}</p>'
+            f'<div class="v-row"><div><b>{pts:,}</b><span>puntos</span></div>'
+            f'<div><b>{money(inf)}</b><span>a precio influencer</span></div>'
+            f'<div><b>{money(pub)}</b><span>a precio público</span></div></div>'
+            f'<p class="v-n">1 punto = ${ppp:g} a precio influencer. El precio público es {f:g} veces el de influencer.</p></div>')
+
+
 def pagina_mes(d, slug):
     mes, anio = d["mes"], d["anio"]
     niv = d["niveles"]
@@ -298,6 +332,7 @@ def pagina_mes(d, slug):
       <div class="tile"><b>{dirs}</b><span>en dirección</span></div>
       <div class="tile"><b>{nuevas}</b><span>{nuevas_txt}</span></div>
     </div>
+    {ventas_html(d)}
     <a class="dl" href="presentacion-{slug}.pdf" download>{ICONO}Descargar PDF</a>
     <p class="dl-links"><a href="logros-{slug}.pdf" download>Versión vertical (PDF)</a><a href="stories-{slug}.zip" download>Todas las stories (ZIP)</a></p>
     <p class="dl-note">Cada tarjeta trae su certificado en PDF y su imagen para stories.</p>
@@ -492,6 +527,18 @@ body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);-webkit-print-colo
 .tile{background:var(--soft);border-radius:18px;padding:18px 24px;min-width:200px}
 .tile b{display:block;font-family:var(--mono);font-weight:500;font-size:48px;line-height:1}
 .tile span{display:block;font-size:18px;color:var(--muted);margin-top:6px}
+.vt-big{margin-top:36px}.vt-big b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:150px;line-height:1;letter-spacing:-.03em}
+.vt-big span,.vt-row span{display:block;font-size:24px;color:var(--muted);margin-top:8px}
+.vt-row{display:flex;gap:96px;margin-top:40px;padding-top:28px;border-top:2px solid var(--ink)}
+.vt-row b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:64px;line-height:1}
+.vt-row div+div b{color:var(--accent-t)}
+.vt-n{font-size:18px;color:var(--muted);margin-top:28px}
+.ventas{border:2px solid currentColor;border-radius:20px;padding:20px 28px;max-width:860px}
+.ventas .v-h{font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.ventas .v-row{display:flex;gap:48px;margin-top:10px}
+.ventas b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:40px;line-height:1.1}
+.ventas span{display:block;font-size:17px;opacity:.85;margin-top:4px}
+.ventas .v-n{font-size:14px;opacity:.85;margin-top:12px}
 /* escalera */
 .ladder{margin-top:28px;border-top:2px solid var(--ink);flex:1;display:flex;flex-direction:column}
 .rung{flex:1;display:grid;grid-template-columns:130px 1fr 200px;align-items:center;gap:20px;border-bottom:1px solid var(--line)}
@@ -538,7 +585,8 @@ def presentacion(d, slug):
     total = sum(len(niv[k]["personas"]) for k in NIVELES)
     dirs = len(niv["25"]["personas"])
     nuevas = sum(1 for k in NIVELES for p in niv[k]["personas"] if p.get("nueva"))
-    n_sl = 3 + len(NIVELES)
+    vd = ventas_datos(d)
+    n_sl = 3 + len(NIVELES) + (1 if vd else 0)
 
     def hd(i):
         return f'<div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">{i:02d} / {n_sl:02d}</span></div>'
@@ -550,14 +598,21 @@ def presentacion(d, slug):
               f'<div class="tiles"><div class="tile"><b>{total}</b><span>con nivel</span></div>'
               f'<div class="tile"><b>{dirs}</b><span>en dirección</span></div>'
               f'<div class="tile"><b>{nuevas}</b><span>{"nueva" if nuevas == 1 else "nuevas"} con nivel</span></div></div></section>')
+    if vd:
+        pts, inf, pub, f, ppp = vd
+        sl.append(f'<section class="sl vt">{hd(2)}<p class="ttl">Ventas del equipo en {e(mes)}</p>'
+                  f'<div class="vt-big"><b>{pts:,}</b><span>puntos</span></div>'
+                  f'<div class="vt-row"><div><b>{money(inf)}</b><span>a precio influencer</span></div>'
+                  f'<div><b>{money(pub)}</b><span>a precio público</span></div></div>'
+                  f'<p class="vt-n">1 punto = ${ppp:g} a precio influencer. El precio público es {f:g} veces el de influencer.</p></section>')
     rungs = ""
     for k in NIVELES:
         ps = niv[k]["personas"]
         dots = "".join("<i></i>" for _ in ps) or '<i class="none"></i>'
         rungs += (f'<div class="rung{"" if ps else " v"}"><span class="p">{k}%</span><span class="dots">{dots}</span>'
                   f'<span class="n">{personas(len(ps)) if ps else "aún nadie"}</span></div>')
-    sl.append(f'<section class="sl">{hd(2)}<p class="ttl">Niveles del mes</p><div class="ladder">{rungs}</div></section>')
-    i = 3
+    sl.append(f'<section class="sl">{hd(len(sl) + 1)}<p class="ttl">Niveles del mes</p><div class="ladder">{rungs}</div></section>')
+    i = len(sl) + 1
     for k in NIVELES:
         ps = niv[k]["personas"]
         etiqueta = ("Directoras · " if k == "25" else "") + personas(len(ps))
