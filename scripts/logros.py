@@ -527,6 +527,12 @@ body{font-family:Outfit,system-ui,sans-serif;color:var(--ink);-webkit-print-colo
 .tile{background:var(--soft);border-radius:18px;padding:18px 24px;min-width:200px}
 .tile b{display:block;font-family:var(--mono);font-weight:500;font-size:48px;line-height:1}
 .tile span{display:block;font-size:18px;color:var(--muted);margin-top:6px}
+.vt-big{margin-top:36px}.vt-big b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:150px;line-height:1;letter-spacing:-.03em}
+.vt-big span,.vt-row span{display:block;font-size:24px;color:var(--muted);margin-top:8px}
+.vt-row{display:flex;gap:96px;margin-top:40px;padding-top:28px;border-top:2px solid var(--ink)}
+.vt-row b{display:block;font-family:'IBM Plex Mono',monospace;font-weight:500;font-size:64px;line-height:1}
+.vt-row div+div b{color:var(--accent-t)}
+.vt-n{font-size:18px;color:var(--muted);margin-top:28px}
 .ventas{border:2px solid currentColor;border-radius:20px;padding:20px 28px;max-width:860px}
 .ventas .v-h{font-size:15px;font-weight:600;letter-spacing:.14em;text-transform:uppercase}
 .ventas .v-row{display:flex;gap:48px;margin-top:10px}
@@ -579,7 +585,8 @@ def presentacion(d, slug):
     total = sum(len(niv[k]["personas"]) for k in NIVELES)
     dirs = len(niv["25"]["personas"])
     nuevas = sum(1 for k in NIVELES for p in niv[k]["personas"] if p.get("nueva"))
-    n_sl = 3 + len(NIVELES)
+    vd = ventas_datos(d)
+    n_sl = 3 + len(NIVELES) + (1 if vd else 0)
 
     def hd(i):
         return f'<div class="hd"><span class="brand">MI EQUIPO<b>Farmasi</b></span><span class="pg">{i:02d} / {n_sl:02d}</span></div>'
@@ -591,14 +598,21 @@ def presentacion(d, slug):
               f'<div class="tiles"><div class="tile"><b>{total}</b><span>con nivel</span></div>'
               f'<div class="tile"><b>{dirs}</b><span>en dirección</span></div>'
               f'<div class="tile"><b>{nuevas}</b><span>{"nueva" if nuevas == 1 else "nuevas"} con nivel</span></div></div></section>')
+    if vd:
+        pts, inf, pub, f, ppp = vd
+        sl.append(f'<section class="sl vt">{hd(2)}<p class="ttl">Ventas del equipo en {e(mes)}</p>'
+                  f'<div class="vt-big"><b>{pts:,}</b><span>puntos</span></div>'
+                  f'<div class="vt-row"><div><b>{money(inf)}</b><span>a precio influencer</span></div>'
+                  f'<div><b>{money(pub)}</b><span>a precio público</span></div></div>'
+                  f'<p class="vt-n">1 punto = ${ppp:g} a precio influencer. El precio público es {f:g} veces el de influencer.</p></section>')
     rungs = ""
     for k in NIVELES:
         ps = niv[k]["personas"]
         dots = "".join("<i></i>" for _ in ps) or '<i class="none"></i>'
         rungs += (f'<div class="rung{"" if ps else " v"}"><span class="p">{k}%</span><span class="dots">{dots}</span>'
                   f'<span class="n">{personas(len(ps)) if ps else "aún nadie"}</span></div>')
-    sl.append(f'<section class="sl">{hd(2)}<p class="ttl">Niveles del mes</p><div class="ladder">{rungs}</div></section>')
-    i = 3
+    sl.append(f'<section class="sl">{hd(len(sl) + 1)}<p class="ttl">Niveles del mes</p><div class="ladder">{rungs}</div></section>')
+    i = len(sl) + 1
     for k in NIVELES:
         ps = niv[k]["personas"]
         etiqueta = ("Directoras · " if k == "25" else "") + personas(len(ps))
@@ -618,7 +632,7 @@ def presentacion(d, slug):
         sl.append(f'<section class="sl{" d25" if k == "25" else ""}">{hd(i)}<div class="lv-h"><p class="big">{k}<small>%</small></p>'
                   f'<p>{etiqueta}</p></div>{body}</section>')
         i += 1
-    sl.append(f'<section class="sl end">{hd(i)}<div><h2>Gracias, equipo.</h2><p>Nos vemos en los logros del próximo mes.</p></div>{ventas_html(d, "ventas dk")}'
+    sl.append(f'<section class="sl end">{hd(i)}<div><h2>Gracias, equipo.</h2><p>Nos vemos en los logros del próximo mes.</p></div>'
               f'<div><p class="url">mitienda.beauty/logros/{slug}</p><p>Equipo de {e(eq)} · {e(mes)} {anio}</p></div></section>')
     h = f"""<!doctype html>
 <html lang="es-MX"><head><meta charset="utf-8">
