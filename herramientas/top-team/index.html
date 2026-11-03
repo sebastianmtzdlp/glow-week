@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Un adelanto · mitienda.beauty</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Un poquito de lo que estamos por enseñarle al equipo. Cinco pruebas que se usan en segundos.">
+<meta property="og:title" content="Un adelanto de lo que viene">
+<meta property="og:description" content="Un poquito de lo que estamos por enseñarle al equipo.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/herramientas/top-team/">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;800&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;
+  --accent:#DB414C;--accent-ink:#C8323F;--tint:#FDEEF0;--good:#1B8A5A;
+  --body:"Outfit",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body)}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.etq{display:block;font:600 12px/1.3 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+h1,h2{margin:0;color:var(--ink)}
+h1{font:700 clamp(32px,9vw,44px)/1.04 var(--body);letter-spacing:-.025em}
+h2{font:600 20px/1.2 var(--body);letter-spacing:-.01em}
+
+.cabecera{background:var(--soft)}
+.cabecera .wrap{display:flex;align-items:center;justify-content:space-between;min-height:52px}
+.marca{font:300 12px/1 var(--body);letter-spacing:.22em;color:var(--ink);text-decoration:none}
+.cabecera .num{font-size:12px;color:var(--muted)}
+
+.portada{padding:36px 0 8px}
+.portada .hola{font:500 18px/1.3 var(--body);color:var(--accent-ink);margin:0 0 10px}
+.portada p.baj{margin:14px 0 0;font-size:18px;color:var(--ink);max-width:26em}
+.portada p.chico{margin:10px 0 0;font-size:15px;color:var(--muted)}
+
+/* cada prueba: tarjeta y debajo lo que todavía no sale */
+.pruebas{list-style:none;margin:20px 0 0;padding:0}
+.prueba{padding:26px 0 10px}
+.prueba>.etq{margin:0 0 10px;color:var(--accent-ink)}
+.tarjeta{border:1px solid var(--line);border-radius:18px;padding:22px 20px;background:var(--bg)}
+.tarjeta>p{margin:8px 0 0}
+.resto{list-style:none;margin:6px 0 0;padding:0 6px}
+.resto li{display:flex;align-items:center;gap:10px;padding:9px 0;color:var(--muted);font-size:15px;border-bottom:1px dashed var(--line)}
+.resto li:last-child{border-bottom:0}
+.resto svg{flex:none;width:16px;height:16px;color:var(--muted)}
+.resto .mas{font-family:var(--mono);font-size:13px;color:var(--ink)}
+
+/* 01 nivel */
+.campo{display:flex;gap:10px;align-items:center;margin-top:16px}
+.campo input{width:9em;min-height:48px;padding:0 14px;border:1px solid #CFD2E0;border-radius:12px;background:#fff;font:500 20px/1 var(--mono);font-variant-numeric:tabular-nums}
+.campo span{color:var(--muted);font-size:15px}
+.dato{margin:14px 0 0;min-height:3.2em;font-size:16px}
+.dato b{display:block;font:800 34px/1.05 var(--mono);color:var(--accent);letter-spacing:-.02em}
+.barra-n{height:8px;border-radius:99px;background:var(--soft);margin-top:10px;overflow:hidden}
+.barra-n i{display:block;height:100%;width:0;background:var(--accent);border-radius:99px;transition:width 280ms var(--ease)}
+
+/* 02 mensajes */
+.msj+.msj{margin-top:18px;padding-top:18px;border-top:1px solid var(--line)}
+.msj h2{font-size:17px}
+.burbuja{margin:10px 0 0;background:var(--soft);border-radius:4px 18px 18px 18px;padding:12px 15px;font-size:16px}
+.fila{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:8px}
+.cuando{font-size:14px;color:var(--muted);margin:0}
+.copiar{min-height:40px;padding:0 16px;border:1px solid var(--ink);border-radius:14px;background:#fff;font-weight:600;font-size:14px;cursor:pointer;transition:transform 160ms var(--ease)}
+.copiar:active{transform:scale(.97)}
+
+/* 03 objeción */
+.dice{font:500 20px/1.25 var(--body);margin:2px 0 0}
+.dice::before{content:"«"}.dice::after{content:"»"}
+.porque{font-size:15px;color:var(--muted)}
+
+/* 04 actividades */
+.acts{list-style:none;margin:10px 0 0;padding:0}
+.acts label{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;padding:11px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.acts li:last-child label{border-bottom:0}
+.acts input{appearance:none;-webkit-appearance:none;width:24px;height:24px;margin:0;border:1.5px solid #B8BCD0;border-radius:7px;display:grid;place-content:center;cursor:pointer;transition:background 160ms var(--ease),border-color 160ms var(--ease)}
+.acts input::after{content:"";width:10px;height:6px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px) scale(0);transition:transform 160ms var(--ease)}
+.acts input:checked{background:var(--good);border-color:var(--good)}
+.acts input:checked::after{transform:rotate(-45deg) translate(1px,-1px) scale(1)}
+.acts em{font:400 13px/1 var(--mono);font-style:normal;color:var(--muted)}
+.marcador{margin:10px 0 0;font:500 14px/1.3 var(--mono);color:var(--muted)}
+.marcador.lleno{color:var(--good)}
+
+/* 05 primer mes */
+.dias{list-style:none;margin:4px 0 0;padding:0}
+.dias li{display:grid;grid-template-columns:52px 1fr;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.dias li:last-child{border-bottom:0;padding-bottom:0}
+.dias .d{font:800 13px/1 var(--mono);color:#fff;background:var(--accent);border-radius:11px;height:44px;display:grid;place-content:center;text-align:center}
+.dias .d small{display:block;font-weight:500;font-size:10px;opacity:.9;margin-bottom:2px}
+.dias li+li .d{background:var(--soft);color:var(--ink)}
+.dias b{display:block;font-weight:600}
+.dias p{margin:4px 0 0;font-size:15px;color:var(--muted)}
+
+/* cierre */
+.cierre{margin:28px 0 0;background:var(--tint);border-radius:18px;padding:24px 20px}
+.cierre h2{font-size:22px}
+.cierre p{margin:8px 0 0;font-size:16px}
+footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,12px);opacity:0;background:var(--ink);color:#fff;padding:10px 18px;border-radius:999px;font-weight:600;font-size:15px;transition:opacity 200ms var(--ease),transform 200ms var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:no-preference){
+  .portada,.prueba{animation:entra 280ms var(--ease) both}
+  .prueba:nth-child(2){animation-delay:40ms}.prueba:nth-child(3){animation-delay:80ms}
+  .prueba:nth-child(4){animation-delay:120ms}.prueba:nth-child(5){animation-delay:160ms}
+}
+@media (prefers-reduced-motion:reduce){.barra-n i{transition:none}}
+@keyframes entra{from{opacity:0;transform:translateY(8px)}}
+@media (hover:hover) and (pointer:fine){ .copiar:hover{background:var(--soft)} }
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+</svg>
+<div class="cabecera"><div class="wrap"><span class="marca">MI EQUIPO</span><span class="num">Adelanto · 5 pruebas</span></div></div>
+
+<div class="wrap">
+  <header class="portada">
+    <p class="hola">Chicas:</p>
+    <h1>Un poquito de lo que estamos por enseñarle al equipo.</h1>
+    <p class="baj">Todavía lo estamos probando. Les comparto cinco pruebas que se usan en segundos.</p>
+    <p class="chico">Lo demás sale cuando esté listo.</p>
+  </header>
+
+  <ol class="pruebas">
+    <li class="prueba">
+      <span class="etq">01 · Tu nivel</span>
+      <div class="tarjeta">
+        <h2>¿En qué nivel vas?</h2>
+        <p>Escribe los puntos de grupo que llevas este mes.</p>
+        <div class="campo">
+          <input id="pts" type="number" inputmode="numeric" min="0" placeholder="750" aria-label="Puntos de grupo">
+          <span>puntos</span>
+        </div>
+        <p class="dato" id="dato" aria-live="polite"></p>
+        <div class="barra-n" aria-hidden="true"><i id="barra"></i></div>
+      </div>
+      <ul class="resto" aria-label="Todavía no sale">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Cuántos puntos por semana te faltan</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Tus laterales, línea por línea</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>El plan de 52 semanas, de 3% a Directora Oro</li>
+      </ul>
+    </li>
+
+    <li class="prueba">
+      <span class="etq">02 · Mensajes</span>
+      <div class="tarjeta">
+        <div class="msj">
+          <h2>Te dijo «luego te digo»</h2>
+          <p class="burbuja">Hola, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode.</p>
+          <div class="fila"><p class="cuando">Dos o tres días después.</p><button class="copiar" type="button">Copiar</button></div>
+        </div>
+        <div class="msj">
+          <h2>La pregunta de cierre</h2>
+          <p class="burbuja">Con todo lo que platicamos, ¿arrancamos esta semana o prefieres que lo veamos el mes que entra?</p>
+          <div class="fila"><p class="cuando">A quien ya está lista.</p><button class="copiar" type="button">Copiar</button></div>
+        </div>
+      </div>
+      <ul class="resto" aria-label="Todavía no sale">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Cuando ella pregunta por un producto</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Bienvenida a tu nueva socia</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+17 mensajes, en 6 momentos</span></li>
+      </ul>
+    </li>
+
+    <li class="prueba">
+      <span class="etq">03 · Si te dice que no</span>
+      <div class="tarjeta">
+        <p class="dice">No tengo dinero ahorita</p>
+        <p class="porque">Es prioridad, no falta de interés. Quita la presión y deja una puerta con fecha.</p>
+        <div class="msj" style="margin-top:4px">
+          <p class="burbuja">Te entiendo, no hay prisa. Si quieres te lo aparto para la quincena, o empezamos con el más chico. Tú me dices.</p>
+          <div class="fila"><p class="cuando">Y cierra con: ¿cuándo te acomoda mejor?</p><button class="copiar" type="button">Copiar</button></div>
+        </div>
+      </div>
+      <ul class="resto" aria-label="Todavía no sale">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>«Está caro»</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>«Mándame el catálogo y yo veo»</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+9 respuestas más</span></li>
+      </ul>
+    </li>
+
+    <li class="prueba">
+      <span class="etq">04 · Tu día</span>
+      <div class="tarjeta">
+        <h2>4 de las 10 actividades</h2>
+        <ul class="acts">
+          <li><label><input type="checkbox" class="act"><span>Contactar</span><em>10 personas</em></label></li>
+          <li><label><input type="checkbox" class="act"><span>Seguimiento</span><em>10 min</em></label></li>
+          <li><label><input type="checkbox" class="act"><span>Crear contenido</span><em>1 pieza</em></label></li>
+          <li><label><input type="checkbox" class="act"><span>Presentar el negocio</span><em>1</em></label></li>
+        </ul>
+        <p class="marcador" id="marcador" aria-live="polite">0 de 4 hoy</p>
+      </div>
+      <ul class="resto" aria-label="Todavía no sale">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Arrancar personas</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Capacitar al equipo</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+4 actividades, el marcador y la hoja para imprimir</span></li>
+      </ul>
+    </li>
+
+    <li class="prueba">
+      <span class="etq">05 · El primer mes de una socia</span>
+      <div class="tarjeta">
+        <ol class="dias">
+          <li><span class="d"><small>DÍA</small>1</span><div><b>Pide tu kit y entra a tu Back Office</b><p>Antes de cerrar el día, escribe en una línea para qué estás haciendo esto.</p></div></li>
+          <li><span class="d"><small>DÍA</small>2</span><div><b>Arma tu tienda</b><p>Mándate tu link a ti misma para ver cómo lo recibe una clienta.</p></div></li>
+        </ol>
+      </div>
+      <ul class="resto" aria-label="Todavía no sale">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Día 3 · Tu lista de 20 y tu reto</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Día 4 · Tus primeros 10 mensajes</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+26 días, con citas con tu líder</span></li>
+      </ul>
+    </li>
+  </ol>
+
+  <section class="cierre">
+    <h2>Esto es una probadita.</h2>
+    <p>Lo estamos afinando con el equipo. Cuando esté listo, les cuento.</p>
+  </section>
+
+  <footer>mitienda.beauty · No es material oficial de Farmasi. Lo que manda es lo vigente en tu Back Office.</footer>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function cuenta(p){ try{ window.goatcounter.count({path:"top-team/" + p, title:p, event:true}); }catch(_){} }
+  var t, toast;
+  function aviso(txt){
+    if(!toast){ toast = document.createElement("div"); toast.className = "toast"; toast.setAttribute("role","status"); document.body.appendChild(toast); }
+    toast.textContent = txt; toast.classList.add("on"); clearTimeout(t); t = setTimeout(function(){ toast.classList.remove("on"); }, 2000);
+  }
+
+  /* 01: puntos de grupo por nivel (los mismos de la calculadora del equipo) */
+  var N = [[3,200],[6,400],[9,600],[12,900],[15,1400],[18,2200],[22,3600],[25,5000]];
+  var fmt = function(n){ return Math.round(n).toLocaleString("es-MX"); };
+  var usado = false;
+  $("pts").addEventListener("input", function(){
+    var v = Math.max(0, +this.value || 0), d = $("dato"), b = $("barra");
+    if(!this.value){ d.innerHTML = ""; b.style.width = "0"; return; }
+    var actual = null, sig = null;
+    N.forEach(function(n){ if(v >= n[1]) actual = n; else if(!sig) sig = n; });
+    if(!usado){ usado = true; cuenta("nivel"); }
+    var desde = actual ? actual[1] : 0;
+    b.style.width = sig ? Math.min(100, (v - desde) / (sig[1] - desde) * 100) + "%" : "100%";
+    if(!actual){ d.innerHTML = "<b>0%</b>Te faltan " + fmt(sig[1] - v) + " para 3%."; return; }
+    d.innerHTML = "<b>" + actual[0] + "%</b>" + (sig ? "Te faltan " + fmt(sig[1] - v) + " para " + sig[0] + "%." : "Lo que sigue es dirección.");
+  });
+
+  /* copiar */
+  document.querySelectorAll(".copiar").forEach(function(btn){ btn.addEventListener("click", function(){
+    var x = btn.closest(".msj").querySelector(".burbuja").textContent;
+    var ok = function(){ aviso("Copiado"); };
+    if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(x).then(ok, ok); }
+    else { var a = document.createElement("textarea"); a.value = x; document.body.appendChild(a); a.select(); try{ document.execCommand("copy"); }catch(_){} a.remove(); ok(); }
+    cuenta("copiar");
+  }); });
+
+  /* 04: marcador */
+  var acts = document.querySelectorAll(".act");
+  acts.forEach(function(c){ c.addEventListener("change", function(){
+    var n = [].filter.call(acts, function(x){ return x.checked; }).length, m = $("marcador");
+    m.textContent = n === 4 ? "4 de 4. La hoja completa trae 10." : n + " de 4 hoy";
+    m.classList.toggle("lleno", n === 4);
+    if(n === 4) cuenta("actividades");
+  }); });
+})();
+</script>
+</body>
+</html>
