@@ -15,12 +15,12 @@ jobs:
       - name: Consultar Supabase (solo lectura)
         env:
           SB_URL: https://ctutqqstqjdngxdjzckf.supabase.co
-          SB_KEY: sb_publishable_ltaNA7nnVozoSCOcZIjg
+          SB_KEY: sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk
         run: |
           for intento in 1 2 3; do
             code=$(curl -sS -o resp.txt -w "%{http_code}" -m 30 \
               "$SB_URL/rest/v1/pedidos_intencion?select=id&limit=1" \
-              -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY") || code=000
+              -H "apikey: $SB_KEY") || code=000
             echo "Intento $intento: HTTP $code"
             if [ "$code" = "200" ]; then echo "Supabase respondió; el contador de inactividad se reinicia."; exit 0; fi
             sleep 20
