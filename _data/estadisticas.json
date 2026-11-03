@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-11-03",
- "hora": "16:02",
+ "hora": "16:41",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1101,
+  "visitas": 1102,
   "agregados": 33,
   "pedidos": 7,
   "wa": 4
@@ -87,7 +87,7 @@
   },
   {
    "d": "2026-11-03",
-   "v": 23
+   "v": 24
   }
  ],
  "consultoras": [
@@ -575,7 +575,7 @@
    }
   },
   "top_team": {
-   "visitas": 2,
+   "visitas": 3,
    "clics": {
     "publico": 1,
     "objecion": 1,
