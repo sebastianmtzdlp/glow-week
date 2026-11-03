@@ -1,0 +1,30 @@
+# Mantiene despierto el proyecto de Supabase (el plan gratis lo pausa tras ~7 días sin actividad).
+# Hace una consulta de solo lectura a la API REST con la clave pública que ya usa el sitio.
+# pedidos_intencion tiene RLS sin política de lectura, así que la respuesta es [] y no se expone ni se escribe nada.
+name: Supabase vivo
+on:
+  schedule:
+    - cron: "17 14 * * *" # diario, 8:17 a.m. hora de CDMX
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Consultar Supabase (solo lectura)
+        env:
+          SB_URL: https://ctutqqstqjdngxdjzckf.supabase.co
+          SB_KEY: sb_publishable_ltaNA7nnVozoSCOcZIjg
+        run: |
+          for intento in 1 2 3; do
+            code=$(curl -sS -o resp.txt -w "%{http_code}" -m 30 \
+              "$SB_URL/rest/v1/pedidos_intencion?select=id&limit=1" \
+              -H "apikey: $SB_KEY" -H "Authorization: Bearer $SB_KEY") || code=000
+            echo "Intento $intento: HTTP $code"
+            if [ "$code" = "200" ]; then echo "Supabase respondió; el contador de inactividad se reinicia."; exit 0; fi
+            sleep 20
+          done
+          cat resp.txt || true
+          echo "::error::Supabase no respondió. Si el proyecto está pausado, restáuralo desde supabase.com/dashboard."
+          exit 1
