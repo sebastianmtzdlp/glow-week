@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="g-estrategias">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Estrategias del equipo</title>
+<meta name="description" content="Cuatro estrategias del equipo, una parte del negocio a la vez: contactar sin pena, seguimiento que no cansa, qué revisar en un mes lento y eventos y reuniones.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Estrategias del equipo">
+<meta property="og:description" content="Contactar, dar seguimiento, los meses lentos y los eventos: qué hacer, qué evitar y cómo medirlo.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/guias/estrategias/">
+<meta property="og:image" content="https://mitienda.beauty/og/mentorias-herramientas.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 8px;max-width:36em}
+.indice{list-style:none;margin:26px 0 0;padding:0;border-top:2px solid var(--ink)}
+.indice a{display:grid;grid-template-columns:2.4em 1fr auto;gap:2px 12px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.indice .n{font:500 14px/1.6 var(--mono);color:var(--accent-ink);grid-row:1 / span 2}
+.indice b{font:400 clamp(22px,5.6vw,28px)/1.1 var(--serif)}
+.indice span:not(.n){grid-column:2 / -1;color:var(--muted);font-size:15px}
+.indice i{grid-row:1;grid-column:3;font:500 14px/1 var(--mono);font-style:normal;color:var(--muted)}
+
+.est{padding:56px 0 0;scroll-margin-top:8px}
+.e-cab{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.e-cab .n{font:500 13px/1 var(--mono);color:var(--accent-ink);grid-row:1 / span 2;padding-top:8px;min-width:2.4em}
+.e-cab h2{font-size:clamp(32px,8.5vw,50px)}
+.e-cab p{margin:0;color:var(--muted);font-size:16px;grid-column:2;max-width:32em}
+.idea{border-left:3px solid var(--accent);padding:2px 0 2px 14px;margin:22px 0 0;font:400 clamp(20px,5vw,24px)/1.3 var(--serif);max-width:28em}
+
+h3.sub{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:28px 0 4px}
+.pasos{list-style:none;margin:0;padding:0;counter-reset:p}
+.pasos li{display:grid;grid-template-columns:2em 1fr;gap:2px 10px;padding:12px 0;border-bottom:1px solid var(--line);counter-increment:p}
+.pasos li::before{content:counter(p);font:500 14px/1.5 var(--mono);color:var(--muted)}
+.pasos b{font-weight:600}
+.pasos span{display:block;color:var(--muted);font-size:15px;margin-top:2px}
+
+.evita{list-style:none;margin:0;padding:0}
+.evita li{position:relative;padding:10px 0 10px 24px;border-bottom:1px solid var(--line);font-size:16px}
+.evita li::before{content:"";position:absolute;left:2px;top:19px;width:12px;height:2px;background:var(--accent-ink)}
+.mide{font-size:16px;margin:4px 0 0}
+.mide b{font-weight:600}
+.usa{display:flex;flex-wrap:wrap;gap:8px 18px;margin:4px 0 0;padding:0;list-style:none}
+.usa a{font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
+
+/* el embudo del mes lento: dónde se rompe te dice qué arreglar */
+.embudo{list-style:none;margin:8px 0 0;padding:0}
+.embudo li{margin:0 0 6px}
+.embudo .tramo{display:block;width:var(--w);background:var(--soft);border-radius:10px;padding:10px 12px;font:500 15px/1.2 var(--mono);white-space:nowrap}
+.embudo li:first-child .tramo{background:var(--ink);color:#fff}
+.embudo .si{display:block;padding:6px 0 10px;font-size:15px;line-height:1.4}
+.embudo .si b{display:block;font-weight:600;font-size:15px}
+.embudo .si span{color:var(--muted)}
+
+.aviso{background:var(--soft);border-radius:14px;padding:14px 16px;margin:20px 0 0;font-size:15px}
+.aviso a{text-underline-offset:3px}
+
+@media (min-width:900px){
+  .arriba{display:grid;grid-template-columns:1fr 1fr;gap:0 64px;align-items:start}
+  .arriba .indice{margin-top:64px}
+  .est{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
+  .est>.e-cab{grid-column:1 / -1;margin-bottom:8px}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/guias/">Guías del equipo</a>
+  </div>
+
+  <div class="arriba">
+    <header class="portada">
+      <h1>Estra<em>tegias</em></h1>
+      <p class="bajada">Una parte del negocio a la vez. Cada estrategia trae qué hacer, qué evitar, un número para saber si funciona y la herramienta con la que se trabaja.</p>
+    </header>
+    <ol class="indice">
+      <li><a href="#contactar"><span class="n">06</span><b>Contactar sin pena</b><i aria-hidden="true">↓</i><span>A quién escribir y qué decir primero.</span></a></li>
+      <li><a href="#seguimiento"><span class="n">07</span><b>Seguimiento que no cansa</b><i aria-hidden="true">↓</i><span>Cuándo volver a escribir y cuándo soltar.</span></a></li>
+      <li><a href="#meses-lentos"><span class="n">08</span><b>Tu cabeza en los meses lentos</b><i aria-hidden="true">↓</i><span>Qué revisar cuando no salen los números.</span></a></li>
+      <li><a href="#eventos"><span class="n">09</span><b>Eventos y reuniones</b><i aria-hidden="true">↓</i><span>Invitar, presentar y el mensaje de las 48 horas.</span></a></li>
+    </ol>
+  </div>
+
+  <!-- 06 -->
+  <section class="est" id="contactar" aria-labelledby="t6">
+    <div class="e-cab"><span class="n">06</span><h2 id="t6">Contactar sin <em>pena</em></h2><p>Escribirle a alguien para ofrecerle producto o contarle del negocio, sin sonar a anuncio.</p></div>
+    <div>
+      <p class="idea">No le escribes para venderle. Le escribes porque pensaste en ella, y le dices por qué.</p>
+      <h3 class="sub">Haz esto</h3>
+      <ol class="pasos">
+        <li><div><b>Empieza por quien ya te conoce</b><span>Tu lista de 20 cercanas primero; la de 50 cuando ya tengas práctica.</span></div></li>
+        <li><div><b>Un elogio real y distinto en cada mensaje</b><span>Algo que de verdad admiras de ella. Si no se te ocurre nada, todavía no le escribas.</span></div></li>
+        <li><div><b>Una sola pregunta al final</b><span>«¿Te mando el catálogo?» o «¿Te cuento en 5 minutos?». Que sea fácil contestar que sí o que no.</span></div></li>
+        <li><div><b>Anota a quién le escribiste</b><span>En tu hoja del día y en tu lista, con la fecha del siguiente paso.</span></div></li>
+      </ol>
+    </div>
+    <div>
+      <h3 class="sub">Evita</h3>
+      <ul class="evita">
+        <li>El mismo mensaje copiado a todas: se nota.</li>
+        <li>Mandar precios o tu link antes de que te lo pida.</li>
+        <li>Hablar de cuánto se gana.</li>
+      </ul>
+      <h3 class="sub">Para saber si funciona</h3>
+      <p class="mide">Tu <b>tasa de respuesta</b>: respuestas entre mensajes enviados. Compárala con la semana anterior. Si baja, revisa el elogio y la pregunta antes de escribir a más personas.</p>
+      <h3 class="sub">Con estas herramientas</h3>
+      <ul class="usa">
+        <li><a href="/mentorias/herramientas/lista/">Mi lista de 50</a></li>
+        <li><a href="/mentorias/herramientas/mensajes/">Mensajes para copiar</a></li>
+        <li><a href="/mentorias/herramientas/hoja-diaria/">La hoja del día</a></li>
+        <li><a href="/mentorias/herramientas/contenido/">Qué publico hoy</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 07 -->
+  <section class="est" id="seguimiento" aria-labelledby="t7">
+    <div class="e-cab"><span class="n">07</span><h2 id="t7">Seguimiento que <em>no cansa</em></h2><p>Volver a escribir sin presionar, a clientas y a quien te dijo «luego te digo».</p></div>
+    <div>
+      <p class="idea">Cada mensaje de seguimiento trae algo nuevo. Si no tienes nada nuevo que decir, espera.</p>
+      <h3 class="sub">Haz esto</h3>
+      <ol class="pasos">
+        <li><div><b>Ponle etapa a cada persona</b><span>Por contactar, tibia, caliente, lista, clienta o socia. La etapa dice qué mensaje le toca.</span></div></li>
+        <li><div><b>Siempre con fecha</b><span>Cada persona de tu lista tiene un siguiente paso y un día. Así nadie se te olvida y a nadie le escribes de más.</span></div></li>
+        <li><div><b>A los 30 días, la clienta</b><span>Pregúntale cómo le va con su producto antes de ofrecerle otro.</span></div></li>
+        <li><div><b>«Luego te digo» es una respuesta</b><span>Contesta con una pregunta que la ayude a decidir, no con un descuento.</span></div></li>
+      </ol>
+    </div>
+    <div>
+      <h3 class="sub">Evita</h3>
+      <ul class="evita">
+        <li>Escribir «¿ya lo pensaste?» más de una vez.</li>
+        <li>Seguimiento por mensaje de voz largo.</li>
+        <li>Quitar a alguien de tu lista porque dijo que no una vez. Cámbiale la etapa y la fecha.</li>
+      </ul>
+      <h3 class="sub">Para saber si funciona</h3>
+      <p class="mide">Al cerrar el mes: ¿cuántas de tus clientas volvieron a pedir? Anótalo cada mes y compáralo con el anterior.</p>
+      <h3 class="sub">Con estas herramientas</h3>
+      <ul class="usa">
+        <li><a href="/mentorias/herramientas/lista/">Mi lista de 50</a></li>
+        <li><a href="/mentorias/herramientas/objeciones/">¿Y si me dice que no?</a></li>
+        <li><a href="/mentorias/herramientas/mi-tienda/">Mi tienda</a></li>
+        <li><a href="/mentorias/herramientas/pedidos/">Pedidos y cobros</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 08 -->
+  <section class="est" id="meses-lentos" aria-labelledby="t8">
+    <div class="e-cab"><span class="n">08</span><h2 id="t8">Tu cabeza en los <em>meses lentos</em></h2><p>Todas tienen meses en que no salen los números. Antes de pensar que no es para ti, revisa dónde se atoró.</p></div>
+    <div>
+      <p class="idea">Un mes lento casi nunca es «todo». Es un paso que se rompió. Encuéntralo y arregla solo ese.</p>
+      <h3 class="sub">Revisa en este orden</h3>
+      <ol class="embudo">
+        <li style="--w:100%"><span class="tramo">Contactos</span><span class="si"><b>¿Hiciste tus 10 al día?</b><span>Si no, eso es lo primero. Ningún mensaje funciona si no se manda.</span></span></li>
+        <li style="--w:80%"><span class="tramo">Respuestas</span><span class="si"><b>¿Te contestan menos que otros meses?</b><span>Revisa el elogio y la pregunta del final.</span></span></li>
+        <li style="--w:60%"><span class="tramo">Pláticas</span><span class="si"><b>¿Te contestan pero no pasa nada?</b><span>Te falta proponer: una muestra, una rutina, 5 minutos para contarle.</span></span></li>
+        <li style="--w:42%"><span class="tramo">Pedidos</span><span class="si"><b>¿Platican pero no piden?</b><span>Es el seguimiento y las objeciones. Revisa qué te dijeron.</span></span></li>
+      </ol>
+    </div>
+    <div>
+      <h3 class="sub">Haz esto</h3>
+      <ol class="pasos">
+        <li><div><b>Mira tus números, no tu ánimo</b><span>Tu hoja de Mi mes ya los tiene. Empieza por ahí.</span></div></li>
+        <li><div><b>Baja la meta, no el método</b><span>Si Full Time no te alcanza este mes, cámbiate a Part Time: 10 contactos, 1 presentación y 1 publicación.</span></div></li>
+        <li><div><b>Vuelve a tu para qué</b><span>Lo que escribiste el día 1. Si cambió, cámbialo y dilo en tu 1 a 1.</span></div></li>
+        <li><div><b>Un reto corto</b><span>Dos semanas con una meta chica, como 14 días seguidos con tu marcador lleno.</span></div></li>
+      </ol>
+      <h3 class="sub">Evita</h3>
+      <ul class="evita">
+        <li>Compararte con la socia que va en otro camino.</li>
+        <li>Desaparecer del grupo. Dile a tu líder que el mes va lento: es lo que más ayuda.</li>
+      </ul>
+      <h3 class="sub">Con estas herramientas</h3>
+      <ul class="usa">
+        <li><a href="/mentorias/herramientas/mi-mes/">Mi mes</a></li>
+        <li><a href="/mentorias/herramientas/hoja-diaria/">La hoja del día</a></li>
+        <li><a href="/mentorias/herramientas/que-quiere/">¿Qué quiere cada quien?</a></li>
+        <li><a href="/guias/caminos/">Tu camino</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- 09 -->
+  <section class="est" id="eventos" aria-labelledby="t9">
+    <div class="e-cab"><span class="n">09</span><h2 id="t9">Eventos y <em>reuniones</em></h2><p>Una reunión en tu casa, un live o un evento del equipo. Lo que pasa antes y después pesa tanto como el día.</p></div>
+    <div>
+      <p class="idea">Un evento no termina cuando se van. Termina con el mensaje de las 48 horas.</p>
+      <h3 class="sub">Antes</h3>
+      <ol class="pasos">
+        <li><div><b>Fecha, lugar y cuántas</b><span>Para una reunión en casa, tres o cuatro amigas bastan.</span></div></li>
+        <li><div><b>Invitación personal a cada una</b><span>Con su nombre y por qué pensaste en ella. Un día antes, un recordatorio.</span></div></li>
+        <li><div><b>A un evento del equipo, llega con alguien</b><span>Elige uno de la cartelera y lleva a una invitada.</span></div></li>
+      </ol>
+      <h3 class="sub">El día</h3>
+      <ol class="pasos">
+        <li><div><b>45 minutos, no más</b><span>Bienvenida, prueba de producto, tu historia en tres frases, tu tablero y una pregunta de cierre.</span></div></li>
+        <li><div><b>Tu historia sin cifras de dinero</b><span>Cómo empezaste, qué te sorprendió y qué sigues haciendo.</span></div></li>
+      </ol>
+    </div>
+    <div>
+      <h3 class="sub">Después</h3>
+      <ol class="pasos">
+        <li><div><b>A las 48 horas, un mensaje a cada una</b><span>Uno, no cinco. Distinto si compró, si se quedó con dudas o si le llamó el negocio.</span></div></li>
+        <li><div><b>Anota quién vino y qué pasó</b><span>Pasan a tu lista con su etapa y su fecha.</span></div></li>
+      </ol>
+      <h3 class="sub">Para saber si funciona</h3>
+      <p class="mide">Tres números por evento: <b>asistentes</b>, <b>pedidos</b> y <b>personas que quieren saber del negocio</b>.</p>
+      <h3 class="sub">Con estas herramientas</h3>
+      <ul class="usa">
+        <li><a href="/mentorias/herramientas/reunion/">Mi reunión</a></li>
+        <li><a href="/mentorias/herramientas/en-vivo/">Guion de venta en vivo</a></li>
+        <li><a href="/eventos/">Eventos del equipo</a></li>
+        <li><a href="/mentorias/herramientas/lista/">Mi lista de 50</a></li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <p>Equipo SVH · mitienda.beauty · Las estrategias salen del método diario del equipo y de sus herramientas. No es material oficial de Farmasi y no prometemos ganancias.</p>
+  </footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+</body>
+</html>
