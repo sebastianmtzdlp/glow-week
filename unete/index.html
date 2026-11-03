@@ -91,6 +91,28 @@ input[type=range]{width:100%;margin:12px 0 4px;accent-color:var(--ink);height:32
 .payback b{font-weight:700}
 .fine{font-size:13px;color:var(--muted);margin-top:10px}
 
+/* Altas del mes */
+.altas{display:flex;align-items:center;gap:12px;margin-top:22px;padding:12px 14px;border-radius:14px;background:var(--tint);font-size:15px}
+.altas .dots{display:flex;flex:none}
+.altas .dots i{width:22px;height:22px;border-radius:50%;background:var(--accent);border:2px solid var(--tint);margin-left:-7px}
+.altas .dots i:first-child{margin-left:0}
+.altas .dots i:nth-child(2n){background:var(--ink)}
+.altas b{font-weight:700}
+/* Compartir mi cuenta */
+.share{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding:13px;border-radius:14px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);font:600 15px/1.2 Outfit,sans-serif;cursor:pointer;text-decoration:none;transition:transform 160ms var(--ease)}
+.share:active{transform:scale(.97)}
+.share svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+/* Regalos de bienvenida, mes por mes */
+.gifts{list-style:none;padding:0;margin-top:22px;position:relative}
+.gifts::before{content:"";position:absolute;left:21px;top:8px;bottom:60px;width:1.5px;background:var(--line)}
+.gifts li{position:relative;display:grid;grid-template-columns:44px 1fr;gap:14px;padding:0 0 22px}
+.gifts .m{position:relative;z-index:1;width:44px;height:44px;border-radius:50%;background:#fff;border:1.5px solid var(--ink);display:grid;place-items:center;font-family:var(--mono);font-size:12px;font-weight:500;text-transform:lowercase}
+.gifts li:first-child .m{background:var(--accent);border-color:var(--accent);color:#fff}
+.gifts small{display:block;font-size:13px;color:var(--muted)}
+.gifts b{display:block;font-size:18px;font-weight:800;line-height:1.2;margin-top:2px}
+.gifts p{font-size:15px;color:var(--muted);margin-top:3px}
+.gifts .fp{display:inline-block;margin-top:8px;font-size:13px;color:var(--ink);background:var(--soft);border-radius:999px;padding:4px 10px}
+
 /* Capítulos */
 .ch{margin-top:64px;scroll-margin-top:16px}
 .ch h2{font-size:clamp(27px,7.5vw,34px);line-height:1.08;font-weight:800;letter-spacing:-.015em}
@@ -160,6 +182,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
   <header class="hero">
     <h1>Lo que pagas <em>de más</em> por no ser socia</h1>
     <p class="lead">Haz la cuenta con lo que tú ya gastas en belleza. Sin promesas, con tus números.</p>
+    <p class="altas" id="altas" hidden><span class="dots" id="altasDots" aria-hidden="true"></span><span id="altasTxt"></span></p>
   </header>
 
   <section class="calc" aria-labelledby="qGasto">
@@ -190,6 +213,13 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 
     <div class="payback" id="oPay"></div>
     <p class="fine">Cálculo aproximado: algunos kits y promos tienen otro descuento. El precio de socia se suma a las promos del mes.</p>
+    <button type="button" class="share" id="share"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Compartir mi cuenta</button>
+  </section>
+
+  <section class="ch" id="regalos">
+    <h2 id="regTitle">Si entras hoy, esto te toca cada mes</h2>
+    <p>Tus primeros 4 meses, el equipo te regala un programa distinto. Y Farmasi te da un producto de regalo cada mes que llegas a tus puntos.</p>
+    <ol class="gifts" id="gifts"></ol>
   </section>
 
   <section class="ch" id="incluye">
@@ -211,7 +241,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
       <li>
         <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-1.5-3-5-3.5-5-1s3 1 5 1c2 0 5 1.5 5-1s-3.5-2-5 1"/></svg>
         <div><b>Un regalo en cada uno de tus primeros 4 meses</b>
-          <p>El programa de bienvenida te da un producto de regalo si llegas a 50, 60, 70 y 80 puntos tuyos. Es solo para socias nuevas.</p></div>
+          <p>Un programa del equipo y, si llegas a tus puntos, un producto de Farmasi. Es solo para socias nuevas. <a href="#regalos">Ver mes por mes</a></p></div>
       </li>
       <li>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10l1.5-5h13L20 10M4 10v10h16V10M4 10c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 3 3s3-1.3 3-3c0 1.7 1.3 3 4 3"/><path d="M10 20v-4h4v4"/></svg>
@@ -276,6 +306,17 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
   const $ = id => document.getElementById(id);
   const MESES = ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Oct","Nov","Dic"];
   const COSTO = 499, SKIN = 50, MAQ = 30;
+  // ===== Datos que actualiza el equipo =====
+  // Socias nuevas del mes pasado (Back Office). aprox:true dice "unas N". Pon n:null para ocultarlo.
+  const ALTAS = {mes: "octubre", n: 6, aprox: true};
+  // Programa de regalo del equipo en cada uno de los primeros 4 meses, y puntos del regalo de Farmasi.
+  const REGALOS = [
+    {slug: "encendida", t: "Encendida", d: "Tus redes, desde cero.", pts: 50},
+    {slug: "ritmo", t: "Ritmo", d: "30 días para elegirte.", pts: 60},
+    {slug: "el-giro", t: "El Giro", d: "Cuando cambias tú, gira todo lo demás.", pts: 70},
+    {slug: "visible", t: "Visible", d: "Marca personal que vende.", pts: 80}
+  ];
+
   const fmt = n => "$" + Math.round(n).toLocaleString("es-MX");
   const cuenta = (path, title) => { try{ window.goatcounter.count({path:"unete/"+path, title, event:true}); }catch(_){} };
 
@@ -361,6 +402,30 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
 
   pinta(false);
   $("tags").classList.remove("go");
+  // Altas del mes
+  if (ALTAS && ALTAS.n){
+    $("altasTxt").innerHTML = `<b>${ALTAS.aprox ? "Unas " : ""}${ALTAS.n} socias nuevas</b> entraron al equipo en ${ALTAS.mes}.`;
+    $("altasDots").innerHTML = "<i></i>".repeat(Math.min(ALTAS.n, 6));
+    $("altas").hidden = false;
+  }
+  // Regalos mes por mes, empezando este mes
+  const MESL = ["enero","febrero","marzo","abril","mayo","junio","julio","agosto","septiembre","octubre","noviembre","diciembre"];
+  $("gifts").innerHTML = REGALOS.map((r, i) => {
+    const m = (mesHoy + i) % 12;
+    return `<li><span class="m">${MESES[m]}</span><div><small>Mes ${i + 1} · ${MESL[m]}</small><b>${r.t}</b><p>${r.d}</p><span class="fp">+ producto de Farmasi con ${r.pts} puntos</span></div></li>`;
+  }).join("");
+  // Compartir mi cuenta
+  $("share").addEventListener("click", async () => {
+    const c = calc();
+    const txt = mesHoy > 0
+      ? `En lo que va de ${anio} pagué unos ${fmt(c.pasado)} de más por no ser socia de Farmasi. Haz tu cuenta:`
+      : `Pago unos ${fmt(c.mes)} de más cada mes por no ser socia de Farmasi. Haz tu cuenta:`;
+    const url = `https://mitienda.beauty/unete/${quien.slug && quien.slug !== "sel" ? "?de=" + quien.slug : ""}`;
+    cuenta("compartir", "Compartir mi cuenta");
+    try{ if (navigator.share){ await navigator.share({text: txt, url}); return; } }catch(_){ return; }
+    window.open(`https://wa.me/?text=${encodeURIComponent(txt + " " + url)}`, "_blank", "noopener");
+  });
+
 
   // Consultora que comparte
   const qs = new URLSearchParams(location.search), slug = qs.get("de") || qs.get("c");
