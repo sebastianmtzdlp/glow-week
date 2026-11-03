@@ -1011,7 +1011,7 @@
     if (st){ const i=+st.dataset.i; cart[i]=Math.max(0,(cart[i]||0)+(+st.dataset.d)); if(!cart[i]) delete cart[i]; refreshCard(i); update(); return; }
   });
   $("openSheet").onclick = $("review").onclick = openSheet;
-  const SB_URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/pedidos_intencion", SB_KEY = "sb_publishable_ltaNA7nnVozoSCOcZIjg";
+  const SB_URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/pedidos_intencion", SB_KEY = "sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk";
   function logIntent(origen, items, t){ try { if (!items.length) return;
     fetch(SB_URL, {method:"POST", keepalive:true, headers:{"Content-Type":"application/json", apikey:SB_KEY, Authorization:"Bearer "+SB_KEY, Prefer:"return=minimal"},
       body: JSON.stringify({consultora: location.pathname.split("/").filter(Boolean)[0], referida_por: (curRef()||"").slice(0,40) || null, cliente: ($("cName")?.value||"").trim().slice(0,80) || null, tipo: yaSocia ? "afiliada" : "clienta", origen, items, total: t, envio: isShip() ? "domicilio" : "recoger"})}).catch(()=>{});
