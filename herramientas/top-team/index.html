@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Herramientas básicas · mitienda.beauty</title>
 <meta name="robots" content="noindex">
-<meta name="description" content="Cinco herramientas básicas para tu día: tu nivel, mensajes, respuestas, tu día y tu lista. Se guardan en tu celular.">
+<meta name="description" content="Herramientas básicas para tu día: tus puntos al objetivo, tu lista, mensajes, respuestas, tu día y tu 1 a 1. Se guardan en tu celular.">
 <meta property="og:title" content="Herramientas básicas para tu día">
 <meta property="og:description" content="Un poquito de lo que estamos por enseñarle al equipo.">
 <meta property="og:type" content="website">
@@ -26,6 +26,7 @@
   --ease:cubic-bezier(.23,1,.32,1);
 }
 *{box-sizing:border-box}
+[hidden]{display:none!important}
 html{background:var(--bg);-webkit-text-size-adjust:100%}
 body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body)}
 a{color:inherit}
@@ -126,6 +127,45 @@ h2{font:600 20px/1.2 var(--body);letter-spacing:-.01em}
 .guardado{margin:12px 0 0;font:500 13px/1.4 var(--mono);color:var(--muted)}
 .resto li{font-size:14px}
 
+/* acceso a ritmo */
+.ritmo{display:grid;grid-template-columns:1fr auto;align-items:center;gap:4px 12px;margin:22px 0 0;padding:16px 18px;border-radius:14px;background:var(--soft);text-decoration:none}
+.ritmo b{font-weight:600;font-size:17px}
+.ritmo span{grid-column:1;font-size:14px;color:var(--muted)}
+.ritmo i{grid-row:1 / span 2;grid-column:2;font:500 18px/1 var(--mono);font-style:normal;color:var(--accent-ink)}
+.ritmo:active{transform:scale(.99)}
+/* objetivo */
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.dos label{display:block;font-size:14px;font-weight:500;margin:0 0 6px}
+.dos input,.dos select,.sel-c select{width:100%;min-height:48px;padding:0 12px;border:1px solid #CFD2E0;border-radius:12px;background:#fff;font:500 18px/1 var(--mono);font-variant-numeric:tabular-nums}
+.dos select,.sel-c select{font:500 16px/1 var(--body)}
+.faltan{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:16px}
+.faltan div{background:var(--soft);border-radius:14px;padding:12px 14px}
+.faltan small{display:block;font:600 11px/1.3 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.faltan b{display:block;font:800 28px/1.1 var(--mono);color:var(--ink);margin-top:4px;letter-spacing:-.02em}
+.faltan .dia b{color:var(--accent)}
+.faltan span{font-size:13px;color:var(--muted)}
+.leyenda{margin:12px 0 0;font-size:15px;min-height:1.5em}
+.leyenda.ok{color:var(--good);font-weight:500}
+/* lista con nota */
+.lista li{grid-template-columns:22px 1fr 26px;row-gap:6px}
+.lista .nota{grid-column:2 / 4;min-height:38px!important;font-size:14px!important;background:var(--soft)!important;border-color:transparent!important}
+.lista .nota[hidden]{display:none}
+/* selector de contacto */
+.sel-c{display:flex;gap:10px;align-items:end;margin-top:14px}
+.sel-c>div{flex:1}
+.sel-c label{display:block;font-size:14px;font-weight:500;margin:0 0 6px}
+.sig{min-height:48px;padding:0 16px;border:1px solid var(--ink);border-radius:14px;background:#fff;font-weight:600;font-size:14px;cursor:pointer}
+.sig:active{transform:scale(.97)}
+.su-nota{margin:10px 0 0;font-size:14px;color:var(--muted)}
+.su-nota b{color:var(--ink);font-weight:500}
+/* 1 a 1 */
+.uno label{display:block;font-weight:600;font-size:16px;margin:16px 0 6px}
+.uno label small{display:block;font-weight:400;font-size:14px;color:var(--muted)}
+.uno textarea{width:100%;min-height:72px;padding:10px 12px;border:1px solid #CFD2E0;border-radius:12px;background:#fff;font:400 16px/1.45 var(--body);resize:vertical}
+.uno .btns{margin-top:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:0;border-radius:14px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;cursor:pointer;text-decoration:none;transition:transform 160ms var(--ease)}
+.btn:active{transform:scale(.97)}
+
 /* tip */
 .tip{margin:14px 2px 0;font-size:15px;line-height:1.45}
 .tip b{display:block;font:600 11px/1.4 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--accent-ink)}
@@ -154,55 +194,77 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
 </svg>
-<div class="cabecera"><div class="wrap"><span class="marca">MI EQUIPO</span><span class="num">5 herramientas básicas</span></div></div>
+<div class="cabecera"><div class="wrap"><span class="marca">MI EQUIPO</span><span class="num">6 herramientas básicas</span></div></div>
 
 <div class="wrap">
   <header class="portada">
     <h1>Herramientas básicas para tu día.</h1>
-    <p class="baj">Tu nivel, mensajes listos, qué contestar, tu día y tu lista. Funcionan en tu celular y lo que llenas se queda guardado ahí.</p>
+    <p class="baj">Tus puntos al objetivo, tu lista, mensajes, qué contestar, tu día y tu 1 a 1. Funcionan en tu celular y lo que llenas se queda guardado ahí.</p>
     <p class="chico">Sin registrarte. Guárdala en tu pantalla de inicio.</p>
+    <a class="ritmo" href="/herramientas/ritmo-de-puntos/" data-c="ritmo"><b>Ritmo de Puntos</b><span>Tu meta del mes, día por día, en calendario.</span><i aria-hidden="true">→</i></a>
   </header>
 
   <ol class="pruebas">
     <li class="prueba">
-      <span class="etq">01 · Mi nivel</span>
+      <span class="etq">01 · Puntos y objetivo</span>
       <div class="tarjeta">
-        <h2>¿En qué nivel vas?</h2>
-        <p>Escribe los puntos de grupo que llevas este mes.</p>
-        <div class="campo">
-          <input id="pts" type="number" inputmode="numeric" min="0" placeholder="750" aria-label="Puntos de grupo">
-          <span>puntos</span>
+        <h2>¿Cuánto te falta?</h2>
+        <div class="dos">
+          <div><label for="pts">Llevas</label><input id="pts" type="number" inputmode="numeric" min="0" placeholder="750"></div>
+          <div><label for="obj">Tu objetivo</label><select id="obj"></select></div>
         </div>
-        <p class="dato" id="dato" aria-live="polite"></p>
+        <div class="dos" id="otroBox" hidden><div><label for="otro">Puntos del objetivo</label><input id="otro" type="number" inputmode="numeric" min="1" placeholder="1500"></div></div>
+        <div class="faltan">
+          <div><small>Faltan</small><b id="fTotal">–</b><span>puntos al objetivo</span></div>
+          <div class="dia"><small>Por día</small><b id="fDia">–</b><span id="fDias">puntos</span></div>
+        </div>
         <div class="barra-n" aria-hidden="true"><i id="barra"></i></div>
+        <p class="leyenda" id="leyenda" aria-live="polite"></p>
       </div>
       <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: puntos por semana, laterales y plan a Directora</li></ul>
     </li>
 
     <li class="prueba">
-      <span class="etq">02 · Mensajes</span>
+      <span class="etq">02 · Mis 10 contactos</span>
+      <div class="tarjeta">
+        <h2>Primero, tus 10</h2>
+        <p>Anota a quien ya te conoce. Guarda una nota de cada una y palomea cuando le escribas.</p>
+        <ol class="lista" id="lista"></ol>
+        <p class="guardado" id="listaN">0 de 10 contactadas</p>
+      </div>
+      <p class="tip"><b>Tip</b>Empieza por quien ya te conoce. Ahí está tu primera venta.</p>
+      <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: lista de 50 con seguimiento</li></ul>
+    </li>
+
+    <li class="prueba">
+      <span class="etq">03 · Mensajes</span>
       <div class="tarjeta">
         <h2>Mensajes listos</h2>
-        <div class="nombre"><label for="nom">¿A quién le escribes?</label><input id="nom" type="text" placeholder="Su nombre" autocomplete="off"></div>
+        <div class="sel-c">
+          <div><label for="quien">¿A quién le escribes?</label><select id="quien"></select></div>
+          <button class="sig" type="button" id="sig">Siguiente</button>
+        </div>
+        <div class="nombre" id="otraBox" hidden><label for="nom">Su nombre</label><input id="nom" type="text" placeholder="Su nombre" autocomplete="off"></div>
+        <p class="su-nota" id="suNota" hidden></p>
         <div id="msjs"></div>
       </div>
-<p class="tip"><b>Tip</b>Un elogio real y distinto en cada mensaje.</p>
+      <p class="tip"><b>Tip</b>Un elogio real y distinto en cada mensaje.</p>
       <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: 21 mensajes en 6 momentos</li></ul>
     </li>
 
     <li class="prueba">
-      <span class="etq">03 · Si te dice que no</span>
+      <span class="etq">04 · Si te dice que no</span>
       <div class="tarjeta">
         <h2>Qué contestar</h2>
         <div class="chips" id="objChips" role="group" aria-label="Lo que te dijo"></div>
-        <div id="obj"></div>
+        <div id="objR"></div>
       </div>
-<p class="tip"><b>Tip</b>Nadie se queda sin respuesta ni sin siguiente paso.</p>
+      <p class="tip"><b>Tip</b>Nadie se queda sin respuesta ni sin siguiente paso.</p>
       <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: 12 respuestas</li></ul>
     </li>
 
     <li class="prueba">
-      <span class="etq">04 · Mi día</span>
+      <span class="etq">05 · Mi día</span>
       <div class="tarjeta">
         <h2>4 actividades al día</h2>
         <ul class="acts">
@@ -213,20 +275,25 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
         </ul>
         <p class="marcador" id="marcador" aria-live="polite">0 de 4 hoy</p>
       </div>
-<p class="tip"><b>Tip</b>Seguimiento sin intensear: felicitar, reaccionar, hacerte presente.</p>
+      <p class="tip"><b>Tip</b>Seguimiento sin intensear: felicitar, reaccionar, hacerte presente.</p>
       <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: 10 actividades, marcador y hoja para imprimir</li></ul>
     </li>
 
     <li class="prueba">
-      <span class="etq">05 · Mi lista</span>
-      <div class="tarjeta">
-        <h2>10 personas para escribirles</h2>
-        <p>Anota a quien ya te conoce y palomea cuando le escribas.</p>
-        <ol class="lista" id="lista"></ol>
-        <p class="guardado" id="listaN">0 de 10 contactadas</p>
+      <span class="etq">06 · Mi 1 a 1</span>
+      <div class="tarjeta uno">
+        <h2>1 a 1 en 15 minutos</h2>
+        <p>Con tu socia o con tu líder. Tres preguntas, en este orden.</p>
+        <label for="u1">1. Los números<small>¿Cuántos puntos llevas y cuál es tu objetivo del mes?</small></label>
+        <textarea id="u1" data-u="0"></textarea>
+        <label for="u2">2. Lo que frena<small>¿Qué te está frenando de verdad esta semana?</small></label>
+        <textarea id="u2" data-u="1"></textarea>
+        <label for="u3">3. El compromiso<small>¿Qué vas a hacer antes del próximo 1 a 1, y para qué día?</small></label>
+        <textarea id="u3" data-u="2"></textarea>
+        <div class="btns"><a class="btn" id="unoWa" href="#" target="_blank" rel="noopener">Mandar por WhatsApp</a><button class="enl" type="button" id="unoBorra" style="background:none;border:0;padding:0;font-size:14px;color:var(--muted);text-decoration:underline;text-underline-offset:4px;cursor:pointer">Empezar otro</button></div>
       </div>
-<p class="tip"><b>Tip</b>Empieza por quien ya te conoce. Ahí está tu primera venta.</p>
-      <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: lista de 50 con seguimiento</li></ul>
+      <p class="tip"><b>Tip</b>Primero los números, luego lo que frena y al final un compromiso con fecha.</p>
+      <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: la hoja completa del 1 a 1, en 6 bloques</li></ul>
     </li>
   </ol>
 
@@ -243,7 +310,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
   var $ = function(id){ return document.getElementById(id); };
   function lee(k, d){ try{ var v = localStorage.getItem(k); return v ? JSON.parse(v) : d; }catch(_){ return d; } }
   function guarda(k, v){ try{ localStorage.setItem(k, JSON.stringify(v)); }catch(_){} }
-  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
   function cuenta(p){ try{ window.goatcounter.count({path:"top-team/" + p, title:p, event:true}); }catch(_){} }
   var una = {}; function vez(p){ if(!una[p]){ una[p] = 1; cuenta(p); } }
   var t, toast;
@@ -257,45 +324,88 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
     else { var a = document.createElement("textarea"); a.value = x; document.body.appendChild(a); a.select(); try{ document.execCommand("copy"); }catch(_){} a.remove(); ok(); }
   }
   function hoy(){ var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
-
-  /* 01 nivel: puntos de grupo por nivel (los mismos de la calculadora del equipo) */
-  var N = [[3,200],[6,400],[9,600],[12,900],[15,1400],[18,2200],[22,3600],[25,5000]];
   var fmt = function(n){ return Math.round(n).toLocaleString("es-MX"); };
-  function nivel(){
-    var el = $("pts"), v = Math.max(0, +el.value || 0), d = $("dato"), b = $("barra");
-    guarda("mtb-tt-pts", el.value);
-    if(!el.value){ d.innerHTML = ""; b.style.width = "0"; return; }
-    var actual = null, sig = null;
-    N.forEach(function(n){ if(v >= n[1]) actual = n; else if(!sig) sig = n; });
-    var desde = actual ? actual[1] : 0;
-    b.style.width = sig ? Math.min(100, (v - desde) / (sig[1] - desde) * 100) + "%" : "100%";
-    d.innerHTML = "<b>" + (actual ? actual[0] : 0) + "%</b>" + (sig ? "Te faltan " + fmt(sig[1] - v) + " para " + sig[0] + "%." : "Lo que sigue es dirección.");
-  }
-  $("pts").value = lee("mtb-tt-pts", "") || "";
-  $("pts").addEventListener("input", function(){ nivel(); vez("nivel"); });
-  nivel();
+  document.addEventListener("click", function(e){ var a = e.target.closest && e.target.closest("[data-c]"); if(a) cuenta(a.dataset.c); });
 
-  /* 02 mensajes */
+  /* 01 puntos y objetivo: niveles con los puntos de grupo de la calculadora del equipo */
+  var N = [[3,200],[6,400],[9,600],[12,900],[15,1400],[18,2200],[22,3600],[25,5000]];
+  var P = lee("mtb-tt-obj-v1", {pts: lee("mtb-tt-pts", "") || "", obj: "900", otro: ""});
+  $("obj").innerHTML = N.map(function(n){ return '<option value="' + n[1] + '">' + n[0] + '% · ' + fmt(n[1]) + '</option>'; }).join("") + '<option value="otro">Otra cifra</option>';
+  $("pts").value = P.pts; $("obj").value = P.obj; $("otro").value = P.otro;
+  function objetivo(){
+    var v = Math.max(0, +$("pts").value || 0), o = $("obj").value, meta = o === "otro" ? (+$("otro").value || 0) : +o;
+    $("otroBox").hidden = o !== "otro";
+    P = {pts: $("pts").value, obj: o, otro: $("otro").value}; guarda("mtb-tt-obj-v1", P);
+    var d = new Date(), fin = new Date(d.getFullYear(), d.getMonth() + 1, 0).getDate(), quedan = fin - d.getDate() + 1;
+    var falta = Math.max(0, meta - v), b = $("barra"), ley = $("leyenda");
+    if(!meta){ $("fTotal").textContent = "–"; $("fDia").textContent = "–"; b.style.width = "0"; ley.textContent = ""; return; }
+    $("fTotal").textContent = fmt(falta);
+    $("fDia").textContent = falta ? fmt(Math.ceil(falta / quedan)) : "0";
+    $("fDias").textContent = "en " + quedan + (quedan === 1 ? " día que queda" : " días que quedan");
+    b.style.width = Math.min(100, v / meta * 100) + "%";
+    b.style.background = falta ? "" : "var(--good)";
+    var actual = null; N.forEach(function(n){ if(v >= n[1]) actual = n; });
+    ley.className = "leyenda" + (falta ? "" : " ok");
+    ley.textContent = !$("pts").value ? "" : falta ? "Hoy vas en " + (actual ? actual[0] : 0) + "%." : "Llegaste a tu objetivo con " + fmt(v) + " puntos.";
+  }
+  ["pts","obj","otro"].forEach(function(id){ $(id).addEventListener("input", function(){ objetivo(); vez("objetivo"); }); });
+  objetivo();
+
+  /* 02 mis 10 contactos */
+  var LI = lee("mtb-tt-lista-v1", []);
+  while(LI.length < 10) LI.push({n:"", ok:0});
+  function filaLista(p, i){ return '<li><input type="text" data-i="' + i + '" data-k="n" value="' + esc(p.n) + '" placeholder="Nombre" aria-label="Contacto ' + (i+1) + '" autocomplete="off"><input type="checkbox" data-i="' + i + '"' + (p.ok ? " checked" : "") + ' aria-label="Ya le escribí"><input type="text" class="nota" data-i="' + i + '" data-k="c" value="' + esc(p.c) + '" placeholder="Nota: qué le interesa, cuándo volver a escribirle" aria-label="Nota de contacto ' + (i+1) + '"' + (p.n ? "" : " hidden") + '></li>'; }
+  $("lista").innerHTML = LI.map(filaLista).join("");
+  function cuentaLista(){ $("listaN").textContent = LI.filter(function(p){ return p.ok; }).length + " de 10 contactadas"; }
+  $("lista").addEventListener("input", function(e){
+    var el = e.target, i = +el.dataset.i;
+    if(el.type === "checkbox") LI[i].ok = el.checked ? 1 : 0;
+    else { LI[i][el.dataset.k] = el.value; if(el.dataset.k === "n") el.parentNode.querySelector(".nota").hidden = !el.value.trim(); }
+    guarda("mtb-tt-lista-v1", LI); cuentaLista(); vez("lista");
+  });
+  $("lista").addEventListener("change", function(e){ if(e.target.type === "checkbox"){ LI[+e.target.dataset.i].ok = e.target.checked ? 1 : 0; guarda("mtb-tt-lista-v1", LI); cuentaLista(); } });
+  $("lista").addEventListener("focusout", function(e){ if(e.target.dataset && e.target.dataset.k === "n") opciones(); });
+  cuentaLista();
+
+  /* 03 mensajes: eliges a una de tus 10 y cambias de una a otra */
   var M = [
     {h:"Para ofrecer producto", c:"A tus cercanas.", x:"Hola {nombre}, ¿cómo estás? Ya tengo mi tienda de belleza y pensé en ti. Si quieres que te recomiende algo, me dices qué usas hoy y lo vemos."},
     {h:"Te dijo «luego te digo»", c:"Dos o tres días después.", x:"Hola {nombre}, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode."},
     {h:"La pregunta de cierre", c:"A quien ya está lista.", x:"{nombre}, con todo lo que platicamos, ¿arrancamos esta semana o prefieres que lo veamos el mes que entra?"},
     {h:"Para que vuelva a pedir", c:"A las 3 o 4 semanas de su compra.", x:"Hola {nombre}, ¿qué tal te fue con lo que te llevaste? Si ya se te está acabando, te lo aparto."}
   ];
-  function llena(x){ var n = ($("nom").value || "").trim(); return n ? x.replace(/\{nombre\}/g, n) : x.replace(/ \{nombre\}/g, "").replace(/^\{nombre\}, /, "").replace(/^./, function(c){ return c.toUpperCase(); }); }
+  var quien = lee("mtb-tt-quien", "");
+  function con(){ return LI.map(function(p, i){ return {i: i, n: (p.n || "").trim()}; }).filter(function(p){ return p.n; }); }
+  function opciones(){
+    var cs = con(), val = $("quien").value || String(quien);
+    $("quien").innerHTML = (cs.length ? "" : '<option value="">Primero llena tus 10 arriba</option>') + cs.map(function(p){ return '<option value="' + p.i + '">' + esc(p.n) + (LI[p.i].ok ? " · ya le escribí" : "") + '</option>'; }).join("") + '<option value="otra">Otra persona</option>';
+    if([].some.call($("quien").options, function(o){ return o.value === val; })) $("quien").value = val;
+    $("sig").hidden = cs.length < 2;
+    pinta();
+  }
+  function nombre(){ var q = $("quien").value; if(q === "otra") return ($("nom").value || "").trim(); return q !== "" && LI[+q] ? (LI[+q].n || "").trim() : ""; }
+  function llena(x){ var n = nombre(); return n ? x.replace(/\{nombre\}/g, n) : x.replace(/ \{nombre\}/g, "").replace(/^\{nombre\}, /, "").replace(/^./, function(c){ return c.toUpperCase(); }); }
   function pinta(){
+    var q = $("quien").value; quien = q; guarda("mtb-tt-quien", q);
+    $("otraBox").hidden = q !== "otra";
+    var nota = q !== "" && q !== "otra" && LI[+q] ? (LI[+q].c || "").trim() : "";
+    $("suNota").hidden = !nota; $("suNota").innerHTML = nota ? "<b>Tu nota:</b> " + esc(nota) : "";
     $("msjs").innerHTML = M.map(function(m, i){
       var x = llena(m.x);
-      return '<div class="msj" style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line)"><h2>' + m.h + '</h2><p class="burbuja">' + esc(x) + '</p><div class="fila"><p class="cuando">' + m.c + '</p><div class="btns"><a class="wa" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(x) + '" data-i="' + i + '">WhatsApp</a><button class="copiar" type="button" data-i="' + i + '">Copiar</button></div></div></div>';
+      return '<div class="msj" style="margin-top:18px;padding-top:18px;border-top:1px solid var(--line)"><h2>' + m.h + '</h2><p class="burbuja">' + esc(x) + '</p><div class="fila"><p class="cuando">' + m.c + '</p><div class="btns"><a class="wa" target="_blank" rel="noopener" href="https://wa.me/?text=' + encodeURIComponent(x) + '">WhatsApp</a><button class="copiar" type="button" data-i="' + i + '">Copiar</button></div></div></div>';
     }).join("");
   }
-  $("nom").addEventListener("input", pinta); pinta();
+  function escrito(){ var q = $("quien").value; if(q !== "" && q !== "otra" && LI[+q] && !LI[+q].ok){ LI[+q].ok = 1; guarda("mtb-tt-lista-v1", LI); var c = $("lista").querySelector('input[type=checkbox][data-i="' + q + '"]'); if(c) c.checked = true; cuentaLista(); opciones(); } }
+  $("quien").addEventListener("change", function(){ pinta(); vez("elegir"); });
+  $("nom").addEventListener("input", pinta);
+  $("sig").addEventListener("click", function(){ var cs = con(); if(!cs.length) return; var q = $("quien").value, k = cs.findIndex(function(p){ return String(p.i) === q; }); $("quien").value = String(cs[(k + 1) % cs.length].i); pinta(); });
   $("msjs").addEventListener("click", function(e){
-    var b = e.target.closest(".copiar"); if(b){ copia(llena(M[b.dataset.i].x)); cuenta("copiar"); }
-    if(e.target.closest(".wa")) cuenta("whatsapp");
+    var b = e.target.closest(".copiar"); if(b){ copia(llena(M[b.dataset.i].x)); cuenta("copiar"); escrito(); }
+    if(e.target.closest(".wa")){ cuenta("whatsapp"); escrito(); }
   });
+  opciones();
 
-  /* 03 objeciones */
+  /* 04 objeciones */
   var O = [
     {o:"No tengo dinero ahorita", r:"Es prioridad, no falta de interés. Quita la presión y deja una puerta con fecha.", x:"Te entiendo, no hay prisa. Si quieres te lo aparto para la quincena, o empezamos con el más chico. Tú me dices.", s:"¿Cuándo te acomoda mejor?"},
     {o:"Está caro", r:"No ve el valor todavía, o lo compara con algo que ya usa.", x:"Te entiendo. Dime qué usas hoy para eso y cuánto te dura: a veces sale igual o menos por mes. Y si quieres, empezamos con uno solo para que lo pruebes.", s:"¿Qué usas hoy para eso?"},
@@ -305,13 +415,13 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
   function obj(){
     $("objChips").innerHTML = O.map(function(o, i){ return '<button type="button" data-i="' + i + '" aria-pressed="' + (i === oi) + '">' + o.o + '</button>'; }).join("");
     var o = O[oi];
-    $("obj").innerHTML = '<p class="porque" style="margin:10px 0 0">' + o.r + '</p><div class="msj"><p class="burbuja">' + esc(o.x) + '</p><div class="fila"><p class="cuando">Y cierra con: ' + o.s.charAt(0).toLowerCase() + o.s.slice(1) + '</p><button class="copiar" type="button">Copiar</button></div></div>';
+    $("objR").innerHTML = '<p class="porque" style="margin:10px 0 0">' + o.r + '</p><div class="msj"><p class="burbuja">' + esc(o.x) + '</p><div class="fila"><p class="cuando">Y cierra con: ' + o.s.charAt(0).toLowerCase() + o.s.slice(1) + '</p><button class="copiar" type="button">Copiar</button></div></div>';
   }
   $("objChips").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; oi = +b.dataset.i; obj(); vez("objecion"); });
-  $("obj").addEventListener("click", function(e){ if(e.target.closest(".copiar")){ copia(O[oi].x + " " + O[oi].s); cuenta("copiar"); } });
+  $("objR").addEventListener("click", function(e){ if(e.target.closest(".copiar")){ copia(O[oi].x + " " + O[oi].s); cuenta("copiar"); } });
   obj();
 
-  /* 04 mi día: se guarda por fecha */
+  /* 05 mi día: se guarda por fecha */
   var DIA = lee("mtb-tt-dia-v1", {}), acts = document.querySelectorAll(".act"), H = hoy();
   (DIA[H] || []).forEach(function(v, i){ if(acts[i]) acts[i].checked = !!v; });
   function marcador(){
@@ -326,14 +436,14 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
   }); });
   marcador();
 
-  /* 05 mi lista */
-  var LI = lee("mtb-tt-lista-v1", []);
-  while(LI.length < 10) LI.push({n:"", ok:0});
-  $("lista").innerHTML = LI.map(function(p, i){ return '<li><input type="text" data-i="' + i + '" value="' + esc(p.n) + '" placeholder="Nombre" aria-label="Persona ' + (i+1) + '" autocomplete="off"><input type="checkbox" data-i="' + i + '"' + (p.ok ? " checked" : "") + ' aria-label="Ya le escribí"></li>'; }).join("");
-  function cuentaLista(){ $("listaN").textContent = LI.filter(function(p){ return p.ok; }).length + " de 10 contactadas"; }
-  $("lista").addEventListener("input", function(e){ var i = +e.target.dataset.i; if(e.target.type === "text") LI[i].n = e.target.value; else LI[i].ok = e.target.checked ? 1 : 0; guarda("mtb-tt-lista-v1", LI); cuentaLista(); vez("lista"); });
-  $("lista").addEventListener("change", function(e){ if(e.target.type === "checkbox"){ LI[+e.target.dataset.i].ok = e.target.checked ? 1 : 0; guarda("mtb-tt-lista-v1", LI); cuentaLista(); } });
-  cuentaLista();
+  /* 06 mi 1 a 1 */
+  var U = lee("mtb-tt-1a1-v1", ["","",""]), TU = ["Los números", "Lo que frena", "El compromiso"];
+  document.querySelectorAll("[data-u]").forEach(function(a){ a.value = U[+a.dataset.u] || ""; });
+  function unoWa(){ var x = "Mi 1 a 1 de hoy\n\n" + TU.map(function(t, i){ return t + ": " + (U[i] || "").trim(); }).join("\n"); $("unoWa").href = "https://wa.me/?text=" + encodeURIComponent(x); }
+  document.querySelector(".uno").addEventListener("input", function(e){ if(e.target.dataset.u === undefined) return; U[+e.target.dataset.u] = e.target.value; guarda("mtb-tt-1a1-v1", U); unoWa(); vez("1a1"); });
+  $("unoWa").addEventListener("click", function(){ cuenta("1a1-enviar"); });
+  $("unoBorra").addEventListener("click", function(){ U = ["","",""]; guarda("mtb-tt-1a1-v1", U); document.querySelectorAll("[data-u]").forEach(function(a){ a.value = ""; }); unoWa(); });
+  unoWa();
 })();
 </script>
 </body>
