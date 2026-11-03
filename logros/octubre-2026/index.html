@@ -163,6 +163,9 @@ h1 em{font-style:normal;color:var(--accent)}
   .band .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
   .band .fine{margin-top:0;max-width:44ch}
   .months{max-width:720px}
+  .wrap:has(>.months){display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);column-gap:72px;align-items:end;align-content:start}
+  .wrap:has(>.months)>.top{grid-column:1/-1}
+  .wrap:has(>.months) .months{max-width:none;margin:0 0 44px;border-top:1.5px solid var(--ink)}
 }
 
 @media (prefers-reduced-motion:no-preference){

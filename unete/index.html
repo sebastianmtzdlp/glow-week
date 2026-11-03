@@ -116,7 +116,7 @@ input[type=range]{width:100%;margin:12px 0 4px;accent-color:var(--ink);height:32
 /* Capítulos */
 .ch{margin-top:64px;scroll-margin-top:16px}
 .ch h2{font-size:clamp(27px,7.5vw,34px);line-height:1.08;font-weight:800;letter-spacing:-.015em}
-.ch>p{margin-top:12px;color:var(--muted);max-width:40ch}
+.ch-head p{margin-top:12px;color:var(--muted);max-width:40ch}
 
 .have{list-style:none;padding:0;margin-top:22px;border-top:1px solid var(--line)}
 .have li{display:grid;grid-template-columns:30px 1fr;gap:12px;padding:16px 0;border-bottom:1px solid var(--line)}
@@ -168,6 +168,31 @@ details.f p{padding:0 0 16px;color:var(--muted);font-size:15px}
 .bar-fixed .t b{display:block;font-family:var(--mono);font-size:18px;color:var(--ink)}.bar-fixed .t small{font:500 13px Outfit,sans-serif;color:var(--muted)}
 .bar-fixed .btn{width:auto;margin:0;padding:12px 18px;font-size:15px}
 @media(min-width:900px){.bar-fixed{max-width:600px;margin:0 auto 16px;border:1px solid var(--line);border-radius:18px}}
+/* Escritorio: la portada junto a la cuenta y cada capítulo con su título a la izquierda */
+@media(min-width:1000px){
+  .wrap{max-width:1160px;padding:0 40px 140px}
+  .intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,540px);gap:72px;align-items:start;margin-top:8px}
+  .hero{position:sticky;top:32px;padding-top:56px}
+  h1{font-size:clamp(56px,5.6vw,76px)}
+  .lead{font-size:20px;max-width:30ch;margin-top:20px}
+  .calc{margin-top:40px;border:1px solid var(--line);border-top:1.5px solid var(--ink);border-radius:0 0 18px 18px;padding:24px 28px 28px}
+  .ch{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);column-gap:88px;margin-top:104px}
+  .ch>*{grid-column:2}
+  .ch>.ch-head{grid-column:1;grid-row:1/span 30;align-self:start;position:sticky;top:32px}
+  .ch h2{font-size:38px}
+  .ch-head p{max-width:32ch}
+  .ch>.ch-head+*{margin-top:4px}
+  .have{display:grid;grid-template-columns:1fr 1fr;column-gap:40px;border-top:0}
+  .have li{border-top:1px solid var(--line);border-bottom:0}
+  .gifts{display:grid;grid-template-columns:1fr 1fr;gap:28px 40px}
+  .gifts::before{display:none}
+  .gifts li{padding:0}
+  .end{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:24px 64px;align-items:end;padding:48px 56px;margin-top:112px}
+  .end>*{grid-column:1}
+  .end h2{font-size:40px}
+  .end .who,.end .btn,.end .alt{grid-column:2}
+  .end .who{grid-row:1}
+}
 a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{outline:2.5px solid var(--accent-t);outline-offset:2px;border-radius:6px}
 @media(hover:hover) and (pointer:fine){.mix button:hover{color:var(--accent-t)}.btn:hover{background:var(--accent-t)}}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
@@ -179,6 +204,7 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
   <div class="top"><span><img src="/favicon.svg?v=3" alt="">Mi Tienda Beauty</span><span class="brand">MI EQUIPO</span></div>
   <nav data-ruta="1"></nav>
 
+  <div class="intro">
   <header class="hero">
     <h1>Lo que pagas <em>de más</em> por no ser socia</h1>
     <p class="lead">Haz la cuenta con lo que tú ya gastas en belleza. Sin promesas, con tus números.</p>
@@ -216,15 +242,21 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
     <button type="button" class="share" id="share"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 15V3M7 8l5-5 5 5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>Compartir mi cuenta</button>
   </section>
 
+  </div>
+
   <section class="ch" id="regalos">
-    <h2 id="regTitle">Si entras hoy, esto te toca cada mes</h2>
-    <p>Tus primeros 4 meses, el equipo te regala un programa distinto. Y Farmasi te da un producto de regalo cada mes que llegas a tus puntos.</p>
+    <div class="ch-head">
+      <h2 id="regTitle">Si entras hoy, esto te toca cada mes</h2>
+      <p>Tus primeros 4 meses, el equipo te regala un programa distinto. Y Farmasi te da un producto de regalo cada mes que llegas a tus puntos.</p>
+    </div>
     <ol class="gifts" id="gifts"></ol>
   </section>
 
   <section class="ch" id="incluye">
-    <h2>Lo que ya tienen las socias del equipo</h2>
-    <p>El descuento es lo primero que se nota. Esto es lo demás que viene con entrar.</p>
+    <div class="ch-head">
+      <h2>Lo que ya tienen las socias del equipo</h2>
+      <p>El descuento es lo primero que se nota. Esto es lo demás que viene con entrar.</p>
+    </div>
     <ul class="have">
       <li>
         <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0L3 13V3h10l7.6 7.6a2 2 0 0 1 0 2.8z"/><circle cx="8" cy="8" r="1.5"/></svg>
@@ -262,8 +294,10 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
   </section>
 
   <section class="ch" id="vender">
-    <h2>Y si un día quieres vender</h2>
-    <p>No tienes que hacerlo. Si te animas, así se mide.</p>
+    <div class="ch-head">
+      <h2>Y si un día quieres vender</h2>
+      <p>No tienes que hacerlo. Si te animas, así se mide.</p>
+    </div>
     <div class="rules">
       <div><span>Cada punto equivale a</span><span class="num">$25</span></div>
       <div><span>Para cobrar, puntos tuyos en el mes</span><span class="num">75</span></div>
@@ -275,7 +309,9 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
   </section>
 
   <section class="ch" id="dudas">
-    <h2>Sin letra chiquita</h2>
+    <div class="ch-head">
+      <h2>Sin letra chiquita</h2>
+    </div>
     <details class="f"><summary>¿Cuánto cuesta entrar?</summary><p>Pagas el kit de inicio de $499, una sola vez. Al entrar también hay kits de inicio con producto a precio muy reducido; te digo cuáles hay este mes.</p></details>
     <details class="f"><summary>¿Tengo que vender?</summary><p>No. Muchas entran solo por el precio de socia para lo que ya compran. Si después quieres vender, ya tienes todo listo.</p></details>
     <details class="f"><summary>¿Hay un mínimo de compra?</summary><p>Para que tu cuenta siga abierta, junta al menos 75 puntos en cualquier periodo de 6 meses. Son unos $1,875 a precio de socia en medio año.</p></details>

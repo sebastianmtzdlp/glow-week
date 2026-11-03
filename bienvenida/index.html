@@ -29,7 +29,7 @@
   .link{display:flex;gap:8px;align-items:center;margin-top:12px;background:var(--tint);border-radius:14px;padding:12px 14px;font-weight:700;word-break:break-all}
   .btn{display:block;width:100%;border:0;border-radius:14px;padding:15px;margin-top:10px;font:inherit;font-size:16px;font-weight:700;text-align:center;text-decoration:none;cursor:pointer;background:var(--accent);color:#fff}
   .btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--accent)}
-  .btn[hidden]{display:none}
+  .btn[hidden],.link[hidden]{display:none}
   ol.steps{list-style:none;padding:0;counter-reset:s;margin-top:10px;display:grid;gap:14px}
   ol.steps li{counter-increment:s;display:grid;grid-template-columns:34px 1fr;gap:12px;font-size:15px;color:var(--muted)}
   ol.steps li::before{content:counter(s);width:34px;height:34px;border-radius:50%;background:var(--accent);color:#fff;font-weight:800;display:grid;place-items:center}
@@ -39,6 +39,16 @@
   .ct{display:grid;gap:8px;margin-top:10px}
   .ct a{display:flex;justify-content:space-between;padding:13px 14px;border-radius:12px;border:1.5px solid var(--line);color:var(--ink);text-decoration:none;font-weight:600}
   .ct a span{color:var(--muted);font-weight:400}
+  /* Escritorio: portada junto a tu tienda y las demás tarjetas de dos en dos */
+  @media (min-width:960px){
+    .wrap{max-width:1080px;padding:0 40px 80px;display:grid;grid-template-columns:1fr 1fr;gap:20px 24px;align-items:start}
+    .hero{padding:72px 24px 0 0}
+    h1{font-size:56px}
+    .lead{font-size:20px;max-width:26ch}
+    .card{margin-top:0;padding:28px}
+    #mine{margin-top:56px}
+    h2{font-size:22px}
+  }
 </style>
 </head>
 <body>
