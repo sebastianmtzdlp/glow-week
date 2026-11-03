@@ -133,6 +133,37 @@ h1 em{font-style:normal;color:var(--accent)}
 .months li:first-child strong::after{content:"más reciente";margin-left:8px;padding:1px 8px;border-radius:999px;background:var(--tint);color:var(--accent-t);font-size:12px;font-weight:600;letter-spacing:0;vertical-align:4px}
 @media (hover:hover){.months a:hover strong{color:var(--accent-t)}}
 
+/* Escritorio: más ancho, portada en dos columnas, niveles en franja y tarjetas en cuadrícula */
+@media (min-width:900px){
+  .wrap{max-width:1120px;padding:0 32px}
+  .hero{padding:64px 0 40px}
+  .hero-mes{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:48px;align-items:end}
+  .hero-mes h1{font-size:88px}
+  .hero-mes .lead{font-size:21px}
+  .hero-b .tiles{margin-top:0}
+  .tile b{font-size:34px}
+  .idx ol{display:grid;grid-template-columns:repeat(8,1fr);gap:8px;margin-top:12px}
+  .idx h2{border-bottom:0;padding-bottom:0}
+  .idx a{grid-template-columns:1fr;grid-template-rows:auto 18px auto;gap:8px;align-items:start;min-height:0;padding:14px 14px 12px;border:1px solid var(--line);border-radius:18px}
+  .idx a.vacio{background:var(--soft);border-color:var(--soft)}
+  .idx .pct{font-size:24px}
+  .idx .cnt{text-align:left;font-size:13px}
+  @media (hover:hover){.idx a:hover{border-color:var(--accent-t)}}
+  main{padding-top:8px}
+  .lvl{display:grid;grid-template-columns:200px minmax(0,1fr);gap:32px;align-items:start;padding:40px 0;border-top:1px solid var(--line)}
+  .lvl-h{flex-direction:column;align-items:flex-start;gap:8px;padding:0;position:sticky;top:16px}
+  .lvl-h h2{font-size:72px}
+  .lvl.vac .lvl-h h2{font-size:56px}
+  .lvl-h p{text-align:left}
+  .cards{grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px}
+  .note{margin-left:0}
+  .empty{max-width:640px}
+  .band{margin-top:72px}
+  .band .wrap{display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+  .band .fine{margin-top:0;max-width:44ch}
+  .months{max-width:720px}
+}
+
 @media (prefers-reduced-motion:no-preference){
   .idx .dots i{animation:pop 260ms var(--ease) both;animation-delay:calc(var(--n) * 18ms)}
 }
@@ -255,10 +286,13 @@ def pagina_mes(d, slug):
 <div class="wrap">
   <div class="top"><a href="/logros/">← Todos los meses</a><span class="brand">MI EQUIPO<b>Farmasi</b></span></div>
 
-  <header class="hero">
+  <header class="hero hero-mes">
+    <div class="hero-a">
     <p class="eyebrow">Equipo de {e(d['equipo'])} · {e(mes)} {anio}</p>
     <h1>Logros de <em>{e(mes)}</em></h1>
     <p class="lead"><b>{total} personas</b> cerraron {e(mes)} con nivel, en {con_gente} de los 8 niveles. Gracias por cada pedido.</p>
+    </div>
+    <div class="hero-b">
     <div class="tiles">
       <div class="tile"><b>{total}</b><span>con nivel</span></div>
       <div class="tile"><b>{dirs}</b><span>en dirección</span></div>
@@ -267,6 +301,7 @@ def pagina_mes(d, slug):
     <a class="dl" href="presentacion-{slug}.pdf" download>{ICONO}Descargar PDF</a>
     <p class="dl-links"><a href="logros-{slug}.pdf" download>Versión vertical (PDF)</a><a href="stories-{slug}.zip" download>Todas las stories (ZIP)</a></p>
     <p class="dl-note">Cada tarjeta trae su certificado en PDF y su imagen para stories.</p>
+    </div>
   </header>
 
   <nav class="idx" aria-label="Niveles">
