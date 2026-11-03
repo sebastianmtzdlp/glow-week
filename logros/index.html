@@ -33,7 +33,7 @@ html{background:var(--bg);scroll-behavior:smooth}
 body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%;min-height:100svh;display:flex;flex-direction:column}
 body>.wrap{flex:1 0 auto;width:100%}
 a{color:var(--accent-t)}
-.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+.wrap{max-width:560px;margin:0 auto;padding:0 20px}
 .top{display:flex;justify-content:space-between;align-items:center;padding:16px 0 0;font-size:14px}
 .top a{color:var(--muted);text-decoration:none;padding:8px 0}
 .brand{font-weight:300;letter-spacing:.18em;font-size:12px;color:var(--muted)}
@@ -50,12 +50,14 @@ h1 em{font-style:normal;color:var(--accent)}
 .tile{background:var(--soft);border-radius:14px;padding:12px}
 .tile b{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:26px;font-weight:500;line-height:1.1}
 .tile span{display:block;font-size:13px;color:var(--muted);margin-top:2px;line-height:1.25}
-.ventas{margin-top:16px;border:1.5px solid var(--ink);border-radius:16px;padding:14px 14px 12px}
+.ventas{margin-top:16px;border:1.5px solid var(--ink);border-radius:18px;padding:18px 20px 16px}
 .ventas .v-h{font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-t)}
-.ventas .v-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
-.ventas b{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:19px;font-weight:500;line-height:1.15;white-space:nowrap}
+.ventas .v-row{display:grid;grid-template-columns:1fr 1fr;gap:14px 16px;margin-top:12px}
+.ventas .v-row>div:first-child{grid-column:1/-1}
+.ventas .v-row>div:first-child b{font-size:34px}
+.ventas b{display:block;font-family:var(--mono);font-variant-numeric:tabular-nums;font-size:21px;font-weight:500;line-height:1.15;white-space:nowrap}
 .ventas span{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;line-height:1.25}
-.ventas .v-n{font-size:12px;color:var(--muted);margin-top:10px;line-height:1.35}
+.ventas .v-n{font-size:12.5px;color:var(--muted);margin-top:14px;padding-top:12px;border-top:1px solid var(--line);line-height:1.4}
 
 /* Índice de niveles: una escalera, un punto por persona */
 .idx{margin-top:8px}
