@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Migajas · Equipo SVH</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Cinco migajas de lo que usa el equipo de Selene. Cada una se usa en segundos. Lo demás se queda en el equipo.">
+<meta property="og:title" content="Migajas del equipo SVH">
+<meta property="og:description" content="Cinco probaditas de lo que usa el equipo de Selene. Lo demás se queda en casa.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/top-team/">
+<meta name="theme-color" content="#101A30">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@125,700&family=Figtree:wght@400;500;600&display=swap">
+<style>
+:root{
+  color-scheme:dark;
+  --canvas:#101A30;--surface:#1B2A4A;--surface2:#263A63;--sand:#D9C29A;--on-sand:#101A30;
+  --bronze:#E3CFA6;--ink:#F4EDE0;--body:#D5DAE6;--muted:#A9B3C8;--line:#33466E;--ok:#7FD1A8;
+  --head:"Archivo",system-ui,sans-serif;--text:"Figtree",system-ui,sans-serif;
+  --ease:cubic-bezier(.22,.8,.24,1);
+}
+*{box-sizing:border-box}
+html{background:var(--canvas);-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--canvas);color:var(--body);font:400 17px/1.55 var(--text);font-variant-numeric:tabular-nums}
+a{color:inherit}
+button,input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--sand);outline-offset:3px;border-radius:8px}
+.wrap{max-width:560px;margin:0 auto;padding:0 16px}
+
+.etq{display:block;font:600 12px/1.3 var(--text);letter-spacing:.12em;text-transform:uppercase;color:var(--bronze)}
+h1,h2{font-family:var(--head);font-stretch:125%;font-weight:700;letter-spacing:-.02em;color:var(--ink);margin:0}
+h1{font-size:clamp(34px,9.5vw,48px);line-height:1.02}
+h2{font-size:21px;line-height:1.15}
+
+/* portada */
+.barra{padding:20px 0 0}
+.portada{padding:44px 0 12px}
+.portada h1{margin-top:14px}
+.portada p{margin:16px 0 0;font-size:18px;max-width:26em}
+
+/* cada migaja: una tarjeta plana y, debajo, lo que se queda en el equipo */
+.migajas{list-style:none;margin:28px 0 0;padding:0}
+.migaja{border-top:1px solid var(--sand);padding:22px 0 30px}
+.migaja .etq{margin-bottom:12px}
+.tarjeta{background:var(--surface);border-radius:12px;padding:24px}
+.tarjeta h2+p{margin:8px 0 0}
+.tarjeta p{margin:0}
+
+/* lo que no se ve */
+.resto{list-style:none;margin:0;padding:10px 4px 0}
+.resto li{display:flex;align-items:center;gap:10px;padding:9px 0;color:var(--muted);font-size:15px;border-bottom:1px dashed var(--line)}
+.resto li:last-child{border-bottom:0}
+.resto svg{flex:none;width:16px;height:16px;color:#A07D45}
+.resto .mas{color:var(--bronze);font-weight:500}
+
+/* 01 nivel */
+.campo{display:flex;gap:10px;align-items:center;margin-top:18px}
+.campo input{width:9.5em;min-height:48px;padding:0 20px;border:1px solid var(--line);border-radius:32px;background:var(--surface2);font-size:18px;font-weight:600;color:var(--ink)}
+.campo input::placeholder{color:var(--muted);font-weight:400}
+.campo span{color:var(--muted);font-size:15px}
+.dato{margin-top:16px;min-height:3.1em;font-size:17px;color:var(--ink)}
+.dato b{font-family:var(--head);font-stretch:125%;font-size:30px;letter-spacing:-.02em;color:var(--bronze);display:block;line-height:1.1}
+
+/* 02 mensaje */
+.burbuja{margin:16px 0 0;background:var(--surface2);border-radius:4px 18px 18px 18px;padding:14px 16px;color:var(--ink);font-size:16px}
+.cuando{font-size:14px;color:var(--muted);margin-top:8px!important}
+.contorno{display:inline-flex;align-items:center;min-height:44px;padding:0 20px;margin-top:16px;border:1px solid var(--ink);border-radius:32px;background:none;color:var(--ink);font-weight:600;font-size:15px;cursor:pointer;transition:transform 160ms var(--ease)}
+.contorno:active{transform:scale(.97)}
+
+/* 03 actividades */
+.acts{list-style:none;margin:14px 0 0;padding:0}
+.acts label{display:grid;grid-template-columns:26px 1fr auto;gap:12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.acts li:last-child label{border-bottom:0}
+.acts input{appearance:none;-webkit-appearance:none;width:26px;height:26px;margin:0;border:1.5px solid var(--muted);border-radius:50%;display:grid;place-content:center;cursor:pointer;transition:background 200ms var(--ease),border-color 200ms var(--ease)}
+.acts input::after{content:"";width:10px;height:6px;border:2px solid var(--canvas);border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px) scale(0);transition:transform 200ms var(--ease)}
+.acts input:checked{background:var(--ok);border-color:var(--ok)}
+.acts input:checked::after{transform:rotate(-45deg) translate(1px,-1px) scale(1)}
+.acts span{color:var(--ink)}
+.acts em{font-style:normal;color:var(--muted);font-size:15px}
+.marcador{margin-top:12px!important;font-size:15px;color:var(--muted)}
+.marcador.lleno{color:var(--ok)}
+
+/* 04 día 1 */
+.dia-n{font-family:var(--head);font-stretch:125%;font-weight:700;font-size:56px;line-height:1;letter-spacing:-.03em;color:var(--bronze)}
+.dia-n small{font-size:20px;color:var(--muted);letter-spacing:0;margin-left:4px}
+
+/* 05 el número */
+.cifra{font-family:var(--head);font-stretch:125%;font-weight:700;font-size:clamp(44px,13vw,64px);line-height:1;letter-spacing:-.03em;color:var(--ink);margin-top:6px!important}
+.cifra small{display:block;font-family:var(--text);font-stretch:100%;font-weight:500;font-size:15px;letter-spacing:0;color:var(--muted);margin-top:8px}
+.trio{display:flex;gap:28px;margin:20px 0 0;padding:16px 0 0;border-top:1px solid var(--line)}
+.trio div{font-size:14px;color:var(--muted)}
+.trio b{display:block;font-family:var(--head);font-stretch:125%;font-size:24px;color:var(--bronze);letter-spacing:-.02em}
+
+/* cierre */
+.cierre{border-top:1px solid var(--sand);padding:32px 0 8px}
+.cierre h2{font-size:clamp(26px,7vw,34px);line-height:1.08}
+.cuenta{list-style:none;margin:22px 0 0;padding:0}
+.cuenta li{display:flex;align-items:baseline;gap:14px;padding:12px 0;border-bottom:1px solid var(--line);color:var(--body)}
+.cuenta b{font-family:var(--head);font-stretch:125%;font-size:26px;color:var(--ink);min-width:2.2em;letter-spacing:-.02em}
+.cierre .nota{margin:26px 0 0;font-size:17px;color:var(--ink);max-width:26em}
+.principal{display:inline-flex;align-items:center;min-height:52px;padding:0 28px;margin-top:18px;border-radius:32px;background:var(--sand);color:var(--on-sand);font-weight:600;font-size:16px;text-decoration:none;transition:transform 160ms var(--ease)}
+.principal:active{transform:scale(.97)}
+footer{padding:48px 0 40px;font-size:13px;color:var(--muted)}
+
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,16px);opacity:0;background:var(--ink);color:var(--canvas);padding:10px 18px;border-radius:32px;font-weight:600;font-size:15px;transition:opacity 200ms var(--ease),transform 200ms var(--ease);pointer-events:none}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+
+@media (prefers-reduced-motion:no-preference){
+  .portada,.migaja{animation:entra .8s var(--ease) both}
+  .migaja:nth-child(2){animation-delay:.08s}.migaja:nth-child(3){animation-delay:.16s}
+  .migaja:nth-child(4){animation-delay:.24s}.migaja:nth-child(5){animation-delay:.32s}
+}
+@keyframes entra{from{opacity:0;transform:translateY(12px)}}
+@media (hover:hover) and (pointer:fine){
+  .contorno:hover{background:rgba(244,237,224,.06)}
+  .principal:hover{filter:brightness(1.05)}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
+</svg>
+<div class="wrap">
+  
+
+  <header class="portada">
+    <span class="etq">Migajas · Top Team</span>
+    <h1>Lo que usa el equipo de Sel. Una probadita.</h1>
+    <p>Cinco migajas. Cada una se usa en segundos. Lo demás se queda en el equipo.</p>
+  </header>
+
+  <ol class="migajas">
+    <li class="migaja">
+      <span class="etq">01 · Tu nivel</span>
+      <div class="tarjeta">
+        <h2>¿En qué nivel vas?</h2>
+        <p>Escribe los puntos de grupo que llevas este mes.</p>
+        <div class="campo">
+          <input id="pts" type="number" inputmode="numeric" min="0" placeholder="Ej. 750" aria-label="Puntos de grupo">
+          <span>puntos</span>
+        </div>
+        <p class="dato" id="dato" aria-live="polite"></p>
+      </div>
+      <ul class="resto" aria-label="Se queda en el equipo">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Cuántos puntos por semana te faltan</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Tus laterales, línea por línea</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>El plan de 52 semanas, de 3% a Directora Oro</li>
+      </ul>
+    </li>
+
+    <li class="migaja">
+      <span class="etq">02 · Un mensaje</span>
+      <div class="tarjeta">
+        <h2>Te dijo «luego te digo»</h2>
+        <p class="burbuja" id="msj">Hola, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode.</p>
+        <p class="cuando">Dos o tres días después.</p>
+        <button class="contorno" type="button" id="copiar">Copiar</button>
+      </div>
+      <ul class="resto" aria-label="Se queda en el equipo">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>La pregunta de cierre</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Cuando ella pregunta por un producto</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+18 mensajes, en 6 momentos</span></li>
+      </ul>
+    </li>
+
+    <li class="migaja">
+      <span class="etq">03 · Tu día</span>
+      <div class="tarjeta">
+        <h2>3 de las 10 actividades</h2>
+        <ul class="acts">
+          <li><label><input type="checkbox" class="act"><span>Contactar</span><em>10 personas</em></label></li>
+          <li><label><input type="checkbox" class="act"><span>Seguimiento</span><em>10 min</em></label></li>
+          <li><label><input type="checkbox" class="act"><span>Crear contenido</span><em>1 pieza</em></label></li>
+        </ul>
+        <p class="marcador" id="marcador" aria-live="polite">0 de 3 hoy</p>
+      </div>
+      <ul class="resto" aria-label="Se queda en el equipo">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Presentar el negocio</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Arrancar personas</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+5 actividades, tu marcador y la hoja para imprimir</span></li>
+      </ul>
+    </li>
+
+    <li class="migaja">
+      <span class="etq">04 · Tu primer mes</span>
+      <div class="tarjeta">
+        <p class="dia-n">1<small>de 30</small></p>
+        <h2 style="margin-top:10px">Pide tu kit y entra a tu Back Office</h2>
+        <p>Antes de cerrar el día, escribe en una línea para qué estás haciendo esto.</p>
+      </div>
+      <ul class="resto" aria-label="Se queda en el equipo">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Día 2 · Arma tu tienda</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Día 3 · Tu lista de 20 y tu reto</li>
+        <li><svg aria-hidden="true"><use href="#candado"/></svg><span class="mas">+27 días, con citas con tu líder</span></li>
+      </ul>
+    </li>
+
+    <li class="migaja">
+      <span class="etq">05 · El equipo</span>
+      <div class="tarjeta">
+        <h2>Octubre 2026</h2>
+        <p class="cifra">7,400<small>puntos de grupo del equipo</small></p>
+        <div class="trio">
+          <div><b>12</b>socias con nivel</div>
+          <div><b>2</b>directoras</div>
+        </div>
+      </div>
+      <ul class="resto" aria-label="Se queda en el equipo">
+        <li><svg aria-hidden="true"><use href="#candado"/></svg>Cómo lo hicieron, semana por semana</li>
+      </ul>
+    </li>
+  </ol>
+
+  <section class="cierre" aria-labelledby="cTit">
+    <span class="etq">Lo que no viste</span>
+    <h2 id="cTit" style="margin-top:12px">Esto es del equipo de Selene.</h2>
+    <ul class="cuenta">
+      <li><b>27</b>herramientas gratis para el equipo</li>
+      <li><b>12</b>guías, del primer día a líder</li>
+      <li><b>30</b>días de arranque, uno por uno</li>
+    </ul>
+    <p class="nota">¿Quieres a Sel de mentora? Abre lugares el 15 de enero.</p>
+    <a class="principal" href="/mentorias/" data-cuenta="ir-mentorias">Ver mentorías</a>
+  </section>
+
+  <footer>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi. Lo que manda es lo vigente en tu Back Office.</footer>
+</div>
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  function cuenta(p){ try{ window.goatcounter.count({path:"top-team/" + p, title:p, event:true}); }catch(_){} }
+  var t, toast;
+  function aviso(txt){
+    if(!toast){ toast = document.createElement("div"); toast.className = "toast"; toast.setAttribute("role","status"); document.body.appendChild(toast); }
+    toast.textContent = txt; toast.classList.add("on"); clearTimeout(t); t = setTimeout(function(){ toast.classList.remove("on"); }, 2000);
+  }
+  document.addEventListener("click", function(e){ var a = e.target.closest && e.target.closest("[data-cuenta]"); if(a) cuenta(a.dataset.cuenta); });
+
+  /* 01: puntos de grupo por nivel (los mismos de la calculadora del equipo) */
+  var N = [[3,200],[6,400],[9,600],[12,900],[15,1400],[18,2200],[22,3600],[25,5000]];
+  var fmt = function(n){ return Math.round(n).toLocaleString("es-MX"); };
+  var usado = false;
+  $("pts").addEventListener("input", function(){
+    var v = Math.max(0, +this.value || 0), d = $("dato");
+    if(!this.value){ d.innerHTML = ""; return; }
+    var actual = null, sig = null;
+    N.forEach(function(n){ if(v >= n[1]) actual = n; else if(!sig) sig = n; });
+    if(!usado){ usado = true; cuenta("nivel"); }
+    if(!actual){ d.innerHTML = "<b>Aún sin nivel</b>Te faltan " + fmt(sig[1] - v) + " para 3%."; return; }
+    d.innerHTML = "<b>" + actual[0] + "%</b>" + (sig ? "Te faltan " + fmt(sig[1] - v) + " para " + sig[0] + "%." : "Lo que sigue es dirección.");
+  });
+
+  /* 02: copiar */
+  $("copiar").addEventListener("click", function(){
+    var x = $("msj").textContent;
+    var ok = function(){ aviso("Mensaje copiado"); };
+    if(navigator.clipboard && window.isSecureContext){ navigator.clipboard.writeText(x).then(ok, ok); }
+    else { var a = document.createElement("textarea"); a.value = x; document.body.appendChild(a); a.select(); try{ document.execCommand("copy"); }catch(_){} a.remove(); ok(); }
+    cuenta("copiar");
+  });
+
+  /* 03: marcador */
+  var acts = document.querySelectorAll(".act");
+  acts.forEach(function(c){ c.addEventListener("change", function(){
+    var n = [].filter.call(acts, function(x){ return x.checked; }).length, m = $("marcador");
+    m.textContent = n === 3 ? "3 de 3. El equipo hace 10 al día." : n + " de 3 hoy";
+    m.classList.toggle("lleno", n === 3);
+    if(n === 3) cuenta("actividades");
+  }); });
+})();
+</script>
+</body>
+</html>
