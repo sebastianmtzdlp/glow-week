@@ -5,7 +5,7 @@ window.PRO = (function(){
   var PAGOS_ABIERTOS = false;
   var BASE = "https://ctutqqstqjdngxdjzckf.supabase.co/functions/v1/";
   var FN = BASE + "pro-pago", FN_DATOS = BASE + "pro-datos";
-  var KEY_PUB = "sb_publishable_ltaNA7nnVozoSCOcZIjg";
+  var KEY_PUB = "sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk";
   var SOPORTE = "525541456984"; // WhatsApp para dudas de compras (Sel)
   // Precios en MXN: deben ser los mismos que supabase/pro.sql y supabase/pro-herramientas.sql (lo que cobra Mercado Pago sale de la base, no de aquí).
   var P = [
