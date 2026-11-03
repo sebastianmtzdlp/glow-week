@@ -161,6 +161,25 @@ footer a{color:var(--muted)}
   .rung{grid-template-columns:72px 1fr 80px}
   .rung-more{padding-left:84px}
 }
+/* Escritorio: portada junto a la escalera; cada capítulo con su título fijo a la izquierda */
+@media (min-width:1000px){
+  .wrap{max-width:1160px;padding:0 40px 96px}
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,560px);column-gap:80px;align-items:start;padding-top:56px}
+  .hero h1,.hero .lead{grid-column:1}
+  .hero h1{font-size:clamp(52px,5.2vw,72px)}
+  .hero .lead{font-size:20px;max-width:30ch;margin-top:20px}
+  .hero .ladder,.hero .ladder-note{grid-column:2}
+  .hero .ladder{grid-row:1/span 3;margin-top:8px}
+  .toc{columns:3;column-gap:40px;margin-top:56px;padding:20px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .ch{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);column-gap:88px;margin-top:96px}
+  .ch>*{grid-column:2}
+  .ch>.ch-head{grid-column:1;grid-row:1/span 60;align-self:start;position:sticky;top:32px}
+  .ch-head h2{font-size:36px}
+  .ch-head p{color:var(--muted);font-size:17px}
+  .ch>.ch-head+*{margin-top:0}
+  .scroll{margin:14px 0 0;padding:0}
+  footer{margin-top:96px}
+}
 @media (prefers-reduced-motion:reduce){
   .rung .bar i{animation:none}
   .prog i,.btn{transition:none}
@@ -195,9 +214,11 @@ footer a{color:var(--muted)}
   </ol>
 
   <section class="ch" id="venta">
-    <div class="ch-n">01</div>
-    <h2>Tu ganancia por vender</h2>
-    <p>Es la primera ganancia y no depende de ningún nivel: compras con descuento de socia y le vendes a tu clienta al precio de catálogo. La diferencia es tuya.</p>
+    <div class="ch-head">
+      <div class="ch-n">01</div>
+      <h2>Tu ganancia por vender</h2>
+      <p>Es la primera ganancia y no depende de ningún nivel: compras con descuento de socia y le vendes a tu clienta al precio de catálogo. La diferencia es tuya.</p>
+    </div>
     <div class="key">Descuento de <span class="mono">30%</span> en la mayoría de las líneas y hasta <span class="mono">50%</span> en algunas.</div>
     <p>Ejemplo: un producto de catálogo de <span class="num">$300</span> con 30% de descuento te cuesta <span class="num">$210</span>. Si lo vendes a precio de catálogo, ganas <span class="num">$90</span>.</p>
     <p>Para empezar pagas el kit de inicio de <span class="num">$499</span>. En tus primeros 4 meses, el programa de bienvenida te da un producto de regalo cada mes si llegas a <span class="num">50</span>, <span class="num">60</span>, <span class="num">70</span> y <span class="num">80</span> puntos personales. Si un mes no llegas, se pierde la racha.</p>
@@ -205,9 +226,11 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="ch" id="bono">
-    <div class="ch-n">02</div>
-    <h2>Tu bono de grupo</h2>
-    <p>Cada mes se suman los puntos de tus pedidos, los de tus clientas registradas contigo y los de todo tu equipo hacia abajo. Ese total son tus <b>puntos de grupo</b>, y decide tu nivel: del <span class="num">3%</span> al <span class="num">25%</span>.</p>
+    <div class="ch-head">
+      <div class="ch-n">02</div>
+      <h2>Tu bono de grupo</h2>
+      <p>Cada mes se suman los puntos de tus pedidos, los de tus clientas registradas contigo y los de todo tu equipo hacia abajo. Ese total son tus <b>puntos de grupo</b>, y decide tu nivel: del <span class="num">3%</span> al <span class="num">25%</span>.</p>
+    </div>
     <p>Ese porcentaje se te regresa como saldo a favor sobre los pedidos de tu grupo. Es lo que algunas llaman "bono personal" y otras "bono de grupo": es el mismo bono, y se calcula con el total del grupo.</p>
     <div class="key">Los puntos deciden tu porcentaje. Cada punto vale <span class="mono">$25</span>, así que el bono en pesos es: puntos × porcentaje × $25.</div>
     <p>Ejemplo: si tu grupo hace <span class="num">1,000</span> puntos y todo es tuyo y de tus clientas, estás en 12%. Tu bono es 1,000 × 12% = <span class="num">120</span> puntos, o sea <span class="num">$3,000</span>.</p>
@@ -221,9 +244,11 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="ch" id="socias">
-    <div class="ch-n">03</div>
-    <h2>Lo que ganas de tus socias</h2>
-    <p>Cuando una socia tuya tiene su propio nivel, ella cobra su porcentaje sobre su grupo. A ti te toca <b>la diferencia</b> entre tu porcentaje y el de ella, sobre los puntos de su grupo.</p>
+    <div class="ch-head">
+      <div class="ch-n">03</div>
+      <h2>Lo que ganas de tus socias</h2>
+      <p>Cuando una socia tuya tiene su propio nivel, ella cobra su porcentaje sobre su grupo. A ti te toca <b>la diferencia</b> entre tu porcentaje y el de ella, sobre los puntos de su grupo.</p>
+    </div>
     <div class="key">Tu porcentaje − el de tu socia = lo que ganas de su grupo.</div>
     <h3>Ejemplo</h3>
     <p>Tu grupo hizo <span class="num">3,900</span> puntos, así que estás en <span class="num">22%</span>. De esos puntos, <span class="num">300</span> son tuyos y de tus clientas, y el resto viene de tres socias:</p>
@@ -240,9 +265,11 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="ch" id="direccion">
-    <div class="ch-n">04</div>
-    <h2>Gerencia y dirección</h2>
-    <p>Al llegar a <span class="num">5,000</span> puntos de grupo cobras el 25%, el más alto. Desde ahí hay dos caminos:</p>
+    <div class="ch-head">
+      <div class="ch-n">04</div>
+      <h2>Gerencia y dirección</h2>
+      <p>Al llegar a <span class="num">5,000</span> puntos de grupo cobras el 25%, el más alto. Desde ahí hay dos caminos:</p>
+    </div>
     <table>
       <thead><tr><th>Rango</th><th>Qué pide al mes</th></tr></thead>
       <tbody>
@@ -255,9 +282,11 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="ch" id="laterales">
-    <div class="ch-n">05</div>
-    <h2>Puntos laterales</h2>
-    <p>Son los puntos de las líneas de tu equipo que <b>no</b> son directoras, quitando la línea no directora más alta. Sirven para que la dirección no dependa de una sola persona.</p>
+    <div class="ch-head">
+      <div class="ch-n">05</div>
+      <h2>Puntos laterales</h2>
+      <p>Son los puntos de las líneas de tu equipo que <b>no</b> son directoras, quitando la línea no directora más alta. Sirven para que la dirección no dependa de una sola persona.</p>
+    </div>
     <ol>
       <li><b>Las líneas que ya son directoras no cuentan.</b> Sus puntos siguen en tu grupo, pero no en laterales.</li>
       <li><b>De las que no son directoras, se quita la que más puntos tiene.</b> Esa es tu línea fuerte. Lo que queda son tus laterales.</li>
@@ -284,9 +313,11 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="ch" id="rangos">
-    <div class="ch-n">06</div>
-    <h2>Bronce, Oro y lo que sigue</h2>
-    <p>Desde Bronce, cada rango pide socias de tu primera línea en 25% (en el Back Office aparece como "Número de 25 en primera línea"). Todos se consolidan con 3 meses seguidos y todos cobran el 25%.</p>
+    <div class="ch-head">
+      <div class="ch-n">06</div>
+      <h2>Bronce, Oro y lo que sigue</h2>
+      <p>Desde Bronce, cada rango pide socias de tu primera línea en 25% (en el Back Office aparece como "Número de 25 en primera línea"). Todos se consolidan con 3 meses seguidos y todos cobran el 25%.</p>
+    </div>
     <div class="ranks">
       <div class="rank">
         <h3>Directora Bronce</h3>
@@ -327,9 +358,11 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="ch" id="premios">
-    <div class="ch-n">07</div>
-    <h2>Liderazgo, auto y bonos</h2>
-    <p>Desde la dirección, el plan suma otros pagos además de tu bono de grupo.</p>
+    <div class="ch-head">
+      <div class="ch-n">07</div>
+      <h2>Liderazgo, auto y bonos</h2>
+      <p>Desde la dirección, el plan suma otros pagos además de tu bono de grupo.</p>
+    </div>
 
     <h3>Bono de liderazgo</h3>
     <p>Empieza en dirección. Te paga un porcentaje sobre el volumen de las directoras que salen de tu equipo y de las que salen de ellas, por generaciones. Es lo que sustituye a la diferencia cuando tus socias llegan al 25%.</p>
@@ -382,9 +415,11 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="ch" id="calculadora">
-    <div class="ch-n">08</div>
-    <h2>Haz tu cuenta</h2>
-    <p>Escribe tus puntos del mes y los de cada socia directa con su grupo. Se guarda solo en este celular.</p>
+    <div class="ch-head">
+      <div class="ch-n">08</div>
+      <h2>Haz tu cuenta</h2>
+      <p>Escribe tus puntos del mes y los de cada socia directa con su grupo. Se guarda solo en este celular.</p>
+    </div>
     <div class="calc">
       <label for="mine">Tus puntos y los de tus clientas</label>
       <div class="field"><input type="number" id="mine" inputmode="numeric" min="0" step="10"></div>
@@ -405,9 +440,11 @@ footer a{color:var(--muted)}
   </section>
 
   <section class="ch" id="confirmar">
-    <div class="ch-n">09</div>
-    <h2>Lo que falta confirmar</h2>
-    <p>Esto todavía no tiene una fuente oficial de México. Buscamos en la web el 2 de noviembre de 2026: las páginas de Farmasi México no publican el plan completo y las tablas de la página de registro son imágenes. Lo que sí encontramos es el plan de Estados Unidos, que dejamos como referencia. Mientras, confírmalo en tu Back Office o con tu líder.</p>
+    <div class="ch-head">
+      <div class="ch-n">09</div>
+      <h2>Lo que falta confirmar</h2>
+      <p>Esto todavía no tiene una fuente oficial de México. Buscamos en la web el 2 de noviembre de 2026: las páginas de Farmasi México no publican el plan completo y las tablas de la página de registro son imágenes. Lo que sí encontramos es el plan de Estados Unidos, que dejamos como referencia. Mientras, confírmalo en tu Back Office o con tu líder.</p>
+    </div>
     <ol class="faltan">
       <li>Si tus propios pedidos cuentan como laterales. Una reseña no oficial sugiere que sí.</li>
       <li>Los porcentajes del bono de liderazgo por generación en México. Hay tabla de referencia de Estados Unidos arriba.</li>

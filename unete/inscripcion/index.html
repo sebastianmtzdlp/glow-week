@@ -52,7 +52,7 @@ h1 .mono{font-weight:700;color:var(--accent);letter-spacing:-.03em}
 
 h2{font-size:28px;line-height:1.1;font-weight:800;letter-spacing:-.01em}
 .sec{margin-top:56px;scroll-margin-top:16px}
-.sec>p{margin-top:12px}
+.sec>p,.ch-head p{margin-top:12px}
 .nota{font-size:14px;color:var(--muted);margin-top:12px}
 
 /* Pasos */
@@ -114,6 +114,28 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   .apps{grid-template-columns:1fr 1fr}
   .meses{height:200px;gap:12px}
 }
+/* Escritorio: portada junto al recibo; cada sección con su título fijo a la izquierda */
+@media (min-width:1000px){
+  .wrap{max-width:1160px;padding:0 40px 96px}
+  .hero{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,520px);column-gap:80px;align-items:start;padding-top:56px}
+  .hero h1,.hero .lead{grid-column:1}
+  .hero h1{font-size:clamp(56px,5.4vw,76px)}
+  .hero .lead{font-size:20px;max-width:30ch;margin-top:20px}
+  .recibo{grid-column:2;grid-row:1/span 3;margin-top:0;padding:8px 24px 12px}
+  .sec{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);column-gap:88px;margin-top:96px}
+  .sec>*{grid-column:2}
+  .sec>.ch-head{grid-column:1;grid-row:1/span 30;align-self:start;position:sticky;top:32px}
+  .sec h2{font-size:36px}
+  .ch-head p{color:var(--muted);font-size:17px}
+  .sec>.ch-head+*{margin-top:0}
+  .meses{height:220px;gap:16px}
+  .cierre{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:8px 64px;align-items:center;margin-top:96px;padding:40px 48px}
+  .cierre>*{grid-column:1}
+  .cierre h2{font-size:34px}
+  .cierre .quien,.cierre .btn,.cierre .otra-vez{grid-column:2}
+  .cierre .quien{grid-row:1}
+  footer{margin-top:72px}
+}
 </style>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -135,7 +157,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   </header>
 
   <section class="sec" aria-labelledby="pTit">
-    <h2 id="pTit">Paso a paso</h2>
+    <div class="ch-head">
+      <h2 id="pTit">Paso a paso</h2>
+    </div>
     <ol class="pasos">
       <li><span class="n">01</span><b>Escríbele a quien te compartió esta página</b><p>Ella te registra en su equipo y te acompaña desde el primer día. Si nadie te la mandó, el botón de abajo te lleva con el equipo.</p></li>
       <li><span class="n">02</span><b>Pide tu kit de $499</b><p>Si quieres, súmale uno de los sets de inicio con descuento (abajo). No es obligatorio.</p></li>
@@ -146,8 +170,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   </section>
 
   <section class="sec" aria-labelledby="mTit">
-    <h2 id="mTit">Tus primeros 4 meses</h2>
-    <p>El programa de bienvenida te regala un producto cada mes que llegas a los puntos de ese mes, además de tus comisiones.</p>
+    <div class="ch-head">
+      <h2 id="mTit">Tus primeros 4 meses</h2>
+      <p>El programa de bienvenida te regala un producto cada mes que llegas a los puntos de ese mes, además de tus comisiones.</p>
+    </div>
     <div class="meses" role="img" aria-label="Mes 1: 50 puntos. Mes 2: 60. Mes 3: 70. Mes 4: 80.">
       <div class="mes"><i style="--h:62%;--n:0"></i><b>50</b><span>mes 1</span></div>
       <div class="mes"><i style="--h:74%;--n:1"></i><b>60</b><span>mes 2</span></div>
@@ -162,8 +188,10 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   </section>
 
   <section class="sec" aria-labelledby="sTit">
-    <h2 id="sTit">Sets de inicio, si quieres más</h2>
-    <p>Se piden al inscribirte, junto con tu kit. Te sirven para probar y para mostrar.</p>
+    <div class="ch-head">
+      <h2 id="sTit">Sets de inicio, si quieres más</h2>
+      <p>Se piden al inscribirte, junto con tu kit. Te sirven para probar y para mostrar.</p>
+    </div>
     <table>
       <thead><tr><th>Set</th><th class="n">Pagas</th><th class="n">En catálogo</th></tr></thead>
       <tbody>
@@ -177,7 +205,9 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-off
   </section>
 
   <section class="sec" aria-labelledby="aTit">
-    <h2 id="aTit">Dónde aprendes</h2>
+    <div class="ch-head">
+      <h2 id="aTit">Dónde aprendes</h2>
+    </div>
     <div class="apps">
       <div class="app"><b>Academia Farmasi</b><p>Más de 100 cursos de producto, negocio y crecimiento personal, y los módulos del programa de bienvenida.</p><a href="https://www.academiafarmasi.com" rel="noopener" target="_blank">academiafarmasi.com</a></div>
       <div class="app"><b>Boards</b><p>Catálogo, promociones, videos de producto y contenido listo para tus redes.</p><a href="https://www.boards.com/farmasi-mexico-oficial" rel="noopener" target="_blank">boards.com/farmasi-mexico-oficial</a></div>
