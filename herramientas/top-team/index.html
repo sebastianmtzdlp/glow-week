@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>Herramientas básicas de Sel · mitienda.beauty</title>
+<title>Herramientas básicas · mitienda.beauty</title>
 <meta name="robots" content="noindex">
 <meta name="description" content="Cinco herramientas básicas para tu día: tu nivel, mensajes, respuestas, tu día y tu lista. Se guardan en tu celular.">
-<meta property="og:title" content="Herramientas básicas para tu día, de Selene Velázquez">
+<meta property="og:title" content="Herramientas básicas para tu día">
 <meta property="og:description" content="Un poquito de lo que estamos por enseñarle al equipo.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
@@ -126,15 +126,9 @@ h2{font:600 20px/1.2 var(--body);letter-spacing:-.01em}
 .guardado{margin:12px 0 0;font:500 13px/1.4 var(--mono);color:var(--muted)}
 .resto li{font-size:14px}
 
-/* la autora */
-.autora{display:flex;align-items:center;gap:14px;margin:22px 0 0;padding:14px 0 0;border-top:1px solid var(--line)}
-.autora img,.sel img{border-radius:50%;object-fit:cover;background:var(--soft)}
-.autora img{width:56px;height:56px}
-.autora b{display:block;font-weight:600;font-size:17px}
-.autora span{display:block;font-size:14px;line-height:1.35;color:var(--muted);margin-top:2px}
-.sel{display:flex;gap:10px;align-items:flex-start;margin:14px 2px 0;font-size:15px;line-height:1.45}
-.sel img{width:28px;height:28px;flex:none;margin-top:1px}
-.sel b{display:block;font:600 11px/1.4 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--accent-ink)}
+/* tip */
+.tip{margin:14px 2px 0;font-size:15px;line-height:1.45}
+.tip b{display:block;font:600 11px/1.4 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--accent-ink)}
 
 /* cierre */
 .cierre{margin:28px 0 0;background:var(--tint);border-radius:18px;padding:24px 20px}
@@ -167,10 +161,6 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
     <h1>Herramientas básicas para tu día.</h1>
     <p class="baj">Tu nivel, mensajes listos, qué contestar, tu día y tu lista. Funcionan en tu celular y lo que llenas se queda guardado ahí.</p>
     <p class="chico">Sin registrarte. Guárdala en tu pantalla de inicio.</p>
-    <div class="autora">
-      <img src="/fotos/sel.jpg" alt="" width="56" height="56">
-      <div><b>De Selene Velázquez</b><span>Directora en Farmasi. Así trabaja con su equipo.</span></div>
-    </div>
   </header>
 
   <ol class="pruebas">
@@ -196,7 +186,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
         <div class="nombre"><label for="nom">¿A quién le escribes?</label><input id="nom" type="text" placeholder="Su nombre" autocomplete="off"></div>
         <div id="msjs"></div>
       </div>
-<p class="sel"><img src="/fotos/sel.jpg" alt="" width="28" height="28"><span><b>Lo que enseña Sel</b>Un elogio real y distinto en cada mensaje.</span></p>
+<p class="tip"><b>Tip</b>Un elogio real y distinto en cada mensaje.</p>
       <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: 21 mensajes en 6 momentos</li></ul>
     </li>
 
@@ -207,7 +197,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
         <div class="chips" id="objChips" role="group" aria-label="Lo que te dijo"></div>
         <div id="obj"></div>
       </div>
-<p class="sel"><img src="/fotos/sel.jpg" alt="" width="28" height="28"><span><b>Lo que enseña Sel</b>Nadie se queda sin respuesta ni sin siguiente paso.</span></p>
+<p class="tip"><b>Tip</b>Nadie se queda sin respuesta ni sin siguiente paso.</p>
       <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: 12 respuestas</li></ul>
     </li>
 
@@ -223,7 +213,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
         </ul>
         <p class="marcador" id="marcador" aria-live="polite">0 de 4 hoy</p>
       </div>
-<p class="sel"><img src="/fotos/sel.jpg" alt="" width="28" height="28"><span><b>Lo que enseña Sel</b>Seguimiento sin intensear: felicitar, reaccionar, hacerte presente.</span></p>
+<p class="tip"><b>Tip</b>Seguimiento sin intensear: felicitar, reaccionar, hacerte presente.</p>
       <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: 10 actividades, marcador y hoja para imprimir</li></ul>
     </li>
 
@@ -235,15 +225,14 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
         <ol class="lista" id="lista"></ol>
         <p class="guardado" id="listaN">0 de 10 contactadas</p>
       </div>
-<p class="sel"><img src="/fotos/sel.jpg" alt="" width="28" height="28"><span><b>Lo que enseña Sel</b>Empieza por quien ya te conoce. Ahí está tu primera venta.</span></p>
+<p class="tip"><b>Tip</b>Empieza por quien ya te conoce. Ahí está tu primera venta.</p>
       <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: lista de 50 con seguimiento</li></ul>
     </li>
   </ol>
 
   <section class="cierre">
     <h2>Lo básico, para que arranques.</h2>
-    <p>Sel las arma para su equipo y las va afinando. Si algo no te funciona, avísale a quien te mandó esta página.</p>
-    <p style="margin-top:14px"><a href="/mentorias/" data-m style="font-weight:600;text-underline-offset:4px">Mentorías con Sel</a></p>
+    <p>Las vamos afinando con el equipo. Si algo no te funciona, avísale a quien te mandó esta página.</p>
   </section>
 
   <footer>mitienda.beauty · No es material oficial de Farmasi. Lo que manda es lo vigente en tu Back Office.</footer>
@@ -268,8 +257,6 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
     else { var a = document.createElement("textarea"); a.value = x; document.body.appendChild(a); a.select(); try{ document.execCommand("copy"); }catch(_){} a.remove(); ok(); }
   }
   function hoy(){ var d = new Date(); return d.getFullYear() + "-" + String(d.getMonth()+1).padStart(2,"0") + "-" + String(d.getDate()).padStart(2,"0"); }
-
-  document.addEventListener("click", function(e){ if(e.target.closest("[data-m]")) cuenta("mentorias"); });
 
   /* 01 nivel: puntos de grupo por nivel (los mismos de la calculadora del equipo) */
   var N = [[3,200],[6,400],[9,600],[12,900],[15,1400],[18,2200],[22,3600],[25,5000]];
