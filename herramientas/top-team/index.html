@@ -166,6 +166,21 @@ h2{font:600 20px/1.2 var(--body);letter-spacing:-.01em}
 .btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border:0;border-radius:14px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;cursor:pointer;text-decoration:none;transition:transform 160ms var(--ease)}
 .btn:active{transform:scale(.97)}
 
+/* qué publico */
+.dias7{display:flex;gap:6px;margin:14px 0 0}
+.dias7 button{flex:1;min-height:40px;border:0;border-radius:11px;background:var(--soft);font:500 13px/1 var(--mono);cursor:pointer;padding:0}
+.dias7 button[aria-pressed=true]{background:var(--accent);color:#fff;font-weight:800}
+.dias7 button.hecho{box-shadow:inset 0 0 0 2px var(--good)}
+.idea h3{font:600 19px/1.25 var(--body);margin:16px 0 0}
+.idea dl{margin:12px 0 0;display:grid;grid-template-columns:auto 1fr;gap:8px 12px;font-size:15px}
+.idea dt{font:600 11px/1.9 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+.idea dd{margin:0}
+.pub{display:flex;align-items:center;gap:10px;margin-top:14px;cursor:pointer;font-weight:500}
+.pub input{appearance:none;-webkit-appearance:none;width:24px;height:24px;margin:0;border:1.5px solid #B8BCD0;border-radius:7px;display:grid;place-content:center;cursor:pointer}
+.pub input::after{content:"";width:10px;height:6px;border:2px solid #fff;border-top:0;border-right:0;transform:rotate(-45deg) translate(1px,-1px) scale(0);transition:transform 160ms var(--ease)}
+.pub input:checked{background:var(--good);border-color:var(--good)}
+.pub input:checked::after{transform:rotate(-45deg) translate(1px,-1px) scale(1)}
+
 /* tip */
 .tip{margin:14px 2px 0;font-size:15px;line-height:1.45}
 .tip b{display:block;font:600 11px/1.4 var(--body);letter-spacing:.07em;text-transform:uppercase;color:var(--accent-ink)}
@@ -194,12 +209,12 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
   <symbol id="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></symbol>
 </svg>
-<div class="cabecera"><div class="wrap"><span class="marca">MI EQUIPO</span><span class="num">6 herramientas básicas</span></div></div>
+<div class="cabecera"><div class="wrap"><span class="marca">MI EQUIPO</span><span class="num">7 herramientas básicas</span></div></div>
 
 <div class="wrap">
   <header class="portada">
     <h1>Herramientas básicas para tu día.</h1>
-    <p class="baj">Tus puntos al objetivo, tu lista, mensajes, qué contestar, tu día y tu 1 a 1. Funcionan en tu celular y lo que llenas se queda guardado ahí.</p>
+    <p class="baj">Tus puntos al objetivo, tu lista, mensajes, qué contestar, tu día, qué publicar y tu 1 a 1. Funcionan en tu celular y lo que llenas se queda guardado ahí.</p>
     <p class="chico">Sin registrarte. Guárdala en tu pantalla de inicio.</p>
     <a class="ritmo" href="/herramientas/ritmo-de-puntos/" data-c="ritmo"><b>Ritmo de Puntos</b><span>Tu meta del mes, día por día, en calendario.</span><i aria-hidden="true">→</i></a>
   </header>
@@ -280,7 +295,20 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
     </li>
 
     <li class="prueba">
-      <span class="etq">06 · Mi 1 a 1</span>
+      <span class="etq">06 · Qué publico hoy</span>
+      <div class="tarjeta idea">
+        <h2>Una idea para hoy</h2>
+        <div class="dias7" id="dias7" role="group" aria-label="Día de la semana"></div>
+        <div id="idea"></div>
+        <label class="pub"><input type="checkbox" id="pub">Ya lo publiqué hoy</label>
+        <p class="guardado" id="pubN"></p>
+      </div>
+      <p class="tip"><b>Tip</b>Tu cara y tu rutina real venden más que una foto bonita del producto.</p>
+      <ul class="resto"><li><svg aria-hidden="true"><use href="#candado"/></svg>En el equipo: una idea distinta cada día, con texto listo</li></ul>
+    </li>
+
+    <li class="prueba">
+      <span class="etq">07 · Mi 1 a 1</span>
       <div class="tarjeta uno">
         <h2>1 a 1 en 15 minutos</h2>
         <p>Con tu socia o con tu líder. Tres preguntas, en este orden.</p>
@@ -436,7 +464,32 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
   }); });
   marcador();
 
-  /* 06 mi 1 a 1 */
+  /* 06 qué publico hoy: una idea por día de la semana */
+  var I = [
+    {d:"Dom", t:"Pregúntale a tus seguidoras", f:"Encuesta en historias", q:"Dos opciones de algo que usas: «¿Labial mate o brillante?». Al día siguiente cuentas qué ganó y cuál usas tú.", c:"¿Tú cuál eliges?"},
+    {d:"Lun", t:"Lo que uso de verdad", f:"Foto o historia de tu rutina de la mañana", q:"Tres pasos, en orden, y cuál es el que no te saltas nunca y por qué.", c:"¿Cuál es el paso que tú no te saltas?"},
+    {d:"Mar", t:"Antes y después honesto", f:"Dos fotos, misma luz y mismo lugar", q:"Sin filtros. Di cuántos días llevas usándolo y qué notaste primero.", c:"Sigo contándoles cómo va."},
+    {d:"Mié", t:"Contesta una pregunta", f:"Historia con texto o video corto", q:"Toma algo que te preguntaron por mensaje (sin nombre) y contéstalo en tres líneas.", c:"¿Qué más quieren que les cuente?"},
+    {d:"Jue", t:"Detrás de cámaras", f:"Video de tus entregas o de tu pedido llegando", q:"Qué fue lo que más te pidieron esta semana y para quién era (sin nombres).", c:"Si quieres el tuyo, me escribes."},
+    {d:"Vie", t:"Un tip de 15 segundos", f:"Video vertical, un solo paso", q:"Cómo aplicas una cosa: la cantidad, el orden o el truco que a ti te funcionó.", c:"Guárdalo para cuando lo necesites."},
+    {d:"Sáb", t:"Lo que aprendí esta semana", f:"Foto tuya con una frase", q:"Una cosa que aprendiste vendiendo o atendiendo clientas, contada como anécdota corta.", c:"¿A ti te ha pasado?"}
+  ];
+  var PUB = lee("mtb-tt-pub-v1", {}), hd = new Date().getDay(), di = hd;
+  function semana(){ var d = new Date(), out = []; for(var k = 0; k < 7; k++){ var x = new Date(d.getFullYear(), d.getMonth(), d.getDate() - d.getDay() + k); out.push(x.getFullYear() + "-" + String(x.getMonth()+1).padStart(2,"0") + "-" + String(x.getDate()).padStart(2,"0")); } return out; }
+  function idea(){
+    var S = semana();
+    $("dias7").innerHTML = I.map(function(x, k){ return '<button type="button" data-k="' + k + '" aria-pressed="' + (k === di) + '"' + (PUB[S[k]] ? ' class="hecho"' : '') + '>' + x.d + '</button>'; }).join("");
+    var x = I[di];
+    $("idea").innerHTML = '<h3>' + x.t + '</h3><dl><dt>Formato</dt><dd>' + x.f + '</dd><dt>Qué dices</dt><dd>' + x.q + '</dd><dt>Cierra con</dt><dd>«' + x.c + '»</dd></dl>';
+    $("pub").checked = !!PUB[H]; $("pub").parentNode.hidden = di !== hd;
+    var n = S.filter(function(s){ return PUB[s]; }).length;
+    $("pubN").textContent = n + (n === 1 ? " publicación" : " publicaciones") + " esta semana";
+  }
+  $("dias7").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; di = +b.dataset.k; idea(); vez("publico"); });
+  $("pub").addEventListener("change", function(){ if(this.checked) PUB[H] = 1; else delete PUB[H]; guarda("mtb-tt-pub-v1", PUB); idea(); if(this.checked) cuenta("publique"); });
+  idea();
+
+  /* 07 mi 1 a 1 */
   var U = lee("mtb-tt-1a1-v1", ["","",""]), TU = ["Los números", "Lo que frena", "El compromiso"];
   document.querySelectorAll("[data-u]").forEach(function(a){ a.value = U[+a.dataset.u] || ""; });
   function unoWa(){ var x = "Mi 1 a 1 de hoy\n\n" + TU.map(function(t, i){ return t + ": " + (U[i] || "").trim(); }).join("\n"); $("unoWa").href = "https://wa.me/?text=" + encodeURIComponent(x); }
