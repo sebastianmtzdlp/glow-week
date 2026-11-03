@@ -90,13 +90,16 @@ footer p{margin:0 0 6px;max-width:44em}
 .pro-cab b{font:400 22px/1.1 var(--serif)}
 .pro-precio{font:400 13px/1 var(--mono);color:var(--muted);margin-left:auto}
 .pro-caja p{margin:10px 0 0;font-size:16px;max-width:36em}
-.pro-acc{display:grid;gap:12px;margin-top:16px}
-.pro-cod{display:grid;grid-template-columns:1fr auto;gap:8px}
-.pro-cod input{min-height:46px;font-family:var(--mono);text-transform:uppercase}
+.pro-acc{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:16px}
+.pro-acc > .btn{flex:0 0 auto}
+/* el campo del código nunca baja de ~16 caracteres; si no cabe junto al botón, el botón baja a la siguiente línea */
+.pro-cod{display:flex;flex-wrap:wrap;gap:8px;flex:1 1 20em;min-width:min(100%,20em)}
+.pro-cod input{flex:1 1 15em;min-width:min(100%,15em);width:auto;min-height:48px;font:500 17px/1 var(--mono);letter-spacing:.04em;text-transform:uppercase}
+.pro-cod input::placeholder{font:400 15px/1 var(--body);letter-spacing:0;text-transform:none;color:var(--muted);opacity:1}
+.pro-cod button{flex:1 0 auto}
 .pro-err{color:var(--accent-ink)}
 .pro-bloq{position:relative}
 .pro-bloq::after{content:"";position:absolute;inset:0;background:linear-gradient(rgba(255,255,255,.2),#fff 85%);pointer-events:none}
-@media (min-width:900px){ .pro-acc{grid-template-columns:auto 1fr;align-items:center} }
 
 .pro-g{font:600 12px/1 var(--mono)!important;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:16px 0 0!important}
 .pro-gana{list-style:none;margin:8px 0 0;padding:0;display:grid;gap:6px}

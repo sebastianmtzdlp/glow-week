@@ -116,7 +116,7 @@ window.PRO = (function(){
         '<p>'+H.esc(opts.texto || p.d)+'</p>'+
         (G[slug] ? '<p class="pro-g">Con Pro ganas:</p><ul class="pro-gana">'+G[slug].map(function(x){ return '<li>'+H.esc(x)+'</li>'; }).join("")+'</ul>' : '')+
         '<div class="pro-acc"><a class="btn" href="/mentorias/herramientas/pro/#'+p.s+'" data-cuenta="ver-pro">'+(PAGOS_ABIERTOS ? 'Quiero Pro · $'+H.fmt(p.precio) : 'Ver qué trae Pro')+'</a>'+
-        '<form class="pro-cod" autocomplete="off"><input type="text" placeholder="SVH-XXXX-XXXX" aria-label="Tu código Pro" spellcheck="false"><button class="btn2" type="submit">Ya tengo código</button></form></div>'+
+        '<form class="pro-cod" autocomplete="off"><input type="text" placeholder="Tu código: SVH-XXXX-XXXX" aria-label="Tu código Pro" autocapitalize="characters" spellcheck="false"><button class="btn2" type="submit">Ya tengo código</button></form></div>'+
         (err ? '<p class="nota pro-err">'+H.esc(err)+'</p>' : '')+'<p class="nota">'+(PAGOS_ABIERTOS ? 'Pago único, acceso personal e inmediato.' : 'Todavía no se cobra. Si el equipo te dio un código, escríbelo aquí.')+' <a href="/mentorias/herramientas/terminos/">Términos y condiciones</a></p></div>';
       el.querySelector("form").addEventListener("submit", function(e){
         e.preventDefault(); var c = el.querySelector("input").value.trim().toUpperCase().replace(/\s+/g, "");
