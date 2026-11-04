@@ -49,6 +49,8 @@ const OG = {
     lista("Si gastas $800 al mes", [["Como clienta", "$800"], ["Como socia", "$480"], ["Pagas de más", "$320", "a"], ["Inscripción", "$499 una vez"]])],
   "sin-mitos": ["Lo que pensabas del <em>multinivel</em>", "Lo que se dice, lo que pasa aquí y dónde lo compruebas.",
     lista("Lo más que arriesgas", [["Para entrar", "$499 una vez"], ["Cuota al mes", "$0"], ["Inventario obligatorio", "0"], ["Cifras prometidas", "ninguna", "a"]])],
+  "h-dudas": ["¿Qué necesitas <em>hoy?</em>", "Escribe tu duda con tus palabras y te llevo a la herramienta que la resuelve.",
+    lista("Por ejemplo", [["Me dijo que está caro", "respuestas"], ["Me dejó en visto", "seguimiento"], ["¿Cuánto me falta?", "nivel"], ["¿Qué publico hoy?", "contenido"]])],
   "h-que-quiere": ["¿Qué quiere <em>cada quien?</em>", "Le gusta, va por algo o va por todo. Acompaña a cada una a su ritmo.",
     `<div class="o"><b>De cada 100</b><div style="display:grid;grid-template-columns:repeat(20,1fr);gap:6px;border:0;padding:20px 0 14px">${Array.from({length:100},(_, i)=>{const c=i%20, r=Math.floor(i/20), k=c*5+r; return `<i style="display:block;aspect-ratio:1;border-radius:50%;background:${k<80?"#E9A1A8":k<95?"#DB414C":"#1B1F3B"}"></i>`;}).join("")}</div>${[["Le gusta","80"],["Va por algo","15"],["Va por todo","5"]].map(([a,b])=>`<div>${a}<span>${b}</span></div>`).join("")}</div>`],
 };
