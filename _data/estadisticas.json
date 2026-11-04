@@ -1,10 +1,10 @@
 {
  "actualizado": "2026-11-03",
- "hora": "20:28",
+ "hora": "21:01",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1117,
-  "agregados": 33,
+  "visitas": 1138,
+  "agregados": 34,
   "pedidos": 7,
   "wa": 4
  },
@@ -87,7 +87,7 @@
   },
   {
    "d": "2026-11-03",
-   "v": 39
+   "v": 60
   }
  ],
  "consultoras": [
@@ -134,17 +134,17 @@
    "pedidos": 0
   },
   {
+   "slug": "laura",
+   "nombre": "Laura",
+   "visitas": 6,
+   "catalogo": 2,
+   "pedidos": 0
+  },
+  {
    "slug": "moni",
    "nombre": "Moni",
    "visitas": 7,
    "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "laura",
-   "nombre": "Laura",
-   "visitas": 5,
-   "catalogo": 1,
    "pedidos": 0
   },
   {
@@ -272,6 +272,11 @@
    "agregados": 2
   },
   {
+   "code": "PK102733",
+   "name": "Encanto Cromático Kit de rostro",
+   "agregados": 1
+  },
+  {
    "code": "1000269",
    "name": "Dr. C. Tuna Age Reversist Mascarilla de Noche Antiedad · 50 ml",
    "agregados": 1
@@ -319,11 +324,6 @@
   {
    "code": "1002547",
    "name": "Royal Cherry Eyeshadow Paleta de sombras",
-   "agregados": 1
-  },
-  {
-   "code": "1001387",
-   "name": "Creamy Lipstick Country Rose 01",
    "agregados": 1
   }
  ],
@@ -488,11 +488,11 @@
    "flowers-to-go": 7
   },
   "nombres": {
+   "danny": "Danny",
    "sel": "Selene",
    "viri": "Viri",
    "nancy": "Nancy",
-   "laura": "Laura",
-   "danny": "Danny"
+   "laura": "Laura"
   },
   "lista": [
    {
@@ -517,6 +517,15 @@
     }
    },
    {
+    "slug": "master-class-tendencias-2027",
+    "titulo": "Master Class Tendencias 2027",
+    "desde": "2026-10-25T11:00:00-06:00",
+    "visitas": 11,
+    "clics": {
+     "whatsapp-danny": 2
+    }
+   },
+   {
     "slug": "holiday-glam",
     "titulo": "Holiday Glam",
     "desde": "2026-11-14T10:00:00-06:00",
@@ -524,15 +533,6 @@
     "clics": {
      "whatsapp-nancy": 2,
      "whatsapp-laura": 1
-    }
-   },
-   {
-    "slug": "master-class-tendencias-2027",
-    "titulo": "Master Class Tendencias 2027",
-    "desde": "2026-10-25T11:00:00-06:00",
-    "visitas": 11,
-    "clics": {
-     "whatsapp-danny": 2
     }
    },
    {
@@ -560,7 +560,9 @@
    "ritmo": 94,
    "paginas": {
     "pro": 3,
+    "pdn": 2,
     "que-quiere": 2,
+    "mi-tienda": 1,
     "objeciones": 1,
     "contenido": 1,
     "lista": 1,
