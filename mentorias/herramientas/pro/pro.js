@@ -30,7 +30,7 @@ window.PRO = (function(){
      d:"El banco completo: objeciones al negocio, de reactivación y de recompra, con tres tonos por objeción y modo práctica."},
     {s:"rutina", t:"Arma su rutina · Pro", precio:149, tipo:"ventas", ruta:"/mentorias/herramientas/rutina/", para:"Para quien vende skincare completo.",
      d:"Todos los pasos de la rutina, tu tienda en la tarjeta y cada producto apuntado en tu lista con su fecha de recompra."},
-    {s:"pedidos", t:"Pedidos y cobros · Pro", precio:199, tipo:"ventas", ruta:"/mentorias/herramientas/pedidos/", para:"Para quien entrega pedidos cada semana.",
+    {s:"pedidos", t:"Pedidos y cobros · Pro", precio:199, tipo:"ventas", ruta:"/mentorias/herramientas/pedidos/", para:"Para quien hace pedidos cada semana.",
      d:"Tu ganancia por pedido y del mes, los pedidos de tu tablero se agregan con un toque, y exportas todo a hoja de cálculo."},
     {s:"equipo", t:"Mapa de mi equipo · Pro", precio:249, tipo:"lider", ruta:"/mentorias/herramientas/equipo/", para:"Para la líder que abre sus números antes de cada 1 a 1.",
      d:"Líneas sin límite, seis meses de historia, comparación por línea, a quién escribirle y tu mapa en la nube."},

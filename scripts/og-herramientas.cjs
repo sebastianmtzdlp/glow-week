@@ -35,7 +35,7 @@ const OG = {
   "h-equipo": ["Mapa de <em>mi equipo</em>", "Tus líneas, tu nivel y tus laterales del mes.", lista("Tu mes", [["Puntos de grupo", "mes"], ["Laterales", "mes"], ["Directoras", "línea"]])],
   "h-mi-mes": ["Mi <em>mes</em>", "El cierre del mes en una hoja: números, reto y aprendizaje.", lista("El cierre", [["Contactadas", "mes"], ["Presentaciones", "mes"], ["Socias", "mes"], ["Mi reto", "sí o no"]])],
   "h-reto": ["Reto <em>en equipo</em>", "Un reto, un tablero y todas reportando con un toque.", `<div class="big">14<small> días</small></div>`],
-  "h-pedidos": ["Pedidos <em>y cobros</em>", "Qué pedidos tienes, quién ya pagó y qué falta por entregar.", lista("Estado", [["Vendido", "mes"], ["Cobrado", "mes"], ["Te deben", "a cobrar", "a"]])],
+  "h-pedidos": ["Pedidos <em>y cobros</em>", "Qué pedidos tienes, quién ya pagó y a quién no le ha llegado.", lista("Estado", [["Vendido", "mes"], ["Cobrado", "mes"], ["Te deben", "a cobrar", "a"]])],
   "h-rutina": ["Arma <em>su rutina</em>", "La rutina de piel de tu clienta con precios, lista para mandar.", lista("Rutina", [["Mañana", "3 pasos"], ["Noche", "3 pasos"], ["Total", "tarjeta"]])],
   "h-reunion": ["Mi <em>reunión</em>", "Invitación, guion de 45 minutos y seguimiento a las 48 horas.", `<div class="big">45<small> min</small></div>`],
   "h-en-vivo": ["Venta <em>en vivo</em>", "Un live de 60 minutos con su guion minuto a minuto.", `<div class="big">60<small> min</small></div>`],
