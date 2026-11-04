@@ -259,282 +259,6 @@
  },
  "productos": [
   {
-   "cat": "Kits",
-   "name": "Ritual de Luna",
-   "shade": "Kit de cuerpo",
-   "code": "PK102730",
-   "retail": 2065,
-   "price": 1032.5,
-   "img": "PK102730_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Gel reafirmante Flaunt It!",
-    "Loción corporal SPF 50",
-    "Exfoliante de karité y almendra",
-    "Crema de ducha de karité y almendra"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Besos de Bruja",
-   "shade": "Kit de labios · 7 tonos",
-   "code": "PK102734",
-   "retail": 2625,
-   "price": 1312.5,
-   "img": "PK102734_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "7 Latina Lip Liquor: Inspiradora, Curiosa, Decidida, Positiva, Expresiva, Atrevida y Valiente"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Dulce Hechizado",
-   "shade": "Kit de labios",
-   "code": "PK102735",
-   "retail": 1360,
-   "price": 680,
-   "img": "PK102735_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "4 Glowy Peptide Lip Balm: Toasted Cinnamon, Frosted Pink, Vanilla y Glazed Mocha"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Hechizo de Juventud",
-   "shade": "Kit de cuerpo y rostro",
-   "code": "PK102724",
-   "retail": 4400,
-   "price": 2640,
-   "img": "PK102724_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "CC Body Lotion Light",
-    "CC Body Lotion Dark",
-    "Age Reversist Crema Perfeccionadora Instantánea"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Labios de Vampira",
-   "shade": "Kit de labios · 9 piezas",
-   "code": "PK102737",
-   "retail": 2565,
-   "price": 1539,
-   "img": "PK102737_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "5 Rich Lip Oil Stick: Lowkey, Viral Rush, Red Flag, Pixel Pink y Hey You",
-    "4 Lip Stylo: Reddish Brown, Rose Shadow, Hot Pink y Spiced Rouge"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Mirada de Medianoche",
-   "shade": "Kit de ojos y perfume",
-   "code": "PK102728",
-   "retail": 1695,
-   "price": 1017,
-   "img": "PK102728_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Paleta Glam Up (12 sombras)",
-    "Perfume Midnight Muse 50 ml",
-    "Máscara Infinilash"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Toque Fantasma",
-   "shade": "Kit de rostro",
-   "code": "PK102731",
-   "retail": 1260,
-   "price": 756,
-   "img": "PK102731_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Sunkiss Drop",
-    "Máscara Double Lash",
-    "Midnight Touch rubor líquido"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Rubor de Bruja",
-   "shade": "Kit de rostro",
-   "code": "PK102732",
-   "retail": 1200,
-   "price": 720,
-   "img": "PK102732_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Blush Stick Joy",
-    "Midnight Touch bronzer líquido",
-    "Midnight Touch iluminador líquido"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Encanto Cromático",
-   "shade": "Kit de rostro",
-   "code": "PK102733",
-   "retail": 1200,
-   "price": 720,
-   "img": "PK102733_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Blush Stick Fresh",
-    "Blush Stick Flirt",
-    "Creamy Stick Contour Wink"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Protección Mística",
-   "shade": "Kit de skincare",
-   "code": "PK102736",
-   "retail": 1255,
-   "price": 753,
-   "img": "PK102736_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Protector solar facial SPF 50",
-    "Tea Tree Suero",
-    "Tea Tree Crema Facial"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Pasión Encantada",
-   "shade": "Kit de perfume, ojos y rostro",
-   "code": "PK102727",
-   "retail": 2390,
-   "price": 1673,
-   "img": "PK102727_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Perfume Her Passion",
-    "Paleta Oasis Rose Dune",
-    "Lumi Radiance Suero Iluminador"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Cereza Envenenada",
-   "shade": "Kit de ojos y rostro",
-   "code": "PK102729",
-   "retail": 1550,
-   "price": 1085,
-   "img": "PK102729_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Loose Powder",
-    "Máscara Royal Cherry",
-    "Cera para cejas Styling"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Poción Energética",
-   "shade": "Kit Nutriplus",
-   "code": "PK102725",
-   "retail": 2830,
-   "price": 1981,
-   "img": "PK102725_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Malteada Complete Blend",
-    "Guaraná y Taurina",
-    "Citrus & Mineral"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
-   "cat": "Kits",
-   "name": "Ritual Fit",
-   "shade": "Kit Nutriplus",
-   "code": "PK102726",
-   "retail": 1870,
-   "price": 1309,
-   "img": "PK102726_250_1",
-   "look": [
-    "natural",
-    "glam"
-   ],
-   "incluye": [
-    "Cúrcuma",
-    "Gomitas Cycle+",
-    "L-Carnitina manzana y durazno"
-   ],
-   "miedo": true,
-   "nuevo": false
-  },
-  {
    "cat": "Skincare",
    "name": "Dr. C. Tuna Age Reversist Suero",
    "shade": "Antiedad · 30 ml",
@@ -847,7 +571,7 @@
    "name": "Royal Cherry Eyeshadow",
    "shade": "Paleta de sombras",
    "code": "1002547",
-   "retail": 690,
+   "retail": 600,
    "price": 345,
    "img": "1002547_250_1",
    "look": [
@@ -1120,7 +844,9 @@
   "nota": ""
  },
  "tema": "noche",
- "agotados": [],
+ "agotados": [
+  "1001504"
+ ],
  "pago": {
   "_nota": "Bloque 'Pago y entrega'. metodos: lista de formas de pago (si va vacía, dice que se las pasas al confirmar). entrega: texto. extra: líneas adicionales.",
   "metodos": [
@@ -1143,7 +869,7 @@
   }
  ],
  "_temas_nota": "Calendario de temas: cada entrada rige desde su fecha (hora México). 'forzar': true pisa el tema propio de cada consultora. tema '' = colores Farmasi. Sin entrada vigente se usa 'tema'.",
- "agotados_actualizado": "2026-10-16",
+ "agotados_actualizado": "2026-11-04",
  "combina": {
   "1002024": [
    "1001517",

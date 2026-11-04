@@ -1,11 +1,76 @@
 {
  "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
- "actualizado": "2026-10-26",
+ "actualizado": "2026-11-04",
  "grupos": [
   {
    "titulo": "Edición limitada y de temporada",
    "nota": "Piezas de temporada o por tiempo limitado. Las pedimos bajo encargo y se confirman por WhatsApp.",
    "items": [
+    [
+     "PK102800",
+     "Brillo de Navidad",
+     1381.58
+    ],
+    [
+     "PK102801",
+     "Glamour Festivo",
+     642.86
+    ],
+    [
+     "PK102802",
+     "Magia de Medianoche",
+     785.71
+    ],
+    [
+     "PK102803",
+     "Mimos de Invierno",
+     900.0
+    ],
+    [
+     "PK102804",
+     "Frescura Invernal",
+     700.0
+    ],
+    [
+     "PK102806",
+     "Energía para Celebrar",
+     1428.57
+    ],
+    [
+     "PK102807",
+     "Bienestar bajo el Árbol",
+     1571.43
+    ],
+    [
+     "PK102808",
+     "Regalo para Dos",
+     1000.0
+    ],
+    [
+     "1002984",
+     "Farmasi Her Passion - Holiday Set",
+     1500.0
+    ],
+    [
+     "1002983",
+     "Farmasi Reina - Holiday Set",
+     1150.0
+    ],
+    [
+     "1002982",
+     "Farmasi Hera - Holiday Set",
+     1150.0
+    ],
+    [
+     "1002981",
+     "Farmasi Baoli - Holiday Set",
+     1150.0
+    ],
+    [
+     "1002980",
+     "Farmasi Shooters Man - Holiday Set",
+     1150.0
+    ],
     [
      "1002993",
      "Advent Calendar 2026",
@@ -14,12 +79,12 @@
     [
      "1000395",
      "Glow Beauty Box",
-     820.0
+     1025.0
     ],
     [
      "1000901",
      "FARMASI Blackout Set",
-     553.0
+     790.0
     ],
     [
      "PK11112",
@@ -82,11 +147,6 @@
      "PK102555",
      "Clear System",
      2785.71
-    ],
-    [
-     "PK102557",
-     "Women’s System",
-     3857.14
     ]
    ]
   },
@@ -98,11 +158,6 @@
      "1002341",
      "Shea&Almond. Crema de Ducha",
      230.0
-    ],
-    [
-     "1002346",
-     "Shea&Almond. Crema Sólida Extra Hidratante",
-     575.0
     ],
     [
      "1002347",
@@ -117,12 +172,12 @@
     [
      "1002500",
      "Royal Cherry Body Butter",
-     350.0
+     500.0
     ],
     [
      "1002505",
      "Royal Cherry Body Wash",
-     133.0
+     190.0
     ],
     [
      "1002569",
@@ -289,12 +344,12 @@
     [
      "1000241",
      "Bálsamo Hidratante Arándanos",
-     80.5
+     115.0
     ],
     [
      "1000303",
      "Dr. C. Tuna Sun Bronzing Oil SPF 6",
-     264.0
+     330.0
     ],
     [
      "1000649",
@@ -309,7 +364,7 @@
     [
      "1001369",
      "Vfx Pro Foundation N17",
-     343.0
+     560.0
     ],
     [
      "1001425",
@@ -334,22 +389,22 @@
     [
      "1001801",
      "Labial Líquido Matte Chocolate 218",
-     241.5
+     345.0
     ],
     [
      "1001887",
      "Labial Líquido Matte Baby Doll",
-     241.5
+     345.0
     ],
     [
      "1001923",
      "Labial Líquido Matte Rich Mocha",
-     241.5
+     345.0
     ],
     [
      "1001963",
      "LATINA LIP LQR 03 COQUETA",
-     225.0
+     375.0
     ],
     [
      "1002351",
@@ -359,7 +414,7 @@
     [
      "1002515",
      "Lip oil transparent",
-     207.0
+     345.0
     ],
     [
      "1002545",
@@ -369,12 +424,12 @@
     [
      "1002547",
      "Royal Cherry Eyeshadow",
-     345.0
+     600.0
     ],
     [
      "1002548",
      "Royal Cherry Lip Gloss Cranberry Pie",
-     222.0
+     370.0
     ],
     [
      "1002551",
@@ -384,12 +439,12 @@
     [
      "1002552",
      "Lip Stylo 02 Beige Rose",
-     199.5
+     285.0
     ],
     [
      "1302712",
      "Desmaquillante Bifásico",
-     240.0
+     300.0
     ],
     [
      "1001360",
@@ -399,7 +454,7 @@
     [
      "1001498",
      "Tinted Lip Plumper 02 Flirt",
-     280.0
+     400.0
     ],
     [
      "1001536",
@@ -409,82 +464,82 @@
     [
      "1001802",
      "Labial Líquido Matte Warm Brick",
-     241.5
+     345.0
     ],
     [
      "1001804",
      "Labial Líquido Matte Autumn Vibes",
-     241.5
+     345.0
     ],
     [
      "1001805",
      "Labial Líquido Matte Bombshell",
-     241.5
+     345.0
     ],
     [
      "1002287",
      "Labial Líquido Matte Ruby",
-     241.5
+     345.0
     ],
     [
      "1001887",
      "Labial Líquido Matte Baby Doll 15",
-     241.5
+     345.0
     ],
     [
      "1001925",
      "Labial Líquido Matte Determined - Nova",
-     241.5
+     345.0
     ],
     [
      "1001928",
      "Labial Líquido Matte Determined - Terra",
-     241.5
+     345.0
     ],
     [
      "1001964",
      "LATINA LIP LQR 01 CONFIDENTE",
-     225.0
+     375.0
     ],
     [
      "1001965",
      "LATINA LIP LQR 02 APASIONADA",
-     225.0
+     375.0
     ],
     [
      "1001967",
      "LATINA LIP LQR 04 DECIDIDA",
-     225.0
+     375.0
     ],
     [
      "1001968",
      "LATINA LIP LQR 05 POSITIVA",
-     225.0
+     375.0
     ],
     [
      "1001966",
      "LATINA LIP LQR 06 ATREVIDA",
-     225.0
+     375.0
     ],
     [
      "1002280",
      "LATINA LIP LQR 07 EXPRESIVA",
-     225.0
+     375.0
     ],
     [
      "1002281",
      "LATINA LIP LQR 08 CURIOSA",
-     225.0
+     375.0
     ],
     [
      "1002283",
      "LATINA LIP LQR 09 INSPIRADORA",
-     225.0
+     375.0
     ],
     [
      "1002284",
      "LATINA LIP LQR 10 VALIENTE",
-     225.0
+     375.0
     ],
     [
      "1002132",
@@ -494,17 +549,17 @@
     [
      "1002516",
      "Lip Oil Pink",
-     207.0
+     345.0
     ],
     [
      "1002517",
      "Lip Oil Cherry",
-     207.0
+     345.0
     ],
     [
      "1002549",
      "Royal Cherry Lip Gloss Cherry After Dark",
-     222.0
+     370.0
     ],
     [
      "1002553",
@@ -605,32 +660,32 @@
     [
      "1000159",
      "Dr. C. Tuna Sun Butter SPF 15",
-     420.0
+     700.0
     ],
     [
      "1000301",
      "Dr. C. Tuna Sun Aloe Soothing Gel After Sun",
-     315.0
+     450.0
     ],
     [
      "1000306",
      "Crema Depilatoria",
-     252.0
+     315.0
     ],
     [
      "1000331",
      "Jabón Madreselva",
-     56.0
+     80.0
     ],
     [
      "1000332",
      "Lavanta Jabón",
-     56.0
+     80.0
     ],
     [
      "1000333",
      "Jabón Moringa",
-     56.0
+     80.0
     ],
     [
      "1000594",
@@ -645,12 +700,12 @@
     [
      "1000696",
      "Dr. C. Tuna Autobronceador para Cuerpo",
-     560.0
+     800.0
     ],
     [
      "1000812",
      "Dr. C. Tuna Gel para Masaje Alaska",
-     210.0
+     350.0
     ],
     [
      "1000856",
@@ -690,7 +745,7 @@
     [
      "1001789",
      "Velvet Blossom",
-     345.0
+     575.0
     ],
     [
      "1001790",
@@ -698,19 +753,14 @@
      575.0
     ],
     [
-     "1001791",
-     "Vibrant Aura",
-     402.5
-    ],
-    [
      "1001792",
      "Noir Temptation",
-     402.5
+     575.0
     ],
     [
      "1001990",
      "Crema de masaje con Glucosamina",
-     318.0
+     530.0
     ],
     [
      "1002343",
@@ -720,17 +770,12 @@
     [
      "1002796",
      "Hand Cream Mediterranean Breeze",
-     66.0
+     110.0
     ],
     [
      "1002855",
      "Paprika Massage Soap",
-     175.0
-    ],
-    [
-     "1107541",
-     "Bliss",
-     500.5
+     250.0
     ],
     [
      "1109234",
@@ -745,22 +790,27 @@
     [
      "1119097",
      "Jabón Tradicional Hammam",
-     105.0
+     150.0
     ],
     [
      "1002797",
      "Hand Cream Verbena Burst",
-     66.0
+     110.0
     ],
     [
      "1002798",
      "Hand Cream Velvet Fig",
-     66.0
+     110.0
     ],
     [
      "1002799",
      "Hand Cream Warm Vanilla",
-     66.0
+     110.0
+    ],
+    [
+     "1000404",
+     "Crema para manos Almendra",
+     110.0
     ]
    ]
   },
@@ -771,20 +821,20 @@
     [
      "1000957",
      "Nutriplus Serenity Durazno",
-     315.0
+     450.0
     ],
     [
      "1000958",
      "Nutriplus Serenity Limón",
-     315.0
+     450.0
     ],
     [
      "9000700",
      "Delish Café Mezcla de Achicoria en Sobres",
-     270.0
+     450.0
     ]
    ]
   }
  ],
- "hora": "09:06"
+ "hora": "03:20"
 }

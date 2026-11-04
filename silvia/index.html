@@ -786,7 +786,7 @@
     const SECS = [["Labios",8],["Ojos",20],["Rostro",38],["Brochas",55],["Fragancias",56],["Hombre",58],["Cuidado personal",62],["Skincare",66],["Masaje",112],["Cabello",114],["Nutriplus",118]];
     const pag = {}; (CF.productos||[]).forEach((it, i) => (it||[]).forEach(x => { if (!(x[0] in pag)) pag[x[0]] = i + 1; }));
     const secc = c => { let r = ""; if (pag[c]) SECS.forEach(([t,n]) => { if (pag[c] >= n) r = t; }); return r; };
-    const GRUPO = {"Kits y sets":"Kits","Maquillaje":"Rostro","Piel, cuerpo y fragancias":"Cuidado personal","Nutriplus":"Nutriplus","Sistemas Nutriplus":"Nutriplus"};
+    const GRUPO = {"Edición limitada y de temporada":"Kits","Kits y sets":"Kits","Maquillaje":"Rostro","Piel, cuerpo y fragancias":"Cuidado personal","Nutriplus":"Nutriplus","Sistemas Nutriplus":"Nutriplus"};
     const KEEP = /^(VFX|FDT|SPF|BB|CC|DD|XL|UV|PRO|II|III|3D|4D)$/;
     const bonito = n => { n = String(n||"").replace(/^FRM\s+/i,"").replace(/\s+/g," ").trim();
       if (n === n.toUpperCase() && /[A-Z]/.test(n)) n = n.split(" ").map(w => (KEEP.test(w) || /\d/.test(w) && w.length <= 4) ? w : w[0] + w.slice(1).toLowerCase()).join(" ").replace(/(\d)\s?ML\b/gi,"$1 ml").replace(/(\d)\s?G\b/g,"$1 g");
@@ -1123,7 +1123,7 @@
   // ---------- Asistente "Ayúdame a elegir" ----------
   const HQ = [
     {k:"cats", multi:true, q:"¿Qué te gustaría renovar?", o:[
-      ["Kits","Kits de Promos de Miedo","Hasta 50% de descuento"],["Skincare","Limpiadores, tónicos y sueros"],["Labios","Labiales, gloss y lip oil"],["Ojos","Sombras, máscara y cejas"],["Rostro","Base, polvo, iluminador"],["Brochas","Brochas y esponja"]]},
+      ["Kits","Kits y sets","Para regalar o probar varios"],["Skincare","Limpiadores, tónicos y sueros"],["Labios","Labiales, gloss y lip oil"],["Ojos","Sombras, máscara y cejas"],["Rostro","Base, polvo, iluminador"],["Brochas","Brochas y esponja"]]},
     {k:"tone", q:"¿Cómo es tu tono de piel?", o:[
       ["clara","Clara","Se parece a este tono","#EBC6A8"],["media","Media","Se parece a este tono","#C99470"],["morena","Morena","Se parece a este tono","#8E5E3F"],["nose","No estoy segura","Te ayudo a encontrar tu tono por WhatsApp"]], note:"Pon tu mano junto a la pantalla, con luz natural, y elige el tono que más se parezca."},
     {k:"look", q:"¿Qué look buscas?", o:[
