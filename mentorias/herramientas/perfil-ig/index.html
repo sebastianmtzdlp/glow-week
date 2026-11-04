@@ -122,6 +122,7 @@
 .look[aria-pressed=true]{font-weight:600}
 .rango output{font:500 13px/1 var(--mono);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
 input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
+.tamanos[hidden]{display:none}
 .tamanos{display:flex;align-items:flex-end;gap:22px;padding:16px 18px;border-radius:18px;background:var(--soft)}
 .tamanos figure{margin:0;display:grid;justify-items:center;gap:8px}
 .tamanos canvas,.tamanos .ini{border-radius:50%;background:#fff;display:block}
@@ -268,11 +269,12 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
 
     <!-- 02 FOTO -->
     <section class="parte" id="foto" aria-labelledby="fT">
-      <div class="parte-cab"><span class="n">02</span><h2 id="fT">Tu <em>foto</em></h2><p>En los comentarios tu foto mide como una uña. Acomódala para que tu cara se reconozca así de chiquita.</p></div>
+      <div class="parte-cab"><span class="n">02</span><h2 id="fT">Tus <em>fotos</em></h2><p>Tu foto de perfil y tus posts en la medida de Instagram. En los comentarios tu foto de perfil mide como una uña: acomódala para que tu cara se reconozca así de chiquita.</p></div>
       <div class="foto-zona">
         <div>
+          <div class="estilos" id="formatos" aria-label="Formato" style="margin-bottom:12px"></div>
           <div class="lienzo vacio" id="lienzo">
-            <canvas id="editor" width="840" height="840" aria-label="Tu foto. Arrástrala para acomodarla en el círculo."></canvas>
+            <canvas id="editor" width="720" height="720" aria-label="Tu foto. Arrástrala para acomodarla en el círculo."></canvas>
             <div class="lienzo-vacio" id="lienzoVacio">
               <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#C8323F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="4"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
               <p>Elige una foto donde se vea bien tu cara. Se queda en tu teléfono.</p>
@@ -280,6 +282,7 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
               <button type="button" class="enlace" id="usarTienda" hidden>Usar la foto de mi tienda</button>
             </div>
           </div>
+          <p class="nota" id="guiaHist" hidden style="max-width:420px">Las franjas sombreadas las tapa la app (tu nombre arriba y la caja de respuesta abajo). Deja tu cara y tu texto en medio.</p>
           <input type="file" id="archivo" accept="image/*" class="sr">
           <div class="foto-acc" id="fotoAcc" hidden>
             <label class="rango zoom"><span>Acercar</span><input type="range" id="a-zoom" min="100" max="300" value="100"><output id="o-zoom">1.0x</output></label>
@@ -296,8 +299,6 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
           <div class="panel" role="tabpanel" id="pn-look" aria-labelledby="tb-look">
             <div class="looks" id="looks"></div>
             <label class="rango"><span>Intensidad</span><input type="range" id="a-k" min="0" max="100" value="80"><output id="o-k">80%</output></label>
-            <p class="nota" style="margin:0"><label class="enlace" for="cube" style="font-size:14px">Subir mi LUT (.cube)</label> · el archivo de Lightroom, CapCut o Photoshop que ya usas.</p>
-            <input type="file" id="cube" accept=".cube" class="sr">
           </div>
           <div class="panel" role="tabpanel" id="pn-ajuste" aria-labelledby="tb-ajuste" hidden>
             <label class="rango"><span>Luz</span><input type="range" id="a-luz" min="-40" max="40" value="0"><output id="o-luz">0</output></label>
@@ -314,7 +315,7 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
             <div class="estilos" id="fondos"></div>
             <p class="nota" id="fondoEstado" style="margin:0" aria-live="polite">El recorte se hace aquí en tu teléfono. La primera vez tarda unos segundos.</p>
           </div>
-          <div class="tamanos" aria-label="Así se ve en distintos tamaños">
+          <div class="tamanos" id="tamanos" aria-label="Así se ve en distintos tamaños">
             <figure><canvas id="t150" width="240" height="240" style="width:110px;height:110px"></canvas><figcaption>tu perfil</figcaption></figure>
             <figure><canvas id="t56" width="112" height="112" style="width:56px;height:56px"></canvas><figcaption>historias</figcaption></figure>
             <figure><canvas id="t32" width="64" height="64" style="width:32px;height:32px"></canvas><figcaption>comentarios</figcaption></figure>
@@ -513,7 +514,7 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
 
   /* ---------- 02 foto (todo en el teléfono, en un canvas) ---------- */
   var img = null, ed = $("editor"), ectx = ed.getContext("2d");
-  var pro = document.createElement("canvas"); pro.width = pro.height = 840;
+  var pro = document.createElement("canvas"); pro.width = pro.height = 720;
   var CERO = {zoom:100, look:"natural", k:80, luz:0, con:0, cal:0, sat:0, som:0, alt:0, nit:0, vin:0};
   var f = Object.assign({}, CERO, st.f || {}); f.ox = 0; f.oy = 0; f.fondo = "nada";
 
@@ -549,7 +550,7 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
     return {N:N, d:out};
   }
   var LUTS = {};
-  function lutDe(k){ if(k === "natural") return null; if(k === "mia") return LUTS.mia || null; return LUTS[k] || (LUTS[k] = hazLut(LOOKS[k])); }
+  function lutDe(k){ if(k === "natural") return null; if(LUTS[k]) return LUTS[k]; return LOOKS[k] ? (LUTS[k] = hazLut(LOOKS[k])) : null; }
   function leeCube(txt){
     var N = 0, v = [];
     txt.split(/\r?\n/).forEach(function(l){
@@ -639,10 +640,11 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
     $("a-" + k).addEventListener("input", function(){ f[k] = +this.value; syncRangos(); pintaFoto(); if(k === "zoom") pintaLooksLuego(); });
   });
   $("reinicia").addEventListener("click", function(){ ["luz","con","cal","sat","som","alt","nit","vin"].forEach(function(k){ f[k] = 0; }); syncRangos(); pintaFoto(); });
-  function listaLooks(){ var l = Object.keys(LOOKS); if(LUTS.mia) l.push("mia"); return l; }
+  var LOOKS_EQ = [];
+  function listaLooks(){ return ["natural"].concat(LOOKS_EQ, Object.keys(LOOKS).filter(function(k){ return k !== "natural"; })); }
   function armaLooks(){
     $("looks").innerHTML = listaLooks().map(function(k){
-      return '<button type="button" class="look" data-l="'+k+'" aria-pressed="false"><canvas width="136" height="136"></canvas><span>'+(k === "mia" ? H.esc(LUTS.mia.n) : LOOKS[k].n)+'</span></button>';
+      return '<button type="button" class="look" data-l="'+k+'" aria-pressed="false"><canvas width="136" height="136"></canvas><span>'+(LOOKS[k] ? LOOKS[k].n : H.esc(LUTS[k].n))+'</span></button>';
     }).join("");
     syncRangos(); pintaLooks();
   }
@@ -650,19 +652,19 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
     var b = e.target.closest("[data-l]"); if(!b) return;
     f.look = b.dataset.l; syncRangos(); pintaFoto(); H.cuenta("look-" + f.look);
   });
-  $("cube").addEventListener("change", function(){
-    var a = this.files && this.files[0]; this.value = ""; if(!a) return;
-    a.text().then(function(t){
-      var l = leeCube(t); if(!l) return H.aviso("Ese archivo no es una LUT 3D .cube");
-      l.n = a.name.replace(/\.cube$/i, "").slice(0, 14) || "Mi LUT"; LUTS.mia = l; f.look = "mia"; f.k = 100;
-      armaLooks(); pintaFoto(); H.aviso("Tu LUT ya está en tus looks"); H.cuenta("lut-propia");
-    });
-  });
+  /* looks del equipo: archivos .cube en looks/ y su lista en looks/looks.json ([{"n":"Nombre","archivo":"x.cube"}]) */
+  fetch("/mentorias/herramientas/perfil-ig/looks/looks.json").then(function(r){ return r.ok ? r.json() : []; }).then(function(lista){
+    return Promise.all((lista || []).map(function(x, i){
+      return fetch("/mentorias/herramientas/perfil-ig/looks/" + encodeURIComponent(x.archivo)).then(function(r){ return r.text(); }).then(function(t){
+        var l = leeCube(t); if(!l) return; var k = "eq" + i; l.n = x.n; LUTS[k] = l; LOOKS_EQ.push(k);
+      }).catch(function(){});
+    }));
+  }).then(function(){ if(LOOKS_EQ.length) armaLooks(); }).catch(function(){});
   /* miniaturas de cada look con la foto ya acomodada */
   var tLooks;
   function pintaLooksLuego(){ clearTimeout(tLooks); tLooks = setTimeout(pintaLooks, 220); }
   function pintaLooks(){
-    var base = document.createElement("canvas"); base.width = base.height = 136; dibujaBase(base);
+    var base = document.createElement("canvas"); base.width = base.height = 136; var gx = f.ox, gy = f.oy; dibujaBase(base); f.ox = gx; f.oy = gy;
     var bd = base.getContext("2d").getImageData(0, 0, 136, 136);
     $("looks").querySelectorAll("[data-l]").forEach(function(b){
       var cv = b.querySelector("canvas"), c = cv.getContext("2d"), lut = lutDe(b.dataset.l);
@@ -673,54 +675,83 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
     });
   }
 
-  function limita(S){
-    if(!img) return;
-    var esc = Math.max(S / img.width, S / img.height) * f.zoom / 100;
-    var w = img.width * esc, h = img.height * esc;
-    var mx = Math.max(0, (w - S) / 2), my = Math.max(0, (h - S) / 2);
-    f.ox = Math.max(-mx / S, Math.min(mx / S, f.ox));
-    f.oy = Math.max(-my / S, Math.min(my / S, f.oy));
+  /* ---------- formatos de Instagram ---------- */
+  var FORMATOS = {
+    perfil:{n:"Foto de perfil", w:1080, h:1080, circ:true},
+    post:{n:"Post cuadrado", w:1080, h:1080},
+    vertical:{n:"Post 4:5", w:1080, h:1350},
+    historia:{n:"Historia o Reel", w:1080, h:1920}
+  };
+  f.formato = "perfil";
+  function fmt(){ return FORMATOS[f.formato]; }
+  function tamEditor(){ var F = fmt(), W = 720, H = Math.round(W * F.h / F.w); return [W, H]; }
+  $("formatos").innerHTML = Object.keys(FORMATOS).map(function(k){
+    var F = FORMATOS[k], w = 14, h = Math.round(14 * F.h / F.w);
+    return '<button type="button" class="chip" data-fm="'+k+'" aria-pressed="'+(k === "perfil")+'" style="display:inline-flex;align-items:center;gap:8px"><i style="width:'+w+'px;height:'+h+'px;border:1.5px solid currentColor;border-radius:'+(F.circ ? "50%" : "3px")+'"></i>'+F.n+'</button>';
+  }).join("");
+  $("formatos").addEventListener("click", function(e){
+    var b = e.target.closest("[data-fm]"); if(!b) return;
+    f.formato = b.dataset.fm; f.ox = 0; f.oy = 0;
+    $("formatos").querySelectorAll("[data-fm]").forEach(function(x){ x.setAttribute("aria-pressed", String(x.dataset.fm === f.formato)); });
+    ponFormato(); pintaFoto(); pintaLooksLuego(); H.cuenta("formato-" + f.formato);
+  });
+  function ponFormato(){
+    var F = fmt(), t = tamEditor();
+    ed.width = pro.width = t[0]; ed.height = pro.height = t[1];
+    $("lienzo").style.aspectRatio = F.w + " / " + F.h;
+    $("lienzo").style.maxWidth = F.h / F.w > 1.5 ? "300px" : F.h > F.w ? "380px" : "420px";
+    $("tamanos").hidden = !F.circ; $("guiaHist").hidden = f.formato !== "historia";
+    $("bajaFoto").textContent = F.circ ? "Descargar foto" : "Descargar " + F.n.toLowerCase();
+    ed.setAttribute("aria-label", "Tu foto en formato " + F.n + ". Arrástrala para acomodarla.");
   }
-  /* la foto acomodada (y con su fondo nuevo) sin ajustes de color */
-  /* sinColor: deja el fondo transparente para pintar el color liso al final, sin que el look lo cambie */
+
+  function geo(W, H){
+    var esc = Math.max(W / img.width, H / img.height) * f.zoom / 100;
+    var w = img.width * esc, h = img.height * esc;
+    var mx = Math.max(0, (w - W) / 2), my = Math.max(0, (h - H) / 2);
+    f.ox = Math.max(-mx / W, Math.min(mx / W, f.ox));
+    f.oy = Math.max(-my / H, Math.min(my / H, f.oy));
+    return {x:(W - w) / 2 + f.ox * W, y:(H - h) / 2 + f.oy * H, w:w, h:h};
+  }
+  /* la foto acomodada (y con su fondo nuevo) sin ajustes de color.
+     sinColor: deja el fondo transparente para pintar el color liso al final, sin que el look lo cambie */
   function dibujaBase(cv, sinColor){
-    var S = cv.width, c = cv.getContext("2d");
-    c.clearRect(0, 0, S, S);
-    if(!sinColor){ c.fillStyle = img ? "#fff" : "#F3F4F9"; c.fillRect(0, 0, S, S); }
+    var W = cv.width, H = cv.height, c = cv.getContext("2d");
+    c.clearRect(0, 0, W, H);
+    if(!sinColor){ c.fillStyle = img ? "#fff" : "#F3F4F9"; c.fillRect(0, 0, W, H); }
     if(!img) return;
-    limita(S);
-    var esc = Math.max(S / img.width, S / img.height) * f.zoom / 100;
-    var w = img.width * esc, h = img.height * esc, x = (S - w) / 2 + f.ox * S, y = (S - h) / 2 + f.oy * S;
+    var g = geo(W, H), x = g.x, y = g.y, w = g.w, h = g.h;
     c.imageSmoothingQuality = "high";
     var fo = FONDOS[f.fondo];
     if(f.fondo === "nada" || !mascara || mascaraDe !== img){ c.drawImage(img, x, y, w, h); return; }
-    if(fo.c){ if(!sinColor){ c.fillStyle = fo.c; c.fillRect(0, 0, S, S); } }
+    if(fo.c){ if(!sinColor){ c.fillStyle = fo.c; c.fillRect(0, 0, W, H); } }
     else { /* difuminado: se achica y se vuelve a agrandar */
-      var t = document.createElement("canvas"), q = Math.max(8, Math.round(S / 28)); t.width = t.height = q;
-      var tc = t.getContext("2d"); tc.imageSmoothingQuality = "high"; tc.drawImage(img, x * q / S, y * q / S, w * q / S, h * q / S);
-      var t2 = document.createElement("canvas"); t2.width = t2.height = q * 4; var t2c = t2.getContext("2d"); t2c.imageSmoothingQuality = "high"; t2c.drawImage(t, 0, 0, q * 4, q * 4);
-      c.drawImage(t2, 0, 0, S, S);
+      var q = Math.max(8, Math.round(W / 28)), qh = Math.max(8, Math.round(q * H / W));
+      var t = document.createElement("canvas"); t.width = q; t.height = qh;
+      var tc = t.getContext("2d"); tc.imageSmoothingQuality = "high"; tc.drawImage(img, x * q / W, y * qh / H, w * q / W, h * qh / H);
+      var t2 = document.createElement("canvas"); t2.width = q * 4; t2.height = qh * 4; var t2c = t2.getContext("2d"); t2c.imageSmoothingQuality = "high"; t2c.drawImage(t, 0, 0, q * 4, qh * 4);
+      c.drawImage(t2, 0, 0, W, H);
     }
-    var per = document.createElement("canvas"); per.width = per.height = S;
+    var per = document.createElement("canvas"); per.width = W; per.height = H;
     var pc = per.getContext("2d"); pc.imageSmoothingQuality = "high";
     pc.drawImage(img, x, y, w, h);
     pc.globalCompositeOperation = "destination-in"; pc.drawImage(mascara, x, y, w, h);
     c.drawImage(per, 0, 0);
   }
-  /* dibuja la foto con todo en un canvas cuadrado de S px; ox/oy van en fracciones del lado */
+  /* dibuja la foto con todo; ox/oy van en fracciones del ancho y del alto */
   function render(cv){
     var color = img && FONDOS[f.fondo].c && mascara && mascaraDe === img ? FONDOS[f.fondo].c : "";
     dibujaBase(cv, !!color);
     if(!img) return;
-    var S = cv.width, c = cv.getContext("2d"), lut = lutDe(f.look);
-    function alFinal(){ if(color){ c.save(); c.globalCompositeOperation = "destination-over"; c.fillStyle = color; c.fillRect(0, 0, S, S); c.restore(); } }
+    var W = cv.width, H = cv.height, c = cv.getContext("2d"), lut = lutDe(f.look);
+    function alFinal(){ if(color){ c.save(); c.globalCompositeOperation = "destination-over"; c.fillStyle = color; c.fillRect(0, 0, W, H); c.restore(); } }
     var ajusta = f.luz || f.con || f.cal || f.sat || f.som || f.alt || f.vin;
     if(!lut && !ajusta && !f.nit) return alFinal();
-    var d = c.getImageData(0, 0, S, S), p = d.data;
+    var d = c.getImageData(0, 0, W, H), p = d.data;
     if(lut && f.k) aplicaLut(p, lut, f.k / 100);
     if(ajusta){
       var br = f.luz * 1.6, cf = (259 * (f.con * 2.2 + 255)) / (255 * (259 - f.con * 2.2)), sa = 1 + f.sat / 100, wr = f.cal * .9, wb = f.cal * 1.1;
-      var so = f.som / 50 * 70, al = f.alt / 50 * 55, vi = f.vin / 100 * .5, h2 = S / 2;
+      var so = f.som / 50 * 70, al = f.alt / 50 * 55, vi = f.vin / 100 * .5, hw = W / 2, hh = H / 2;
       for(var i = 0, px = 0; i < p.length; i += 4, px++){
         var r = p[i], g = p[i+1], b = p[i+2];
         r = cf * (r - 128) + 128 + br; g = cf * (g - 128) + 128 + br; b = cf * (b - 128) + 128 + br;
@@ -728,15 +759,15 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
         r = l + (r - l) * sa; g = l + (g - l) * sa; b = l + (b - l) * sa;
         r += wr; g += wr * .35; b -= wb;
         if(so || al){ var ln = c01(l / 255), ws = (1 - ln) * (1 - ln) * (1 - ln), wh = ln * ln * ln, ad = so * ws + al * wh; r += ad; g += ad; b += ad; }
-        if(vi){ var xx = (px % S - h2) / h2, yy = ((px / S | 0) - h2) / h2, dd = Math.sqrt(xx * xx + yy * yy), sm = c01((dd - .5) / .5), m = 1 - vi * sm * sm; r *= m; g *= m; b *= m; }
+        if(vi){ var xx = (px % W - hw) / hw, yy = ((px / W | 0) - hh) / hh, dd = Math.sqrt(xx * xx + yy * yy), sm = c01((dd - .5) / .5), m = 1 - vi * sm * sm; r *= m; g *= m; b *= m; }
         p[i] = r < 0 ? 0 : r > 255 ? 255 : r; p[i+1] = g < 0 ? 0 : g > 255 ? 255 : g; p[i+2] = b < 0 ? 0 : b > 255 ? 255 : b;
       }
     }
     if(f.nit){ /* nitidez: máscara de enfoque con los 4 vecinos */
-      var a = f.nit / 100 * .7 * (S / 840), o = new Uint8ClampedArray(p), W = S * 4;
-      for(var yy2 = 1; yy2 < S - 1; yy2++) for(var xx2 = 1; xx2 < S - 1; xx2++){
-        var j = (yy2 * S + xx2) * 4;
-        for(var ch = 0; ch < 3; ch++){ var v = o[j+ch]; p[j+ch] = v + a * (4 * v - o[j+ch-4] - o[j+ch+4] - o[j+ch-W] - o[j+ch+W]); }
+      var a = f.nit / 100 * .7 * (W / 720), o = new Uint8ClampedArray(p), RW = W * 4;
+      for(var yy2 = 1; yy2 < H - 1; yy2++) for(var xx2 = 1; xx2 < W - 1; xx2++){
+        var j = (yy2 * W + xx2) * 4;
+        for(var ch = 0; ch < 3; ch++){ var v = o[j+ch]; p[j+ch] = v + a * (4 * v - o[j+ch-4] - o[j+ch+4] - o[j+ch-RW] - o[j+ch+RW]); }
       }
     }
     c.putImageData(d, 0, 0);
@@ -746,17 +777,25 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
   function pintaFoto(){
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(function(){
-      st.f = {}; Object.keys(CERO).forEach(function(k){ st.f[k] = f[k] === "mia" ? "natural" : f[k]; }); guarda();
+      st.f = {}; Object.keys(CERO).forEach(function(k){ st.f[k] = f[k]; }); guarda();
       render(pro);
-      var S = ed.width;
-      ectx.clearRect(0, 0, S, S); ectx.drawImage(pro, 0, 0);
-      if(img){
-        ectx.save(); ectx.beginPath(); ectx.rect(0, 0, S, S); ectx.arc(S / 2, S / 2, S / 2 - 2, 0, Math.PI * 2, true);
+      var W = ed.width, H = ed.height, F = fmt();
+      ectx.clearRect(0, 0, W, H); ectx.drawImage(pro, 0, 0);
+      if(img && F.circ){
+        ectx.save(); ectx.beginPath(); ectx.rect(0, 0, W, H); ectx.arc(W / 2, H / 2, W / 2 - 2, 0, Math.PI * 2, true);
         ectx.fillStyle = "rgba(255,255,255,.66)"; ectx.fill("evenodd"); ectx.restore();
-        ectx.beginPath(); ectx.arc(S / 2, S / 2, S / 2 - 2, 0, Math.PI * 2); ectx.lineWidth = 3; ectx.strokeStyle = "rgba(38,42,74,.5)"; ectx.stroke();
+        ectx.beginPath(); ectx.arc(W / 2, H / 2, W / 2 - 2, 0, Math.PI * 2); ectx.lineWidth = 3; ectx.strokeStyle = "rgba(38,42,74,.5)"; ectx.stroke();
       }
-      ["t150","t56","t32"].forEach(function(id){ var cv = $(id), c = cv.getContext("2d"); c.clearRect(0, 0, cv.width, cv.height); if(img){ c.imageSmoothingQuality = "high"; c.drawImage(pro, 0, 0, cv.width, cv.height); } else iniciales(cv); });
-      pintaVistaFoto();
+      if(img && f.formato === "historia"){ /* zonas que tapan la app: arriba el nombre, abajo la caja de respuesta */
+        var t = Math.round(H * 230 / 1920), bt = Math.round(H * 1440 / 1920);
+        ectx.save(); ectx.fillStyle = "rgba(38,42,74,.16)"; ectx.fillRect(0, 0, W, t); ectx.fillRect(0, bt, W, H - bt);
+        ectx.setLineDash([10, 8]); ectx.strokeStyle = "rgba(255,255,255,.9)"; ectx.lineWidth = 2;
+        ectx.beginPath(); ectx.moveTo(0, t); ectx.lineTo(W, t); ectx.moveTo(0, bt); ectx.lineTo(W, bt); ectx.stroke(); ectx.restore();
+      }
+      if(F.circ){
+        ["t150","t56","t32"].forEach(function(id){ var cv = $(id), c = cv.getContext("2d"); c.clearRect(0, 0, cv.width, cv.height); if(img){ c.imageSmoothingQuality = "high"; c.drawImage(pro, 0, 0, cv.width, cv.height); } else iniciales(cv); });
+        pintaVistaFoto();
+      }
     });
   }
   function iniciales(cv){
@@ -787,18 +826,19 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
   }
   /* arrastrar para acomodar */
   var arr = null;
-  ed.addEventListener("pointerdown", function(e){ if(!img) return; arr = {x:e.clientX, y:e.clientY, ox:f.ox, oy:f.oy, w:ed.getBoundingClientRect().width}; ed.setPointerCapture(e.pointerId); $("lienzo").style.cursor = "grabbing"; });
-  ed.addEventListener("pointermove", function(e){ if(!arr) return; f.ox = arr.ox + (e.clientX - arr.x) / arr.w; f.oy = arr.oy + (e.clientY - arr.y) / arr.w; pintaFoto(); });
+  ed.addEventListener("pointerdown", function(e){ if(!img) return; var rc = ed.getBoundingClientRect(); arr = {x:e.clientX, y:e.clientY, ox:f.ox, oy:f.oy, w:rc.width, h:rc.height}; ed.setPointerCapture(e.pointerId); $("lienzo").style.cursor = "grabbing"; });
+  ed.addEventListener("pointermove", function(e){ if(!arr) return; f.ox = arr.ox + (e.clientX - arr.x) / arr.w; f.oy = arr.oy + (e.clientY - arr.y) / arr.h; pintaFoto(); });
   function suelta(){ if(arr) pintaLooksLuego(); arr = null; $("lienzo").style.cursor = ""; }
   ed.addEventListener("pointerup", suelta); ed.addEventListener("pointercancel", suelta);
 
   $("bajaFoto").addEventListener("click", function(){
     if(!img) return;
-    var out = document.createElement("canvas"); out.width = out.height = 1080; render(out);
+    var F = fmt(), fm = f.formato, out = document.createElement("canvas"); out.width = F.w; out.height = F.h; render(out);
     out.toBlob(function(b){
-      var nombre = "foto-perfil" + (st.slug ? "-" + st.slug : "") + ".jpg";
+      var nombre = (fm === "perfil" ? "foto-perfil" : "ig-" + fm) + (st.slug ? "-" + st.slug : "") + ".jpg";
       comparte([new File([b], nombre, {type:"image/jpeg"})], nombre, b);
-      st.fotoLista = true; guarda(); pintaCierre(); H.cuenta("foto-descargada");
+      if(fm === "perfil"){ st.fotoLista = true; guarda(); pintaCierre(); }
+      H.cuenta("foto-descargada-" + fm);
     }, "image/jpeg", .92);
   });
   /* en celular abre el menú de compartir (para guardarla en Fotos); en computadora la descarga */
@@ -1041,14 +1081,13 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
   var irV = $("irVista");
   irV.addEventListener("click", function(){ $("vista").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth", block:"start"}); });
   if("IntersectionObserver" in window){
-    var visto = new IntersectionObserver(function(es){
-      var e = es[0], pasado = !e.isIntersecting && e.boundingClientRect.top < 0;
-      irV.classList.toggle("on", pasado);
-    });
-    visto.observe($("vista"));
+    /* se esconde mientras editas la foto, para no tapar los controles */
+    var pasado = false, enFoto = false;
+    new IntersectionObserver(function(es){ var e = es[0]; pasado = !e.isIntersecting && e.boundingClientRect.top < 0; irV.classList.toggle("on", pasado && !enFoto); }).observe($("vista"));
+    new IntersectionObserver(function(es){ enFoto = es[0].isIntersecting; irV.classList.toggle("on", pasado && !enFoto); }, {rootMargin:"-30% 0px -30% 0px"}).observe($("foto"));
   }
 
-  armaLooks(); pintaRevision(); pintaDest(); pintaTodo(); pintaFoto();
+  ponFormato(); armaLooks(); pintaRevision(); pintaDest(); pintaTodo(); pintaFoto();
 })();
 </script>
 </body>
