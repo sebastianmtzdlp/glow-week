@@ -114,7 +114,7 @@
       <a href="#empezar">Empezar</a><a href="#dia">Tu día</a><a href="#tienda">Tienda</a><a href="#medir">Medir</a><a href="#liderar">Liderar</a>
     </nav>
   </div>
-  <p class="sin" id="sin" hidden>No encontré esa herramienta. Prueba con otra palabra.</p>
+  <p class="sin" id="sin" hidden>No encontré esa herramienta. <a id="sinQ" href="/dudas/">Pregúntalo con tus palabras</a> o <a href="/dudas/#sugiere">sugiere una</a>.</p>
 
   <div class="momentos">
     <section class="momento" id="empezar" aria-labelledby="empezarT">
@@ -185,6 +185,7 @@
   </section>
 
   <section class="sigue" aria-label="Más">
+    <a class="otra" href="/dudas/" data-cuenta="a-dudas"><b>¿No sabes cuál usar?</b><span>Escribe tu duda con tus palabras y te llevo a la que la resuelve. Si no está, sugiérela.</span><i aria-hidden="true">→</i></a>
     <a class="otra" href="/centro/"><b>Centro de la socia</b><span>Tu tienda, la ruta para quien quiere entrar y el material con Sel.</span><i aria-hidden="true">→</i></a>
   </section>
 
@@ -205,6 +206,7 @@ document.getElementById("proLista").innerHTML = PRO.productos.concat([PRO.todo])
     filas.forEach(function(f){ var ok = !v || f.dataset.t.indexOf(v) >= 0; f.hidden = !ok; if(ok) hay++; });
     document.querySelectorAll(".momento").forEach(function(m){ m.hidden = !!v && !m.querySelector(":scope > .fila:not([hidden]), :scope > .pieza:not([hidden])"); });
     document.getElementById("sin").hidden = hay > 0;
+    document.getElementById("sinQ").href = "/dudas/?q=" + encodeURIComponent(q.value.trim());
   });
   q.addEventListener("change", function(){ if(q.value.trim()) H.cuenta("buscar"); });
 })();

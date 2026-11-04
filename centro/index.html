@@ -92,6 +92,17 @@
   .puerta p{font-size:15px}
   .puerta>a{align-content:start;height:100%}
 }
+/* ¿Qué necesitas hoy?: manda a /dudas/ con lo que escribió */
+.pide{margin:28px 0 0;max-width:30em}
+.pide label{display:block;font:400 24px/1.1 var(--serif);margin:0 0 10px}
+.pide label em{font-style:italic}
+.pide div{display:grid;grid-template-columns:1fr auto;gap:8px}
+.pide input{width:100%;min-height:50px;border:1.5px solid var(--ink);border-radius:14px;padding:10px 14px;font-size:17px;background:#fff}
+.pide input:focus{outline:2px solid var(--ink);outline-offset:2px}
+.pide .btn2{min-height:50px}
+.pide p{margin:8px 0 0;font-size:14px;color:var(--muted)}
+.pide p a{color:var(--ink);text-underline-offset:3px}
+@media (min-width:1100px){.pide{grid-column:2;max-width:none}}
 .dudas-mlm{margin-top:14px;font-size:14px;color:var(--muted)}
 </style>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
@@ -112,6 +123,11 @@
         <select id="soy"><option value="">elige tu nombre</option></select>
       </div>
       <p class="soy-nota" id="soyNota">Así, lo que compartes desde aquí le escribe a ti.</p>
+      <form class="pide" action="/dudas/" role="search" autocomplete="off">
+        <label for="cq">¿Qué necesitas <em>hoy?</em></label>
+        <div><input type="search" id="cq" name="q" placeholder="Escríbelo con tus palabras" enterkeyhint="search"><button class="btn2" type="submit" data-cuenta="pide">Buscar</button></div>
+        <p>Te llevo a la herramienta o la guía que lo resuelve. ¿No está? <a href="/dudas/#sugiere" data-cuenta="sugiere">Sugiérela</a>.</p>
+      </form>
     </header>
 
     <ol class="puertas">

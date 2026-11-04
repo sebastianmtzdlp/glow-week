@@ -1,0 +1,327 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="dudas">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>¿Qué necesitas hoy? · Equipo SVH</title>
+<meta name="description" content="Escribe tu duda con tus palabras y te llevamos a la herramienta o la guía del equipo que la resuelve. Y si no está, sugiérela por WhatsApp.">
+<meta property="og:title" content="¿Qué necesitas hoy?">
+<meta property="og:description" content="Escribe tu duda con tus palabras y te llevamos a la herramienta o la guía que la resuelve.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/dudas/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-dudas.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:40px 0 0;max-width:34em}
+
+/* la pregunta */
+.pregunta{margin:26px 0 0;display:grid;grid-template-columns:1fr auto;gap:8px}
+.pregunta input{width:100%;min-height:56px;border:1.5px solid var(--ink);border-radius:14px;padding:12px 16px;font-size:18px;background:#fff}
+.pregunta input::placeholder{color:#8A8EAA}
+.pregunta input:focus{outline:2px solid var(--ink);outline-offset:2px;border-color:var(--ink)}
+.pregunta .btn2{min-height:56px}
+.prueba{margin:12px 0 0;font-size:15px;color:var(--muted)}
+.prueba button{font:inherit;color:var(--ink);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+
+/* la respuesta: se lee como una contestación, no como un resultado de buscador */
+.resp{margin:28px 0 0}
+.resp[hidden]{display:none}
+.contesta{border-top:2px solid var(--ink);padding:18px 0 0}
+.lleva{margin:0;font:400 italic 19px/1.3 var(--serif);color:var(--muted)}
+.contesta h2{margin:6px 0 0;font-size:clamp(32px,8.5vw,44px)}
+.contesta .que{margin:10px 0 0;font-size:17px;max-width:30em}
+.contesta .btn{margin-top:18px}
+.tambien{margin:26px 0 0;padding:0;list-style:none}
+.tambien>p{margin:0 0 2px;font:400 italic 17px/1.3 var(--serif);color:var(--muted)}
+.tambien .otra{padding:14px 0}
+.tambien .otra b{font-size:17px}
+.nada{border-top:2px solid var(--ink);padding:18px 0 0}
+.nada h2{font-size:clamp(30px,8vw,40px)}
+.nada p{margin:10px 0 0;max-width:30em}
+.nada .btn{margin-top:18px}
+.limpia{margin:18px 0 0}
+
+/* el índice de dudas */
+.indice{margin:44px 0 0}
+.indice[hidden]{display:none}
+.indice>h2{font-size:clamp(28px,7vw,36px)}
+.grupo{margin:26px 0 0}
+.grupo h3{margin:0;padding:0 0 8px;font:600 13px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink);border-bottom:1px solid var(--ink)}
+.grupo ul{list-style:none;margin:0;padding:0}
+.grupo a{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.grupo a b{font-weight:500;font-size:17px;line-height:1.35}
+.grupo a span{grid-column:1;font-size:14px;color:var(--muted)}
+.grupo a i{grid-row:1 / span 2;grid-column:2;align-self:center;font:500 14px/1 var(--mono);font-style:normal;color:var(--muted)}
+
+/* sugerencias: banda marino, la otra mitad de la página */
+.sugiere{margin:56px -16px 0;background:var(--navy);color:var(--cream);padding:40px 16px 44px}
+.sugiere h2 em{color:var(--pink)}
+.sugiere .bajada{color:#D9DAE6;font-size:17px}
+.sugiere form{margin:26px 0 0;display:grid;gap:18px;max-width:560px}
+.sugiere .etq{color:#fff}
+.sugiere .tipos{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0;padding:0;border:0}
+.sugiere .tipos legend{padding:0;margin:0 0 8px;font-size:14px;font-weight:500;color:#fff}
+.sugiere .tipos button{min-height:48px;border:1px solid rgba(255,255,255,.28);border-radius:12px;background:transparent;color:var(--cream);padding:8px 10px;font-size:15px;line-height:1.2;cursor:pointer;text-align:left;transition:transform 160ms var(--ease)}
+.sugiere .tipos button[aria-pressed=true]{background:#fff;border-color:#fff;color:var(--ink);font-weight:600}
+.sugiere .tipos button:active{transform:scale(.97)}
+.sugiere input,.sugiere textarea{color:var(--ink)}
+.sugiere textarea{min-height:120px}
+.sugiere .fila2{display:grid;gap:18px}
+.sugiere .nota{color:#B9BCD8}
+.sugiere .listo{margin:0;font-size:15px;color:#fff;min-height:1.4em}
+.sugiere .listo button{color:#fff}
+.sugiere :focus-visible{outline-color:#fff}
+.sugiere input:focus,.sugiere textarea:focus{outline-color:#fff}
+
+@media (hover:hover) and (pointer:fine){
+  .grupo a:hover b{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+  .grupo a:hover i{color:var(--ink)}
+  .sugiere .tipos button:hover{border-color:#fff}
+  .prueba button:hover{text-decoration-thickness:2px}
+}
+
+/* escritorio: la pregunta y su respuesta fijas a la izquierda, el índice a la derecha */
+@media (min-width:900px){
+  .wrap{max-width:1180px;padding:0 40px}
+  .cuerpo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:0 72px;align-items:start}
+  .izq{position:sticky;top:0;padding-bottom:24px}
+  .portada{padding-top:64px}
+  .indice{margin-top:64px}
+  .indice[hidden]{display:block}
+  .sugiere{margin:72px 0 0;border-radius:24px;padding:48px 48px 52px;display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:0 64px;align-items:start}
+  .sugiere form{margin-top:0}
+  .sugiere .fila2{grid-template-columns:1fr 1fr}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/centro/">Centro de la socia</a>
+  </div>
+
+  <div class="cuerpo">
+    <div class="izq">
+      <header class="portada">
+        <h1>¿Qué necesitas <em>hoy?</em></h1>
+        <p class="bajada">Escríbelo como se lo dirías a tu líder y te llevo a la herramienta o la guía del equipo que lo resuelve.</p>
+      </header>
+
+      <form class="pregunta" id="fPregunta" role="search" autocomplete="off">
+        <label class="sr" for="q">Tu duda</label>
+        <input type="search" id="q" name="q" placeholder="Escribe tu duda" enterkeyhint="search">
+        <button class="btn2" type="submit">Buscar</button>
+      </form>
+      <p class="prueba" id="prueba">Prueba con <button type="button">no sé a quién escribirle</button>, <button type="button">cuánto me falta para 9%</button> o <button type="button">me dejó en visto</button>.</p>
+
+      <div class="resp" id="resp" aria-live="polite" hidden></div>
+    </div>
+
+    <section class="indice" id="indice" aria-labelledby="iTit">
+      <h2 id="iTit">O elige <em>tu duda</em></h2>
+      <div id="grupos"></div>
+    </section>
+  </div>
+
+  <section class="sugiere" id="sugiere" aria-labelledby="sTit">
+    <div>
+      <h2 id="sTit">¿Te falta <em>algo?</em></h2>
+      <p class="bajada">Una herramienta que no existe, algo que mejorarías o algo que no funciona. Le llega a Sebas por WhatsApp y así decidimos qué armar después.</p>
+    </div>
+    <form id="fSug" novalidate>
+      <fieldset class="tipos" id="tipos">
+        <legend>Es…</legend>
+        <button type="button" data-t="nueva" aria-pressed="true">Una herramienta nueva</button>
+        <button type="button" data-t="mejora" aria-pressed="false">Mejorar algo</button>
+        <button type="button" data-t="falla" aria-pressed="false">Algo no funciona</button>
+        <button type="button" data-t="duda" aria-pressed="false">Una duda sin respuesta</button>
+      </fieldset>
+      <div>
+        <label class="etq" for="sTexto">Cuéntalo</label>
+        <textarea id="sTexto" maxlength="1200" placeholder="Por ejemplo: algo para saber qué regalarle a mi clienta en su cumpleaños"></textarea>
+      </div>
+      <div class="fila2">
+        <div>
+          <label class="etq" for="sNombre">Tu nombre</label>
+          <input type="text" id="sNombre" maxlength="80" autocomplete="given-name">
+        </div>
+        <div>
+          <label class="etq" for="sPagina">¿En qué página? <span style="font-weight:400;color:#B9BCD8">(si aplica)</span></label>
+          <input type="text" id="sPagina" maxlength="200" placeholder="Por ejemplo: Mi lista de 50">
+        </div>
+      </div>
+      <div>
+        <button class="btn" type="submit" id="sManda">Mandar por WhatsApp</button>
+        <p class="nota">Se abre WhatsApp con tu mensaje listo; solo le das enviar.</p>
+        <p class="listo" id="sListo" role="status"></p>
+      </div>
+    </form>
+  </section>
+
+  <section class="sigue" aria-label="Más">
+    <a class="otra" href="/herramientas/gratis/"><b>Herramientas gratis</b><span>Las 27, por sección y con buscador.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/guias/"><b>Guías del equipo</b><span>Tu primer mes, tu camino y las estrategias, en orden.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi. Lo que manda es lo vigente en tu Back Office.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/dudas/preguntas.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var D = window.DUDAS, esc = H.esc;
+  /* A quién le llegan las sugerencias: Sebas (mismo número que en _data/equipo.json). */
+  var WA_SUGERENCIAS = "525543506136";
+  var SB = "https://ctutqqstqjdngxdjzckf.supabase.co", SB_KEY = "sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk";
+  var TIPOS = {nueva:"Una herramienta nueva", mejora:"Mejorar algo", falla:"Algo no funciona", duda:"Una duda sin respuesta"};
+
+  /* ---------- buscar ---------- */
+  function norm(t){ return String(t || "").normalize("NFD").replace(/[̀-ͯ]/g, "").toLowerCase().replace(/[^a-z0-9% ]+/g, " ").replace(/\s+/g, " ").trim(); }
+  var VACIAS = " a al algo alguien ando aqui como con cual cuando de del donde el ella en es esa ese eso esta este esto estoy hay hago hacer la las le les lo los me mas mi mis muy no o para pero por porque puedo que quiero se si sin su sus te tengo ti tu tus un una uno unos y ya yo ".split(" ").filter(Boolean);
+  var vacia = {}; VACIAS.forEach(function(w){ vacia[w] = 1; });
+  vacia.no = 0; /* "no" cuenta: "no contesta", "no vendí" */
+  function raiz(w){ return w.length > 5 ? w.slice(0, 5) : w; }
+
+  D.lista.forEach(function(d, i){
+    d.i = i;
+    var claves = d.k.split(",").map(norm).filter(Boolean);
+    d.frases = claves.filter(function(c){ return c.indexOf(" ") > 0; });
+    d.pal = [];
+    claves.forEach(function(c){ if(c.indexOf(" ") < 0 && !vacia[c] && d.pal.indexOf(c) < 0) d.pal.push(c); });
+    d.pp = norm(d.p + " " + d.n).split(" ").filter(function(w){ return w.length > 2 && !vacia[w]; });
+  });
+
+  function parecido(t, w, ultima){
+    if(t === w) return 3;
+    var tn = t.replace("%", ""), wn = w.replace("%", "");
+    if(/^\d+$/.test(tn) && tn === wn) return 3;
+    if(t.length >= 4 && w.length >= 4 && (w.indexOf(t) === 0 || t.indexOf(w) === 0)) return 2;
+    if(t.length >= 5 && w.length >= 5 && raiz(t) === raiz(w)) return 2;
+    if(ultima && t.length >= 3 && w.indexOf(t) === 0) return 1;
+    return 0;
+  }
+  function busca(texto){
+    var qn = norm(texto); if(!qn) return [];
+    var toks = qn.split(" ").filter(function(w){ return w && !vacia[w]; });
+    var conEsp = " " + qn + " ";
+    return D.lista.map(function(d){
+      var s = 0;
+      d.frases.forEach(function(f){ if(conEsp.indexOf(" " + f + " ") >= 0) s += 5; });
+      toks.forEach(function(t, j){
+        var ult = j === toks.length - 1, mejor = 0;
+        d.pal.forEach(function(w){ mejor = Math.max(mejor, parecido(t, w, ult)); });
+        if(mejor < 1) d.pp.forEach(function(w){ if(parecido(t, w, ult) >= 2) mejor = 1; });
+        s += mejor;
+      });
+      return {d: d, s: s};
+    }).filter(function(x){ return x.s >= 2; }).sort(function(a, b){ return b.s - a.s || a.d.i - b.d.i; }).map(function(x){ return x.d; })
+      .filter(function(d, j, arr){ /* sin repetir la misma página */
+        var base = d.a.split("#")[0];
+        return !arr.slice(0, j).some(function(o){ return o.a === d.a || (o.n === d.n) || (o.a.split("#")[0] === base && o.a.indexOf("#") < 0 && d.a.indexOf("#") < 0); });
+      });
+  }
+
+  /* El nombre con la última palabra en cursiva, como el resto del sitio */
+  function titulo(n){ var p = esc(n).split(" "); if(p.length < 2) return p[0]; var u = p.pop(); return p.join(" ") + " <em>" + u + "</em>"; }
+
+  var ultimo = "";
+  function pinta(texto, contar){
+    var t = texto.trim(), r = $("resp");
+    $("indice").hidden = !!t;
+    if(!t){ r.hidden = true; r.innerHTML = ""; return; }
+    var res = busca(t);
+    r.hidden = false;
+    if(res.length){
+      var d = res[0];
+      r.innerHTML = '<article class="contesta"><p class="lleva">Para eso está</p><h2>' + titulo(d.n) + '</h2><p class="que">' + esc(d.r) + '</p>' +
+        '<a class="btn" href="' + d.a + '" data-cuenta="abre-' + d.i + '">Abrir</a></article>' +
+        (res.length > 1 ? '<div class="tambien"><p>También te puede servir</p>' + res.slice(1, 3).map(function(o){
+          return '<a class="otra" href="' + o.a + '" data-cuenta="abre-' + o.i + '"><b>' + esc(o.n) + '</b><span>' + esc(o.p) + '</span><i aria-hidden="true">→</i></a>';
+        }).join("") + '</div>' : '') +
+        '<p class="limpia"><button class="enlace" type="button" data-limpia>Ver todas las dudas</button></p>';
+      if(contar && t !== ultimo) H.cuenta("pregunta/" + d.i, d.p);
+    } else {
+      r.innerHTML = '<div class="nada"><h2>Esa todavía <em>no la tengo</em></h2><p>Mándamela y vemos si la armamos. Le llega a Sebas por WhatsApp con lo que escribiste.</p>' +
+        '<button class="btn" type="button" data-pide>Mandar mi duda</button>' +
+        '<p class="limpia"><button class="enlace" type="button" data-limpia>Ver todas las dudas</button></p></div>';
+      if(contar && t !== ultimo) H.cuenta("sin-respuesta");
+    }
+    if(contar) ultimo = t;
+  }
+
+  var q = $("q"), espera;
+  q.addEventListener("input", function(){ clearTimeout(espera); espera = setTimeout(function(){ pinta(q.value, false); }, 120); });
+  q.addEventListener("change", function(){ pinta(q.value, true); });
+  $("fPregunta").addEventListener("submit", function(e){ e.preventDefault(); clearTimeout(espera); pinta(q.value, true); q.blur(); $("resp").scrollIntoView({block:"nearest"}); });
+  $("prueba").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; q.value = b.textContent; pinta(q.value, true); });
+  $("resp").addEventListener("click", function(e){
+    if(e.target.closest("[data-limpia]")){ q.value = ""; pinta("", false); q.focus(); return; }
+    if(e.target.closest("[data-pide]")){ marca("duda"); $("sTexto").value = q.value.trim(); $("sugiere").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth"}); setTimeout(function(){ $("sTexto").focus({preventScroll:true}); }, 350); }
+  });
+
+  /* ---------- índice ---------- */
+  $("grupos").innerHTML = D.grupos.map(function(g){
+    var filas = D.lista.filter(function(d){ return d.g === g[0]; });
+    return '<div class="grupo"><h3>' + esc(g[1]) + '</h3><ul>' + filas.map(function(d){
+      return '<li><a href="' + d.a + '" data-cuenta="indice-' + d.i + '"><b>' + esc(d.p) + '</b><span>' + esc(d.n) + '</span><i aria-hidden="true">→</i></a></li>';
+    }).join("") + '</ul></div>';
+  }).join("");
+
+  /* ---------- sugerencias ---------- */
+  var tipo = "nueva";
+  function marca(t){ tipo = t; [].forEach.call($("tipos").querySelectorAll("button"), function(b){ b.setAttribute("aria-pressed", b.dataset.t === t ? "true" : "false"); }); }
+  $("tipos").addEventListener("click", function(e){ var b = e.target.closest("button[data-t]"); if(b) marca(b.dataset.t); });
+
+  H.equipo().then(function(lista){
+    var s = H.miSlug(), c = lista.filter(function(x){ return x.slug === s; })[0];
+    if(c && !$("sNombre").value) $("sNombre").value = c.nombre;
+  });
+
+  function mensaje(){
+    var texto = $("sTexto").value.trim(), nombre = $("sNombre").value.trim(), pag = $("sPagina").value.trim();
+    return "Hola Sebas, una sugerencia para mitienda.beauty\n\n*" + TIPOS[tipo] + "*\n" + texto +
+      (pag ? "\n\nPágina: " + pag : "") + (nombre ? "\n\nDe: " + nombre : "");
+  }
+  $("fSug").addEventListener("submit", function(e){
+    e.preventDefault();
+    var texto = $("sTexto").value.trim();
+    if(texto.length < 3){ $("sListo").textContent = "Escribe qué te falta o qué mejorarías."; $("sTexto").focus(); return; }
+    var msg = mensaje();
+    window.open(H.wa(msg, WA_SUGERENCIAS), "_blank", "noopener");
+    /* Copia en Supabase (supabase/sugerencias.sql). Si la tabla aún no existe, no pasa nada: WhatsApp ya se abrió. */
+    try{
+      fetch(SB + "/rest/v1/sugerencias", {method:"POST", keepalive:true,
+        headers:{apikey: SB_KEY, "Content-Type":"application/json", Prefer:"return=minimal"},
+        body: JSON.stringify({tipo: tipo, texto: texto.slice(0, 1200), nombre: $("sNombre").value.trim().slice(0, 80) || null,
+          pagina: $("sPagina").value.trim().slice(0, 200) || null, desde: (document.referrer || "").slice(0, 200) || null})
+      }).catch(function(){});
+    }catch(_){}
+    H.cuenta("sugerencia/" + tipo);
+    $("sListo").innerHTML = 'Listo, se abrió WhatsApp. ¿No se abrió? <button class="enlace" type="button" id="sCopia">Copia el mensaje</button> y mándalo al 55 4350 6136.';
+  });
+  $("sListo").addEventListener("click", function(e){ if(e.target.id === "sCopia") H.copia(mensaje(), "Mensaje copiado"); });
+
+  /* ---------- llegar con algo ya escrito: /dudas/?q=…  ·  /dudas/?sugiere=…#sugiere ---------- */
+  try{
+    var u = new URLSearchParams(location.search);
+    if(u.get("q")){ q.value = u.get("q").slice(0, 120); pinta(q.value, true); }
+    if(u.get("sugiere")){ $("sTexto").value = u.get("sugiere").slice(0, 1200); marca(u.get("tipo") && TIPOS[u.get("tipo")] ? u.get("tipo") : "duda"); }
+    if(u.get("pagina")) $("sPagina").value = u.get("pagina").slice(0, 200);
+  }catch(_){}
+})();
+</script>
+</body>
+</html>
