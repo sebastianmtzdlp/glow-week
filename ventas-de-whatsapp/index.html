@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="ventas-wa">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Ventas por WhatsApp</title>
+<meta name="description" content="Uso interno del equipo: tarjetas de producto y catálogo en PDF con tu precio, tu link y tu QR.">
+<meta name="robots" content="noindex,nofollow">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<link rel="stylesheet" href="/ventas-de-whatsapp/tarjetas.css">
+<!-- inauguracion: css -->
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/centro/">EQUIPO SVH</a>
+    <a class="volver" href="/centro/">Centro de la socia</a>
+  </div>
+
+  <header class="portada">
+    <p class="interna">SOLO PARA EL EQUIPO</p>
+    <h1>Ventas por <em>WhatsApp</em></h1>
+    <p class="bajada">Tus productos con tu precio, tu link y tu QR, en imagen para el chat o en un catálogo PDF. Todo sale con el diseño del equipo.</p>
+    <div class="quien">
+      <div><label class="etq" for="who">Soy</label><select id="who"><option value="">Elige tu nombre</option></select></div>
+      <div class="liga-mia" id="ligaMia" hidden><svg viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a4 4 0 0 0 5.66 0l3-3a4 4 0 0 0-5.66-5.66l-1 1"/><path d="M14 10a4 4 0 0 0-5.66 0l-3 3a4 4 0 0 0 5.66 5.66l1-1"/></svg><span id="ligaTxt"></span></div>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <div class="seg" role="tablist" aria-label="Secciones">
+      <button role="tab" aria-pressed="true" aria-selected="true" data-t="tarjetas" id="b-tarjetas">Tarjetas y catálogo</button>
+      <button role="tab" aria-pressed="false" aria-selected="false" data-t="inauguracion" id="b-inauguracion" hidden>Venta de inauguración</button>
+    </div>
+  </div>
+
+  <section class="panel" id="t-tarjetas" role="tabpanel" aria-labelledby="b-tarjetas">
+    <div class="cuerpo">
+      <div class="principal">
+        <section class="paso" aria-labelledby="h2p">
+          <div class="cab"><h2 id="h2p"><span class="n">1</span>Tu <em>descuento</em></h2><p>Sobre el precio público. Se aplica a todo lo que elijas.</p></div>
+          <div class="desc">
+            <div class="seg" role="group" aria-label="Descuento" id="descSeg"></div>
+            <div class="otro"><label for="descOtro">Otro</label><input type="number" id="descOtro" inputmode="numeric" min="0" max="90" step="1" placeholder="%"><span class="num" style="color:var(--muted)">%</span></div>
+            <p class="ej" id="descEj"></p>
+          </div>
+        </section>
+
+        <section class="paso" aria-labelledby="h3p">
+          <div class="cab"><h2 id="h3p"><span class="n">2</span>Tus <em>productos</em></h2><p>Toca para elegir. Puedes elegir varios.</p></div>
+          <div class="buscar"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M20 20l-4.2-4.2"/></svg><input type="text" id="q" placeholder="Busca por nombre o código" autocomplete="off" aria-label="Buscar producto"></div>
+          <div class="chips" id="chips" role="group" aria-label="Categorías"></div>
+          <p class="cuantos" id="cuantos">Cargando productos…</p>
+          <div class="grid" id="grid"></div>
+          <button class="btn2 mas" id="mas" type="button" hidden>Ver más</button>
+        </section>
+      </div>
+
+      <aside class="lado">
+        <section class="paso" aria-labelledby="h4p">
+          <div class="cab"><h2 id="h4p"><span class="n">3</span>Tus <em>precios</em></h2><p>¿Uno a precio especial? Escríbelo y ese gana sobre el descuento.</p></div>
+          <ul class="elegidos" id="eleg"></ul>
+          <p class="vacio" id="vacio">Aún no eliges productos.</p>
+          <label class="conwa"><input type="checkbox" id="conWa"><span>Poner también mi WhatsApp<small id="waTxt"></small></span></label>
+        </section>
+
+        <section class="paso" aria-labelledby="h5p" id="paso5">
+          <div class="cab"><h2 id="h5p"><span class="n">4</span>Para el <em>chat</em></h2><p id="vistaSub">Así se ve antes de mandarla.</p></div>
+          <div class="opts">
+            <div class="fila"><span class="etq">Formato</span>
+              <div class="seg" role="group" aria-label="Formato" id="fmt">
+                <button type="button" data-f="cuadrada" aria-pressed="true">Chat</button>
+                <button type="button" data-f="story" aria-pressed="false">Estado</button>
+              </div>
+            </div>
+            <div class="fila" id="filaModo" hidden><span class="etq">Varios productos</span>
+              <div class="seg" role="group" aria-label="Cómo armar" id="modo">
+                <button type="button" data-m="una" aria-pressed="true">Una por producto</button>
+                <button type="button" data-m="junta" aria-pressed="false">Todos juntos</button>
+              </div>
+            </div>
+            <div class="fila"><label class="etq" for="frase">Texto arriba <span class="opc">(opcional)</span></label><input type="text" id="frase" maxlength="40" placeholder="Ej. Llegó para esta semana"></div>
+          </div>
+          <div class="vistas" id="vistas"></div>
+          <p class="fotonota" id="fotoNota" hidden></p>
+          <div class="salida">
+            <button class="btn" id="share" type="button" disabled>Compartir</button>
+            <button class="btn2" id="dl" type="button" disabled>Descargar</button>
+            <button class="enlace" id="copiaTxt" type="button" disabled>Copiar mensaje</button>
+          </div>
+          <div class="texto" id="msg" hidden></div>
+          <p class="nota">En el celular, <b>Compartir</b> abre el menú de tu teléfono para mandarla por WhatsApp. Cada imagen lleva tu link, tu QR y una marca de agua con tu tienda.</p>
+        </section>
+
+        <section class="paso" aria-labelledby="h6p" id="paso6">
+          <div class="cab"><h2 id="h6p"><span class="n">5</span>Catálogo en <em>PDF</em></h2><p>Lo que elegiste, en un catálogo con portada. Cada producto se puede tocar y abre tu tienda.</p></div>
+          <div class="opts">
+            <div class="fila"><label class="etq" for="pdfTit">Título</label><input type="text" id="pdfTit" maxlength="60"></div>
+            <div class="fila"><label class="etq" for="pdfSub">Debajo del título <span class="opc">(opcional)</span></label><input type="text" id="pdfSub" maxlength="70"></div>
+          </div>
+          <div class="pdfvista" id="pdfVista"></div>
+          <div class="salida">
+            <button class="btn2" id="pdfDl" type="button" disabled>Descargar PDF</button>
+            <button class="enlace" id="pdfSh" type="button" disabled hidden>Compartir PDF</button>
+          </div>
+          <p class="nota" id="pdfNota"></p>
+        </section>
+      </aside>
+    </div>
+    <div class="fija" id="fija"><span id="fijaTxt">0 elegidos</span><a class="btn" href="#paso5" id="fijaBtn">Ver tarjeta</a></div>
+  </section>
+
+  <section class="panel" id="t-inauguracion" role="tabpanel" aria-labelledby="b-inauguracion" hidden>
+    <div id="inauguracion"></div>
+  </section>
+
+  <section class="sigue" aria-label="Más herramientas">
+    <a class="otra" href="/mentorias/herramientas/mi-tienda/#seg"><b>Contestar un pedido</b><span>Pega el pedido y se arma la respuesta con el total y el apartado.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/pedidos/"><b>Pedidos y cobros</b><span>Quién ya pagó, qué falta entregar y el mensaje de cobro.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/objeciones/"><b>¿Y si me dice que no?</b><span>Qué contestar cuando te dicen «está caro» o «luego te digo».</span><i aria-hidden="true">→</i></a>
+  </section>
+  <footer><p>Equipo SVH · mitienda.beauty · Uso interno. No es material oficial de Farmasi. Precios públicos del catálogo México 2026; confirma existencias antes de cobrar.</p></footer>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcode-generator/1.4.4/qrcode.min.js"></script>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/ventas-de-whatsapp/marca.js"></script>
+<script src="/ventas-de-whatsapp/ventas.js"></script>
+<script src="/ventas-de-whatsapp/tarjetas.js"></script>
+<!-- inauguracion: js -->
+</body>
+</html>
