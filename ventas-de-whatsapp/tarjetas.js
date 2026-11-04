@@ -125,17 +125,11 @@
 
   /* ---------- 2. Descuento ---------- */
   var DESC = [0, 10, 15, 20, 25, 30];
-  $("descSeg").innerHTML = DESC.map(function(d){ return '<button type="button" data-d="' + d + '">' + (d ? d + "%" : "Sin") + '</button>'; }).join("");
-  function marcaDesc(){
-    var enLista = DESC.indexOf(S.desc) >= 0;
-    $("descSeg").querySelectorAll("button").forEach(function(b){ b.setAttribute("aria-pressed", enLista && +b.dataset.d === S.desc); });
-    $("descOtro").value = enLista ? "" : S.desc;
-    var ej = LIST.filter(function(p){ return p.pub >= 300; })[0] || LIST[0];
-    $("descEj").innerHTML = ej ? (S.desc ? "Ejemplo: algo de <b class=\"num\">" + money(ej.pub) + "</b> queda en <b class=\"num\">" + money(precioCon(ej.pub, S.desc)) + "</b>." : "Sin descuento: cada producto sale a su precio público.") : "";
-  }
+  /* Ya no hay paso de descuento: lo de su tienda sale a precio de tienda y lo demás a precio público.
+     Para algo distinto, la socia escribe el precio especial de ese producto. */
+  S.desc = 0;
+  function marcaDesc(){}
   function precioCon(pub, d){ return Math.round(pub * (1 - d / 100)); }
-  $("descSeg").onclick = function(e){ var b = e.target.closest("button"); if(!b) return; S.desc = +b.dataset.d; save(); marcaDesc(); pintaGrid(); pintaEleg(); pinta(); H.cuenta("descuento-" + S.desc); };
-  $("descOtro").oninput = function(){ var v = Math.max(0, Math.min(90, Math.round(+this.value || 0))); S.desc = v; save(); marcaDesc(); $("descOtro").value = this.value; pintaGrid(); pintaEleg(); pinta(); };
 
   function precioDe(p){
     var e = S.esp[p.code];
@@ -156,7 +150,7 @@
   var check = '<span class="ok" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></span>';
   function pintaGrid(){
     var l = LIST.filter(function(p){ return (!CATSEL || p.cat === CATSEL) && (!Q || norm(p.name + " " + p.shade + " " + p.code).indexOf(Q) >= 0); });
-    $("cuantos").textContent = l.length + (l.length === 1 ? " producto" : " productos") + (S.desc ? " · precios con " + S.desc + "% menos" : " · precio público");
+    $("cuantos").textContent = l.length + (l.length === 1 ? " producto" : " productos");
     $("grid").innerHTML = l.slice(0, LIM).map(function(p){
       var pr = precioDe(p), on = S.sel.indexOf(p.code) >= 0;
       return '<button type="button" class="prod" data-code="' + p.code + '" aria-pressed="' + on + '">' + check + '<span class="im">' + thumb(p) + '</span><b>' + esc(nombreDe(p)) + '</b><span class="pp">' + (pr.fin < pr.pub ? '<s>' + money(pr.pub) + '</s>' : '') + '<span>' + money(pr.fin) + '</span></span></button>';

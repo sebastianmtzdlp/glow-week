@@ -15,9 +15,6 @@
 .liga-mia svg{flex:none;width:22px;height:22px}
 
 /* descuento */
-.desc{margin-top:18px}
-.desc .seg{grid-auto-columns:minmax(0,1fr)}
-.desc .seg button{font-family:var(--mono);font-variant-numeric:tabular-nums;padding:8px 4px}
 .otro{display:flex;align-items:center;gap:10px;margin-top:12px}
 .otro label{font-size:15px;color:var(--muted)}
 .otro input{width:96px!important;min-height:42px!important;text-align:right}
