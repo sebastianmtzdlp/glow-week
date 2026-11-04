@@ -812,6 +812,12 @@
       ALL.push({...p, code:c, shade:l, img:c+"_250", agotado: p.agotado || !st, par:pi, tonoLbl:l, nuevo:false, flashEnds:null}); FAM[pi].push(ALL.length-1); });
     p.ntonos = t.length; });
   const famOf = i => ALL[i].par!=null ? ALL[i].par : i;
+  // Precio especial de la socia: llega en la liga de /ventas-de-whatsapp/ (?agrega=1000991:899) y se guarda en este navegador.
+  // Solo baja hasta el precio público y nunca a 0. La socia confirma el total por WhatsApp antes de cobrar.
+  const EK = "glow_esp_" + location.pathname.split("/").filter(Boolean)[0];
+  const ESPP = (()=>{ try{ return JSON.parse(localStorage.getItem(EK)||"{}"); }catch(_){ return {}; } })();
+  const ponEsp = (p, v) => { v = Math.round(+v*100)/100; if (!(v>0) || v > p.retail) return false; p.price = v; p.especial = true; return true; };
+  ALL.forEach(p=>{ if (ESPP[p.code]!=null && !ponEsp(p, ESPP[p.code])) delete ESPP[p.code]; });
 
   // Variantes: casi todas son tonos; en promos.json "variante": "sabor" dice "4 sabores" y "Elegir sabor"
   const VT = p => p.variante || "tono", VTS = p => VT(p) + (/[aeiou]$/.test(VT(p)) ? "s" : "es");
@@ -981,7 +987,7 @@
   function waLink(){
     const {t,s} = totals();
     const name = $("cName").value.trim();
-    const items = ALL.map((p,i)=>cart[i]?`• ${cart[i]} x ${p.name} ${p.shade} (${p.code}) — ${money(p.price)}`:null).filter(Boolean);
+    const items = ALL.map((p,i)=>cart[i]?`• ${cart[i]} x ${p.name} ${p.shade} (${p.code}) — ${money(p.price)}${p.especial?" (precio especial)":""}`:null).filter(Boolean);
     let entrega = `Entrega: ${$("cDel").value}`;
     if (isShip()) entrega += `\nDirección: ${v("aStreet")}, Col. ${v("aCol")}, C.P. ${v("aCP")}, ${v("aCity")}` + (v("aRef")?`\nReferencias: ${v("aRef")}`:"");
     const meta = t>=GOAL ? `Mi pedido pasa de ${money(GOAL)}: envío gratis y ${giftLabel}.` : `Me faltan ${money(GOAL-t)} para el envío gratis.`;
@@ -1373,7 +1379,10 @@
   // ?agrega=1000991 (o varios: ?agrega=1000991,1002724) mete esos productos al pedido al abrir la liga.
   // Sale en el mensaje de /ventas-de-whatsapp/. No duplica si la clienta vuelve a abrir la liga.
   { const aq = new URLSearchParams(location.search).get("agrega"); if (aq) {
-      const ks = aq.split(/[,\s]+/).map(c=>ALL.findIndex(x=>x.code===c)).filter((k,j,a)=>k>=0 && a.indexOf(k)===j);
+      const pr = {};
+      const ks = aq.split(/[,\s]+/).map(t=>{ const [c,v] = t.split(":"); const k = ALL.findIndex(x=>x.code===c); if (k>=0 && v) pr[k] = v; return k; }).filter((k,j,a)=>k>=0 && a.indexOf(k)===j);
+      Object.keys(pr).forEach(k=>{ const p = ALL[+k]; if (ponEsp(p, pr[k])) ESPP[p.code] = p.price; });
+      try{ localStorage.setItem(EK, JSON.stringify(ESPP)); }catch(_){}
       const ok = ks.filter(k=>!ALL[k].agotado);
       ok.forEach(k=>{ if(!cart[k]) cart[k]=1; gc("agrega/"+ALL[k].code, ALL[k].name); gcs("agrega", ALL[k].code, ALL[k].name); refreshCard(k); });
       if (ok.length) update();

@@ -214,8 +214,10 @@
   $("pdfSub").oninput = function(){ S.pdfSub = this.value; save(); clearTimeout(tm); tm = setTimeout(pintaPDF, 300); };
 
   /* ?agrega= abre su tienda con el producto ya en el pedido de la clienta (lo lee el tablero) */
-  function ligaProd(p){ if(!YO) return ""; return "https://mitienda.beauty/" + YO.slug + "/" + (TIE[p.code] ? "?agrega=" + encodeURIComponent(p.code) : ""); }
-  function ligaTodos(l){ var c = l.filter(function(p){ return TIE[p.code]; }).map(function(p){ return p.code; }); return YO && c.length > 1 ? "https://mitienda.beauty/" + YO.slug + "/?agrega=" + c.join(",") : ""; }
+  /* con precio especial a mano la liga lo lleva (código:precio) y su tienda lo respeta */
+  function codLiga(p){ var r = precioDe(p); return p.code + (r.esp ? ":" + r.fin : ""); }
+  function ligaProd(p){ if(!YO) return ""; return "https://mitienda.beauty/" + YO.slug + "/" + (TIE[p.code] ? "?agrega=" + codLiga(p) : ""); }
+  function ligaTodos(l){ var c = l.filter(function(p){ return TIE[p.code]; }).map(codLiga); return YO && c.length > 1 ? "https://mitienda.beauty/" + YO.slug + "/?agrega=" + c.join(",") : ""; }
   function ligaTienda(){ return YO ? "https://mitienda.beauty/" + YO.slug + "/" : ""; }
   function ligaCorta(){ return YO ? "mitienda.beauty/" + YO.slug : "mitienda.beauty"; }
   function off(pr){ return pr.fin < pr.pub ? Math.round((1 - pr.fin / pr.pub) * 100) : 0; }
