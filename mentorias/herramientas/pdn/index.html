@@ -19,7 +19,9 @@
 .borrador b{font-weight:600}
 
 /* pestañas: píldora sobre soft, la activa en blanco */
-.tabs{display:flex;gap:4px;background:var(--soft);border-radius:999px;padding:4px;margin:22px 0 0;position:sticky;top:8px;z-index:6;max-width:520px}
+.tabs-wrap{position:sticky;top:0;z-index:6;background:#fff;padding:10px 0;margin:12px 0 0;border-bottom:1px solid transparent}
+.tabs-wrap.pegado{border-bottom-color:var(--line)}
+.tabs{display:flex;gap:4px;background:var(--soft);border-radius:999px;padding:4px;max-width:520px}
 .tabs button{flex:1;min-height:44px;border:0;border-radius:999px;background:none;font-weight:600;font-size:15px;color:var(--muted);cursor:pointer;transition:transform 160ms var(--ease)}
 .tabs button[aria-selected=true]{background:#fff;color:var(--accent-ink);box-shadow:0 1px 2px rgba(38,42,74,.08)}
 .tabs button:active{transform:scale(.97)}
@@ -138,8 +140,9 @@
 }
 @media (min-width:900px){
   .portada{grid-template-columns:1.1fr .9fr;align-items:end;gap:56px;padding:56px 0 20px}
-  .armar{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:start}
-  .vista{position:sticky;top:76px}
+  .wrap{max-width:1320px}
+  .armar{grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:56px;align-items:start}
+  .vista{position:sticky;top:86px}
   .miniaturas{grid-template-columns:repeat(5,minmax(0,1fr))}
   .paso{grid-template-columns:360px minmax(0,1fr);gap:8px 40px;align-items:start}
   .paso canvas{grid-row:1 / span 6}
@@ -175,11 +178,11 @@
     <p class="borrador"><b>Borrador para revisar.</b> El orden, los datos de Farmasi, las reglas de oro y los sets salen de la PDN de Sel de noviembre de 2026. El guion es nuestro y falta que Sel lo revise.</p>
   </header>
 
-  <nav class="tabs" role="tablist" aria-label="Secciones">
+  <div class="tabs-wrap" id="tabsWrap"><nav class="tabs" role="tablist" aria-label="Secciones">
     <button type="button" role="tab" id="t-armar" aria-controls="armar" aria-selected="true">Armar</button>
     <button type="button" role="tab" id="t-guion" aria-controls="guion" aria-selected="false">Guion</button>
     <button type="button" role="tab" id="t-ensayar" aria-controls="ensayar" aria-selected="false">Ensayar</button>
-  </nav>
+  </nav></div>
 
   <!-- ARMAR -->
   <section class="panel" id="armar" role="tabpanel" aria-labelledby="t-armar">
@@ -958,6 +961,7 @@ $("antes").innerHTML = ANTES.map(function(t, k){ return '<li><label><input type=
 $("antes").addEventListener("change", function(e){ st.antes[e.target.dataset.k] = e.target.checked; guarda(); });
 
 /* ---------- pestañas ---------- */
+try{ new IntersectionObserver(function(e){ $("tabsWrap").classList.toggle("pegado", e[0].intersectionRatio < 1); }, {threshold: [1], rootMargin: "-1px 0px 0px 0px"}).observe($("tabsWrap")); }catch(_){}
 var TABS = ["armar","guion","ensayar"];
 function abre(t, push){
   TABS.forEach(function(x){ $(x).hidden = x !== t; $("t-" + x).setAttribute("aria-selected", x === t ? "true" : "false"); });
