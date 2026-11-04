@@ -5,7 +5,7 @@
   var LSK = "glow_tarjetas";
   var S = Object.assign({desc: 0, pdfTit: "", pdfSub: "", fmt: "cuadrada", modo: "una", frase: "", conWa: false, sel: [], esp: {}, nom: {}}, H.lee(LSK, {}));
   function save(){ H.guarda(LSK, S); }
-  var money = function(n){ return "$" + Math.round(n).toLocaleString("es-MX"); };
+  var money = function(n){ var c = Math.round(n * 100) / 100; return "$" + c.toLocaleString("es-MX", c % 1 ? {minimumFractionDigits: 2, maximumFractionDigits: 2} : {maximumFractionDigits: 0}); };
   var esc = H.esc;
 
   /* ---------- Datos: catálogo, fuera del catálogo y tablero (sin inventar precios) ---------- */
@@ -75,6 +75,34 @@
     return FOTO[p.code];
   }
 
+  /* ---------- Precios de la tienda de la socia (los mismos que ve su clienta en mitienda.beauty/<slug>/) ----------
+     Se leen de <slug>/promos.json + promos-base.json igual que el tablero: favoritos, venta especial vigente,
+     flash sale vigente y agotados. Si cambia la tienda, cambia aquí solo. */
+  var TIE = {}; /* código -> {price, retail} de lo que su tienda vende hoy */
+  function enVentana(o, now){ return (!o.desde || now >= new Date(o.desde)) && (!o.hasta || now <= new Date(o.hasta)); }
+  function armaTienda(D){
+    var now = new Date(), t = {}, ago = {};
+    (D.agotados || []).forEach(function(c){ ago[c] = 1; });
+    var esp = D.especial && (D.especial.productos || []).length && enVentana(D.especial, now) ? D.especial.productos : [];
+    var fav = D.favoritos && D.favoritos.productos ? D.favoritos.productos : [];
+    esp.concat(fav, D.productos || []).forEach(function(p){
+      if(!p.code || t[p.code] || ago[p.code] || !enVentana(p, now)) return;
+      var f = p.flash && enVentana(p.flash, now) ? p.flash : null, pr = +(f ? f.price : p.price);
+      if(pr > 0) t[p.code] = {price: pr, retail: +p.retail || pr};
+    });
+    return t;
+  }
+  var CARGA = {};
+  function cargaTienda(slug){
+    if(!slug){ TIE = armaTienda(BASE); return Promise.resolve(); }
+    if(!CARGA[slug]) CARGA[slug] = fetch("/" + slug + "/promos.json?v=" + Date.now(), {cache: "no-store"}).then(function(x){ return x.json(); }).catch(function(){ return {}; }).then(function(L){
+      var B = BASE, D = Object.assign({}, B, L, {venta: Object.assign({}, B.venta, L.venta || {})});
+      return armaTienda(D);
+    });
+    return CARGA[slug].then(function(t){ if(YO && YO.slug === slug) TIE = t; });
+  }
+  TIE = armaTienda(BASE);
+
   /* ---------- Quién eres (viene del selector de arriba, ventas.js) ---------- */
   var YO = null, waBonito = VentasWA.waBonito, tiendaDe = VentasWA.tienda, PDF_AUTO = "";
   $("conWa").checked = !!S.conWa;
@@ -87,6 +115,7 @@
     if(!$("pdfTit").value || $("pdfTit").value === PDF_AUTO){ $("pdfTit").value = S.pdfTit || auto; }
     PDF_AUTO = auto;
     if(typeof pinta === "function") pinta();
+    cargaTienda(YO && YO.slug).then(function(){ if(typeof pinta === "function"){ marcaDesc(); pintaGrid(); pintaEleg(); pinta(); } });
   }
 
   /* ---------- 2. Descuento ---------- */
@@ -106,6 +135,8 @@
   function precioDe(p){
     var e = S.esp[p.code];
     if(e != null && e !== "" && +e > 0) return {fin: Math.round(+e), pub: p.pub, esp: true};
+    var t = TIE[p.code];
+    if(t) return {fin: t.price, pub: Math.max(t.retail, t.price), tienda: true}; /* igual que en su tienda: el link lo agrega a ese precio */
     return {fin: precioCon(p.pub, S.desc), pub: p.pub, esp: false};
   }
   function nombreDe(p){ return (S.nom[p.code] || "").trim() || p.name; }
@@ -145,7 +176,7 @@
       return '<li data-code="' + p.code + '"><span class="th">' + thumb(p) + '</span>' +
         '<input class="nom" type="text" value="' + esc(nombreDe(p)) + '" aria-label="Nombre en la tarjeta" maxlength="60">' +
         '<button class="quita" type="button" aria-label="Quitar"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>' +
-        '<div class="precios"><span class="pub">Público ' + money(p.pub) + '</span><label>Especial <input type="number" inputmode="numeric" min="1" step="1" class="esp" placeholder="' + precioCon(p.pub, S.desc) + '" value="' + (S.esp[p.code] || "") + '" aria-label="Precio especial"></label></div></li>';
+        '<div class="precios"><span class="pub">' + (TIE[p.code] && !pr.esp ? "Precio de tu tienda " + money(pr.fin) : "Público " + money(p.pub)) + '</span><label>Especial <input type="number" inputmode="numeric" min="1" step="1" class="esp" placeholder="' + (TIE[p.code] ? TIE[p.code].price : precioCon(p.pub, S.desc)) + '" value="' + (S.esp[p.code] || "") + '" aria-label="Precio especial"></label></div></li>';
     }).join("");
     $("fija").hidden = !l.length;
     $("fijaTxt").textContent = l.length + (l.length === 1 ? " elegido" : " elegidos");
@@ -178,8 +209,8 @@
   $("pdfSub").oninput = function(){ S.pdfSub = this.value; save(); clearTimeout(tm); tm = setTimeout(pintaPDF, 300); };
 
   /* ?agrega= abre su tienda con el producto ya en el pedido de la clienta (lo lee el tablero) */
-  function ligaProd(p){ if(!YO) return ""; return "https://mitienda.beauty/" + YO.slug + "/" + (ENT[p.code] ? "?agrega=" + encodeURIComponent(p.code) : ""); }
-  function ligaTodos(l){ var c = l.filter(function(p){ return ENT[p.code]; }).map(function(p){ return p.code; }); return YO && c.length > 1 ? "https://mitienda.beauty/" + YO.slug + "/?agrega=" + c.join(",") : ""; }
+  function ligaProd(p){ if(!YO) return ""; return "https://mitienda.beauty/" + YO.slug + "/" + (TIE[p.code] ? "?agrega=" + encodeURIComponent(p.code) : ""); }
+  function ligaTodos(l){ var c = l.filter(function(p){ return TIE[p.code]; }).map(function(p){ return p.code; }); return YO && c.length > 1 ? "https://mitienda.beauty/" + YO.slug + "/?agrega=" + c.join(",") : ""; }
   function ligaTienda(){ return YO ? "https://mitienda.beauty/" + YO.slug + "/" : ""; }
   function ligaCorta(){ return YO ? "mitienda.beauty/" + YO.slug : "mitienda.beauty"; }
   function off(pr){ return pr.fin < pr.pub ? Math.round((1 - pr.fin / pr.pub) * 100) : 0; }
@@ -292,7 +323,7 @@
     var cx = lienzo(PW, PH), c = cx[0], x = cx[1], links = [];
     cabecera(x, 96, 130, 64);
     x.textAlign = "left"; x.textBaseline = "alphabetic";
-    x.fillStyle = K.accentInk; x.font = "600 26px 'IBM Plex Mono'"; x.fillText(mesAnio().toUpperCase() + (S.desc && !l.some(function(p){ return precioDe(p).esp; }) ? "  ·  " + S.desc + "% MENOS QUE EL PRECIO PÚBLICO" : ""), 96, 330);
+    x.fillStyle = K.accentInk; x.font = "600 26px 'IBM Plex Mono'"; x.fillText(mesAnio().toUpperCase() + (S.desc && !l.some(function(p){ var r = precioDe(p); return r.esp || r.tienda; }) ? "  ·  " + S.desc + "% MENOS QUE EL PRECIO PÚBLICO" : ""), 96, 330);
     var tit = $("pdfTit").value.trim() || PDF_AUTO || "Catálogo de venta";
     x.fillStyle = K.ink; var fsz = 112; x.font = "400 " + fsz + "px Fraunces";
     var ls = M.lineas(x, tit, PW - 192, 4); while(ls.length > 3 && fsz > 70){ fsz -= 8; x.font = "400 " + fsz + "px Fraunces"; ls = M.lineas(x, tit, PW - 192, 4); }
@@ -389,7 +420,7 @@
   function mensaje(){
     var l = S.sel.map(function(c){ return IDX[c]; });
     var t = l.map(function(p){ var pr = precioDe(p); return "• " + nombreDe(p) + ": " + money(pr.fin) + (pr.fin < pr.pub ? " (antes " + money(pr.pub) + ")" : "") + "\n  " + ligaProd(p); }).join("\n");
-    var todos = ligaTodos(l), alguno = l.some(function(p){ return ENT[p.code]; });
+    var todos = ligaTodos(l), alguno = l.some(function(p){ return TIE[p.code]; });
     var cierre = !YO ? "Te lo aparto por aquí o lo pides directo en mi tienda."
       : todos ? "Para pedir todo de una vez, toca aquí y se agrega solo a tu pedido:\n" + todos + "\n\nO dime por aquí y te lo aparto."
       : alguno ? "Toca el link y se agrega solo a tu pedido. O dime por aquí y te lo aparto."
