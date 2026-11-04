@@ -65,16 +65,22 @@ h1 em::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:.09e
 .ch-head p{margin-top:12px;color:var(--muted);max-width:40ch}
 
 /* Señales de una pirámide */
-.senal{list-style:none;padding:0;margin-top:20px;border-top:1.5px solid var(--ink)}
-.senal li{display:grid;gap:6px;padding:16px 0;border-bottom:1px solid var(--line);font-size:15px}
-.senal .s{font-weight:600}
-.senal .r{color:var(--muted);position:relative;padding-left:26px}
-.senal .r::before{content:"";position:absolute;left:0;top:3px;width:16px;height:16px;border-radius:50%;border:1.75px solid var(--good)}
-.senal .r::after{content:"";position:absolute;left:5px;top:6px;width:4px;height:7px;border-right:1.75px solid var(--good);border-bottom:1.75px solid var(--good);transform:rotate(45deg)}
-.senal .r b{color:var(--ink);font-weight:600}
-.senal .hd{display:none;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 0;font-weight:500}
-.senal .hd span+span{padding-left:26px}
-@media(min-width:640px){.senal li{grid-template-columns:1fr 1fr;gap:20px}.senal .hd{display:grid}}
+.senal{list-style:none;padding:0;margin-top:20px;display:grid;gap:10px}
+.senal li{display:grid;gap:8px;padding:14px 16px;background:var(--soft);border-radius:14px;font-size:15px}
+.senal .s{font-size:14px;font-weight:500;color:var(--muted);text-decoration:line-through;text-decoration-color:var(--accent);text-decoration-thickness:1.5px}
+.senal .r{color:var(--ink);position:relative;padding-left:26px;line-height:1.45}
+.senal .r::before{content:"";position:absolute;left:0;top:2px;width:16px;height:16px;border-radius:50%;border:1.75px solid var(--good)}
+.senal .r::after{content:"";position:absolute;left:5px;top:5px;width:4px;height:7px;border-right:1.75px solid var(--good);border-bottom:1.75px solid var(--good);transform:rotate(45deg)}
+.senal .r b{font-weight:700}
+.senal .hd{display:none}
+@media(min-width:640px){
+  .senal{gap:0;border-top:1.5px solid var(--ink)}
+  .senal li{grid-template-columns:1fr 1fr;gap:20px;background:none;border-radius:0;padding:14px 0;border-bottom:1px solid var(--line)}
+  .senal .s{font-size:15px;font-weight:600;color:var(--ink);text-decoration:none}
+  .senal .r{color:var(--muted)}.senal .r b{color:var(--ink);font-weight:600}
+  .senal .hd{display:grid;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 0;font-weight:500}
+  .senal .hd span+span{padding-left:26px}
+}
 
 /* Mitos */
 .mitos{list-style:none;padding:0;margin-top:22px;display:grid;gap:14px}
