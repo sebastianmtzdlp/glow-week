@@ -344,6 +344,15 @@
   .hnote{margin:10px 16px 0;padding:10px 12px;border-radius:12px;background:var(--soft);font-size:13px;color:var(--ink)}
   .hnote a{color:var(--ink);font-weight:600}
   .empty{padding:20px 16px;color:var(--muted);font-size:14px}
+  .vermas{display:flex;align-items:baseline;gap:8px;width:100%;margin-top:12px;padding:13px 16px;border:1px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font:600 15px var(--sans);text-align:left;transition:transform .15s var(--ease)}
+  .vermas span{font-weight:400;font-size:13px;color:var(--muted)}
+  .vermas::after{content:"";margin-left:auto;align-self:center;width:8px;height:8px;border-top:1.75px solid var(--accent-text);border-right:1.75px solid var(--accent-text);transform:rotate(45deg)}
+  .vermas:active{transform:scale(.97)}
+  .mascat{margin-top:8px;padding:22px 18px;border-radius:18px;background:var(--soft)}
+  .mascat h2{font-size:20px;font-weight:700;margin:6px 0 6px}
+  .mascat>p:not(.label){font-size:14px;color:var(--muted);margin-bottom:14px}
+  .mcchips{display:flex;flex-wrap:wrap;gap:8px}
+  .mcchips .chip{background:#fff}
   button.banner{width:100%;text-align:left;display:flex;align-items:center;justify-content:space-between;gap:10px;cursor:pointer;font:inherit;font-weight:600;transition:transform .12s var(--ease)}
   button.banner[hidden]{display:none}
   button.banner:active{transform:scale(.98)}
@@ -768,6 +777,34 @@
     });
 
   let TON = {}; try { TON = await (await fetch("../_data/tonos.json?v=" + Date.now())).json(); } catch(_){}
+
+  // Todo el catálogo: lo que no está en promo también se puede pedir, a su precio de catálogo.
+  // Sale de _data/catalogo-farmasi.json (precios de la tienda de Farmasi) y _data/fuera-de-catalogo.json.
+  // En "Todo" no se mezcla con las promos: cada categoría trae "Ver los N" y al final hay un bloque con el resto.
+  if (D.catalogo_completo !== false) try {
+    const [CF, FC] = await Promise.all(["catalogo-farmasi","fuera-de-catalogo"].map(f => fetch("../_data/" + f + ".json?v=" + Date.now()).then(r => r.json()).catch(() => ({}))));
+    const SECS = [["Labios",8],["Ojos",20],["Rostro",38],["Brochas",55],["Fragancias",56],["Hombre",58],["Cuidado personal",62],["Skincare",66],["Masaje",112],["Cabello",114],["Nutriplus",118]];
+    const pag = {}; (CF.productos||[]).forEach((it, i) => (it||[]).forEach(x => { if (!(x[0] in pag)) pag[x[0]] = i + 1; }));
+    const secc = c => { let r = ""; if (pag[c]) SECS.forEach(([t,n]) => { if (pag[c] >= n) r = t; }); return r; };
+    const GRUPO = {"Kits y sets":"Kits","Maquillaje":"Rostro","Piel, cuerpo y fragancias":"Cuidado personal","Nutriplus":"Nutriplus","Sistemas Nutriplus":"Nutriplus"};
+    const KEEP = /^(VFX|FDT|SPF|BB|CC|DD|XL|UV|PRO|II|III|3D|4D)$/;
+    const bonito = n => { n = String(n||"").replace(/^FRM\s+/i,"").replace(/\s+/g," ").trim();
+      if (n === n.toUpperCase() && /[A-Z]/.test(n)) n = n.split(" ").map(w => (KEEP.test(w) || /\d/.test(w) && w.length <= 4) ? w : w[0] + w.slice(1).toLowerCase()).join(" ").replace(/(\d)\s?ML\b/gi,"$1 ml").replace(/(\d)\s?G\b/g,"$1 g");
+      return n; };
+    const head = {}; Object.keys(TON).forEach(h => (TON[h]||[]).forEach(([c]) => { head[c] = h; }));
+    const ya = new Set(); products.forEach(p => { ya.add(p.code); ya.add(head[p.code] || p.code); });
+    const cand = [];
+    Object.entries(CF.precios||{}).forEach(([c,v]) => { if (v[3] && +v[1] > 0) cand.push({code:c, name:v[0], price:+v[1], retail:Math.max(+v[2]||0, +v[1]), cat:secc(c)}); });
+    (FC.grupos||[]).forEach(g => { if (/tarjeta/i.test(g.titulo)) return; (g.items||[]).forEach(([c,n,pr]) => { if (+pr > 0) cand.push({code:c, name:bonito(n), price:+pr, retail:+pr, cat:secc(c) || GRUPO[g.titulo] || "Más productos"}); }); });
+    const byHead = {}; cand.forEach(x => { const h = head[x.code] || x.code; if (ya.has(h) || ya.has(x.code)) return; (byHead[h] = byHead[h] || []).push(x); });
+    Object.entries(byHead).forEach(([h, l]) => {
+      const x = l.find(y => y.code === h) || l[0];
+      let name = x.name; const lbl = ((TON[x.code]||[]).find(t => t[0] === x.code)||[])[1];
+      if (lbl && TON[x.code] && name.toLowerCase().endsWith(" " + lbl.toLowerCase())) name = name.slice(0, -lbl.length - 1);
+      products.push({code:x.code, name, shade:"", cat:x.cat || "Más productos", price:x.price, retail:x.retail, img:x.code + "_250", extra:true, agotado:(D.agotados||[]).includes(x.code)});
+      ya.add(h); ya.add(x.code);
+    });
+  } catch(_){}
   // Tonos: cada tono extra es un "producto" oculto con su propio código (va al carrito y al WhatsApp con su tono)
   const ALL = products.slice(), FAM = {};
   products.forEach((p,pi)=>{ const t = TON[p.code]; if(!t || t.length<2) return; FAM[pi] = [];
@@ -795,14 +832,16 @@
   let filter = "Todo";
 
   // Ofertas: lo de 40% o más va primero en "Todo"
-  const realCats = [...new Set(products.map(p=>p.cat))];
+  const realCats = [...new Set(products.filter(p=>!p.extra).map(p=>p.cat))];
+  const extraCats = [...new Set(products.filter(p=>p.extra).map(p=>p.cat))].filter(c => !realCats.includes(c));
+  const nExtra = products.filter(p=>p.extra).length;
   const SPECIAL = {
     "Flash sale": p => !!p.flashEnds,
     "Más pedidos": p => MAS.has(p.code),
     "Nuevos": p => !!p.nuevo,
     "Mejores descuentos": p => pct(p) >= 40,
   };
-  const cats = ["Todo", ...(ESPT ? [ESPT] : []), ...(FAVT ? [FAVT] : []), ...Object.keys(SPECIAL).filter(k => products.some(SPECIAL[k])), ...realCats.filter(c => c !== FAVT && c !== ESPT)];
+  const cats = ["Todo", ...(ESPT ? [ESPT] : []), ...(FAVT ? [FAVT] : []), ...Object.keys(SPECIAL).filter(k => products.some(SPECIAL[k])), ...realCats.filter(c => c !== FAVT && c !== ESPT), ...extraCats];
 
   function renderChips(){
     $("chips").innerHTML = cats.map(c=>{
@@ -818,7 +857,7 @@
       <div class="pic">
         <img src="${IMG}${hd(p.img)}.webp" alt="${p.name} ${p.shade}" loading="lazy" data-ph="${initials(p)}" onerror="imgAlt(this)">
         ${d>0?`<span class="off${d>=40?" big":""}">-${d}%</span>`:""}${allOut?'<span class="oosb">Agotado</span>':""}
-        ${(p.flashEnds||p.nuevo||MAS.has(p.code)||p.cat==="Kits") ? `<span class="tags">${p.flashEnds?'<span class="tag flash">Flash</span>':""}${p.nuevo?'<span class="tag">Nuevo</span>':""}${MAS.has(p.code)?'<span class="tag">Más pedido</span>':""}</span>` : ""}${p.cat==="Kits"?'<span class="tag lim">Tiempo limitado</span>':""}
+        ${(p.flashEnds||p.nuevo||MAS.has(p.code)||p.cat==="Kits") ? `<span class="tags">${p.flashEnds?'<span class="tag flash">Flash</span>':""}${p.nuevo?'<span class="tag">Nuevo</span>':""}${MAS.has(p.code)?'<span class="tag">Más pedido</span>':""}</span>` : ""}${p.cat==="Kits"&&!p.extra?'<span class="tag lim">Tiempo limitado</span>':""}
       </div>
       <div class="body">
         <div class="name">${p.name}</div>
@@ -834,7 +873,7 @@
   const hx = t => String(t==null?"":t).replace(/[&<>]/g, c=>({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
   let sortM = "", qry = "";
   const norm = t => String(t||"").normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase();
-  const ALIAS = {Labios:"labial labiales labios",Ojos:"ojos sombra sombras",Rostro:"rostro cara maquillaje",Skincare:"skincare piel facial cuidado",Brochas:"brocha brochas",Kits:"kit kits set"};
+  const ALIAS = {Labios:"labial labiales labios",Ojos:"ojos sombra sombras",Rostro:"rostro cara maquillaje",Skincare:"skincare piel facial cuidado",Brochas:"brocha brochas",Kits:"kit kits set",Fragancias:"perfume perfumes fragancia",Hombre:"hombre caballero",Cabello:"cabello shampoo pelo",Nutriplus:"nutriplus suplemento vitaminas","Cuidado personal":"cuerpo crema jabon desodorante"};
   const hay = p => norm([p.name,p.shade,p.cat,ALIAS[p.cat],(p.incluye||[]).join(" "), ((FAM[products.indexOf(p)]||[]).map(k=>ALL[k].tonoLbl||ALL[k].shade)).join(" ")].join(" "));
   // Sinónimos en español para los nombres de tono (que vienen en inglés o por número)
   const TSYN = {rojo:"red ruby cherry cranberry fiery brick berry",roja:"red ruby cherry cranberry fiery",rosa:"pink rose blush",rosado:"pink rose blush",nude:"nude beige sand almond buff linen cashew",beige:"beige sand natural",cafe:"brown chocolate toffee spice tan",moreno:"brown tan deep",morena:"brown tan deep",canela:"spice tan toffee",chocolate:"chocolate brown",claro:"light ivory porcelain fair",clara:"light ivory porcelain fair",medio:"medium",media:"medium",oscuro:"deep brown",oscura:"deep brown",morado:"violet berry",violeta:"violet",vino:"cranberry berry ruby",fria:"cool",frio:"cool",calido:"warm",calida:"warm",neutro:"neutral",neutra:"neutral"};
@@ -849,7 +888,7 @@
     if (terms.length) { const r = products.filter(p=>{const h=hay(p); return tAlts.every(a=>a.some(x=>h.includes(x)));}); groups = [["Resultados", r]]; }
     else if (filter==="Todo" && sortM) groups = [["Todo", products]];
     else if (filter==="Todo") {
-      groups = realCats.map(c=>[c, products.filter(p=>p.cat===c)]);
+      groups = realCats.map(c=>[c, products.filter(p=>p.cat===c && !p.extra)]);
       ["Nuevos","Flash sale","Más pedidos"].forEach(k => { const l = products.filter(SPECIAL[k]); if (l.length) groups.unshift([k, l]); });
       [FAVT, ESPT].forEach(t => { if (!t) return; const k = groups.findIndex(g => g[0] === t); if (k > 0) groups.unshift(groups.splice(k, 1)[0]); });
       if (ESPT) groups = groups.filter(g => g[0] !== ESPT); // ya sale hasta arriba de la página (espTop)
@@ -857,7 +896,14 @@
     else if (SPECIAL[filter]) groups = [[filter, products.filter(SPECIAL[filter]).sort((a,b)=>pct(b)-pct(a))]];
     else groups = [[filter, products.filter(p=>p.cat===filter)]];
     if (terms.length && !groups[0][1].length) { $("catalog").innerHTML = `<p class="empty">No encontré "${hx(qry)}". Prueba con otra palabra (labial, suero, rubor…) o escríbeme por WhatsApp.</p>`; return; }
-    $("catalog").innerHTML = groups.map(([c,list])=> c===ESPT && !terms.length && !sortM ? espSection(list) : `<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2>${c===FAVT && D.favoritos.texto ? `<p class="favtxt">${hx(D.favoritos.texto)}</p>` : ""}<div class="grid">${srt(list).map(p=>card(p, tonoHit(p))).join("")}</div></section>`).join("");
+    $("catalog").innerHTML = groups.map(([c,list])=> c===ESPT && !terms.length && !sortM ? espSection(list) : `<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2>${c===FAVT && D.favoritos.texto ? `<p class="favtxt">${hx(D.favoritos.texto)}</p>` : ""}<div class="grid">${srt(list).map(p=>card(p, tonoHit(p))).join("")}</div>${filter==="Todo" && !terms.length && !sortM ? verMas(c) : ""}</section>`).join("")
+      + (filter==="Todo" && !terms.length && !sortM && nExtra ? masCatalogo() : "");
+  }
+  // "Todo" muestra solo las promos; lo demás del catálogo queda a un toque, para que la página no se sienta llena
+  function verMas(c){ const n = products.filter(p=>p.cat===c && p.extra).length; return n ? `<button type="button" class="vermas" data-c="${hx(c)}">Ver ${n} más de ${hx(c)} <span>a precio de catálogo</span></button>` : ""; }
+  function masCatalogo(){
+    const cs = [...realCats, ...extraCats].filter(c => products.some(p=>p.cat===c && p.extra));
+    return `<section class="mascat" aria-labelledby="mascatT"><p class="label">Todo el catálogo</p><h2 id="mascatT">${nExtra} productos más, a precio de catálogo</h2><p>Si no está en promo, también te lo consigo. Elige una categoría o búscalo arriba.</p><div class="mcchips">${cs.map(c=>`<button type="button" class="chip" data-c="${hx(c)}">${hx(c)}<span class="c">${products.filter(p=>p.cat===c).length}</span></button>`).join("")}</div></section>`;
   }
 
   // Sección especial: cabecera con papel picado y los productos en sus apartados (Nutriplus, Cuidado de la piel, Maquillaje)
@@ -1010,7 +1056,7 @@
   function closeSheet(){ document.body.classList.remove("open"); }
 
   document.addEventListener("click", e=>{
-    const chip = e.target.closest(".chip");
+    const chip = e.target.closest(".chip, .vermas");
     if (chip){ filter = chip.dataset.c; renderChips(); renderCatalog(); window.scrollTo({top:$("catalog").offsetTop-(document.querySelector(".filters").offsetHeight||70)-8}); return; }
     const add = e.target.closest("[data-add]");
     if (add){ const i=+add.dataset.add; if (ALL[i].agotado) return; cart[i]=1; gc('agregar/'+ALL[i].code, ALL[i].name); gcs('agregar', ALL[i].code, ALL[i].name); refreshCard(i); update(); return; }
@@ -1215,7 +1261,7 @@
     openProd(`<div class="pd-pic"><img id="pdMain" src="${IMG}${hd(p.img)}.webp" alt="${p.name}" onerror="imgAlt(this)"></div><div class="pd-thumbs" id="pdThumbs" hidden></div>
       <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
       ${fam ? `<div class="tonos"><h5>${VT(p)[0].toUpperCase()+VT(p).slice(1)} · ${fam.length} opciones</h5><div class="tchips">${fam.map(k=>{const v=ALL[k]; return `<button type="button" class="tchip${v.agotado?" out":""}" data-tono="${k}" aria-current="${k===i}" title="${hx(v.shade)}${v.agotado?" · agotado":""}"><img src="https://content.mx.farmasi.com/Variant/${v.code}.png" alt="" onerror="this.style.display='none'"><span>${hx(v.shade)}</span></button>`}).join("")}</div></div>` : ""}
-      <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="pill">-${d}%</span></div>
+      <div class="pr"><b>${money(p.price)}</b>${d>0?`<s>${money(p.retail)}</s><span class="pill">-${d}%</span>`:""}</div>
       ${p.incluye ? `<h5>Qué incluye</h5><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}<button type="button" class="shr" data-share="${i}">Mandar a una amiga</button><div id="pdCombo"></div><div id="pdDet"></div></div>`,
       q ? `<button class="send" data-pclose>Listo, ya está en tu pedido (${q})</button>` : p.agotado ? `<button class="send" disabled>Agotado por ahora</button>` : `<button class="send" data-padd="${i}">Agregar al pedido</button>`);
     fillDet(p.par!=null?products[p.par].code:p.code); fillGallery(p); fillCombo(p);

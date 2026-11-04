@@ -90,6 +90,11 @@
       var f = p.flash && enVentana(p.flash, now) ? p.flash : null, pr = +(f ? f.price : p.price);
       if(pr > 0) t[p.code] = {price: pr, retail: +p.retail || pr};
     });
+    /* su tienda también vende todo el catálogo a precio de catálogo (salvo "catalogo_completo": false) */
+    if(D.catalogo_completo !== false){
+      Object.keys(CAT.precios || {}).forEach(function(c){ var v = CAT.precios[c]; if(v[3] && +v[1] > 0 && !t[c] && !ago[c]) t[c] = {price: +v[1], retail: Math.max(+v[2] || 0, +v[1])}; });
+      (FUE.grupos || []).forEach(function(g){ if(/tarjeta/i.test(g.titulo)) return; (g.items || []).forEach(function(it){ if(+it[2] > 0 && !t[it[0]] && !ago[it[0]]) t[it[0]] = {price: +it[2], retail: +it[2]}; }); });
+    }
     return t;
   }
   var CARGA = {};
