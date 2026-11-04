@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-11-03",
- "hora": "21:01",
+ "hora": "22:16",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1138,
+  "visitas": 1146,
   "agregados": 34,
   "pedidos": 7,
   "wa": 4
@@ -87,7 +87,7 @@
   },
   {
    "d": "2026-11-03",
-   "v": 60
+   "v": 68
   }
  ],
  "consultoras": [
@@ -233,7 +233,7 @@
   },
   {
    "code": "PK102734",
-   "name": "Besos de Bruja Kit de labios · 7 tonos",
+   "name": "PK102734",
    "agregados": 4
   },
   {
@@ -273,7 +273,7 @@
   },
   {
    "code": "PK102733",
-   "name": "Encanto Cromático Kit de rostro",
+   "name": "PK102733",
    "agregados": 1
   },
   {
@@ -283,27 +283,27 @@
   },
   {
    "code": "PK102725",
-   "name": "Poción Energética Kit Nutriplus",
+   "name": "PK102725",
    "agregados": 1
   },
   {
    "code": "PK102731",
-   "name": "Toque Fantasma Kit de rostro",
+   "name": "PK102731",
    "agregados": 1
   },
   {
    "code": "PK102724",
-   "name": "Hechizo de Juventud Kit de cuerpo y rostro",
+   "name": "PK102724",
    "agregados": 1
   },
   {
    "code": "PK102736",
-   "name": "Protección Mística Kit de skincare",
+   "name": "PK102736",
    "agregados": 1
   },
   {
    "code": "PK102732",
-   "name": "Rubor de Bruja Kit de rostro",
+   "name": "PK102732",
    "agregados": 1
   },
   {
@@ -313,12 +313,12 @@
   },
   {
    "code": "PK102735",
-   "name": "Dulce Hechizado Kit de labios",
+   "name": "PK102735",
    "agregados": 1
   },
   {
    "code": "PK102730",
-   "name": "Ritual de Luna Kit de cuerpo",
+   "name": "PK102730",
    "agregados": 1
   },
   {
@@ -559,8 +559,8 @@
    "dupes": 11,
    "ritmo": 94,
    "paginas": {
+    "pdn": 4,
     "pro": 3,
-    "pdn": 2,
     "que-quiere": 2,
     "mi-tienda": 1,
     "objeciones": 1,
