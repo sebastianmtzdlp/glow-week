@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-con-claude">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Vende con Claude</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Llena tus datos una vez y sale tu guía del mes: tus puntos en pedidos, tu semana para publicar, tus mensajes y lo que le pides a Claude para lo demás.">
+<meta property="og:title" content="Vende con Claude">
+<meta property="og:description" content="Tus puntos en pedidos, tu semana para publicar, tus mensajes y lo que le pides a Claude.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/con-claude/">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 26px;max-width:40em}
+.portada .bajada{max-width:32em}
+.como{display:grid;gap:0;margin:22px 0 0;padding:0;list-style:none;counter-reset:c;max-width:36em}
+.como li{counter-increment:c;display:grid;grid-template-columns:30px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:16px;line-height:1.45}
+.como li::before{content:"0" counter(c);font:500 13px/1.7 var(--mono);color:var(--accent-ink)}
+
+/* tus datos */
+.datos{border:1px solid var(--line);border-radius:18px;padding:18px 16px 16px;background:#fff}
+.datos h2{font-size:clamp(26px,6.5vw,34px)}
+.datos .ayuda{margin:6px 0 14px;color:var(--muted);font-size:15px}
+.campos{display:grid;grid-template-columns:1fr 1fr;gap:12px 12px}
+.campos .ancho{grid-column:1 / -1}
+.campos .etq small{font-weight:400;color:var(--muted)}
+.guardado{margin-top:10px}
+
+/* partes de la guía */
+.parte{padding:44px 0 6px}
+.parte-cab{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.parte-cab .n{font:500 14px/1 var(--mono);color:var(--accent-ink)}
+.parte-cab p{grid-column:2;margin:4px 0 0;color:var(--muted);font-size:15px;max-width:34em}
+.sub{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:26px 0 10px}
+
+/* números del mes */
+.cifra{font:600 clamp(44px,12vw,64px)/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--accent);letter-spacing:-.02em}
+.cifra-txt{margin:6px 0 0;font-size:17px;max-width:30em}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.tile{background:var(--soft);border-radius:14px;padding:12px 12px 10px}
+.tile b{display:block;font:600 24px/1.1 var(--mono);font-variant-numeric:tabular-nums}
+.tile span{display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.3}
+.esc{width:100%;border-collapse:collapse;font-size:15px;margin-top:4px}
+.esc th,.esc td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
+.esc th{font:500 12px/1.3 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.esc td.num{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
+.esc tr.tuyo td{background:var(--tint)}
+.bloques{display:grid;gap:8px;margin:0;padding:0;list-style:none}
+.bloques li{display:grid;grid-template-columns:76px 1fr;gap:12px;align-items:baseline;padding:10px 0;border-bottom:1px solid var(--line)}
+.bloques b{font:500 15px/1.3 var(--mono);font-variant-numeric:tabular-nums}
+.nivel-linea{margin:14px 0 0;font-size:16px;padding:12px 14px;border-radius:14px;background:var(--soft)}
+.vacio{color:var(--muted);font-size:16px;padding:18px 0}
+
+/* semana */
+.semana{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.semana li{display:grid;grid-template-columns:48px 1fr;gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.semana .d{font:500 13px/1.5 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
+.semana li.es-hoy .d{color:var(--accent-ink);font-weight:600}
+.semana h3{margin:0;font:600 17px/1.3 var(--body)}
+.semana p{grid-column:2;margin:2px 0 0;font-size:15px;color:var(--ink);max-width:36em}
+.semana .f{font:400 13px/1.3 var(--mono);color:var(--muted)}
+
+/* mensajes */
+.chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;margin:0 -16px;padding:0 16px 4px}
+.chips::-webkit-scrollbar{display:none}
+.chip{flex:none;min-height:40px;padding:0 14px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;font-size:15px;cursor:pointer;transition:transform 160ms var(--ease)}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.para-quien{display:grid;grid-template-columns:1fr;gap:6px;margin:14px 0 0;max-width:22em}
+.msj{display:grid;gap:8px;padding:18px 0;border-bottom:1px solid var(--line)}
+.msj h3{margin:0;font:600 17px/1.3 var(--body)}
+.msj .cuando{margin:0;font-size:14px;color:var(--muted)}
+.texto{white-space:pre-wrap;background:var(--soft);border-radius:4px 18px 18px 18px;padding:13px 15px;font-size:16px;line-height:1.5;margin:2px 0 0;max-width:34em}
+.texto mark{background:none;color:var(--accent-ink);font-weight:600;border-bottom:1.5px dashed var(--accent);padding:0 1px}
+.btns{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.btns .btn2{min-height:42px;font-size:14px}
+
+/* para Claude */
+.claude{border:1px solid var(--line);border-radius:18px;margin:16px 0 0;background:#fff;overflow:hidden}
+.claude-cab{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:14px 16px 0}
+.claude-cab .q{font:600 11px/1 var(--mono);letter-spacing:.12em;color:#fff;background:var(--ink);border-radius:6px;padding:5px 7px}
+.claude-cab h3{flex:1 1 14em;margin:0;font:600 17px/1.3 var(--body)}
+.claude .para{margin:6px 16px 0;font-size:15px;color:var(--muted)}
+.prompt{position:relative;margin:12px 16px 0;font:400 14px/1.55 var(--mono);white-space:pre-wrap;color:var(--ink);max-height:9.4em;overflow:hidden;transition:max-height 260ms var(--ease)}
+.prompt::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3em;background:linear-gradient(rgba(255,255,255,0),#fff)}
+.claude.abierto .prompt{max-height:none}
+.claude.abierto .prompt::after{display:none}
+.prompt mark{background:var(--tint);color:var(--accent-ink);border-radius:4px;padding:0 3px}
+.claude .btns{padding:12px 16px 16px;border-top:1px solid var(--line);margin-top:12px}
+.con-ficha{margin:8px 16px 0;font-size:13px;color:var(--muted)}
+.con-ficha a{color:inherit;text-underline-offset:3px}
+.con-ficha[hidden]{display:none}
+.adjunta{display:flex;gap:8px;align-items:baseline;margin:10px 16px 0;font-size:14px;color:var(--bronze)}
+
+/* liga */
+.liga-out{display:block;margin-top:10px;padding:12px 14px;background:var(--soft);border-radius:12px;font:500 14px/1.45 var(--mono);word-break:break-all;color:var(--ink)}
+
+/* ficha */
+.ficha-op{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;font-size:15px;line-height:1.4;cursor:pointer;max-width:36em}
+.ficha-op input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink);flex:none}
+
+/* hoy */
+.hoy{background:var(--navy);color:#fff;border-radius:24px;padding:28px 20px 22px;margin:48px 0 0}
+.hoy h2{color:#fff}
+.hoy h2 em{color:var(--pink)}
+.hoy .bajo{margin:8px 0 16px;color:#C9CBDD;font-size:15px}
+.hoy .checks label{border-color:rgba(255,255,255,.14)}
+.hoy .checks input{accent-color:var(--pink)}
+.hoy .checks small{color:#C9CBDD}
+.hoy .checks a{color:#fff;text-underline-offset:3px}
+.hoy .marcador{font:500 14px/1 var(--mono);color:var(--pink);margin:14px 0 0}
+
+@media (min-width:900px){
+  .portada{padding:56px 0 34px}
+  .arriba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:start}
+  .datos{position:sticky;top:16px}
+  .campos{grid-template-columns:1fr 1fr 1fr}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start}
+  .hoy{padding:44px 48px 36px}
+}
+@media (hover:hover) and (pointer:fine){ .chip:hover{border-color:var(--ink)} }
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <div class="arriba">
+    <header class="portada">
+      <h1>Vende con <em>Claude</em></h1>
+      <p class="bajada">Llenas tus datos una vez y aquí abajo sale tu guía del mes. Lo que se puede calcular ya viene hecho. Lo que necesita tus fotos o un texto largo, se lo pides a Claude con el texto que te dejamos listo.</p>
+      <ol class="como">
+        <li>Escribe tu meta, tus puntos y tus horas.</li>
+        <li>Usa lo que ya sale armado: pedidos, semana y mensajes.</li>
+        <li>Para lo demás, toca "Copiar", abre Claude y pégalo.</li>
+      </ol>
+    </header>
+
+    <form class="datos" id="datos" onsubmit="return false" aria-labelledby="dT">
+      <h2 id="dT">Tus <em>datos</em></h2>
+      <p class="ayuda">Se guardan solo en tu teléfono.</p>
+      <div class="campos">
+        <label><span class="etq">Tu nombre</span><input type="text" id="v-yo" autocomplete="given-name" placeholder="Tu nombre"></label>
+        <label><span class="etq">Tu tienda</span><select id="v-slug"><option value="">Elige</option></select></label>
+        <label><span class="etq">Meta del mes <small>(puntos)</small></span><input type="number" id="v-meta" inputmode="numeric" min="0" placeholder="600"></label>
+        <label><span class="etq">Llevas <small>(puntos)</small></span><input type="number" id="v-llevo" inputmode="numeric" min="0" placeholder="0"></label>
+        <label><span class="etq">Horas al día</span><input type="number" id="v-horas" inputmode="decimal" min="0.5" step="0.5" placeholder="2"></label>
+        <label><span class="etq">Tu set del mes <small>(nombre)</small></span><input type="text" id="v-set" autocomplete="off" placeholder="Piel lista en 3 pasos"></label>
+        <label class="ancho"><span class="etq">Quién te compra más</span><input type="text" id="v-clienta" autocomplete="off" placeholder="mamás de 30 a 45 que quieren verse bien en 5 minutos"></label>
+      </div>
+      <p class="guardado" id="guardado" aria-live="polite"></p>
+    </form>
+  </div>
+
+  <!-- 1. EL MES -->
+  <section class="parte" id="mes" aria-labelledby="mT">
+    <div class="parte-cab"><span class="n">01</span><h2 id="mT">Tu mes, <em>en pedidos</em></h2><p>Calculado con 1 punto ≈ $25 y pedidos de 75 puntos.</p></div>
+    <div id="mesOut"></div>
+  </section>
+
+  <!-- 2. EL SET -->
+  <section class="parte" id="set" aria-labelledby="sT">
+    <div class="parte-cab"><span class="n">02</span><h2 id="sT">Tu set <em>del mes</em></h2><p>Claude lo arma con las promociones que le mandes. Aquí haces la liga para que tu clienta lo abra ya en su pedido.</p></div>
+    <div class="dos">
+      <div id="pSets"></div>
+      <div>
+        <p class="sub">La liga del set</p>
+        <label><span class="etq">Códigos de los productos <small>(7 cifras, separados por coma)</small></span><input type="text" id="v-codigos" inputmode="numeric" autocomplete="off" placeholder="1000991, 1001319"></label>
+        <span class="liga-out" id="ligaOut"></span>
+        <div class="btns" style="margin-top:10px"><button type="button" class="btn2" id="copiaLiga">Copiar liga</button><span class="nota" id="ligaNota" style="margin:0"></span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. LO QUE PUBLICAS -->
+  <section class="parte" id="publica" aria-labelledby="pT">
+    <div class="parte-cab"><span class="n">03</span><h2 id="pT">Tu semana <em>para publicar</em></h2><p>Siete días para mover tu set sin repetir lo mismo. Hoy va marcado.</p></div>
+    <div class="dos">
+      <ol class="semana" id="semana"></ol>
+      <div>
+        <div id="pImagen"></div>
+        <p class="nota">¿Prefieres la imagen ya hecha con las fotos de los productos? Sale en <a href="/ventas-de-whatsapp/">Ventas por WhatsApp</a>.</p>
+        <div id="pSemana"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. CONVERSACIONES -->
+  <section class="parte" id="hablar" aria-labelledby="hT">
+    <div class="parte-cab"><span class="n">04</span><h2 id="hT">Tus <em>mensajes</em></h2><p>Para abrir una conversación y para retomar la que se quedó a medias. Escribe su nombre y se arma.</p></div>
+    <label class="para-quien"><span class="etq">Su nombre</span><input type="text" id="v-ella" autocomplete="off" placeholder="Ana"></label>
+    <div class="chips" id="chips" style="margin-top:16px" aria-label="Tipo de mensaje"></div>
+    <div class="dos">
+      <div id="msjs"></div>
+      <div id="pVoz"></div>
+    </div>
+  </section>
+
+  <!-- 5. INVITAR -->
+  <section class="parte" id="invitar" aria-labelledby="iT">
+    <div class="parte-cab"><span class="n">05</span><h2 id="iT">Invitar <em>a ser socia</em></h2><p>Para quien ya te compra o te pregunta "¿y tú cómo le haces?". Con datos ciertos y sin hablar de cuánto se gana.</p></div>
+    <div class="dos">
+      <div id="pInvitar"></div>
+      <div>
+        <p class="sub">Cuando ya quiere saber más</p>
+        <a class="otra" href="/mentorias/herramientas/pdn/" data-cuenta="ir-pdn"><b>Tu PDN, con tu cara</b><span>La presentación del negocio con tu nombre y tus fotos.</span><i aria-hidden="true">→</i></a>
+        <a class="otra" href="/mentorias/herramientas/objeciones/" data-cuenta="ir-objeciones"><b>¿Y si me dice que no?</b><span>Qué contestar a las dudas más comunes.</span><i aria-hidden="true">→</i></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. LA FICHA -->
+  <section class="parte" id="ficha" aria-labelledby="fT">
+    <div class="parte-cab"><span class="n">06</span><h2 id="fT">Tu ficha <em>para Claude</em></h2><p>Lo que Claude necesita saber de tu negocio para no inventar. Va pegada al inicio de cada texto de arriba.</p></div>
+    <div class="dos">
+      <div id="pFicha"></div>
+      <div>
+        <p class="sub">Para no pegarla cada vez</p>
+        <p style="margin:0;font-size:16px;max-width:32em">En Claude, crea un proyecto que se llame "Mi negocio" y pega tu ficha en sus instrucciones. Abre ahí cada conversación y quita la ficha de los textos:</p>
+        <label class="ficha-op"><input type="checkbox" id="v-sinficha"> <span>Ya tengo mi proyecto en Claude: no pegues la ficha.</span></label>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOY -->
+  <section class="hoy" id="hoy" aria-labelledby="yT">
+    <h2 id="yT">Lo de <em>hoy</em></h2>
+    <p class="bajo" id="hoyBajo"></p>
+    <ul class="checks" id="hoyLista"></ul>
+    <p class="marcador" id="hoyMarca"></p>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Página de prueba. Los niveles y los 75 puntos salen del plan de compensación del sitio. Claude es una app de Anthropic; esta página no está hecha por Farmasi ni por Anthropic.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(function(){
+  var KEY = "mtb-con-claude-v1", st = H.lee(KEY, {});
+  var CAMPOS = ["yo","slug","meta","llevo","horas","set","clienta","codigos","ella"];
+  var NIVELES = [[200,3],[400,6],[600,9],[900,12],[1400,15],[2200,18],[3600,22],[5000,25]];
+  var DIAS = ["dom","lun","mar","mié","jue","vie","sáb"];
+  var DIAS_L = ["domingo","lunes","martes","miércoles","jueves","viernes","sábado"];
+  var hoy = new Date(); hoy.setHours(12,0,0,0);
+  var fin = new Date(hoy.getFullYear(), hoy.getMonth()+1, 0, 12);
+  var quedan = Math.round((fin - hoy)/864e5) + 1;
+  var MES = hoy.toLocaleDateString("es-MX",{month:"long"});
+  var finTxt = fin.toLocaleDateString("es-MX",{day:"numeric", month:"long"});
+  var hoyTxt = hoy.toLocaleDateString("es-MX",{weekday:"long", day:"numeric", month:"long"});
+
+  function n(v){ var x = parseFloat(String(v||"").replace(/,/g,"")); return isFinite(x) ? x : 0; }
+  function tienda(){ return st.slug ? "mitienda.beauty/" + st.slug : ""; }
+  function nivelDe(p){ var r = 0; NIVELES.forEach(function(l){ if(p >= l[0]) r = l[1]; }); return r; }
+  function sigNivel(p){ for(var i=0;i<NIVELES.length;i++){ if(p < NIVELES[i][0]) return NIVELES[i]; } return null; }
+
+  /* ---------- campos ---------- */
+  var sel = document.getElementById("v-slug");
+  H.equipo().then(function(lista){
+    sel.innerHTML = '<option value="">Elige</option>' + lista.map(function(c){ return '<option value="'+H.esc(c.slug)+'">'+H.esc(c.nombre)+'</option>'; }).join("");
+    if(!st.slug && H.miSlug()) st.slug = H.miSlug();
+    if(st.slug) sel.value = st.slug;
+    if(!st.yo && st.slug){ var c = lista.filter(function(x){ return x.slug === st.slug; })[0]; if(c){ st.yo = c.nombre; document.getElementById("v-yo").value = c.nombre; } }
+    pinta();
+  });
+  var tGuard;
+  CAMPOS.forEach(function(k){
+    var i = document.getElementById("v-" + k); if(!i) return;
+    if(st[k] != null && k !== "slug") i.value = st[k];
+    i.addEventListener("input", function(){
+      st[k] = i.value.trim(); H.guarda(KEY, st);
+      if(k === "slug" && st.slug) H.miSlug(st.slug);
+      clearTimeout(tGuard); var g = document.getElementById("guardado"); g.textContent = "Guardado en este teléfono"; tGuard = setTimeout(function(){ g.textContent = ""; }, 1600);
+      pinta();
+    });
+  });
+  var sinFicha = document.getElementById("v-sinficha");
+  sinFicha.checked = !!st.sinficha;
+  sinFicha.addEventListener("change", function(){ st.sinficha = sinFicha.checked; H.guarda(KEY, st); pinta(); H.cuenta("sin-ficha", String(sinFicha.checked)); });
+
+  /* ---------- 01 el mes ---------- */
+  function cuentas(){
+    var meta = n(st.meta), llevo = n(st.llevo), horas = n(st.horas) || 0;
+    if(!meta) return null;
+    var faltan = Math.max(0, meta - llevo);
+    var pedidos = Math.ceil(faltan / 75);
+    return {meta:meta, llevo:llevo, horas:horas, faltan:faltan, porDia:Math.ceil(faltan / quedan), pedidos:pedidos,
+      conv:[1,2,3].map(function(k){ var tot = Math.ceil(pedidos * 10 / k); return {k:k, tot:tot, dia:Math.ceil(tot / quedan)}; })};
+  }
+  function pintaMes(){
+    var c = cuentas(), out = document.getElementById("mesOut");
+    if(!c){ out.innerHTML = '<p class="vacio">Escribe tu meta de puntos arriba y aquí sale cuántos pedidos y cuántas conversaciones te tocan por día.</p>'; return; }
+    if(!c.faltan){ out.innerHTML = '<div style="padding-top:18px"><div class="cifra" style="color:var(--good)">'+H.fmt(c.llevo)+'</div><p class="cifra-txt">Llevas '+H.fmt(c.llevo)+' de '+H.fmt(c.meta)+' puntos. Ya llegaste a tu meta de '+MES+'.</p></div>'; return; }
+    var h = '<div style="padding-top:18px"><div class="cifra">'+H.fmt(c.faltan)+'</div>'+
+      '<p class="cifra-txt">puntos te faltan para '+H.fmt(c.meta)+'. Quedan '+quedan+' días contando hoy, hasta el '+finTxt+'.</p></div>'+
+      '<div class="tiles"><div class="tile"><b>'+H.fmt(c.porDia)+'</b><span>puntos por día</span></div>'+
+      '<div class="tile"><b>'+c.pedidos+'</b><span>pedidos de 75 puntos</span></div>'+
+      '<div class="tile"><b>$'+H.fmt(c.faltan*25)+'</b><span>de venta, aprox.</span></div></div>';
+    var niv = nivelDe(c.meta), sig = sigNivel(c.meta);
+    h += '<p class="nivel-linea">'+(niv ? 'Con '+H.fmt(c.meta)+' puntos de grupo llegas a <b>'+niv+'%</b>. ' : 'Tu meta todavía no llega a 3% (200 puntos de grupo). ')+
+      (sig ? 'El siguiente nivel, '+sig[1]+'%, pide '+H.fmt(sig[0])+': '+H.fmt(sig[0]-c.meta)+' puntos más.' : 'Es el nivel más alto por puntos.')+
+      ' <a href="/plan-de-compensacion/">Ver qué pide cada nivel</a></p>';
+    h += '<div class="dos"><div><p class="sub">Cuántas conversaciones abrir</p><table class="esc"><thead><tr><th>Si te compran</th><th>En el mes</th><th>Por día</th></tr></thead><tbody>'+
+      c.conv.map(function(v){ return '<tr'+(v.k===2?' class="tuyo"':'')+'><td>'+v.k+' de cada 10</td><td class="num">'+H.fmt(v.tot)+'</td><td class="num">'+H.fmt(v.dia)+'</td></tr>'; }).join("")+
+      '</tbody></table><p class="nota">Anota a quién le escribes y quién te compra. En dos semanas sabrás cuál de las tres filas es la tuya.</p></div>';
+    if(c.horas){
+      var min = Math.round(c.horas*60), B = [["Abrir conversaciones",.4],["Retomar y cobrar",.25],["Publicar",.2],["Armar y entregar",.15]];
+      h += '<div><p class="sub">Tus '+(c.horas%1?c.horas:c.horas)+' h, repartidas</p><ul class="bloques">'+B.map(function(b){ var m = Math.max(5, Math.round(min*b[1]/5)*5); return '<li><b>'+(m>=60?Math.floor(m/60)+' h '+(m%60?m%60+' min':''):m+' min')+'</b><span>'+b[0]+'</span></li>'; }).join("")+'</ul><p class="nota">Primero lo que trae pedidos: abrir y retomar.</p></div>';
+    } else h += '<div><p class="sub">Tu día</p><p class="vacio" style="padding:0">Escribe tus horas al día y te reparto el tiempo.</p></div>';
+    out.innerHTML = h + '</div>';
+  }
+
+  /* ---------- prompts ---------- */
+  function ficha(){
+    return "Antes de empezar, esto es lo que necesitas saber de mi negocio (úsalo en todo lo que te pida):\n"+
+      "- Soy {yo}, socia independiente de Farmasi en México, del equipo SVH.\n"+
+      "- Vendo maquillaje, cuidado de la piel, cuidado del cabello y nutrición, sobre todo por WhatsApp e Instagram. Mi tienda en línea es {tienda}.\n"+
+      "- Quien más me compra: {clienta}.\n"+
+      "- Así se cuentan los puntos: 1 punto equivale a unos $25 de venta. Necesito 75 puntos personales al mes para ganar. Mi nivel depende de los puntos de grupo del mes: 200 = 3%, 400 = 6%, 600 = 9%, 900 = 12%, 1,400 = 15%, 2,200 = 18%, 3,600 = 22%, 5,000 = 25%.\n"+
+      "- Reglas: no inventes precios, puntos, promociones ni beneficios de producto; si te falta un dato, pregúntame. No prometas ganancias ni resultados. Escribe en español de México, tuteando, cálida y breve, como hablaría yo con una amiga. Sin emojis de más y sin frases de vendedora.";
+  }
+  var P = {
+    sets: {h:"Arma 4 sets con las promociones", a:"Adjunta capturas de las promociones del mes con precio y puntos.",
+      x:"Te mando capturas de las promociones de Farmasi de este mes, con precio y puntos de cada producto. Con eso, arma 4 sets, uno para cada una de estas clientas:\n"+
+        "1. La que compra lo mismo de siempre y ya se le está acabando.\n2. La que busca algo para regalar.\n3. La que apenas empieza a cuidarse la piel.\n4. {clienta}.\n\n"+
+        "De cada set quiero:\n- Un nombre corto y claro (nada cursi).\n- Qué trae y por qué esas piezas van juntas, en una línea.\n- El precio sumando las promociones y, solo si aparece en la captura, cuánto ahorra.\n- Los puntos totales.\n- El código de 7 cifras de cada producto.\n\n"+
+        "Que al menos dos sets queden cerca de 75 puntos. Si con las promociones no alcanza, dime cuántos puntos le faltan y qué producto de las capturas lo completaría.\n"+
+        "Al final, dame una liga por set con este formato: {tienda}/?agrega=CODIGO,CODIGO\nNo uses ningún producto, precio ni punto que no esté en las capturas."},
+    imagen: {h:"La imagen de tu set", a:"Adjunta las fotos de los productos, si las tienes.",
+      x:"Quiero publicar mi set \"{set}\" en Instagram y en mis estados de WhatsApp. Hazme dos cosas:\n\n"+
+        "A) El texto, cortísimo: un título de máximo 5 palabras, una línea por producto con lo que hace, el precio, hasta cuándo vale la promoción y una frase final que invite a escribirme sin presionar. Si no sabes la vigencia o el precio, pregúntame.\n\n"+
+        "B) El diseño, como artefacto que pueda descargar como imagen: vertical de 1080 × 1350, fondo blanco, títulos en azul marino #262A4A, un solo acento en coral #DB414C y letra Outfit. Usa las fotos que te mando tal cual, sin cambiar envases, etiquetas ni nombres. Si no puedes meterlas, deja un recuadro con el nombre de cada producto para que yo ponga la foto. Al pie: {tienda}. Revisa la ortografía y que los precios del diseño sean los mismos del texto."},
+    semana: {h:"Escríbeme la semana completa", a:"",
+      x:"Voy a mover mi set \"{set}\" en redes durante 7 días, empezando el {hoyTxt}. Este es el plan que ya tengo:\n{plan}\n\n"+
+        "Para cada día escríbeme lo que digo: la primera línea (la que hace que se detengan), el texto completo y cómo cierro. En las historias del día 2 propón una encuesta o una caja de preguntas. Agrega al final un mensaje para mi lista de difusión de WhatsApp y otro personal para mandar a 5 clientas. Nada de beneficios que no estén en la etiqueta del producto."},
+    voz: {h:"Mensajes que suenen a ti", a:"Pega 3 mensajes que tú hayas mandado y te hayan contestado.",
+      x:"Te pego 3 mensajes que yo mandé y que sí me contestaron. Fíjate en cómo escribo: lo largo, las palabras que uso, cómo saludo y cómo cierro.\n\n[PEGA AQUÍ TUS 3 MENSAJES]\n\n"+
+        "Con ese mismo estilo, escríbeme 2 versiones de cada uno:\n1. Para una conocida con la que no hablo hace meses (sin vender en el primer mensaje).\n2. Para alguien que reacciona a mis historias.\n3. Para una clienta que me compró hace más de un mes.\n4. Para una mamá de la escuela, compañera de trabajo o del gym.\n5. Para alguien que me dijo \"está caro\": con una opción más chica de mi set \"{set}\".\n\n"+
+        "Máximo 3 líneas cada uno, con un espacio [ALGO QUE ADMIRO DE ELLA] y una pregunta fácil de contestar al final. Mi tienda, {tienda}, solo cuando tenga sentido."},
+    invitar: {h:"Mensajes para invitar", a:"",
+      x:"Quiero invitar a algunas personas a conocer el negocio sin sonar a reclutadora.\n\n"+
+        "Lo que es cierto y puedes usar: el kit de inicio cuesta $499; con 75 puntos personales al mes se empieza a ganar; hay quien entra solo para comprar a precio de socia y quien lo hace negocio; en el equipo hay capacitación y acompañamiento.\n"+
+        "Lo que no puedes decir: cuánto se gana, que es rápido o fácil, ni frases como \"libertad financiera\" o \"cambia tu vida\".\n\n"+
+        "Escríbeme un mensaje para cada caso, de máximo 4 líneas, que termine invitándola a platicar 15 minutos:\n1. Ya vende algo por su cuenta (ropa, comida, uñas).\n2. Compra mucho maquillaje o skincare.\n3. Me ha preguntado \"¿y tú cómo le haces?\".\n4. Le encanta grabar y publicar.\n5. Es mamá y busca algo con su propio horario.\n6. Le da miedo vender o dice que no tiene seguidores.\n7. Es de mis clientas frecuentes.\n\n"+
+        "Luego dame qué contestar si me pregunta \"¿y cuánto se gana?\": honesto, con los 75 puntos y los niveles, sin cifras de ingreso y ofreciendo enseñarle el plan completo."}
+  };
+  var ETQ = {yo:"tu nombre", tienda:"tu tienda", clienta:"quién te compra más", set:"el nombre de tu set"};
+  function arma(x, html){
+    var c = cuentas();
+    var V = {yo:st.yo, tienda:tienda(), clienta:st.clienta, set:st.set, hoyTxt:hoyTxt, plan:planTexto()};
+    return x.replace(/\{(\w+)\}/g, function(_, k){
+      var v = V[k];
+      if(html) return v ? H.esc(v) : '<mark>'+(ETQ[k]||k)+'</mark>';
+      return v || "[" + (ETQ[k]||k).toUpperCase() + "]";
+    });
+  }
+  function completo(id, html){
+    var x = P[id].x;
+    if(!st.sinficha) x = ficha() + "\n\n" + x;
+    return html ? arma(H.esc(x), true) : arma(x, false);
+  }
+  function caja(id, dest){
+    var p = P[id], el = document.getElementById(dest);
+    if(!el.dataset.ok){
+      el.dataset.ok = 1;
+      el.innerHTML = '<div class="claude" data-p="'+id+'"><div class="claude-cab"><h3>'+p.h+'</h3><span class="q">PARA CLAUDE</span></div>'+
+        (p.a ? '<p class="adjunta"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.5l-8.6 8.6a5 5 0 01-7.1-7.1l8.6-8.6a3.3 3.3 0 014.7 4.7l-8.6 8.6a1.7 1.7 0 01-2.4-2.4l7.9-7.9"/></svg><span>'+p.a+'</span></p>' : '')+
+        '<div class="prompt"></div><p class="con-ficha">Se copia con <a href="#ficha">tu ficha</a> al inicio.</p><div class="btns"><button type="button" class="btn2" data-copia>Copiar</button><a class="enlace" data-abre href="https://claude.ai/new" target="_blank" rel="noopener">Abrir Claude</a><button type="button" class="enlace" data-ver aria-expanded="false">Ver completo</button></div></div>';
+    }
+    el.querySelector(".prompt").innerHTML = arma(H.esc(P[id].x), true);
+    var con = el.querySelector(".con-ficha"); if(con) con.hidden = !!st.sinficha;
+  }
+  function pintaPrompts(){
+    caja("sets","pSets"); caja("imagen","pImagen"); caja("semana","pSemana"); caja("voz","pVoz"); caja("invitar","pInvitar");
+    var f = document.getElementById("pFicha");
+    if(!f.dataset.ok){ f.dataset.ok = 1; f.innerHTML = '<div class="claude abierto"><div class="claude-cab"><h3>Tu ficha</h3><span class="q">PARA CLAUDE</span></div><div class="prompt" id="fichaTxt"></div><div class="btns"><button type="button" class="btn2" id="copiaFicha">Copiar ficha</button><a class="enlace" href="https://claude.ai/projects" target="_blank" rel="noopener" data-cuenta="abrir-proyectos">Abrir proyectos de Claude</a></div></div>'; }
+    document.getElementById("fichaTxt").innerHTML = arma(H.esc(ficha()), true);
+  }
+  document.addEventListener("click", function(e){
+    var b = e.target.closest("[data-copia]");
+    if(b && b.closest(".claude[data-p]")){ var id = b.closest(".claude").dataset.p; H.copia(completo(id, false), "Copiado. Ahora pégalo en Claude"); H.cuenta("copiar/" + id); return; }
+    var v = e.target.closest("[data-ver]");
+    if(v){ var c = v.closest(".claude"); var ab = c.classList.toggle("abierto"); v.textContent = ab ? "Ver menos" : "Ver completo"; v.setAttribute("aria-expanded", ab); return; }
+    var a = e.target.closest("[data-abre]");
+    if(a){ var id2 = a.closest(".claude").dataset.p; H.copia(completo(id2, false), "Copiado. Pégalo en Claude"); H.cuenta("abrir/" + id2); }
+    if(e.target.id === "copiaFicha"){ H.copia(ficha().replace(/\{(\w+)\}/g, function(_,k){ return ({yo:st.yo,tienda:tienda(),clienta:st.clienta})[k] || "["+ETQ[k].toUpperCase()+"]"; }), "Ficha copiada"); H.cuenta("copiar/ficha"); }
+  });
+
+  /* ---------- 02 liga ---------- */
+  function codigos(){ return (st.codigos||"").split(/[^0-9]+/).filter(function(c){ return c.length === 7; }).filter(function(c,i,a){ return a.indexOf(c) === i; }); }
+  function pintaLiga(){
+    var cs = codigos(), out = document.getElementById("ligaOut"), nota = document.getElementById("ligaNota");
+    if(!st.slug){ out.textContent = "Elige tu tienda arriba."; nota.textContent = ""; return; }
+    out.textContent = "https://mitienda.beauty/" + st.slug + "/" + (cs.length ? "?agrega=" + cs.join(",") : "");
+    nota.textContent = cs.length ? cs.length + (cs.length === 1 ? " producto" : " productos") + " en la liga" : "Sin códigos, la liga abre tu tienda.";
+  }
+  document.getElementById("copiaLiga").addEventListener("click", function(){ H.copia(document.getElementById("ligaOut").textContent, "Liga copiada"); H.cuenta("copiar/liga"); });
+
+  /* ---------- 03 semana ---------- */
+  function plan(){
+    var set = st.set || "tu set", cl = st.clienta || "tu clienta";
+    return [
+      {t:"Presenta el set", f:"publicación", x:"Una foto de las piezas juntas con su precio y hasta cuándo vale. Cierra con \"¿Te lo aparto?\"."},
+      {t:"El problema, en 4 historias", f:"historias", x:"1) Algo que le pasa a "+cl+". 2) Por qué pasa. 3) Cómo lo resuelve "+set+". 4) Encuesta: \"¿Te pasa?\"."},
+      {t:"Cómo se usa", f:"reel", x:"Tú usándolo, paso a paso, en menos de 30 segundos. Sin filtros."},
+      {t:"A tu lista de difusión", f:"WhatsApp", x:"El set, el precio y la liga de tu tienda con el pedido ya armado."},
+      {t:"Lo que dicen tus clientas", f:"historias", x:"Captura de un mensaje real (con permiso y sin su número). Si aún no tienes, enseña tu pedido llegando."},
+      {t:"Uno por uno", f:"mensajes", x:"Manda el set a 5 clientas con un mensaje personal, no reenviado."},
+      {t:"Último aviso", f:"historia", x:"Hasta cuándo vale y cuántos te quedan, solo si es cierto."}
+    ];
+  }
+  function planTexto(){ return plan().map(function(d,i){ var f = new Date(hoy); f.setDate(f.getDate()+i); return "Día "+(i+1)+" ("+DIAS_L[f.getDay()]+"): "+d.t+", "+d.f+". "+d.x; }).join("\n"); }
+  function pintaSemana(){
+    document.getElementById("semana").innerHTML = plan().map(function(d,i){
+      var f = new Date(hoy); f.setDate(f.getDate()+i);
+      return '<li'+(i===0?' class="es-hoy"':'')+'><span class="d">'+(i===0?"hoy":DIAS[f.getDay()]+" "+f.getDate())+'</span><div><h3>'+H.esc(d.t)+'</h3><span class="f">'+d.f+'</span></div><p>'+H.esc(d.x)+'</p></li>';
+    }).join("");
+  }
+
+  /* ---------- 04 mensajes ---------- */
+  var G = [
+    {k:"abrir", t:"Para abrir", m:[
+      {h:"Alguien cercana", c:"Amiga o familia con la que hablas seguido.", x:"{ella}, ¿cómo vas? Este mes armé \"{set}\" y me acordé de ti. ¿Te mando foto y precio?"},
+      {h:"Alguien con quien no hablas hace tiempo", c:"Primero retomar. El negocio, después.", x:"¡{ella}! Vi tu foto y me dio gusto verte. ¿Cómo has estado?"},
+      {h:"Reaccionó a tu historia", c:"El mismo día.", x:"{ella}, gracias por tu reacción. ¿Lo usarías tú o es para regalar? Te digo cuál te va mejor."},
+      {h:"Clienta de hace más de un mes", c:"A las 4 o 5 semanas de su compra.", x:"Hola {ella}, ¿cómo te fue con lo que te llevaste? Si ya se te acabó, te armo tu pedido aquí: {liga}"}
+    ]},
+    {k:"retomar", t:"Para retomar", m:[
+      {h:"Vio el catálogo y no contestó", c:"Dos días después.", x:"{ella}, ¿alcanzaste a ver lo que te mandé? Si quieres te digo cuál va con lo que ya usas."},
+      {h:"Preguntó el precio y no siguió", c:"Al día siguiente.", x:"{ella}, te aparté uno por si lo quieres. Si ahorita no, no pasa nada, nada más dime para liberarlo."},
+      {h:"\"Lo pienso\"", c:"Tres días después, una sola vez.", x:"Hola {ella}, ¿te quedó alguna duda de lo que viste? Con gusto te la resuelvo."},
+      {h:"\"Cobro la otra quincena\"", c:"El día que cobra.", x:"{ella}, hoy es quincena. ¿Te lo mando ya o lo dejamos para la próxima?"},
+      {h:"\"Está caro\"", c:"Ofrece algo más chico, sin bajar el precio.", x:"Te entiendo, {ella}. Si quieres empezar con una sola pieza del set, también se puede. ¿Cuál te llamó más?"},
+      {h:"Apartó y no ha pagado", c:"Dos días después de apartar.", x:"{ella}, ¿cómo te acomoda pagar tu pedido? Te lo puedo guardar hasta el viernes."}
+    ]}
+  ];
+  var grupo = location.hash === "#retomar" ? "retomar" : "abrir";
+  var chips = document.getElementById("chips");
+  chips.innerHTML = G.map(function(g){ return '<button type="button" class="chip" data-k="'+g.k+'" aria-pressed="'+(g.k===grupo)+'">'+g.t+'</button>'; }).join("");
+  chips.addEventListener("click", function(e){ var b = e.target.closest(".chip"); if(!b) return; grupo = b.dataset.k; chips.querySelectorAll(".chip").forEach(function(c){ c.setAttribute("aria-pressed", c === b); }); pintaMsjs(); H.cuenta("mensajes/" + grupo); });
+  function msj(x, html){
+    var V = {ella:st.ella, set:st.set, liga:st.slug ? "https://mitienda.beauty/" + st.slug + "/" : ""};
+    var E = {ella:"su nombre", set:"tu set", liga:"tu tienda"};
+    return (html ? H.esc(x) : x).replace(/\{(\w+)\}/g, function(_, k){ var v = V[k]; return html ? (v ? H.esc(v) : '<mark>'+E[k]+'</mark>') : (v || "[" + E[k] + "]"); });
+  }
+  function pintaMsjs(){
+    var g = G.filter(function(x){ return x.k === grupo; })[0];
+    document.getElementById("msjs").innerHTML = g.m.map(function(m,i){
+      return '<article class="msj"><div><h3>'+H.esc(m.h)+'</h3><p class="cuando">'+m.c+'</p></div><p class="texto">'+msj(m.x, true)+'</p><div class="btns"><button type="button" class="btn2" data-m="'+i+'">Copiar</button><a class="enlace" href="'+H.wa(msj(m.x,false))+'" target="_blank" rel="noopener" data-cuenta="wa/'+grupo+'">Mandar por WhatsApp</a></div></article>';
+    }).join("");
+  }
+  document.getElementById("msjs").addEventListener("click", function(e){
+    var b = e.target.closest("[data-m]"); if(!b) return;
+    var g = G.filter(function(x){ return x.k === grupo; })[0];
+    H.copia(msj(g.m[+b.dataset.m].x, false), "Mensaje copiado"); H.cuenta("copiar/mensaje");
+  });
+
+  /* ---------- hoy ---------- */
+  var HK = "mtb-con-claude-hoy-" + H.iso(hoy), hecho = H.lee(HK, {});
+  function pintaHoy(){
+    var c = cuentas(), conv = c && c.faltan ? c.conv[1].dia : 8;
+    var dia = plan()[0];
+    var L = [
+      {k:"conv", t:"Abre "+conv+" conversaciones", s:c && c.faltan ? "Es tu fila de 2 de cada 10. Usa los mensajes de la parte 04." : "Usa los mensajes de la parte 04."},
+      {k:"ret", t:"Retoma 4 que se quedaron a medias", s:"Una vez cada una, y si no contesta, la dejas."},
+      {k:"pub", t:"Publica: "+dia.t.toLowerCase(), s:"Lo de hoy en tu semana para publicar."},
+      {k:"set", t:"Manda tu set a 5 clientas", s:"Con la liga que abre su pedido ya armado."},
+      {k:"pts", t:"Anota tus puntos del día", s:'En <a href="/herramientas/ritmo-de-puntos/">Ritmo de Puntos</a> o en <a href="/mentorias/herramientas/hoja-diaria/">la hoja del día</a>.'}
+    ];
+    document.getElementById("hoyBajo").textContent = hoyTxt.charAt(0).toUpperCase() + hoyTxt.slice(1) + (c && c.faltan ? ". Te tocan " + H.fmt(c.porDia) + " puntos." : ".");
+    document.getElementById("hoyLista").innerHTML = L.map(function(l){ return '<li><label><input type="checkbox" data-h="'+l.k+'"'+(hecho[l.k]?" checked":"")+'><span>'+H.esc(l.t)+'</span><small>'+l.s+'</small></label></li>'; }).join("");
+    var n2 = L.filter(function(l){ return hecho[l.k]; }).length;
+    document.getElementById("hoyMarca").textContent = n2 + " de " + L.length + " hechas";
+  }
+  document.getElementById("hoyLista").addEventListener("change", function(e){ var k = e.target.dataset.h; if(!k) return; hecho[k] = e.target.checked; H.guarda(HK, hecho); if(e.target.checked) H.cuenta("hoy/" + k); pintaHoy(); });
+
+  function pinta(){ pintaMes(); pintaLiga(); pintaSemana(); pintaMsjs(); pintaPrompts(); pintaHoy(); }
+  pinta();
+})();
+</script>
+</body>
+</html>
