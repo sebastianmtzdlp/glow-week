@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>Lo que pensabas del multinivel · Mi Tienda Beauty</title>
+<meta name="description" content="Pirámide, inventario, cuotas, perder amistades: lo que se dice del multinivel, lo que pasa en el equipo y dónde lo compruebas.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Lo que pensabas del multinivel">
+<meta property="og:description" content="Lo que se dice, lo que pasa aquí y dónde lo compruebas. Con números y sin promesas.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/sin-mitos/">
+<meta property="og:image" content="https://mitienda.beauty/og/sin-mitos.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mitienda.beauty/og/sin-mitos.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#fff;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;
+  --accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;--good:#1B8A5A;
+  --ease:cubic-bezier(.23,1,.32,1);
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box;margin:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;font-size:16px;line-height:1.55;-webkit-text-size-adjust:100%}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+a{color:var(--accent-t)}
+.wrap{max-width:600px;margin:0 auto;padding:0 16px 80px}
+.top{display:flex;justify-content:space-between;align-items:center;padding:16px 0 0;font-size:14px;color:var(--muted)}
+.top a{color:inherit;text-decoration:none}
+.top img{width:22px;height:22px;vertical-align:-6px;margin-right:6px}
+.brand{font-weight:300;letter-spacing:.18em;font-size:12px}
+
+/* Portada */
+.hero{padding:40px 0 0}
+.kick{font-size:15px;color:var(--muted)}
+h1{font-size:clamp(38px,11vw,60px);line-height:1;font-weight:800;letter-spacing:-.025em;margin-top:8px}
+h1 em{font-style:normal;color:var(--muted);position:relative;white-space:nowrap}
+h1 em::after{content:"";position:absolute;left:-2%;right:-2%;top:54%;height:.09em;background:var(--accent);border-radius:9px;transform-origin:left;animation:tache 520ms var(--ease) 350ms both}
+@keyframes tache{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.lead{font-size:18px;color:var(--muted);margin-top:16px;max-width:36ch}
+
+/* Lo más que arriesgas */
+.riesgo{margin-top:28px;border-top:1.5px solid var(--ink);padding-top:16px;display:grid;grid-template-columns:auto 1fr;gap:4px 18px;align-items:end}
+.riesgo .lbl{grid-column:1/-1;font-size:15px;color:var(--muted)}
+.riesgo .big{font-family:var(--mono);font-weight:700;font-size:clamp(56px,17vw,84px);line-height:.95;letter-spacing:-.04em;color:var(--accent);font-variant-numeric:tabular-nums}
+.riesgo p{font-size:15px;padding-bottom:8px;max-width:24ch}
+.riesgo ul{grid-column:1/-1;list-style:none;padding:0;margin-top:14px;display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.riesgo li{background:var(--soft);border-radius:14px;padding:10px 12px;font-size:13px;color:var(--muted);line-height:1.3}
+.riesgo li b{display:block;font-family:var(--mono);font-size:17px;color:var(--ink);font-weight:700}
+
+/* Capítulos */
+.ch{margin-top:64px;scroll-margin-top:16px}
+.ch h2{font-size:clamp(27px,7.5vw,34px);line-height:1.08;font-weight:800;letter-spacing:-.015em}
+.ch-head p{margin-top:12px;color:var(--muted);max-width:40ch}
+
+/* Señales de una pirámide */
+.senal{list-style:none;padding:0;margin-top:20px;border-top:1.5px solid var(--ink)}
+.senal li{display:grid;grid-template-columns:1fr 1fr;gap:14px;padding:14px 0;border-bottom:1px solid var(--line);font-size:15px}
+.senal .s{font-weight:600}
+.senal .r{color:var(--muted);position:relative;padding-left:26px}
+.senal .r::before{content:"";position:absolute;left:0;top:3px;width:16px;height:16px;border-radius:50%;border:1.75px solid var(--good)}
+.senal .r::after{content:"";position:absolute;left:5px;top:6px;width:4px;height:7px;border-right:1.75px solid var(--good);border-bottom:1.75px solid var(--good);transform:rotate(45deg)}
+.senal .r b{color:var(--ink);font-weight:600}
+.senal .hd{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);padding:10px 0;font-weight:500}
+.senal .hd span+span{padding-left:26px}
+
+/* Mitos */
+.mitos{list-style:none;padding:0;margin-top:22px;display:grid;gap:14px}
+.mito{border:1px solid var(--line);border-radius:18px;padding:18px 18px 16px}
+.mito .n{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.mito .dice{display:block;font-size:20px;line-height:1.25;font-weight:700;color:var(--muted);margin-top:4px;position:relative;width:fit-content}
+.mito .dice::after{content:"";position:absolute;left:0;right:0;top:55%;height:2px;background:var(--accent);border-radius:2px;transform:scaleX(0);transform-origin:left;transition:transform 420ms var(--ease)}
+.mito.vis .dice::after{transform:scaleX(1)}
+.mito .pasa{margin-top:12px;font-size:16px}
+.mito .pasa b{font-weight:700}
+.mito .dato{display:flex;gap:10px;align-items:baseline;margin-top:12px;padding:10px 12px;background:var(--soft);border-radius:12px;font-size:14px;color:var(--muted)}
+.mito .dato .num{font-size:18px;font-weight:700;color:var(--ink);white-space:nowrap}
+.mito .ver{display:inline-block;margin-top:12px;font-size:14px;font-weight:600;text-decoration:none}
+.mito .ver::after{content:" →";font-family:var(--mono)}
+
+/* Lo que el equipo no hace */
+.nohace{list-style:none;padding:0;margin-top:20px}
+.nohace li{position:relative;padding:14px 0 14px 40px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.nohace li:last-child{border-bottom:1px solid var(--line)}
+.nohace li::before{content:"";position:absolute;left:4px;top:17px;width:20px;height:20px;border-radius:50%;border:1.75px solid var(--accent-t);
+  background:linear-gradient(45deg,transparent 45%,var(--accent-t) 45%,var(--accent-t) 55%,transparent 55%)}
+.nohace b{display:block;color:var(--ink);font-size:16px;font-weight:700;margin-bottom:2px}
+.firma{margin-top:14px;font-size:14px;color:var(--muted)}
+
+.honest{margin-top:18px;padding:14px 16px;border:1.5px solid var(--ink);border-radius:14px;font-size:15px}
+
+/* Cierre */
+.end{margin-top:64px;padding:24px 18px;border-radius:18px;background:var(--ink);color:#fff}
+.end h2{font-size:28px;line-height:1.1;font-weight:800}
+.end p{color:#C9CBE0;margin-top:10px}
+.end .who{display:flex;align-items:center;gap:12px;margin-top:18px}
+.end .who img,.end .who .ini{width:48px;height:48px;border-radius:50%;object-fit:cover;background:#3A3F66;display:grid;place-items:center;font-weight:700;flex:none}
+.end .who small{display:block;color:#C9CBE0;font-size:13px}
+.btn{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;border:0;border-radius:14px;padding:15px;margin-top:18px;font:700 16px/1.2 Outfit,sans-serif;text-decoration:none;cursor:pointer;background:var(--accent);color:#fff;transition:transform 160ms var(--ease)}
+.btn:active{transform:scale(.97)}
+.btn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+.end .alt{display:block;text-align:center;margin-top:12px;color:#fff;font-size:14px}
+.share{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;margin-top:14px;padding:13px;border-radius:14px;border:1.5px solid var(--ink);background:#fff;color:var(--ink);font:600 15px/1.2 Outfit,sans-serif;cursor:pointer;transition:transform 160ms var(--ease)}
+.share:active{transform:scale(.97)}
+.share svg{width:18px;height:18px;stroke:currentColor;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+footer{margin-top:40px;font-size:13px;color:var(--muted)}
+
+@media(min-width:1000px){
+  .wrap{max-width:1160px;padding:0 40px 100px}
+  .intro{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,480px);gap:72px;align-items:end;margin-top:8px}
+  .hero{padding-top:64px}
+  h1{font-size:clamp(60px,5.8vw,80px)}
+  .lead{font-size:20px;max-width:32ch}
+  .riesgo{margin-top:0}
+  .ch{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);column-gap:88px;margin-top:104px}
+  .ch>*{grid-column:2}
+  .ch>.ch-head{grid-column:1;grid-row:1/span 30;align-self:start;position:sticky;top:32px}
+  .ch h2{font-size:38px}
+  .ch-head p{max-width:32ch}
+  .ch>.ch-head+*{margin-top:4px}
+  .mitos{grid-template-columns:1fr 1fr;gap:16px}
+  .end{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,380px);gap:24px 64px;align-items:end;padding:48px 56px;margin-top:112px}
+  .end>*{grid-column:1}
+  .end h2{font-size:40px}
+  .end .who,.end .btn,.end .alt{grid-column:2}
+  .end .who{grid-row:1}
+  .share-wrap{max-width:380px}
+}
+a:focus-visible,button:focus-visible{outline:2.5px solid var(--accent-t);outline-offset:2px;border-radius:6px}
+@media(hover:hover) and (pointer:fine){.btn:hover{background:var(--accent-t)}.mito .ver:hover{text-decoration:underline}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.mito .dice::after{transform:scaleX(1)}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="top"><a href="/unete/" id="inicio"><img src="/favicon.svg?v=3" alt="">Mi Tienda Beauty</a><span class="brand">MI EQUIPO</span></div>
+
+  <div class="intro">
+  <header class="hero">
+    <p class="kick">Yo también lo pensé.</p>
+    <h1>Lo que pensabas del <em>multinivel</em></h1>
+    <p class="lead">Lo que se dice, lo que pasa en el equipo y dónde lo compruebas tú. Con números y sin promesas.</p>
+  </header>
+
+  <section class="riesgo" aria-label="Lo más que arriesgas">
+    <p class="lbl">Lo más que arriesgas al entrar</p>
+    <div class="big">$499</div>
+    <p>Una sola vez, y te llevas tu kit con producto.</p>
+    <ul>
+      <li><b>$0</b>al mes de cuota</li>
+      <li><b>0</b>piezas de inventario obligatorio</li>
+      <li><b>75</b>puntos en 6 meses para no perder tu cuenta</li>
+    </ul>
+  </section>
+  </div>
+
+  <section class="ch" id="piramide">
+    <div class="ch-head">
+      <h2>¿Es una pirámide?</h2>
+      <p>Una pirámide te cobra por entrar y te paga por meter gente. Revisa tú misma cada señal.</p>
+    </div>
+    <ul class="senal">
+      <li class="hd" aria-hidden="true"><span>Señal de pirámide</span><span>Lo que pasa aquí</span></li>
+      <li><span class="s">Pagas mucho por entrar</span><span class="r"><b>$499 una vez</b>, con producto que usas o vendes.</span></li>
+      <li><span class="s">Te pagan por cada persona que metes</span><span class="r">Tu bono sale de los <b>puntos de los pedidos</b>, no de cuántas inscribes.</span></li>
+      <li><span class="s">Te obligan a comprar inventario</span><span class="r">Los sets de inicio son <b>opcionales</b>. Pides lo que ya te encargaron.</span></li>
+      <li><span class="s">Hay una cuota cada mes</span><span class="r"><b>No hay mensualidad.</b> Solo 75 puntos en 6 meses para conservar tu cuenta.</span></li>
+      <li><span class="s">Nadie compra el producto para usarlo</span><span class="r">Muchas entran <b>solo por el descuento</b> en lo que ya compran.</span></li>
+      <li><span class="s">Te prometen cuánto vas a ganar</span><span class="r"><b>Sin cifras prometidas.</b> El plan completo está publicado con calculadora.</span></li>
+      <li><span class="s">No te puedes salir</span><span class="r"><b>Dejas de pedir</b> y la cuenta se cierra sola.</span></li>
+    </ul>
+    <div class="honest">Esta lista la hizo el equipo con la Guía de inscripción de Farmasi México y la tabla de títulos del Back Office. <a href="/plan-de-compensacion/" class="ruta">Ve el plan completo</a> y saca tus propias cuentas.</div>
+  </section>
+
+  <section class="ch" id="mitos">
+    <div class="ch-head">
+      <h2>Lo que se dice, y lo que pasa aquí</h2>
+      <p>Las dudas que más oímos antes de que alguien entre. Cada una con el dato y el lugar donde lo revisas.</p>
+    </div>
+    <ul class="mitos">
+      <li class="mito">
+        <span class="n">01</span>
+        <span class="dice">Solo gana la de arriba</span>
+        <p class="pasa">Tu bono depende de los puntos de tu grupo, no de cuándo entraste. <b>Tu socia te puede rebasar:</b> si llega a tu nivel, de su grupo ya no ganas bono de grupo.</p>
+        <p class="dato"><span class="num">$10,350</span><span>cobra en el ejemplo del plan una socia en 18%, contra $7,800 de quien la invitó en 22%.</span></p>
+        <a class="ver" href="/plan-de-compensacion/#socias">Ver el ejemplo</a>
+      </li>
+      <li class="mito">
+        <span class="n">02</span>
+        <span class="dice">Para ganar tienes que reclutar</span>
+        <p class="pasa">Ganas desde tu primer pedido: compras a precio de socia y tu clienta paga el de catálogo. <b>La diferencia es tuya.</b> Armar equipo es opcional.</p>
+        <p class="dato"><span class="num">30–50%</span><span>es tu ganancia al vender, según la línea del producto.</span></p>
+        <a class="ver" href="/plan-de-compensacion/#venta">Cómo se calcula</a>
+      </li>
+      <li class="mito">
+        <span class="n">03</span>
+        <span class="dice">Te llenan la casa de producto</span>
+        <p class="pasa">No tienes que tener nada guardado. <b>Pides lo que tus clientas ya te encargaron.</b></p>
+        <p class="dato"><span class="num">0</span><span>sets obligatorios. Los de inicio son opcionales.</span></p>
+        <a class="ver" href="/unete/inscripcion/">Ver qué pide la inscripción</a>
+      </li>
+      <li class="mito">
+        <span class="n">04</span>
+        <span class="dice">Hay cobros escondidos</span>
+        <p class="pasa">Pagas el kit una vez. Para <b>conservar tu cuenta</b>, 75 puntos en 6 meses. Para <b>cobrar bonos</b> un mes, 75 puntos ese mes. Son dos cosas distintas.</p>
+        <p class="dato"><span class="num">$1,875</span><span>es lo que suman 75 puntos a precio de socia, en medio año.</span></p>
+        <a class="ver" href="/unete/#dudas">Ver la letra chiquita</a>
+      </li>
+      <li class="mito">
+        <span class="n">05</span>
+        <span class="dice">Vas a perder amistades</span>
+        <p class="pasa">Recomiendas lo que usas y contestas dudas. Si alguien no responde, <b>un solo mensaje amable</b> con salida fácil, y ya. Puedes empezar sin publicar nada.</p>
+        <a class="ver" href="/guias/">Ver cómo contactamos</a>
+      </li>
+      <li class="mito">
+        <span class="n">06</span>
+        <span class="dice">Te prometen hacerte rica</span>
+        <p class="pasa">Aquí no hay fotos de autos ni de cheques. Lo que ganes depende de lo que vendas tú y tu equipo, y <b>tú haces la cuenta</b> con la calculadora.</p>
+        <a class="ver" href="/plan-de-compensacion/#calculadora">Hacer mi cuenta</a>
+      </li>
+      <li class="mito">
+        <span class="n">07</span>
+        <span class="dice">Es de tiempo completo</span>
+        <p class="pasa">Eliges tu ritmo. El más chico son <b>10 contactos, 1 presentación y 1 contenido al día.</b> El método es el mismo; cambia la cantidad.</p>
+        <a class="ver" href="/mentorias/herramientas/presentacion/">Ver los ritmos</a>
+      </li>
+      <li class="mito">
+        <span class="n">08</span>
+        <span class="dice">Si no vendes, pierdes dinero</span>
+        <p class="pasa">Aunque nunca vendas, lo que compras para ti te sale <b>30% más barato</b> en la mayoría de las líneas y hasta 50% en algunas.</p>
+        <a class="ver" href="/unete/">Hacer la cuenta de lo que ya gastas</a>
+      </li>
+    </ul>
+  </section>
+
+  <section class="ch" id="no-hacemos">
+    <div class="ch-head">
+      <h2>Lo que el equipo no hace</h2>
+      <p>Lo ponemos por escrito para que nos lo puedas reclamar.</p>
+    </div>
+    <ul class="nohace">
+      <li><b>No te pedimos comprar inventario.</b> Nunca compres producto con dinero que no tienes.</li>
+      <li><b>No te presionamos para cerrar el mes.</b> Si un mes no llegas a tus puntos, lo vemos en tu 1 a 1 y ya.</li>
+      <li><b>No te prometemos cifras.</b> Te damos el plan completo y la calculadora.</li>
+      <li><b>No te pedimos que le vendas a tu familia.</b> Recomiendas a quien quieras y sin insistir.</li>
+      <li><b>Si un día ya no quieres, dejas de pedir.</b> No hay mensualidad ni compras obligatorias.</li>
+    </ul>
+    <p class="firma">Equipo de Selene · noviembre de 2026</p>
+  </section>
+
+  <section class="end" id="final">
+    <h2>¿Te quedó una duda?</h2>
+    <p>Pregúntame lo que quieras, aunque sea lo incómodo. Te contesto con el plan en la mano.</p>
+    <div class="who"><span class="ini" id="whoIni">S</span><div><b id="whoName">Selene</b><small id="whoRole">Consultora Farmasi · Mi Tienda Beauty</small></div></div>
+    <a class="btn" id="cta" href="https://wa.me/525541456984" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 0 1-13.4 7.9L3 21l1.1-4.5A9 9 0 1 1 21 12z"/></svg>
+      Preguntar</a>
+    <a class="alt" id="ctaUnete" href="/unete/">Ver lo que pagas de más por no ser socia</a>
+  </section>
+
+  <div class="share-wrap">
+    <button class="share" id="share" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M12 3v12M8 7l4-4 4 4"/></svg>
+      Mandar esta página</button>
+  </div>
+
+  <footer>Lo hizo el equipo con la Guía de inscripción de Farmasi México y el Back Office. No es material oficial de Farmasi; lo que manda es lo vigente en tu Back Office.</footer>
+</div>
+
+<script>
+(function(){
+  const $ = id => document.getElementById(id);
+  const cuenta = (p, t) => { try{ window.goatcounter && window.goatcounter.count({path: "sin-mitos/" + p, title: t, event: true}); }catch(_){} };
+  let quien = {slug: "sel", nombre: "Selene", whatsapp: "525541456984"};
+  let suf = "";
+
+  function links(){
+    $("cta").href = `https://wa.me/${quien.whatsapp}?text=${encodeURIComponent(`Hola ${quien.nombre}, vi la página de mitienda.beauty/sin-mitos y tengo una pregunta.`)}`;
+  }
+  links();
+
+  // La raya sobre cada mito se dibuja una vez, cuando se ve
+  const mitos = document.querySelectorAll(".mito");
+  if ("IntersectionObserver" in window){
+    const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add("vis"); io.unobserve(e.target); } }), {threshold:.6});
+    mitos.forEach(m => io.observe(m));
+  } else mitos.forEach(m => m.classList.add("vis"));
+
+  $("cta").addEventListener("click", () => cuenta("whatsapp/" + quien.slug, "Preguntar"));
+  $("share").addEventListener("click", async () => {
+    const url = "https://mitienda.beauty/sin-mitos/" + suf;
+    const txt = "Lo que pensabas del multinivel, con números:";
+    cuenta("compartir", "Mandar esta página");
+    try{ if (navigator.share){ await navigator.share({text: txt, url}); return; } }catch(_){ return; }
+    window.open(`https://wa.me/?text=${encodeURIComponent(txt + " " + url)}`, "_blank", "noopener");
+  });
+
+  // Quien comparte: ?de=<slug> conserva su nombre y su WhatsApp en todas las ligas
+  const qs = new URLSearchParams(location.search), slug = qs.get("de") || qs.get("c");
+  if (slug && /^[a-z0-9-]+$/.test(slug)){
+    fetch("/_data/equipo.json").then(r => r.json()).then(eq => {
+      const p = (eq.consultoras || []).find(x => x.slug === slug);
+      if (!p || !p.whatsapp) return;
+      quien = p; suf = p.slug !== "sel" ? "?de=" + p.slug : "";
+      $("whoName").textContent = p.tienda || p.nombre;
+      $("whoRole").textContent = (p.genero === "m" ? "Consultor" : "Consultora") + " Farmasi · Mi Tienda Beauty";
+      $("whoIni").textContent = p.nombre.charAt(0);
+      const img = new Image(); img.alt = ""; img.onload = () => $("whoIni").replaceWith(img); img.src = `/fotos/${p.slug}.jpg`;
+      document.querySelectorAll('a[href^="/unete/"], a[href^="/plan-de-compensacion/"]').forEach(a => {
+        const [u, h] = a.getAttribute("href").split("#"); a.href = u + suf + (h ? "#" + h : "");
+      });
+      links();
+    }).catch(() => {});
+  } else {
+    const img = new Image(); img.alt = ""; img.onload = () => $("whoIni").replaceWith(img); img.src = "/fotos/sel.jpg";
+  }
+})();
+</script>
+</body>
+</html>

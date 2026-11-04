@@ -27,10 +27,10 @@ const OG = {
   "h-200": ["Mis primeros <em>200</em>", "200 puntos en 14 días, rumbo a 3%. Con marcador.", `<div class="big">200<small> / 14 días</small></div>`],
   "h-bienvenida": ["Bienvenida, <em>socia</em>", "Tu lista del primer día, la primera semana y los primeros meses.",
     lista("Para empezar", [["Kit de inicio", "$499"], ["Puntos al mes", "75"], ["Cada punto", "$25"], ["Bienvenida", "50·60·70·80"]])],
-  "h-presentacion": ["La presentación <em>del negocio</em>", "Seis pantallas para presentarlo en una llamada, con tu nombre y tu link.", lista("Las pantallas", [["Por qué ahora", "1"], ["Cómo funciona", "2"], ["Qué se gana", "3"], ["Tu primer paso", "4"]])],
+  "h-presentacion": ["La presentación <em>del negocio</em>", "Siete pantallas para presentarlo en una llamada, con tu nombre y tu link.", lista("Las pantallas", [["Por qué ahora", "1"], ["Cómo funciona", "2"], ["Qué se gana", "3"], ["Tu primer paso", "4"]])],
   "h-reconocimientos": ["Reconocimientos", "Una tarjeta para felicitar a tu equipo, lista para WhatsApp e Historias.", lista("Estilos", [["Coral", "tarjeta"], ["Noche", "tarjeta"], ["Papel", "tarjeta"]])],
   "h-contenido": ["Qué publico <em>hoy</em>", "Una idea para hoy y el calendario del mes, según tu ritmo.", `<div class="big">30<small> ideas</small></div>`],
-  "h-objeciones": ["¿Y si me dice <em>que no?</em>", "Qué contestar y con qué pregunta sigues.", `<div class="big">12<small> respuestas</small></div>`],
+  "h-objeciones": ["¿Y si me dice <em>que no?</em>", "Qué contestar y con qué pregunta sigues.", `<div class="big">15<small> respuestas</small></div>`],
   "h-lista": ["Mi lista <em>de 50</em>", "A quién le toca hoy, con su etapa, su siguiente paso y su fecha.", `<div class="big">50<small> personas</small></div>`],
   "h-equipo": ["Mapa de <em>mi equipo</em>", "Tus líneas, tu nivel y tus laterales del mes.", lista("Tu mes", [["Puntos de grupo", "mes"], ["Laterales", "mes"], ["Directoras", "línea"]])],
   "h-mi-mes": ["Mi <em>mes</em>", "El cierre del mes en una hoja: números, reto y aprendizaje.", lista("El cierre", [["Contactadas", "mes"], ["Presentaciones", "mes"], ["Socias", "mes"], ["Mi reto", "sí o no"]])],
@@ -47,6 +47,8 @@ const OG = {
   // /unete/ (página para quien todavía no es socia)
   "unete": ["Lo que pagas <em>de más</em>", "Pon lo que gastas al mes en belleza y ve cuánto se te va por no ser socia.",
     lista("Si gastas $800 al mes", [["Como clienta", "$800"], ["Como socia", "$480"], ["Pagas de más", "$320", "a"], ["Inscripción", "$499 una vez"]])],
+  "sin-mitos": ["Lo que pensabas del <em>multinivel</em>", "Lo que se dice, lo que pasa aquí y dónde lo compruebas.",
+    lista("Lo más que arriesgas", [["Para entrar", "$499 una vez"], ["Cuota al mes", "$0"], ["Inventario obligatorio", "0"], ["Cifras prometidas", "ninguna", "a"]])],
   "h-que-quiere": ["¿Qué quiere <em>cada quien?</em>", "Le gusta, va por algo o va por todo. Acompaña a cada una a su ritmo.",
     `<div class="o"><b>De cada 100</b><div style="display:grid;grid-template-columns:repeat(20,1fr);gap:6px;border:0;padding:20px 0 14px">${Array.from({length:100},(_, i)=>{const c=i%20, r=Math.floor(i/20), k=c*5+r; return `<i style="display:block;aspect-ratio:1;border-radius:50%;background:${k<80?"#E9A1A8":k<95?"#DB414C":"#1B1F3B"}"></i>`;}).join("")}</div>${[["Le gusta","80"],["Va por algo","15"],["Va por todo","5"]].map(([a,b])=>`<div>${a}<span>${b}</span></div>`).join("")}</div>`],
 };

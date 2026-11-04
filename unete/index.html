@@ -141,6 +141,14 @@ input[type=range]{width:100%;margin:12px 0 4px;accent-color:var(--ink);height:32
 .rules .num{font-weight:700;white-space:nowrap}
 .honest{margin-top:18px;padding:14px 16px;border:1.5px solid var(--ink);border-radius:14px;font-size:15px}
 
+.nohace{list-style:none;padding:0;margin-top:20px;counter-reset:n}
+.nohace li{position:relative;padding:14px 0 14px 40px;border-top:1px solid var(--line);font-size:15px;color:var(--muted)}
+.nohace li:last-child{border-bottom:1px solid var(--line)}
+.nohace li::before{content:"";position:absolute;left:4px;top:17px;width:20px;height:20px;border-radius:50%;border:1.75px solid var(--accent-t);
+  background:linear-gradient(45deg,transparent 45%,var(--accent-t) 45%,var(--accent-t) 55%,transparent 55%)}
+.nohace b{display:block;color:var(--ink);font-size:16px;font-weight:700;margin-bottom:2px}
+.mitos{display:flex;justify-content:space-between;gap:12px;margin-top:18px;padding:14px 16px;border-radius:14px;background:var(--soft);color:var(--ink);font-weight:600;text-decoration:none}
+.mitos span{color:var(--accent-t);font-family:var(--mono)}
 details.f{border-bottom:1px solid var(--line)}
 details.f:first-of-type{border-top:1px solid var(--line);margin-top:20px}
 details.f summary{list-style:none;cursor:pointer;padding:15px 30px 15px 0;font-weight:600;font-size:16px;position:relative}
@@ -299,13 +307,30 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
       <p>No tienes que hacerlo. Si te animas, así se mide.</p>
     </div>
     <div class="rules">
+      <div><span>Tu ganancia al vender, desde tu primer pedido</span><span class="num">30–50%</span></div>
       <div><span>Cada punto equivale a</span><span class="num">$25</span></div>
       <div><span>Para cobrar, puntos tuyos en el mes</span><span class="num">75</span></div>
       <div><span>Apoyo para auto desde Directora Oro</span><span class="num">$5,250/mes</span></div>
     </div>
     <div class="ladder" id="ladder" aria-label="Bono por nivel y puntos de grupo que pide al mes"></div>
+    <p class="fine">Compras a precio de socia y tu clienta paga el de catálogo: la diferencia es tuya desde el primer pedido, sin esperar a ningún nivel.</p>
     <p class="fine">Bono por nivel y puntos de grupo al mes (tuyos y de tu equipo), según la tabla de títulos de Farmasi México.</p>
     <div class="honest">Lo que ganes depende de lo que vendas tú y tu equipo. Aquí no te prometemos una cifra: te enseñamos el plan completo para que hagas tu propia cuenta. <a href="/plan-de-compensacion/">Ver el plan de compensación</a></div>
+  </section>
+
+  <section class="ch" id="no-hacemos">
+    <div class="ch-head">
+      <h2>Lo que el equipo no hace</h2>
+      <p>Sabemos lo que se dice del multinivel. Por eso esto va por escrito.</p>
+    </div>
+    <ul class="nohace">
+      <li><b>No te pedimos comprar inventario.</b> Pides lo que ya te encargaron. Nunca compres producto con dinero que no tienes.</li>
+      <li><b>No te presionamos para cerrar el mes.</b> Si un mes no llegas a tus puntos, lo vemos en tu 1 a 1 y ya.</li>
+      <li><b>No te prometemos cifras.</b> Ni fotos de autos ni de cheques: te damos el plan completo y la calculadora.</li>
+      <li><b>No te pedimos que le vendas a tu familia.</b> Recomiendas lo que usas, a quien quieras y sin insistir.</li>
+      <li><b>Si un día ya no quieres, dejas de pedir.</b> No hay mensualidad: sin 75 puntos en 6 meses, la cuenta se cierra sola.</li>
+    </ul>
+    <a class="mitos" href="/sin-mitos/">Lo que pensabas del multinivel, con números <span aria-hidden="true">→</span></a>
   </section>
 
   <section class="ch" id="dudas">
@@ -316,6 +341,11 @@ a:focus-visible,button:focus-visible,summary:focus-visible,input:focus-visible{o
     <details class="f"><summary>¿Tengo que vender?</summary><p>No. Muchas entran solo por el precio de socia para lo que ya compran. Si después quieres vender, ya tienes todo listo.</p></details>
     <details class="f"><summary>¿Hay un mínimo de compra?</summary><p>Para que tu cuenta siga abierta, junta al menos 75 puntos en cualquier periodo de 6 meses. Son unos $1,875 a precio de socia en medio año.</p></details>
     <details class="f"><summary>¿Qué pasa si un mes no compro?</summary><p>Tu cuenta sigue, mientras cumplas los 75 puntos en 6 meses. Si estás en tus primeros 4 meses, ese mes se corta la racha de regalos de bienvenida.</p></details>
+    <details class="f"><summary>¿Es una pirámide?</summary><p>No. En una pirámide se gana por meter gente que paga por entrar. Aquí lo que pagas sale de producto que alguien compró: tu ganancia al vender y tu bono por los puntos de los pedidos. Entrar cuesta $499 una sola vez y trae producto. <a href="/sin-mitos/">Lo explicamos aquí con números</a>.</p></details>
+    <details class="f"><summary>¿Tengo que meter gente para ganar?</summary><p>No. Ganas desde tu primer pedido con la diferencia entre tu precio y el de catálogo. Con 200 puntos al mes, aunque sean solo tuyos y de tus clientas, ya cobras el 3% de bono. Armar equipo es opcional; solo los rangos de dirección lo piden.</p></details>
+    <details class="f"><summary>¿Tengo que tener producto en casa?</summary><p>No. Pides lo que tus clientas ya te encargaron. Los sets de inicio son opcionales.</p></details>
+    <details class="f"><summary>¿La que me invitó gana por mí?</summary><p>Gana la diferencia entre su porcentaje y el tuyo, y no sale de tu bolsa: tú cobras tu porcentaje completo. Si llegas a su nivel, de tu grupo ya no gana bono de grupo. Tu socia puede ganar más que tú, y tú más que quien te invitó.</p></details>
+    <details class="f"><summary>¿Y si ya no quiero seguir?</summary><p>Dejas de pedir. No hay mensualidad ni compras obligatorias. Si no juntas 75 puntos en 6 meses, tu cuenta se cierra sola.</p></details>
     <details class="f"><summary>¿Cómo me registro?</summary><p>Me escribes por WhatsApp, te mando tu link de registro y te acompaño en tu primer pedido. Tarda unos minutos.</p></details>
   </section>
 
