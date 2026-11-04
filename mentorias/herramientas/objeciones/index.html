@@ -77,7 +77,7 @@
 
   <header class="portada">
     <h1>¿Y si me dice <em>que no?</em></h1>
-    <p class="bajada">Casi ningún «no» es un no: es una duda que no supiste leer. Aquí están las doce que más oyes, con lo que de verdad está diciendo, la respuesta para copiar y la pregunta con la que sigues.</p>
+    <p class="bajada">Casi ningún «no» es un no: es una duda que no supiste leer. Aquí están las doce que más oyes de clientas y las tres que más oyes cuando invitas a alguien a ser socia, con lo que de verdad está diciendo, la respuesta para copiar y la pregunta con la que sigues.</p>
   </header>
 
   <form class="para" autocomplete="off" onsubmit="return false" aria-label="Para personalizar las respuestas">
@@ -110,7 +110,7 @@
   <section class="sigue" aria-labelledby="sTit">
     <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
     <a class="otra" href="/mentorias/herramientas/mensajes/" data-cuenta="ir-mensajes"><b>Mensajes para copiar</b><span>Contactar, dar seguimiento, agendar y cerrar.</span><i aria-hidden="true">→</i></a>
-    <a class="otra" href="/mentorias/herramientas/presentacion/" data-cuenta="ir-presentacion"><b>Así funciona el negocio</b><span>La presentación en seis pantallas, para mandar o abrir en llamada.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/presentacion/" data-cuenta="ir-presentacion"><b>Así funciona el negocio</b><span>La presentación en siete pantallas, para mandar o abrir en llamada.</span><i aria-hidden="true">→</i></a>
     <a class="otra" href="/mentorias/herramientas/lista/" data-cuenta="ir-lista"><b>Mi lista de 50</b><span>Anota qué te contestó y cuándo le vuelves a escribir.</span><i aria-hidden="true">→</i></a>
   </section>
 
@@ -133,7 +133,10 @@
     {o:"No compro por internet", r:"Es confianza, no tecnología. Tú eres la garantía.", x:"Por eso lo hago yo, {nombre}: me pides por WhatsApp, yo hago el pedido y Farmasi te lo envía a tu casa. Si tienes una duda o algo no te queda, me escribes a mí.", s:"¿Te armo tu pedido?"},
     {o:"Déjame preguntarle a mi pareja", r:"Necesita permiso, o es una salida elegante. Pregunta qué cree que le va a decir.", x:"Claro, {nombre}. ¿Qué crees que te va a decir? Si es por el precio, te paso dos opciones y escogen juntos.", s:"¿Le mando algo para que lo vea?"},
     {o:"Tengo la piel sensible", r:"Miedo real. No lo minimices y no diagnostiques.", x:"Gracias por decírmelo, {nombre}. Hay líneas pensadas para piel sensible, pero yo no soy dermatóloga: te paso los ingredientes para que los revises o se los enseñes a tu doctora, y empezamos con una prueba chica.", s:"¿Qué te ha irritado antes?"},
-    {o:"No tengo tiempo para rutinas", r:"Cree que es complicado. Hazlo de tres pasos.", x:"Entonces lo tuyo es una de tres pasos, {nombre}: limpiar, hidratar, proteger. Dos minutos en la mañana. Te la armo con lo que ya tienes.", s:"¿Te la armo?"}
+    {o:"No tengo tiempo para rutinas", r:"Cree que es complicado. Hazlo de tres pasos.", x:"Entonces lo tuyo es una de tres pasos, {nombre}: limpiar, hidratar, proteger. Dos minutos en la mañana. Te la armo con lo que ya tienes.", s:"¿Te la armo?"},
+    {o:"¿No es una pirámide?", r:"Miedo a perder dinero o a quedar mal con su círculo. Es una duda legítima: contéstala con datos, no con enojo.", x:"Qué bueno que lo preguntas, {nombre}, yo también lo pensé. En una pirámide pagas mucho por entrar y ganas por meter gente. Aquí entras con $499 una vez, con producto, y el bono sale de los pedidos. Te paso la página donde viene señal por señal: https://mitienda.beauty/sin-mitos/", s:"¿Cuál de las señales te preocupaba más?"},
+    {o:"¿Cuánto se gana?", r:"Quiere un número. No prometas ingresos: enséñale cómo se calcula y que haga ella la cuenta.", x:"No te voy a prometer una cifra, {nombre}, porque depende de lo que cada una haga. Lo que sí te enseño es cómo se calcula: ganas desde tu primer pedido con la diferencia entre tu precio y el de catálogo, y aparte el bono por puntos. Aquí está el plan con calculadora: https://mitienda.beauty/plan-de-compensacion/", s:"¿Cuánto tiempo a la semana le podrías dar?"},
+    {o:"Ya intenté otra cosa y no funcionó", r:"Una mala experiencia. Reconócela antes de comparar y pregunta qué falló.", x:"Qué lástima que te pasó eso, {nombre}. Cuéntame qué fue lo que no funcionó: si aquí se repite, te lo digo y no te hago perder tiempo.", s:"¿Qué fue lo que más te costó?"}
   ];
   var KEY = "mtb-objeciones-v1", st = H.lee(KEY, {});
   ["nombre","link","dias"].forEach(function(k){ var i = $("v-" + k); if(st[k]) i.value = st[k]; i.addEventListener("input", function(){ st[k] = i.value.trim(); H.guarda(KEY, st); pinta(); }); });
