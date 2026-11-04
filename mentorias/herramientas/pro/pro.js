@@ -46,7 +46,7 @@ window.PRO = (function(){
      d:"Noventa guiones completos: reels, historias y carruseles, por ritmo, con productos del catálogo y el plan de cuatro semanas de contenido que trae prospectos."},
     {s:"mi-mes", t:"Mi mes · Pro", precio:99, tipo:"seguimiento", ruta:"/mentorias/herramientas/mi-mes/", para:"Para quien quiere ver cómo va mes contra mes.",
      d:"Historial de meses, tus tasas y la comparación contra el plan Pro que compraste."},
-    {s:"inventario", t:"Lo que tengo en casa · Pro", precio:99, tipo:"finanzas", ruta:"/mentorias/herramientas/inventario/", para:"Para quien vende con producto en mano.",
+    {s:"inventario", t:"Lo que tengo en casa · Pro", precio:99, tipo:"finanzas", ruta:"/mentorias/herramientas/inventario/", para:"Para quien guarda muestras o producto para enseñar.",
      d:"Sin tope de productos, avisos de lo que se acaba, ganancia de lo vendido e historial."},
     {s:"testimonios", t:"Lo que dicen mis clientas · Pro", precio:99, tipo:"contenido", ruta:"/mentorias/herramientas/testimonios/", para:"Para quien tiene clientas contentas.",
      d:"Un link para que tus clientas te dejen su testimonio. Tú apruebas los que quieras y los copias para tus historias."},

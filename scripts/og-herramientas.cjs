@@ -40,7 +40,7 @@ const OG = {
   "h-reunion": ["Mi <em>reunión</em>", "Invitación, guion de 45 minutos y seguimiento a las 48 horas.", `<div class="big">45<small> min</small></div>`],
   "h-en-vivo": ["Venta <em>en vivo</em>", "Un live de 60 minutos con su guion minuto a minuto.", `<div class="big">60<small> min</small></div>`],
   "h-capacitaciones": ["Capacitaciones <em>listas</em>", "45 minutos con guion, dinámica y tarea de la semana.", `<div class="big">12<small> sesiones</small></div>`],
-  "h-inventario": ["Lo que tengo <em>en casa</em>", "Cuánto producto tienes, cuánto vale y qué te falta pedir.", lista("Tu casa", [["Piezas", "total"], ["Valen", "precio público"], ["Por pedir", "aviso", "a"]])],
+  "h-inventario": ["Lo que tengo <em>en casa</em>", "Tus muestras y lo que ya tienes en casa. No necesitas comprar producto para vender.", lista("Tu casa", [["Piezas", "total"], ["Valen", "precio público"], ["Se acaba", "aviso", "a"]])],
   "h-testimonios": ["Lo que dicen <em>mis clientas</em>", "Un link para que te dejen su testimonio.", `<div class="big">2<small> líneas</small></div>`],
   "h-pro": ["Herramientas <em>Pro</em>", "Los planes completos, semana por semana: de 3% a Directora Oro.",
     lista("Los planes", [["Plan anual de 52 semanas", "$349"], ["Planes por nivel", "$249"], ["Tu ritmo y 32 enfoques", "$199"], ["Todo Pro", "$699", "a"]]), "navy"],
