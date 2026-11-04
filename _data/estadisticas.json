@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-11-04",
- "hora": "00:15",
+ "hora": "10:18",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1153,
+  "visitas": 1158,
   "agregados": 34,
   "pedidos": 7,
   "wa": 4
@@ -91,7 +91,7 @@
   },
   {
    "d": "2026-11-04",
-   "v": 3
+   "v": 8
   }
  ],
  "consultoras": [
@@ -564,6 +564,7 @@
    "ritmo": 95,
    "paginas": {
     "pdn": 4,
+    "con-claude": 3,
     "pro": 3,
     "que-quiere": 2,
     "mi-tienda": 1,
