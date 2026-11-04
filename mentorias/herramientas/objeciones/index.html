@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>¿Y si me dice que no?</title>
-<meta name="description" content="Qué contestar cuando te dicen «está caro», «no uso maquillaje», «luego te digo» o «ya uso otra marca». Doce objeciones con lo que de verdad está diciendo, la respuesta para copiar y la pregunta con la que sigues. Gratis.">
+<meta name="description" content="Qué contestar cuando te dicen &quot;está caro&quot;, &quot;no uso maquillaje&quot;, &quot;luego te digo&quot; o &quot;ya uso otra marca&quot;. Doce objeciones con lo que de verdad está diciendo, la respuesta para copiar y la pregunta con la que sigues. Gratis.">
 <meta property="og:title" content="¿Y si me dice que no?">
 <meta property="og:description" content="Doce objeciones con la respuesta para copiar y la pregunta con la que sigues.">
 <meta property="og:type" content="website">
@@ -34,7 +34,7 @@
 .obj summary::-webkit-details-marker{display:none}
 .obj summary .n{font:500 13px/1 var(--mono);color:var(--accent-ink)}
 .obj summary h3{margin:0;font:400 clamp(24px,6vw,32px)/1.05 var(--serif)}
-.obj summary h3::before{content:"«"}.obj summary h3::after{content:"»"}
+.obj summary h3::before{content:"\""}.obj summary h3::after{content:"\""}
 .obj summary .mas{font:400 20px/1 var(--mono);color:var(--muted);transition:transform 200ms var(--ease)}
 .obj[open] summary .mas{transform:rotate(45deg)}
 .obj .cuerpo{display:grid;gap:14px;padding:0 0 22px 52px}
@@ -77,7 +77,7 @@
 
   <header class="portada">
     <h1>¿Y si me dice <em>que no?</em></h1>
-    <p class="bajada">Casi ningún «no» es un no: es una duda que no supiste leer. Aquí están las doce que más oyes de clientas y las tres que más oyes cuando invitas a alguien a ser socia, con lo que de verdad está diciendo, la respuesta para copiar y la pregunta con la que sigues.</p>
+    <p class="bajada">Casi ningún "no" es un no: es una duda que no supiste leer. Aquí están las doce que más oyes de clientas y las tres que más oyes cuando invitas a alguien a ser socia, con lo que de verdad está diciendo, la respuesta para copiar y la pregunta con la que sigues.</p>
   </header>
 
   <form class="para" autocomplete="off" onsubmit="return false" aria-label="Para personalizar las respuestas">
@@ -122,7 +122,7 @@
 (function(){
   var $ = function(id){ return document.getElementById(id); };
   var O = [
-    {o:"Está caro", r:"No ve el valor todavía, o lo compara con algo que ya usa y le funciona «más o menos».", x:"Te entiendo, {nombre}. Dime qué usas hoy para eso y cuánto te dura: a veces sale igual o menos por mes. Y si quieres, empezamos con uno solo para que lo pruebes.", s:"¿Qué usas hoy para eso?"},
+    {o:"Está caro", r:"No ve el valor todavía, o lo compara con algo que ya usa y le funciona \"más o menos\".", x:"Te entiendo, {nombre}. Dime qué usas hoy para eso y cuánto te dura: a veces sale igual o menos por mes. Y si quieres, empezamos con uno solo para que lo pruebes.", s:"¿Qué usas hoy para eso?"},
     {o:"No uso maquillaje", r:"Cree que solo vendes maquillaje. Lo que más se vende es cuidado de la piel.", x:"Perfecto, {nombre}, yo tampoco todos los días. Lo que más vendo es cuidado de la piel y del cuerpo: limpiador, crema, protector. Eso sí lo usas, ¿no?", s:"¿Qué es lo que sí usas en la mañana?"},
     {o:"Ya uso otra marca", r:"Costumbre, no rechazo. No le pidas que cambie todo.", x:"Qué bueno que ya te cuidas, {nombre}. No te pido que cambies nada: prueba el paso que te falta en tu rutina y compáralo. Si no te convence, no pasa nada.", s:"¿Qué paso te falta: limpiar, hidratar o proteger?"},
     {o:"Luego te digo", r:"No hay urgencia, o no quiere decir que no. Dale una fecha concreta con dos opciones.", x:"Claro, {nombre}. ¿Te escribo {dias}? Así no se me pasa a mí ni a ti.", s:"¿Cuál de los dos días te acomoda?"},
@@ -168,7 +168,7 @@
       $("listaPro").innerHTML = caps.map(function(c, i){ return '<li><details class="obj"><summary><span class="n">P' + String(i + 1).padStart(2, "0") + '</span><h3>' + H.esc(c.titulo) + '</h3><span class="mas" aria-hidden="true">+</span></summary><div class="cuerpo" style="display:block"><div class="cuerpo-pro">' + cuerpo(c.html) + '</div></div></details></li>'; }).join("");
       // práctica
       var cur = null;
-      function otra(){ cur = caps[Math.floor(Math.random() * caps.length)]; $("pObj").textContent = "«" + cur.titulo + "»"; $("pResp").value = ""; $("pract").classList.remove("abierta"); $("pSug").innerHTML = ""; }
+      function otra(){ cur = caps[Math.floor(Math.random() * caps.length)]; $("pObj").textContent = "\"" + cur.titulo + "\""; $("pResp").value = ""; $("pract").classList.remove("abierta"); $("pSug").innerHTML = ""; }
       $("pVer").addEventListener("click", function(){ if(!cur) return; $("pSug").innerHTML = cuerpo(cur.html); $("pract").classList.add("abierta"); H.cuenta("practica"); });
       $("pOtra").addEventListener("click", otra);
       otra();

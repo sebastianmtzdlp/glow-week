@@ -81,7 +81,7 @@ h2{font:600 20px/1.2 var(--body);letter-spacing:-.01em}
 
 /* 03 objeción */
 .dice{font:500 20px/1.25 var(--body);margin:2px 0 0}
-.dice::before{content:"«"}.dice::after{content:"»"}
+.dice::before{content:"\""}.dice::after{content:"\""}
 .porque{font-size:15px;color:var(--muted)}
 
 /* 04 actividades */
@@ -414,7 +414,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
   /* 03 mensajes: eliges a una de tus 10 y cambias de una a otra */
   var M = [
     {h:"Para ofrecer producto", c:"A tus cercanas.", x:"Hola {nombre}, ¿cómo estás? Ya tengo mi tienda de belleza y pensé en ti. Si quieres que te recomiende algo, me dices qué usas hoy y lo vemos."},
-    {h:"Te dijo «luego te digo»", c:"Dos o tres días después.", x:"Hola {nombre}, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode."},
+    {h:"Te dijo \"luego te digo\"", c:"Dos o tres días después.", x:"Hola {nombre}, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode."},
     {h:"La pregunta de cierre", c:"A quien ya está lista.", x:"{nombre}, con todo lo que platicamos, ¿arrancamos esta semana o prefieres que lo veamos el mes que entra?"},
     {h:"Para que vuelva a pedir", c:"A las 3 o 4 semanas de su compra.", x:"Hola {nombre}, ¿qué tal te fue con lo que te llevaste? Si ya se te está acabando, te lo aparto."}
   ];
@@ -482,7 +482,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
 
   /* 06 qué publico hoy: una idea por día de la semana */
   var I = [
-    {d:"Dom", t:"Pregúntale a tus seguidoras", f:"Encuesta en historias", q:"Dos opciones de algo que usas: «¿Labial mate o brillante?». Al día siguiente cuentas qué ganó y cuál usas tú.", c:"¿Tú cuál eliges?"},
+    {d:"Dom", t:"Pregúntale a tus seguidoras", f:"Encuesta en historias", q:"Dos opciones de algo que usas: \"¿Labial mate o brillante?\". Al día siguiente cuentas qué ganó y cuál usas tú.", c:"¿Tú cuál eliges?"},
     {d:"Lun", t:"Lo que uso de verdad", f:"Foto o historia de tu rutina de la mañana", q:"Tres pasos, en orden, y cuál es el que no te saltas nunca y por qué.", c:"¿Cuál es el paso que tú no te saltas?"},
     {d:"Mar", t:"Antes y después honesto", f:"Dos fotos, misma luz y mismo lugar", q:"Sin filtros. Di cuántos días llevas usándolo y qué notaste primero.", c:"Sigo contándoles cómo va."},
     {d:"Mié", t:"Contesta una pregunta", f:"Historia con texto o video corto", q:"Toma algo que te preguntaron por mensaje (sin nombre) y contéstalo en tres líneas.", c:"¿Qué más quieren que les cuente?"},
@@ -496,7 +496,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
     var S = semana();
     $("dias7").innerHTML = I.map(function(x, k){ return '<button type="button" data-k="' + k + '" aria-pressed="' + (k === di) + '"' + (PUB[S[k]] ? ' class="hecho"' : '') + '>' + x.d + '</button>'; }).join("");
     var x = I[di];
-    $("idea").innerHTML = '<h3>' + x.t + '</h3><dl><dt>Formato</dt><dd>' + x.f + '</dd><dt>Qué dices</dt><dd>' + x.q + '</dd><dt>Cierra con</dt><dd>«' + x.c + '»</dd></dl>';
+    $("idea").innerHTML = '<h3>' + x.t + '</h3><dl><dt>Formato</dt><dd>' + x.f + '</dd><dt>Qué dices</dt><dd>' + x.q + '</dd><dt>Cierra con</dt><dd>\"' + x.c + '\"</dd></dl>';
     $("pub").checked = !!PUB[H]; $("pub").parentNode.hidden = di !== hd;
     var n = S.filter(function(s){ return PUB[s]; }).length;
     $("pubN").textContent = n + (n === 1 ? " publicación" : " publicaciones") + " esta semana";

@@ -239,8 +239,8 @@ body.llamada .salir{display:flex}
 
   <section class="sigue" aria-labelledby="sTit">
     <div class="cab"><h2 id="sTit">Después de presentar</h2></div>
-    <a class="otra" href="/mentorias/herramientas/mensajes/#seguir" data-cuenta="ir-mensajes"><b>Mensajes de seguimiento</b><span>El mismo día: «¿Qué fue lo que más te llamó la atención?»</span><i aria-hidden="true">→</i></a>
-    <a class="otra" href="/mentorias/herramientas/objeciones/" data-cuenta="ir-objeciones"><b>¿Y si me dice que no?</b><span>Qué contestar a «está caro», «es pirámide» y «luego te digo».</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/mensajes/#seguir" data-cuenta="ir-mensajes"><b>Mensajes de seguimiento</b><span>El mismo día: "¿Qué fue lo que más te llamó la atención?"</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/objeciones/" data-cuenta="ir-objeciones"><b>¿Y si me dice que no?</b><span>Qué contestar a "está caro", "es pirámide" y "luego te digo".</span><i aria-hidden="true">→</i></a>
     <a class="otra" href="/mentorias/herramientas/lista/" data-cuenta="ir-lista"><b>Mi lista de 50</b><span>Anótala con su siguiente paso y la fecha.</span><i aria-hidden="true">→</i></a>
   </section>
 
@@ -273,7 +273,7 @@ body.llamada .salir{display:flex}
   }
   var de = q.get("de"), n = q.get("n"), wa = q.get("wa");
   if(!de && n && /^\d{10,13}$/.test(wa || "")){ pintaQuien({nombre:n, whatsapp: wa.length === 10 ? "52" + wa : wa}); }
-  // Sin socia en el link, «Quiero saber más» le escribe a Sel.
+  // Sin socia en el link, "Quiero saber más" le escribe a Sel.
   var SEL = {nombre:"Selene", whatsapp:"525541456984"};
   function aSel(){ $("quiero").href = H.wa("Hola " + SEL.nombre + ", vi la presentación del negocio del equipo y quiero saber más. ¿Cuándo podemos platicar 15 minutos?", SEL.whatsapp); }
   if(!de && !(n && /^\d{10,13}$/.test(wa || ""))) aSel();
