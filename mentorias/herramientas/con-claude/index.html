@@ -19,7 +19,7 @@
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
 <link rel="stylesheet" href="/mentorias/herramientas/base.css">
 <style>
-.portada{padding:36px 0 26px;max-width:40em}
+.portada{padding:36px 0 26px}
 .portada .bajada{max-width:32em}
 .como{display:grid;gap:0;margin:22px 0 0;padding:0;list-style:none;counter-reset:c;max-width:36em}
 .como li{counter-increment:c;display:grid;grid-template-columns:30px 1fr;gap:12px;padding:10px 0;border-top:1px solid var(--line);font-size:16px;line-height:1.45}
@@ -31,6 +31,7 @@
 .datos .ayuda{margin:6px 0 14px;color:var(--muted);font-size:15px}
 .campos{display:grid;grid-template-columns:1fr 1fr;gap:12px 12px}
 .campos .ancho{grid-column:1 / -1}
+.campos label{display:flex;flex-direction:column;justify-content:flex-end;min-width:0}
 .campos .etq small{font-weight:400;color:var(--muted)}
 .guardado{margin-top:10px}
 
@@ -38,15 +39,18 @@
 .parte{padding:44px 0 6px}
 .parte-cab{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px}
 .parte-cab .n{font:500 14px/1 var(--mono);color:var(--accent-ink)}
-.parte-cab p{grid-column:2;margin:4px 0 0;color:var(--muted);font-size:15px;max-width:34em}
+.parte-cab p{grid-column:2;margin:4px 0 0;color:var(--muted);font-size:15px;max-width:46em}
 .sub{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:26px 0 10px}
 
 /* números del mes */
 .cifra{font:600 clamp(44px,12vw,64px)/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--accent);letter-spacing:-.02em}
-.cifra-txt{margin:6px 0 0;font-size:17px;max-width:30em}
-.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:18px}
+.cifra-txt{margin:6px 0 0;font-size:17px}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:18px}
 .tile{background:var(--soft);border-radius:14px;padding:12px 12px 10px}
-.tile b{display:block;font:600 24px/1.1 var(--mono);font-variant-numeric:tabular-nums}
+.tile{min-width:0}
+.tile:last-child:nth-child(odd){grid-column:1 / -1}
+@media (min-width:420px){.tiles{grid-template-columns:repeat(3,minmax(0,1fr))}.tile:last-child:nth-child(odd){grid-column:auto}}
+.tile b{display:block;font:600 clamp(18px,5.4vw,24px)/1.1 var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap}
 .tile span{display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.3}
 .esc{width:100%;border-collapse:collapse;font-size:15px;margin-top:4px}
 .esc th,.esc td{text-align:left;padding:10px 6px;border-bottom:1px solid var(--line);vertical-align:top}
@@ -65,7 +69,7 @@
 .semana .d{font:500 13px/1.5 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.05em}
 .semana li.es-hoy .d{color:var(--accent-ink);font-weight:600}
 .semana h3{margin:0;font:600 17px/1.3 var(--body)}
-.semana p{grid-column:2;margin:2px 0 0;font-size:15px;color:var(--ink);max-width:36em}
+.semana p{grid-column:2;margin:2px 0 0;font-size:15px;color:var(--ink)}
 .semana .f{font:400 13px/1.3 var(--mono);color:var(--muted)}
 
 /* mensajes */
@@ -73,11 +77,11 @@
 .chips::-webkit-scrollbar{display:none}
 .chip{flex:none;min-height:40px;padding:0 14px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;font-size:15px;cursor:pointer;transition:transform 160ms var(--ease)}
 .chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
-.para-quien{display:grid;grid-template-columns:1fr;gap:6px;margin:14px 0 0;max-width:22em}
+.para-quien{display:block;margin:0}
 .msj{display:grid;gap:8px;padding:18px 0;border-bottom:1px solid var(--line)}
 .msj h3{margin:0;font:600 17px/1.3 var(--body)}
 .msj .cuando{margin:0;font-size:14px;color:var(--muted)}
-.texto{white-space:pre-wrap;background:var(--soft);border-radius:4px 18px 18px 18px;padding:13px 15px;font-size:16px;line-height:1.5;margin:2px 0 0;max-width:34em}
+.texto{white-space:pre-wrap;background:var(--soft);border-radius:4px 18px 18px 18px;padding:13px 15px;font-size:16px;line-height:1.5;margin:2px 0 0}
 .texto mark{background:none;color:var(--accent-ink);font-weight:600;border-bottom:1.5px dashed var(--accent);padding:0 1px}
 .btns{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
 .btns .btn2{min-height:42px;font-size:14px}
@@ -86,7 +90,9 @@
 .claude{border:1px solid var(--line);border-radius:18px;margin:16px 0 0;background:#fff;overflow:hidden}
 .claude-cab{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:4px 12px;padding:14px 16px 0}
 .claude-cab .q{font:600 11px/1 var(--mono);letter-spacing:.12em;color:#fff;background:var(--ink);border-radius:6px;padding:5px 7px}
-.claude-cab h3{flex:1 1 14em;margin:0;font:600 17px/1.3 var(--body)}
+.claude-cab{flex-wrap:nowrap;align-items:flex-start}
+.claude-cab .q{flex:none;margin-top:2px}
+.claude-cab h3{flex:1 1 auto;min-width:0;margin:0;font:600 17px/1.3 var(--body)}
 .claude .para{margin:6px 16px 0;font-size:15px;color:var(--muted)}
 .prompt{position:relative;margin:12px 16px 0;font:400 14px/1.55 var(--mono);white-space:pre-wrap;color:var(--ink);max-height:9.4em;overflow:hidden;transition:max-height 260ms var(--ease)}
 .prompt::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3em;background:linear-gradient(rgba(255,255,255,0),#fff)}
@@ -103,7 +109,7 @@
 .liga-out{display:block;margin-top:10px;padding:12px 14px;background:var(--soft);border-radius:12px;font:500 14px/1.45 var(--mono);word-break:break-all;color:var(--ink)}
 
 /* ficha */
-.ficha-op{display:flex;gap:10px;align-items:flex-start;margin:14px 0 0;font-size:15px;line-height:1.4;cursor:pointer;max-width:36em}
+.ficha-op{display:flex;gap:10px;align-items:flex-start;margin:12px 0 0;font-size:15px;line-height:1.4;cursor:pointer}
 .ficha-op input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink);flex:none}
 
 /* hoy */
@@ -122,10 +128,44 @@
   .arriba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:56px;align-items:start}
   .datos{position:sticky;top:16px}
   .campos{grid-template-columns:1fr 1fr 1fr}
-  .dos{display:grid;grid-template-columns:1fr 1fr;gap:0 40px;align-items:start}
   .hoy{padding:44px 48px 36px}
 }
 @media (hover:hover) and (pointer:fine){ .chip:hover{border-color:var(--ink)} }
+
+/* estructura común de cada parte: lo calculado a todo lo ancho y abajo lo de Claude */
+.wrap{max-width:1200px}
+.claudes{display:grid;gap:16px;margin-top:20px}
+.claudes .claude{margin:0;height:100%}
+.claudes > div{min-width:0}
+.mes2{display:grid;gap:8px 40px}
+.liga{display:grid;gap:14px;margin-top:20px}
+.liga-out{margin-top:0}
+.liga-res .btns{margin-top:10px}
+.liga-res .nota{margin:0}
+.msj-ctl{display:grid;gap:14px;margin-top:20px}
+.msjs{display:grid;gap:0 40px}
+.ligas2{display:grid;gap:0 40px}
+.ficha-tip{margin-top:18px;padding:14px 16px;border-radius:14px;background:var(--soft)}
+.ficha-tip p{margin:0;font-size:16px}
+@media (min-width:900px){
+  .mes2,.liga,.msjs,.ligas2{grid-template-columns:1fr 1fr}
+  .claudes{grid-template-columns:1fr 1fr}
+  .claudes.uno{grid-template-columns:1fr}
+  .claudes.uno .claude{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);grid-template-rows:auto auto auto 1fr;column-gap:8px}
+  .claudes.uno .claude-cab,.claudes.uno .adjunta,.claudes.uno .con-ficha,.claudes.uno .btns{grid-column:1}
+  .claudes.uno .claude-cab{flex-direction:column;gap:8px}
+  .claudes.uno .btns{border-top:0;align-self:end;margin-top:0}
+  .claudes.uno .prompt{grid-column:2;grid-row:1 / -1;margin:0;padding:16px 18px;border-left:1px solid var(--line);max-height:15em}
+  .claudes.uno .claude.abierto .prompt{max-height:none}
+  .msj-ctl{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end}
+  .chips{margin:0;padding:0;flex-wrap:wrap}
+  .semana{grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
+  .semana li{display:block;background:var(--soft);border:0;border-radius:14px;padding:14px}
+  .semana li.es-hoy{background:var(--tint)}
+  .semana .d{display:block;margin-bottom:6px}
+  .semana p{margin-top:8px}
+}
+
 </style>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -156,7 +196,7 @@
         <label><span class="etq">Meta del mes <small>(puntos)</small></span><input type="number" id="v-meta" inputmode="numeric" min="0" placeholder="600"></label>
         <label><span class="etq">Llevas <small>(puntos)</small></span><input type="number" id="v-llevo" inputmode="numeric" min="0" placeholder="0"></label>
         <label><span class="etq">Horas al día</span><input type="number" id="v-horas" inputmode="decimal" min="0.5" step="0.5" placeholder="2"></label>
-        <label><span class="etq">Tu set del mes <small>(nombre)</small></span><input type="text" id="v-set" autocomplete="off" placeholder="Piel lista en 3 pasos"></label>
+        <label><span class="etq">Nombre de tu set</span><input type="text" id="v-set" autocomplete="off" placeholder="Piel lista en 3 pasos"></label>
         <label class="ancho"><span class="etq">Quién te compra más</span><input type="text" id="v-clienta" autocomplete="off" placeholder="mamás de 30 a 45 que quieren verse bien en 5 minutos"></label>
       </div>
       <p class="guardado" id="guardado" aria-live="polite"></p>
@@ -172,65 +212,52 @@
   <!-- 2. EL SET -->
   <section class="parte" id="set" aria-labelledby="sT">
     <div class="parte-cab"><span class="n">02</span><h2 id="sT">Tu set <em>del mes</em></h2><p>Claude lo arma con las promociones que le mandes. Aquí haces la liga para que tu clienta lo abra ya en su pedido.</p></div>
-    <div class="dos">
-      <div id="pSets"></div>
-      <div>
-        <p class="sub">La liga del set</p>
-        <label><span class="etq">Códigos de los productos <small>(7 cifras, separados por coma)</small></span><input type="text" id="v-codigos" inputmode="numeric" autocomplete="off" placeholder="1000991, 1001319"></label>
-        <span class="liga-out" id="ligaOut"></span>
-        <div class="btns" style="margin-top:10px"><button type="button" class="btn2" id="copiaLiga">Copiar liga</button><span class="nota" id="ligaNota" style="margin:0"></span></div>
-      </div>
+    <div class="liga">
+      <label class="liga-in"><span class="etq">Códigos de los productos <small>(7 cifras, separados por coma)</small></span><input type="text" id="v-codigos" inputmode="numeric" autocomplete="off" placeholder="1000991, 1001319"></label>
+      <div class="liga-res"><span class="etq">Tu liga</span><span class="liga-out" id="ligaOut"></span>
+        <div class="btns"><button type="button" class="btn2" id="copiaLiga">Copiar liga</button><span class="nota" id="ligaNota"></span></div></div>
     </div>
+    <div class="claudes uno"><div id="pSets"></div></div>
   </section>
 
   <!-- 3. LO QUE PUBLICAS -->
   <section class="parte" id="publica" aria-labelledby="pT">
     <div class="parte-cab"><span class="n">03</span><h2 id="pT">Tu semana <em>para publicar</em></h2><p>Siete días para mover tu set sin repetir lo mismo. Hoy va marcado.</p></div>
-    <div class="dos">
-      <ol class="semana" id="semana"></ol>
-      <div>
-        <div id="pImagen"></div>
-        <p class="nota">¿Prefieres la imagen ya hecha con las fotos de los productos? Sale en <a href="/ventas-de-whatsapp/">Ventas por WhatsApp</a>.</p>
-        <div id="pSemana"></div>
-      </div>
-    </div>
+    <ol class="semana" id="semana"></ol>
+    <div class="claudes"><div id="pImagen"></div><div id="pSemana"></div></div>
+    <p class="nota">¿Prefieres la imagen ya hecha con las fotos de los productos? Sale en <a href="/ventas-de-whatsapp/">Ventas por WhatsApp</a>.</p>
   </section>
 
   <!-- 4. CONVERSACIONES -->
   <section class="parte" id="hablar" aria-labelledby="hT">
     <div class="parte-cab"><span class="n">04</span><h2 id="hT">Tus <em>mensajes</em></h2><p>Para abrir una conversación y para retomar la que se quedó a medias. Escribe su nombre y se arma.</p></div>
-    <label class="para-quien"><span class="etq">Su nombre</span><input type="text" id="v-ella" autocomplete="off" placeholder="Ana"></label>
-    <div class="chips" id="chips" style="margin-top:16px" aria-label="Tipo de mensaje"></div>
-    <div class="dos">
-      <div id="msjs"></div>
-      <div id="pVoz"></div>
+    <div class="msj-ctl">
+      <label class="para-quien"><span class="etq">Su nombre</span><input type="text" id="v-ella" autocomplete="off" placeholder="Ana"></label>
+      <div class="chips" id="chips" aria-label="Tipo de mensaje"></div>
     </div>
+    <div class="msjs" id="msjs"></div>
+    <div class="claudes uno"><div id="pVoz"></div></div>
   </section>
 
   <!-- 5. INVITAR -->
   <section class="parte" id="invitar" aria-labelledby="iT">
     <div class="parte-cab"><span class="n">05</span><h2 id="iT">Invitar <em>a ser socia</em></h2><p>Para quien ya te compra o te pregunta "¿y tú cómo le haces?". Con datos ciertos y sin hablar de cuánto se gana.</p></div>
-    <div class="dos">
-      <div id="pInvitar"></div>
-      <div>
-        <p class="sub">Cuando ya quiere saber más</p>
-        <a class="otra" href="/mentorias/herramientas/pdn/" data-cuenta="ir-pdn"><b>Tu PDN, con tu cara</b><span>La presentación del negocio con tu nombre y tus fotos.</span><i aria-hidden="true">→</i></a>
-        <a class="otra" href="/mentorias/herramientas/objeciones/" data-cuenta="ir-objeciones"><b>¿Y si me dice que no?</b><span>Qué contestar a las dudas más comunes.</span><i aria-hidden="true">→</i></a>
-      </div>
+    <div class="claudes uno"><div id="pInvitar"></div></div>
+    <p class="sub">Cuando ya quiere saber más</p>
+    <div class="ligas2">
+      <a class="otra" href="/mentorias/herramientas/pdn/" data-cuenta="ir-pdn"><b>Tu PDN, con tu cara</b><span>La presentación del negocio con tu nombre y tus fotos.</span><i aria-hidden="true">→</i></a>
+      <a class="otra" href="/mentorias/herramientas/objeciones/" data-cuenta="ir-objeciones"><b>¿Y si me dice que no?</b><span>Qué contestar a las dudas más comunes.</span><i aria-hidden="true">→</i></a>
     </div>
   </section>
 
   <!-- 6. LA FICHA -->
   <section class="parte" id="ficha" aria-labelledby="fT">
     <div class="parte-cab"><span class="n">06</span><h2 id="fT">Tu ficha <em>para Claude</em></h2><p>Lo que Claude necesita saber de tu negocio para no inventar. Va pegada al inicio de cada texto de arriba.</p></div>
-    <div class="dos">
-      <div id="pFicha"></div>
-      <div>
-        <p class="sub">Para no pegarla cada vez</p>
-        <p style="margin:0;font-size:16px;max-width:32em">En Claude, crea un proyecto que se llame "Mi negocio" y pega tu ficha en sus instrucciones. Abre ahí cada conversación y quita la ficha de los textos:</p>
-        <label class="ficha-op"><input type="checkbox" id="v-sinficha"> <span>Ya tengo mi proyecto en Claude: no pegues la ficha.</span></label>
-      </div>
+    <div class="ficha-tip">
+      <p>Para no pegarla cada vez: en Claude, crea un proyecto que se llame "Mi negocio", pega tu ficha en sus instrucciones y abre ahí cada conversación.</p>
+      <label class="ficha-op"><input type="checkbox" id="v-sinficha"> <span>Ya tengo mi proyecto en Claude: no pegues la ficha.</span></label>
     </div>
+    <div class="claudes uno"><div id="pFicha"></div></div>
   </section>
 
   <!-- HOY -->
@@ -309,7 +336,7 @@
     h += '<p class="nivel-linea">'+(niv ? 'Con '+H.fmt(c.meta)+' puntos de grupo llegas a <b>'+niv+'%</b>. ' : 'Tu meta todavía no llega a 3% (200 puntos de grupo). ')+
       (sig ? 'El siguiente nivel, '+sig[1]+'%, pide '+H.fmt(sig[0])+': '+H.fmt(sig[0]-c.meta)+' puntos más.' : 'Es el nivel más alto por puntos.')+
       ' <a href="/plan-de-compensacion/">Ver qué pide cada nivel</a></p>';
-    h += '<div class="dos"><div><p class="sub">Cuántas conversaciones abrir</p><table class="esc"><thead><tr><th>Si te compran</th><th>En el mes</th><th>Por día</th></tr></thead><tbody>'+
+    h += '<div class="mes2"><div><p class="sub">Cuántas conversaciones abrir</p><table class="esc"><thead><tr><th>Si te compran</th><th>En el mes</th><th>Por día</th></tr></thead><tbody>'+
       c.conv.map(function(v){ return '<tr'+(v.k===2?' class="tuyo"':'')+'><td>'+v.k+' de cada 10</td><td class="num">'+H.fmt(v.tot)+'</td><td class="num">'+H.fmt(v.dia)+'</td></tr>'; }).join("")+
       '</tbody></table><p class="nota">Anota a quién le escribes y quién te compra. En dos semanas sabrás cuál de las tres filas es la tuya.</p></div>';
     if(c.horas){
