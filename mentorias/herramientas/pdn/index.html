@@ -86,9 +86,18 @@
 .paso .n{font:500 13px/1 var(--mono);color:var(--accent-ink)}
 .paso h3{font:400 clamp(26px,6vw,34px)/1.05 var(--serif);margin:0}
 .paso .min{font:400 13px/1 var(--mono);color:var(--muted)}
-.paso .di{font-size:17px;margin:0;white-space:pre-line;max-width:34em}
+.paso .di-ed{font-size:17px;line-height:1.5;max-width:34em;border-color:var(--line);background:#fff;resize:none;overflow:hidden;min-height:0}
+.paso .di-ed:hover{border-color:#CFD2E0}
+.paso .orig{font-size:14px;justify-self:start}
+.sets-t{width:100%;border-collapse:collapse;font-size:15px}
+.sets-t th{font:600 12px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 6px 8px 0}
+.sets-t td{padding:4px 6px 4px 0;vertical-align:middle}
+.sets-t td:first-child{font-weight:500;padding-right:10px}
+.sets-t input{min-height:40px;padding:6px 8px;font-family:var(--mono);font-size:15px}
+.sets-t .pct{font:500 14px/1 var(--mono);color:var(--accent-ink);white-space:nowrap}
 .paso .ojo{font-size:15px;color:var(--muted);margin:0;padding-left:14px;border-left:2px solid var(--accent);max-width:34em}
 .paso .quien{display:flex;gap:10px;align-items:center;font-size:14px}
+.paso .quien[hidden]{display:none}
 .paso .quien select{width:auto;min-height:38px;padding:4px 10px}
 .paso.fuera{opacity:.45}
 .total{font:500 14px/1.4 var(--mono);color:var(--muted);margin:0 0 16px}
@@ -106,7 +115,14 @@
 .ensayo .nav{display:grid;grid-template-columns:1fr 1fr;gap:10px}
 .lista-antes{margin-top:34px}
 
-@media (max-width:480px){ .persona{grid-template-columns:100px minmax(0,1fr);padding:14px} }
+@media (max-width:560px){
+  .persona{grid-template-columns:minmax(0,1fr);padding:14px}
+  .persona .slot{grid-template-columns:112px minmax(0,1fr);align-items:center;gap:8px 14px}
+  .persona .slot .caja{grid-row:1 / span 2}
+  .persona .slot .encuadre{align-self:end}
+  .persona .slot .quitar{justify-self:start;align-self:start}
+  .mas .item{grid-template-columns:112px minmax(0,1fr)}
+}
 @media (min-width:900px){
   .portada{grid-template-columns:1.1fr .9fr;align-items:end;gap:56px;padding:56px 0 20px}
   .armar{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:start}
@@ -121,6 +137,8 @@
   .slot .caja:hover{border-color:var(--ink)}
 }
 @media print{
+  .paso .di-ed{border:0;padding:0}
+  .paso .orig{display:none!important}
   .barra,.portada,.tabs,#armar,#ensayar,.borrador,footer,.quien{display:none!important}
   #guion{display:block!important}
   .paso{break-inside:avoid;grid-template-columns:240px 1fr}
@@ -156,7 +174,7 @@
       <div>
         <fieldset class="grupo">
           <legend>Quién presenta</legend>
-          <p class="nota">Si la dan entre varias, agrega a cada una con su foto. La portada dice "Farmasi con" y sus nombres.</p>
+          <p class="nota">Si la dan entre varias, agrega a cada una con su foto y su WhatsApp: en el cierre sale un QR por persona. Puede ser alguien que no esté en el equipo; sin foto, sale con sus iniciales.</p>
           <div id="personas" style="display:grid;gap:12px"></div>
           <button class="btn2" type="button" id="otraPersona">Agregar a otra persona</button>
         </fieldset>
@@ -165,10 +183,7 @@
           <legend>Portada y cierre</legend>
           <label><span class="etq">Título de la portada (opcional)</span><input type="text" id="titulo" maxlength="48" placeholder="Si lo dejas vacío: sus nombres"></label>
           <label><span class="etq">Cuándo y dónde (opcional)</span><input type="text" id="cuando" maxlength="60" placeholder="Jueves 6 de noviembre · 8:00 pm · Zoom"></label>
-          <div class="fila2">
-            <label><span class="etq">WhatsApp del cierre</span><input type="tel" id="wa" inputmode="numeric" maxlength="13" placeholder="5512345678"></label>
-            <label><span class="etq">Tu tienda</span><input type="text" id="tienda" maxlength="40" placeholder="mitienda.beauty/ana" autocapitalize="off"></label>
-          </div>
+          <label><span class="etq">Tu tienda</span><input type="text" id="tienda" maxlength="40" placeholder="mitienda.beauty/ana" autocapitalize="off"></label>
           <label><span class="etq">Comunidad o equipo</span><input type="text" id="equipo" maxlength="32" placeholder="Top Team"></label>
           <label><span class="etq">Tus favoritos (opcional, separados por coma)</span><input type="text" id="favs" maxlength="120" placeholder="Base de maquillaje, sérum de vitamina C, creatina"></label>
         </fieldset>
@@ -177,6 +192,13 @@
           <legend>Más fotos</legend>
           <p class="nota">Tus fotos se quedan en tu teléfono o computadora: no se suben a ningún lado.</p>
           <div class="mas" id="mas"></div>
+        </fieldset>
+
+        <fieldset class="grupo" style="padding-top:26px">
+          <legend>Precios de los sets</legend>
+          <p class="nota">Vienen de la PDN de Sel (noviembre 2026). Si cambian en el Back Office, corrígelos aquí; el descuento se calcula solo.</p>
+          <div style="overflow-x:auto"><table class="sets-t"><thead><tr><th>Set</th><th>Precio</th><th>Productos</th><th>Catálogo</th><th></th></tr></thead><tbody id="setsT"></tbody></table></div>
+          <button class="enlace" type="button" id="setsReset" style="justify-self:start;font-size:14px">Volver a los precios de Sel</button>
         </fieldset>
 
         <fieldset class="grupo" style="padding-top:26px;border-bottom:0">
@@ -261,7 +283,7 @@
 var $ = function(id){ return document.getElementById(id); };
 var KEY = "mtb-pdn-v1";
 var st = H.lee(KEY, null) || {personas:[{nombre:"", rol:"", historia:"", fy:.3}], titulo:"", cuando:"", wa:"", tienda:"", equipo:"Top Team", favs:"", fy:{}, fuera:{}, quien:{}, antes:{}};
-st.extra = st.extra || {}; st.fy = st.fy || {}; st.fuera = st.fuera || {}; st.quien = st.quien || {}; st.antes = st.antes || {};
+st.extra = st.extra || {}; if(st.wa && st.personas[0] && !st.personas[0].wa){ st.personas[0].wa = st.wa; } delete st.wa; st.guion = st.guion || {}; st.sets = st.sets || {}; st.fy = st.fy || {}; st.fuera = st.fuera || {}; st.quien = st.quien || {}; st.antes = st.antes || {};
 var FOTOS = {};   // id -> HTMLImageElement
 var EQ = [];
 
@@ -398,11 +420,11 @@ function datos(){
   var junta = nombres.length > 1 ? nombres.slice(0, -1).join(", ") + " y\u00a0" + nombres[nombres.length - 1] : nombres[0];
   var t = (st.tienda || "").trim().replace(/^https?:\/\//, "").replace(/\/$/, "");
   if(t && t.indexOf(".") < 0) t = "mitienda.beauty/" + t.toLowerCase();
-  var wa = (st.wa || "").replace(/\D/g, ""); if(wa.length === 10) wa = "52" + wa;
+  function nwa(v){ v = (v || "").replace(/\D/g, ""); return v.length === 10 ? "52" + v : v.length >= 12 ? v : ""; }
   return {
-    personas: ps.map(function(p){ var i = st.personas.indexOf(p); return {nombre: (p.nombre || "").trim(), rol: (p.rol || "").trim(), historia: (p.historia || "").trim(), im: FOTOS["p" + i], fy: p.fy == null ? .3 : p.fy}; }),
+    personas: ps.map(function(p){ var i = st.personas.indexOf(p); return {wa: nwa(p.wa), nombre: (p.nombre || "").trim(), rol: (p.rol || "").trim(), historia: (p.historia || "").trim(), im: FOTOS["p" + i], fy: p.fy == null ? .3 : p.fy}; }),
     titulo: (st.titulo || "").trim() || junta, junta: junta, yo: nombres[0],
-    cuando: (st.cuando || "").trim(), tienda: t, wa: wa, equipo: (st.equipo || "").trim() || "Top Team",
+    cuando: (st.cuando || "").trim(), tienda: t, equipo: (st.equipo || "").trim() || "Top Team",
     favs: (st.favs || "").split(",").map(function(s){ return s.trim(); }).filter(Boolean)
   };
 }
@@ -598,7 +620,7 @@ var PINTA = {
     etiqueta(ctx, "Por única ocasión", M, 210);
     titulo(ctx, "Los sets de inicio", M, 310, 1500, 96, C.ink, 1);
     var gap = 28, cw = (W - 2 * M - gap * 4) / 5;
-    SETS.forEach(function(s, k){
+    setsHoy().forEach(function(s, k){
       var x = M + k * (cw + gap), y = 400, h = 500;
       ctx.fillStyle = C.soft; rr(ctx, x, y, cw, h, 18); ctx.fill();
       F(ctx, 600, 30); ctx.fillStyle = C.ink; txt(ctx, s[0], x + 28, y + 64, cw - 56, 36, 1);
@@ -608,7 +630,7 @@ var PINTA = {
       ctx.fillStyle = C.acc; rr(ctx, x + 28, y + 360, cw - 56, 84, 14); ctx.fill();
       F(ctx, 600, 28); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(s[4] + " % menos", x + cw / 2, y + 412); ctx.textAlign = "left";
     });
-    F(ctx, 400, 22); ctx.fillStyle = C.muted; ctx.fillText("Precios de noviembre de 2026. Revísalos en el Back Office: pueden cambiar.", M, 950);
+    F(ctx, 400, 22); ctx.fillStyle = C.muted; ctx.fillText(Object.keys(st.sets).length ? "Precios revisados por " + d.yo + ". Confírmalos en el Back Office." : "Precios de noviembre de 2026. Revísalos en el Back Office: pueden cambiar.", M, 950);
   },
   numeros: function(ctx, d, L){
     etiqueta(ctx, "Los números", M, 230);
@@ -668,23 +690,26 @@ var PINTA = {
   cierre: function(ctx, d, L){
     ctx.fillStyle = C.navy; ctx.fillRect(0, 0, W, HH);
     etiqueta(ctx, "Todo es posible", M, 250, C.pink);
-    var t = titulo(ctx, "¿Platicamos 15 minutos?", M, 370, 980, 112, "#fff", 2);
-    F(ctx, 400, 34); ctx.fillStyle = C.gris; var y = txt(ctx, "No tienes que decidir hoy. Vemos tu kit, tu set y tu primera semana.", M, t.y + 90, 940, 48, 3);
-    y += 100;
-    if(d.wa){
-      F(ctx, 600, 22, 1); ctx.fillStyle = C.pink; esp(ctx, "WhatsApp", M, y, 3);
-      F(ctx, 500, 52, 1); ctx.fillStyle = "#fff"; ctx.fillText(waBonito(d.wa), M, y + 64);
-      L.push({x: M, y: y + 14, w: ctx.measureText(waBonito(d.wa)).width, h: 64, url: "https://wa.me/" + d.wa});
-      y += 130;
-    }
+    var t = titulo(ctx, "¿Platicamos 15 minutos?", M, 370, 820, 112, "#fff", 2);
+    F(ctx, 400, 34); ctx.fillStyle = C.gris; var y = txt(ctx, "No tienes que decidir hoy. Vemos tu kit, tu set y tu primera semana.", M, t.y + 90, 800, 48, 3);
+    y += 110;
     if(d.tienda){ F(ctx, 600, 22, 1); ctx.fillStyle = C.pink; esp(ctx, "Mi tienda", M, y, 3); F(ctx, 500, 36, 1); ctx.fillStyle = "#fff"; ctx.fillText(d.tienda, M, y + 54); L.push({x: M, y: y + 18, w: ctx.measureText(d.tienda).width, h: 48, url: "https://" + d.tienda}); }
-    var ps = d.personas, n = ps.length, r = n === 1 ? 210 : n === 2 ? 170 : 140, cx = 1500, cy = 400;
+    // una columna por persona: foto, nombre, WhatsApp y su QR
+    var ps = d.personas, n = ps.length, x0 = 1000, aw = W - M - x0, gap = 40, cw = (aw - gap * (n - 1)) / n;
+    var r = Math.min(170, cw / 2 - 6, n === 1 ? 170 : 130), q = Math.min(n === 1 ? 240 : 200, cw - 10);
     ps.forEach(function(p, k){
-      var ox = cx - (n - 1) * r * .7 + k * r * 1.4 - r, oy = cy - r + (k % 2) * (n > 2 ? 60 : 0);
-      ctx.fillStyle = C.navy; ctx.beginPath(); ctx.arc(ox + r, oy + r, r + 8, 0, Math.PI * 2); ctx.fill();
-      foto(ctx, p.im, ox, oy, r * 2, r * 2, 0, p.fy, iniciales(p.nombre) || "·", true);
+      var cx = x0 + k * (cw + gap) + cw / 2, top = 170;
+      foto(ctx, p.im, cx - r, top, r * 2, r * 2, 0, p.fy, iniciales(p.nombre) || "·", true);
+      var ny = top + r * 2 + 58;
+      ajusta(ctx, p.nombre || "Nombre", 700, n === 1 ? 44 : 34, 22, 0, cw, 1); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(p.nombre || "Nombre", cx, ny);
+      if(p.wa){
+        var num = waBonito(p.wa); ajusta(ctx, num, 500, n === 1 ? 34 : 26, 16, 1, cw, 1); ctx.fillStyle = C.gris; ctx.fillText(num, cx, ny + 44);
+        var w = ctx.measureText(num).width; L.push({x: cx - w / 2, y: ny + 14, w: w, h: 40, url: "https://wa.me/" + p.wa});
+        qr(ctx, "https://wa.me/" + p.wa, cx - q / 2, ny + 74, q); L.push({x: cx - q / 2, y: ny + 74, w: q, h: q, url: "https://wa.me/" + p.wa});
+      }
+      ctx.textAlign = "left";
     });
-    if(d.wa){ qr(ctx, "https://wa.me/" + d.wa, 1500 - 110, 700, 220); F(ctx, 400, 22); ctx.fillStyle = C.gris; ctx.textAlign = "center"; ctx.fillText("Escríbeme desde aquí", 1500, 960); ctx.textAlign = "left"; }
+    if(ps.some(function(p){ return p.wa; })){ F(ctx, 400, 22); ctx.fillStyle = C.gris; ctx.textAlign = "center"; ctx.fillText(n === 1 ? "Escanéalo y escríbeme" : "Escanea el de quien te invitó", x0 + aw / 2, 1000); ctx.textAlign = "left"; }
     F(ctx, 400, 19); ctx.fillStyle = "#8E92B4";
     ctx.fillText("Lo que avances depende de tu trabajo; nadie garantiza resultados. Material del equipo, no oficial de Farmasi.", M, 968);
   }
@@ -729,7 +754,7 @@ function faltan(){
   if(!d.personas[0].nombre) f.push("tu nombre");
   if(d.personas.some(function(p){ return !p.im; })) f.push(d.personas.length > 1 ? "una foto por persona" : "tu foto");
   if(d.personas.some(function(p){ return !p.historia; })) f.push("la historia");
-  if(!d.wa) f.push("el WhatsApp del cierre");
+  if(!d.personas.some(function(p){ return p.wa; })) f.push("un WhatsApp para el cierre");
   $("faltan").textContent = f.length ? "Te falta: " + f.join(", ") + ". Puedes descargar así, pero se nota." : "";
 }
 
@@ -786,6 +811,7 @@ function pintaPersonas(){
     el.innerHTML = '<div class="cab-p"><b>Persona ' + (i + 1) + '</b>' + (i ? '<button type="button" class="quitar" data-q>Quitar</button>' : '') + '</div>' +
       '<div class="campos">' +
       '<label><span class="etq">Nombre</span><input type="text" data-k="nombre" maxlength="28" list="eqLista" placeholder="Como quieres que salga"></label>' +
+      '<label><span class="etq">Su WhatsApp (para su QR)</span><input type="tel" data-k="wa" inputmode="numeric" maxlength="13" placeholder="5512345678"></label>' +
       '<label><span class="etq">Quién es (opcional)</span><input type="text" data-k="rol" maxlength="44" placeholder="Socia desde marzo 2025 · 12 %"></label>' +
       '<label><span class="etq">' + (st.personas.length > 1 ? "Su historia en una o dos frases" : "Tu historia en tres frases") + '</span><textarea data-k="historia" maxlength="' + (st.personas.length > 1 ? 160 : 300) + '" placeholder="Empecé en marzo porque quería algo mío. Lo que cambió fue… Hoy…"></textarea></label>' +
       '</div>';
@@ -814,14 +840,12 @@ function guardaTodasFotos(){ for(var k = 0; k < 4; k++){ var im = FOTOS["p" + k]
 function autollenar(p, i, s){
   var c = EQ.filter(function(x){ return x.nombre.toLowerCase() === (p.nombre || "").trim().toLowerCase(); })[0];
   if(!c) return;
-  if(i === 0){
-    if(!st.wa){ st.wa = c.whatsapp.replace(/^52/, ""); $("wa").value = st.wa; }
-    if(!st.tienda){ st.tienda = "mitienda.beauty/" + c.slug; $("tienda").value = st.tienda; }
-  }
+  if(!p.wa && c.whatsapp){ p.wa = c.whatsapp.replace(/^52/, ""); var w = s.parentNode && s.parentNode.querySelector('[data-k="wa"]'); if(w) w.value = p.wa; }
+  if(i === 0 && !st.tienda){ st.tienda = "mitienda.beauty/" + c.slug; $("tienda").value = st.tienda; }
   if(!FOTOS["p" + i]){ var im = new Image(); im.onload = function(){ FOTOS["p" + i] = im; fetch(im.src).then(function(r){ return r.blob(); }).then(function(b){ guardaFoto("p" + i, b); }).catch(function(){}); s._pinta(); repinta(); }; im.src = "/fotos/" + c.slug + ".jpg"; }
 }
 $("otraPersona").addEventListener("click", function(){ if(st.personas.length >= 4) return; st.personas.push({nombre:"", rol:"", historia:"", fy:.3}); guarda(); pintaPersonas(); repinta(); });
-["titulo","cuando","wa","tienda","equipo","favs"].forEach(function(id){ var el = $(id); el.value = st[id] || ""; el.addEventListener("input", function(){ st[id] = el.value; guarda(); repinta(); }); });
+["titulo","cuando","tienda","equipo","favs"].forEach(function(id){ var el = $(id); el.value = st[id] || ""; el.addEventListener("input", function(){ st[id] = el.value; guarda(); repinta(); }); });
 
 function pintaMas(){
   var box = $("mas");
@@ -832,6 +856,15 @@ function pintaMas(){
     it.appendChild(s); it.appendChild(tx); box.appendChild(it);
   });
 }
+function num(v){ return parseFloat(String(v == null ? "" : v).replace(/[^\d.]/g, "")) || 0; }
+function setsHoy(){ return SETS.map(function(s, k){ var o = st.sets[k] || {}, p = o.p != null ? num(o.p) : num(s[1]), n = o.n != null ? num(o.n) : s[2], c = o.c != null ? num(o.c) : num(s[3]); return [s[0], "$" + H.fmt(p), n, "$" + H.fmt(c), c > 0 ? Math.round((1 - p / c) * 100) : 0]; }); }
+function pintaSets(){
+  var tb = $("setsT");
+  tb.innerHTML = SETS.map(function(s, k){ var h = setsHoy()[k], o = st.sets[k] || {}; return '<tr data-k="' + k + '"><td>' + s[0] + '</td><td><input type="text" inputmode="numeric" data-c="p" aria-label="Precio ' + s[0] + '" value="' + (o.p != null ? H.esc(o.p) : num(s[1])) + '"></td><td><input type="text" inputmode="numeric" data-c="n" aria-label="Productos ' + s[0] + '" value="' + (o.n != null ? H.esc(o.n) : s[2]) + '"></td><td><input type="text" inputmode="numeric" data-c="c" aria-label="Catálogo ' + s[0] + '" value="' + (o.c != null ? H.esc(o.c) : num(s[3])) + '"></td><td class="pct">' + h[4] + ' %</td></tr>'; }).join("");
+  $("setsReset").hidden = !Object.keys(st.sets).length;
+}
+$("setsT").addEventListener("input", function(e){ var tr = e.target.closest("tr"), k = tr.dataset.k; st.sets[k] = st.sets[k] || {}; st.sets[k][e.target.dataset.c] = e.target.value; tr.querySelector(".pct").textContent = setsHoy()[k][4] + " %"; $("setsReset").hidden = false; guarda(); repinta(); });
+$("setsReset").addEventListener("click", function(){ st.sets = {}; guarda(); pintaSets(); repinta(); });
 function pintaDiapos(){
   var ul = $("diapos");
   function html(){
@@ -849,20 +882,24 @@ function pintaDiapos(){
   });
 }
 /* ---------- guion ---------- */
+function alto(t){ t.style.height = "auto"; t.style.height = (t.scrollHeight + 2) + "px"; }
+function guionDe(s, d){ return st.guion[s.id] != null ? st.guion[s.id] : rellena(s.di, d); }
 function rellena(s, d){ return s.replace(/\{yo\}/g, d.yo).replace(/\{favs\}/g, d.favs.length ? d.favs.join(", ") : "(tus favoritos)"); }
 function pintaGuion(){
   var d = datos(), act = activas(), box = $("pasos"), tot = act.reduce(function(a, s){ return a + s.min; }, 0);
-  $("total").textContent = act.length + " diapositivas · unos " + Math.round(tot) + " minutos";
+  $("total").textContent = act.length + " diapositivas · unos " + Math.round(tot) + " minutos · Toca el texto para cambiarlo con tus palabras; se guarda en este dispositivo.";
   if(!box.children.length){
-    box.innerHTML = D.map(function(s){ return '<article class="paso" data-id="' + s.id + '"><canvas width="640" height="360" aria-hidden="true"></canvas><span class="n"></span><h3>' + H.esc(s.t) + '</h3><span class="min">' + String(s.min).replace(".", ",") + ' min</span><p class="di"></p><p class="ojo"></p><div class="quien" hidden><span>La presenta</span><select></select></div></article>'; }).join("");
+    box.innerHTML = D.map(function(s){ return '<article class="paso" data-id="' + s.id + '"><canvas width="640" height="360" aria-hidden="true"></canvas><span class="n"></span><h3>' + H.esc(s.t) + '</h3><span class="min">' + String(s.min).replace(".", ",") + ' min</span><textarea class="di-ed" rows="4" aria-label="Qué dices"></textarea><button type="button" class="enlace orig" hidden>Volver al guion original</button><p class="ojo"></p><div class="quien" hidden><span>La presenta</span><select></select></div></article>'; }).join("");
     box.addEventListener("change", function(e){ var a = e.target.closest(".paso"); if(a && e.target.tagName === "SELECT"){ st.quien[a.dataset.id] = e.target.value; guarda(); } });
+    box.addEventListener("input", function(e){ var a = e.target.closest(".paso"); if(!a || !e.target.classList.contains("di-ed")) return; st.guion[a.dataset.id] = e.target.value; a.querySelector(".orig").hidden = false; alto(e.target); guarda(); });
+    box.addEventListener("click", function(e){ var a = e.target.closest(".paso"); if(!a || !e.target.classList.contains("orig")) return; delete st.guion[a.dataset.id]; guarda(); var ta = a.querySelector(".di-ed"); ta.value = guionDe(D.filter(function(x){ return x.id === a.dataset.id; })[0], datos()); alto(ta); e.target.hidden = true; });
   }
   var nombres = d.personas.map(function(p){ return p.nombre; }).filter(Boolean);
   D.forEach(function(s){
     var a = box.querySelector('[data-id="' + s.id + '"]'), i = act.indexOf(s);
     a.classList.toggle("fuera", i < 0);
     a.querySelector(".n").textContent = i < 0 ? "No va en tu PDF" : String(i + 1).padStart(2, "0") + " de " + act.length;
-    a.querySelector(".di").textContent = rellena(s.di, d);
+    var ta = a.querySelector(".di-ed"); if(document.activeElement !== ta){ ta.value = guionDe(s, d); alto(ta); } a.querySelector(".orig").hidden = st.guion[s.id] == null;
     a.querySelector(".ojo").textContent = s.ojo + (s.varias && nombres.length > 1 ? " " + s.varias : "");
     var q = a.querySelector(".quien"); q.hidden = nombres.length < 2;
     if(nombres.length > 1){ var sl = q.querySelector("select"); sl.innerHTML = '<option value="">Sin asignar</option>' + nombres.map(function(n){ return '<option>' + H.esc(n) + '</option>'; }).join(""); sl.value = st.quien[s.id] || ""; }
@@ -877,7 +914,7 @@ function pintaEnsayo(){
   var act = activas(), d = datos(); ei = Math.max(0, Math.min(ei, act.length - 1)); var s = act[ei];
   dibuja(s.id, $("eCanvas").getContext("2d"));
   $("eN").textContent = String(ei + 1).padStart(2, "0") + " de " + act.length + " · " + String(s.min).replace(".", ",") + " min";
-  $("eT").textContent = s.t; $("eDi").textContent = rellena(s.di, d);
+  $("eT").textContent = s.t; $("eDi").textContent = guionDe(s, d);
   $("eQuien").textContent = st.quien[s.id] ? "La presenta " + st.quien[s.id] + "." : s.ojo;
   $("eAnt").disabled = ei === 0; $("eSig").disabled = ei === act.length - 1;
   var meta = act.slice(0, ei + 1).reduce(function(a, x){ return a + x.min; }, 0);
@@ -939,7 +976,7 @@ Promise.all([
   abreDB().then(leeFotos),
   H.equipo().then(function(eq){ EQ = eq; var dl = document.createElement("datalist"); dl.id = "eqLista"; dl.innerHTML = eq.map(function(c){ return '<option value="' + H.esc(c.nombre) + '">'; }).join(""); document.body.appendChild(dl); })
 ]).then(function(){
-  pintaPersonas(); pintaMas(); pintaDiapos(); pintaMinis();
+  pintaPersonas(); pintaMas(); pintaSets(); pintaDiapos(); pintaMinis();
   var h = location.hash.replace("#", ""); if(TABS.indexOf(h) > 0) abre(h);
 });
 })();
