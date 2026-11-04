@@ -11,6 +11,45 @@
  },
  "eventos": [
   {
+   "slug": "master-class-tendencias-2027",
+   "titulo": "Master Class Tendencias 2027",
+   "tipo": "Master class de maquillaje",
+   "categoria": "Maquillaje",
+   "flyer": "/eventos/fotos/master-class-tendencias-2027.jpg",
+   "color": "#8C7560",
+   "desde": "2026-10-25T11:00:00-06:00",
+   "ciudad": "Tizayuca",
+   "zona": "Tizayuca, Hidalgo",
+   "lugar": "Tizayuca Centro",
+   "mapa": [
+    19.8378,
+    -98.9817
+   ],
+   "resumen": "Las tendencias de maquillaje para 2027 con la maquillista Lizeth Montes de Oca. Ve los resultados profesionales de Farmasi, llévate producto o afíliate.",
+   "puntos": [
+    "Master class con Lizeth Montes de Oca, makeup artist",
+    "Tendencias de maquillaje 2027",
+    "Prueba y compra producto Farmasi",
+    "Información para afiliarte"
+   ],
+   "aportacion": [
+    {
+     "precio": "$100",
+     "etiqueta": "Costo"
+    }
+   ],
+   "colaboran": [
+    "Lizeth Montes de Oca"
+   ],
+   "responsables": [
+    "danny"
+   ],
+   "apartar": {
+    "whatsapp": "",
+    "instagram": ""
+   }
+  },
+  {
    "serie": "flowers-to-go",
    "slug": "altar",
    "edicion": "Altar",
@@ -32,12 +71,12 @@
    "resumen": "Una mañana de pan, cafecito y un ramo para tu altar.",
    "aportacion": [
     {
-     "etiqueta": "Preventa",
-     "precio": "$250"
+     "precio": "$250",
+     "etiqueta": "Preventa"
     },
     {
-     "etiqueta": "Previo al evento",
-     "precio": "$300"
+     "precio": "$300",
+     "etiqueta": "Previo al evento"
     }
    ],
    "regalo": "Los primeros 10 lugares se llevan un regalo sorpresa de Farmasi.",
@@ -68,12 +107,31 @@
    "zona": "Miguel Hidalgo",
    "lugar": "Silvia Mata Estudio, Polanco",
    "direccion": "Av. Homero 421, Int. 103, Polanco, CDMX.",
-   "mapa": [19.4336, -99.1938],
+   "mapa": [
+    19.4336,
+    -99.1938
+   ],
    "resumen": "Aprende a crear looks versátiles, elegantes y duraderos para brillar en todas tus celebraciones.",
-   "puntos": ["Técnicas profesionales", "Paso a paso para tu tipo de piel", "Looks para el día, la noche y eventos especiales", "Recomendaciones de productos y tips personalizados", "Trae tus brochas y esponjas limpias (habrá herramientas a la venta)", "Habrá muestras de maquillaje"],
-   "aportacion": [{"etiqueta": "Costo de recuperación", "precio": "$150"}],
-   "colaboran": ["Silvia Mata Estudio"],
-   "responsables": ["silvia"],
+   "puntos": [
+    "Técnicas profesionales",
+    "Paso a paso para tu tipo de piel",
+    "Looks para el día, la noche y eventos especiales",
+    "Recomendaciones de productos y tips personalizados",
+    "Trae tus brochas y esponjas limpias (habrá herramientas a la venta)",
+    "Habrá muestras de maquillaje"
+   ],
+   "aportacion": [
+    {
+     "precio": "$150",
+     "etiqueta": "Costo de recuperación"
+    }
+   ],
+   "colaboran": [
+    "Silvia Mata Estudio"
+   ],
+   "responsables": [
+    "silvia"
+   ],
    "apartar": {
     "whatsapp": "",
     "instagram": ""
@@ -104,8 +162,8 @@
    ],
    "aportacion": [
     {
-     "etiqueta": "Por persona",
-     "precio": "$899"
+     "precio": "$899",
+     "etiqueta": "Por persona"
     }
    ],
    "colaboran": [
@@ -143,8 +201,8 @@
    ],
    "aportacion": [
     {
-     "etiqueta": "Precio regular",
-     "precio": "$500"
+     "precio": "$500",
+     "etiqueta": "Precio regular"
     }
    ],
    "colaboran": [
@@ -179,51 +237,12 @@
    ],
    "aportacion": [
     {
-     "etiqueta": "Boleto",
-     "precio": "$650"
+     "precio": "$650",
+     "etiqueta": "Boleto"
     }
    ],
    "responsables": [
     "nancy"
-   ],
-   "apartar": {
-    "whatsapp": "",
-    "instagram": ""
-   }
-  },
-  {
-   "slug": "master-class-tendencias-2027",
-   "titulo": "Master Class Tendencias 2027",
-   "tipo": "Master class de maquillaje",
-   "categoria": "Maquillaje",
-   "flyer": "/eventos/fotos/master-class-tendencias-2027.jpg",
-   "color": "#8C7560",
-   "desde": "2026-10-25T11:00:00-06:00",
-   "ciudad": "Tizayuca",
-   "zona": "Tizayuca, Hidalgo",
-   "lugar": "Tizayuca Centro",
-   "mapa": [
-    19.8378,
-    -98.9817
-   ],
-   "resumen": "Las tendencias de maquillaje para 2027 con la maquillista Lizeth Montes de Oca. Ve los resultados profesionales de Farmasi, llévate producto o afíliate.",
-   "puntos": [
-    "Master class con Lizeth Montes de Oca, makeup artist",
-    "Tendencias de maquillaje 2027",
-    "Prueba y compra producto Farmasi",
-    "Información para afiliarte"
-   ],
-   "aportacion": [
-    {
-     "etiqueta": "Costo",
-     "precio": "$100"
-    }
-   ],
-   "colaboran": [
-    "Lizeth Montes de Oca"
-   ],
-   "responsables": [
-    "danny"
    ],
    "apartar": {
     "whatsapp": "",
