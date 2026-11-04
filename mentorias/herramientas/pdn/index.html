@@ -71,6 +71,19 @@
 .bajar .btn{width:100%}
 .bajar p{margin:0;font-size:14px;color:var(--muted)}
 .faltan{font-size:14px;color:var(--warn);margin:0}
+.liga{display:grid;gap:10px;padding:16px;border:1px solid var(--line);border-radius:18px}
+.liga h3{margin:0;font:600 17px/1.3 var(--body)}
+.liga>p{margin:0;font-size:14px;color:var(--muted)}
+.ok-fotos{display:grid;grid-template-columns:20px 1fr;gap:10px;font-size:14px;line-height:1.4;cursor:pointer}
+.ok-fotos input{width:18px;height:18px;margin:1px 0 0;accent-color:var(--ink)}
+.liga-lista{display:grid;gap:8px}
+.liga-lista:empty{display:none}
+.una{display:grid;gap:8px;padding:12px 14px;border-radius:12px;background:var(--soft)}
+.una b{font:500 14px/1.4 var(--mono);word-break:break-all}
+.una span{font-size:13px;color:var(--muted)}
+.una .acc{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center}
+.una .acc a,.una .acc button{font-size:14px}
+
 .faltan:empty{display:none}
 
 /* guion */
@@ -214,6 +227,13 @@
           <button class="btn" type="button" id="bajar" data-cuenta="pdn-pdf">Descargar PDF</button>
           <p class="faltan" id="faltan"></p>
           <p>Un PDF de 16:9 para compartir pantalla en Zoom, conectar a la tele o imprimir. Los links del PDF se pueden tocar.</p>
+        </div>
+        <div class="liga" id="liga">
+          <h3>Mándala con un link</h3>
+          <p>Tu PDN queda 30 días en mitienda.beauty con un link propio. Quien lo abre la ve en su celular, sin descargar nada, y te puede escribir desde ahí.</p>
+          <label class="ok-fotos"><input type="checkbox" id="ligaOk"><span>Las personas que salen en las fotos aceptan que la presentación quede en un link durante 30 días.</span></label>
+          <button class="btn2" type="button" id="ligaCrear" disabled>Crear mi link</button>
+          <div class="liga-lista" id="ligaLista"></div>
         </div>
       </div>
     </div>
@@ -951,23 +971,79 @@ function cargaJsPDF(){
   if(window.jspdf) return Promise.resolve();
   return new Promise(function(ok, no){ var s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"; s.onload = ok; s.onerror = no; document.head.appendChild(s); });
 }
-$("bajar").addEventListener("click", function(){
-  var b = $("bajar"); b.disabled = true; b.textContent = "Armando tu PDF…";
-  cargaJsPDF().then(function(){
-    var doc = new window.jspdf.jsPDF({orientation: "landscape", unit: "pt", format: [960, 540], compress: true}), k = .5;
+function nombreArchivo(){ var d = datos(); return "pdn-farmasi-con-" + (d.titulo.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "socia") + ".pdf"; }
+/* Arma el PDF. Con conImgs, también regresa cada diapositiva en JPG de 1280 px para la página del link. */
+function armaPDF(conImgs){
+  return cargaJsPDF().then(function(){
+    var doc = new window.jspdf.jsPDF({orientation: "landscape", unit: "pt", format: [960, 540], compress: true}), k = .5, imgs = [];
+    var chico = document.createElement("canvas"); chico.width = 1280; chico.height = 720;
     activas().forEach(function(s, i){
       if(i) doc.addPage([960, 540], "landscape");
       var L = dibuja(s.id, lctx);
-      doc.addImage(lienzo.toDataURL("image/jpeg", .9), "JPEG", 0, 0, 960, 540, undefined, "FAST");
+      doc.addImage(lienzo.toDataURL("image/jpeg", .86), "JPEG", 0, 0, 960, 540, undefined, "FAST");
       L.forEach(function(l){ doc.link(l.x * k, l.y * k, l.w * k, l.h * k, {url: l.url}); });
+      if(conImgs){ chico.getContext("2d").drawImage(lienzo, 0, 0, 1280, 720); imgs.push(chico.toDataURL("image/jpeg", .8)); }
     });
-    var d = datos(), slug = d.titulo.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    var d = datos();
     doc.setProperties({title: "Farmasi con " + d.titulo, subject: "Presentación de negocio", creator: "mitienda.beauty"});
-    H.descarga(doc.output("blob"), "pdn-farmasi-con-" + (slug || "socia") + ".pdf");
+    return {blob: doc.output("blob"), imgs: imgs};
+  });
+}
+$("bajar").addEventListener("click", function(){
+  var b = $("bajar"); b.disabled = true; b.textContent = "Armando tu PDF…";
+  armaPDF(false).then(function(r){
+    var nom = nombreArchivo(), f = null;
+    try{ f = new File([r.blob], nom, {type: "application/pdf"}); }catch(_){}
+    // En celular se abre el menú de compartir con el archivo (sin el link "blob:" que salía antes).
+    if(f && navigator.canShare && navigator.canShare({files: [f]}) && matchMedia("(pointer:coarse)").matches){
+      navigator.share({files: [f], title: "Farmasi con " + datos().titulo}).catch(function(e){ if(e && e.name !== "AbortError") H.descarga(r.blob, nom); });
+    } else H.descarga(r.blob, nom);
     H.cuenta("pdn-pdf-ok");
   }).catch(function(){ H.aviso("No se pudo armar el PDF. Revisa tu conexión e inténtalo otra vez."); })
     .then(function(){ b.disabled = false; b.textContent = "Descargar PDF"; });
 });
+
+/* ---------- el link de 30 días (Supabase Storage, bucket público "pdn") ---------- */
+var SB = "https://ctutqqstqjdngxdjzckf.supabase.co", SB_KEY = "sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk", DIAS = 30;
+st.links = st.links || [];
+function idNuevo(){ var a = "ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789", r = new Uint8Array(12), o = ""; crypto.getRandomValues(r); for(var i = 0; i < 12; i++) o += a[r[i] % a.length]; return o; }
+function sube(nombre, cuerpo, tipo){
+  return fetch(SB + "/storage/v1/object/pdn/" + nombre, {method: "POST", headers: {apikey: SB_KEY, Authorization: "Bearer " + SB_KEY, "Content-Type": tipo, "x-upsert": "false", "cache-control": "max-age=3600"}, body: cuerpo})
+    .then(function(r){ if(!r.ok) return r.text().then(function(t){ throw new Error(t || ("Error " + r.status)); }); });
+}
+function aBlob(dataUrl){ var b = atob(dataUrl.split(",")[1]), u = new Uint8Array(b.length); for(var i = 0; i < b.length; i++) u[i] = b.charCodeAt(i); return new Blob([u], {type: "image/jpeg"}); }
+function urlLiga(id){ return "https://mitienda.beauty/pdn/?p=" + id; }
+function pintaLigas(){
+  var hoy = Date.now(), box = $("ligaLista");
+  st.links = st.links.filter(function(l){ return hoy - l.t < DIAS * 864e5; });
+  box.innerHTML = st.links.slice().reverse().map(function(l){
+    var u = urlLiga(l.id), quedan = Math.max(0, Math.ceil((l.t + DIAS * 864e5 - hoy) / 864e5));
+    return '<div class="una"><b>' + H.esc(u.replace("https://", "")) + '</b><span>Farmasi con ' + H.esc(l.titulo) + ' · le quedan ' + quedan + (quedan === 1 ? ' día' : ' días') + '</span><div class="acc">' +
+      '<a class="enlace" href="' + H.wa("Te comparto mi presentación de negocio, la puedes ver desde tu celular:\n" + u) + '" target="_blank" rel="noopener" data-cuenta="pdn-link-wa">Mandar por WhatsApp</a>' +
+      '<button class="enlace" type="button" data-copia="' + H.esc(u) + '">Copiar link</button>' +
+      '<a class="enlace" href="' + H.esc(u) + '" target="_blank" rel="noopener">Ver</a></div></div>';
+  }).join("");
+}
+$("ligaLista").addEventListener("click", function(e){ var b = e.target.closest("[data-copia]"); if(b) H.copia(b.dataset.copia, "Link copiado"); });
+$("ligaOk").addEventListener("change", function(){ $("ligaCrear").disabled = !this.checked; });
+$("ligaCrear").addEventListener("click", function(){
+  var b = $("ligaCrear"), d = datos(), id = idNuevo();
+  b.disabled = true; b.textContent = "Subiendo tu PDN…";
+  armaPDF(true).then(function(r){
+    var meta = {v: 1, titulo: d.titulo, equipo: d.equipo, creada: new Date().toISOString(), dias: DIAS, paginas: r.imgs.length, archivo: nombreArchivo(),
+      personas: d.personas.map(function(p){ return {nombre: p.nombre, wa: p.wa}; }).filter(function(p){ return p.nombre; }), tienda: d.tienda};
+    var cola = r.imgs.map(function(im, i){ return function(){ return sube(id + "-" + String(i + 1).padStart(2, "0") + ".jpg", aBlob(im), "image/jpeg"); }; });
+    cola.push(function(){ return sube(id + ".pdf", r.blob, "application/pdf"); });
+    cola.push(function(){ return sube(id + ".json", new Blob([JSON.stringify(meta)], {type: "application/json"}), "application/json"); });
+    var hechas = 0;
+    return cola.reduce(function(pr, f){ return pr.then(f).then(function(){ hechas++; b.textContent = "Subiendo " + Math.round(hechas / cola.length * 100) + " %…"; }); }, Promise.resolve());
+  }).then(function(){
+    st.links.push({id: id, titulo: d.titulo, t: Date.now()}); guarda(); pintaLigas(); H.cuenta("pdn-link-ok");
+    H.aviso("Listo. Tu link dura 30 días.");
+  }).catch(function(){ H.aviso("No se pudo crear el link. Revisa tu conexión e inténtalo otra vez."); })
+    .then(function(){ b.textContent = "Crear mi link"; b.disabled = !$("ligaOk").checked; });
+});
+pintaLigas();
 
 /* ---------- arranque ---------- */
 var fuentes = ["300 40px Outfit","400 40px Outfit","500 40px Outfit","600 40px Outfit","700 40px Outfit","800 40px Outfit",'400 40px "IBM Plex Mono"','500 40px "IBM Plex Mono"','600 40px "IBM Plex Mono"'];

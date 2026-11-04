@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Presentación de negocio · Farmasi</title>
+<meta name="description" content="Una presentación de negocio de Top Team para ver desde tu celular.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Te comparto mi presentación de negocio">
+<meta property="og:description" content="Qué es Top Team, qué es Farmasi y cómo funciona el negocio. Se ve desde tu celular.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:image" content="https://mitienda.beauty/og/pdn.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+:root{color-scheme:light;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--acc:#DB414C;--acc-ink:#C8323F;--ease:cubic-bezier(.23,1,.32,1)}
+*{box-sizing:border-box}
+html,body{background:#fff}
+body{margin:0;color:var(--ink);font:400 17px/1.5 Outfit,system-ui,sans-serif;-webkit-text-size-adjust:100%}
+.wrap{max-width:960px;margin:0 auto;padding:0 16px 120px}
+.cab{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 0 0}
+.marca{font:300 12px/1 Outfit,sans-serif;letter-spacing:.22em;color:var(--muted);text-decoration:none}
+.dias{font:400 12px/1 "IBM Plex Mono",monospace;color:var(--muted)}
+h1{font:800 clamp(36px,9vw,64px)/1 Outfit,sans-serif;letter-spacing:-.02em;margin:28px 0 8px}
+h1 span{display:block;font-weight:300;font-size:.5em;color:var(--muted);letter-spacing:0;margin-bottom:6px}
+h1 b{color:var(--acc);font-weight:800}
+.bajada{margin:0 0 22px;color:var(--muted);font-size:16px}
+.slides{display:grid;gap:12px}
+.slides img{display:block;width:100%;height:auto;aspect-ratio:16/9;border-radius:10px;border:1px solid var(--line);background:var(--soft)}
+.pie{display:flex;flex-wrap:wrap;gap:10px 20px;align-items:center;margin:22px 0 0;font-size:15px}
+.pie a{color:inherit;text-underline-offset:4px}
+.nota{font-size:13px;color:var(--muted);margin:26px 0 0;max-width:40em}
+.barra{position:fixed;left:0;right:0;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 16px calc(12px + env(safe-area-inset-bottom));display:flex;gap:8px;justify-content:center;flex-wrap:wrap;z-index:5}
+.barra a{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 20px;border-radius:14px;font-weight:600;font-size:16px;text-decoration:none;transition:transform 160ms var(--ease)}
+.barra .btn{background:var(--acc);color:#fff;flex:1 1 220px;max-width:420px}
+.barra .btn2{border:1px solid var(--ink);color:var(--ink);background:#fff;flex:0 1 auto}
+.barra a:active{transform:scale(.97)}
+.barra[hidden]{display:none}
+.vacio{padding:80px 0;max-width:30em}
+.vacio h1{font-size:clamp(32px,8vw,48px)}
+.vacio p{color:var(--muted)}
+.vacio a{color:var(--acc-ink);font-weight:600}
+@media (prefers-reduced-motion:reduce){*{transition-duration:0ms!important}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="cab"><a class="marca" href="/">MITIENDA.BEAUTY</a><span class="dias" id="dias"></span></div>
+  <main id="main" aria-live="polite"><p class="bajada" style="margin-top:40px">Cargando la presentación…</p></main>
+</div>
+<nav class="barra" id="barra" hidden></nav>
+<script>
+(function(){
+  var B = "https://ctutqqstqjdngxdjzckf.supabase.co/storage/v1/object/public/pdn/";
+  var id = (new URLSearchParams(location.search).get("p") || "").replace(/[^A-Za-z0-9]/g, "");
+  var main = document.getElementById("main"), barra = document.getElementById("barra");
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]; }); }
+  function wa(n, txt){ return "https://wa.me/" + n + "?text=" + encodeURIComponent(txt); }
+  function nada(t, p){ main.innerHTML = '<div class="vacio"><h1>' + t + '</h1><p>' + p + '</p><p><a href="/">Ir a mitienda.beauty</a></p></div>'; }
+  if(id.length !== 12){ nada("No encontramos esta presentación", "Revisa que el link esté completo o pídele a quien te lo mandó que te lo vuelva a enviar."); return; }
+  fetch(B + id + ".json", {cache: "no-store"}).then(function(r){ if(!r.ok) throw 0; return r.json(); }).then(function(m){
+    var vence = new Date(m.creada).getTime() + (m.dias || 30) * 864e5, quedan = Math.ceil((vence - Date.now()) / 864e5);
+    if(quedan <= 0){ nada("Este link ya venció", "Las presentaciones se quedan 30 días. Pídele a quien te la mandó un link nuevo."); return; }
+    document.title = "Farmasi con " + m.titulo + " · Presentación de negocio";
+    document.getElementById("dias").textContent = "Disponible " + quedan + (quedan === 1 ? " día más" : " días más");
+    var imgs = ""; for(var i = 1; i <= (m.paginas || 0); i++) imgs += '<img src="' + B + id + "-" + String(i).padStart(2, "0") + '.jpg" alt="Diapositiva ' + i + '" width="1280" height="720"' + (i > 2 ? ' loading="lazy"' : '') + ' decoding="async">';
+    main.innerHTML = '<h1><span>Presentación de negocio</span>Farmasi con <b>' + esc(m.titulo) + '</b></h1>' +
+      '<p class="bajada">' + (m.paginas || 0) + ' diapositivas. Desliza para verla completa.</p>' +
+      '<div class="slides">' + imgs + '</div>' +
+      '<div class="pie"><a href="' + B + id + '.pdf" download="' + esc(m.archivo || "presentacion.pdf") + '">Descargar en PDF</a>' + (m.tienda ? '<a href="https://' + esc(m.tienda) + '">Ver ' + esc(m.tienda) + '</a>' : '') + '</div>' +
+      '<p class="nota">Material del equipo, no oficial de Farmasi. Lo que avance cada persona depende de su trabajo; nadie garantiza resultados.</p>';
+    var ps = (m.personas || []).filter(function(p){ return /^\d{11,13}$/.test(p.wa || ""); });
+    if(ps.length){
+      barra.innerHTML = ps.map(function(p, k){ return '<a class="' + (k ? "btn2" : "btn") + '" href="' + wa(p.wa, "Hola " + p.nombre + ", vi tu presentación de negocio y quiero saber más.") + '" target="_blank" rel="noopener">' + (k ? esc(p.nombre) : "Escribir a " + esc(p.nombre)) + '</a>'; }).join("");
+      barra.hidden = false;
+    }
+    try{ window.goatcounter && window.goatcounter.count({path: "/pdn/visto", title: "PDN vista", event: true}); }catch(_){}
+  }).catch(function(){ nada("No encontramos esta presentación", "Puede que el link esté incompleto o que ya la hayan quitado. Pídele a quien te la mandó que te la vuelva a enviar."); });
+})();
+</script>
+</body>
+</html>
