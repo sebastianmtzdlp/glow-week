@@ -1,0 +1,115 @@
+{
+  "_nota": "Logros del mes. Solo nombre, nivel y título (nunca PV, GV, contactos ni órdenes). Las de 0% no van. 'foto' = nombre del archivo en fotos/ (el de su tienda si ya tiene, si no nombre-con-guiones.jpg); si el archivo no existe salen sus iniciales. Una sola 'nota' por nivel, con un dato real. Corre: python3 scripts/logros.py 'ig' = usuario de Instagram sin @ (solo si ella lo tiene público); sale en su story. 'ig_equipo' = crédito en todas las stories.",
+  "mes": "octubre",
+  "anio": 2026,
+  "equipo": "Selene",
+  "ventas": {
+    "puntos": 7400,
+    "pesos_por_punto": 25,
+    "factor_publico": 1.4
+  },
+  "niveles": {
+    "25": {
+      "personas": [
+        {
+          "nombre": "Selene Velazquez Hernandez",
+          "iniciales": "SV",
+          "titulo": "Bronze Director",
+          "foto": "sel.jpg"
+        },
+        {
+          "nombre": "Nancy Liliana Rodriguez Ortiz",
+          "iniciales": "NR",
+          "titulo": "Director",
+          "foto": "nancy.jpg"
+        }
+      ]
+    },
+    "22": {
+      "personas": []
+    },
+    "18": {
+      "personas": []
+    },
+    "15": {
+      "personas": []
+    },
+    "12": {
+      "personas": []
+    },
+    "9": {
+      "personas": [
+        {
+          "nombre": "Maria Esther Morales Martinez",
+          "iniciales": "MM",
+          "titulo": "Farmasi Influencer",
+          "foto": "maria-esther-morales.jpg"
+        },
+        {
+          "nombre": "Samantha Tello Garnica",
+          "iniciales": "ST",
+          "titulo": "Farmasi Influencer",
+          "foto": "sam.jpg"
+        },
+        {
+          "nombre": "Silvia Veronica Romero Mata",
+          "iniciales": "SR",
+          "titulo": "Farmasi Influencer",
+          "foto": "silvia.jpg"
+        }
+      ]
+    },
+    "6": {
+      "personas": [
+        {
+          "nombre": "Laura Moreno Ruiz",
+          "iniciales": "LM",
+          "titulo": "Farmasi Influencer",
+          "foto": "laura.jpg"
+        }
+      ]
+    },
+    "3": {
+      "personas": [
+        {
+          "nombre": "Ana Silvia Lopez Gomez",
+          "iniciales": "AL",
+          "titulo": "Farmasi Influencer",
+          "foto": "anagomez.jpg"
+        },
+        {
+          "nombre": "Donaji Marhong",
+          "iniciales": "DM",
+          "titulo": "Farmasi Influencer",
+          "nueva": true,
+          "foto": "donaji-marhong.jpg"
+        },
+        {
+          "nombre": "Ana Ofelia Garcia Silva",
+          "iniciales": "AG",
+          "titulo": "Farmasi Influencer",
+          "foto": "anaofelia.jpg"
+        },
+        {
+          "nombre": "Nancy Andrea Montiel Cruz",
+          "iniciales": "NM",
+          "titulo": "Farmasi Influencer",
+          "foto": "nancy-andrea-montiel.jpg"
+        },
+        {
+          "nombre": "Alejandra Paola Villedo Gonzalez",
+          "iniciales": "AV",
+          "titulo": "Farmasi Influencer",
+          "foto": "pao.jpg"
+        },
+        {
+          "nombre": "Andrea Fernanda Raudales Padron",
+          "iniciales": "AR",
+          "titulo": "Farmasi Influencer",
+          "foto": "andrea-fernanda-raudales.jpg"
+        }
+      ]
+    }
+  },
+  "ig_equipo": ""
+}

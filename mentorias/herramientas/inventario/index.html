@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-inventario">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Lo que tengo en casa</title>
+<meta name="description" content="Anota tus muestras y el producto que ya tienes en casa: cuánto vale y qué ya prestaste o vendiste. No necesitas comprar producto para vender. Gratis, se guarda en tu celular.">
+<meta property="og:title" content="Lo que tengo en casa">
+<meta property="og:description" content="Tus muestras y lo que ya tienes en casa, en un solo lugar.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/inventario/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-inventario.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.datos{display:grid;gap:12px}
+.datos .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.acc{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:16px}
+.nube{font:400 13px/1.4 var(--mono);color:var(--good)}
+.lim{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.bloque{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px}
+.bloque h2{color:#fff;font-size:clamp(26px,7vw,38px)}
+.bloque h2 em{color:var(--pink)}
+.bloque .sub{margin:6px 0 0;color:#C9CBE0;font-size:15px}
+.bloque pre{white-space:pre-wrap;font:400 15px/1.5 var(--body);margin:14px 0 0;color:#fff}
+.tl{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.tl li{display:grid;grid-template-columns:64px 1fr;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.tl .t{font:500 14px/1.3 var(--mono);color:var(--bronze)}
+.tl b{font-weight:600}
+.tl small{grid-column:2;color:var(--muted);font-size:14px;line-height:1.4}
+.lst{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.lst li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.lst small{color:var(--muted);grid-column:1;font-size:13px}
+.lst .acc2{grid-row:1 / span 2;grid-column:2;display:flex;gap:6px}
+.lst .acc2 button,.lst .acc2 a{min-width:40px;min-height:40px;border-radius:10px;border:1px solid #CFD2E0;background:#fff;cursor:pointer;display:grid;place-items:center;text-decoration:none;font:600 13px/1 var(--body);padding:0 10px}
+.lst .acc2 .on{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+}
+@media print{.barra,.sigue,footer,.pro-caja,.acc,#pro,#proCont{display:none!important}}
+.sesion{border-bottom:1px solid var(--line)}
+.sesion summary{cursor:pointer;list-style:none;padding:14px 0;font:600 18px/1.3 var(--body)}
+.sesion summary::-webkit-details-marker{display:none}
+.sesion .cuerpo{padding:0 0 18px;font-size:16px}
+.sesion .cuerpo h3{font:600 14px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--bronze);margin:18px 0 4px}
+.sesion .cuerpo p,.sesion .cuerpo li{margin:6px 0}
+.cifras{display:grid;grid-template-columns:1fr 1fr;margin-top:16px;border-top:1px solid rgba(255,255,255,.16)}
+.cifras div{padding:14px 8px 4px 0}.cifras div:nth-child(even){padding-left:14px;border-left:1px solid rgba(255,255,255,.16)}
+.cifras b{display:block;font:500 28px/1 var(--mono)}.cifras span{display:block;font-size:13px;color:#C9CBE0;margin-top:4px;line-height:1.3}
+.alta{display:grid;gap:10px;background:var(--soft);border-radius:20px;padding:16px;margin:0 -16px}
+.alta .tres{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.it{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.it b{font-weight:600}.it small{grid-column:1;color:var(--muted);font-size:13px}.it.bajo small{color:var(--accent-ink)}
+.it .acc2{grid-row:1 / span 2;grid-column:2;display:flex;gap:6px;align-items:center}
+.it .acc2 button{min-width:40px;min-height:40px;border-radius:10px;border:1px solid #CFD2E0;background:#fff;cursor:pointer;font:600 15px/1 var(--body)}
+.it .acc2 .q{font:500 18px/1 var(--mono);min-width:28px;text-align:center}
+.alerta{background:var(--tint);border-radius:14px;padding:12px 14px;margin-top:14px;font-size:15px}
+@media (min-width:900px){.alta{margin:0;padding:22px}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Lo que tengo <em>en casa</em></h1>
+      <p class="bajada">No necesitas tener producto en casa para vender: Farmasi le envía cada pedido a tu clienta. Esto es para tus muestras y lo que ya tienes: cuántos son, cuánto valen y cuál se está acabando.</p>
+    </div>
+    <section class="bloque" aria-label="Tu inventario">
+      <h2>Tu <em>inventario</em></h2>
+      <p class="sub" id="sub">Agrega tu primer producto.</p>
+      <div class="cifras">
+        <div><b id="cPz">0</b><span>piezas en casa</span></div>
+        <div><b id="cVal">$0</b><span>valen a precio público</span></div>
+        <div><b id="cInv">$0</b><span>lo que pagaste por ellas</span></div>
+        <div><b id="cVend">0</b><span>vendidas este mes</span></div>
+      </div>
+    </section>
+  </header>
+
+  <div class="dos">
+    <section aria-labelledby="iTit">
+      <div class="cab"><h2 id="iTit">Tus productos</h2><p>Toca + o − al vender o recibir.</p></div>
+      <form class="alta" id="alta" style="margin-top:16px">
+        <label><span class="etq">Producto</span><input type="text" id="aN" list="prods" maxlength="70" placeholder="Matte Liquid Lipstick" required autocomplete="off"></label>
+        <datalist id="prods"></datalist>
+        <div class="tres">
+          <label><span class="etq">Cuántos</span><input type="number" id="aQ" value="1" min="0" inputmode="numeric"></label>
+          <label><span class="etq">Precio $</span><input type="number" id="aP" min="0" inputmode="decimal" placeholder="345"></label>
+          <label><span class="etq">Pagué $</span><input type="number" id="aC" min="0" inputmode="decimal" placeholder="opcional"></label>
+        </div>
+        <button class="btn" type="submit">Agregar</button>
+        <p class="lim" id="lim"></p>
+      </form>
+      <div id="alertas"></div>
+      <div id="its" style="border-top:2px solid var(--ink);margin-top:14px"></div>
+    </section>
+
+    <section aria-labelledby="proTit">
+      <div class="cab"><h2 id="proTit">Avisos y ganancia</h2><p>La versión Pro.</p></div>
+      <div id="pro"></div>
+      <p class="nube" id="nube"></p>
+      <div id="proCont" hidden>
+        <div class="cifras" style="border-top-color:var(--line)">
+          <div><b id="gGan" style="color:var(--ink)">$0</b><span style="color:var(--muted)">ganancia de lo vendido este mes</span></div>
+          <div><b id="gSin" style="color:var(--ink)">0</b><span style="color:var(--muted)">ventas sin costo anotado</span></div>
+        </div>
+        <p class="nota">Pon cuántos quieres tener como mínimo en cada producto. Cuando bajes de ahí, te aviso.</p>
+        <h3 style="font:600 16px/1.2 var(--body);margin:20px 0 0">Lo último que vendiste</h3>
+        <ul class="lst" id="hist"></ul>
+      </div>
+    </section>
+  </div>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/pedidos/" data-cuenta="ir-pedidos"><b>Pedidos y cobros</b><span>Cuánto te deben y a quién no le ha llegado.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/primeros-200/" data-cuenta="ir-200"><b>Primeros 200 puntos</b><span>El reto para quien arranca.</span><i aria-hidden="true">→</i></a>
+  </section>
+  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en tu celular. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+
+
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = "mtb-inventario-v1", LIM = 20, st = H.lee(KEY, {its: [], ventas: [], ts: 0}), pro = false, nube = null, tSave = null, CAT = [], mes = H.iso().slice(0, 7);
+  if(!st.its) st = {its: [], ventas: [], ts: 0};
+  var money = function(n){ return "$" + H.fmt(n || 0); }, id = function(){ return Math.random().toString(36).slice(2, 9); };
+  function guarda(){
+    st.ts = Date.now(); st.ventas = st.ventas.slice(-400); H.guarda(KEY, st);
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+  }
+  function pinta(){
+    var pz = 0, val = 0, inv = 0;
+    st.its.forEach(function(i){ pz += +i.q || 0; val += (+i.q || 0) * (+i.p || 0); inv += (+i.q || 0) * (+i.c || 0); });
+    var vm = st.ventas.filter(function(v){ return v.f.slice(0, 7) === mes; });
+    $("cPz").textContent = H.fmt(pz); $("cVal").textContent = money(val); $("cInv").textContent = money(inv); $("cVend").textContent = vm.length;
+    $("sub").textContent = st.its.length ? st.its.length + (st.its.length === 1 ? " producto." : " productos.") : "Agrega tu primer producto.";
+    var tope = !pro && st.its.length >= LIM; $("lim").textContent = pro ? "Sin límite de productos." : st.its.length + " de " + LIM + " productos gratis."; $("lim").style.color = tope ? "var(--accent-ink)" : "";
+    $("alta").querySelector("button").disabled = tope;
+    var bajos = pro ? st.its.filter(function(i){ return i.min !== "" && i.min != null && (+i.q || 0) <= +i.min; }) : [];
+    $("alertas").innerHTML = bajos.length ? '<div class="alerta"><b>Se están acabando:</b> ' + bajos.map(function(i){ return H.esc(i.n) + " (" + (+i.q || 0) + ")"; }).join(", ") + ".</div>" : "";
+    $("its").innerHTML = "";
+    st.its.forEach(function(i){
+      var d = document.createElement("div"), bajo = pro && i.min !== "" && i.min != null && (+i.q || 0) <= +i.min;
+      d.className = "it" + (bajo ? " bajo" : "");
+      d.innerHTML = "<b>" + H.esc(i.n) + "</b><small>" + (i.p ? money(i.p) : "sin precio") + (i.c ? " · pagué " + money(i.c) : "") + (bajo ? " · por pedir" : "") + '</small><div class="acc2"><button type="button" data-a="-" aria-label="Quitar una">−</button><span class="q">' + (+i.q || 0) + '</span><button type="button" data-a="+" aria-label="Agregar una">+</button><button type="button" data-a="v" aria-label="Vendí una" title="Vendí una">$</button></div>' +
+        (pro ? '<label style="grid-column:1 / -1;display:flex;gap:8px;align-items:center;font-size:13px;color:var(--muted)">Mínimo <input type="number" min="0" inputmode="numeric" value="' + (i.min == null ? "" : i.min) + '" data-min style="width:70px;min-height:36px;font-size:14px"></label>' : "");
+      d.querySelectorAll("[data-a]").forEach(function(b){ b.addEventListener("click", function(){
+        var a = b.dataset.a;
+        if(a === "+") i.q = (+i.q || 0) + 1;
+        else if(a === "-") i.q = Math.max(0, (+i.q || 0) - 1);
+        else if((+i.q || 0) > 0){ i.q = (+i.q) - 1; st.ventas.push({f: H.iso(), n: i.n, p: +i.p || 0, c: i.c === "" || i.c == null ? null : +i.c}); H.aviso("Anotada. Quedan " + i.q); H.cuenta("inventario-vende"); }
+        guarda(); pinta();
+      }); });
+      var mn = d.querySelector("[data-min]"); if(mn) mn.addEventListener("change", function(){ i.min = mn.value === "" ? "" : +mn.value; guarda(); pinta(); });
+      $("its").appendChild(d);
+    });
+    if(pro){
+      var gan = 0, sin = 0; vm.forEach(function(v){ if(v.c == null) sin++; else gan += v.p - v.c; });
+      $("gGan").textContent = money(gan); $("gSin").textContent = sin;
+      $("hist").innerHTML = st.ventas.slice(-8).reverse().map(function(v){ return "<li><b>" + H.esc(v.n) + "</b><small>" + H.fecha(v.f) + " · " + money(v.p) + "</small></li>"; }).join("") || '<li><small>Todavía no hay ventas anotadas.</small></li>';
+    }
+  }
+  fetch("/_data/catalogo.json").then(function(r){ return r.json(); }).then(function(d){ CAT = d.productos || []; $("prods").innerHTML = CAT.map(function(p){ return '<option value="' + H.esc(p.nombre) + '">'; }).join(""); });
+  $("aN").addEventListener("change", function(){ var p = CAT.filter(function(x){ return x.nombre === $("aN").value; })[0]; if(p && !$("aP").value) $("aP").value = p.precio; });
+  $("alta").addEventListener("submit", function(e){
+    e.preventDefault(); if(!pro && st.its.length >= LIM) return;
+    var n = $("aN").value.trim(), ya = st.its.filter(function(i){ return i.n.toLowerCase() === n.toLowerCase(); })[0], q = Math.max(0, +$("aQ").value || 0);
+    if(ya){ ya.q = (+ya.q || 0) + q; if($("aP").value) ya.p = +$("aP").value; if($("aC").value) ya.c = +$("aC").value; }
+    else st.its.push({id: id(), n: n, q: q, p: +$("aP").value || 0, c: $("aC").value === "" ? "" : +$("aC").value, min: ""});
+    $("aN").value = $("aP").value = $("aC").value = ""; $("aQ").value = 1; guarda(); pinta(); $("aN").focus();
+  });
+  pinta();
+  PRO.caja($("pro"), "inventario", {titulo: "Avisos y ganancia", activo: "Sin tope de productos, avisos de lo que se acaba, ganancia realizada y tu inventario en la nube."}).then(function(r){
+    if(!r.ok) return; pro = true; nube = PRO.nube("inventario"); $("proCont").hidden = false;
+    nube.lee().then(function(d){ if(d && d.its && (d.ts || 0) > (st.ts || 0)){ st = d; H.guarda(KEY, st); $("nube").textContent = "Inventario traído de la nube."; } else if(st.its.length){ nube.guarda(st).catch(function(){}); } pinta(); }).catch(function(){ pinta(); });
+  });
+})();
+</script>
+</body>
+</html>

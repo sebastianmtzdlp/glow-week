@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-nivel">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>¿En qué nivel voy?</title>
+<meta name="description" content="Escribe tus puntos del mes y ve en qué nivel vas, cuántos puntos te faltan para el siguiente y cuánto es eso en pedidos y por día.">
+<meta property="og:title" content="¿En qué nivel voy y qué me falta?">
+<meta property="og:description" content="Tus puntos del mes, tu nivel y lo que te falta para el siguiente, en pedidos y por día.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/nivel/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-nivel.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 28px;max-width:38em}
+.calc{display:grid;gap:28px;padding:8px 0 24px}
+.entrada{background:var(--soft);border-radius:24px;padding:22px 16px;margin:0 -16px}
+.entrada .fila{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.entrada .grande input{font:500 30px/1 var(--mono);min-height:62px;padding:10px 14px}
+.entrada .nota{margin-top:12px}
+.dir{margin-top:16px;padding-top:16px;border-top:1px solid #DADDE9;display:none}
+.dir.on{display:block}
+.dir .fila{grid-template-columns:1fr 1fr}
+
+/* el resultado */
+.dice{display:grid;gap:6px}
+.dice .ya{font:400 clamp(40px,11vw,72px)/.98 var(--serif);letter-spacing:-.02em;margin:0;font-variation-settings:"opsz" 144}
+.dice .ya em{font-style:italic;color:var(--accent-ink)}
+.dice .falta{font:400 clamp(22px,5.4vw,30px)/1.2 var(--serif);margin:6px 0 0}
+.dice .falta b{font-family:var(--mono);font-weight:500;font-size:.9em;color:var(--accent-ink)}
+.traduce{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin:18px 0 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.traduce div{padding:14px 10px 14px 0}
+.traduce div+div{padding-left:12px;border-left:1px solid var(--line)}
+.traduce b{display:block;font:500 clamp(20px,5vw,26px)/1.1 var(--mono);font-variant-numeric:tabular-nums}
+.traduce span{display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.3}
+.pers{display:flex;gap:10px;align-items:flex-start;margin:16px 0 0;font-size:16px}
+.pers i{flex:none;width:10px;height:10px;border-radius:50%;margin-top:7px;background:var(--warn)}
+.pers.ok i{background:var(--good)}
+.acciones{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:22px}
+
+/* la regla de niveles */
+.regla{border:1px solid var(--line);border-radius:18px;padding:18px 18px 10px}
+.regla-cab{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:10px;border-bottom:2px solid var(--ink)}
+.regla-cab b{font:400 22px/1 var(--serif)}
+.regla-cab span{font:400 13px/1 var(--mono);color:var(--muted)}
+.regla ol{list-style:none;margin:0;padding:0}
+.peld{display:grid;grid-template-columns:62px 1fr auto;gap:4px 12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.peld:last-child{border-bottom:0}
+.peld .p{font:500 17px/1 var(--mono)}
+.peld .n{font-size:15px;line-height:1.25}
+.peld .n small{display:block;color:var(--muted);font-size:13px}
+.peld .m{font:400 13px/1 var(--mono);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.peld .barra-av{grid-column:2 / span 2;height:6px;display:none}
+.peld.hecho .p{color:var(--good)}
+.peld.hecho .m{color:var(--good)}
+.peld.sig .barra-av{display:block}
+.peld.sig .p{color:var(--accent-ink)}
+.peld.sig{background:linear-gradient(var(--tint),var(--tint)) no-repeat;background-size:calc(100% + 36px) 100%;background-position:-18px 0;margin:0 -18px;padding-left:18px;padding-right:18px}
+@media (prefers-reduced-motion:no-preference){
+  .regla .peld{opacity:0;transform:translateY(6px);animation:entra 380ms var(--ease) forwards}
+  .regla .peld:nth-child(1){animation-delay:60ms}.regla .peld:nth-child(2){animation-delay:100ms}.regla .peld:nth-child(3){animation-delay:140ms}
+  .regla .peld:nth-child(4){animation-delay:180ms}.regla .peld:nth-child(5){animation-delay:220ms}.regla .peld:nth-child(6){animation-delay:260ms}
+  .regla .peld:nth-child(7){animation-delay:300ms}.regla .peld:nth-child(8){animation-delay:340ms}.regla .peld:nth-child(9){animation-delay:380ms}
+  .regla .peld:nth-child(10){animation-delay:420ms}.regla .peld:nth-child(11){animation-delay:460ms}
+}
+@keyframes entra{to{opacity:1;transform:none}}
+.checksdir{list-style:none;margin:16px 0 0;padding:0;display:grid;gap:6px;font-size:15px}
+.checksdir li{display:flex;gap:10px;align-items:flex-start}
+.checksdir li::before{content:"";flex:none;width:16px;height:16px;border-radius:50%;border:1.75px solid #B9BCD0;margin-top:3px}
+.checksdir li.ok::before{background:var(--good);border-color:var(--good)}
+.como{padding:36px 0 0}
+.como dl{margin:16px 0 0;display:grid;gap:0}
+.como dt{font-weight:600;padding-top:14px}
+.como dd{margin:4px 0 0;padding-bottom:14px;border-bottom:1px solid var(--line);color:var(--ink)}
+@media (min-width:900px){
+  .portada{padding:56px 0 36px}
+  .calc{grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+  .entrada{margin:0;padding:28px}
+  .regla{position:sticky;top:20px}
+}
+@media print{.barra,.acciones,.sigue,.frase,footer{display:none!important}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <h1>¿En qué nivel <em>voy?</em></h1>
+    <p class="bajada">Escribe tus puntos del mes. Te digo en qué nivel vas, cuánto te falta para el siguiente y cuánto es eso en pedidos y por día.</p>
+  </header>
+
+  <section class="calc" aria-label="Calculadora de nivel">
+    <div>
+      <div class="entrada">
+        <div class="fila">
+          <label class="grande"><span class="etq">Puntos de grupo del mes</span><input id="grupo" type="number" inputmode="numeric" min="0" step="1" placeholder="0"></label>
+          <label class="grande"><span class="etq">Tus puntos personales</span><input id="pers" type="number" inputmode="numeric" min="0" step="1" placeholder="0"></label>
+        </div>
+        <p class="nota">Los de grupo ya incluyen los tuyos. Los ves en tu Back Office.</p>
+        <div class="dir" id="dir">
+          <div class="fila">
+            <label><span class="etq">Puntos laterales</span><input id="lat" type="number" inputmode="numeric" min="0" placeholder="0"></label>
+            <label><span class="etq">Directoras en tu primera línea</span><input id="legs" type="number" inputmode="numeric" min="0" placeholder="0"></label>
+          </div>
+          <p class="nota">Laterales: los puntos de tus líneas que no son directoras, sin contar la más alta. Viene en el Informe de Puntos Laterales del Back Office.</p>
+        </div>
+      </div>
+
+      <div class="dice" aria-live="polite" style="margin-top:28px">
+        <p class="ya" id="ya">Todavía no llegas a <em>3%</em></p>
+        <p class="falta" id="falta">Te faltan <b>200</b> puntos para 3%.</p>
+      </div>
+      <div class="traduce" id="traduce">
+        <div><b id="tPesos">$5,000</b><span>en pedidos a precio FI</span></div>
+        <div><b id="tPed">3</b><span>pedidos de 75 puntos</span></div>
+        <div><b id="tDia">7</b><span id="tDiaTx">puntos al día</span></div>
+      </div>
+      <p class="pers" id="persTx"><i></i><span>Te faltan 75 puntos personales para cobrar tus bonos este mes.</span></p>
+      <ul class="checksdir" id="checksdir" hidden></ul>
+
+      <div class="acciones">
+        <a class="btn" id="mandar" href="#" target="_blank" rel="noopener" data-cuenta="mandar">Mandar a mi líder</a>
+        <a class="enlace" href="/herramientas/ritmo-de-puntos/" data-cuenta="ritmo">Repartirlo en Ritmo de Puntos</a>
+      </div>
+      <p class="guardado" id="guardado" style="margin-top:12px"></p>
+    </div>
+
+    <figure class="regla" aria-label="Los niveles y sus puntos" style="margin:0">
+      <div class="regla-cab"><b>Los niveles</b><span>puntos de grupo al mes</span></div>
+      <ol id="peldanos"></ol>
+    </figure>
+  </section>
+
+  <section class="como" aria-labelledby="comoTit">
+    <div class="cab"><h2 id="comoTit">Cómo se cuenta</h2></div>
+    <dl>
+      <dt>1 punto son $25</dt>
+      <dd>A precio FI. Por eso 200 puntos son unos $5,000 en pedidos de tu grupo.</dd>
+      <dt>75 puntos personales al mes</dt>
+      <dd>Son los que te piden en cualquier nivel para cobrar tus bonos de ese mes.</dd>
+      <dt>Puntos de grupo</dt>
+      <dd>Los tuyos más los de tus clientas y tu equipo. Con ellos se decide tu porcentaje.</dd>
+      <dt>Dirección</dt>
+      <dd>Desde 5,000 puntos entran los laterales y las directoras en tu primera línea. Directora pide 1,500 laterales; Bronce, además, 1 directora en tu línea; Oro, 10,000 puntos, 2 directoras y 2,500 laterales.</dd>
+    </dl>
+    <p class="nota">La tabla sale del Back Office de México. Si algo cambia, lo que manda es tu Back Office. Para ver cuánto te deja cada nivel, abre <a href="/plan-de-compensacion/">el plan de compensación</a>.</p>
+  </section>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/primeros-200/" data-cuenta="ir-200"><b>Reto Mis primeros 200</b><span>Si vas empezando: tus primeros 200 puntos en 14 días.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/hoja-diaria/" data-cuenta="ir-hoja"><b>La hoja del día</b><span>Las 10 actividades que mueven los puntos, para llenar cada día.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/pro/" data-cuenta="ir-pro"><b>El plan de tu nivel</b><span>Semana por semana, de 12% a Dirección Oro. Versión Pro.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(function(){
+  var LV = [
+    {k:"3%",n:"3%",min:200},{k:"6%",n:"6%",min:400},{k:"9%",n:"9%",min:600},{k:"12%",n:"12%",min:900},
+    {k:"15%",n:"15%",min:1400},{k:"18%",n:"18%",min:2200},{k:"22%",n:"22%",min:3600},
+    {k:"25%",n:"25% · Directora virtual",min:5000},
+    {k:"Dir.",n:"Directora",min:5000,lat:1500,legs:0,sub:"+ 1,500 laterales"},
+    {k:"Br.",n:"Directora Bronce",min:5000,lat:1500,legs:1,sub:"+ 1,500 laterales y 1 directora"},
+    {k:"Oro",n:"Directora Oro",min:10000,lat:2500,legs:2,sub:"+ 2,500 laterales y 2 directoras"}
+  ];
+  var KEY = "mtb-nivel-v1", st = H.lee(KEY, {g:"",p:"",l:"",d:""});
+  var $ = function(id){ return document.getElementById(id); };
+  var g = $("grupo"), p = $("pers"), l = $("lat"), d = $("legs");
+  g.value = st.g; p.value = st.p; l.value = st.l; d.value = st.d;
+
+  $("peldanos").innerHTML = LV.map(function(v){
+    var nom = v.k === v.n ? '<small>unos $'+H.fmt(v.min*25)+' en pedidos</small>' : v.n.replace(/^25% · /,'')+(v.sub?'<small>'+v.sub+'</small>':'');
+    return '<li class="peld"><span class="p">'+v.k+'</span><span class="n">'+nom+'</span><span class="m">'+H.fmt(v.min)+'</span><span class="barra-av" aria-hidden="true"><i></i></span></li>';
+  }).join("");
+  var rows = document.querySelectorAll(".peld");
+
+  function cumple(v, G, L, D){ return G >= v.min && (v.lat == null || L >= v.lat) && (v.legs == null || D >= v.legs); }
+  function diasRestan(){ var h = new Date(), fin = new Date(h.getFullYear(), h.getMonth()+1, 0); return fin.getDate() - h.getDate() + 1; }
+
+  function calc(){
+    var G = Math.max(0, +g.value || 0), P = Math.max(0, +p.value || 0), L = Math.max(0, +l.value || 0), D = Math.max(0, +d.value || 0);
+    $("dir").classList.toggle("on", G >= 3600);
+    var ult = -1; LV.forEach(function(v,i){ if(cumple(v,G,L,D)) ult = i; });
+    // en dirección, Bronce no exige más puntos que Directora: el "último" es el más alto cumplido
+    var sig = ult + 1 < LV.length ? LV[ult+1] : null, act = ult >= 0 ? LV[ult] : null;
+    $("ya").innerHTML = act ? 'Vas en <em>'+H.esc(act.n)+'</em>' : 'Todavía no llegas a <em>3%</em>';
+    var falta = sig ? Math.max(0, sig.min - G) : 0;
+    if(!sig){ $("falta").textContent = "Llegaste al último nivel de esta tabla. Los que siguen están en el plan de compensación."; }
+    else if(falta > 0){ $("falta").innerHTML = 'Te faltan <b>'+H.fmt(falta)+'</b> puntos para '+H.esc(sig.n)+'.'; }
+    else {
+      var q = [];
+      if(sig.lat != null && L < sig.lat) q.push('<b>'+H.fmt(sig.lat - L)+'</b> laterales');
+      if(sig.legs != null && D < sig.legs) q.push('<b>'+(sig.legs - D)+'</b> directora'+(sig.legs - D > 1 ? 's' : '')+' en tu primera línea');
+      $("falta").innerHTML = 'Para '+H.esc(sig.n)+' te faltan '+q.join(' y ')+'.';
+    }
+    var dias = diasRestan();
+    $("traduce").hidden = !(sig && falta > 0);
+    $("tPesos").textContent = "$" + H.fmt(falta * 25);
+    $("tPed").textContent = H.fmt(Math.ceil(falta / 75));
+    $("tDia").textContent = H.fmt(Math.ceil(falta / dias));
+    $("tDiaTx").textContent = "puntos al día en " + dias + (dias === 1 ? " día que queda" : " días que quedan");
+    var pt = $("persTx");
+    pt.classList.toggle("ok", P >= 75);
+    pt.querySelector("span").textContent = P >= 75 ? "Ya tienes tus 75 puntos personales del mes: tus bonos cuentan." : "Te faltan " + (75 - P) + " puntos personales para cobrar tus bonos este mes (son 75).";
+    var cd = $("checksdir");
+    cd.hidden = G < 3600;
+    if(G >= 3600){
+      cd.innerHTML = [
+        [G >= 5000, "5,000 puntos de grupo"],
+        [L >= 1500, "1,500 laterales (Directora y Bronce)"],
+        [D >= 1, "1 directora en tu primera línea (Bronce)"],
+        [G >= 10000 && L >= 2500 && D >= 2, "10,000 puntos, 2,500 laterales y 2 directoras (Oro)"]
+      ].map(function(c){ return '<li class="'+(c[0]?'ok':'')+'">'+c[1]+'</li>'; }).join("") + '<li style="color:var(--muted)">Se vuelve dirección al sostenerlo 3 meses seguidos.</li>';
+    }
+    rows.forEach(function(r,i){
+      var v = LV[i], hecho = i <= ult, essig = i === ult + 1;
+      r.classList.toggle("hecho", hecho); r.classList.toggle("sig", essig);
+      if(essig){ var base = i > 0 ? Math.min(LV[i-1].min, v.min) : 0, f = v.min > base ? (G - base) / (v.min - base) : (G >= v.min ? 1 : 0); r.querySelector("i").style.transform = "scaleX(" + Math.max(0, Math.min(1, f)) + ")"; }
+    });
+    var txt = "Mis puntos de este mes: " + H.fmt(G) + " de grupo y " + H.fmt(P) + " personales.\n" +
+      (act ? "Voy en " + act.n + "." : "Todavía no llego a 3%.") + "\n" +
+      (sig ? (falta > 0 ? "Me faltan " + H.fmt(falta) + " puntos para " + sig.n + " y quedan " + dias + " días." : $("falta").textContent.replace(/<[^>]+>/g,"")) : "") +
+      "\n¿Me ayudas a armar el plan?";
+    $("mandar").href = H.wa(txt);
+    st = {g:g.value,p:p.value,l:l.value,d:d.value}; H.guarda(KEY, st);
+    $("guardado").textContent = (g.value || p.value) ? "Guardado en este teléfono" : "";
+  }
+  [g,p,l,d].forEach(function(i){ i.addEventListener("input", calc); });
+  calc();
+})();
+</script>
+</body>
+</html>

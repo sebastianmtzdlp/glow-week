@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>El 1 a 1 con tus líderes</title>
+<meta name="description" content="Material de las mentorías con Sel: el 1 a 1 con tus líderes en seis pasos, con la hoja para llenarla juntas y el checklist para tu líder.">
+<meta property="og:title" content="El 1 a 1 con tus líderes">
+<meta property="og:description" content="Material de las mentorías con Sel: seis pasos, hoja para llenar y checklist.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/1a1/">
+<meta property="og:image" content="https://mitienda.beauty/og/mentorias-1a1.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mitienda.beauty/og/mentorias-1a1.png">
+<!-- candado: pide contraseña antes de mostrar el 1 a 1 (material de las mentorías con Sel). Es protección del lado del navegador: no cifra nada. Para cambiarla, reemplaza H por el SHA-256 de la nueva en minúsculas. -->
+<meta name="robots" content="noindex,nofollow">
+<style>
+html.cerrado body>*:not(#candado){display:none!important}
+#candado{position:fixed;inset:0;z-index:9999;display:grid;place-items:center;padding:16px;background:#F3F4F9;color:#262A4A;font:17px/1.5 "Outfit",system-ui,sans-serif}
+html:not(.cerrado) #candado{display:none}
+#candado form{width:min(380px,100%);display:flex;flex-direction:column;gap:14px;background:#fff;border:1px solid #E6E8F0;border-radius:18px;padding:28px 24px}
+#candado .m{font:300 12px/1 "Outfit";letter-spacing:.22em;color:#62668A}
+#candado h1{margin:0;font:400 40px/.95 "Fraunces",Georgia,serif;letter-spacing:-.02em}
+#candado h1 em{font-style:italic}
+#candado p{margin:0;color:#62668A;font-size:15px}
+#candado input{font:inherit;width:100%;min-height:48px;padding:10px 14px;border:1px solid #CFD2E0;border-radius:12px;background:#fff;color:inherit}
+#candado input:focus{outline:2px solid #262A4A;outline-offset:1px;border-color:transparent}
+#candado button{font:600 16px/1 "Outfit",system-ui,sans-serif;min-height:50px;border:0;border-radius:14px;background:#DB414C;color:#fff;cursor:pointer;transition:transform 160ms cubic-bezier(.23,1,.32,1)}
+#candado button:active{transform:scale(.97)}
+#candado a{color:#262A4A;font-size:15px;font-weight:500;text-underline-offset:4px}
+#candado .err{color:#B42318;font-weight:600;min-height:1.4em}
+</style>
+<script>
+(function(){
+  var H="69110cefbfea018dfef9e466adfc18174f85539ae281711825c1c186cb448384",K="mentorias-1a1-ok";
+  var ok=false;try{ok=localStorage.getItem(K)===H;}catch(e){}
+  if(!ok)document.documentElement.classList.add("cerrado");
+  function hex(buf){return Array.prototype.map.call(new Uint8Array(buf),function(b){return ("0"+b.toString(16)).slice(-2);}).join("");}
+  document.addEventListener("DOMContentLoaded",function(){
+    var f=document.getElementById("candado-f");if(!f)return;
+    var i=document.getElementById("candado-i"),m=document.getElementById("candado-m");
+    if(document.documentElement.classList.contains("cerrado"))i.focus();
+    f.onsubmit=function(ev){
+      ev.preventDefault();
+      var v=i.value.trim().toLowerCase();
+      if(!window.crypto||!crypto.subtle){m.textContent="Abre la página desde https://mitienda.beauty";return;}
+      crypto.subtle.digest("SHA-256",new TextEncoder().encode(v)).then(function(d){
+        if(hex(d)===H){try{localStorage.setItem(K,H);}catch(e){}document.documentElement.classList.remove("cerrado");}
+        else{m.textContent="Esa no es la contraseña.";i.select();}
+      });
+    };
+  });
+})();
+</script>
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+:root{
+  color-scheme:light;
+  --bg:#FFFFFF;--ink:#262A4A;--muted:#62668A;--line:#E6E8F0;--soft:#F3F4F9;
+  --accent:#DB414C;--accent-ink:#C8323F;--tint:#FDEEF0;--bronze:#8A5A2E;--good:#1B8A5A;
+  --navy:#1B1F3B;
+  --serif:"Fraunces",Georgia,serif;--body:"Outfit",system-ui,sans-serif;--mono:"IBM Plex Mono",ui-monospace,monospace;
+  --ease:cubic-bezier(.23,1,.32,1);
+}
+*{box-sizing:border-box}
+html{background:var(--bg);-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 17px/1.55 var(--body)}
+a{color:inherit}
+button,input,textarea,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 16px}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+h2{font:400 clamp(34px,8vw,52px)/1 var(--serif);letter-spacing:-.015em;margin:0}
+
+/* barra */
+.barra{display:flex;align-items:center;justify-content:space-between;padding:18px 0 0}
+.marca{font:300 12px/1 var(--body);letter-spacing:.22em;color:var(--muted);text-decoration:none}
+.gratis{font:500 13px/1 var(--mono);color:var(--bronze);text-decoration:none}
+
+/* portada */
+.portada{display:grid;gap:32px;padding:36px 0 40px}
+h1{font:400 clamp(46px,12.5vw,88px)/.95 var(--serif);letter-spacing:-.02em;margin:0;font-variation-settings:"opsz" 144}
+h1 em{font-style:italic}
+.bajada{font-size:19px;line-height:1.5;max-width:29em;margin:18px 0 0}
+.acciones{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px;margin-top:26px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:50px;padding:0 22px;border:0;border-radius:14px;background:var(--accent);color:#fff;font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;transition:transform 160ms var(--ease)}
+.btn:active,.btn2:active,.seg button:active,.si-no button:active{transform:scale(.97)}
+.btn2{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:46px;padding:0 18px;border:1px solid var(--ink);border-radius:14px;background:#fff;color:var(--ink);font-weight:600;font-size:15px;text-decoration:none;cursor:pointer;transition:transform 160ms var(--ease)}
+.enlace{font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px;background:none;border:0;padding:0;cursor:pointer;text-decoration-line:underline}
+
+/* orden del día (el momento de la portada) */
+.orden{margin:0;border:1px solid var(--line);border-radius:18px;padding:22px 22px 18px;position:relative}
+.orden-cab{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.orden-cab b{font:400 24px/1 var(--serif)}
+.orden-cab span{font:400 13px/1 var(--mono);color:var(--muted)}
+.orden ol{list-style:none;margin:0;padding:0}
+.orden li{display:grid;grid-template-columns:30px 1fr auto;align-items:baseline;gap:10px;padding:11px 0;border-bottom:1px solid var(--line)}
+.orden li:last-child{border-bottom:0}
+.orden .n{font:500 14px/1 var(--mono);color:var(--muted)}
+.orden .t{font-weight:500}
+.orden .g{font:400 12px/1 var(--mono);color:var(--muted)}
+.orden li.dato .g{color:var(--accent-ink)}
+.orden li.dato .n{color:var(--accent-ink)}
+.orden-pie{margin:10px 0 0;font-size:14px;color:var(--muted)}
+@media (prefers-reduced-motion:no-preference){
+  .orden li{opacity:0;transform:translateY(6px);animation:entra 420ms var(--ease) forwards}
+  .orden li:nth-child(1){animation-delay:120ms}.orden li:nth-child(2){animation-delay:180ms}
+  .orden li:nth-child(3){animation-delay:320ms}.orden li:nth-child(4){animation-delay:380ms}
+  .orden li:nth-child(5){animation-delay:440ms}.orden li:nth-child(6){animation-delay:500ms}
+}
+@keyframes entra{to{opacity:1;transform:none}}
+
+/* no es / es */
+.noes{padding:36px 0 44px;border-top:1px solid var(--line)}
+.noes p{margin:0}
+.tachas{display:flex;flex-wrap:wrap;gap:4px 22px;font:400 clamp(28px,7vw,44px)/1.15 var(--serif);color:var(--muted)}
+.tachas s{text-decoration-color:var(--accent);text-decoration-thickness:3px}
+.es{font:400 clamp(28px,7vw,44px)/1.15 var(--serif);margin-top:10px!important}
+.es em{font-style:italic}
+
+/* los seis pasos */
+.pasos{padding:8px 0 24px}
+.mitad{margin-top:28px}
+.mitad-cab{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:8px 24px;border-bottom:2px solid var(--ink);padding-bottom:14px}
+.mitad-cab p{margin:0;font-size:15px;color:var(--muted);max-width:24em}
+.paso{display:grid;gap:14px;padding:28px 0;border-bottom:1px solid var(--line)}
+.paso:last-child{border-bottom:0}
+.paso-n{font:400 64px/.8 var(--serif);color:var(--ink);font-variation-settings:"opsz" 144}
+.datos .paso-n{color:var(--accent-ink)}
+.paso h3{font:600 23px/1.2 var(--body);margin:0}
+.paso .lema{margin:4px 0 0;font:italic 400 19px/1.35 var(--serif);color:var(--bronze)}
+.paso ul{margin:4px 0 0;padding:0;list-style:none;display:grid;gap:8px}
+.paso li{position:relative;padding-left:22px}
+.paso li::before{content:"";position:absolute;left:2px;top:.72em;width:10px;height:1px;background:var(--ink)}
+.paso .intro{margin:2px 0 0;color:var(--muted);font-size:16px}
+.regla{margin:6px 0 0;padding:12px 0 12px 16px;border-left:3px solid var(--accent);font-weight:500;line-height:1.4}
+.pares{display:grid;gap:8px;margin:4px 0 0;padding:0;list-style:none}
+.pares li{padding:0;display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 10px}
+.pares li::before{display:none}
+.pares .o{font:400 13px/1 var(--mono);color:var(--muted)}
+.cierre-6{display:grid;gap:2px;margin:6px 0 0;font:400 22px/1.3 var(--serif)}
+.cierre-6 span:last-child{font-style:italic}
+.pregunta-final{font:400 26px/1.2 var(--serif);margin:6px 0 0}
+
+/* la hoja */
+.hoja{background:var(--soft);border-radius:24px;padding:28px 16px 24px;margin:24px -16px 8px}
+.hoja-cab{display:grid;gap:10px;margin-bottom:22px}
+.hoja-cab p{margin:0;color:var(--muted);font-size:16px;max-width:34em}
+.tarj{background:#fff;border:1px solid var(--line);border-radius:18px;padding:20px 18px;margin-top:14px}
+.tarj h3{display:flex;align-items:baseline;gap:12px;margin:0 0 14px;font:600 18px/1.2 var(--body)}
+.tarj h3 .num{font:400 14px/1 var(--mono);color:var(--muted);min-width:20px}
+.etq{display:block;font-size:14px;font-weight:500;margin:0 0 6px}
+input[type=text],input[type=tel],input[type=number],input[type=date],textarea,select{width:100%;min-height:46px;padding:10px 12px;border:1px solid #CFD2E0;border-radius:12px;background:#fff;font-size:16px}
+input[type=number]{font-family:var(--mono);font-variant-numeric:tabular-nums}
+textarea{min-height:72px;resize:vertical;line-height:1.45}
+input:focus,textarea:focus,select:focus{outline:2px solid var(--ink);outline-offset:1px;border-color:transparent}
+.fila{display:grid;gap:12px}
+.dos{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.tabla-n{width:100%;border-collapse:collapse}
+.tabla-n th{font:500 13px/1.2 var(--body);color:var(--muted);text-align:left;padding:0 0 6px}
+.tabla-n th:not(:first-child){text-align:left;width:31%}
+.tabla-n td{padding:5px 0;vertical-align:middle}
+.tabla-n td:first-child{padding-right:10px;font-size:15px;line-height:1.25}
+.tabla-n td+td{padding-left:8px}
+.tabla-n input{min-height:42px;padding:8px 10px}
+.avance{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.avance-txt{display:flex;justify-content:space-between;gap:12px;font-size:15px;margin:0 0 8px}
+.avance-txt b{font:600 15px/1.3 var(--mono)}
+.barra-av{height:8px;border-radius:99px;background:var(--soft);overflow:hidden}
+.barra-av i{display:block;height:100%;width:100%;background:var(--accent);transform-origin:left;transform:scaleX(0);transition:transform 260ms var(--ease)}
+.barra-av.ok i{background:var(--good)}
+.checks{display:grid;gap:2px;margin:0;padding:0;list-style:none}
+.checks label{display:flex;gap:12px;align-items:flex-start;padding:9px 0;cursor:pointer;line-height:1.35}
+.checks input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink);flex:none}
+.seg{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin:0 0 10px;padding:0;border:0}
+.seg legend{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.seg button{min-height:44px;border:1px solid #CFD2E0;border-radius:12px;background:#fff;padding:8px 10px;font-size:15px;line-height:1.2;cursor:pointer;transition:transform 160ms var(--ease)}
+.seg button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.si-no{display:flex;gap:8px;margin:8px 0 0}
+.si-no button{min-height:46px;min-width:96px;border:1px solid #CFD2E0;border-radius:12px;background:#fff;font-weight:600;cursor:pointer;transition:transform 160ms var(--ease)}
+.si-no button[aria-pressed=true][data-v=si]{background:var(--good);border-color:var(--good);color:#fff}
+.si-no button[aria-pressed=true][data-v=no]{background:var(--ink);border-color:var(--ink);color:#fff}
+.nota{font-size:14px;color:var(--muted);margin:10px 0 0}
+.salida{display:grid;gap:14px;margin-top:20px}
+.salida .btns{display:flex;flex-wrap:wrap;gap:12px 14px;align-items:center}
+.guardado{font:400 13px/1.3 var(--mono);color:var(--muted);margin:0;min-height:1.3em}
+
+/* materiales */
+.materiales{padding:48px 0 16px}
+.materiales-cab{border-bottom:2px solid var(--ink);padding-bottom:14px;display:flex;flex-wrap:wrap;justify-content:space-between;align-items:end;gap:8px 24px}
+.materiales-cab p{margin:0;color:var(--muted);font-size:15px;max-width:26em}
+.mat{display:grid;grid-template-columns:96px 1fr;gap:16px;align-items:start;align-content:start;padding:22px 0;border-bottom:1px solid var(--line)}
+.mat img{width:96px;height:auto;border:1px solid var(--line);border-radius:6px;display:block;background:#fff}
+.mat.texto{grid-template-columns:1fr}
+.mat h3{margin:0;font:600 19px/1.25 var(--body)}
+.mat p{margin:6px 0 12px;color:var(--muted);font-size:15px}
+.mat .tipo{font:400 13px/1 var(--mono);color:var(--muted);margin:4px 0 0}
+.mensaje{white-space:pre-wrap;background:var(--soft);border-radius:14px;padding:14px 16px;font-size:15px;line-height:1.5;margin:0 0 12px;color:var(--ink)}
+
+/* frase final */
+.frase{background:var(--navy);color:#F4F1EC;border-radius:24px;padding:40px 22px;margin:40px 0 0}
+.frase blockquote{margin:0;font:400 clamp(28px,7vw,46px)/1.12 var(--serif);letter-spacing:-.01em}
+.frase blockquote em{font-style:italic;color:#F2B8BC}
+.frase p{margin:22px 0 0;font-size:16px;color:#C9CCE0}
+.frase a{color:#fff;font-weight:500;text-underline-offset:4px}
+footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
+.toast{position:fixed;left:50%;bottom:20px;transform:translate(-50%,12px);opacity:0;background:var(--ink);color:#fff;padding:12px 18px;border-radius:12px;font-size:15px;transition:opacity 180ms var(--ease),transform 180ms var(--ease);pointer-events:none;z-index:5}
+.toast.on{opacity:1;transform:translate(-50%,0)}
+.solo-print{display:none}
+
+@media (hover:hover) and (pointer:fine){
+  .btn2:hover,.seg button:hover,.si-no button:hover{border-color:var(--ink)}
+  .enlace:hover{text-decoration-thickness:2px}
+}
+@media (min-width:900px){
+  .portada{grid-template-columns:1.15fr .85fr;align-items:center;gap:56px;padding:56px 0 64px}
+  .paso{grid-template-columns:96px 1fr 1fr;grid-template-rows:auto 1fr;gap:18px 40px;padding:34px 0}
+  .paso-n{font-size:84px}
+  .paso .cab{grid-column:2}
+  .paso .cuerpo{grid-column:3;grid-row:1 / span 2}
+  .paso .regla{grid-column:2;align-self:start}
+  .hoja{margin:32px 0 8px;padding:40px}
+  .hoja-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 16px;align-items:start}
+    .mat img{width:160px}
+  .materiales .lista{display:grid;grid-template-columns:repeat(3,1fr);gap:0 32px}
+  .mat{grid-template-columns:1fr;border-bottom:0}
+  .mat.texto{grid-column:3}
+  .frase{padding:64px 56px}
+}
+@media (prefers-reduced-motion:reduce){*{transition-duration:0ms!important}}
+
+/* imprimir: solo la hoja llena */
+@media print{
+  @page{size:letter;margin:12mm}
+  body{font-size:11pt}
+  .barra,.portada,.noes,.pasos,.materiales,.frase,footer,.salida,.hoja-cab p,.toast,.nota{display:none!important}
+  .wrap{max-width:none;padding:0}
+  .hoja{background:none;padding:0;margin:0}
+  .hoja-cab h2{font-size:26pt}
+  .solo-print{display:block;font-size:10pt;color:#555;margin:4px 0 8px}
+  .tarj{break-inside:avoid;padding:10px 12px;margin-top:8px;border-radius:8px}
+  .hoja-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 8px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .hoja input[type]:not([type=checkbox]),.hoja textarea,.hoja select{border:0;border-bottom:1px solid #999;border-radius:0;min-height:0;padding:2px 0;background:none;appearance:none}
+  .hoja ::placeholder{color:transparent}
+  .seg button,.si-no button{min-height:0;padding:3px 4px;font-size:9pt}
+  .seg{margin:0 0 4px}
+  .tarj h3{margin:0 0 6px;font-size:11pt}
+  .tabla-n td{padding:1px 0}.tabla-n input{min-height:0;padding:2px 0}
+  .checks label{padding:2px 0;font-size:10pt}
+  .hoja-cab{margin-bottom:6px}
+  .fila{gap:6px}
+  textarea{min-height:30px}
+  .etq{font-size:9pt;margin:0 0 2px}
+  .barra-av{border:1px solid #ccc}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div id="candado"><form id="candado-f" autocomplete="off"><span class="m">MENTORÍAS CON SEL</span><h1>El 1 a 1 con tus <em>líderes</em></h1><p>Este material es para quienes llevan mentoría con Sel. Escribe la contraseña que te dio.</p><label for="candado-i" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Contraseña</label><input id="candado-i" type="password" placeholder="Contraseña" required><button type="submit">Entrar</button><p class="err" id="candado-m" role="alert"></p><a href="/mentorias/herramientas/1a1/">Ver la versión gratis</a></form></div>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="gratis" href="/mentorias/">Mentorías con Sel</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>El 1 a 1 con<br>tus <em>líderes</em></h1>
+      <p class="bajada">Material de las mentorías con Sel. Qué revisar cuando te sientas con cada líder, en seis pasos y en este orden: primero los datos, después la conversación. Aquí tienes la hoja para llenarla juntas y el checklist que le mandas antes.</p>
+      <div class="acciones">
+        <a class="btn" href="#hoja" data-cuenta="portada">Llenar la hoja</a>
+        <a class="enlace" href="#materiales">Descargar en PDF</a>
+      </div>
+    </div>
+
+    <figure class="orden" aria-label="El orden del 1 a 1">
+      <div class="orden-cab"><b>Orden del día</b><span>1 a 1</span></div>
+      <ol>
+        <li class="dato"><span class="n">1</span><span class="t">Números</span><span class="g">datos</span></li>
+        <li class="dato"><span class="n">2</span><span class="t">Actividad diaria</span><span class="g">datos</span></li>
+        <li><span class="n">3</span><span class="t">Liderazgo y ejemplo</span><span class="g">plática</span></li>
+        <li><span class="n">4</span><span class="t">Bloqueos reales</span><span class="g">plática</span></li>
+        <li><span class="n">5</span><span class="t">Plan de acción</span><span class="g">plática</span></li>
+        <li><span class="n">6</span><span class="t">Compromiso</span><span class="g">plática</span></li>
+      </ol>
+      <p class="orden-pie">Nunca cierres sin el 5 y el 6.</p>
+    </figure>
+  </header>
+
+  <section class="noes" aria-label="Qué es un 1 a 1">
+    <p class="tachas"><s>No es terapia.</s> <s>No es chisme.</s> <s>No es solo motivación.</s></p>
+    <p class="es">Es una reunión de <em>negocio</em> y <em>liderazgo</em>.</p>
+  </section>
+
+  <section class="pasos" id="pasos" aria-label="Los seis pasos">
+    <div class="mitad datos">
+      <div class="mitad-cab">
+        <h2>Primero, los datos</h2>
+        <p>Sin números no hay conversación. Revísalos antes de hablar de cualquier otra cosa.</p>
+      </div>
+
+      <article class="paso" id="paso-1">
+        <div class="paso-n" aria-hidden="true">1</div>
+        <div class="cab">
+          <h3>Números</h3>
+          <p class="lema">Primero los datos, después todo lo demás.</p>
+        </div>
+        <div class="cuerpo">
+          <p class="intro">Que revisen siempre:</p>
+          <ul>
+            <li>VP del mes, el personal y el de su equipo</li>
+            <li>Activos e inactivos</li>
+            <li>Cuántas presentaciones dio a la semana</li>
+            <li>Cuántas inscripciones</li>
+            <li>Ventas personales</li>
+            <li>Objetivo del mes contra la realidad</li>
+          </ul>
+        </div>
+        <p class="regla">Si no trae números, la líder no está lista. Los números muestran la verdad, no las excusas.</p>
+      </article>
+
+      <article class="paso" id="paso-2">
+        <div class="paso-n" aria-hidden="true">2</div>
+        <div class="cab">
+          <h3>Actividad diaria</h3>
+          <p class="lema">El negocio se gana aquí.</p>
+        </div>
+        <div class="cuerpo">
+          <p class="intro">Revisa:</p>
+          <ul>
+            <li>¿Está presentando el negocio?</li>
+            <li>¿Cuántos mensajes manda al día?</li>
+            <li>¿Está prospectando o solo publica?</li>
+            <li>¿Tiene agenda semanal?</li>
+            <li>¿Da seguimiento o solo manda información y desaparece?</li>
+          </ul>
+        </div>
+        <p class="regla">Sin actividad, no hay crecimiento.</p>
+      </article>
+    </div>
+
+    <div class="mitad">
+      <div class="mitad-cab">
+        <h2>Después, la conversación</h2>
+        <p>Aquí sí se escucha, pero con dirección y con cariño. La meta es salir con tareas.</p>
+      </div>
+
+      <article class="paso" id="paso-3">
+        <div class="paso-n" aria-hidden="true">3</div>
+        <div class="cab">
+          <h3>Liderazgo y ejemplo</h3>
+          <p class="lema">El equipo copia, no obedece.</p>
+        </div>
+        <div class="cuerpo">
+          <p class="intro">Preguntas clave:</p>
+          <ul>
+            <li>¿Qué ejemplo estás dando hoy?</li>
+            <li>¿Qué haces tú que quieres que tu equipo haga?</li>
+            <li>¿Estás presente en los entrenamientos?</li>
+            <li>¿Estás activa en los chats?</li>
+            <li>¿Reconoces a tu gente?</li>
+          </ul>
+        </div>
+        <p class="regla">Si ella no lo hace, su equipo tampoco.</p>
+      </article>
+
+      <article class="paso" id="paso-4">
+        <div class="paso-n" aria-hidden="true">4</div>
+        <div class="cab">
+          <h3>Bloqueos reales, no quejas</h3>
+          <p class="lema">Aquí sí se escucha, pero con dirección.</p>
+        </div>
+        <div class="cuerpo">
+          <p class="intro">Identifica cuál de los dos es:</p>
+          <ul class="pares">
+            <li>Falta de tiempo <span class="o">o</span> mala organización</li>
+            <li>Miedo a hablar <span class="o">o</span> falta de claridad</li>
+            <li>Flojera <span class="o">o</span> falta de visión</li>
+            <li>Mentalidad <span class="o">o</span> desconocimiento del plan</li>
+          </ul>
+        </div>
+        <p class="regla">Tu trabajo como directora no es cargar a la líder. Es ayudarla a ver lo que no quiere ver.</p>
+      </article>
+
+      <article class="paso" id="paso-5">
+        <div class="paso-n" aria-hidden="true">5</div>
+        <div class="cab">
+          <h3>Plan de acción claro</h3>
+          <p class="lema">Salir con tareas.</p>
+        </div>
+        <div class="cuerpo">
+          <p class="intro">Nunca cierres un 1 a 1 sin definir:</p>
+          <ul>
+            <li>Tres acciones concretas para la semana</li>
+            <li>Cuántas presentaciones va a dar</li>
+            <li>Cuántos mensajes va a mandar</li>
+            <li>Qué día te va a reportar avances</li>
+          </ul>
+        </div>
+        <p class="regla">Si no hay acción, el 1 a 1 fue pérdida de tiempo.</p>
+      </article>
+
+      <article class="paso" id="paso-6">
+        <div class="paso-n" aria-hidden="true">6</div>
+        <div class="cab">
+          <h3>Compromiso y responsabilidad</h3>
+          <p class="lema">Cerrar fuertes.</p>
+        </div>
+        <div class="cuerpo">
+          <p class="intro">Pregunta final:</p>
+          <p class="pregunta-final">¿Te comprometes, sí o no?</p>
+          <p class="intro" style="margin-top:14px">Y deja claro:</p>
+          <p class="cierre-6"><span>Aquí no empujamos.</span><span>Aquí no rogamos.</span><span>Aquí crece quien decide crecer.</span></p>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="hoja" id="hoja" aria-labelledby="hojaTit">
+    <div class="hoja-cab">
+      <h2 id="hojaTit">La hoja del 1 a 1</h2>
+      <p>Llénala con tu líder durante la reunión. Se guarda solo en este teléfono, y al final se la mandas por WhatsApp para que se lleve su plan.</p>
+      <p class="solo-print" id="printCab"></p>
+    </div>
+
+    <div class="tarj">
+      <div class="fila">
+        <div class="dos">
+          <div><label class="etq" for="f-lider">Líder</label><input type="text" id="f-lider" data-k="lider" autocomplete="off" maxlength="60"></div>
+          <div><label class="etq" for="f-fecha">Fecha</label><input type="date" id="f-fecha" data-k="fecha"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hoja-grid">
+      <div>
+        <div class="tarj">
+          <h3><span class="num">1</span>Números del mes</h3>
+          <table class="tabla-n">
+            <thead><tr><th scope="col"><span class="sr" style="position:absolute;left:-9999px">Dato</span></th><th scope="col">Objetivo</th><th scope="col">Real</th></tr></thead>
+            <tbody id="numeros"></tbody>
+          </table>
+          <div class="avance" id="avance" hidden>
+            <p class="avance-txt"><span id="avLbl">VP personal</span><b class="num" id="avTxt"></b></p>
+            <div class="barra-av" id="avBarra"><i></i></div>
+          </div>
+        </div>
+
+        <div class="tarj">
+          <h3><span class="num">2</span>Actividad diaria</h3>
+          <ul class="checks" id="actividad"></ul>
+          <div style="margin-top:8px"><label class="etq" for="f-mensajes-hoy">Mensajes que manda al día hoy</label><input type="number" inputmode="numeric" min="0" id="f-mensajes-hoy" data-k="mensajesHoy"></div>
+        </div>
+
+        <div class="tarj">
+          <h3><span class="num">3</span>Liderazgo y ejemplo</h3>
+          <ul class="checks" id="liderazgo"></ul>
+        </div>
+      </div>
+
+      <div>
+        <div class="tarj">
+          <h3><span class="num">4</span>Bloqueo real</h3>
+          <div id="bloqueos"></div>
+          <label class="etq" for="f-bloqueo">Lo que notaste</label>
+          <textarea id="f-bloqueo" data-k="bloqueoNota" maxlength="400" placeholder="Por ejemplo: sí tiene tiempo, pero no tiene agenda"></textarea>
+        </div>
+
+        <div class="tarj">
+          <h3><span class="num">5</span>Plan de la semana</h3>
+          <div class="fila">
+            <div><label class="etq" for="f-a1">Acción 1</label><input type="text" id="f-a1" data-k="a1" maxlength="120"></div>
+            <div><label class="etq" for="f-a2">Acción 2</label><input type="text" id="f-a2" data-k="a2" maxlength="120"></div>
+            <div><label class="etq" for="f-a3">Acción 3</label><input type="text" id="f-a3" data-k="a3" maxlength="120"></div>
+            <div class="dos">
+              <div><label class="etq" for="f-pres">Presentaciones</label><input type="number" inputmode="numeric" min="0" id="f-pres" data-k="pres"></div>
+              <div><label class="etq" for="f-msj">Mensajes al día</label><input type="number" inputmode="numeric" min="0" id="f-msj" data-k="msj"></div>
+            </div>
+            <div><label class="etq" for="f-dia">Reporta avances el</label>
+              <select id="f-dia" data-k="dia"><option value="">Elige un día</option><option>lunes</option><option>martes</option><option>miércoles</option><option>jueves</option><option>viernes</option><option>sábado</option><option>domingo</option></select>
+            </div>
+          </div>
+        </div>
+
+        <div class="tarj">
+          <h3><span class="num">6</span>Compromiso</h3>
+          <p style="margin:0;font:400 20px/1.3 var(--serif)">¿Te comprometes, sí o no?</p>
+          <div class="si-no" role="group" aria-label="Compromiso">
+            <button type="button" data-v="si" aria-pressed="false">Sí</button>
+            <button type="button" data-v="no" aria-pressed="false">Todavía no</button>
+          </div>
+          <p class="nota" id="notaNo" hidden>Está bien. Aquí no empujamos ni rogamos: dale fecha para pensarlo y vuelvan a hablar.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="salida">
+      <div class="tarj" style="margin-top:0">
+        <label class="etq" for="f-wa">WhatsApp de tu líder <span style="font-weight:400;color:var(--muted)">(opcional)</span></label>
+        <input type="tel" id="f-wa" data-k="wa" inputmode="tel" placeholder="10 dígitos" autocomplete="off">
+        <p class="nota">Si lo dejas vacío, WhatsApp te deja elegir el chat.</p>
+      </div>
+      <div class="btns">
+        <button class="btn" type="button" id="mandar">Mandar su plan</button>
+        <button class="btn2" type="button" id="imprimir">Imprimir</button>
+        <button class="enlace" type="button" id="borrar">Empezar otra hoja</button>
+      </div>
+      <p class="guardado" id="guardado" aria-live="polite"></p>
+    </div>
+  </section>
+
+  <section class="materiales" id="materiales" aria-labelledby="matTit">
+    <div class="materiales-cab">
+      <h2 id="matTit">Para descargar</h2>
+      <p>Para ti y para tus líderes. Imprímelos o compártelos tal cual.</p>
+    </div>
+    <div class="lista">
+      <article class="mat">
+        <img src="hoja-1a1.png" alt="Vista de la hoja del 1 a 1 para imprimir" width="120" height="155" loading="lazy">
+        <div>
+          <h3>Hoja del 1 a 1</h3>
+          <p class="tipo">PDF · tamaño carta · 1 hoja</p>
+          <p>La misma hoja de arriba, en blanco, para llenarla a mano con tu líder.</p>
+          <a class="btn2" href="hoja-1a1.pdf" download data-cuenta="pdf-hoja">Descargar hoja</a>
+        </div>
+      </article>
+      <article class="mat">
+        <img src="checklist-lider.png" alt="Vista del checklist para la líder" width="120" height="155" loading="lazy">
+        <div>
+          <h3>Checklist para tu líder</h3>
+          <p class="tipo">PDF · tamaño carta · 1 hoja</p>
+          <p>Lo que tiene que traer a su 1 a 1. Si no trae números, no está lista.</p>
+          <a class="btn2" href="checklist-lider.pdf" download data-cuenta="pdf-checklist">Descargar checklist</a>
+        </div>
+      </article>
+      <article class="mat texto">
+        <div>
+          <h3>Mensaje para agendar</h3>
+          <p class="tipo">Texto para WhatsApp</p>
+          <p class="mensaje" id="msgAgenda">Hola, [nombre]. Agendemos nuestro 1 a 1 de este mes. ¿Te queda el [día] a las [hora]?
+
+Trae tus números: VP del mes (el tuyo y el de tu equipo), activos e inactivos, presentaciones por semana, inscripciones, ventas personales y tu objetivo del mes contra lo que llevas.
+
+Primero vemos datos y luego platicamos de cómo vas. Te espero.</p>
+          <button class="btn2" type="button" id="copiar" data-cuenta="copiar-mensaje">Copiar mensaje</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section class="frase" aria-label="Para cerrar">
+    <blockquote>Un 1 a 1 no es para animar líderes. Es para formar líderes que <em>produzcan resultados</em>.</blockquote>
+    <p>Este material es parte de las mentorías con Sel. Cualquier duda de tu 1 a 1, llévala a tu próxima llamada. <a href="/mentorias/" data-cuenta="mentorias">Ir a mentorías</a></p>
+  </section>
+
+  <footer>Equipo SVH · mitienda.beauty</footer>
+</div>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+const NUMEROS = [
+  ["vpP","VP personal"],["vpE","VP de su equipo"],["act","Activos"],["inact","Inactivos"],
+  ["presS","Presentaciones a la semana"],["insc","Inscripciones"],["ventas","Ventas personales"]
+];
+const ACTIVIDAD = [
+  ["a-pres","Está presentando el negocio"],["a-prosp","Prospecta, no solo publica"],
+  ["a-agenda","Tiene agenda semanal"],["a-seg","Da seguimiento después de mandar información"]
+];
+const LIDERAZGO = [
+  ["l-ej","Hace lo que quiere que su equipo haga"],["l-entr","Está presente en los entrenamientos"],
+  ["l-chat","Está activa en los chats"],["l-rec","Reconoce a su gente"]
+];
+const BLOQUEOS = [
+  ["b1","Falta de tiempo","Mala organización"],["b2","Miedo a hablar","Falta de claridad"],
+  ["b3","Flojera","Falta de visión"],["b4","Mentalidad","No conoce el plan"]
+];
+const CLAVE = "mtb-1a1-v1";
+let st = {};
+try{ st = JSON.parse(localStorage.getItem(CLAVE)) || {}; }catch(_){ st = {}; }
+const $ = s => document.querySelector(s);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+$("#numeros").innerHTML = NUMEROS.map(([k,l]) =>
+  `<tr><td>${l}</td><td><input type="number" inputmode="numeric" min="0" aria-label="${l}, objetivo" data-k="${k}O"></td><td><input type="number" inputmode="numeric" min="0" aria-label="${l}, real" data-k="${k}R"></td></tr>`).join("");
+const chk = arr => arr.map(([k,l]) => `<li><label><input type="checkbox" data-k="${k}"><span>${l}</span></label></li>`).join("");
+$("#actividad").innerHTML = chk(ACTIVIDAD);
+$("#liderazgo").innerHTML = chk(LIDERAZGO);
+$("#bloqueos").innerHTML = BLOQUEOS.map(([k,a,b]) =>
+  `<fieldset class="seg" data-k="${k}"><legend>¿${a.toLowerCase()} o ${b.toLowerCase()}?</legend><button type="button" data-v="${esc(a)}" aria-pressed="false">${a}</button><button type="button" data-v="${esc(b)}" aria-pressed="false">${b}</button></fieldset>`).join("");
+
+let tGuard;
+function guardar(){
+  try{ localStorage.setItem(CLAVE, JSON.stringify(st)); $("#guardado").textContent = "Guardado en este teléfono"; }
+  catch(_){ $("#guardado").textContent = "No se pudo guardar aquí; no cierres la página hasta mandarla"; }
+  clearTimeout(tGuard); tGuard = setTimeout(()=>{ $("#guardado").textContent = ""; }, 2200);
+}
+function pintar(){
+  document.querySelectorAll("[data-k]").forEach(el => {
+    const k = el.dataset.k, v = st[k];
+    if(el.matches("input[type=checkbox]")) el.checked = !!v;
+    else if(el.matches("input,textarea,select")) el.value = v ?? "";
+    else if(el.matches("fieldset.seg")) el.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === v)));
+  });
+  document.querySelectorAll(".si-no button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.v === st.comp)));
+  $("#notaNo").hidden = st.comp !== "no";
+  avance();
+}
+function avance(){
+  const o = +st.vpPO || 0, r = +st.vpPR || 0;
+  const box = $("#avance");
+  if(!o){ box.hidden = true; return; }
+  box.hidden = false;
+  const p = Math.min(r / o, 1), falta = Math.max(o - r, 0);
+  $("#avTxt").textContent = falta ? `${r.toLocaleString("es-MX")} de ${o.toLocaleString("es-MX")} · faltan ${falta.toLocaleString("es-MX")}` : `${r.toLocaleString("es-MX")} de ${o.toLocaleString("es-MX")} · cumplido`;
+  $("#avBarra").classList.toggle("ok", !falta);
+  $("#avBarra i").style.transform = `scaleX(${p})`;
+}
+document.addEventListener("input", e => {
+  const k = e.target.dataset && e.target.dataset.k; if(!k) return;
+  st[k] = e.target.type === "checkbox" ? e.target.checked : e.target.value;
+  if(k === "vpPO" || k === "vpPR") avance();
+  guardar();
+});
+document.addEventListener("change", e => { if(e.target.matches("select[data-k],input[type=date][data-k]")){ st[e.target.dataset.k] = e.target.value; guardar(); } });
+document.addEventListener("click", e => {
+  const b = e.target.closest("fieldset.seg button");
+  if(b){ const k = b.closest("fieldset").dataset.k; st[k] = st[k] === b.dataset.v ? "" : b.dataset.v; pintar(); guardar(); return; }
+  const c = e.target.closest(".si-no button");
+  if(c){ st.comp = st.comp === c.dataset.v ? "" : c.dataset.v; pintar(); guardar(); }
+});
+
+function fechaBonita(f){
+  if(!f) return "";
+  const d = new Date(f + "T12:00:00");
+  return d.toLocaleDateString("es-MX", {day:"numeric", month:"long"});
+}
+function textoPlan(){
+  const nom = (st.lider || "").trim();
+  const L = [];
+  L.push(`${nom ? nom + ", aquí" : "Aquí"} va lo que acordamos en nuestro 1 a 1${st.fecha ? " del " + fechaBonita(st.fecha) : ""}.`);
+  const nums = NUMEROS.filter(([k]) => st[k+"R"] !== undefined && st[k+"R"] !== "").map(([k,l]) => `${l}: ${st[k+"R"]}${st[k+"O"] ? " de " + st[k+"O"] : ""}`);
+  if(nums.length) L.push("", "Tus números:", ...nums.map(n => "· " + n));
+  const acc = [st.a1, st.a2, st.a3].map(a => (a || "").trim()).filter(Boolean);
+  if(acc.length) L.push("", "Tus 3 acciones de la semana:", ...acc.map((a,i) => `${i+1}. ${a}`));
+  const metas = [];
+  if(st.pres) metas.push(`${st.pres} presentaciones`);
+  if(st.msj) metas.push(`${st.msj} mensajes al día`);
+  if(metas.length) L.push("", "Tu meta: " + metas.join(" y ") + ".");
+  if(st.dia) L.push(`Me reportas tus avances el ${st.dia}.`);
+  if(st.comp === "si") L.push("", "Te comprometiste. Aquí crece quien decide crecer, y yo te acompaño.");
+  else L.push("", "Aquí crece quien decide crecer. Cuenta conmigo.");
+  return L.join("\n");
+}
+function toast(t){ const el = $("#toast"); el.textContent = t; el.classList.add("on"); setTimeout(()=>el.classList.remove("on"), 2000); }
+function cuenta(path, title){ try{ window.goatcounter.count({path:"mentorias-1a1/"+path, title, event:true}); }catch(_){} }
+
+$("#mandar").addEventListener("click", () => {
+  const acc = [st.a1, st.a2, st.a3].filter(a => (a || "").trim());
+  if(!acc.length){ toast("Antes de mandar, escribe al menos una acción"); $("#f-a1").focus(); return; }
+  const tel = String(st.wa || "").replace(/\D/g, "");
+  const num = tel.length === 10 ? "52" + tel : (tel.length === 12 && tel.startsWith("52") ? tel : "");
+  cuenta("mandar-plan", "Mandar su plan");
+  window.open(`https://wa.me/${num}?text=${encodeURIComponent(textoPlan())}`, "_blank", "noopener");
+});
+$("#imprimir").addEventListener("click", () => {
+  $("#printCab").textContent = [st.lider, fechaBonita(st.fecha)].filter(Boolean).join(" · ");
+  cuenta("imprimir", "Imprimir hoja"); window.print();
+});
+$("#borrar").addEventListener("click", () => {
+  if(!confirm("¿Empezar una hoja nueva? Se borra la que tienes en este teléfono.")) return;
+  st = {}; try{ localStorage.removeItem(CLAVE); }catch(_){}
+  pintar(); toast("Hoja nueva"); $("#f-lider").focus();
+});
+$("#copiar").addEventListener("click", async () => {
+  cuenta("copiar-mensaje", "Copiar mensaje");
+  const t = $("#msgAgenda").textContent;
+  try{ await navigator.clipboard.writeText(t); toast("Mensaje copiado"); }
+  catch(_){ const r = document.createRange(); r.selectNodeContents($("#msgAgenda")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); toast("Selecciónalo y cópialo"); }
+});
+document.querySelectorAll("a[data-cuenta]").forEach(a => a.addEventListener("click", () => cuenta(a.dataset.cuenta, a.textContent.trim())));
+if(!st.fecha){ const d = new Date(); st.fecha = new Date(d - d.getTimezoneOffset()*6e4).toISOString().slice(0,10); }
+pintar();
+</script>
+</body>
+</html>

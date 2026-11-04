@@ -396,7 +396,7 @@ function load(){
 }
 let S=load();
 /* Copia privada en Supabase: la página solo puede insertar; leer, solo desde el panel de Supabase (supabase/ritmo_puntos.sql) */
-const SB_URL='https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/ritmo_puntos',SB_KEY='sb_publishable_ltaNA7nnVozoSCOcZIjg';
+const SB_URL='https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/ritmo_puntos',SB_KEY='sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk';
 const devId=(()=>{try{let v=localStorage.getItem('ritmo-puntos-id');if(!v){v=(crypto.randomUUID?crypto.randomUUID():'xxxxxxxx-xxxx-4xxx-8xxx-xxxxxxxxxxxx'.replace(/x/g,()=>(Math.random()*16|0).toString(16)));localStorage.setItem('ritmo-puntos-id',v);}return v;}catch(e){return null;}})();
 let sbT=null;
 function sb(accion,dia){

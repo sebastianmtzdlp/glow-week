@@ -1,0 +1,229 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="g-caminos">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tu camino después del primer mes</title>
+<meta name="description" content="Tres caminos para el mes 2 en adelante: le gusta, va por algo o va por todo. Qué meta tiene cada uno, cómo se ve su mes y con qué herramientas se trabaja.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Tu camino: le gusta, va por algo o va por todo">
+<meta property="og:description" content="Qué meta tiene cada camino, cómo se ve su mes y con qué herramientas se trabaja.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/guias/caminos/">
+<meta property="og:image" content="https://mitienda.beauty/og/mentorias-herramientas.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 8px;max-width:36em}
+.indice{list-style:none;margin:26px 0 0;padding:0;border-top:2px solid var(--ink)}
+.indice a{display:grid;grid-template-columns:2.4em 1fr auto;gap:2px 12px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.indice .n{font:500 14px/1.6 var(--mono);color:var(--accent-ink);grid-row:1 / span 2}
+.indice b{font:400 clamp(24px,6vw,30px)/1.1 var(--serif)}
+.indice span:not(.n){grid-column:2 / -1;color:var(--muted);font-size:15px}
+.indice i{grid-row:1;grid-column:3;font:500 14px/1 var(--mono);font-style:normal;color:var(--muted)}
+.duda{margin:14px 0 0;font-size:15px;color:var(--muted)}
+.duda a{color:var(--ink);text-underline-offset:3px}
+
+.camino{padding:56px 0 0;scroll-margin-top:8px}
+.c-cab{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.c-cab .n{font:500 13px/1 var(--mono);color:var(--accent-ink);grid-row:1 / span 2;padding-top:8px;min-width:2.4em}
+.c-cab h2{font-size:clamp(34px,9vw,52px)}
+.c-cab p{margin:0;color:var(--muted);font-size:16px;grid-column:2;max-width:32em}
+
+.tres{display:grid;grid-template-columns:repeat(3,1fr);margin:0;border-bottom:1px solid var(--line)}
+.tres div{padding:16px 10px 14px 0}
+.tres div+div{padding-left:12px;border-left:1px solid var(--line)}
+.tres b{display:block;font:400 clamp(28px,7.5vw,44px)/1 var(--serif);font-variation-settings:"opsz" 144;white-space:nowrap}
+.tres span{display:block;font-size:14px;line-height:1.3;color:var(--muted);margin-top:6px}
+
+h3.sub{font:500 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:28px 0 4px}
+
+.mes4{list-style:none;margin:0;padding:0}
+.mes4 li{display:grid;grid-template-columns:6.2em 1fr;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.mes4 b{font:500 13px/1.5 var(--mono);color:var(--ink)}
+.mes4 b small{display:block;font:400 12px/1.3 var(--mono);color:var(--muted)}
+.mes4 span{font-size:16px;line-height:1.45}
+
+/* la escalera: barra proporcional a los puntos, para que se vea cuánto pesa cada salto */
+.escalera{list-style:none;margin:0;padding:0}
+.escalera li{display:grid;grid-template-columns:3.4em 4.6em 1fr;gap:4px 12px;align-items:center;padding:12px 0;border-bottom:1px solid var(--line)}
+.escalera .pct{font:600 15px/1 var(--mono)}
+.escalera .pts{font:400 14px/1 var(--mono);color:var(--muted);text-align:right}
+.escalera .bar{height:8px;border-radius:99px;background:var(--soft);overflow:hidden}
+.escalera .bar i{display:block;height:100%;background:var(--ink);border-radius:99px;width:var(--w)}
+.escalera .que{grid-column:2 / -1;font-size:15px;line-height:1.4}
+.escalera .que em{font-style:normal;color:var(--muted)}
+.escalera li.ya .bar i{background:var(--good)}
+.escalera li.ya .pct{color:var(--good)}
+.escalera li.meta .bar i{background:var(--accent)}
+
+.medir{margin:0;padding-left:20px}
+.medir li{margin:6px 0;font-size:16px}
+.usa{display:flex;flex-wrap:wrap;gap:8px 18px;margin:4px 0 0;padding:0;list-style:none}
+.usa a{font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
+.aviso{background:var(--soft);border-radius:14px;padding:14px 16px;margin:20px 0 0;font-size:15px}
+.aviso a{text-underline-offset:3px}
+
+.cambia{border-left:3px solid var(--accent);padding:2px 0 2px 14px;margin:22px 0 0;font:400 clamp(20px,5vw,24px)/1.3 var(--serif);max-width:28em}
+
+@media (min-width:900px){
+  .arriba{display:grid;grid-template-columns:1fr 1fr;gap:0 64px;align-items:start}
+  .arriba .indice{margin-top:64px}
+  .camino{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
+  .camino>.c-cab{grid-column:1 / -1;margin-bottom:8px}
+  .camino>.izq h3.sub:first-child,.camino>.der h3.sub:first-child{margin-top:20px}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/guias/">Guías del equipo</a>
+  </div>
+
+  <div class="arriba">
+    <header class="portada">
+      <h1>Tu <em>camino</em></h1>
+      <p class="bajada">Del mes 2 en adelante. Los tres caminos usan el mismo método; cambian la meta y el tamaño del mes. Elígelo con tu líder y cámbialo cuando cambie lo que quieres.</p>
+    </header>
+    <div>
+      <ol class="indice">
+        <li><a href="#le-gusta"><span class="n">03</span><b>Le gusta</b><i aria-hidden="true">↓</i><span>Tus 75 puntos y tus clientas de siempre.</span></a></li>
+        <li><a href="#va-por-algo"><span class="n">04</span><b>Va por algo</b><i aria-hidden="true">↓</i><span>Del 3% al 12% en tres meses, un reto a la vez.</span></a></li>
+        <li><a href="#va-por-todo"><span class="n">05</span><b>Va por todo</b><i aria-hidden="true">↓</i><span>Tu primera socia y, después, tu equipo.</span></a></li>
+      </ol>
+      <p class="duda">¿No sabes cuál es el tuyo? Contesta <a href="/mentorias/herramientas/que-quiere/">¿Qué quiere cada quien?</a> pensando en ti.</p>
+    </div>
+  </div>
+
+  <!-- 03 · LE GUSTA -->
+  <section class="camino" id="le-gusta" aria-labelledby="t3">
+    <div class="c-cab"><span class="n">03</span><h2 id="t3">Le <em>gusta</em></h2><p>Usas el producto, le vendes a tu gente y quieres que el negocio quepa en tu semana sin pelearse con lo demás.</p></div>
+    <div class="izq">
+      <div class="tres">
+        <div><b>75</b><span>puntos tuyos al mes, para cobrar bonos</span></div>
+        <div><b>30</b><span>días: cuándo escribirle a cada clienta otra vez</span></div>
+        <div><b>1</b><span>publicación a la semana</span></div>
+      </div>
+      <h3 class="sub">Tu mes</h3>
+      <ol class="mes4">
+        <li><b>Semana 1<small>días 1 a 7</small></b><span>Haz tu pedido de 75 puntos. En Pedidos y cobros mira quién te compró hace 30 días o más.</span></li>
+        <li><b>Semana 2<small>días 8 a 14</small></b><span>Escríbeles a esas clientas para saber cómo les va. A una persona nueva, ármale su rutina.</span></li>
+        <li><b>Semana 3<small>días 15 a 21</small></b><span>Pregunta si ya le llegó, cobra y pide un testimonio a quien ya usó su producto.</span></li>
+        <li><b>Semana 4<small>días 22 a 30</small></b><span>Revisa tus puntos. Con tu pedido y unas dos clientas llegas a 200, que es el 3%. Es opcional, no una obligación.</span></li>
+      </ol>
+    </div>
+    <div class="der">
+      <h3 class="sub">Cómo sabes que vas bien</h3>
+      <ul class="medir">
+        <li>Tu pedido de 75 puntos, hecho antes del día 10.</li>
+        <li>Cuántas clientas volvieron a pedir este mes.</li>
+        <li>Ningún pedido sin cobrar al cerrar el mes.</li>
+      </ul>
+      <h3 class="sub">Con estas herramientas</h3>
+      <ul class="usa">
+        <li><a href="/mentorias/herramientas/mi-tienda/">Mi tienda</a></li>
+        <li><a href="/mentorias/herramientas/pedidos/">Pedidos y cobros</a></li>
+        <li><a href="/mentorias/herramientas/rutina/">Arma su rutina</a></li>
+        <li><a href="/mentorias/herramientas/testimonios/">Lo que dicen mis clientas</a></li>
+        <li><a href="/mentorias/herramientas/contenido/">Qué publico hoy</a></li>
+      </ul>
+      <p class="aviso">Si un mes no puedes pedir, tu cuenta no se cierra de inmediato: según la guía de inscripción, se mantiene con 75 puntos dentro de 6 meses.</p>
+    </div>
+  </section>
+
+  <!-- 04 · VA POR ALGO -->
+  <section class="camino" id="va-por-algo" aria-labelledby="t4">
+    <div class="c-cab"><span class="n">04</span><h2 id="t4">Va por <em>algo</em></h2><p>Tienes una meta con número y fecha: un nivel, un pago, un viaje. Escríbela antes de empezar; es lo que vas a revisar cada domingo.</p></div>
+    <div class="izq">
+      <div class="tres">
+        <div><b>900</b><span>puntos de grupo: el 12%</span></div>
+        <div><b>3</b><span>meses, un reto por mes</span></div>
+        <div><b>225</b><span>puntos por semana en el mes de 12%</span></div>
+      </div>
+      <h3 class="sub">Tu escalera</h3>
+      <ol class="escalera">
+        <li class="ya"><span class="pct">3%</span><span class="pts">200</span><span class="bar"><i style="--w:22%"></i></span><span class="que">Mis primeros 200 <em>· ya lo hiciste en tu primer mes</em></span></li>
+        <li><span class="pct">6%</span><span class="pts">400</span><span class="bar"><i style="--w:44%"></i></span><span class="que">Mes 2 · Duplica a 400 <em>· recompra de tus primeras clientas, 3 clientas nuevas y tu primera presentación de negocio</em></span></li>
+        <li><span class="pct">9%</span><span class="pts">600</span><span class="bar"><i style="--w:67%"></i></span><span class="que">Mes 3 · 600 en 30 <em>· unas 8 personas activas de 75 puntos y 150 puntos por semana</em></span></li>
+        <li class="meta"><span class="pct">12%</span><span class="pts">900</span><span class="bar"><i style="--w:100%"></i></span><span class="que">Mes 4 · Plan 12% <em>· unas 12 personas activas y 2 socias nuevas en el mes</em></span></li>
+      </ol>
+    </div>
+    <div class="der">
+      <h3 class="sub">Tu mes</h3>
+      <ol class="mes4">
+        <li><b>Semana 1<small>Mapa</small></b><span>Anota de dónde va a salir cada punto: tú, cada clienta, cada socia. Marca quién puede pedir este mes.</span></li>
+        <li><b>Semana 2<small>Crecer</small></b><span>Contactos y presentaciones para llenar lo que falta en el mapa.</span></li>
+        <li><b>Semana 3<small>Seguimiento</small></b><span>Convierte lo abierto en pedidos. Llama a quien compró hace más de 30 días.</span></li>
+        <li><b>Semana 4<small>Cierre</small></b><span>Revisa todos los días cuántos puntos faltan y quién tiene pedido pendiente.</span></li>
+      </ol>
+      <h3 class="sub">Con estas herramientas</h3>
+      <ul class="usa">
+        <li><a href="/mentorias/herramientas/nivel/">¿En qué nivel voy?</a></li>
+        <li><a href="/herramientas/ritmo-de-puntos/">Ritmo de Puntos</a></li>
+        <li><a href="/mentorias/herramientas/lista/">Mi lista de 50</a></li>
+        <li><a href="/mentorias/herramientas/presentacion/">La presentación</a></li>
+        <li><a href="/mentorias/herramientas/mi-mes/">Mi mes</a></li>
+      </ul>
+      <p class="aviso">Cada reto, semana por semana y con sus mensajes, viene en los <a href="/mentorias/herramientas/pro/">planes Pro</a>. Esta guía te da la forma; con tu líder le pones las fechas.</p>
+    </div>
+  </section>
+
+  <!-- 05 · VA POR TODO -->
+  <section class="camino" id="va-por-todo" aria-labelledby="t5">
+    <div class="c-cab"><span class="n">05</span><h2 id="t5">Va por <em>todo</em></h2><p>Quieres equipo propio y llegar a dirección. Es el camino más largo y el que más depende de que a otras les vaya bien.</p></div>
+    <div class="izq">
+      <div class="tres">
+        <div><b>1</b><span>primera socia con su primer pedido</span></div>
+        <div><b>5,000</b><span>puntos de grupo, con 1,500 laterales</span></div>
+        <div><b>3</b><span>meses seguidos para pasar a dirección</span></div>
+      </div>
+      <h3 class="sub">Tu escalera</h3>
+      <ol class="escalera">
+        <li><span class="pct">6–9%</span><span class="pts">400–600</span><span class="bar"><i style="--w:12%"></i></span><span class="que">Mi primera socia · 4 semanas <em>· 10 contactos y 1 presentación al día; 20 presentaciones en el mes</em></span></li>
+        <li><span class="pct">15%</span><span class="pts">1,400</span><span class="bar"><i style="--w:28%"></i></span><span class="que">Tu primer equipo <em>· unas 19 personas activas y 3 socias nuevas en el mes</em></span></li>
+        <li><span class="pct">18%</span><span class="pts">2,200</span><span class="bar"><i style="--w:44%"></i></span><span class="que">Dos socias trabajando su propio nivel <em>· unas 30 personas activas</em></span></li>
+        <li><span class="pct">22%</span><span class="pts">3,600</span><span class="bar"><i style="--w:72%"></i></span><span class="que">Tres socias con su propio equipo <em>· revisas puntos por línea</em></span></li>
+        <li class="meta"><span class="pct">Dir.</span><span class="pts">5,000</span><span class="bar"><i style="--w:100%"></i></span><span class="que">Dirección <em>· 5,000 puntos con al menos 1,500 laterales, tres meses seguidos</em></span></li>
+      </ol>
+    </div>
+    <div class="der">
+      <p class="cambia">Lo que cambia en este camino: pasas de hacerlo tú a acompañar a otras a hacerlo.</p>
+      <h3 class="sub">Tu mes</h3>
+      <ol class="mes4">
+        <li><b>Semana 1<small>Mapa</small></b><span>Puntos por socia. Elige a dos que quieras llevar a su siguiente nivel este mes.</span></li>
+        <li><b>Semana 2<small>Crecer</small></b><span>Un 1 a 1 con cada una: su meta de puntos y su Ritmo de Puntos. A cada socia nueva, mándale Tu primer mes.</span></li>
+        <li><b>Semana 3<small>Seguimiento</small></b><span>Acompaña sus presentaciones en vez de dar solo las tuyas.</span></li>
+        <li><b>Semana 4<small>Cierre</small></b><span>Revisión diaria: tus puntos, los de tus dos socias y, cuando llegues ahí, tus laterales.</span></li>
+      </ol>
+      <h3 class="sub">Con estas herramientas</h3>
+      <ul class="usa">
+        <li><a href="/guias/primer-mes/">Tu primer mes</a></li>
+        <li><a href="/mentorias/herramientas/1a1/">El 1 a 1</a></li>
+        <li><a href="/mentorias/herramientas/equipo/">Mapa de mi equipo</a></li>
+        <li><a href="/mentorias/herramientas/reto/">Reto en equipo</a></li>
+        <li><a href="/mentorias/herramientas/reconocimientos/">Reconocimientos</a></li>
+        <li><a href="/plan-de-compensacion/">Plan de compensación</a></li>
+      </ul>
+      <p class="aviso">Qué son los puntos laterales y por qué se necesitan dos líneas creciendo está explicado en el <a href="/plan-de-compensacion/">plan de compensación</a>. El plan de cada nivel, semana por semana, viene en los <a href="/mentorias/herramientas/pro/">planes Pro</a>.</p>
+    </div>
+  </section>
+
+  <footer>
+    <p>Equipo SVH · mitienda.beauty · Los puntos de cada nivel son los mismos de la calculadora del equipo; lo que manda es lo vigente en tu Back Office. Los retos y el método son del equipo. No es material oficial de Farmasi y no prometemos ganancias: cada camino dice qué hacer, no cuánto vas a ganar.</p>
+  </footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+</body>
+</html>

@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-rutina">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Arma su rutina</title>
+<meta name="description" content="Armas la rutina de piel de una clienta, de mañana y de noche, con productos Dr. C. Tuna y sus precios. Sale una tarjeta lista para mandar por WhatsApp. Gratis.">
+<meta property="og:title" content="Arma su rutina">
+<meta property="og:description" content="La rutina de piel de tu clienta, con precios, lista para mandar.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/rutina/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-rutina.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.datos{display:grid;gap:12px}
+.datos .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pasos{display:grid;gap:10px;margin:14px 0 0}
+.paso{display:grid;grid-template-columns:1fr;gap:6px;padding:12px 0;border-bottom:1px solid var(--line)}
+.paso .q{font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.paso .q i{font-style:normal;color:var(--bronze)}
+.paso select{min-height:46px}
+.paso.bloq{opacity:.55}
+.tarjeta{background:var(--cream);color:var(--ink);border-radius:24px;padding:26px 20px;border:1px solid var(--line)}
+.tarjeta .de{font:300 11px/1 var(--body);letter-spacing:.22em;color:var(--muted)}
+.tarjeta h2{margin-top:10px;font-size:clamp(30px,8vw,44px)}
+.tarjeta h2 em{color:var(--accent)}
+.tarjeta h3{font:600 12px/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;margin:22px 0 0;color:var(--bronze)}
+.tarjeta ol{list-style:none;margin:8px 0 0;padding:0;border-top:2px solid var(--ink)}
+.tarjeta li{display:grid;grid-template-columns:22px 1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid #DDD8CF;align-items:baseline}
+.tarjeta li .n{font:500 13px/1 var(--mono);color:var(--muted)}
+.tarjeta li b{font-weight:600;font-size:16px;line-height:1.25}
+.tarjeta li small{grid-column:2;color:var(--muted);font-size:13px}
+.tarjeta li .pr{font:500 15px/1 var(--mono)}
+.tarjeta .tot{display:flex;justify-content:space-between;align-items:baseline;margin-top:18px}
+.tarjeta .tot b{font:500 28px/1 var(--mono)}
+.tarjeta .spf{margin:14px 0 0;font-size:14px;color:var(--muted)}
+.tarjeta .pie{margin:16px 0 0;font-size:13px;color:var(--muted)}
+.vacio{color:var(--muted);padding:10px 0}
+.acc{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:16px}
+.nube{font:400 13px/1.4 var(--mono);color:var(--good)}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+}
+@media print{.barra,.sigue,footer,.pro-caja,.acc,.pasos,.datos,.cab,#pro,#proCont{display:none!important}.tarjeta{border:1px solid var(--ink)}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Arma <em>su rutina</em></h1>
+      <p class="bajada">Elige los pasos de mañana y de noche, y te sale una tarjeta con productos, precios y el total. La mandas por WhatsApp y ella decide.</p>
+      <div class="datos" style="margin-top:20px">
+        <div class="fila">
+          <label><span class="etq">Para quién</span><input type="text" id="cNom" maxlength="30" placeholder="Su nombre"></label>
+          <label><span class="etq">Su piel</span><select id="cPiel"><option value="">Sin decir</option><option>seca</option><option>mixta</option><option>grasa</option><option>sensible</option><option>madura</option></select></label>
+        </div>
+        <label><span class="etq">Quién se la manda</span><select id="yo"><option value="">Elige tu nombre</option></select></label>
+      </div>
+    </div>
+    <section aria-label="La tarjeta de rutina">
+      <div class="tarjeta" id="tarjeta"></div>
+      <div class="acc">
+        <a class="btn" id="mandar" target="_blank" rel="noopener" data-cuenta="rutina-mandar">Mandar por WhatsApp</a>
+        <button class="btn2" type="button" id="copia">Copiar texto</button>
+        <button class="btn2" type="button" id="imp">Imprimir</button>
+      </div>
+    </section>
+  </header>
+
+  <div class="dos">
+    <section aria-labelledby="mTit">
+      <div class="cab"><h2 id="mTit">Por la mañana</h2><p>Limpiar, tratar, hidratar.</p></div>
+      <div class="pasos" id="pAM"></div>
+    </section>
+    <section aria-labelledby="nTit">
+      <div class="cab"><h2 id="nTit">Por la noche</h2><p>Quitar el día y reparar.</p></div>
+      <div class="pasos" id="pPM"></div>
+    </section>
+  </div>
+
+  <section aria-labelledby="proTit">
+    <div class="cab"><h2 id="proTit">Recompra y tu marca</h2><p>La versión Pro.</p></div>
+    <div id="pro"></div>
+    <div id="proCont" hidden>
+      <div class="datos" style="margin-top:14px;max-width:34em">
+        <label><span class="etq">Tu tienda en la tarjeta</span><input type="text" id="tienda" maxlength="40" placeholder="Pao's Beauty Lounge"></label>
+        <label><span class="etq">Cada cuántos días se acaba (aprox.)</span><input type="number" id="dur" value="45" min="10" max="120" inputmode="numeric"></label>
+        <div class="acc" style="margin:0"><button class="btn2" type="button" id="vende">Ya se la vendí: apuntar a mi lista</button></div>
+        <p class="nota" id="vendeNota">Crea o actualiza a tu clienta en Mi lista de 50, con cada producto y la fecha de recompra.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/lista/" data-cuenta="ir-lista"><b>Mi lista de 50</b><span>Aquí se avisa cuándo le toca recomprar.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/herramientas/dupes/" data-cuenta="ir-dupes"><b>¿A cuál se parece?</b><span>Para la clienta que ya usa otra marca.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Precio público de Farmasi México 2026, revisa tu tablero antes de cobrar. Una rutina no sustituye la opinión de un médico. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = "mtb-rutina-v1", st = H.lee(KEY, {n: "", piel: "", yo: "", tienda: "", sel: {}}), pro = false, CAT = [], EQ = [];
+  if(!st.sel) st.sel = {};
+  var AM = [["lim", "Limpiar", /Cleanser|Face Wash|Micellar/, 0], ["ton", "Tonificar", /Toner|Essence|Tonic/, 1], ["tra", "Tratar", /Serum|Elixir|Drops|Oil/, 0], ["ojo", "Contorno de ojos", /Eye/, 1], ["hid", "Hidratar", /Day Cream|Face Cream|Moisturizer|Hydrating Cream|Brightening Cream|Instant/, 0]];
+  var PM = [["lim", "Limpiar", /Cleanser|Face Wash|Micellar/, 0], ["tra", "Tratar", /Serum|Elixir|Drops|Oil/, 0], ["ojo", "Contorno de ojos", /Eye/, 1], ["hid", "Hidratar de noche", /Night Cream|Moisturizer|Face Cream|Hydrating Cream|Brightening Cream/, 0], ["mas", "Mascarilla", /Mask/, 1]];
+  var money = function(n){ return "$" + H.fmt(n); };
+  var corto = function(s){ return s.replace(/^Dr\. C\. Tuna\s*/, "").replace(/\s*\(.*\)\s*$/, ""); };
+  function lista(def){ return CAT.filter(function(p){ return def[2].test(p.nombre); }); }
+  function pintaPasos(el, M, mom){
+    el.innerHTML = M.map(function(d){
+      var bloq = d[3] && !pro, k = mom + d[0], ops = lista(d);
+      return '<div class="paso' + (bloq ? " bloq" : "") + '"><span class="q">' + d[1] + (d[3] ? ' <i>· Pro</i>' : "") + '</span><select data-k="' + k + '"' + (bloq ? " disabled" : "") + ' aria-label="' + d[1] + (mom === "am" ? " de la mañana" : " de la noche") + '"><option value="">Sin este paso</option>' +
+        ops.map(function(p){ return '<option value="' + H.esc(p.nombre) + '"' + (st.sel[k] === p.nombre ? " selected" : "") + ">" + H.esc(corto(p.nombre)) + " · " + money(p.precio) + "</option>"; }).join("") + "</select></div>";
+    }).join("");
+    el.querySelectorAll("select").forEach(function(s){ s.addEventListener("change", function(){ st.sel[s.dataset.k] = s.value; guarda(); pinta(); }); });
+  }
+  function filas(M, mom){ return M.map(function(d){ var n = st.sel[mom + d[0]]; if(!n || (d[3] && !pro)) return null; var p = CAT.filter(function(x){ return x.nombre === n; })[0]; return p ? {paso: d[1], p: p} : null; }).filter(Boolean); }
+  function tarjetaTxt(){
+    var a = filas(AM, "am"), b = filas(PM, "pm"), tot = 0, seen = {};
+    a.concat(b).forEach(function(x){ if(!seen[x.p.nombre]){ seen[x.p.nombre] = 1; tot += x.p.precio; } });
+    var t = "Rutina" + (st.n ? " de " + st.n : "") + (st.piel ? " (piel " + st.piel + ")" : "") + "\n";
+    if(a.length) t += "\nMAÑANA\n" + a.map(function(x, i){ return (i + 1) + ". " + x.paso + ": " + corto(x.p.nombre) + " " + money(x.p.precio); }).join("\n") + "\nProtector solar: el que ya uses.\n";
+    if(b.length) t += "\nNOCHE\n" + b.map(function(x, i){ return (i + 1) + ". " + x.paso + ": " + corto(x.p.nombre) + " " + money(x.p.precio); }).join("\n") + "\n";
+    var yo = EQ.filter(function(c){ return c.slug === st.yo; })[0];
+    if(a.length + b.length) t += "\nTotal: " + money(tot) + (yo ? "\nPídela aquí: mitienda.beauty/" + yo.slug + "/" : "");
+    return {txt: t, a: a, b: b, tot: tot, yo: yo, hay: a.length + b.length > 0, prods: Object.keys(seen)};
+  }
+  function bloque(tit, arr){
+    return arr.length ? "<h3>" + tit + '</h3><ol>' + arr.map(function(x, i){ return '<li><span class="n">' + (i + 1) + '</span><b>' + H.esc(corto(x.p.nombre)) + '</b><span class="pr">' + money(x.p.precio) + '</span><small>' + x.paso + "</small></li>"; }).join("") + "</ol>" : "";
+  }
+  function pinta(){
+    var t = tarjetaTxt(), nom = st.n.trim();
+    $("tarjeta").innerHTML = '<div class="de">' + H.esc((pro && st.tienda ? st.tienda : t.yo ? "Farmasi con " + t.yo.nombre : "Equipo SVH").toUpperCase()) + "</div>" +
+      "<h2>Rutina" + (nom ? " de <em>" + H.esc(nom) + "</em>" : "") + "</h2>" + (st.piel ? '<p class="nota" style="margin-top:6px">Piel ' + H.esc(st.piel) + "</p>" : "") +
+      (t.hay ? bloque("Mañana", t.a) + (t.a.length ? '<p class="spf">Protector solar: el que ya uses. Es el paso más importante del día.</p>' : "") + bloque("Noche", t.b) +
+        '<div class="tot"><span>Total</span><b>' + money(t.tot) + "</b></div>" + (t.yo ? '<p class="pie">Pídela con ' + H.esc(t.yo.nombre) + " en mitienda.beauty/" + t.yo.slug + "</p>" : "")
+        : '<p class="vacio">Elige un producto en cada paso y aquí se arma tu tarjeta.</p>');
+    $("mandar").href = H.wa(t.txt, ""); $("mandar").style.pointerEvents = t.hay ? "" : "none"; $("mandar").style.opacity = t.hay ? "" : ".45";
+  }
+  function guarda(){ H.guarda(KEY, st); }
+  $("cNom").value = st.n || ""; $("cPiel").value = st.piel || "";
+  $("cNom").addEventListener("input", function(e){ st.n = e.target.value; guarda(); pinta(); });
+  $("cPiel").addEventListener("change", function(e){ st.piel = e.target.value; guarda(); pinta(); });
+  $("yo").addEventListener("change", function(e){ st.yo = e.target.value; guarda(); pinta(); });
+  $("tienda").addEventListener("input", function(e){ st.tienda = e.target.value; guarda(); pinta(); });
+  $("copia").addEventListener("click", function(){ var t = tarjetaTxt(); if(t.hay) H.copia(t.txt, "Rutina copiada"); });
+  $("imp").addEventListener("click", function(){ window.print(); });
+
+  function todo(){ pintaPasos($("pAM"), AM, "am"); pintaPasos($("pPM"), PM, "pm"); pinta(); }
+  fetch("/_data/catalogo.json").then(function(r){ return r.json(); }).then(function(d){
+    CAT = (d.productos || []).filter(function(p){ return /^Dr\. C\. Tuna/.test(p.nombre) && !/Hair|Shampoo|Paprika|Pferde|Calendula Cream Balsam|Tea Tree Cream Balsam/.test(p.nombre); });
+    todo();
+  }).catch(function(){ $("tarjeta").innerHTML = '<p class="vacio">No pude traer el catálogo. Intenta de nuevo.</p>'; });
+  H.equipo().then(function(eq){ EQ = eq; $("yo").innerHTML = '<option value="">Elige tu nombre</option>' + eq.map(function(c){ return '<option value="' + c.slug + '">' + H.esc(c.nombre) + "</option>"; }).join(""); $("yo").value = st.yo || ""; pinta(); });
+  todo();
+
+  PRO.caja($("pro"), "rutina", {titulo: "Rutinas completas con tu marca", activo: "Todos los pasos, tu tienda en la tarjeta y la recompra apuntada en tu lista."}).then(function(r){
+    if(!r.ok) return; pro = true; $("proCont").hidden = false; $("tienda").value = st.tienda || ""; todo();
+    $("vende").addEventListener("click", function(){
+      var t = tarjetaTxt(), n = (st.n || "").trim();
+      if(!n || !t.hay){ $("vendeNota").textContent = "Pon el nombre de tu clienta y elige sus productos."; return; }
+      var L = H.lee("mtb-lista-v1", {personas: [], ts: 0}), dur = +$("dur").value || 45, hoy = H.iso();
+      var p = L.personas.filter(function(x){ return x.n.toLowerCase() === n.toLowerCase(); })[0];
+      if(!p){ p = {id: Math.random().toString(36).slice(2, 9), n: n, d: "", e: "clienta", s: "Preguntar cómo le fue", f: H.suma(hoy, Math.max(7, dur - 10)), t: "", ult: "", notas: [], prods: []}; L.personas.push(p); }
+      p.e = "clienta"; p.prods = p.prods || [];
+      t.prods.forEach(function(nm){ var c = corto(nm), ya = p.prods.filter(function(x){ return x.n === c; })[0]; if(ya){ ya.f = hoy; ya.d = dur; } else p.prods.push({n: c, f: hoy, d: dur}); });
+      L.ts = Date.now(); H.guarda("mtb-lista-v1", L); H.cuenta("rutina-a-lista");
+      $("vendeNota").innerHTML = "Listo. " + H.esc(n) + " está en tu lista con " + t.prods.length + " productos. <a href=\"/mentorias/herramientas/lista/\">Abrir mi lista</a>";
+    });
+  });
+})();
+</script>
+</body>
+</html>

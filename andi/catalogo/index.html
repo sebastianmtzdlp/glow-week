@@ -131,7 +131,8 @@
   .gift .gi{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
   .gift .gi span{background:#fff;border-radius:999px;padding:4px 9px;font-size:12px}
   .form{display:grid;gap:10px;margin-top:12px}
-  .form label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .form label,.form .lbl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .delnote{margin:2px 0 0;font-size:14px;color:var(--muted)}
   .form input,.form select,.form textarea{width:100%;margin-top:4px;min-height:44px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;color:var(--ink);background:#fff}
   .form .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .addr{display:grid;gap:10px} .addr.hide{display:none}
@@ -243,7 +244,7 @@
   } catch(e) {}
   WA = C.whatsapp || ""; SELLER = C.consultora || "";
   if (SELLER) { document.title = "Catálogo Farmasi con " + SELLER; $("brandSub").textContent = "Con precios de hoy · pedidos con " + SELLER; $("foot").textContent = `Catálogo oficial Farmasi México 2026. Compartido por ${SELLER}, ${C.genero==="m"?"consultor":"consultora"} independiente. Precios sujetos a existencias.`; }
-  let GOAL = C.meta.monto, GIFT = C.meta.regalo, GIFT_ITEMS = C.meta.regalo_items || [];
+  let GOAL = C.meta.monto, GIFT = /regalo/i.test(C.meta.regalo) ? C.meta.regalo : C.meta.regalo + " de regalo", GIFT_ITEMS = C.meta.regalo_items || [];
   // Membresía: 50% en Dr. C. Tuna (páginas de skincare y masaje), 30% en lo demás; se aplica sobre el precio que ve la clienta
   const M = Object.assign({mostrar:true, meta_monto:2000, costo:499}, C.membresia || {});
   let yaSocia = false; try { yaSocia = localStorage.getItem("glow_socia") === "1"; } catch(_){}
@@ -381,7 +382,7 @@
   // ---------- Pedido ----------
   const totals = () => { let n=0,t=0,r=0; for (const [c,q] of Object.entries(cart)) { n+=q; t+=q*P[c][1]; r+=q*P[c][2]; } return {n,t,r,s:r-t}; };
   function goalHTML(t){ const left = GOAL - t, done = left <= 0;
-    return {done, html: done ? `<b>Ya tienes envío gratis y ${GIFT} de regalo</b>` : `Te faltan <b class="num">${money(left)}</b> para envío gratis y ${GIFT} de regalo`, w: Math.min(100, t/GOAL*100)}; }
+    return {done, html: done ? `<b>Ya tienes envío gratis y ${GIFT}</b>` : `Te faltan <b class="num">${money(left)}</b> para envío gratis y ${GIFT}`, w: Math.min(100, t/GOAL*100)}; }
   function paintBar(){
     const {n,t,s} = totals();
     $("cartbar").hidden = !n; $("hint").hidden = !!n;
@@ -406,7 +407,7 @@
     const items = Object.entries(cart).map(([c,q]) => `• ${q} x ${shortName(P[c][0])} (${c}) — ${money(P[c][1])}`);
     let ent = `Entrega: ${v("cDel")}`;
     if (isShip()) ent += `\nDirección: ${v("aStreet")}, Col. ${v("aCol")}, C.P. ${v("aCP")}, ${v("aCity")}` + (v("aRef") ? `\nReferencias: ${v("aRef")}` : "");
-    const meta = t >= GOAL ? `Mi pedido pasa de ${money(GOAL)}: envío gratis y ${GIFT} de regalo.` : `Me faltan ${money(GOAL - t)} para el envío gratis.`;
+    const meta = t >= GOAL ? `Mi pedido pasa de ${money(GOAL)}: envío gratis y ${GIFT}.` : `Me faltan ${money(GOAL - t)} para el envío gratis.`;
     const mc = mCalc();
     const msg = `Hola ${SELLER}${v("cName") ? ", soy " + v("cName") : ""}${curRef() ? `, vengo de parte de ${curRef()},` : "."} ${curRef() ? "q" : "Q"}uiero este pedido del catálogo:\n\n${items.join("\n")}\n\nTotal: ${money(t)}${s>0 ? " (ahorro " + money(s) + ")" : ""}\n${meta}\n\n${ent}`
       + (yaSocia && !$("mWant")?.checked ? "\n\nYa soy afiliada de Farmasi." : "")
@@ -418,7 +419,7 @@
     const {n,t,r,s} = totals();
     if (!n) { closeSheet(); return; }
     const g = goalHTML(t);
-    const saved = {}; try { fields.concat("cDel").forEach(f => saved[f] = localStorage.getItem("glow_" + f) || ""); } catch(_){}
+    const saved = {}; try { fields.forEach(f => saved[f] = localStorage.getItem("glow_" + f) || ""); } catch(_){}
     openSheet("Tu pedido", `
       <div class="goal${g.done?" done":""}" style="font-size:13px;color:var(--muted)">${g.html}<div class="track"><i style="width:${g.w}%"></i></div></div>
       ${GIFT_ITEMS.length ? `<div class="gift">Con ${money(GOAL)} o más te llevas <b>${GIFT}</b> de regalo (${money(GIFT_ITEMS.reduce((a,x)=>a+x.retail,0))} en productos):<div class="gi">${GIFT_ITEMS.map(x=>`<span>${x.name}</span>`).join("")}</div></div>` : ""}
@@ -426,7 +427,7 @@
         <div class="q"><button class="sb" data-step="-1" data-c="${c}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="sb" data-step="1" data-c="${c}" aria-label="Agregar otro">${plus}</button></div></div>`).join("")}
       <div class="form">
         <div><label for="cName">Nombre y apellido</label><input id="cName" autocomplete="name" placeholder="Ej. Ana López" value="${saved.cName||""}"></div>
-        <div><label for="cDel">Entrega</label><select id="cDel"><option>Envío a domicilio</option><option>Paso a recoger</option><option>Lo platicamos</option></select></div>
+        <div><span class="lbl">Dirección de envío</span><input type="hidden" id="cDel" value="Envío a domicilio"><p class="delnote">Farmasi te lo envía directo a tu casa.</p></div>
         <div class="addr" id="addr">
           <div><label for="aStreet">Calle y número</label><input id="aStreet" autocomplete="address-line1" value="${saved.aStreet||""}"></div>
           <div class="row2"><div><label for="aCol">Colonia</label><input id="aCol" autocomplete="address-level3" value="${saved.aCol||""}"></div>
@@ -451,7 +452,7 @@
     $("cRef").addEventListener("input", () => { paintRefChips(); try { localStorage.setItem("glow_de", curRef()); } catch(_){} sync(); }); paintRefChips();
     fields.forEach(f => $(f).addEventListener("input", sync)); $("cDel").addEventListener("change", sync); $("mWant")?.addEventListener("change", sync); sync();
     $("yaSocia").addEventListener("click", () => { yaSocia = !yaSocia; try { localStorage.setItem("glow_socia", yaSocia ? "1" : "0"); } catch(_){} setGoal(); paintBar(); const sc = $("sBody").scrollTop; orderSheet(); $("sBody").scrollTop = sc; });
-    const SB_URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/pedidos_intencion", SB_KEY = "sb_publishable_ltaNA7nnVozoSCOcZIjg";
+    const SB_URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/pedidos_intencion", SB_KEY = "sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk";
       function logIntent(origen, items, t){ try { if (!items.length) return;
         fetch(SB_URL, {method:"POST", keepalive:true, headers:{"Content-Type":"application/json", apikey:SB_KEY, Authorization:"Bearer "+SB_KEY, Prefer:"return=minimal"},
           body: JSON.stringify({consultora: location.pathname.split("/").filter(Boolean)[0], referida_por: (curRef()||"").slice(0,40) || null, cliente: ($("cName")?.value||"").trim().slice(0,80) || null, tipo: yaSocia ? "afiliada" : "clienta", origen, items, total: t, envio: isShip() ? "domicilio" : "recoger"})}).catch(()=>{});

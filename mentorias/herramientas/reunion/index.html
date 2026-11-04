@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-reunion">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mi reunión</title>
+<meta name="description" content="Todo para tu reunión: la invitación, la lista de lo que llevas, el guion de 45 minutos y el mensaje de seguimiento a las 48 horas. Gratis.">
+<meta property="og:title" content="Mi reunión">
+<meta property="og:description" content="Invitación, guion y seguimiento para tu reunión.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/reunion/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-reunion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.datos{display:grid;gap:12px}
+.datos .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.acc{display:flex;flex-wrap:wrap;gap:10px 14px;align-items:center;margin-top:16px}
+.nube{font:400 13px/1.4 var(--mono);color:var(--good)}
+.lim{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.bloque{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px}
+.bloque h2{color:#fff;font-size:clamp(26px,7vw,38px)}
+.bloque h2 em{color:var(--pink)}
+.bloque .sub{margin:6px 0 0;color:#C9CBE0;font-size:15px}
+.bloque pre{white-space:pre-wrap;font:400 15px/1.5 var(--body);margin:14px 0 0;color:#fff}
+.tl{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.tl li{display:grid;grid-template-columns:64px 1fr;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line)}
+.tl .t{font:500 14px/1.3 var(--mono);color:var(--bronze)}
+.tl b{font-weight:600}
+.tl small{grid-column:2;color:var(--muted);font-size:14px;line-height:1.4}
+.lst{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.lst li{display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.lst small{color:var(--muted);grid-column:1;font-size:13px}
+.lst .acc2{grid-row:1 / span 2;grid-column:2;display:flex;gap:6px}
+.lst .acc2 button,.lst .acc2 a{min-width:40px;min-height:40px;border-radius:10px;border:1px solid #CFD2E0;background:#fff;cursor:pointer;display:grid;place-items:center;text-decoration:none;font:600 13px/1 var(--body);padding:0 10px}
+.lst .acc2 .on{background:var(--ink);color:#fff;border-color:var(--ink)}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+}
+@media print{.barra,.sigue,footer,.pro-caja,.acc,#pro,#proCont{display:none!important}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Mi <em>reunión</em></h1>
+      <p class="bajada">Una reunión en tu casa o por videollamada, de principio a fin: la invitación, qué llevar, cómo se va la hora y qué mandar a las 48 horas.</p>
+      <div class="datos" style="margin-top:20px">
+        <label><span class="etq">Cómo la quieres llamar</span><input type="text" id="rNom" maxlength="50" placeholder="Tarde de skincare con café"></label>
+        <div class="fila"><label><span class="etq">Día</span><input type="date" id="rDia"></label><label><span class="etq">Hora</span><input type="time" id="rHora" value="17:00"></label></div>
+        <div class="fila"><label><span class="etq">Dónde</span><select id="rDonde"><option value="casa">En mi casa</option><option value="otra">En otra casa</option><option value="video">Por videollamada</option></select></label><label><span class="etq">Lugar o liga</span><input type="text" id="rLugar" maxlength="80" placeholder="Calle y colonia, o la liga"></label></div>
+      </div>
+    </div>
+    <section class="bloque" aria-label="La invitación">
+      <h2>La <em>invitación</em></h2>
+      <p class="sub">Cópiala y mándala a cada invitada.</p>
+      <pre id="inv"></pre>
+      <div class="acc"><button class="btn" type="button" id="invCopia">Copiar invitación</button></div>
+    </section>
+  </header>
+
+  <div class="dos">
+    <section aria-labelledby="gTit">
+      <div class="cab"><h2 id="gTit">La hora, minuto a minuto</h2><p>45 minutos y a vender o invitar.</p></div>
+      <ol class="tl">
+        <li><span class="t">0–5</span><b>Bienvenida</b><small>Algo de tomar, música baja y cada una con su nombre. Cuenta en una frase por qué hiciste la reunión.</small></li>
+        <li><span class="t">5–15</span><b>Prueba de producto</b><small>Una por una prueba algo en la mano o en la cara. Pregunta qué le gustó antes de decir qué es.</small></li>
+        <li><span class="t">15–25</span><b>Tu historia en tres frases</b><small>Cómo empezaste, qué te sorprendió y qué sigues haciendo. Sin cifras de dinero.</small></li>
+        <li><span class="t">25–35</span><b>Tablero en mano</b><small>Muestra tu tablero, cómo se pide y las promos de la semana. Deja que lo vean en su celular.</small></li>
+        <li><span class="t">35–45</span><b>Cierre con una pregunta</b><small>¿Qué te llevarías hoy? y, a quien se emocionó con el negocio, ¿quieres que te cuente cómo empezar?</small></li>
+      </ol>
+      <h3 style="font:600 18px/1.2 var(--body);margin:26px 0 0">Lo que llevas</h3>
+      <ul class="checks" id="llevo" style="margin-top:6px"></ul>
+    </section>
+
+    <section aria-labelledby="sTit2">
+      <div class="cab"><h2 id="sTit2">A las 48 horas</h2><p>Un mensaje, no cinco.</p></div>
+      <div class="datos" style="margin-top:14px"><label><span class="etq">Nombre de la invitada</span><input type="text" id="sNom" maxlength="30" placeholder="Lupita"></label>
+        <div class="seg" id="sTipo" role="group" aria-label="Qué hizo"><button type="button" data-v="compro" aria-pressed="true">Compró</button><button type="button" data-v="duda" aria-pressed="false">Se quedó con dudas</button><button type="button" data-v="negocio" aria-pressed="false">Le llamó el negocio</button></div>
+      </div>
+      <div class="bloque" style="margin-top:14px"><pre id="seg"></pre><div class="acc"><button class="btn" type="button" id="segCopia">Copiar mensaje</button></div></div>
+      <div id="proArea">
+        <div class="cab" style="margin-top:36px"><h2 style="font-size:28px">Invitadas y resultados</h2><p>La versión Pro.</p></div>
+        <div id="pro"></div>
+        <p class="nube" id="nube"></p>
+        <div id="proCont" hidden>
+          <form id="invF" class="datos" style="margin-top:14px"><div class="fila"><input type="text" id="iN" maxlength="30" placeholder="Nombre" aria-label="Nombre" required><button class="btn2" type="submit">Agregar invitada</button></div></form>
+          <ul class="lst" id="invL"></ul>
+          <p class="lim" id="res"></p>
+          <div class="acc"><button class="btn2" type="button" id="propone">Proponer mi reunión a la cartelera del equipo</button></div>
+          <p class="nota" id="prNota"></p>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/en-vivo/" data-cuenta="ir-en-vivo"><b>Guion de venta en vivo</b><span>Si tu reunión es un live.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/eventos/" data-cuenta="ir-eventos"><b>Eventos del equipo</b><span>La cartelera donde puede aparecer tu reunión.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en tu celular. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = "mtb-reunion-v1", st = H.lee(KEY, {nom: "", dia: "", hora: "17:00", donde: "casa", lugar: "", llevo: {}, inv: [], ts: 0}), pro = false, nube = null, tSave = null, tipo = "compro";
+  if(!st.llevo) st.llevo = {}; if(!st.inv) st.inv = [];
+  var LLEVO = ["Tus productos de prueba y algo para limpiar las manos", "Tu tablero abierto y tu código QR a la mano", "Tarjeta con tu WhatsApp para cada invitada", "Algo de tomar y algo pequeño de comer", "Un espejo y buena luz", "La lista de invitadas para anotar quién compró y quién preguntó"];
+  var F = {nom: "rNom", dia: "rDia", hora: "rHora", donde: "rDonde", lugar: "rLugar"};
+  Object.keys(F).forEach(function(k){ var e = $(F[k]); e.value = st[k] || e.value; e.addEventListener("input", function(){ st[k] = e.value; guarda(); pinta(); }); e.addEventListener("change", function(){ st[k] = e.value; guarda(); pinta(); }); });
+  function guarda(){
+    st.ts = Date.now(); H.guarda(KEY, st);
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+  }
+  function inv(){
+    var d = st.dia ? new Date(st.dia + "T12:00:00").toLocaleDateString("es-MX", {weekday: "long", day: "numeric", month: "long"}) : "[día]";
+    var donde = st.donde === "video" ? "Por videollamada" + (st.lugar ? ": " + st.lugar : "") : (st.donde === "otra" ? "En casa de una amiga: " : "En mi casa: ") + (st.lugar || "[dirección]");
+    return "Hola, te invito a \"" + (st.nom || "mi reunión de belleza") + "\".\n\n📅 " + d + " a las " + (st.hora || "[hora]") + "\n📍 " + donde + "\n\nVamos a probar productos, tomar algo rico y pasarla bien. Son 45 minutos y no tienes que comprar nada. ¿Me confirmas si vienes? Puedes traer a una amiga.";
+  }
+  function seg(){
+    var n = $("sNom").value.trim() || "[nombre]";
+    var T = {compro: "Hola " + n + ", ¡qué gusto que estuviste! ¿Cómo te fue con lo que te llevaste? Si algo no te convence o quieres completar tu rutina, me dices y lo vemos.",
+      duda: "Hola " + n + ", me quedé pensando en lo que te gustó. ¿Qué duda se quedó? Te la resuelvo hoy en un mensaje y, si quieres, lo apartamos.",
+      negocio: "Hola " + n + ", me dio mucho gusto verte tan emocionada con lo del negocio. ¿Platicamos 15 minutos esta semana? Te cuento cómo arranqué yo y tú decides."};
+    return T[tipo];
+  }
+  function pinta(){
+    $("inv").textContent = inv(); $("seg").textContent = seg();
+    $("llevo").innerHTML = LLEVO.map(function(t, i){ return '<li><label><input type="checkbox" data-i="' + i + '"' + (st.llevo[i] ? " checked" : "") + "><span>" + H.esc(t) + "</span></label></li>"; }).join("");
+    $("llevo").querySelectorAll("input").forEach(function(c){ c.addEventListener("change", function(){ st.llevo[c.dataset.i] = c.checked; guarda(); }); });
+    if(pro) lista();
+  }
+  function lista(){
+    var ul = $("invL"); ul.innerHTML = "";
+    st.inv.forEach(function(p, i){
+      var li = document.createElement("li");
+      li.innerHTML = "<b>" + H.esc(p.n) + "</b><small>" + (p.c ? "confirmó" : "sin confirmar") + (p.a ? " · asistió" : "") + (p.v ? " · compró" : "") + '</small><div class="acc2"><button type="button" data-k="c" class="' + (p.c ? "on" : "") + '" aria-label="Confirmó">✓</button><button type="button" data-k="a" class="' + (p.a ? "on" : "") + '" aria-label="Asistió">Vino</button><button type="button" data-k="v" class="' + (p.v ? "on" : "") + '" aria-label="Compró">$</button><button type="button" data-k="x" aria-label="Quitar">×</button></div>';
+      li.querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ if(b.dataset.k === "x") st.inv.splice(i, 1); else p[b.dataset.k] = !p[b.dataset.k]; guarda(); lista(); }); });
+      ul.appendChild(li);
+    });
+    var c = st.inv.filter(function(p){ return p.c; }).length, a = st.inv.filter(function(p){ return p.a; }).length, v = st.inv.filter(function(p){ return p.v; }).length;
+    $("res").textContent = st.inv.length ? st.inv.length + " invitadas · " + c + " confirmaron · " + a + " vinieron · " + v + " compraron." : "Agrega a tus invitadas para ver cómo salió.";
+  }
+  $("invCopia").addEventListener("click", function(){ H.copia(inv(), "Invitación copiada"); });
+  $("segCopia").addEventListener("click", function(){ H.copia(seg(), "Mensaje copiado"); });
+  $("sNom").addEventListener("input", function(){ $("seg").textContent = seg(); });
+  $("sTipo").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; tipo = b.dataset.v; $("sTipo").querySelectorAll("button").forEach(function(x){ x.setAttribute("aria-pressed", x === b); }); $("seg").textContent = seg(); });
+  $("invF").addEventListener("submit", function(e){ e.preventDefault(); st.inv.push({n: $("iN").value.trim(), c: false, a: false, v: false}); $("iN").value = ""; guarda(); lista(); });
+  $("propone").addEventListener("click", function(){
+    if(!st.nom || !st.dia){ $("prNota").textContent = "Ponle nombre y día a tu reunión arriba."; return; }
+    PRO.datos({accion: "reunion.propone", evento: {nombre: st.nom, dia: st.dia, hora: st.hora, donde: st.donde, invitadas: st.inv.length}}).then(function(){ $("prNota").textContent = "Enviada. La revisamos y, si entra, aparece en la cartelera."; H.cuenta("reunion-propone"); }, function(e){ $("prNota").textContent = e.message; });
+  });
+  pinta();
+  PRO.caja($("pro"), "reunion", {titulo: "Tu reunión con invitadas", activo: "Lista de invitadas, quién vino y compró, y propón tu reunión a la cartelera del equipo."}).then(function(r){
+    if(!r.ok) return; pro = true; nube = PRO.nube("reunion"); $("proCont").hidden = false;
+    nube.lee().then(function(d){ if(d && (d.ts || 0) > (st.ts || 0)){ st = d; H.guarda(KEY, st); $("nube").textContent = "Reunión traída de la nube."; } pinta(); lista(); }).catch(function(){ lista(); });
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,349 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-presentacion">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Así funciona el negocio · en 5 minutos</title>
+<meta name="description" content="La presentación del negocio en siete pantallas, con lo confirmado: kit de $499, descuento de socia, 75 puntos, niveles desde 200 puntos y tu propia tienda en línea. Para abrir en una llamada o mandar por WhatsApp.">
+<meta property="og:title" content="Así funciona el negocio, en 5 minutos">
+<meta property="og:description" content="Siete pantallas con lo que importa: cómo ganas, cómo empiezas, qué te da el equipo y lo que seguro piensas.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/presentacion/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-presentacion.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 24px;display:grid;gap:22px}
+.quien{display:flex;align-items:center;gap:14px;padding:14px 16px;border:1px solid var(--line);border-radius:18px}
+.quien img,.quien .ini{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:none;background:var(--soft);display:grid;place-items:center;font:600 22px/1 var(--serif);color:var(--accent-ink)}
+.quien b{display:block;font:600 17px/1.2 var(--body)}
+.quien span{display:block;color:var(--muted);font-size:14px;margin-top:2px}
+.quien[hidden]{display:none}
+.modos{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+
+/* las siete pantallas, modo lectura */
+.deck{counter-reset:s;display:grid;gap:0;border-top:2px solid var(--ink)}
+.p,.p>*{min-width:0}.p h2{overflow-wrap:break-word}
+.p{display:grid;gap:14px;padding:30px 0 34px;border-bottom:1px solid var(--line);scroll-margin-top:16px}
+.p .n{font:500 13px/1 var(--mono);color:var(--accent-ink)}
+.p .n::before{counter-increment:s;content:"0" counter(s) " · "}
+.p h2{font-size:clamp(32px,8.5vw,54px);line-height:1}
+.p .t{font-size:18px;max-width:30em;margin:0}
+.p .t b{font-weight:600}
+.tres{list-style:none;margin:4px 0 0;padding:0;display:grid;gap:0}
+.tres li{display:grid;grid-template-columns:36px minmax(0,1fr);gap:4px 12px;padding:14px 0;border-top:1px solid var(--line)}
+.tres li i{font:400 30px/.95 var(--serif);font-style:italic;color:var(--accent-ink);grid-row:1 / span 2}
+.tres li b{font-weight:600}
+.tres li span{grid-column:2;overflow-wrap:anywhere;color:var(--muted);font-size:15px}
+.cifras{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cifras div{padding:14px 10px 14px 0}
+.cifras div+div{padding-left:12px;border-left:1px solid var(--line)}
+.cifras b{display:block;font:500 clamp(22px,6vw,32px)/1.05 var(--mono);font-variant-numeric:tabular-nums}
+.cifras span{display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.3}
+.niveles{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.niveles li{background:var(--soft);border-radius:12px;padding:10px 8px;text-align:center}
+.niveles b{display:block;font:500 18px/1 var(--mono)}
+.niveles span{display:block;font:400 12px/1.2 var(--mono);color:var(--muted);margin-top:5px}
+.ritmo{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;list-style:none;margin:0;padding:0}
+.ritmo li{border:1px solid var(--line);border-radius:14px;padding:12px 8px;min-width:0}
+.ritmo b{display:block;font-weight:600;font-size:15px}
+.ritmo span{display:block;font:400 13px/1.35 var(--mono);color:var(--muted);margin-top:6px}
+.honesto{border-left:3px solid var(--accent);padding:4px 0 4px 16px;color:var(--ink)}
+.honesto p{margin:0}
+.cta{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center}
+
+/* modo en llamada: una pantalla a la vez */
+body.llamada{background:var(--navy)}
+body.llamada .wrap>*:not(.deck):not(.salir){display:none}
+body.llamada .deck{border:0;display:block;height:100dvh;overflow-y:auto;scroll-snap-type:y mandatory;margin:0 -16px}
+body.llamada .p{height:100dvh;scroll-snap-align:start;border:0;padding:max(56px,8vh) 24px 24px;align-content:center;color:var(--cream)}
+body.llamada .p:nth-child(even){background:#fff;color:var(--ink)}
+body.llamada .p h2{font-size:clamp(40px,10vw,96px)}
+body.llamada .p .t{font-size:clamp(19px,2.6vw,28px);max-width:26em}
+body.llamada .p .n{color:var(--pink)}
+body.llamada .p:nth-child(even) .n{color:var(--accent-ink)}
+body.llamada .tres li,body.llamada .cifras,body.llamada .cifras div+div{border-color:rgba(255,255,255,.2)}
+body.llamada .p:nth-child(even) .tres li,body.llamada .p:nth-child(even) .cifras{border-color:var(--line)}
+body.llamada .tres li i{color:var(--pink)}
+body.llamada .p:nth-child(even) .tres li i{color:var(--accent-ink)}
+body.llamada .tres li span,body.llamada .cifras span,body.llamada .niveles span,body.llamada .ritmo span{color:#C9CBE0}
+body.llamada .p:nth-child(even) :is(.tres li span,.cifras span,.niveles span,.ritmo span){color:var(--muted)}
+body.llamada .niveles li{background:rgba(255,255,255,.08)}
+body.llamada .p:nth-child(even) .niveles li{background:var(--soft)}
+body.llamada .ritmo li{border-color:rgba(255,255,255,.2)}
+body.llamada .p:nth-child(even) .ritmo li{border-color:var(--line)}
+body.llamada .honesto{border-color:var(--pink)}
+.salir{display:none;position:fixed;top:14px;right:14px;z-index:5;gap:8px;align-items:center}
+.salir button{min-height:40px;border-radius:999px;padding:0 14px;border:1px solid rgba(255,255,255,.4);background:rgba(27,31,59,.6);color:#fff;font-weight:600;cursor:pointer;backdrop-filter:blur(6px)}
+.salir .pos{font:500 13px/1 var(--mono);color:#fff;background:rgba(27,31,59,.6);padding:12px 12px;border-radius:999px}
+body.llamada .salir{display:flex}
+.cab{margin-top:40px}
+.mandar{display:grid;gap:14px;padding:18px 0 0}
+.mandar .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.link{font:400 14px/1.4 var(--mono);word-break:break-all;background:var(--soft);border-radius:12px;padding:12px 14px}
+.pro-hist{display:grid;gap:12px;margin-top:14px}
+.pro-hist label{display:block}
+.pro-hist textarea{min-height:64px}
+.aperturas{font:400 14px/1.4 var(--mono);color:var(--muted)}
+@media (min-width:900px){
+  .portada{grid-template-columns:1.1fr .9fr;align-items:end;gap:56px;padding:56px 0 32px}
+  .p{grid-template-columns:1fr 1.2fr;gap:12px 56px;padding:40px 0 44px}
+  .p .n,.p h2{grid-column:1}
+  .p .t,.p .tres,.p .cifras,.p .niveles,.p .ritmo,.p .honesto,.p .cta{grid-column:2}
+  .p h2{position:sticky;top:20px;align-self:start}
+  body.llamada .p{padding:8vh 10vw;grid-template-columns:1fr 1.1fr;gap:16px 72px}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+}
+@media print{.barra,.modos,.sigue,.mandar,footer,.pro-caja,.salir{display:none!important}.p{break-inside:avoid}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Así funciona <em>el negocio</em></h1>
+      <p class="bajada">En cinco minutos y siete pantallas: cómo ganas, cómo empiezas, qué te da el equipo y lo que seguro estás pensando. Solo lo confirmado, sin promesas.</p>
+    </div>
+    <div>
+      <div class="quien" id="quien" hidden></div>
+      <div class="modos" style="margin-top:14px">
+        <button class="btn" type="button" id="irLlamada" data-cuenta="modo-llamada">Abrir en modo llamada</button>
+        <a class="enlace" href="#mandar">Mandarla por WhatsApp</a>
+      </div>
+    </div>
+  </header>
+
+  <div class="salir"><span class="pos" id="pos">1 / 7</span><button type="button" id="salir">Salir</button></div>
+
+  <section class="deck" id="deck" aria-label="La presentación">
+    <article class="p" id="p1">
+      <span class="n">Para empezar</span>
+      <h2>Un negocio de belleza <em>con tu propia tienda</em></h2>
+      <p class="t">Vendes productos de belleza y cuidado personal de Farmasi a precio de socia, los ofreces a precio de catálogo y, si quieres, armas un equipo. <b>Tienes tu propia página de tienda en mitienda.beauty</b>, con catálogo y pedidos por WhatsApp, desde el día uno.</p>
+      <p class="t" id="quienTxt" hidden></p>
+    </article>
+    <article class="p" id="p2">
+      <span class="n">Cómo ganas</span>
+      <h2>Tres formas <em>de ganar</em></h2>
+      <ul class="tres">
+        <li><i>1</i><b>Compras a precio de socia</b><span>Descuento del 30 % en la mayoría de las líneas y del 50 % en algunas, sobre el precio de catálogo. Aunque solo compres para ti, ya te conviene.</span></li>
+        <li><i>2</i><b>Vendes a precio de catálogo</b><span>La diferencia entre lo que pagas y lo que cobras es tuya, desde el primer pedido.</span></li>
+        <li><i>3</i><b>Bono por puntos de grupo</b><span>Desde 200 puntos al mes (3 %) hasta 25 %, y de ahí a dirección. Tus puntos, los de tus clientas y los de tu equipo suman. <a href="/plan-de-compensacion/">Así se calcula</a>.</span></li>
+      </ul>
+    </article>
+    <article class="p" id="p3">
+      <span class="n">Cómo empiezas</span>
+      <h2>Tu kit, tu ritmo <em>y tu tienda</em></h2>
+      <div class="cifras">
+        <div><b>$499</b><span>tu kit de inicio, para probar y mostrar producto</span></div>
+        <div><b>1 día</b><span>para tener tu página de tienda lista con tu nombre</span></div>
+        <div><b>10 min</b><span>al día para tu primer bloque de contactos</span></div>
+      </div>
+      <ul class="ritmo" aria-label="Los tres ritmos">
+        <li><b>Part Time</b><span>10 contactos<br>1 presentación<br>1 contenido<br>al día</span></li>
+        <li><b>Medio Tiempo</b><span>20 contactos<br>2 presentaciones<br>2 contenidos<br>al día</span></li>
+        <li><b>Full Time</b><span>30 contactos<br>3 presentaciones<br>3 contenidos<br>al día</span></li>
+      </ul>
+      <p class="t">Eliges tu ritmo según tu vida, no al revés. El método es el mismo; cambia la cantidad.</p>
+    </article>
+    <article class="p" id="p4">
+      <span class="n">Los números</span>
+      <h2>Lo que vale <em>un punto</em></h2>
+      <div class="cifras">
+        <div><b>$25</b><span>vale cada punto, a precio de socia</span></div>
+        <div><b>75</b><span>puntos personales al mes para cobrar tus bonos (unos $1,875)</span></div>
+        <div><b>200</b><span>puntos de grupo para llegar a 3 % (unos $5,000 en pedidos)</span></div>
+      </div>
+      <ul class="niveles" aria-label="Niveles y puntos de grupo al mes">
+        <li><b>3%</b><span>200</span></li><li><b>6%</b><span>400</span></li><li><b>9%</b><span>600</span></li><li><b>12%</b><span>900</span></li>
+        <li><b>15%</b><span>1,400</span></li><li><b>18%</b><span>2,200</span></li><li><b>22%</b><span>3,600</span></li><li><b>25%</b><span>5,000</span></li>
+      </ul>
+      <p class="t">De 5,000 puntos en adelante empieza la dirección: Directora, Bronce, Oro. La tabla es la del Back Office de México.</p>
+    </article>
+    <article class="p" id="p5">
+      <span class="n">Lo que te da el equipo</span>
+      <h2>No empiezas <em>sola</em></h2>
+      <ul class="tres">
+        <li><i>·</i><b>Tu líder y el 1 a 1</b><span>Tu primer 1 a 1 en la primera semana, y después cada quincena, con tus números enfrente.</span></li>
+        <li><i>·</i><b>El Centro de la socia</b><span>Tu lista de contactos, la hoja del día, mensajes para copiar, el reto de tus primeros 200 puntos y tu checklist de bienvenida.</span></li>
+        <li><i>·</i><b>Capacitación semanal y eventos</b><span>Una sesión del equipo cada semana y eventos presenciales para vender y presentar.</span></li>
+        <li><i>·</i><b>Programa de bienvenida</b><span>Cuatro escalones de puntos en tus primeros meses: 50, 60, 70 y 80. Lo que da cada uno lo ves en tu Back Office.</span></li>
+      </ul>
+    </article>
+    <article class="p" id="p6">
+      <span class="n">Lo que seguro piensas</span>
+      <h2>¿No es <em>una pirámide?</em></h2>
+      <ul class="tres">
+        <li><i>·</i><b>Entras con $499, una sola vez</b><span>Con producto que usas o vendes. No hay mensualidad ni inventario obligatorio.</span></li>
+        <li><i>·</i><b>El bono sale de los pedidos</b><span>No de cuántas personas inscribes. Ganas desde tu primer pedido, aunque nunca armes equipo.</span></li>
+        <li><i>·</i><b>Tu socia te puede rebasar</b><span>Gana más el grupo que hace más puntos ese mes, no quien llegó primero.</span></li>
+        <li><i>·</i><b>Si ya no quieres, dejas de pedir</b><span>Sin 75 puntos en 6 meses, la cuenta se cierra sola. <a href="/sin-mitos/">Las dudas, una por una</a>.</span></li>
+      </ul>
+    </article>
+    <article class="p" id="p7">
+      <span class="n">¿Empezamos?</span>
+      <h2>Lo honesto, <em>y el siguiente paso</em></h2>
+      <div class="honesto"><p>No es dinero rápido. Es un negocio que crece con lo que haces cada día: contactar, presentar y dar seguimiento. Lo que avances depende de tu trabajo y de tu punto de partida; nadie te garantiza resultados.</p></div>
+      <p class="t">Si te hace sentido, el siguiente paso es una llamada de 15 minutos para ver tu kit, tu ritmo y tu primera semana.</p>
+      <div class="cta">
+        <a class="btn" id="quiero" href="#" target="_blank" rel="noopener" data-cuenta="quiero-saber">Quiero saber más</a>
+        <a class="enlace" href="/plan-de-compensacion/">Ver el plan de compensación</a>
+      </div>
+    </article>
+  </section>
+
+  <div class="dos">
+    <section id="mandar" aria-labelledby="mTit">
+      <div class="cab"><h2 id="mTit">Mandar tu presentación</h2><p>Con tu link, quien la abra te escribe a ti.</p></div>
+      <div class="mandar">
+        <label><span class="etq">¿Quién eres?</span><select id="yo"><option value="">Elige tu nombre</option><option value="otra">No estoy en la lista</option></select></label>
+        <div class="fila" id="otra" hidden>
+          <label><span class="etq">Tu nombre</span><input type="text" id="oNombre" placeholder="Ana"></label>
+          <label><span class="etq">Tu WhatsApp (10 dígitos)</span><input type="tel" id="oWa" inputmode="numeric" placeholder="5512345678"></label>
+        </div>
+        <div class="link" id="link">mitienda.beauty/mentorias/herramientas/presentacion/</div>
+        <div class="cta">
+          <a class="btn" id="waLink" href="#" target="_blank" rel="noopener" data-cuenta="mandar">Mandar por WhatsApp</a>
+          <button class="enlace" type="button" id="copiar">Copiar mi link</button>
+        </div>
+        <p class="aperturas" id="aperturas"></p>
+      </div>
+    </section>
+    <section aria-labelledby="pTit">
+      <div class="cab"><h2 id="pTit">Con tu cara y tu historia</h2><p>La versión Pro.</p></div>
+      <div id="pro"></div>
+      <div class="pro-hist" id="proHist" hidden>
+        <label><span class="etq">Por qué empecé</span><textarea id="h1" maxlength="280" placeholder="Quería un ingreso extra sin dejar a mis hijos…"></textarea></label>
+        <label><span class="etq">Qué cambió</span><textarea id="h2" maxlength="280" placeholder="Hoy tengo clientas que me recomiendan y un equipo de 6…"></textarea></label>
+        <label><span class="etq">Lo que logré, en hechos</span><textarea id="h3" maxlength="280" placeholder="Llegué a 12 % en mi mes 4. Sin cifras de dinero."></textarea></label>
+        <div class="cta"><button class="btn" type="button" id="guardarHist">Guardar en mi presentación</button><span class="guardado" id="histOk"></span></div>
+        <p class="nota">Tu historia sale en la primera pantalla cuando alguien abre tu link. Hechos, no promesas: nada de cifras de ingresos.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Después de presentar</h2></div>
+    <a class="otra" href="/mentorias/herramientas/mensajes/#seguir" data-cuenta="ir-mensajes"><b>Mensajes de seguimiento</b><span>El mismo día: «¿Qué fue lo que más te llamó la atención?»</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/objeciones/" data-cuenta="ir-objeciones"><b>¿Y si me dice que no?</b><span>Qué contestar a «está caro», «es pirámide» y «luego te digo».</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/lista/" data-cuenta="ir-lista"><b>Mi lista de 50</b><span>Anótala con su siguiente paso y la fecha.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi. Kit, puntos y niveles salen de la guía de inscripción y del Back Office de México; si algo cambia, lo que manda es el Back Office. No promete ingresos.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var q = new URLSearchParams(location.search), KEY = "mtb-presentacion-v1", st = H.lee(KEY, {});
+  var EQ = [], yo = null;
+  var URLB = "https://mitienda.beauty/mentorias/herramientas/presentacion/";
+
+  // ¿Quién la manda? (?de=slug del equipo, o ?n=nombre&wa=número)
+  function pintaQuien(p){
+    if(!p) return;
+    var foto = p.slug ? '/fotos/' + p.slug + '.jpg' : "";
+    $("quien").hidden = false;
+    $("quien").innerHTML = (foto ? '<img src="'+foto+'" alt="" onerror="this.outerHTML=\'<span class=ini>'+H.esc((p.nombre||"?")[0])+'</span>\'">' : '<span class="ini">'+H.esc((p.nombre||"?")[0])+'</span>') +
+      '<div><b>Te lo cuenta '+H.esc(p.nombre)+'</b><span>'+(p.tienda ? H.esc(p.tienda) : "Socia del equipo")+'</span></div>';
+    $("quiero").href = H.wa("Hola " + p.nombre + ", vi tu presentación del negocio y quiero saber más. ¿Cuándo podemos platicar 15 minutos?", p.whatsapp);
+    if(p.slug) H.cuenta("de-" + p.slug, "Abierta de " + p.nombre);
+    // historia Pro pública
+    PRO.datos({accion:"datos.publico", herramienta:"presentacion", clave: p.slug || p.whatsapp}).then(function(j){
+      var d = j.datos; if(!d || !(d.h1 || d.h2 || d.h3)) return;
+      $("quienTxt").hidden = false;
+      $("quienTxt").innerHTML = '<b>' + H.esc(p.nombre) + ':</b> ' + [d.h1, d.h2, d.h3].filter(Boolean).map(H.esc).join(" ");
+    }).catch(function(){});
+  }
+  var de = q.get("de"), n = q.get("n"), wa = q.get("wa");
+  if(!de && n && /^\d{10,13}$/.test(wa || "")){ pintaQuien({nombre:n, whatsapp: wa.length === 10 ? "52" + wa : wa}); }
+  // Sin socia en el link, «Quiero saber más» le escribe a Sel.
+  var SEL = {nombre:"Selene", whatsapp:"525541456984"};
+  function aSel(){ $("quiero").href = H.wa("Hola " + SEL.nombre + ", vi la presentación del negocio del equipo y quiero saber más. ¿Cuándo podemos platicar 15 minutos?", SEL.whatsapp); }
+  if(!de && !(n && /^\d{10,13}$/.test(wa || ""))) aSel();
+
+  H.equipo().then(function(eq){
+    EQ = eq;
+    $("yo").innerHTML = '<option value="">Elige tu nombre</option>' + eq.map(function(c){ return '<option value="'+c.slug+'">'+H.esc(c.nombre)+'</option>'; }).join("") + '<option value="otra">No estoy en la lista</option>';
+    if(de){ var p = eq.filter(function(c){ return c.slug === de; })[0]; if(p) pintaQuien(p); else aSel(); }
+    if(st.yo){ $("yo").value = st.yo; }
+    if(st.oNombre) $("oNombre").value = st.oNombre; if(st.oWa) $("oWa").value = st.oWa;
+    link();
+  });
+
+  function link(){
+    var v = $("yo").value; $("otra").hidden = v !== "otra";
+    var u = URLB, nombre = "";
+    if(v && v !== "otra"){ u += "?de=" + v; yo = EQ.filter(function(c){ return c.slug === v; })[0]; nombre = yo ? yo.nombre : ""; }
+    else if(v === "otra"){ var on = $("oNombre").value.trim(), ow = $("oWa").value.replace(/\D/g, ""); if(on && ow.length >= 10){ u += "?n=" + encodeURIComponent(on) + "&wa=" + ow; nombre = on; } yo = null; }
+    else yo = null;
+    $("link").textContent = u.replace("https://", "");
+    var txt = (nombre ? "Hola, soy " + nombre + ". " : "") + "Te dejo cómo funciona mi negocio, en 5 minutos y sin rollo:\n" + u + "\nSi te hace sentido, me dices y platicamos 15 minutos.";
+    $("waLink").href = H.wa(txt);
+    $("copiar").onclick = function(){ H.copia(u, "Link copiado"); };
+    st.yo = v; st.oNombre = $("oNombre").value; st.oWa = $("oWa").value; H.guarda(KEY, st);
+    aperturas(v);
+  }
+  ["yo","oNombre","oWa"].forEach(function(id){ $(id).addEventListener(id === "yo" ? "change" : "input", link); });
+
+  function aperturas(slug){
+    $("aperturas").textContent = "";
+    if(!slug || slug === "otra") return;
+    fetch("/_data/estadisticas.json").then(function(r){ return r.json(); }).then(function(d){
+      var h = (d.herramientas && d.herramientas.presentacion) || {}, n = h[slug];
+      if(n != null) $("aperturas").textContent = "Tu link se ha abierto " + H.fmt(n) + (n === 1 ? " vez" : " veces") + " (se actualiza cada día).";
+    }).catch(function(){});
+  }
+
+  // modo llamada
+  var slides = Array.prototype.slice.call(document.querySelectorAll(".p"));
+  function entra(){ document.body.classList.add("llamada"); $("deck").scrollTop = 0; pos(); H.cuenta("llamada"); }
+  function sale(){ document.body.classList.remove("llamada"); }
+  function pos(){ var d = $("deck"), i = Math.round(d.scrollTop / d.clientHeight); $("pos").textContent = Math.min(slides.length, i + 1) + " / " + slides.length; }
+  $("irLlamada").addEventListener("click", entra);
+  $("salir").addEventListener("click", sale);
+  $("deck").addEventListener("scroll", function(){ if(document.body.classList.contains("llamada")) pos(); });
+  document.addEventListener("keydown", function(e){
+    if(!document.body.classList.contains("llamada")) return;
+    var d = $("deck"), h = d.clientHeight, i = Math.round(d.scrollTop / h);
+    if(e.key === "ArrowDown" || e.key === "ArrowRight" || e.key === " "){ e.preventDefault(); d.scrollTo({top: Math.min(slides.length - 1, i + 1) * h, behavior:"smooth"}); }
+    if(e.key === "ArrowUp" || e.key === "ArrowLeft"){ e.preventDefault(); d.scrollTo({top: Math.max(0, i - 1) * h, behavior:"smooth"}); }
+    if(e.key === "Escape") sale();
+  });
+  if(q.get("modo") === "llamada") entra();
+
+  // Pro: tu historia
+  PRO.caja($("pro"), "presentacion", {titulo:"Presentación con tu historia", activo:"Escribe tu historia abajo. Se guarda con tu código y sale cuando alguien abre tu link."}).then(function(r){
+    if(!r.ok) return;
+    $("proHist").hidden = false;
+    var nube = PRO.nube("presentacion");
+    nube.lee().then(function(d){ if(d){ $("h1").value = d.h1 || ""; $("h2").value = d.h2 || ""; $("h3").value = d.h3 || ""; } }).catch(function(){});
+    $("guardarHist").addEventListener("click", function(){
+      var v = $("yo").value, clave = v && v !== "otra" ? v : ($("oWa").value.replace(/\D/g, "").length >= 10 ? ($("oWa").value.replace(/\D/g, "").length === 10 ? "52" : "") + $("oWa").value.replace(/\D/g, "") : "");
+      if(!clave){ $("histOk").textContent = "Primero elige tu nombre arriba (o escribe tu WhatsApp)."; return; }
+      var d = {h1:$("h1").value.trim(), h2:$("h2").value.trim(), h3:$("h3").value.trim(), clave:clave};
+      if(/\$\s?\d|\d+\s?(mil|k)\b/i.test(d.h1 + d.h2 + d.h3)){ $("histOk").textContent = "Quita las cifras de dinero: la historia va en hechos, no en ingresos."; return; }
+      $("histOk").textContent = "Guardando…";
+      nube.guarda(d, true).then(function(){ $("histOk").textContent = "Guardada. Ya sale en tu link."; H.cuenta("historia-guardada"); }).catch(function(e){ $("histOk").textContent = e.message; });
+    });
+  });
+})();
+</script>
+</body>
+</html>

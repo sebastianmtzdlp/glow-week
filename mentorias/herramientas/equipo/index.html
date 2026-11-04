@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-equipo">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mapa de mi equipo</title>
+<meta name="description" content="Tus líneas, tus puntos del mes, tu nivel y tus puntos laterales en una sola pantalla. Te dice cuánto falta para el siguiente nivel y a quién escribirle. Gratis, se guarda en tu celular.">
+<meta property="og:title" content="Mapa de mi equipo">
+<meta property="og:description" content="Tus líneas, tu nivel y tus laterales del mes, y a quién escribirle.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/equipo/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-equipo.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.marcador{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px}
+.marcador .niv{font:400 clamp(64px,18vw,104px)/.9 var(--serif);letter-spacing:-.02em}
+.marcador .niv em{color:var(--pink)}
+.marcador .sub{margin:8px 0 0;color:#C9CBE0;font-size:15px}
+.marcador .barra-av{background:rgba(255,255,255,.16);margin-top:16px}
+.marcador .barra-av i{background:var(--pink)}
+.cifras{display:grid;grid-template-columns:repeat(3,1fr);margin-top:16px;border-top:1px solid rgba(255,255,255,.16)}
+.cifras div{padding:12px 8px 0 0}
+.cifras div+div{padding-left:12px;border-left:1px solid rgba(255,255,255,.16)}
+.cifras b{display:block;font:500 24px/1 var(--mono)}
+.cifras span{display:block;font-size:12px;color:#C9CBE0;margin-top:4px;line-height:1.3}
+.mes{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lineas{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.lin{display:grid;grid-template-columns:1fr 92px 40px;gap:8px;padding:10px 0;border-bottom:1px solid var(--line);align-items:center}
+.lin .n{min-height:42px;font-size:16px}
+.lin .p{min-height:42px;font-family:var(--mono);text-align:right;font-size:16px}
+.lin .x{border:0;background:none;color:var(--muted);cursor:pointer;min-height:40px;font-size:20px}
+.lin .tipo{grid-column:1 / -1;display:flex;flex-wrap:wrap;gap:6px 10px;align-items:center;font-size:13px;color:var(--muted)}
+.lin .tipo .chip{min-height:30px;font-size:13px;padding:0 10px}
+.lin .tipo .cmp{font-family:var(--mono);font-size:12px}
+.lin .tipo .sube{color:var(--good)}.lin .tipo .baja{color:var(--accent-ink)}
+.opc{display:flex;gap:10px;align-items:start;margin:14px 0 0;font-size:15px;line-height:1.4}
+.opc input{width:20px;height:20px;margin-top:2px;accent-color:var(--ink);flex:none}
+.lim{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.lim.tope{color:var(--accent-ink)}
+.nube{font:400 13px/1.4 var(--mono);color:var(--good)}
+.escr{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.escr li{display:grid;grid-template-columns:1fr auto;gap:2px 12px;padding:12px 0;border-bottom:1px solid var(--line);align-items:center}
+.escr b{font-weight:600}
+.escr small{color:var(--muted);grid-column:1}
+.escr a{grid-row:1 / span 2;grid-column:2}
+.hist{list-style:none;margin:12px 0 0;padding:0}
+.hist li{display:grid;grid-template-columns:64px 1fr 70px;gap:10px;align-items:center;padding:6px 0;font-size:14px}
+.hist .b{height:14px;border-radius:99px;background:var(--soft);overflow:hidden}
+.hist .b i{display:block;height:100%;background:var(--ink);border-radius:99px}
+.hist .v{font:500 13px/1 var(--mono);text-align:right}
+.resp{display:grid;gap:10px;margin-top:14px}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .dos{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
+}
+@media print{.barra,.sigue,footer,.pro-caja,.x,.resp{display:none!important}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Mapa de <em>mi equipo</em></h1>
+      <p class="bajada">Tus líneas y tus puntos del mes en una sola pantalla. Ves tu nivel, tus puntos laterales y cuánto te falta para el siguiente. Se guarda en tu celular.</p>
+      <label class="etq" for="mes" style="margin-top:18px">Mes</label>
+      <input type="month" id="mes" style="max-width:220px">
+    </div>
+    <section class="marcador" aria-label="Tu marcador del mes">
+      <div class="niv" id="niv">0<em>%</em></div>
+      <p class="sub" id="sub">Agrega tus puntos personales y tus líneas.</p>
+      <div class="barra-av" id="av"><i></i></div>
+      <div class="cifras">
+        <div><b id="cG">0</b><span>puntos de grupo</span></div>
+        <div><b id="cL">0</b><span>puntos laterales</span></div>
+        <div><b id="cD">0</b><span>directoras en tu línea</span></div>
+      </div>
+    </section>
+  </header>
+
+  <div class="dos">
+    <section aria-labelledby="lTit">
+      <div class="cab"><h2 id="lTit">Tus líneas</h2><p>Una por cada socia directa. Escribe los puntos de toda su línea.</p></div>
+      <div class="mes" style="margin-top:16px">
+        <label><span class="etq">Mis puntos personales</span><input type="number" id="pers" inputmode="numeric" min="0" placeholder="75"></label>
+        <label style="align-self:end"><button class="btn2" type="button" id="agrega" style="width:100%">Agregar línea</button></label>
+      </div>
+      <ol class="lineas" id="lineas"></ol>
+      <p class="lim" id="lim"></p>
+      <label class="opc"><input type="checkbox" id="desc" checked><span>Descartar la línea no directora más alta al sacar mis laterales. <small style="color:var(--muted)">Así lo manejamos en el equipo; confírmalo con tu líder.</small></span></label>
+    </section>
+
+    <section aria-labelledby="eTit">
+      <div class="cab"><h2 id="eTit">A quién escribirle</h2><p>Las líneas con menos puntos que el mes pasado o en cero.</p></div>
+      <ul class="escr" id="escr"></ul>
+      <p class="nota" id="escrNota"></p>
+    </section>
+  </div>
+
+  <section aria-labelledby="pTit">
+    <div class="cab"><h2 id="pTit">Meses, comparación y nube</h2><p>La versión Pro.</p></div>
+    <div id="pro"></div>
+    <p class="nube" id="nube"></p>
+    <div id="proCont" hidden>
+      <ul class="hist" id="hist"></ul>
+    </div>
+    <div class="resp">
+      <span class="etq" style="margin:0">Respaldo</span>
+      <div style="display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center"><button class="btn2" type="button" id="respCopia">Copiar respaldo</button><button class="enlace" type="button" id="respPega">Restaurar desde texto</button></div>
+      <textarea id="respTxt" hidden placeholder="Pega aquí tu respaldo"></textarea>
+    </div>
+  </section>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/reconocimientos/" data-cuenta="ir-reconocimientos"><b>Reconocimientos</b><span>Tu cuadro de honor se arma con estas líneas.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/plan-de-compensacion/" data-cuenta="ir-plan"><b>El plan de compensación</b><span>Cómo se cuenta cada nivel, explicado.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/nivel/" data-cuenta="ir-nivel"><b>Calculadora de nivel</b><span>Tu nivel con solo tus puntos.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Los nombres y los puntos se quedan en tu celular. Los niveles y los laterales son una guía, no el cálculo oficial de Farmasi. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var KEY = "mtb-equipo-v1", LIM = 8;
+  var NV = [[0,"0"],[200,"3"],[400,"6"],[600,"9"],[900,"12"],[1400,"15"],[2200,"18"],[3600,"22"],[5000,"25"]];
+  var mesHoy = H.iso().slice(0, 7);
+  var st = H.lee(KEY, null);
+  if(!st || !st.meses) st = {mes: mesHoy, meses: {}, ts: 0};
+  st.mes = mesHoy; $("mes").value = st.mes;
+  var pro = false, nube = null, tSave = null;
+
+  function mes(){ if(!st.meses[st.mes]) st.meses[st.mes] = {personales: 0, lineas: [], descarta: true}; return st.meses[st.mes]; }
+  function prev(m){ var d = new Date(m + "-15T12:00:00"); d.setMonth(d.getMonth() - 1); return d.getFullYear() + "-" + String(d.getMonth() + 1).padStart(2, "0"); }
+  function nivel(g){ var r = NV[0]; NV.forEach(function(n){ if(g >= n[0]) r = n; }); return r; }
+  function calcula(m){
+    var pers = +m.personales || 0, tot = pers, noDir = [], dirs = 0;
+    m.lineas.forEach(function(l){ var p = +l.p || 0; tot += p; if(l.s === "d") dirs++; else noDir.push(p); });
+    var lat = pers + noDir.reduce(function(a, b){ return a + b; }, 0);
+    if(m.descarta !== false && noDir.length) lat -= Math.max.apply(null, noDir);
+    return {G: tot, lat: lat, dirs: dirs};
+  }
+  function guarda(){
+    st.ts = Date.now(); H.guarda(KEY, st);
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour:"2-digit", minute:"2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+  }
+
+  function pinta(){
+    var m = mes(), c = calcula(m), nv = nivel(c.G), idx = NV.indexOf(nv), sig = NV[idx + 1];
+    $("niv").innerHTML = nv[1] + "<em>%</em>";
+    $("cG").textContent = H.fmt(c.G); $("cL").textContent = H.fmt(c.lat); $("cD").textContent = c.dirs;
+    var av = $("av"); av.classList.toggle("ok", !sig);
+    av.firstElementChild.style.transform = "scaleX(" + (sig ? Math.min(1, (c.G - nv[0]) / (sig[0] - nv[0])) : 1) + ")";
+    var s;
+    if(!m.lineas.length && !m.personales) s = "Agrega tus puntos personales y tus líneas.";
+    else if(!sig) s = "Estás en el 25%. Para dirección: 5,000 de grupo y 1,500 de laterales" + (c.lat >= 1500 ? " (ya los tienes)." : ", te faltan " + H.fmt(1500 - c.lat) + " laterales.");
+    else s = "Te faltan " + H.fmt(sig[0] - c.G) + " puntos para el " + sig[1] + "%.";
+    $("sub").textContent = s;
+    $("pers").value = m.personales || ""; $("desc").checked = m.descarta !== false;
+
+    var ant = st.meses[prev(st.mes)], antMap = {};
+    if(ant) ant.lineas.forEach(function(l){ if(l.n) antMap[l.n.trim().toLowerCase()] = +l.p || 0; });
+    var ul = $("lineas"); ul.innerHTML = "";
+    m.lineas.forEach(function(l, i){
+      var li = document.createElement("li"); li.className = "lin";
+      var cmp = "";
+      if(ant && l.n && antMap[l.n.trim().toLowerCase()] != null){ var d = (+l.p || 0) - antMap[l.n.trim().toLowerCase()]; cmp = '<span class="cmp ' + (d >= 0 ? "sube" : "baja") + '">' + (d >= 0 ? "+" : "") + H.fmt(d) + " vs mes pasado</span>"; }
+      li.innerHTML = '<input class="n" type="text" placeholder="Nombre" aria-label="Nombre de la línea" value="' + H.esc(l.n || "") + '">' +
+        '<input class="p" type="number" inputmode="numeric" min="0" placeholder="0" aria-label="Puntos de la línea" value="' + (l.p === "" || l.p == null ? "" : l.p) + '">' +
+        '<button class="x" type="button" aria-label="Quitar línea">×</button>' +
+        '<div class="tipo"><button class="chip" type="button" aria-pressed="' + (l.s === "d") + '">Es directora</button>' + cmp + '</div>';
+      li.querySelector(".n").addEventListener("input", function(e){ l.n = e.target.value; guarda(); escr(); });
+      li.querySelector(".p").addEventListener("input", function(e){ l.p = e.target.value === "" ? "" : +e.target.value; guarda(); resumen(); escr(); });
+      li.querySelector(".chip").addEventListener("click", function(){ l.s = l.s === "d" ? "s" : "d"; guarda(); pinta(); });
+      li.querySelector(".x").addEventListener("click", function(){ m.lineas.splice(i, 1); guarda(); pinta(); });
+      ul.appendChild(li);
+    });
+    var lm = pro ? "Sin límite de líneas." : m.lineas.length + " de " + LIM + " líneas gratis.";
+    $("lim").textContent = lm; $("lim").classList.toggle("tope", !pro && m.lineas.length >= LIM);
+    $("agrega").disabled = !pro && m.lineas.length >= LIM;
+    escr(); hist();
+  }
+  // actualiza solo las cifras mientras escribe, sin repintar las filas
+  function resumen(){
+    var m = mes(), c = calcula(m), nv = nivel(c.G), idx = NV.indexOf(nv), sig = NV[idx + 1];
+    $("niv").innerHTML = nv[1] + "<em>%</em>"; $("cG").textContent = H.fmt(c.G); $("cL").textContent = H.fmt(c.lat); $("cD").textContent = c.dirs;
+    $("av").firstElementChild.style.transform = "scaleX(" + (sig ? Math.min(1, (c.G - nv[0]) / (sig[0] - nv[0])) : 1) + ")";
+    $("sub").textContent = sig ? "Te faltan " + H.fmt(sig[0] - c.G) + " puntos para el " + sig[1] + "%." : "Estás en el 25%.";
+  }
+  function escr(){
+    var m = mes(), ant = st.meses[prev(st.mes)], antMap = {};
+    if(ant) ant.lineas.forEach(function(l){ if(l.n) antMap[l.n.trim().toLowerCase()] = +l.p || 0; });
+    var q = [];
+    m.lineas.forEach(function(l){
+      if(!l.n || !l.n.trim()) return;
+      var p = +l.p || 0, a = antMap[l.n.trim().toLowerCase()];
+      if(a != null && p < a) q.push({l: l, why: "Bajó de " + H.fmt(a) + " a " + H.fmt(p) + " puntos", t: "bajo"});
+      else if(p === 0) q.push({l: l, why: "Va en cero este mes", t: "cero"});
+    });
+    var ul = $("escr"); ul.innerHTML = "";
+    q.slice(0, pro ? 50 : 3).forEach(function(x){
+      var msj = x.t === "bajo" ? x.l.n + ", ¿cómo vas este mes? Vi que traes menos que el pasado y quiero ver cómo te ayudo. ¿Platicamos 10 minutos?" : x.l.n + ", ¿cómo estás? Quiero ayudarte a arrancar el mes. ¿Qué es lo que más se te complica hoy?";
+      var li = document.createElement("li");
+      li.innerHTML = "<b>" + H.esc(x.l.n) + "</b><small>" + x.why + '</small><a class="btn2" target="_blank" rel="noopener" href="' + H.wa(msj) + '" data-cuenta="escribir-linea">WhatsApp</a>';
+      ul.appendChild(li);
+    });
+    $("escrNota").textContent = q.length ? (!pro && q.length > 3 ? "Con Pro ves todas (" + q.length + ")." : "") : (m.lineas.length ? "Nadie por ahora. Qué bueno." : "Cuando tengas dos meses, aquí aparece a quién escribirle.");
+  }
+  function hist(){
+    if(!pro) return;
+    var ks = Object.keys(st.meses).sort().slice(-6), mx = 1, filas = [];
+    ks.forEach(function(k){ var c = calcula(st.meses[k]); filas.push([k, c]); if(c.G > mx) mx = c.G; });
+    var ul = $("hist"); ul.innerHTML = "";
+    filas.forEach(function(f){
+      var li = document.createElement("li"), nm = H.fecha(f[0] + "-01", {month:"short", year:"2-digit"});
+      li.innerHTML = "<span>" + nm + '</span><span class="b"><i style="width:' + Math.round(f[1].G / mx * 100) + '%"></i></span><span class="v">' + H.fmt(f[1].G) + "</span>";
+      ul.appendChild(li);
+    });
+  }
+
+  $("pers").addEventListener("input", function(e){ mes().personales = e.target.value === "" ? 0 : +e.target.value; guarda(); resumen(); });
+  $("desc").addEventListener("change", function(e){ mes().descarta = e.target.checked; guarda(); pinta(); });
+  $("agrega").addEventListener("click", function(){ var m = mes(); if(!pro && m.lineas.length >= LIM) return; m.lineas.push({n: "", p: "", s: "s"}); guarda(); pinta(); var n = document.querySelectorAll(".lin .n"); if(n.length) n[n.length - 1].focus(); H.cuenta("agrega-linea"); });
+  $("mes").addEventListener("change", function(e){ if(!e.target.value) return; st.mes = e.target.value; if(!st.meses[st.mes] && st.meses[prev(st.mes)] && !st.meses[st.mes]){ var a = st.meses[prev(st.mes)]; st.meses[st.mes] = {personales: 0, descarta: a.descarta, lineas: a.lineas.map(function(l){ return {n: l.n, p: "", s: l.s}; })}; } guarda(); pinta(); });
+  // nota: reconocimientos lee st.mes, así que si eliges otro mes se queda ese
+  $("respCopia").addEventListener("click", function(){ H.copia("MTBEQUIPO1:" + btoa(unescape(encodeURIComponent(JSON.stringify(st)))), "Respaldo copiado. Pégalo en tu otro celular."); });
+  $("respPega").addEventListener("click", function(){ var t = $("respTxt"); if(t.hidden){ t.hidden = false; t.focus(); return; } var v = t.value.trim(); if(v.indexOf("MTBEQUIPO1:") !== 0){ H.aviso("Ese texto no es un respaldo"); return; } try{ var d = JSON.parse(decodeURIComponent(escape(atob(v.slice(11))))); if(d && d.meses){ st = d; guarda(); $("mes").value = st.mes; pinta(); t.hidden = true; t.value = ""; H.aviso("Mapa restaurado"); } }catch(_){ H.aviso("No se pudo leer el respaldo"); } });
+  pinta();
+
+  PRO.caja($("pro"), "equipo", {titulo:"Tu mapa sin límite", activo:"Líneas sin tope, seis meses de historia, comparación por línea y tu mapa en la nube con tu código."}).then(function(r){
+    if(!r.ok) return; pro = true; nube = PRO.nube("equipo"); $("proCont").hidden = false;
+    nube.lee().then(function(d){ if(d && d.meses && (d.ts || 0) > (st.ts || 0)){ st = d; st.mes = $("mes").value || mesHoy; H.guarda(KEY, st); $("nube").textContent = "Mapa traído de la nube."; } else if(Object.keys(st.meses).length){ nube.guarda(st).catch(function(){}); } pinta(); }).catch(function(){ pinta(); });
+  });
+})();
+</script>
+</body>
+</html>

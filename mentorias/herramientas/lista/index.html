@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-lista">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mi lista de 50</title>
+<meta name="description" content="Tu lista de contactos con su etapa (por contactar, tibia, caliente, lista, clienta, socia), su siguiente paso y la fecha. Cada día te dice a quién le toca. Gratis, se guarda en tu celular.">
+<meta property="og:title" content="Mi lista de 50">
+<meta property="og:description" content="A quién le toca hoy: tu lista con etapa, siguiente paso y fecha.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/lista/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-lista.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:22px}
+.etapas{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;list-style:none;margin:0;padding:0}
+.etapas li{text-align:center;padding:10px 2px 8px;border-radius:12px;background:var(--soft)}
+.etapas b{display:block;font:500 22px/1 var(--mono)}
+.etapas span{display:block;font-size:10px;line-height:1.2;color:var(--muted);margin-top:5px;text-transform:uppercase;letter-spacing:.04em}
+.etapas li.on{background:var(--ink);color:#fff}
+.etapas li.on span{color:#C9CBE0}
+.hoy{background:var(--navy);color:var(--cream);border-radius:24px;padding:22px 18px}
+.hoy h2{color:#fff;font-size:clamp(28px,7vw,40px)}
+.hoy h2 em{color:var(--pink)}
+.hoy .sub{margin:6px 0 0;color:#C9CBE0;font-size:15px}
+.toca{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.16)}
+.toca li{display:grid;grid-template-columns:1fr auto;gap:4px 12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.12);align-items:center}
+.toca b{font-weight:600;font-size:17px}
+.toca .q{grid-column:1;color:#C9CBE0;font-size:14px}
+.toca .q i{font-style:normal;color:var(--pink);font-family:var(--mono);font-size:12px;margin-right:6px}
+.toca .acc{grid-row:1 / span 2;display:flex;gap:6px}
+.toca .acc a,.toca .acc button{min-width:40px;min-height:40px;border-radius:10px;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;display:grid;place-items:center;cursor:pointer;text-decoration:none;font:600 13px/1 var(--body);padding:0 10px}
+.toca .acc .ok{background:var(--good);border-color:var(--good)}
+.toca .vacio{color:#C9CBE0;border:0;display:block}
+.alta{display:grid;gap:10px;background:var(--soft);border-radius:20px;padding:16px;margin:0 -16px}
+.alta .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.alta .tres{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 0}
+.chip{min-height:36px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;padding:0 12px;font-size:14px;font-weight:500;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.personas{list-style:none;margin:12px 0 0;padding:0;border-top:2px solid var(--ink)}
+.per{border-bottom:1px solid var(--line)}
+.per summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:2px 10px;padding:12px 0;align-items:center}
+.per summary::-webkit-details-marker{display:none}
+.per summary b{font-weight:600;font-size:17px}
+.per summary .et{font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;border-radius:6px;padding:5px 7px;background:var(--soft);color:var(--muted);grid-row:1 / span 2}
+.per summary .et.e-tibia{background:#FFF4E0;color:#B26A00}.per summary .et.e-caliente{background:var(--tint);color:var(--accent-ink)}.per summary .et.e-lista{background:#F2FAF6;color:var(--good)}.per summary .et.e-clienta{background:#E8F1FB;color:#1F5FA8}.per summary .et.e-socia{background:var(--navy);color:#fff}.per summary .et.e-no{background:#EEE;color:#888}
+.per summary small{color:var(--muted);font-size:13px;grid-column:1}
+.per summary small.venc{color:var(--accent-ink)}
+.per .ficha{display:grid;gap:10px;padding:0 0 16px}
+.per .ficha .fila{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.per .ficha select,.per .ficha input,.per .ficha textarea{min-height:42px;font-size:15px}
+.per .btns{display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center}
+.notas{list-style:none;margin:0;padding:0;font-size:14px;color:var(--muted)}
+.notas li{padding:4px 0;border-top:1px dashed var(--line)}
+.notas li i{font-style:normal;font-family:var(--mono);font-size:12px;margin-right:6px}
+.rapido{display:flex;flex-wrap:wrap;gap:6px}
+.rapido button{min-height:34px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;padding:0 10px;font-size:13px;cursor:pointer}
+.prods{list-style:none;margin:0;padding:0;font-size:14px}
+.prods li{display:grid;grid-template-columns:1fr auto auto;gap:8px;align-items:center;padding:6px 0;border-top:1px dashed var(--line)}
+.prods li span:nth-child(2){font:400 12px/1 var(--mono);color:var(--muted)}
+.prods li button{border:0;background:none;color:var(--muted);cursor:pointer;min-width:30px;min-height:30px}
+.tasas{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-top:14px}
+.tasas div{padding:12px 10px 12px 0}
+.tasas div+div{padding-left:12px;border-left:1px solid var(--line)}
+.tasas b{display:block;font:500 24px/1 var(--mono)}
+.tasas span{display:block;font-size:12px;color:var(--muted);margin-top:4px;line-height:1.3}
+.resp{display:grid;gap:10px;margin-top:14px}
+.resp textarea{min-height:60px;font:400 12px/1.3 var(--mono)}
+.lim{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.lim.tope{color:var(--accent-ink)}
+.nube{font:400 13px/1.4 var(--mono);color:var(--good)}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:56px;align-items:start;padding:56px 0 28px}
+  .alta{margin:0;padding:22px;grid-template-columns:1fr;}
+  .dos{display:grid;grid-template-columns:1.2fr .8fr;gap:56px;align-items:start}
+  .etapas span{font-size:11px}
+}
+@media print{.barra,.hoy,.alta,.filtros,.sigue,footer,.pro-caja,.btns,.resp{display:none!important}.per{break-inside:avoid}.per .ficha{display:none}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Mi lista <em>de 50</em></h1>
+      <p class="bajada">Las personas a las que les vas a escribir, con su etapa, su siguiente paso y la fecha. Cada día te digo a quién le toca. Se guarda en tu celular.</p>
+      <ul class="etapas" id="etapas" aria-label="Cuántas en cada etapa"></ul>
+    </div>
+    <section class="hoy" aria-label="A quién le toca hoy">
+      <h2>Hoy <em>te toca</em></h2>
+      <p class="sub" id="hoySub">Nadie todavía. Agrega personas con fecha y aquí aparecen.</p>
+      <ul class="toca" id="toca"></ul>
+    </section>
+  </header>
+
+  <div class="dos">
+    <section aria-labelledby="lTit">
+      <form class="alta" id="alta" autocomplete="off">
+        <div class="fila">
+          <label><span class="etq">Nombre</span><input type="text" id="aN" placeholder="Ana" required maxlength="40"></label>
+          <label><span class="etq">De dónde la conoces</span><input type="text" id="aD" placeholder="Trabajo, gym, vecina…" maxlength="40"></label>
+        </div>
+        <div class="tres">
+          <label><span class="etq">Etapa</span><select id="aE"></select></label>
+          <label><span class="etq">Siguiente paso</span><input type="text" id="aS" placeholder="Mandar el primer mensaje" maxlength="60"></label>
+          <label><span class="etq">Cuándo</span><input type="date" id="aF"></label>
+        </div>
+        <div class="fila">
+          <label><span class="etq">WhatsApp (opcional)</span><input type="tel" id="aT" inputmode="numeric" placeholder="5512345678"></label>
+          <label style="align-self:end"><button class="btn" type="submit" style="width:100%">Agregar</button></label>
+        </div>
+        <p class="lim" id="lim"></p>
+      </form>
+      <div class="filtros" id="filtros"></div>
+      <ol class="personas" id="personas"></ol>
+    </section>
+
+    <section aria-labelledby="pTit">
+      <div class="cab"><h2 id="pTit">Sin límite y con recompra</h2><p>La versión Pro.</p></div>
+      <div id="pro"></div>
+      <p class="nube" id="nube"></p>
+      <div id="proCont" hidden>
+        <div class="tasas" id="tasas"></div>
+        <p class="nota">Las tasas de la semana 8 de la agenda: respuestas entre contactos, citas entre contactos y socias entre presentaciones.</p>
+        <div class="resp"><span class="etq" style="margin:0">Pegar una lista (un nombre por renglón)</span><textarea id="imp" placeholder="Ana, gym&#10;Lupita, vecina"></textarea><div><button class="btn2" type="button" id="impBtn">Importar</button></div></div>
+      </div>
+      <div class="resp">
+        <span class="etq" style="margin:0">Respaldo</span>
+        <div class="btns" style="display:flex;flex-wrap:wrap;gap:8px 14px;align-items:center"><button class="btn2" type="button" id="respCopia">Copiar respaldo</button><button class="enlace" type="button" id="respPega">Restaurar desde texto</button></div>
+        <textarea id="respTxt" hidden placeholder="Pega aquí tu respaldo"></textarea>
+      </div>
+    </section>
+  </div>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/mensajes/" data-cuenta="ir-mensajes"><b>Mensajes para copiar</b><span>El mensaje de cada etapa, con su nombre.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/hoja-diaria/" data-cuenta="ir-hoja"><b>La hoja del día</b><span>Tus 10 contactos de hoy y tu marcador.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/objeciones/" data-cuenta="ir-objeciones"><b>¿Y si me dice que no?</b><span>Qué contestar y con qué pregunta sigues.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Los nombres se quedan en tu celular. Con Pro, se guardan con tu código y solo tú los ves. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var ET = [["contactar","Por contactar"],["tibia","Tibia"],["caliente","Caliente"],["lista","Lista"],["clienta","Clienta"],["socia","Socia"],["no","No por ahora"]];
+  var MSJ = {
+    contactar: function(p){ return "Hola " + p.n + ", ¿cómo estás? Ya tengo mi tienda de belleza y pensé en ti. Si quieres que te recomiende algo, me dices qué usas hoy y lo vemos."; },
+    tibia: function(p){ return "Hola " + p.n + ", ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode."; },
+    caliente: function(p){ return "¡Qué gusto, " + p.n + "! ¿Te late que te lo cuente en una llamada de 15 minutos? Dime dos días que te acomoden."; },
+    lista: function(p){ return p.n + ", con todo lo que platicamos, ¿arrancamos esta semana o prefieres que lo veamos el mes que entra?"; },
+    clienta: function(p){ return "Hola " + p.n + ", ¿qué tal te fue con lo que te llevaste? Si ya se te está acabando, te lo aparto."; },
+    socia: function(p){ return p.n + ", ¿cómo vas esta semana? Cuéntame tu marcador y vemos tu siguiente paso."; },
+    no: function(p){ return "Hola " + p.n + ", me acordé de ti. ¿Cómo has estado?"; }
+  };
+  var LIM = 50, KEY = "mtb-lista-v1", st = H.lee(KEY, {personas:[], ts:0}), pro = false, nube = null, filtro = "todas", hoy = H.iso(), tSave = null;
+  $("aE").innerHTML = ET.map(function(e){ return '<option value="' + e[0] + '">' + e[1] + '</option>'; }).join("");
+  $("aF").value = hoy;
+  function id(){ return Math.random().toString(36).slice(2, 9); }
+  function etq(e){ return (ET.filter(function(x){ return x[0] === e; })[0] || ET[0])[1]; }
+  function venc(p){ if(p.f && p.f <= hoy) return p.f; var r = recompra(p); return r && r.f <= hoy ? r.f : null; }
+  function recompra(p){ if(!pro || !p.prods || !p.prods.length) return null; var best = null; p.prods.forEach(function(x){ var f = H.suma(x.f, +x.d || 30); if(!best || f < best.f) best = {f:f, n:x.n}; }); return best; }
+  function guarda(){
+    st.ts = Date.now(); H.guarda(KEY, st);
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour:"2-digit", minute:"2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+  }
+  function pinta(){
+    var P = st.personas;
+    var c = {}; ET.forEach(function(e){ c[e[0]] = 0; }); P.forEach(function(p){ c[p.e] = (c[p.e] || 0) + 1; });
+    $("etapas").innerHTML = ET.map(function(e){ return '<li class="' + (filtro === e[0] ? 'on' : '') + '" data-e="' + e[0] + '"><b>' + c[e[0]] + '</b><span>' + e[1] + '</span></li>'; }).join("");
+    // hoy
+    var toca = P.filter(function(p){ return p.e !== "no" && venc(p); }).sort(function(a, b){ return (venc(a) || "").localeCompare(venc(b) || ""); });
+    $("hoySub").textContent = toca.length ? toca.length + (toca.length === 1 ? " persona" : " personas") + " con siguiente paso para hoy o antes." : "Nadie por ahora. Agrega personas con fecha y aquí aparecen.";
+    $("toca").innerHTML = toca.map(function(p){
+      var r = recompra(p), rec = r && r.f <= hoy && (!p.f || p.f > hoy);
+      var q = rec ? "Recompra: " + r.n : (p.s || "Siguiente paso");
+      var msj = rec ? "Hola " + p.n + ", ¿qué tal te fue con " + r.n + "? Si ya se te está acabando, te lo aparto." : MSJ[p.e](p);
+      return '<li><b>' + H.esc(p.n) + '</b><span class="q"><i>' + (venc(p) < hoy ? "atrasado · " + H.fecha(venc(p)) : "hoy") + '</i>' + H.esc(q) + '</span><span class="acc"><a href="' + H.wa(msj, p.t ? (p.t.length === 10 ? "52" + p.t : p.t) : "") + '" target="_blank" rel="noopener" data-cuenta="mandar" aria-label="Mandar mensaje a ' + H.esc(p.n) + '">Mensaje</a><button type="button" class="ok" data-hecho="' + p.id + '" aria-label="Marcar hecho">✓</button></span></li>';
+    }).join("") || '<li class="vacio">Cuando una persona tenga fecha de hoy, aquí sale con su mensaje listo.</li>';
+    // lista
+    $("filtros").innerHTML = '<button type="button" class="chip" data-f="todas" aria-pressed="' + (filtro === "todas") + '">Todas · ' + P.length + '</button>' + ET.map(function(e){ return '<button type="button" class="chip" data-f="' + e[0] + '" aria-pressed="' + (filtro === e[0]) + '">' + e[1] + '</button>'; }).join("");
+    var vis = P.filter(function(p){ return filtro === "todas" || p.e === filtro; }).sort(function(a, b){ var va = venc(a) || a.f || "9", vb = venc(b) || b.f || "9"; return va.localeCompare(vb) || a.n.localeCompare(b.n); });
+    $("personas").innerHTML = vis.map(function(p){
+      var v = venc(p), sub = p.f ? ((v ? "Toca " : "Siguiente: ") + (p.s || "paso") + " · " + H.fecha(p.f)) : (p.ult ? "Último contacto " + H.fecha(p.ult) : (p.d || "Sin fecha"));
+      var r = recompra(p);
+      return '<li><details class="per" data-id="' + p.id + '"><summary><b>' + H.esc(p.n) + '</b><span class="et e-' + p.e + '">' + etq(p.e) + '</span><small class="' + (v ? 'venc' : '') + '">' + H.esc(sub) + (r ? ' · recompra ' + H.fecha(r.f) : '') + '</small></summary><div class="ficha">' +
+        '<div class="fila"><label><span class="etq">Etapa</span><select data-k="e">' + ET.map(function(e){ return '<option value="' + e[0] + '"' + (p.e === e[0] ? ' selected' : '') + '>' + e[1] + '</option>'; }).join("") + '</select></label><label><span class="etq">De dónde</span><input type="text" data-k="d" value="' + H.esc(p.d) + '"></label></div>' +
+        '<div class="fila"><label><span class="etq">Siguiente paso</span><input type="text" data-k="s" value="' + H.esc(p.s) + '"></label><label><span class="etq">Cuándo</span><input type="date" data-k="f" value="' + (p.f || "") + '"></label></div>' +
+        '<div class="rapido"><button type="button" data-dias="0">Hoy</button><button type="button" data-dias="2">En 2 días</button><button type="button" data-dias="7">En una semana</button><button type="button" data-dias="30">En un mes</button></div>' +
+        '<div class="fila"><label><span class="etq">WhatsApp</span><input type="tel" data-k="t" value="' + H.esc(p.t) + '" inputmode="numeric"></label><label><span class="etq">Nota de hoy</span><input type="text" data-nota placeholder="Qué te contestó" maxlength="120"></label></div>' +
+        (pro && (p.e === "clienta" || (p.prods && p.prods.length)) ? '<div><span class="etq">Lo que compró (para la recompra)</span><ul class="prods">' + (p.prods || []).map(function(x, i){ return '<li><span>' + H.esc(x.n) + '</span><span>' + H.fecha(x.f) + ' · ' + x.d + ' días</span><button type="button" data-xp="' + i + '" aria-label="Quitar">×</button></li>'; }).join("") + '</ul><div class="fila" style="margin-top:6px"><input type="text" data-pn placeholder="Producto" maxlength="40"><div style="display:grid;grid-template-columns:1fr 1fr auto;gap:6px"><input type="date" data-pf value="' + hoy + '" aria-label="Fecha de compra"><input type="number" data-pd value="30" min="5" aria-label="Días que dura" inputmode="numeric"><button class="btn2" type="button" data-padd style="min-height:42px">+</button></div></div><p class="nota" style="margin-top:4px">Los días son aproximados: ajústalos a lo que te diga cada clienta.</p></div>' : '') +
+        '<ul class="notas">' + (p.notas || []).slice(-5).reverse().map(function(n){ return '<li><i>' + H.fecha(n.f) + '</i>' + H.esc(n.t) + '</li>'; }).join("") + '</ul>' +
+        '<div class="btns"><button class="btn2" type="button" data-msj>Armar mensaje</button><a class="enlace" href="' + H.wa(MSJ[p.e](p), p.t ? (p.t.length === 10 ? "52" + p.t : p.t) : "") + '" target="_blank" rel="noopener">WhatsApp</a><button class="enlace" type="button" data-borra style="color:var(--muted)">Quitar</button></div>' +
+        '</div></details></li>';
+    }).join("") || '<li style="padding:16px 0;color:var(--muted)">' + (P.length ? "Nadie en esta etapa." : "Empieza con tus 20 personas cercanas: quien ya te conoce y te tiene confianza.") + '</li>';
+    var tope = !pro && P.length >= LIM;
+    $("lim").textContent = pro ? P.length + " personas · sin límite con Pro" : P.length + " de " + LIM + (tope ? " · llegaste al tope de la versión gratis" : "");
+    $("lim").classList.toggle("tope", tope);
+    $("alta").querySelector("button[type=submit]").disabled = tope;
+    if(pro) tasas();
+  }
+  function tasas(){
+    var P = st.personas, cont = P.filter(function(p){ return p.e !== "contactar"; }).length, resp = P.filter(function(p){ return ["caliente","lista","clienta","socia"].indexOf(p.e) >= 0 || (p.notas || []).length; }).length, citas = P.filter(function(p){ return ["lista","socia"].indexOf(p.e) >= 0; }).length, soc = P.filter(function(p){ return p.e === "socia"; }).length;
+    function pc(a, b){ return b ? Math.round(100 * a / b) + "%" : "–"; }
+    $("tasas").innerHTML = '<div><b>' + pc(resp, cont) + '</b><span>respondieron ÷ contactadas (' + resp + ' de ' + cont + ')</span></div><div><b>' + pc(citas, cont) + '</b><span>cita o cierre ÷ contactadas</span></div><div><b>' + pc(soc, citas) + '</b><span>socias ÷ presentaciones (' + soc + ' de ' + citas + ')</span></div>';
+  }
+  $("alta").addEventListener("submit", function(e){
+    e.preventDefault(); var n = $("aN").value.trim(); if(!n) return;
+    st.personas.push({id:id(), n:n, d:$("aD").value.trim(), e:$("aE").value, s:$("aS").value.trim(), f:$("aF").value || "", t:$("aT").value.replace(/\D/g, ""), ult:"", notas:[], prods:[]});
+    $("aN").value = ""; $("aD").value = ""; $("aS").value = ""; $("aT").value = ""; $("aN").focus(); guarda(); pinta(); H.aviso(n + " en tu lista"); H.cuenta("agregar");
+  });
+  $("etapas").addEventListener("click", function(e){ var li = e.target.closest("[data-e]"); if(!li) return; filtro = filtro === li.dataset.e ? "todas" : li.dataset.e; pinta(); });
+  $("filtros").addEventListener("click", function(e){ var b = e.target.closest("[data-f]"); if(!b) return; filtro = b.dataset.f; pinta(); });
+  $("toca").addEventListener("click", function(e){ var b = e.target.closest("[data-hecho]"); if(!b) return; var p = st.personas.filter(function(x){ return x.id === b.dataset.hecho; })[0]; if(!p) return; p.ult = hoy; if(p.f && p.f <= hoy){ p.f = ""; } var r = recompra(p); if(r && r.f <= hoy){ (p.prods || []).forEach(function(x){ if(H.suma(x.f, +x.d || 30) <= hoy) x.f = hoy; }); } guarda(); pinta(); H.aviso("Hecho. ¿Cuál es su siguiente paso? Ábrela y ponle fecha."); });
+  $("personas").addEventListener("input", function(e){ var d = e.target.closest(".per"); if(!d) return; var p = st.personas.filter(function(x){ return x.id === d.dataset.id; })[0], k = e.target.dataset.k; if(!p || !k) return; p[k] = k === "t" ? e.target.value.replace(/\D/g, "") : e.target.value; guarda(); if(k === "e" || k === "f") pinta(); else { var c = {}; } });
+  $("personas").addEventListener("keydown", function(e){ if(e.key !== "Enter" || !e.target.dataset.hasOwnProperty("nota")) return; e.preventDefault(); var d = e.target.closest(".per"), p = st.personas.filter(function(x){ return x.id === d.dataset.id; })[0], t = e.target.value.trim(); if(!p || !t) return; p.notas = p.notas || []; p.notas.push({f:hoy, t:t}); p.ult = hoy; e.target.value = ""; guarda(); pinta(); });
+  $("personas").addEventListener("click", function(e){
+    var d = e.target.closest(".per"); if(!d) return; var p = st.personas.filter(function(x){ return x.id === d.dataset.id; })[0]; if(!p) return;
+    var b = e.target.closest("button"); if(!b) return;
+    if(b.dataset.dias != null){ p.f = H.suma(hoy, +b.dataset.dias); if(!p.s) p.s = "Escribirle"; guarda(); pinta(); document.querySelector('.per[data-id="' + p.id + '"]').open = true; }
+    else if(b.hasAttribute("data-msj")){ var m = H.lee("mtb-mensajes-v1", {}); m.nombre = p.n; H.guarda("mtb-mensajes-v1", m); location.href = "/mentorias/herramientas/mensajes/#" + ({contactar:"contactar", tibia:"seguir", caliente:"agendar", lista:"cerrar", clienta:"clientas", socia:"cerrar", no:"volver"}[p.e]); }
+    else if(b.hasAttribute("data-borra")){ if(confirm("¿Quitar a " + p.n + " de tu lista?")){ st.personas = st.personas.filter(function(x){ return x.id !== p.id; }); guarda(); pinta(); } }
+    else if(b.hasAttribute("data-padd")){ var f = d.querySelector("[data-pn]"), n = f.value.trim(); if(!n) return; p.prods = p.prods || []; p.prods.push({n:n, f:d.querySelector("[data-pf]").value || hoy, d:+d.querySelector("[data-pd]").value || 30}); guarda(); pinta(); document.querySelector('.per[data-id="' + p.id + '"]').open = true; }
+    else if(b.dataset.xp != null){ p.prods.splice(+b.dataset.xp, 1); guarda(); pinta(); document.querySelector('.per[data-id="' + p.id + '"]').open = true; }
+  });
+  // respaldo
+  $("respCopia").addEventListener("click", function(){ H.copia("MTBLISTA1:" + btoa(unescape(encodeURIComponent(JSON.stringify(st)))), "Respaldo copiado. Pégalo en tu otro celular."); });
+  $("respPega").addEventListener("click", function(){ var t = $("respTxt"); if(t.hidden){ t.hidden = false; t.focus(); return; } var v = t.value.trim(); if(v.indexOf("MTBLISTA1:") !== 0){ H.aviso("Ese texto no es un respaldo"); return; } try{ var d = JSON.parse(decodeURIComponent(escape(atob(v.slice(10))))); if(d && d.personas){ st = d; guarda(); pinta(); t.hidden = true; t.value = ""; H.aviso("Lista restaurada"); } }catch(_){ H.aviso("No se pudo leer el respaldo"); } });
+  pinta();
+
+  // Pro: sin límite, recompra, tasas, nube, importar
+  PRO.caja($("pro"), "lista", {titulo:"Mi lista sin límite", activo:"Sin tope, recompra por producto en cada clienta, tasas y tu lista en la nube con tu código."}).then(function(r){
+    if(!r.ok) return; pro = true; nube = PRO.nube("lista"); $("proCont").hidden = false;
+    nube.lee().then(function(d){ if(d && d.personas && (d.ts || 0) > (st.ts || 0)){ st = d; H.guarda(KEY, st); $("nube").textContent = "Lista traída de la nube."; } else if(st.personas.length){ nube.guarda(st).catch(function(){}); } pinta(); }).catch(function(){ pinta(); });
+    $("impBtn").addEventListener("click", function(){ var ls = $("imp").value.split("\n").map(function(l){ return l.trim(); }).filter(Boolean); ls.forEach(function(l){ var p = l.split(/[,·|-]/); st.personas.push({id:id(), n:p[0].trim(), d:(p[1] || "").trim(), e:"contactar", s:"Mandar el primer mensaje", f:"", t:"", notas:[], prods:[]}); }); $("imp").value = ""; guarda(); pinta(); H.aviso(ls.length + " personas importadas"); });
+  });
+})();
+</script>
+</body>
+</html>

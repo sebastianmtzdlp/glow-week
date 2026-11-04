@@ -1,6 +1,6 @@
 {
  "_nota": "Productos de la tienda de Farmasi que NO aparecen en el catálogo impreso. Se regenera revisando la tienda (ver README).",
- "actualizado": "2026-10-22",
+ "actualizado": "2026-10-26",
  "grupos": [
   {
    "titulo": "Edición limitada y de temporada",
@@ -54,7 +54,7 @@
    "nota": "Programas completos de nutrición.",
    "items": [
     [
-     "PK102556",
+     "PK102767",
      "Body System",
      3857.14
     ],
@@ -163,11 +163,6 @@
      "1002877",
      "FRM CC BODY LOTION LIGHT 110ML",
      1500.0
-    ],
-    [
-     "1002907",
-     "Nutriplus Shake - Strawberry Supreme 27 g",
-     50.0
     ],
     [
      "1002915",
@@ -297,11 +292,6 @@
      80.5
     ],
     [
-     "1000242",
-     "Perfecting Balm Aloe Pleasure",
-     80.5
-    ],
-    [
      "1000303",
      "Dr. C. Tuna Sun Bronzing Oil SPF 6",
      264.0
@@ -405,11 +395,6 @@
      "1001360",
      "Vfx Pro Foundation W08",
      560.0
-    ],
-    [
-     "1001389",
-     "Creamy Lipstick 03 Bittersweet",
-     180.0
     ],
     [
      "1001498",
@@ -630,7 +615,7 @@
     [
      "1000306",
      "Crema Depilatoria",
-     315.0
+     252.0
     ],
     [
      "1000331",
@@ -665,7 +650,7 @@
     [
      "1000812",
      "Dr. C. Tuna Gel para Masaje Alaska",
-     350.0
+     210.0
     ],
     [
      "1000856",
@@ -725,7 +710,7 @@
     [
      "1001990",
      "Crema de masaje con Glucosamina",
-     530.0
+     318.0
     ],
     [
      "1002343",
@@ -740,7 +725,7 @@
     [
      "1002855",
      "Paprika Massage Soap",
-     250.0
+     175.0
     ],
     [
      "1107541",
@@ -796,7 +781,7 @@
     [
      "9000700",
      "Delish Café Mezcla de Achicoria en Sobres",
-     450.0
+     270.0
     ]
    ]
   }

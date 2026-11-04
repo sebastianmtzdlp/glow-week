@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-pro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Herramientas Pro</title>
+<meta name="description" content="Los planes completos del equipo: el año en 52 semanas, planes por nivel y dirección, tu ritmo diario, plan de mentora y plan para tu equipo. Pagas una vez y son tuyos.">
+<meta property="og:title" content="Herramientas Pro">
+<meta property="og:description" content="Los planes completos, semana por semana: de 3% a Directora Oro.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/pro/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-pro.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#1B1F3B">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.cubierta{background:var(--navy);color:var(--cream)}
+.cubierta .marca{color:#9EA2C2}
+.cubierta .volver{color:var(--pink)}
+.portada{display:grid;gap:30px;padding:36px 0 40px}
+.portada h1 em{color:var(--pink)}
+.portada .bajada{color:#DCDDEA}
+.portada .datos{display:flex;flex-wrap:wrap;gap:6px 22px;margin:18px 0 0;padding:0;list-style:none;font:400 14px/1.3 var(--mono);color:#B9BCD8}
+
+/* el estante: cada tomo es un plan */
+.estante{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.tomo-l a{display:grid;grid-template-columns:10px 1fr auto;gap:14px;align-items:center;min-height:58px;padding:0 16px 0 0;border-radius:6px 12px 12px 6px;background:#262A4A;text-decoration:none;color:#fff;transition:transform 200ms var(--ease)}
+.tomo-l a::before{content:"";align-self:stretch;border-radius:6px 0 0 6px;background:var(--c)}
+.tomo-l b{font:400 19px/1.15 var(--serif)}
+.tomo-l span{font:500 15px/1 var(--mono);color:#B9BCD8}
+.tomo-l a:active{transform:scale(.98)}
+.tomo-l.todo a{background:var(--accent)}
+.tomo-l.todo a::before{background:#fff}
+.tomo-l.todo span{color:#fff}
+@media (prefers-reduced-motion:no-preference){
+  .tomo-l{opacity:0;transform:translateX(-14px);animation:entra 420ms var(--ease) forwards;animation-delay:calc(var(--i) * 60ms + 140ms)}
+}
+@keyframes entra{to{opacity:1;transform:none}}
+
+.aviso{background:var(--tint);border-radius:14px;padding:14px 16px;margin:24px 0 0;font-size:15px}
+.planes{padding:12px 0 0}
+.plan{display:grid;gap:14px;padding:34px 0;border-bottom:1px solid var(--line);scroll-margin-top:16px}
+.plan-n{font:500 13px/1 var(--mono);color:var(--muted);display:flex;align-items:center;gap:10px}
+.plan-n::before{content:"";width:22px;height:8px;border-radius:2px;background:var(--c)}
+.plan h2{font-size:clamp(30px,7.5vw,46px)}
+.plan .para{margin:0;font:italic 400 19px/1.35 var(--serif);color:var(--bronze)}
+.plan .que{margin:0;max-width:34em}
+.indice summary{cursor:pointer;font-weight:500;list-style:none;display:inline-flex;gap:8px;align-items:center;text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}
+.indice summary::-webkit-details-marker{display:none}
+.indice ol{margin:10px 0 0;padding:0 0 0 1.4em;color:var(--ink);font-size:15px;display:grid;gap:4px}
+.indice ol li::marker{font-family:var(--mono);color:var(--muted);font-size:13px}
+.compra{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;margin-top:4px}
+.precio{font:500 28px/1 var(--mono);font-variant-numeric:tabular-nums}
+.precio small{font:400 14px/1 var(--body);color:var(--muted);margin-left:4px}
+.plan.paquete{background:var(--navy);color:var(--cream);border-radius:24px;padding:28px 18px;margin:28px -16px 0;border:0}
+.plan.paquete .plan-n{color:#B9BCD8}
+.plan.paquete .para{color:var(--pink)}
+.plan.paquete .precio small{color:#B9BCD8}
+.plan.paquete s{color:#9EA2C2;font:400 18px/1 var(--mono);margin-right:6px}
+.plan.paquete ul{margin:0;padding:0;list-style:none;display:grid;gap:6px}
+.plan.paquete li{display:flex;gap:10px;align-items:baseline}
+.plan.paquete li::before{content:"";flex:none;width:12px;height:6px;border-radius:2px;background:var(--c);transform:translateY(-2px)}
+
+.tengo{padding:44px 0 0}
+.tengo form{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px;max-width:520px}
+.tengo input{flex:1 1 220px;font:500 18px/1 var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.preguntas{padding:44px 0 0}
+.preguntas details{border-bottom:1px solid var(--line);padding:16px 0}
+.preguntas summary{cursor:pointer;font-weight:600;font-size:17px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.preguntas summary::after{content:"+";font:400 22px/1 var(--mono);color:var(--muted)}
+.preguntas details[open] summary::after{content:"–"}
+.preguntas summary::-webkit-details-marker{display:none}
+.preguntas p{margin:10px 0 0;color:var(--ink);max-width:40em}
+
+/* hoja de compra */
+dialog{border:0;padding:0;border-radius:22px 22px 0 0;width:100%;max-width:520px;margin:auto auto 0;background:#fff;color:var(--ink)}
+dialog::backdrop{background:rgba(27,31,59,.55)}
+dialog[open]{animation:sube 260ms var(--ease)}
+@keyframes sube{from{transform:translateY(24px);opacity:0}to{transform:none;opacity:1}}
+.hoja-c{padding:24px 18px calc(22px + env(safe-area-inset-bottom))}
+.hoja-c h2{font-size:30px}
+.hoja-c .linea{display:flex;justify-content:space-between;align-items:baseline;gap:12px;padding:12px 0;border-bottom:1px solid var(--line);margin:8px 0 16px}
+.hoja-c .linea b{font:500 22px/1 var(--mono)}
+.hoja-c .btn{width:100%;margin-top:14px}
+.hoja-c .cerrar{position:absolute;top:12px;right:12px;width:40px;height:40px;border:0;border-radius:10px;background:var(--soft);font-size:20px;cursor:pointer}
+.hoja-c .error{color:#B42318;font-size:15px;margin:10px 0 0;min-height:1.2em}
+.hoja-c .fino{font-size:13px;color:var(--muted);margin:12px 0 0}
+@media (min-width:900px){
+  .portada{grid-template-columns:1fr 1fr;gap:64px;align-items:center;padding:64px 0 72px}
+  .plan{grid-template-columns:1fr 1fr;gap:12px 56px;align-items:start}
+  .plan > .izq{grid-column:1}
+  .plan > .der{grid-column:2;grid-row:1 / span 3}
+  .plan.paquete{margin:36px 0 0;padding:44px}
+  dialog{border-radius:22px;margin:auto}
+}
+.herr{margin-top:56px}
+.hr-l,#paq{list-style:none;margin:0;padding:0}
+#paq{display:grid;gap:12px;margin:18px 0 22px}
+.paq{display:grid;gap:6px 16px;grid-template-columns:1fr auto;align-items:center;background:var(--navy);color:var(--cream);border-radius:20px;padding:18px}
+.paq b{font:400 24px/1.1 var(--serif)}.paq span.pr{font:500 22px/1 var(--mono);grid-row:1 / span 2;grid-column:2;text-align:right}
+.paq small{grid-column:1;color:#C9CBE0;font-size:14px}.paq .btn{grid-column:1 / -1;margin-top:8px}
+.hr-l li{display:grid;grid-template-columns:1fr auto;gap:2px 14px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}
+.hr-l b{font:600 18px/1.25 var(--body)}.hr-l small{grid-column:1;color:var(--muted);font-size:15px;line-height:1.4}
+.hr-l .pr{grid-row:1 / span 2;grid-column:2;text-align:right;display:grid;gap:8px;justify-items:end}.hr-l .pr span{font:500 16px/1 var(--mono)}
+.hr-l .pr a.enlace{font-size:13px}
+.hoja-c .acepto{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;font-size:14px;line-height:1.4;margin:12px 0 0}
+.hoja-c .acepto input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink)}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="cubierta">
+  <div class="wrap">
+    <div class="barra">
+      <a class="marca" href="/">EQUIPO SVH</a>
+      <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+    </div>
+    <header class="portada">
+      <div>
+        <h1>Herramientas <em>Pro</em></h1>
+        <p class="bajada">Los planes completos del equipo, semana por semana, con la meta en puntos y cómo medirla. Pagas una vez y son tuyos.</p>
+        <ul class="datos"><li>Pago con Mercado Pago</li><li>Acceso con tu código</li><li>Para leer o imprimir</li></ul>
+      </div>
+      <ul class="estante" id="estante" aria-label="Los planes"></ul>
+    </header>
+  </div>
+</div>
+
+<div class="wrap">
+  <p class="aviso" id="aviso" hidden></p>
+  <div class="planes" id="planes"></div>
+
+  <section class="herr" id="herramientas" aria-labelledby="hrTit">
+    <div class="cab"><h2 id="hrTit">Las herramientas Pro</h2><p>Cada una tiene su versión gratis. La Pro quita los límites y guarda lo tuyo con tu código.</p></div>
+    <div id="paq"></div>
+    <ul class="hr-l" id="hr"></ul>
+  </section>
+
+  <section class="tengo" id="tengo" aria-labelledby="tTit">
+    <div class="cab"><h2 id="tTit">Ya tengo mi código</h2><p>Te lo dimos al pagar. Empieza con SVH.</p></div>
+    <form id="fCodigo" autocomplete="off">
+      <label class="sr" for="codigo">Tu código</label>
+      <input id="codigo" type="text" placeholder="SVH-XXXX-XXXX" autocapitalize="characters" spellcheck="false">
+      <button class="btn2" type="submit">Abrir mis planes</button>
+    </form>
+  </section>
+
+  <section class="preguntas" aria-labelledby="qTit">
+    <div class="cab"><h2 id="qTit">Preguntas</h2></div>
+    <details><summary>¿Cómo lo recibo?</summary><p>Al terminar el pago, Mercado Pago te regresa a esta página y ahí ves tu código. Con ese código abres tus planes en cualquier celular o computadora. Guárdalo; también te sirve el comprobante de Mercado Pago si lo pierdes.</p></details>
+    <details><summary>¿Cómo puedo pagar?</summary><p>Con las formas que te ofrezca Mercado Pago al pagar: tarjeta, saldo de Mercado Pago o efectivo en tiendas. Si pagas en efectivo, tu código aparece cuando se acredite el pago.</p></details>
+    <details><summary>¿Es lo mismo que las herramientas gratis?</summary><p>No. Las gratis te sirven para el día a día: tu nivel, tus mensajes, tu hoja y tu reto. Las Pro son los planes completos: qué hacer cada semana para llegar a un nivel y cómo medirlo.</p></details>
+    <details><summary>¿Lo puedo compartir con mi equipo?</summary><p>El código es para ti. Si quieres los planes para todas tus líderes, escríbenos y lo vemos.</p></details>
+    <details><summary>¿Es material oficial de Farmasi?</summary><p>No. Son los planes de trabajo del equipo, armados con la agenda del equipo y la tabla de niveles del Back Office de México. No prometen ingresos: te dicen qué hacer y cómo medirlo.</p></details>
+  </section>
+
+  <section class="frase" aria-label="Mentorías">
+    <p>¿Prefieres que alguien te acompañe con tu plan? Para eso están <em>las mentorías</em>.</p>
+    <a href="/mentorias/" data-cuenta="mentorias">Ver las mentorías con Sel</a>
+  </section>
+  <footer><p>Equipo SVH · mitienda.beauty · Los pagos los procesa Mercado Pago; nosotros nunca vemos los datos de tu tarjeta. <a href="/mentorias/herramientas/terminos/">Términos y condiciones</a>.</p></footer>
+</div>
+
+<dialog id="hoja" aria-labelledby="hTit">
+  <form class="hoja-c" id="fCompra" method="dialog" novalidate>
+    <button class="cerrar" type="button" id="cerrar" aria-label="Cerrar">×</button>
+    <h2 id="hTit">Tu compra</h2>
+    <div class="linea"><span id="hProd"></span><b id="hPrecio"></b></div>
+    <label><span class="etq">Tu correo</span><input type="email" id="email" autocomplete="email" inputmode="email" required placeholder="tucorreo@gmail.com"></label>
+    <p class="fino">A este correo te llega el comprobante de Mercado Pago. Tu código lo ves al terminar.</p>
+    <label class="acepto"><input type="checkbox" id="acepto" required><span>Leí y acepto los <a href="/mentorias/herramientas/terminos/" target="_blank" rel="noopener">términos y condiciones</a> y el <a href="/mentorias/herramientas/privacidad/" target="_blank" rel="noopener">aviso de privacidad</a>: acceso personal; cancelas en 5 días hábiles si no lo has abierto.</span></label>
+    <p class="error" id="error" role="alert"></p>
+    <button class="btn" type="submit" id="pagar">Pagar con Mercado Pago</button>
+  </form>
+</dialog>
+
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var C = {"plan-anual":"#DB414C","planes-nivel":"#F2B8BC","plan-compromiso":"#C9A27A","plan-mentora":"#8FB3A0","plan-equipo":"#9EA2C2"};
+  var $ = function(id){ return document.getElementById(id); };
+  var suma = PRO.productos.reduce(function(a, p){ return a + p.precio; }, 0);
+  $("estante").innerHTML = PRO.productos.map(function(p, i){
+    return '<li class="tomo-l" style="--i:'+i+';--c:'+C[p.s]+'"><a href="#'+p.s+'"><b>'+p.t+'</b><span>$'+H.fmt(p.precio)+'</span></a></li>';
+  }).join("") + '<li class="tomo-l todo" style="--i:5"><a href="#todo"><b>Todo Pro</b><span>$'+H.fmt(PRO.todo.precio)+'</span></a></li>';
+
+  function plan(p, i, idx){
+    var caps = (idx[p.s] || []).filter(function(t){ return t !== "Antes de empezar"; });
+    return '<article class="plan" id="'+p.s+'" style="--c:'+C[p.s]+'"><div class="izq"><div class="plan-n">'+String(i+1).padStart(2,"0")+'</div><h2>'+p.t+'</h2></div>'+
+      '<div class="izq"><p class="para">'+p.para+'</p></div>'+
+      '<div class="der" style="display:grid;gap:16px"><p class="que">'+p.d+'</p>'+
+      (caps.length ? '<details class="indice"><summary>Qué trae · '+caps.length+' partes</summary><ol>'+caps.map(function(t){ return '<li>'+H.esc(t)+'</li>'; }).join("")+'</ol></details>' : '')+
+      '<div class="compra"><span class="precio">$'+H.fmt(p.precio)+'<small>MXN, una vez</small></span><button class="btn2" type="button" data-comprar="'+p.s+'">Comprar</button></div></div></article>';
+  }
+  function pinta(idx){
+    $("planes").innerHTML = PRO.productos.map(function(p, i){ return plan(p, i, idx); }).join("") +
+      '<article class="plan paquete" id="todo"><div class="izq"><div class="plan-n">LOS CINCO</div><h2>Todo <em>Pro</em></h2></div>'+
+      '<div class="izq"><p class="para">Para la líder que va a usarlos con todo su equipo.</p></div>'+
+      '<div class="der" style="display:grid;gap:16px"><ul>'+PRO.productos.map(function(p){ return '<li style="--c:'+C[p.s]+'">'+p.t+'</li>'; }).join("")+'</ul>'+
+      '<div class="compra"><span class="precio"><s>$'+H.fmt(suma)+'</s>$'+H.fmt(PRO.todo.precio)+'<small>MXN, una vez</small></span><button class="btn" type="button" data-comprar="todo">Comprar todo</button></div></div></article>';
+  }
+  function pintaHerr(){
+    $("paq").innerHTML = PRO.paquetes.filter(function(x){ return x.s !== "todo"; }).map(function(x){ var n = x.incluye.length; return '<div class="paq"><b>'+H.esc(x.t)+'</b><small>'+H.esc(x.para)+' '+n+' herramientas.</small><span class="pr">$'+H.fmt(x.precio)+'</span><button class="btn" type="button" data-comprar="'+x.s+'">Comprar '+H.esc(x.t)+'</button></div>'; }).join("");
+    $("hr").innerHTML = PRO.herramientas.map(function(x){ return '<li id="'+x.s+'"><b>'+H.esc(x.t.replace(" · Pro",""))+'</b><small>'+H.esc(x.d)+'</small><div class="pr"><span>$'+H.fmt(x.precio)+'</span><button class="btn2" type="button" data-comprar="'+x.s+'">Comprar</button><a class="enlace" href="'+x.ruta+'">Ver la gratis</a></div></li>'; }).join("");
+  }
+  pintaHerr();
+  pinta({});
+  fetch("/mentorias/herramientas/pro/indice.json").then(function(r){ return r.json(); }).then(pinta).catch(function(){});
+
+  var q = new URLSearchParams(location.search);
+  if(q.get("pago") === "no"){ $("aviso").hidden = false; $("aviso").textContent = "El pago no se completó y no se te cobró nada. Puedes intentarlo otra vez o escribirnos si algo falló."; }
+
+  var dlg = $("hoja"), sel = null;
+  document.addEventListener("click", function(e){
+    var b = e.target.closest("[data-comprar]"); if(!b) return;
+    sel = PRO.busca(b.dataset.comprar);
+    $("hProd").textContent = sel.t; $("hPrecio").textContent = "$" + H.fmt(sel.precio);
+    $("error").textContent = ""; $("acepto").checked = false; $("pagar").disabled = false; $("pagar").textContent = "Pagar con Mercado Pago";
+    $("email").value = (H.lee("mtb-pro-email", "") || "");
+    if(dlg.showModal) dlg.showModal(); else dlg.setAttribute("open", "");
+    H.cuenta("abrir-compra", sel.s);
+  });
+  $("cerrar").addEventListener("click", function(){ dlg.close(); });
+  dlg.addEventListener("click", function(e){ if(e.target === dlg) dlg.close(); });
+  $("fCompra").addEventListener("submit", function(e){
+    e.preventDefault();
+    var email = $("email").value.trim();
+    if(!$("acepto").checked){ $("error").textContent = "Para pagar, acepta los términos y condiciones."; return; }
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){ $("error").textContent = "Revisa tu correo: le falta algo."; $("email").focus(); return; }
+    H.guarda("mtb-pro-email", email);
+    if(!PRO.abiertos){
+      $("error").innerHTML = 'Los pagos abren muy pronto. <a href="'+H.wa("Hola, quiero comprar " + sel.t + " de las Herramientas Pro. Mi correo es " + email, PRO.soporte)+'" target="_blank" rel="noopener">Avísame por WhatsApp</a>';
+      H.cuenta("intento-cerrado", sel.s); return;
+    }
+    $("pagar").disabled = true; $("pagar").textContent = "Abriendo Mercado Pago…"; $("error").textContent = "";
+    H.cuenta("pagar", sel.s);
+    PRO.llama({accion:"crear", producto:sel.s, email:email}).then(function(j){ location.href = j.url; })
+      .catch(function(err){ $("pagar").disabled = false; $("pagar").textContent = "Pagar con Mercado Pago"; $("error").textContent = err.message + ". Intenta otra vez."; });
+  });
+
+  var guardado = PRO.codigo(); if(guardado) $("codigo").value = guardado;
+  $("fCodigo").addEventListener("submit", function(e){
+    e.preventDefault(); var c = $("codigo").value.trim().toUpperCase();
+    if(!c) { $("codigo").focus(); return; }
+    location.href = "/mentorias/herramientas/pro/ver/?c=" + encodeURIComponent(c);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="centro">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Centro de la socia</title>
+<meta name="description" content="La entrada del equipo: herramientas gratis, guías, tu tienda, lo que mandas a quien quiere entrar, los planes Pro y el material con Sel.">
+<meta property="og:title" content="Centro de la socia">
+<meta property="og:description" content="Herramientas gratis, tu tienda, la ruta para quien quiere entrar, planes Pro y el material con Sel.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/centro/">
+<meta property="og:image" content="https://mitienda.beauty/og/mentorias-herramientas.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:40px 0 8px;max-width:34em}
+.soy{display:flex;align-items:center;gap:12px;margin-top:22px;max-width:24em}
+.soy label{font:400 italic 22px/1 var(--serif)}
+.soy select{min-height:44px}
+.soy-nota{margin:8px 0 0;font-size:14px;color:var(--muted)}
+
+/* Seis puertas: cada una lleva a un solo lugar */
+.puertas{list-style:none;margin:32px 0 0;padding:0;border-top:2px solid var(--ink)}
+.puerta{border-bottom:1px solid var(--line)}
+.puerta>a{display:grid;grid-template-columns:34px 1fr auto;gap:4px 12px;align-items:baseline;padding:22px 0;text-decoration:none}
+.puerta .n{font:500 14px/1.6 var(--mono);color:var(--accent-ink);grid-row:1 / span 2}
+.puerta h2{font-size:clamp(28px,7.5vw,40px);line-height:1.02}
+.puerta p{margin:6px 0 0;font-size:16px;color:var(--muted);grid-column:2 / -1;max-width:30em}
+.puerta i{font:500 18px/1 var(--mono);font-style:normal;color:var(--muted);grid-row:1;grid-column:3}
+.puerta>a:active h2{transform:translateX(2px)}
+
+/* la puerta principal: las herramientas, con sus vistas en abanico */
+.principal>a{grid-template-columns:34px 1fr;padding-bottom:26px}
+.principal i{display:none}
+.abanico{grid-column:2;display:flex;margin-top:18px;height:150px}
+.abanico img{width:96px;height:auto;aspect-ratio:240/369;object-fit:cover;object-position:top;border:1px solid var(--line);border-radius:10px;background:var(--soft);box-shadow:0 1px 2px rgba(27,31,59,.06);margin-right:-26px;transform:rotate(var(--r)) translateY(var(--y));transform-origin:bottom center}
+.principal .btn{grid-column:2;justify-self:start;margin-top:22px}
+
+/* ruta: tres ligas en línea */
+.ruta-mini{grid-column:2 / -1;display:flex;flex-wrap:wrap;gap:6px 0;margin:12px 0 0;padding:0;list-style:none;font-size:15px}
+.ruta-mini li{display:flex;align-items:center}
+.ruta-mini li+li::before{content:"→";font:400 13px/1 var(--mono);color:var(--muted);margin:0 8px}
+.ruta-mini a{font-weight:500;text-underline-offset:4px;text-decoration-thickness:1px}
+.puerta .acciones{grid-column:2 / -1;display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:14px}
+.entrar{padding:22px 0 24px}
+.entrar .cab-p{display:grid;grid-template-columns:34px 1fr;gap:4px 12px}
+
+.candado{width:22px;height:22px;color:var(--accent-ink);vertical-align:-2px;margin-left:6px}
+
+@media (hover:hover) and (pointer:fine){
+  .puerta>a:hover h2{text-decoration:underline;text-underline-offset:6px;text-decoration-thickness:1px}
+  .puerta>a:hover i{color:var(--ink)}
+}
+@media (prefers-reduced-motion:no-preference){
+  .abanico img{animation:abre 420ms var(--ease) both;animation-delay:calc(var(--k) * 60ms + 150ms)}
+}
+@keyframes abre{from{transform:rotate(0) translateY(10px);opacity:0}}
+@media (min-width:900px) and (max-width:1099px){
+  .cuerpo{display:grid;grid-template-columns:1fr 1fr;gap:0 64px;align-items:start}
+  .portada{padding:64px 0 0;position:sticky;top:0}
+  .puertas{margin-top:64px}
+  .principal{grid-column:1;grid-row:1 / span 2}
+  .principal>a{padding-top:28px}
+  .abanico{height:200px}
+  .abanico img{width:124px;margin-right:-34px}
+}
+/* Escritorio ancho: portada a lo ancho y las puertas en tres columnas, la de herramientas grande a la izquierda */
+@media (min-width:1100px){
+  .wrap{max-width:1240px;padding:0 40px}
+  .portada{max-width:none;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);column-gap:72px;align-items:end;padding:64px 0 0}
+  .portada h1{grid-row:1 / span 3;align-self:end}
+  .portada .bajada{margin-top:0}
+  .soy{max-width:none}
+  .puertas{margin-top:56px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr) minmax(0,1fr);column-gap:48px}
+  .principal{grid-column:1;grid-row:1 / span 3;border-bottom:0}
+  .principal{min-width:0;position:sticky;top:24px;align-self:start}
+  .principal>a{padding-top:30px;grid-template-columns:34px minmax(0,1fr)}
+  .abanico{height:auto;align-items:flex-start;margin-top:30px}
+  .abanico img{width:118px;margin-right:-24px}
+  .puerta>a,.entrar{padding:26px 0 28px}
+  .puerta h2{font-size:30px}
+  .principal h2{font-size:40px}
+  .puerta p{font-size:15px}
+  .puerta>a{align-content:start;height:100%}
+}
+/* ¿Qué necesitas hoy?: manda a /dudas/ con lo que escribió */
+.pide{margin:28px 0 0;max-width:30em}
+.pide label{display:block;font:400 24px/1.1 var(--serif);margin:0 0 10px}
+.pide label em{font-style:italic}
+.pide div{display:grid;grid-template-columns:1fr auto;gap:8px}
+.pide input{width:100%;min-height:50px;border:1.5px solid var(--ink);border-radius:14px;padding:10px 14px;font-size:17px;background:#fff}
+.pide input:focus{outline:2px solid var(--ink);outline-offset:2px}
+.pide .btn2{min-height:50px}
+.pide p{margin:8px 0 0;font-size:14px;color:var(--muted)}
+.pide p a{color:var(--ink);text-underline-offset:3px}
+@media (min-width:1100px){.pide{grid-column:2;max-width:none}}
+.dudas-mlm{margin-top:14px;font-size:14px;color:var(--muted)}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/mentorias/">Mentorías con Sel</a>
+  </div>
+
+  <div class="cuerpo">
+    <header class="portada">
+      <h1>Centro de la <em>socia</em></h1>
+      <p class="bajada">La entrada del equipo. Elige a dónde vas.</p>
+      <div class="soy">
+        <label for="soy">Soy</label>
+        <select id="soy"><option value="">elige tu nombre</option></select>
+      </div>
+      <p class="soy-nota" id="soyNota">Así, lo que compartes desde aquí le escribe a ti.</p>
+      <form class="pide" action="/dudas/" role="search" autocomplete="off">
+        <label for="cq">¿Qué necesitas <em>hoy?</em></label>
+        <div><input type="search" id="cq" name="q" placeholder="Escríbelo con tus palabras" enterkeyhint="search"><button class="btn2" type="submit" data-cuenta="pide">Buscar</button></div>
+        <p>Te llevo a la herramienta o la guía que lo resuelve. ¿No está? <a href="/dudas/#sugiere" data-cuenta="sugiere">Sugiérela</a>.</p>
+      </form>
+    </header>
+
+    <ol class="puertas">
+      <li class="puerta principal">
+        <a href="/herramientas/gratis/" data-cuenta="puerta-herramientas">
+          <span class="n">01</span>
+          <h2>Herramientas <em>gratis</em></h2>
+          <p>27 herramientas para tu día, tu tienda y tu equipo. Sin registrarte; lo que llenas se queda en tu celular.</p>
+          <div class="abanico" aria-hidden="true">
+            <img src="/mentorias/herramientas/vistas/hoja.webp" alt="" style="--r:-6deg;--y:6px;--k:0">
+            <img src="/mentorias/herramientas/vistas/nivel.webp" alt="" style="--r:-2deg;--y:0px;--k:1">
+            <img src="/mentorias/herramientas/vistas/primeros-200.webp" alt="" style="--r:2deg;--y:0px;--k:2">
+            <img src="/mentorias/herramientas/vistas/mensajes.webp" alt="" style="--r:6deg;--y:6px;--k:3">
+          </div>
+          <span class="btn">Ver las herramientas</span>
+        </a>
+      </li>
+
+      <li class="puerta">
+        <a href="/herramientas/team-svh/" data-cuenta="puerta-team-svh">
+          <span class="n">02</span><h2>Lo del equipo, <em>en una página</em></h2><i aria-hidden="true">→</i>
+          <p>Tu nivel, tu lista de hoy, mensajes, qué contestar, tu día y qué publicar, sin cambiar de página.</p>
+        </a>
+      </li>
+      <li class="puerta">
+        <a href="/guias/" data-cuenta="puerta-guias">
+          <span class="n">03</span><h2>Guías del <em>equipo</em></h2><i aria-hidden="true">→</i>
+          <p>Tu primer mes día por día, tu camino y las estrategias del equipo, en orden.</p>
+        </a>
+      </li>
+
+      <li class="puerta">
+        <a href="/mentorias/herramientas/mi-tienda/" data-cuenta="puerta-tienda">
+          <span class="n">04</span><h2>Mi <em>tienda</em></h2><i aria-hidden="true">→</i>
+          <p>Tu link y tu tarjeta, el mensaje para contestar cada pedido y lo agotado.</p>
+        </a>
+      </li>
+
+      <li class="puerta">
+        <a href="/ventas-de-whatsapp/" data-cuenta="puerta-ventas-wa">
+          <span class="n">05</span><h2>Ventas por <em>WhatsApp</em></h2><i aria-hidden="true">→</i>
+          <p>Tarjetas de producto y catálogo en PDF con tu precio, tu link y tu QR.</p>
+        </a>
+      </li>
+
+      <li class="puerta entrar" id="entrar">
+        <div class="cab-p">
+          <span class="n">06</span><h2>Para quien quiere <em>entrar</em></h2>
+          <p>Mándale la primera página; las otras siguen solas y al final te escribe a ti.</p>
+          <ol class="ruta-mini">
+            <li><a href="/unete/" data-r="/unete/">Lo que te pierdes</a></li>
+            <li><a href="/plan-de-compensacion/" data-r="/plan-de-compensacion/">El plan</a></li>
+            <li><a href="/unete/inscripcion/" data-r="/unete/inscripcion/">Cómo se inscribe</a></li>
+          </ol>
+          <div class="acciones">
+            <button class="btn2" type="button" id="manda">Mandar por WhatsApp</button>
+            <button class="enlace" type="button" id="copia">Copiar mi liga</button>
+          </div>
+          <p class="dudas-mlm">¿Te dijo que eso es pirámide? Mándale <a href="/sin-mitos/" data-r="/sin-mitos/">Lo que pensabas del multinivel</a>: señal por señal, con números.</p>
+        </div>
+      </li>
+
+      <li class="puerta">
+        <a href="/mentorias/herramientas/pro/" data-cuenta="puerta-pro">
+          <span class="n">07</span><h2>Planes <em>Pro</em></h2><i aria-hidden="true">→</i>
+          <p>Semana por semana, del 3% a Directora Oro. Pagas una vez y son tuyos.</p>
+        </a>
+      </li>
+
+      <li class="puerta">
+        <a href="/mentorias/1a1/" data-cuenta="puerta-sel">
+          <span class="n">08</span><h2>Con <em>Sel</em><svg class="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></h2><i aria-hidden="true">→</i>
+          <p>El material de sus mentorías, con la contraseña que te da en tu sesión.</p>
+        </a>
+      </li>
+    </ol>
+  </div>
+
+  <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi. Lo que manda es lo vigente en tu Back Office.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(async function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var lista = (await H.equipo()).slice().sort(function(a, b){ return a.nombre.localeCompare(b.nombre, "es"); });
+  $("soy").innerHTML += lista.map(function(c){ return '<option value="' + c.slug + '">' + H.esc(c.nombre) + '</option>'; }).join("");
+  function aplica(){
+    var s = H.miSlug(), c = lista.filter(function(x){ return x.slug === s; })[0];
+    $("soy").value = c ? s : "";
+    document.querySelectorAll("[data-r]").forEach(function(a){ a.href = a.dataset.r + (c ? "?de=" + s : ""); });
+    $("soyNota").textContent = c ? "Lo que compartes desde aquí le escribe a " + c.nombre + "." : "Así, lo que compartes desde aquí le escribe a ti.";
+  }
+  $("soy").addEventListener("change", function(e){ H.miSlug(e.target.value); aplica(); H.cuenta("soy"); });
+  aplica();
+  $("manda").addEventListener("click", function(){ window.open(H.wa("Mira esto: lo que pagas de más por no ser socia de Farmasi, con números.\n" + H.liga("/unete/")), "_blank", "noopener"); H.cuenta("ruta-manda"); });
+  $("copia").addEventListener("click", function(){ H.copia(H.liga("/unete/"), "Liga copiada"); H.cuenta("ruta-copiar"); });
+})();
+</script>
+</body>
+</html>

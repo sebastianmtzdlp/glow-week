@@ -38,9 +38,23 @@ except Exception: pass
 
 board, cat, adds, orders, wa = {}, {}, {}, {}, 0
 ritmo = {"visitas": 0}  # Ritmo de Puntos: visitas a la página y conteo de cada evento ritmo-puntos/<accion>
+# Eventos: visitas a /eventos, a cada serie y a cada evento, y clics eventos/<slug>/<accion>
+EV = {e["slug"]: e for e in J("_data/eventos.json")["eventos"]}
+SERIES = set(J("_data/eventos.json").get("series", {}))
+ev = {"hub": 0, "series": {}, "por_evento": {k: {"visitas": 0, "clics": {}} for k in EV}}
 xc = {}  # por consultora: {slug: {"agregar": {code: n}, "ver": {code: n}}}
 for h in hits:
-    p, n = h["path"].strip("/"), h["count"]
+    p, n = h["path"].split("?")[0].split("#")[0].strip("/"), h["count"]
+    if p == "eventos" or p.startswith("eventos/"):
+        if p.startswith("eventos/propuestas"): continue
+        partes = p.split("/")
+        if h.get("event"):
+            if len(partes) == 3 and partes[1] in EV:
+                c = ev["por_evento"][partes[1]]["clics"]; c[partes[2]] = c.get(partes[2], 0) + n
+        elif p == "eventos": ev["hub"] += n
+        elif partes[-1] in EV: ev["por_evento"][partes[-1]]["visitas"] += n
+        elif len(partes) == 2 and partes[1] in SERIES: ev["series"][partes[1]] = ev["series"].get(partes[1], 0) + n
+        continue
     if h.get("event"):
         m = re.fullmatch(r"c/([a-z0-9]+)/(agregar|ver)/(\d+)", p)
         if m:
@@ -57,17 +71,52 @@ for h in hits:
         m = re.fullmatch(r"([a-z0-9]+)", p)
         if m and m.group(1) in names: board[m.group(1)] = board.get(m.group(1), 0) + n
 
+# Biblioteca, cursos (programas), herramientas y mentorías: visitas por página y clics de eventos
+try: PN = {k: v["titulo"] for k, v in J("og/programas.json")["paginas"].items()}
+except Exception: PN = {}
+herr_pag, pres_ap = {}, {}
+sec = {"escalera": 0, "biblioteca": 0, "cursos": {}, "herr_hub": 0, "dupes": 0, "dupes_ver": {}, "mentorias": 0, "mentorias_clics": {}, "tt": 0, "tt_clics": {}}
+for h in hits:
+    p, n = h["path"].split("?")[0].split("#")[0].strip("/"), h["count"]
+    pa = p.split("/")
+    if h.get("event"):
+        if pa[0] == "h-presentacion" and len(pa) == 2 and pa[1].startswith("de-"): pres_ap[pa[1][3:]] = pres_ap.get(pa[1][3:], 0) + n; continue
+        if pa[0] == "dupes" and len(pa) == 3 and pa[2] == "ver": sec["dupes_ver"][pa[1]] = sec["dupes_ver"].get(pa[1], 0) + n
+        elif pa[0] == "mentorias" and len(pa) == 2: sec["mentorias_clics"][pa[1]] = sec["mentorias_clics"].get(pa[1], 0) + n
+        elif pa[0] == "top-team" and len(pa) == 2: sec["tt_clics"][pa[1]] = sec["tt_clics"].get(pa[1], 0) + n
+    elif pa[0] == "programas":
+        if len(pa) == 1: sec["escalera"] += n
+        elif pa[1] == "biblioteca": sec["biblioteca"] += n
+        else: sec["cursos"][pa[1]] = sec["cursos"].get(pa[1], 0) + n
+    elif len(pa) == 3 and pa[0] == "mentorias" and pa[1] == "herramientas": herr_pag[pa[2]] = herr_pag.get(pa[2], 0) + n
+    elif p == "herramientas": sec["herr_hub"] += n
+    elif p == "herramientas/dupes": sec["dupes"] += n
+    elif p == "herramientas/top-team": sec["tt"] += n
+    elif p == "mentorias": sec["mentorias"] += n
+secciones = {"escalera": sec["escalera"], "biblioteca": sec["biblioteca"], "herramientas": {"hub": sec["herr_hub"], "dupes": sec["dupes"], "ritmo": ritmo["visitas"], "paginas": herr_pag},
+    "mentorias": {"visitas": sec["mentorias"], "clics": sec["mentorias_clics"]},
+    "top_team": {"visitas": sec["tt"], "clics": sec["tt_clics"]},
+    "cursos": [{"slug": k, "nombre": PN.get(k, k), "visitas": v} for k, v in sorted(sec["cursos"].items(), key=lambda x: (-x[1], x[0]))],
+    "dupes_ver": [{"slug": k, "n": v} for k, v in sorted(sec["dupes_ver"].items(), key=lambda x: -x[1])[:10]]}
+
 dias = [{"d": s["day"], "v": s["daily"] if isinstance(s.get("daily"), int) else sum(s.get("hourly", []))} for s in tot.get("stats", [])]
 cons = [{"slug": s, "nombre": names[s], "visitas": board.get(s, 0), "catalogo": cat.get(s, 0), "pedidos": orders.get(s, 0)} for s in names]
 cons.sort(key=lambda x: (-x["visitas"]-x["catalogo"], x["nombre"]))
 top = sorted(adds.items(), key=lambda x: -x[1])
 productos = [{"code": c, "name": prod.get(c, c), "agregados": n} for c, n in top[:20]]
 now = dt.datetime.now(dt.timezone.utc).replace(tzinfo=None) - dt.timedelta(hours=6)
+eventos = {"hub": ev["hub"], "series": ev["series"],
+    "nombres": {c.split("-", 1)[1]: names.get(c.split("-", 1)[1], c.split("-", 1)[1].capitalize())
+                for v in ev["por_evento"].values() for c in v["clics"] if c.startswith("whatsapp-")},
+    "lista": sorted(
+    ({"slug": k, "titulo": EV[k]["titulo"], "desde": EV[k].get("desde"), **v} for k, v in ev["por_evento"].items()),
+    key=lambda x: -(x["visitas"] + sum(x["clics"].values())))}
 def topn(d, k=5): return [{"code": c, "name": prod.get(c, c), "n": n} for c, n in sorted(d.items(), key=lambda x: -x[1])[:k]]
 por = {s: {"agregados": topn(v["agregar"]), "vistos": topn(v["ver"])} for s, v in xc.items()}
 out = {"actualizado": now.strftime("%Y-%m-%d"), "hora": now.strftime("%H:%M"), "desde": START[:10],
        "totales": {"visitas": tot.get("total", 0), "agregados": sum(adds.values()), "pedidos": sum(orders.values()), "wa": wa},
-       "dias": dias, "consultoras": cons, "productos": productos, "por_consultora": por, "ritmo": ritmo}
+       "dias": dias, "consultoras": cons, "productos": productos, "por_consultora": por, "ritmo": ritmo, "eventos": eventos, "secciones": secciones,
+       "herramientas": {"presentacion": pres_ap}}
 def guardar(ruta, nuevo, ignorar=()):
     """Escribe solo si cambió algo (sin contar fecha/hora), para no llenar el historial de commits."""
     f = os.path.join(ROOT, ruta)

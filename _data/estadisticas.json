@@ -1,12 +1,12 @@
 {
- "actualizado": "2026-10-22",
- "hora": "12:42",
+ "actualizado": "2026-11-03",
+ "hora": "20:28",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 439,
-  "agregados": 26,
-  "pedidos": 5,
-  "wa": 0
+  "visitas": 1117,
+  "agregados": 33,
+  "pedidos": 7,
+  "wa": 4
  },
  "dias": [
   {
@@ -39,36 +39,140 @@
   },
   {
    "d": "2026-10-22",
+   "v": 90
+  },
+  {
+   "d": "2026-10-23",
+   "v": 51
+  },
+  {
+   "d": "2026-10-24",
+   "v": 17
+  },
+  {
+   "d": "2026-10-25",
+   "v": 43
+  },
+  {
+   "d": "2026-10-26",
+   "v": 48
+  },
+  {
+   "d": "2026-10-27",
+   "v": 60
+  },
+  {
+   "d": "2026-10-28",
+   "v": 164
+  },
+  {
+   "d": "2026-10-29",
+   "v": 82
+  },
+  {
+   "d": "2026-10-30",
    "v": 26
+  },
+  {
+   "d": "2026-10-31",
+   "v": 19
+  },
+  {
+   "d": "2026-11-01",
+   "v": 12
+  },
+  {
+   "d": "2026-11-02",
+   "v": 53
+  },
+  {
+   "d": "2026-11-03",
+   "v": 39
   }
  ],
  "consultoras": [
   {
    "slug": "viri",
    "nombre": "Viri",
-   "visitas": 48,
+   "visitas": 56,
    "catalogo": 3,
    "pedidos": 1
   },
   {
+   "slug": "pao",
+   "nombre": "Pao",
+   "visitas": 49,
+   "catalogo": 4,
+   "pedidos": 0
+  },
+  {
    "slug": "sel",
    "nombre": "Selene",
-   "visitas": 26,
-   "catalogo": 1,
-   "pedidos": 4
+   "visitas": 49,
+   "catalogo": 3,
+   "pedidos": 5
   },
   {
    "slug": "elda",
    "nombre": "Elda",
-   "visitas": 15,
+   "visitas": 16,
    "catalogo": 1,
+   "pedidos": 0
+  },
+  {
+   "slug": "anaofelia",
+   "nombre": "Ana Ofelia",
+   "visitas": 13,
+   "catalogo": 3,
+   "pedidos": 0
+  },
+  {
+   "slug": "anagomez",
+   "nombre": "Ana Gómez",
+   "visitas": 12,
+   "catalogo": 2,
    "pedidos": 0
   },
   {
    "slug": "moni",
    "nombre": "Moni",
+   "visitas": 7,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "laura",
+   "nombre": "Laura",
+   "visitas": 5,
+   "catalogo": 1,
+   "pedidos": 0
+  },
+  {
+   "slug": "nancy",
+   "nombre": "Nancy",
    "visitas": 5,
    "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "andrea",
+   "nombre": "Andrea",
+   "visitas": 3,
+   "catalogo": 1,
+   "pedidos": 0
+  },
+  {
+   "slug": "sam",
+   "nombre": "Sam",
+   "visitas": 3,
+   "catalogo": 0,
+   "pedidos": 0
+  },
+  {
+   "slug": "sebas",
+   "nombre": "Sebas",
+   "visitas": 2,
+   "catalogo": 1,
    "pedidos": 0
   },
   {
@@ -81,35 +185,21 @@
   {
    "slug": "mar",
    "nombre": "Mar",
-   "visitas": 1,
+   "visitas": 2,
    "catalogo": 0,
    "pedidos": 0
   },
   {
-   "slug": "sebas",
-   "nombre": "Sebas",
+   "slug": "danny",
+   "nombre": "Danny",
    "visitas": 1,
    "catalogo": 0,
-   "pedidos": 0
+   "pedidos": 1
   },
   {
    "slug": "silvia",
    "nombre": "Silvia",
    "visitas": 1,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "anagomez",
-   "nombre": "Ana Gómez",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "anaofelia",
-   "nombre": "Ana Ofelia",
-   "visitas": 0,
    "catalogo": 0,
    "pedidos": 0
   },
@@ -121,43 +211,8 @@
    "pedidos": 0
   },
   {
-   "slug": "andrea",
-   "nombre": "Andrea",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "danny",
-   "nombre": "Danny",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "laura",
-   "nombre": "Laura",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "nancy",
-   "nombre": "Nancy",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
    "slug": "pame",
    "nombre": "Pame",
-   "visitas": 0,
-   "catalogo": 0,
-   "pedidos": 0
-  },
-  {
-   "slug": "pao",
-   "nombre": "Pao",
    "visitas": 0,
    "catalogo": 0,
    "pedidos": 0
@@ -179,7 +234,12 @@
   {
    "code": "PK102734",
    "name": "Besos de Bruja Kit de labios · 7 tonos",
-   "agregados": 3
+   "agregados": 4
+  },
+  {
+   "code": "1002161",
+   "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+   "agregados": 2
   },
   {
    "code": "1000265",
@@ -210,6 +270,26 @@
    "code": "1002598",
    "name": "Precision Brow Pencil Soft Brown",
    "agregados": 2
+  },
+  {
+   "code": "1000269",
+   "name": "Dr. C. Tuna Age Reversist Mascarilla de Noche Antiedad · 50 ml",
+   "agregados": 1
+  },
+  {
+   "code": "PK102725",
+   "name": "Poción Energética Kit Nutriplus",
+   "agregados": 1
+  },
+  {
+   "code": "PK102731",
+   "name": "Toque Fantasma Kit de rostro",
+   "agregados": 1
+  },
+  {
+   "code": "PK102724",
+   "name": "Hechizo de Juventud Kit de cuerpo y rostro",
+   "agregados": 1
   },
   {
    "code": "PK102736",
@@ -273,8 +353,106 @@
      "n": 2
     },
     {
+     "code": "1002724",
+     "name": "Nutriplus+ Creatina",
+     "n": 1
+    },
+    {
      "code": "1000272",
      "name": "Dr. C. Tuna Age Reversist Suero Antiedad · 30 ml",
+     "n": 1
+    }
+   ]
+  },
+  "pao": {
+   "agregados": [
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    }
+   ],
+   "vistos": [
+    {
+     "code": "1002871",
+     "name": "Dr. C. Tuna Glow Face Mist",
+     "n": 1
+    },
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    },
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
+     "n": 1
+    },
+    {
+     "code": "1000291",
+     "name": "Dr. C. Tuna Tea Tree Bálsamo Crema Piel grasa · 80 ml",
+     "n": 1
+    }
+   ]
+  },
+  "nancy": {
+   "agregados": [
+    {
+     "code": "1000269",
+     "name": "Dr. C. Tuna Age Reversist Mascarilla de Noche Antiedad · 50 ml",
+     "n": 1
+    }
+   ],
+   "vistos": [
+    {
+     "code": "1000269",
+     "name": "Dr. C. Tuna Age Reversist Mascarilla de Noche Antiedad · 50 ml",
+     "n": 1
+    },
+    {
+     "code": "1002691",
+     "name": "Complete Blend Cream Caramel",
+     "n": 1
+    }
+   ]
+  },
+  "anaofelia": {
+   "agregados": [],
+   "vistos": [
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
+     "n": 1
+    }
+   ]
+  },
+  "danny": {
+   "agregados": [
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    }
+   ],
+   "vistos": [
+    {
+     "code": "1002161",
+     "name": "FRM ALL IN ONE PALETTE-MEDIUM/DEEP 13G",
+     "n": 1
+    },
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
+     "n": 1
+    }
+   ]
+  },
+  "moni": {
+   "agregados": [],
+   "vistos": [
+    {
+     "code": "1002157",
+     "name": "All in One Palette Fair-Medium",
      "n": 1
     }
    ]
@@ -296,12 +474,163 @@
   }
  },
  "ritmo": {
-  "visitas": 8,
-  "registro": 6,
-  "abrir": 6,
-  "importar-omitido": 2,
-  "nueva": 2,
-  "importado": 2,
-  "empezar": 1
+  "visitas": 94,
+  "nueva": 79,
+  "registro": 36,
+  "abrir": 27,
+  "empezar": 15,
+  "importar-omitido": 3,
+  "importado": 2
+ },
+ "eventos": {
+  "hub": 204,
+  "series": {
+   "flowers-to-go": 7
+  },
+  "nombres": {
+   "sel": "Selene",
+   "viri": "Viri",
+   "nancy": "Nancy",
+   "laura": "Laura",
+   "danny": "Danny"
+  },
+  "lista": [
+   {
+    "slug": "altar",
+    "titulo": "Flowers to Go · Edición Altar",
+    "desde": "2026-10-31T11:00:00-06:00",
+    "visitas": 24,
+    "clics": {
+     "whatsapp-sel": 4,
+     "whatsapp-viri": 3
+    }
+   },
+   {
+    "slug": "starlight-ride",
+    "titulo": "Starlight Ride",
+    "desde": "2026-12-05T17:00:00-06:00",
+    "visitas": 13,
+    "clics": {
+     "whatsapp-nancy": 8,
+     "compartir": 1,
+     "calendario": 1
+    }
+   },
+   {
+    "slug": "holiday-glam",
+    "titulo": "Holiday Glam",
+    "desde": "2026-11-14T10:00:00-06:00",
+    "visitas": 10,
+    "clics": {
+     "whatsapp-nancy": 2,
+     "whatsapp-laura": 1
+    }
+   },
+   {
+    "slug": "master-class-tendencias-2027",
+    "titulo": "Master Class Tendencias 2027",
+    "desde": "2026-10-25T11:00:00-06:00",
+    "visitas": 11,
+    "clics": {
+     "whatsapp-danny": 2
+    }
+   },
+   {
+    "slug": "neon-night-party",
+    "titulo": "Neon Night Party",
+    "desde": "2026-11-19T18:30:00-06:00",
+    "visitas": 1,
+    "clics": {}
+   },
+   {
+    "slug": "automaquillaje-party-eyes",
+    "titulo": "Taller de Automaquillaje · Party eyes make up",
+    "desde": "2026-10-31T11:00:00-06:00",
+    "visitas": 0,
+    "clics": {}
+   }
+  ]
+ },
+ "secciones": {
+  "escalera": 1,
+  "biblioteca": 1,
+  "herramientas": {
+   "hub": 0,
+   "dupes": 11,
+   "ritmo": 94,
+   "paginas": {
+    "pro": 3,
+    "que-quiere": 2,
+    "objeciones": 1,
+    "contenido": 1,
+    "lista": 1,
+    "primeros-200": 1,
+    "nivel": 1,
+    "1a1": 1,
+    "bienvenida": 1
+   }
+  },
+  "mentorias": {
+   "visitas": 13,
+   "clics": {
+    "elegir-llamada": 2
+   }
+  },
+  "top_team": {
+   "visitas": 5,
+   "clics": {
+    "ritmo": 1,
+    "publico": 1,
+    "objecion": 1,
+    "copiar": 1,
+    "objetivo": 1
+   }
+  },
+  "cursos": [],
+  "dupes_ver": [
+   {
+    "slug": "lip-oil",
+    "n": 2
+   },
+   {
+    "slug": "f3",
+    "n": 2
+   },
+   {
+    "slug": "paleta-glow",
+    "n": 1
+   },
+   {
+    "slug": "f30",
+    "n": 1
+   },
+   {
+    "slug": "f6",
+    "n": 1
+   },
+   {
+    "slug": "cera-cejas",
+    "n": 1
+   },
+   {
+    "slug": "peptide-lip-balm",
+    "n": 1
+   },
+   {
+    "slug": "cc-cream",
+    "n": 1
+   },
+   {
+    "slug": "her-passion",
+    "n": 1
+   },
+   {
+    "slug": "hera",
+    "n": 1
+   }
+  ]
+ },
+ "herramientas": {
+  "presentacion": {}
  }
 }

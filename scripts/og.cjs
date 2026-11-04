@@ -29,7 +29,8 @@ for(const c of [...eq.consultoras,{slug:'equipo',nombre:'Team',_team:1}]){
   const foto=fs.existsSync(`${R}/fotos/${c.slug}.jpg`)?`file://${R}/fotos/${c.slug}.jpg`:'';
   const tx=TX[c.slug]||{};
   const eb=c._team?'mitienda.beauty':(tx.eyebrow||'Farmasi');
-  const h1=c._team?`Tu tienda de<br><i>maquillaje</i>`:`Farmasi con<br><i>${esc(c.nombre)}</i>`;
+  const tw=(c.tienda||'').trim().split(' '),tl=tw.length>1?tw.pop():'';
+  const h1=c._team?`Tu tienda de<br><i>maquillaje</i>`:c.tienda?`${esc(tw.join(' '))}<br><i>${esc(tl)}</i>`:`Farmasi con<br><i>${esc(c.nombre)}</i>`;
   const desc=c._team?'Maquillaje con hasta 50% de descuento. Elige a tu consultora, arma tu pedido y mándalo por WhatsApp.':(tx.desc||'');
   const html=`<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,400;1,9..144,500&family=IBM+Plex+Mono:wght@500&display=swap">
   <style>*{box-sizing:border-box;margin:0}body{width:1200px;height:630px;background:${t.bg};color:${t.ink};font-family:Outfit,sans-serif;position:relative;overflow:hidden}

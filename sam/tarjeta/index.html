@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tarjeta de Sam · Farmasi</title>
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Farmasi con Sam">
+<meta property="og:image" content="https://mitienda.beauty/og/sam.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{--bg:#FAF7F5;--ink:#262A4A;--accent:#DB414C;--soft:#FDEEF0;--muted:#6C7090;--on:#fff}
+  *{box-sizing:border-box;margin:0}
+  body{background:var(--bg);color:var(--ink);font-family:Outfit,system-ui,sans-serif;min-height:100dvh;padding:18px 16px 40px;display:flex;flex-direction:column;align-items:center;gap:14px}
+  h1{font-size:20px;font-weight:700;text-align:center}
+  .sub{font-size:14px;color:var(--muted);text-align:center;margin-top:-8px;max-width:340px}
+  .seg{display:flex;gap:6px;background:var(--soft);padding:4px;border-radius:999px}
+  .seg button{border:0;background:transparent;color:var(--ink);font:inherit;font-size:14px;font-weight:600;padding:9px 16px;border-radius:999px;cursor:pointer}
+  .seg button[aria-pressed=true]{background:var(--accent);color:var(--on)}
+  .stage{width:100%;max-width:340px}
+  canvas{width:100%;height:auto;display:block;border-radius:18px;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+  .btns{display:flex;flex-direction:column;gap:10px;width:100%;max-width:340px}
+  .btn{border:0;border-radius:14px;padding:15px;font:inherit;font-size:16px;font-weight:700;background:var(--accent);color:var(--on);cursor:pointer;text-align:center;text-decoration:none}
+  .btn.alt{background:transparent;color:var(--ink);border:1.5px solid var(--accent)}
+  ol{max-width:340px;font-size:14px;line-height:1.5;color:var(--muted);padding-left:20px}
+  ol b{color:var(--ink)}
+  #hintWA{display:none}
+  a.back{font-size:14px;color:var(--muted)}
+</style>
+</head>
+<body>
+<h1>Tu tarjeta para compartir</h1>
+<p class="sub">Súbela a tus stories o mándala por WhatsApp. Sale con los colores de tu tienda de hoy.</p>
+<div class="seg" role="group" aria-label="Formato"><button type="button" id="mS" aria-pressed="true">Para Stories</button><button type="button" id="mW" aria-pressed="false">Para WhatsApp</button></div>
+<div class="stage"><canvas id="cv" width="1080" height="1920" role="img" aria-label="Tu tarjeta"></canvas></div>
+<div class="btns">
+  <button class="btn" id="dl">Descargar imagen</button>
+  <button class="btn alt" id="sh" hidden>Compartir…</button>
+  <button class="btn alt" id="cp">Copiar mi link</button>
+</div>
+<ol id="hintS"><li>Descarga la imagen y súbela a tu <b>story</b>.</li><li>Toca el sticker <b>Enlace</b> y pega tu link (el botón de arriba lo copia).</li><li>Acomoda el sticker sobre el <b>recuadro punteado</b>.</li></ol>
+<ol id="hintWA"><li>Descarga la imagen o toca <b>Compartir</b> y elige WhatsApp.</li><li>Va con <b>QR y tu link a la vista</b>, así no se pierde el estilo ni el enlace.</li></ol>
+<a class="back" href="../">← Volver a mi tienda</a>
+<script>
+(async()=>{
+  const SLUG="sam", QR="1111111011100111000000111111110000010110111110011101000001101110101111011000011010111011011101000001011011000101110110111010111111010011001011101100000100110011000001010000011111111010101010101010111111100000000001010100001000000000100111111001011111011100101110111100010110010000100011011011000010100110100010000010100110101001100101101000111010011000111001100110000110110000111110100000110000010001111111101011110010001100111000101011111010011000110100000011010110010111011010010000100001000101111010111000000111000101101100111100101110110110101100111010001010001011000100001100111011110101110001111111111100000000010110100111010001100011111110101111011001101011000100000101111010011011000100011011101011000101111111111100010111010110111101011010000010101110100011100010101101101111000001000000011001000111110111111110111101000110100000000", QN=29;
+  const URL_ = "https://mitienda.beauty/"+SLUG+"/", SHOW = "mitienda.beauty/"+SLUG;
+  const PAL = {
+    normal:{bg:"#FAF7F5",ink:"#262A4A",accent:"#DB414C",soft:"#FDEEF0",muted:"#6C7090",on:"#FFFFFF"},
+    noche:{bg:"#17121F",ink:"#F6EFE6",accent:"#FF7A1A",soft:"#2C2238",muted:"#B9AFC4",on:"#17121F"},
+    calabaza:{bg:"#FFF5EA",ink:"#2A1E3A",accent:"#E8621A",soft:"#FCE8D2",muted:"#75677F",on:"#FFFFFF"},
+    bruja:{bg:"#FFF1F3",ink:"#1C1A22",accent:"#FF5A68",soft:"#FCE3E8",muted:"#6E6068",on:"#FFFFFF"},
+    pocima:{bg:"#0F1D17",ink:"#EAF4E4",accent:"#8BE04E",soft:"#1D3328",muted:"#A6BBA8",on:"#0F1D17"}};
+  let P={}, B={}; try{ P=await (await fetch("../promos.json?v="+Date.now())).json(); B=await (await fetch("../"+P.base+"?v="+Date.now())).json(); }catch(_){}
+  function temaVigente(own, B){ const now = Date.now(); let cal = null; (B.temas||[]).filter(e => new Date(e.desde+"T00:00:00-06:00").getTime() <= now).sort((a,b) => a.desde < b.desde ? -1 : 1).forEach(e => cal = e);
+    if (cal && cal.forzar) return cal.tema; if (own !== undefined) return own; return cal ? cal.tema : (B.tema||""); }
+  const tq=new URLSearchParams(location.search).get("tema");
+  const tn = tq!==null ? (tq==="normal"?"":tq) : temaVigente(P.tema, B);
+  const pal = PAL[tn] || PAL.normal;
+  Object.entries({bg:pal.bg,ink:pal.ink,accent:pal.accent,soft:pal.soft,muted:pal.muted,on:pal.on}).forEach(([k,v])=>document.documentElement.style.setProperty("--"+k,v));
+  const nombre = P.consultora||"Sam", ig = (P.instagram||"").replace(/^@/,"");
+  const V = Object.assign({}, B.venta||{}, P.venta||{});
+  const fechas = V.fechas || "";
+  let photo=null; await new Promise(r=>{ const im=new Image(); im.onload=()=>{photo=im;r()}; im.onerror=r; im.src="../../fotos/"+SLUG+".jpg"; });
+  try{ await Promise.all([document.fonts.load("800 80px Outfit"),document.fonts.load("600 40px Outfit"),document.fonts.load("400 40px Outfit")]); }catch(_){}
+  const cv=document.getElementById("cv"), x=cv.getContext("2d");
+  let mode="s";
+  const rr=(a,b,w,h,r)=>{x.beginPath();x.roundRect(a,b,w,h,r);};
+  function wrap(t,mx,font){ x.font=font; const w=t.split(" "), L=[]; let l=""; w.forEach(s=>{ const n=l?l+" "+s:s; if(x.measureText(n).width>mx&&l){L.push(l);l=s}else l=n}); if(l)L.push(l); return L; }
+  function draw(){
+    const W=1080, H = mode==="s"?1920:1520; cv.width=W; cv.height=H;
+    x.fillStyle=pal.bg; x.fillRect(0,0,W,H);
+    x.globalAlpha=.16; x.fillStyle=pal.accent; x.beginPath(); x.arc(W-60,120,380,0,7); x.fill();
+    x.globalAlpha=.10; x.beginPath(); x.arc(60,H-120,320,0,7); x.fill(); x.globalAlpha=1;
+    x.textAlign="center"; x.textBaseline="alphabetic";
+    let y = mode==="s" ? 330 : 120;
+    x.fillStyle=pal.accent; x.font="600 36px Outfit"; if("letterSpacing" in x) x.letterSpacing="8px"; x.fillText("FARMASI",W/2+4,y); if("letterSpacing" in x) x.letterSpacing="0px";
+    const R = mode==="s" ? 215 : 150, cy = y+60+R;
+    x.fillStyle=pal.soft; x.beginPath(); x.arc(W/2,cy,R+12,0,7); x.fill();
+    x.save(); x.beginPath(); x.arc(W/2,cy,R,0,7); x.clip();
+    if(photo){ const s=Math.max(2*R/photo.width,2*R/photo.height), w=photo.width*s, h=photo.height*s; x.drawImage(photo,W/2-w/2,cy-h/2,w,h); }
+    else { x.fillStyle=pal.soft; x.fillRect(W/2-R,cy-R,2*R,2*R); x.fillStyle=pal.accent; x.font="800 "+(R*1.1)+"px Outfit"; x.fillText(nombre[0],W/2,cy+R*.38); }
+    x.restore(); x.lineWidth=12; x.strokeStyle=pal.accent; x.beginPath(); x.arc(W/2,cy,R+6,0,7); x.stroke();
+    y = cy+R+ (mode==="s"?120:90);
+    x.fillStyle=pal.ink; x.font="800 "+(mode==="s"?104:92)+"px Outfit"; x.fillText("Farmasi con",W/2,y); y+= (mode==="s"?112:100); x.fillText(nombre,W/2,y);
+    if(ig){ y+=70; x.fillStyle=pal.muted; x.font="600 46px Outfit"; x.fillText("@"+ig,W/2,y); }
+    y+=70; x.fillStyle=pal.ink; x.font="400 42px Outfit"; x.fillText("Hasta 50% de descuento",W/2,y);
+    if(fechas){ y+=56; x.fillStyle=pal.muted; x.font="400 36px Outfit"; x.fillText(fechas,W/2,y); }
+    if(mode==="s"){
+      const bw=780,bh=170,bx=(W-bw)/2,by=1290;
+      x.setLineDash([22,16]); x.lineWidth=5; x.strokeStyle=pal.accent; rr(bx,by,bw,bh,85); x.stroke(); x.setLineDash([]);
+      x.fillStyle=pal.muted; x.font="600 34px Outfit"; x.fillText("Pega aquí tu link",W/2,by+bh/2+12);
+      x.fillStyle=pal.ink; x.font="700 40px Outfit"; x.fillText(SHOW,W/2,1590);
+    } else {
+      const q=330, bx=(W-q-60)/2, by=y+50; x.fillStyle="#fff"; rr(bx,by,q+60,q+60,32); x.fill();
+      const m=q/QN; x.fillStyle="#111"; for(let r=0;r<QN;r++)for(let c=0;c<QN;c++) if(QR[r*QN+c]==="1") x.fillRect(bx+30+c*m,by+30+r*m,Math.ceil(m),Math.ceil(m));
+      x.fillStyle=pal.accent; rr(W/2-300,by+q+95,600,84,42); x.fill();
+      x.fillStyle=pal.on; x.font="700 40px Outfit"; x.fillText(SHOW,W/2,by+q+152);
+    }
+  }
+  const setMode=m=>{ mode=m; mS.setAttribute("aria-pressed",m==="s"); mW.setAttribute("aria-pressed",m==="w"); hintS.style.display=m==="s"?"":"none"; hintWA.style.display=m==="w"?"":"none"; draw(); };
+  mS.onclick=()=>setMode("s"); mW.onclick=()=>setMode("w");
+  const blob=()=>new Promise(r=>cv.toBlob(r,"image/png"));
+  const fname=()=>"tarjeta-"+SLUG+(mode==="s"?"-story":"-whatsapp")+".png";
+  dl.onclick=async()=>{ const b=await blob(), a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download=fname(); document.body.appendChild(a); a.click(); a.remove(); };
+  if(navigator.canShare && navigator.canShare({files:[new File([""],"a.png",{type:"image/png"})]})){ sh.hidden=false; sh.onclick=async()=>{ const b=await blob(); try{ await navigator.share({files:[new File([b],fname(),{type:"image/png"})],text:"Mira mi tienda: "+URL_}); }catch(_){} }; }
+  cp.onclick=async()=>{ try{ await navigator.clipboard.writeText(URL_); cp.textContent="¡Link copiado!"; }catch(_){ cp.textContent=URL_; } setTimeout(()=>cp.textContent="Copiar mi link",2200); };
+  setMode(new URLSearchParams(location.search).get("modo")==="wa"?"w":"s");
+})();
+</script>
+</body>
+</html>

@@ -8,17 +8,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light">
 <title>Farmasi con Ana Gómez</title>
+<meta name="tienda" content="">
 <meta name="description" content="Venta especial de maquillaje con Ana Gómez. Elige tus productos y manda tu pedido por WhatsApp.">
 <meta property="og:title" content="Farmasi con Ana Gómez">
-<meta property="og:description" content="Noche de Brujas: hasta 50% de descuento. Siempre hay promos para ti: arma tu pedido y mándalo por WhatsApp.">
+<meta property="og:description" content="Pronto llega un nuevo evento, y siempre hay promos para ti. Arma tu pedido y mándalo por WhatsApp.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:url" content="https://mitienda.beauty/anagomez/">
-<meta property="og:image" content="https://mitienda.beauty/og/anagomez.png?v=e93443c1">
+<meta property="og:image" content="https://mitienda.beauty/og/anagomez.png?v=861056d2">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://mitienda.beauty/og/anagomez.png?v=e93443c1">
+<meta name="twitter:image" content="https://mitienda.beauty/og/anagomez.png?v=861056d2">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
@@ -77,6 +78,29 @@
   /* Catálogo */
   section.cat{padding-top:24px;scroll-margin-top:60px}
   section.cat h2{font-size:20px;font-weight:700;margin-bottom:12px;display:flex;align-items:baseline;gap:8px}
+  .favtxt{margin:-4px 0 14px;color:var(--muted);max-width:60ch}
+  /* Sección especial (Venta de Día de Muertos): cabecera marino con papel picado; las tarjetas son las de siempre */
+  .esp-head{position:relative;background:#262A4A;color:#FFFFFF;border-radius:18px;padding:58px 18px 18px;margin-bottom:6px;overflow:hidden}
+  .esp-head .picado{position:absolute;top:0;left:0;width:1560px;height:52px;transform-origin:50% 0}
+  .esp .esp-head h2{display:block;font-size:26px;line-height:1.15;font-weight:800;letter-spacing:-.01em;margin:0 0 8px;color:#FFFFFF;text-wrap:balance}
+  .esp .esp-head h2 span{color:#F6C36A;margin-left:8px;white-space:nowrap;font-family:var(--mono);font-size:15px;font-weight:500;letter-spacing:0}
+  .esp-head p{color:#D9DBEA;max-width:56ch;font-size:15px;line-height:1.45}
+  .esp-nav{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .esp-nav a{color:#FFFFFF;text-decoration:none;font-size:14px;font-weight:600;padding:10px 14px;border-radius:999px;border:1px solid rgba(255,255,255,.28);min-height:44px;display:inline-flex;align-items:center;transition:transform 160ms var(--ease),background-color 160ms ease}
+  .esp-nav a:active{transform:scale(.97)}
+  .esp-nav a:focus-visible{outline:2px solid #F6C36A;outline-offset:2px}
+  @media(hover:hover) and (pointer:fine){.esp-nav a:hover{background:rgba(255,255,255,.1)}}
+  .esp-g{font-size:16px;font-weight:700;margin:20px 0 10px;display:flex;align-items:baseline;gap:8px;scroll-margin-top:110px}
+  #espTop{padding-top:20px}
+  .esp-top .esp-head{padding-bottom:16px}
+  .rail{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(150px,44%);gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;margin:0 -16px;padding:0 16px 8px;scroll-padding-inline:16px;scrollbar-width:thin}
+  .rail>.card{scroll-snap-align:start}
+  @media(min-width:640px){.rail{grid-auto-columns:minmax(190px,30%)}}
+  @media(min-width:900px){.rail{grid-auto-columns:220px}}
+  .esp-g span{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
+  @media(min-width:900px){.esp-head{padding:66px 28px 24px}.esp-head .picado{width:1820px;height:60px}.esp .esp-head h2{font-size:32px}}
+  @media(prefers-reduced-motion:no-preference){.esp-head .picado{animation:picado 700ms cubic-bezier(.23,1,.32,1) both}}
+  @keyframes picado{from{transform:scaleY(.6);opacity:0}to{transform:none;opacity:1}}
   section.cat h2 span{font-family:var(--mono);font-size:13px;color:var(--muted);font-weight:400}
   .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
   @media(min-width:640px){.grid{grid-template-columns:repeat(3,1fr);gap:14px}}
@@ -135,7 +159,7 @@
   .line .q{display:flex;align-items:center;gap:6px;background:var(--soft);border-radius:12px;padding:3px}
   .line .q .step-btn{width:28px;height:28px}
   .form{padding:14px 22px 0;display:grid;gap:10px}
-  .form label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .form label,.form .lbl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
   .form input,.form select{width:100%;margin-top:4px;height:44px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font:inherit;color:var(--ink);background:var(--card)}
   .form input:focus,.form select:focus{outline:2px solid var(--ink);outline-offset:1px}
   .socia{margin:4px 22px 14px;border-radius:16px;background:var(--tint);padding:0 14px}
@@ -212,6 +236,7 @@
   .bar .wrap{flex-wrap:wrap}
   .addr{display:grid;gap:10px}
   .addr.hide{display:none}
+  .delnote{margin:2px 0 0;font-size:14px;color:var(--muted)}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .form textarea{width:100%;margin-top:4px;min-height:56px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;color:var(--ink);resize:vertical}
   .form textarea:focus{outline:2px solid var(--ink);outline-offset:1px}
@@ -243,6 +268,7 @@
   .oosb{position:absolute;left:8px;bottom:8px;background:var(--ink);color:var(--on-ink);font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;letter-spacing:.04em}
   .add:disabled{opacity:.5;cursor:not-allowed}
   .resume{display:flex;align-items:center;gap:10px;background:var(--tint);border:1px solid var(--line);border-radius:14px;padding:10px 12px;margin:0 0 10px;font-size:14px}
+  .resume[hidden]{display:none}
   .resume span{flex:1}.resume button{font:inherit;font-weight:700;border:0;border-radius:10px;padding:8px 12px;background:var(--accent);color:var(--on-ink);cursor:pointer}
   .resume .rx{background:transparent;color:var(--muted);padding:6px 8px;font-size:18px;line-height:1}
   .fill{margin:10px 0;padding:12px;border:1.5px dashed var(--accent);border-radius:16px}
@@ -413,7 +439,10 @@
   @media(min-width:1000px){
     .wrap{max-width:1240px;padding:0 40px}
     .hero{display:grid;grid-template-columns:minmax(0,1fr) 440px;column-gap:64px;align-items:start;padding-top:34px}
-    .hero>.banner{grid-column:1/-1}
+    .hero>.banner{grid-column:1/-1;grid-row:1}
+    .hero>.hmain{grid-row:2}.hero>.hside{grid-row:2}
+    .hero>#espTop{grid-column:1/-1;grid-row:3}
+    .hero.con-esp .hside{position:static} /* con la venta abajo, las tarjetas no se quedan pegadas encima de ella al bajar */
     .hmain{display:block;grid-column:1}
     .hside{display:flex;flex-direction:column;gap:2px;grid-column:2;position:sticky;top:78px;padding-top:6px}
     .hside>*{max-width:none!important;width:100%;margin-top:12px}.hside>:first-child{margin-top:0}
@@ -457,6 +486,8 @@
   .cd-dots{display:flex;gap:5px;margin-top:10px}
   .cd-dots i{width:100%;max-width:18px;height:6px;border-radius:99px;background:var(--line)}
   .cd-dots i.on{background:var(--accent)}
+  .cd.siempre .cd-n,.cd.siempre .cd-dots{display:none}
+  .cd.siempre .cd-l{font-size:17px}
   .cd-dots i.now{background:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 30%,transparent)}
   .facts{margin-top:12px;grid-template-columns:1fr 1fr}
   .fact:has(#days){display:none}
@@ -480,7 +511,7 @@
   /* hoja de pedido */
   .sheet{border-radius:24px 24px 0 0}
   .form{gap:14px}
-  .form label{font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600}
+  .form label,.form .lbl{font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600}
   .form input,.form select,.form textarea{height:50px;margin-top:6px;border:1.5px solid transparent;background:var(--soft);border-radius:14px;padding:0 14px;font-size:16px}
   .form textarea{height:auto;padding:12px 14px}
   .form input:focus,.form select:focus,.form textarea:focus{outline:0;border-color:var(--ink);background:var(--card)}
@@ -523,6 +554,7 @@
       <div class="fact"><div class="k">Termina</div><div class="v" id="days"></div></div>
     </div>
     </div>
+    <div id="espTop" hidden></div>
     <aside class="hside">
     <button class="helpcta" data-help>
       <svg class="i" viewBox="0 0 24 24"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>
@@ -544,7 +576,7 @@
     </details>
     <div class="gift">
       <div class="gift-head"><svg class="i" viewBox="0 0 24 24"><rect x="3" y="8" width="18" height="13" rx="2"/><path d="M12 8v13M3 12h18M12 8c-2-4-6-4-6-1.5S9 8 12 8zm0 0c2-4 6-4 6-1.5S15 8 12 8z"/></svg>
-        <div>Con <b class="num" id="goalTxt">$3,000</b> o más, el envío es gratis y te llevas de regalo <b id="giftName"></b>.</div></div>
+        <div>Con <b class="num" id="goalTxt">$3,000</b> o más, el envío es gratis y te llevas <b id="giftName"></b>.</div></div>
       <div class="gift-items" id="giftItems"></div>
       <div class="gift-val">Son <b class="num" id="giftVal"></b> en productos que te llevas sin pagar.</div>
     </div>
@@ -593,8 +625,8 @@
     <div class="lines" id="lines"></div>
     <div class="form">
       <div><label for="cName">Nombre y apellido</label><input id="cName" autocomplete="name" placeholder="Ej. Ana López" required></div>
-      <div><label for="cDel">Entrega</label>
-        <select id="cDel"><option>Envío a domicilio</option><option>Paso a recoger</option><option>Lo platicamos</option></select></div>
+      <div><span class="lbl">Dirección de envío</span><input type="hidden" id="cDel" value="Envío a domicilio">
+        <p class="delnote">Farmasi te lo envía directo a tu casa.</p></div>
       <div class="addr" id="addr">
         <div><label for="aStreet">Calle y número</label><input id="aStreet" autocomplete="address-line1" placeholder="Av. Siempre Viva 123, int. 4"></div>
         <div class="row2">
@@ -704,15 +736,30 @@
   const SALE = tema ? D.venta.nombre : "Farmasi";
   const TITULO = tema ? D.venta.titulo : "Farmasi";
   const IMG = "https://content.mx.farmasi.com/Product/";
-  const hd = s => String(s).replace("_250","_400"); // Farmasi solo publica 250 y 400 px: usamos la más nítida
+  const hd = s => String(s).replace("_250","_400");
+  // Si una foto no existe con ese nombre, prueba las otras formas en que Farmasi las publica (_400, _400_1, _250, _250_1, .png); al final pone las iniciales o la oculta
+  window.imgAlt = el => {
+    if (!el.dataset.alt) { const m = el.src.match(/\/Product\/([^_/]+)_/); if (!m) { el.dataset.alt = "[]"; } else { const c = m[1];
+      el.dataset.alt = JSON.stringify(["_400","_400_1","_250","_250_1"].map(x => IMG + c + x + ".webp").concat([IMG + c.toLowerCase() + "_250_1.webp", IMG + c + "_250.png"]).filter(u => u !== el.src)); } }
+    const L = JSON.parse(el.dataset.alt);
+    if (L.length) { el.dataset.alt = JSON.stringify(L.slice(1)); el.src = L[0]; return; }
+    el.onerror = null; if (el.dataset.ph) el.outerHTML = `<div class=ph>${el.dataset.ph}</div>`; else el.style.visibility = "hidden";
+  }; // Farmasi solo publica 250 y 400 px: usamos la más nítida
   const END = new Date(D.venta.termina);
   let GOAL = D.meta.monto;
-  const GIFT = D.meta.regalo + " de regalo";
+  const GIFT = /regalo/i.test(D.meta.regalo) ? D.meta.regalo : D.meta.regalo + " de regalo"; // "un regalo sorpresa" no repite "de regalo"
   const GIFT_ITEMS = D.meta.regalo_items || [];
 
   // Productos activos. Flash sale: mientras esté vigente usa su precio; al terminar regresa al precio normal.
   let MAS = new Set();
   try { const m = await (await fetch("../_data/mas-pedidos.json?v=" + Date.now(), {cache:"no-store"})).json(); MAS = new Set(m.codes || []); } catch(_){}
+  // Favoritos de la consultora (promos.json "favoritos"): productos propios que salen primero, con su propio chip
+  const FAVT = D.favoritos && (D.favoritos.productos||[]).length ? (D.favoritos.titulo || "Mis favoritos") : "";
+  if (FAVT) D.productos = [...D.favoritos.productos.map(p => ({...p, cat: FAVT, fav: true})), ...D.productos];
+  // Categoría especial del equipo (promos-base.json "especial", p. ej. Venta de Día de Muertos): sale antes que todo, con apartados por "grupo"
+  const ESP = D.especial && (D.especial.productos||[]).length && inWindow(D.especial.desde, D.especial.hasta) ? D.especial : null;
+  const ESPT = ESP ? (ESP.titulo || "Venta especial") : "";
+  if (ESPT) D.productos = [...ESP.productos.map(p => ({...p, cat: ESPT, esp: true})), ...D.productos];
   const products = D.productos
     .filter(p => inWindow(p.desde, p.hasta))
     .map(p => {
@@ -729,6 +776,8 @@
     p.ntonos = t.length; });
   const famOf = i => ALL[i].par!=null ? ALL[i].par : i;
 
+  // Variantes: casi todas son tonos; en promos.json "variante": "sabor" dice "4 sabores" y "Elegir sabor"
+  const VT = p => p.variante || "tono", VTS = p => VT(p) + (/[aeiou]$/.test(VT(p)) ? "s" : "es");
   const money = n => "$" + n.toLocaleString("es-MX",{minimumFractionDigits:2,maximumFractionDigits:2});
   const pct = p => Math.round((1 - p.price/p.retail)*100);
   const initials = p => p.name.split(" ").map(w=>w[0]).join("").slice(0,2);
@@ -747,7 +796,7 @@
     "Nuevos": p => !!p.nuevo,
     "Mejores descuentos": p => pct(p) >= 40,
   };
-  const cats = ["Todo", ...Object.keys(SPECIAL).filter(k => products.some(SPECIAL[k])), ...realCats];
+  const cats = ["Todo", ...(ESPT ? [ESPT] : []), ...(FAVT ? [FAVT] : []), ...Object.keys(SPECIAL).filter(k => products.some(SPECIAL[k])), ...realCats.filter(c => c !== FAVT && c !== ESPT)];
 
   function renderChips(){
     $("chips").innerHTML = cats.map(c=>{
@@ -761,17 +810,17 @@
     const allOut = fam.every(k=>ALL[k].agotado);
     return `<article class="card${q?" in":""}${allOut?" oos":""}" data-i="${i}">
       <div class="pic">
-        <img src="${IMG}${hd(p.img)}.webp" alt="${p.name} ${p.shade}" loading="lazy" onerror="this.outerHTML='<div class=ph>${initials(p)}</div>'">
-        <span class="off${d>=40?" big":""}">-${d}%</span>${allOut?'<span class="oosb">Agotado</span>':""}
+        <img src="${IMG}${hd(p.img)}.webp" alt="${p.name} ${p.shade}" loading="lazy" data-ph="${initials(p)}" onerror="imgAlt(this)">
+        ${d>0?`<span class="off${d>=40?" big":""}">-${d}%</span>`:""}${allOut?'<span class="oosb">Agotado</span>':""}
         ${(p.flashEnds||p.nuevo||MAS.has(p.code)||p.cat==="Kits") ? `<span class="tags">${p.flashEnds?'<span class="tag flash">Flash</span>':""}${p.nuevo?'<span class="tag">Nuevo</span>':""}${MAS.has(p.code)?'<span class="tag">Más pedido</span>':""}</span>` : ""}${p.cat==="Kits"?'<span class="tag lim">Tiempo limitado</span>':""}
       </div>
       <div class="body">
         <div class="name">${p.name}</div>
-        <div class="shade">${hit ? "Tono: "+hx(hit) : p.ntonos?p.ntonos+" tonos":p.shade}</div>
+        <div class="shade">${hit ? "Tono: "+hx(hit) : p.ntonos?p.ntonos+" "+VTS(p):p.shade}</div>
         ${p.incluye ? `<details class="inc"><summary>Qué incluye</summary><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul></details>` : ""}
-        <div class="price"><span class="now">${money(p.price)}</span><span class="was">${money(p.retail)}</span></div>
+        <div class="price"><span class="now">${money(p.price)}</span>${p.retail>p.price?`<span class="was">${money(p.retail)}</span>`:""}</div>
         ${p.flashEnds ? `<div class="flash-left" data-ends="${p.flashEnds}"></div>` : ""}
-        ${p.ntonos ? (allOut ? `<button class="add" disabled>Agotado por ahora</button>` : `<button class="add pick" data-tono-open="${i}">${q?`En tu pedido (${q}) · Cambiar`:"Elegir tono"}</button>`) : q ? `<div class="qty"><button class="step-btn" data-d="-1" data-i="${i}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="step-btn" data-d="1" data-i="${i}" aria-label="Agregar otro">${plus}</button></div>`
+        ${p.ntonos ? (allOut ? `<button class="add" disabled>Agotado por ahora</button>` : `<button class="add pick" data-tono-open="${i}">${q?`En tu pedido (${q}) · Cambiar`:"Elegir "+VT(p)}</button>`) : q ? `<div class="qty"><button class="step-btn" data-d="-1" data-i="${i}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="step-btn" data-d="1" data-i="${i}" aria-label="Agregar otro">${plus}</button></div>`
             : p.agotado ? `<button class="add" disabled>Agotado por ahora</button>` : `<button class="add" data-add="${i}">${plus} Agregar</button>`}
       </div></article>`;
   }
@@ -796,11 +845,32 @@
     else if (filter==="Todo") {
       groups = realCats.map(c=>[c, products.filter(p=>p.cat===c)]);
       ["Nuevos","Flash sale","Más pedidos"].forEach(k => { const l = products.filter(SPECIAL[k]); if (l.length) groups.unshift([k, l]); });
+      [FAVT, ESPT].forEach(t => { if (!t) return; const k = groups.findIndex(g => g[0] === t); if (k > 0) groups.unshift(groups.splice(k, 1)[0]); });
+      if (ESPT) groups = groups.filter(g => g[0] !== ESPT); // ya sale hasta arriba de la página (espTop)
     }
     else if (SPECIAL[filter]) groups = [[filter, products.filter(SPECIAL[filter]).sort((a,b)=>pct(b)-pct(a))]];
     else groups = [[filter, products.filter(p=>p.cat===filter)]];
     if (terms.length && !groups[0][1].length) { $("catalog").innerHTML = `<p class="empty">No encontré "${hx(qry)}". Prueba con otra palabra (labial, suero, rubor…) o escríbeme por WhatsApp.</p>`; return; }
-    $("catalog").innerHTML = groups.map(([c,list])=>`<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2><div class="grid">${srt(list).map(p=>card(p, tonoHit(p))).join("")}</div></section>`).join("");
+    $("catalog").innerHTML = groups.map(([c,list])=> c===ESPT && !terms.length && !sortM ? espSection(list) : `<section class="cat" id="s-${c}"><h2>${c}<span>${list.length}</span></h2>${c===FAVT && D.favoritos.texto ? `<p class="favtxt">${hx(D.favoritos.texto)}</p>` : ""}<div class="grid">${srt(list).map(p=>card(p, tonoHit(p))).join("")}</div></section>`).join("");
+  }
+
+  // Sección especial: cabecera con papel picado y los productos en sus apartados (Nutriplus, Cuidado de la piel, Maquillaje)
+  const PICADO = (() => {
+    const col = Array.from({length:52}, (_,i) => ["#F29A0E","#D6457A","#7A4BB0","#1E9A8F"][i%4]); // banderitas de tamaño fijo: en pantallas anchas salen más, no más grandes
+    const cut = i => i%3===0 ? "M15 16a5 5 0 1 0 0.01 0zM9 30h12l-6 7z" : i%3===1 ? "M15 12l3 6 6 1-4.5 4 1 6-5.5-3-5.5 3 1-6L6 19l6-1z" : "M8 14h14v4H8zM10 22h10v4H10zM12 30h6v4h-6z";
+    return `<svg class="picado" viewBox="0 0 1560 52" aria-hidden="true" focusable="false"><path d="M0 3H1560" stroke="#F6E7C8" stroke-width="1.5"/>${col.map((c,i)=>`<g transform="translate(${i*30+1} ${3+(i%2)})"><path fill="${c}" fill-rule="evenodd" d="M1 0h28v40l-3.5 6-3.5-6-3.5 6-3.5-6-3.5 6-3.5-6-3.5 6L1 40z${cut(i)}"/></g>`).join("")}</svg>`;
+  })();
+  function espSection(list){
+    const gs = [...new Set(list.map(p => p.grupo || ""))];
+    return `<section class="cat esp" id="s-${ESPT}"><header class="esp-head">${PICADO}<h2>${hx(ESPT)}<span>${list.length}</span></h2>${ESP.texto ? `<p>${hx(ESP.texto)}</p>` : ""}${gs.length > 1 ? `<nav class="esp-nav" aria-label="Apartados de ${hx(ESPT)}">${gs.map((g,k)=>`<a href="#esp-${k}">${hx(g)}</a>`).join("")}</nav>` : ""}</header>${gs.map((g,k)=>{ const l = list.filter(p => (p.grupo||"") === g); return `${g ? `<h3 class="esp-g" id="esp-${k}">${hx(g)}<span>${l.length}</span></h3>` : ""}<div class="grid">${l.map(p=>card(p)).join("")}</div>`; }).join("")}</section>`;
+  }
+
+  // Hasta arriba de la página: la venta especial con sus productos en filas que se deslizan, para que sea lo primero que se ve
+  function renderTop(){
+    const el = $("espTop"); if (!ESPT) return;
+    const list = products.filter(p => p.cat === ESPT), gs = [...new Set(list.map(p => p.grupo || ""))];
+    el.innerHTML = `<section class="esp esp-top" aria-label="${hx(ESPT)}"><header class="esp-head">${PICADO}<h2>${hx(ESPT)}<span>${list.length}</span></h2>${ESP.texto ? `<p>${hx(ESP.texto)}</p>` : ""}</header>${gs.map(g=>{ const l = list.filter(p => (p.grupo||"") === g); return `${g ? `<h3 class="esp-g">${hx(g)}<span>${l.length}</span></h3>` : ""}<div class="rail">${l.map(p=>card(p)).join("")}</div>`; }).join("")}</section>`;
+    el.hidden = false; el.closest(".hero").classList.add("con-esp");
   }
 
   function totals(){
@@ -852,12 +922,12 @@
     $("tSave").textContent = "−" + money(s);
     $("tTotal").textContent = money(t);
     $("lines").innerHTML = ALL.map((p,i)=>{const q=cart[i]; if(!q) return "";
-      return `<div class="line"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><div class="n">${p.name}</div><div class="d">${p.shade} · <span class="num">${money(p.price)}</span></div></div>
+      return `<div class="line"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="imgAlt(this)"><div><div class="n">${p.name}</div><div class="d">${p.shade} · <span class="num">${money(p.price)}</span></div></div>
       <div class="q"><button class="step-btn" data-d="-1" data-i="${i}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="step-btn" data-d="1" data-i="${i}" aria-label="Agregar otro">${plus}</button></div></div>`}).join("");
     (function(){ const fb=$("fillBox"), left=GOAL-t; if(!n || left<=0 || left>500){ fb.hidden=true; fb.innerHTML=""; return; }
       const seen=new Set(), L=products.map((p,i)=>({p,i})).filter(x=>!x.p.agotado && !cart[x.i] && x.p.cat!=="Kits" && x.p.price>=left && !(FAM[x.i]&&FAM[x.i].some(k=>cart[k]))).sort((a,b)=>a.p.price-b.p.price).filter(x=>!seen.has(x.p.cat)&&seen.add(x.p.cat)).slice(0,3);
       if(!L.length){ fb.hidden=true; return; }
-      fb.hidden=false; fb.innerHTML=`<h6>Te faltan ${money(left)}: con cualquiera de estos llegas al envío gratis</h6>`+L.map(({p,i})=>`<div class="fi"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><b>${p.name}</b>${p.ntonos?p.ntonos+" tonos":hx(p.shade||"")} · <span class="num">${money(p.price)}</span></div><button type="button" ${p.ntonos?`data-tono-open="${i}"`:`data-fill="${i}"`}>${p.ntonos?"Elegir":"Agregar"}</button></div>`).join(""); })();
+      fb.hidden=false; fb.innerHTML=`<h6>Te faltan ${money(left)}: con cualquiera de estos llegas al envío gratis</h6>`+L.map(({p,i})=>`<div class="fi"><img src="${IMG}${hd(p.img)}.webp" alt="" onerror="imgAlt(this)"><div><b>${p.name}</b>${p.ntonos?p.ntonos+" tonos":hx(p.shade||"")} · <span class="num">${money(p.price)}</span></div><button type="button" ${p.ntonos?`data-tono-open="${i}"`:`data-fill="${i}"`}>${p.ntonos?"Elegir":"Agregar"}</button></div>`).join(""); })();
     $("sendBtn").href = waLink();
     if (!n) closeSheet();
   }
@@ -935,14 +1005,14 @@
 
   document.addEventListener("click", e=>{
     const chip = e.target.closest(".chip");
-    if (chip){ filter = chip.dataset.c; renderChips(); renderCatalog(); window.scrollTo({top:$("catalog").offsetTop-70}); return; }
+    if (chip){ filter = chip.dataset.c; renderChips(); renderCatalog(); window.scrollTo({top:$("catalog").offsetTop-(document.querySelector(".filters").offsetHeight||70)-8}); return; }
     const add = e.target.closest("[data-add]");
     if (add){ const i=+add.dataset.add; if (ALL[i].agotado) return; cart[i]=1; gc('agregar/'+ALL[i].code, ALL[i].name); gcs('agregar', ALL[i].code, ALL[i].name); refreshCard(i); update(); return; }
     const st = e.target.closest(".step-btn");
     if (st){ const i=+st.dataset.i; cart[i]=Math.max(0,(cart[i]||0)+(+st.dataset.d)); if(!cart[i]) delete cart[i]; refreshCard(i); update(); return; }
   });
   $("openSheet").onclick = $("review").onclick = openSheet;
-  const SB_URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/pedidos_intencion", SB_KEY = "sb_publishable_ltaNA7nnVozoSCOcZIjg";
+  const SB_URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/pedidos_intencion", SB_KEY = "sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk";
   function logIntent(origen, items, t){ try { if (!items.length) return;
     fetch(SB_URL, {method:"POST", keepalive:true, headers:{"Content-Type":"application/json", apikey:SB_KEY, Authorization:"Bearer "+SB_KEY, Prefer:"return=minimal"},
       body: JSON.stringify({consultora: location.pathname.split("/").filter(Boolean)[0], referida_por: (curRef()||"").slice(0,40) || null, cliente: ($("cName")?.value||"").trim().slice(0,80) || null, tipo: yaSocia ? "afiliada" : "clienta", origen, items, total: t, envio: isShip() ? "domicilio" : "recoger"})}).catch(()=>{});
@@ -975,7 +1045,7 @@
       const idx = Math.max(0, Math.min(total-1, Math.floor((now - start)/864e5)));
       $("cdDots").innerHTML = Array.from({length:total}, (_,i) => `<i class="${ms<=0 || i<idx ? "on" : i===idx ? "now" : ""}"></i>`).join("");
       let n, u, l;
-      if (ms <= 0) { n = "0"; u = "días"; l = tema ? `${SALE} ya terminó. Escríbeme y vemos qué sigue.` : "Las promociones ya terminaron. Escríbeme y vemos qué sigue."; }
+      if (ms <= 0) { n = ""; u = ""; l = "Siempre hay promociones. Escríbeme y te digo cuáles tengo hoy."; $("cd").classList.add("siempre"); } // sin venta vigente: nunca decir que terminaron
       else if (ms < 864e5) { const h = Math.max(1, Math.ceil(ms/36e5)); n = h; u = h === 1 ? "hora" : "horas"; l = tema ? `Último día de ${SALE}` : "Último día de las promociones"; }
       else { n = Math.ceil(ms/864e5); u = n === 1 ? "día" : "días"; l = tema ? `para que termine ${SALE}` : "para que terminen las promociones"; }
       $("cdN").textContent = n; $("cdU").textContent = u; $("cdL").textContent = l;
@@ -992,11 +1062,12 @@
 
   const left = Math.ceil((END - new Date())/864e5);
   if (left > 0 && left <= 10) $("days").textContent = left===1 ? "hoy" : `en ${left} días`;
-  else if (left <= 0) $("days").textContent = "terminó";
+  else if (left <= 0) { $("days").textContent = "Siempre"; $("days").previousElementSibling.textContent = "Promos"; }
 
   $("goalTxt").textContent = money(GOAL).replace(".00","");
-  $("giftItems").innerHTML = GIFT_ITEMS.map((g,gi)=>`<div class="gift-item" data-gift="${gi}" role="button" tabindex="0"><img src="${IMG}${hd(g.img)}.webp" alt="" loading="lazy" onerror="this.outerHTML='<div class=ph>${g.name[0]}</div>'">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
+  $("giftItems").innerHTML = GIFT_ITEMS.map((g,gi)=>`<div class="gift-item" data-gift="${gi}" role="button" tabindex="0"><img src="${IMG}${hd(g.img)}.webp" alt="" loading="lazy" data-ph="${g.name[0]}" onerror="imgAlt(this)">${g.name}<div class="gp2"><span class="was">${money(g.retail)}</span> <b>Gratis</b></div></div>`).join("");
   $("giftVal").textContent = money(GIFT_ITEMS.reduce((a,g)=>a+g.retail,0));
+  if (!GIFT_ITEMS.length) { $("giftItems").style.display = "none"; document.querySelector(".gift-val").style.display = "none"; } // regalo sorpresa: sin productos que mostrar
   // ---------- Asistente "Ayúdame a elegir" ----------
   const HQ = [
     {k:"cats", multi:true, q:"¿Qué te gustaría renovar?", o:[
@@ -1006,7 +1077,7 @@
     {k:"look", q:"¿Qué look buscas?", o:[
       ["natural","Natural, para diario"],["glam","Glam, para salir"],["ambos","Un poco de los dos"]]},
     {k:"budget", q:"¿Cuánto quieres invertir?", o:[
-      ["500","Hasta $500"],["1500","Hasta $1,500"],["3000","Hasta $3,000"],["gift","Llegar a $3,000 por el regalo",`Envío gratis y el set Complete Care`]]},
+      ["500","Hasta $500"],["1500","Hasta $1,500"],["3000","Hasta $3,000"],["gift","Llegar a $3,000 por el regalo",`Envío gratis y ${D.meta.regalo}`]]},
   ];
   let hs = 0, ha = {cats:[]}, hpick = new Set(), hrecs = [];
   const check = '<svg class="i" viewBox="0 0 24 24"><path d="M5 12l5 5 9-10"/></svg>';
@@ -1065,7 +1136,7 @@
     }
     body.innerHTML = `<div class="hq"><div class="count">Tu selección</div><h4>Esto te recomiendo</h4></div>
       <div class="lines">${hrecs.map(r=>`<div class="rec">
-        <img src="${IMG}${hd(r.p.img)}.webp" alt="" onerror="this.style.visibility='hidden'">
+        <img src="${IMG}${hd(r.p.img)}.webp" alt="" onerror="imgAlt(this)">
         <div><div class="n">${r.p.name}${r.q>1?` × ${r.q}`:""}</div><div class="d">${r.p.shade} · <span class="num">${money(r.p.price)}</span> <span class="was num">${money(r.p.retail)}</span></div><span class="why">${r.why}</span></div>
         <button class="pick" data-pick="${r.i}" aria-pressed="${hpick.has(r.i)}" aria-label="Incluir">${hpick.has(r.i)?check:""}</button>
       </div>`).join("")}</div>
@@ -1078,7 +1149,7 @@
     const sub = sel.reduce((a,r)=>a+r.q*r.p.price,0), save = sel.reduce((a,r)=>a+r.q*(r.p.retail-r.p.price),0);
     const after = totals().t + sub;
     $("hsum").innerHTML = `Selección: <b class="num">${money(sub)}</b> · ahorras <b class="num">${money(save)}</b><br>` +
-      (after>=GOAL ? `<span class="ok">Con esto llegas a ${money(GOAL).replace(".00","")}: envío gratis y el set Complete Care de regalo.</span>`
+      (after>=GOAL ? `<span class="ok">Con esto llegas a ${money(GOAL).replace(".00","")}: envío gratis y ${GIFT}.</span>`
                    : `Con tu pedido quedarías en <b class="num">${money(after)}</b>. Te faltarían <b class="num">${money(GOAL-after)}</b> para el regalo.`);
     $("helpNav").innerHTML = `<button class="back" data-hback>Atrás</button><button class="send" data-hadd ${sel.length?"":"disabled"}>Agregar ${sel.length} al pedido</button>`;
   }
@@ -1127,7 +1198,7 @@
     const ids = (D.combina||{})[base.code] || []; const items = ids.map(c => products.findIndex(x => x.code === c)).filter(k => k >= 0);
     if (!items.length) { el.innerHTML = ""; return; }
     el.innerHTML = `<div class="combo"><h5>Combina con</h5>${items.map(k => { const x = products[k], q2 = cart[k]||0, hasT = !!x.ntonos;
-      return `<div class="cb"><img src="${IMG}${hd(x.img)}.webp" alt="" onerror="this.style.visibility='hidden'"><div><b>${x.name}</b><span>${hx(hasT ? x.ntonos+" tonos" : (x.shade||""))} · <span class="num">${money(x.price)}</span></span></div>${
+      return `<div class="cb"><img src="${IMG}${hd(x.img)}.webp" alt="" onerror="imgAlt(this)"><div><b>${x.name}</b><span>${hx(hasT ? x.ntonos+" "+VTS(x) : (x.shade||""))} · <span class="num">${money(x.price)}</span></span></div>${
         x.agotado ? `<button type="button" disabled>Agotado</button>` : hasT ? `<button type="button" data-showp="${k}">Elegir</button>` : q2 ? `<button type="button" data-showp="${k}">En pedido (${q2})</button>` : `<button type="button" data-fill="${k}">Agregar</button>`}</div>`; }).join("")}</div>`;
   }
   let CUR = -1;
@@ -1135,9 +1206,9 @@
     CUR = i; const p = ALL[i], d = pct(p), q = cart[i]||0, fi = famOf(i), fam = FAM[fi];
     gc("ver/"+p.code, p.name); gcs("ver", p.code, p.name);
     $("prodHead").textContent = p.cat;
-    openProd(`<div class="pd-pic"><img id="pdMain" src="${IMG}${hd(p.img)}.webp" alt="${p.name}" onerror="this.style.visibility='hidden'"></div><div class="pd-thumbs" id="pdThumbs" hidden></div>
+    openProd(`<div class="pd-pic"><img id="pdMain" src="${IMG}${hd(p.img)}.webp" alt="${p.name}" onerror="imgAlt(this)"></div><div class="pd-thumbs" id="pdThumbs" hidden></div>
       <div class="pd-body"><div class="eyebrow">${p.cat}${p.nuevo?" · Nuevo":""}</div><h4 id="prodName">${p.name}</h4><div class="sh">${p.shade||""}</div>
-      ${fam ? `<div class="tonos"><h5>Tono · ${fam.length} opciones</h5><div class="tchips">${fam.map(k=>{const v=ALL[k]; return `<button type="button" class="tchip${v.agotado?" out":""}" data-tono="${k}" aria-current="${k===i}" title="${hx(v.shade)}${v.agotado?" · agotado":""}"><img src="https://content.mx.farmasi.com/Variant/${v.code}.png" alt="" onerror="this.style.display='none'"><span>${hx(v.shade)}</span></button>`}).join("")}</div></div>` : ""}
+      ${fam ? `<div class="tonos"><h5>${VT(p)[0].toUpperCase()+VT(p).slice(1)} · ${fam.length} opciones</h5><div class="tchips">${fam.map(k=>{const v=ALL[k]; return `<button type="button" class="tchip${v.agotado?" out":""}" data-tono="${k}" aria-current="${k===i}" title="${hx(v.shade)}${v.agotado?" · agotado":""}"><img src="https://content.mx.farmasi.com/Variant/${v.code}.png" alt="" onerror="this.style.display='none'"><span>${hx(v.shade)}</span></button>`}).join("")}</div></div>` : ""}
       <div class="pr"><b>${money(p.price)}</b><s>${money(p.retail)}</s><span class="pill">-${d}%</span></div>
       ${p.incluye ? `<h5>Qué incluye</h5><ul>${p.incluye.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}<button type="button" class="shr" data-share="${i}">Mandar a una amiga</button><div id="pdCombo"></div><div id="pdDet"></div></div>`,
       q ? `<button class="send" data-pclose>Listo, ya está en tu pedido (${q})</button>` : p.agotado ? `<button class="send" disabled>Agotado por ahora</button>` : `<button class="send" data-padd="${i}">Agregar al pedido</button>`);
@@ -1147,7 +1218,7 @@
     const g = GIFT_ITEMS[gi]; if(!g) return;
     gc("ver/regalo", g.name);
     $("prodHead").textContent = "Regalo del mes";
-    openProd(`<div class="pd-pic"><img src="${IMG}${hd(g.img)}.webp" alt="${g.name}" onerror="this.style.visibility='hidden'"></div>
+    openProd(`<div class="pd-pic"><img src="${IMG}${hd(g.img)}.webp" alt="${g.name}" onerror="imgAlt(this)"></div>
       <div class="pd-body"><div class="eyebrow">Regalo</div><h4 id="prodName">${g.name}</h4>
       <div class="pr"><b>Gratis</b><s>${money(g.retail)}</s></div>
       <div class="note">Te lo llevas sin pagar al llegar a ${money(GOAL)} en tu pedido (${GIFT}).</div><div id="pdDet"></div></div>`,
@@ -1189,18 +1260,23 @@
   if (tema) { document.documentElement.dataset.tema = tema; if (DECO[tema]) $("deco").innerHTML = DECO[tema]; }
   requestAnimationFrame(()=>requestAnimationFrame(()=>document.documentElement.classList.remove("notrans")));
   // Portada desde promos.json
-  document.title = `${TITULO} ${D.venta.subtitulo}`.trim();
+  // Nombre de la tienda (_data/equipo.json "tienda"): reemplaza "Farmasi con <nombre>" en el titular y el encabezado
+  const TIENDA = (D.tienda || document.querySelector('meta[name="tienda"]')?.content || "").trim();
+  document.title = TIENDA && !tema ? TIENDA : `${TITULO} ${D.venta.subtitulo}`.trim();
   $("bName").textContent = SALE; $("bSeller").textContent = SELLER;
+  if (TIENDA) { $("bName").hidden = true; document.querySelector(".top .dot").hidden = true; $("bSeller").textContent = TIENDA; }
   if (D.instagram) { $("ig").textContent = "@" + D.instagram; $("ig").href = "https://instagram.com/" + D.instagram; } else $("ig").hidden = true;
   if (D.instagram) $("soc").innerHTML = `<a href="https://instagram.com/${D.instagram}" target="_blank" rel="noopener">@${D.instagram}</a>`;
-  $("vLabel").textContent = (tema ? "Venta especial" : "Promociones") + " · " + D.venta.fechas;
-  $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who"; who.textContent = D.venta.subtitulo; $("vTitle").append(TITULO, document.createElement("br"), who); }
+  $("vLabel").textContent = END - new Date() <= 0 ? "Promociones de Farmasi" : (tema ? "Venta especial" : "Promociones") + " · " + D.venta.fechas;
+  $("vTitle").innerHTML = ""; { const who = document.createElement("span"); who.className = "who";
+    if (TIENDA && !tema) { const w = TIENDA.split(" "), last = w.length > 1 ? w.pop() : ""; who.textContent = last; $("vTitle").append(w.join(" "), document.createElement("br"), who); }
+    else { who.textContent = D.venta.subtitulo; $("vTitle").append(TITULO, document.createElement("br"), who); } }
   $("vWelcome").textContent = D.venta.bienvenida;
   $("nProds").textContent = products.length;
   $("maxOff").textContent = "−" + Math.max(...products.map(pct)) + "%";
-  $("giftName").textContent = D.meta.regalo;
+  $("giftName").textContent = GIFT;
   if (!$("days").textContent) $("days").textContent = END.toLocaleDateString("es-MX",{day:"numeric",month:"short"}).replace(".","");
-  if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta)) {
+  if (D.aviso && D.aviso.texto && inWindow(D.aviso.desde, D.aviso.hasta) && !(ESPT && D.aviso.filtro === ESPT)) { // si el aviso solo lleva a la venta especial, no hace falta: ya está arriba
     $("bannerTxt").textContent = D.aviso.texto; $("banner").hidden = false;
     // Al tocar el aviso: filtra la sección indicada (p. ej. "Kits") o abre un link
     $("banner").onclick = () => {
@@ -1238,7 +1314,7 @@
     if(hide) return; r.hidden=false; r.innerHTML=`<span>Dejaste <b>${n} ${n===1?"producto":"productos"}</b> en tu pedido.</span><button type="button" id="rsGo">Ver pedido</button><button type="button" class="rx" id="rsX" aria-label="Cerrar">×</button>`;
     $("rsGo").onclick=()=>{ openSheet(); }; $("rsX").onclick=()=>{ r.hidden=true; try{ sessionStorage.setItem("glow_rs","1"); }catch(_){} }; })();
   $("q").addEventListener("input", e=>{ qry = e.target.value; renderCatalog(); clearTimeout(window.__qt); window.__qt = setTimeout(()=>{ if(qry.trim().length>2) gc("buscar/"+norm(qry).slice(0,30), "Búsqueda"); }, 900); });
-  (function(){ const P = Object.assign({metodos:[],entrega:"Al confirmar tu pedido te digo cuándo llega.",extra:[]}, D.pago||{});
+  (function(){ const P = Object.assign({metodos:[],entrega:"Farmasi te lo envía a domicilio. Al confirmar tu pedido te digo cuándo llega.",extra:[]}, D.pago||{});
     const L = [`Mandas tu pedido por WhatsApp: no pagas nada en esta página.`, `Te confirmo existencias y el total antes de que pagues.`,
       `Con ${money(GOAL)} o más en productos el envío es gratis y te llevas ${D.meta.regalo}.`, `Si no llegas a esa meta, el envío cuesta $129.`];
     if (P.metodos.length) L.push(`Formas de pago: ${P.metodos.join(", ")}.`); else L.push("Te paso las formas de pago disponibles cuando confirmes tu pedido.");
@@ -1246,7 +1322,7 @@
     $("pagoList").innerHTML = L.map(x=>`<li>${hx(x)}</li>`).join(""); })();
   $("sort").addEventListener("change", e=>{ sortM=e.target.value; renderCatalog(); });
   $("wafab").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola "+SELLER+", tengo una duda sobre tu tablero.")}`;
-  renderChips(); renderCatalog(); syncForm(); update(); tick();
+  renderChips(); renderTop(); renderCatalog(); syncForm(); update(); tick();
   { const pq = new URLSearchParams(location.search).get("p"); if (pq) { const k = ALL.findIndex(x=>x.code===pq); if (k>=0) showProduct(k); } }
 })();
 </script>

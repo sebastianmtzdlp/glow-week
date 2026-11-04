@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<!-- Generada por scripts/eventos.py desde _data/eventos.json. No la edites a mano. -->
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Taller de Automaquillaje · Party eyes make up · Eventos · Mi Tienda Beauty</title>
+<meta name="description" content="Aprende a crear looks versátiles, elegantes y duraderos para brillar en todas tus celebraciones.">
+<meta property="og:title" content="Taller de Automaquillaje · Party eyes make up">
+<meta property="og:description" content="Aprende a crear looks versátiles, elegantes y duraderos para brillar en todas tus celebraciones.">
+<meta property="og:url" content="https://mitienda.beauty/eventos/automaquillaje-party-eyes/">
+<meta name="theme-color" content="#EEF0F8">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.css">
+<style>
+  /* Estilo Farmasi: blanco, azul marino, rojo coral; Outfit para texto y Plex Mono para cifras. Un solo botón en acento. */
+  :root{color-scheme:light;--bg:#FFFFFF;--ink:#262A4A;--muted:#6C7090;--line:#E6E8F0;--soft:#EEF0F8;--accent:#DB414C;--accent-t:#C8323F;--tint:#FDEEF0;
+    --c:var(--accent);--mono:"IBM Plex Mono",ui-monospace,monospace;--ease:cubic-bezier(.23,1,.32,1)}
+  *{box-sizing:border-box;margin:0}
+  html,body{background:var(--bg)}
+  body{color:var(--ink);font-family:Outfit,system-ui,sans-serif;font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+  a,button{-webkit-tap-highlight-color:transparent}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .cab{background:var(--soft)}
+  .col{max-width:560px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+  .cab .col{display:flex;justify-content:space-between;align-items:center;gap:12px;padding-block:10px}
+  .cab a{color:var(--ink);text-decoration:none;font-weight:500;font-size:15px;min-height:44px;display:flex;align-items:center}
+  .marca{font-weight:300;font-size:12px;letter-spacing:.24em;color:var(--muted)}
+  .foto{margin-top:18px;border-radius:18px;aspect-ratio:16/10;max-width:100%;background:var(--soft) center/cover no-repeat}
+  .tipo{margin-top:22px;color:var(--accent-t);font-weight:600;font-size:15px}
+  h1{font-size:clamp(30px,8vw,38px);line-height:1.08;font-weight:800;letter-spacing:-.01em;margin-top:4px;text-wrap:balance}
+  .res{font-size:18px;color:var(--muted);margin-top:8px;max-width:38ch}
+  .ficha{margin-top:22px;border:1px solid var(--line);border-radius:18px;overflow:hidden}
+  .fila{display:flex;gap:14px;align-items:flex-start;padding:14px 16px}
+  .fila+.fila{border-top:1px solid var(--line)}
+  .fila svg{flex:none;width:22px;height:22px;margin-top:1px;stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+  .fila b{display:block;font-weight:600}
+  .fila small{display:block;color:var(--muted);font-size:14px}
+  .cuenta{display:flex;align-items:baseline;gap:10px;background:var(--soft);padding:14px 16px}
+  .cuenta b{font:700 34px/1 var(--mono);color:var(--accent)}
+  .cuenta span{color:var(--ink);font-size:15px}
+  #mapa{height:200px;border-top:1px solid var(--line);z-index:0}
+  .leaflet-container{font-family:inherit;background:var(--soft)}
+  .osm-gris{filter:grayscale(.7) contrast(.92) brightness(1.04)}
+  .txt{margin-top:24px;font-size:17px}
+  .txt p+p{margin-top:12px}.txt a{color:var(--accent-t)}
+  .txt ul{list-style:none;padding:0;margin-top:14px;display:grid;gap:8px}
+  .txt li{display:flex;gap:10px}
+  .txt li svg{flex:none;width:20px;height:20px;margin-top:3px;stroke:var(--accent);fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round}
+  .acc{display:grid;gap:10px;margin-top:24px}
+  .btn{display:flex;align-items:center;justify-content:center;min-height:52px;border-radius:14px;padding:0 16px;font:inherit;font-size:16px;font-weight:600;text-decoration:none;cursor:pointer;border:1.5px solid var(--line);background:#fff;color:var(--ink);transition:transform 160ms var(--ease),background-color 150ms ease,border-color 150ms ease}
+  .btn.fill{background:var(--accent);border-color:var(--accent);color:#fff}
+  .btn:active{transform:scale(.97)}
+  .btn.tint{background:var(--tint);border-color:var(--tint);color:var(--accent-t)}
+  .quien{font-size:12px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:center;margin-bottom:-2px}
+  .aviso{color:var(--muted);font-size:15px;text-align:center}
+  .mas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+  .mas .btn{min-height:48px;font-size:14px;font-weight:500;border-width:1px;padding:0 8px;text-align:center;line-height:1.2}
+  .fin{margin-top:22px;color:var(--muted);background:var(--soft);border-radius:14px;padding:14px 16px}
+  a.back{display:inline-flex;align-items:center;min-height:44px;margin:26px 0 40px;font-size:15px;color:var(--muted)}
+  .con{margin-top:10px;color:var(--muted);font-size:15px}
+  .flyer{display:block;width:100%;max-width:440px;height:auto;margin:24px auto 0;border-radius:6px;box-shadow:0 1px 2px rgba(38,42,74,.08),0 12px 32px rgba(38,42,74,.12)}
+  .apo{display:flex;flex-wrap:wrap;gap:2px 16px}.apo span{color:var(--muted);font-size:14px}.apo b{display:inline;font:700 17px var(--mono);color:var(--ink);margin-left:6px}
+  /* Con flyer: el flyer es el cartel; en cel va después de los botones, en compu a la izquierda */
+  main.fly .prin,main.fly .lado{display:contents}
+  main.fly{display:flex;flex-direction:column;gap:0}
+  main.fly .tipo{order:1}main.fly h1{order:2}main.fly .res{order:3}main.fly .con{order:4}main.fly .ficha{order:5}main.fly .acc{order:6}main.fly .mas{order:7}main.fly .fin{order:8}main.fly .flyer{order:9}main.fly .txt{order:10}main.fly>.back{order:11}
+  [hidden]{display:none!important}
+  @media (min-width:900px){
+    main.fly{display:grid;grid-template-columns:minmax(0,440px) minmax(0,1fr);grid-template-rows:repeat(19,auto) 1fr;column-gap:64px;row-gap:0;align-items:start;align-content:start;padding-top:32px}
+    main.fly .flyer{grid-column:1;grid-row:1/span 20;position:sticky;top:24px;margin:0}
+    main.fly>*,main.fly .prin>*,main.fly .lado>*{grid-column:2}
+    main.fly .flyer{grid-column:1}
+    main.fly .tipo{margin-top:0}main.fly .ficha{margin-top:22px}main.fly>.back{grid-column:1/-1}
+    .col{max-width:1120px;padding-left:48px;padding-right:48px}
+    .dos{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:56px;align-items:start;padding-top:24px}
+    .lado{position:sticky;top:24px;padding-top:18px}.lado .ficha{margin-top:0}
+    .dos>.back{grid-column:1/-1}
+    h1{font-size:52px}.res{font-size:20px}
+    #mapa{height:240px}
+  }
+  @media (hover:hover) and (pointer:fine){.btn:hover{border-color:#C9CDE0}.btn.tint:hover{border-color:#F6C9CE}.btn.fill:hover{background:var(--accent-t);border-color:var(--accent-t)}.cab a:hover{color:var(--accent-t)}}
+  @media (prefers-reduced-motion:reduce){.btn{transition-property:background-color,border-color}}
+</style>
+</head>
+<body>
+<header class="cab"><div class="col"><a href="/eventos/" id="volver">← Eventos</a><span class="marca">EQUIPO SVH</span></div></header>
+<main class="col dos"><div class="prin">
+  <div class="foto" id="foto" role="img" hidden></div>
+  <div class="tipo" id="tipo"></div>
+  <h1 id="tit"></h1>
+  <p class="res" id="res"></p>
+  <p class="con" id="con" hidden></p>
+  <img class="flyer" id="flyer" alt="" hidden>
+  <div class="txt" id="desc" hidden></div>
+  </div><aside class="lado">
+  <section class="ficha" aria-label="Cuándo y dónde">
+    <div class="cuenta" id="cuenta"><b id="cN"></b><span id="cT"></span></div>
+    <div class="fila"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15.5" rx="2.5"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg><div><b id="dia"></b><small id="hora"></small></div></div>
+    <div class="fila" id="lugarRow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.5-6-6.5-11a6.5 6.5 0 0 1 13 0c0 5-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></svg><div><b id="lugar"></b><small id="zona"></small></div></div>
+    <div class="fila" id="apoRow" hidden><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h13A1.5 1.5 0 0 1 20 7.5V10a2 2 0 0 0 0 4v2.5a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 4 16.5V14a2 2 0 0 0 0-4z"/><path d="M14 6v12" stroke-dasharray="2 2"/></svg><div id="apo"></div></div>
+    <div id="mapa" role="region" aria-label="Zona del evento en el mapa" hidden></div>
+  </section>
+  <div class="acc" id="acc"><div id="btns" class="acc" style="margin-top:0"></div><p class="aviso" id="aviso" hidden></p></div>
+  <div class="mas" id="mas"><a class="btn" id="gcal" target="_blank" rel="noopener">Google Calendar</a><button class="btn" id="ics">Guardar en el cel</button><a class="btn" id="share" target="_blank" rel="noopener">Compartir</a></div>
+  <p class="fin" id="fin" hidden>Este evento ya pasó. Mira los que vienen en <a href="/eventos/">Eventos</a>.</p>
+  </aside>
+  <a class="back" href="/eventos/">← Todos los eventos</a>
+</main>
+<script id="evento" type="application/json">{"slug": "automaquillaje-party-eyes", "titulo": "Taller de Automaquillaje · Party eyes make up", "tipo": "Taller de automaquillaje", "categoria": "Maquillaje", "flyer": "/eventos/fotos/automaquillaje-party-eyes.jpg", "color": "#B0102A", "desde": "2026-10-31T11:00:00-06:00", "hasta": "2026-10-31T12:30:00-06:00", "zona": "Miguel Hidalgo", "lugar": "Silvia Mata Estudio, Polanco", "direccion": "Av. Homero 421, Int. 103, Polanco, CDMX.", "mapa": [19.4336, -99.1938], "resumen": "Aprende a crear looks versátiles, elegantes y duraderos para brillar en todas tus celebraciones.", "puntos": ["Técnicas profesionales", "Paso a paso para tu tipo de piel", "Looks para el día, la noche y eventos especiales", "Recomendaciones de productos y tips personalizados", "Trae tus brochas y esponjas limpias (habrá herramientas a la venta)", "Habrá muestras de maquillaje"], "aportacion": [{"etiqueta": "Costo de recuperación", "precio": "$150"}], "colaboran": ["Silvia Mata Estudio"], "responsables": [{"slug": "silvia", "nombre": "Silvia", "whatsapp": "525520735575"}], "apartar": {"whatsapp": "", "instagram": ""}, "url": "https://mitienda.beauty/eventos/automaquillaje-party-eyes/"}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<script src="https://unpkg.com/maplibre-gl@4.7.1/dist/maplibre-gl.js"></script>
+<script src="https://unpkg.com/@maplibre/maplibre-gl-leaflet@0.1.4/leaflet-maplibre-gl.js"></script>
+<script src="/eventos/plano.js"></script>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+(()=>{
+  const e=JSON.parse(document.getElementById("evento").textContent), $=id=>document.getElementById(id), TZ="America/Mexico_City";
+  const esc=s=>String(s??"").replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+  const part=(d,o)=>new Intl.DateTimeFormat("es-MX",{timeZone:TZ,...o}).format(d);
+  const a=new Date(e.desde), b=new Date(e.hasta||e.desde), mismo=part(a,{dateStyle:"short"})===part(b,{dateStyle:"short"});
+  const h24=d=>part(d,{hour:"2-digit",minute:"2-digit",hourCycle:"h23"});
+  const dia=d=>{const [y,m,x]=part(d,{year:"numeric",month:"2-digit",day:"2-digit"}).split("/").reverse();return Date.UTC(+y,+m-1,+x);};
+  const may=s=>s.charAt(0).toUpperCase()+s.slice(1);
+  const gc=(p,t)=>{const go=()=>{try{window.goatcounter.count({path:"eventos/"+e.slug+"/"+p,title:t,event:true})}catch(_){}};if(window.goatcounter&&window.goatcounter.count)go();else window.addEventListener("load",()=>setTimeout(go,300));};
+
+  if(e.serie_url){ $("volver").href=e.serie_url; $("volver").textContent="← "+e.serie_nombre; }
+  if(e.imagen){ $("foto").style.backgroundImage=`url('${e.imagen.replace(/'/g,"%27")}')`; $("foto").setAttribute("aria-label",e.titulo); $("foto").hidden=false; }
+  $("tipo").textContent=e.tipo||""; $("tit").textContent=e.titulo; $("res").textContent=e.resumen||"";
+  $("dia").textContent=mismo?may(part(a,{weekday:"long",day:"numeric",month:"long"})):`Del ${part(a,{day:"numeric",month:"long"})} al ${part(b,{day:"numeric",month:"long"})}`;
+  $("hora").innerHTML=`<span class="num">${b>a?h24(a)+"–"+h24(b):h24(a)}</span> h · hora del centro de México`;
+  if(e.lugar){ $("lugar").textContent=e.lugar; $("zona").textContent=e.direccion?[e.direccion,e.zona].filter(Boolean).join(" · "):[e.zona,"Te mandamos la dirección exacta al apartar"].filter(Boolean).join(" · "); } else $("lugarRow").hidden=true;
+  if(e.flyer){ $("flyer").src=e.flyer; $("flyer").alt="Flyer de "+e.titulo; $("flyer").hidden=false; document.querySelector("main").classList.add("fly"); $("foto").hidden=true; }
+  if((e.colaboran||[]).length){ const c=e.colaboran; $("con").textContent="Con "+(c.length>1?c.slice(0,-1).join(", ")+" y "+c.at(-1):c[0]); $("con").hidden=false; }
+  if((e.aportacion||[]).length){ $("apo").innerHTML='<div class="apo">'+e.aportacion.map(x=>`<span>${esc(x.etiqueta)}<b>${esc(x.precio)}</b></span>`).join("")+"</div>"+(e.regalo?`<small>${esc(e.regalo)}</small>`:""); $("apoRow").hidden=false; }
+
+  const link=s=>esc(s).replace(/(https?:\/\/[^\s<]+)/g,'<a href="$1" target="_blank" rel="noopener">$1</a>');
+  const ok='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg>';
+  const ps=(e.descripcion||"").split(/\n\s*\n/).filter(x=>x.trim()).map(p=>"<p>"+link(p).replace(/\n/g,"<br>")+"</p>").join("");
+  const li=(e.puntos||[]).length?"<ul>"+e.puntos.map(x=>"<li>"+ok+"<span>"+link(x)+"</span></li>").join("")+"</ul>":"";
+  if(ps||li){ $("desc").innerHTML=ps+li; $("desc").hidden=false; }
+
+  // Apartar: un botón por responsable (cada una recibe a quien invitó; ?de=<slug> deja solo a esa persona),
+  // si no, WhatsApp e Instagram del evento (o su botón propio). Un solo botón en acento.
+  const ap=e.apartar||{}, cuando=part(a,{weekday:"long",day:"numeric",month:"long"}), msg=`Hola, quiero apartar mi lugar para ${e.titulo} (${cuando}).`;
+  const rs=e.responsables||[], de=new URLSearchParams(location.search).get("de"), quien=rs.filter(r=>r.slug===de).length?rs.filter(r=>r.slug===de):rs;
+  let bt="";
+  if(quien.length){
+    if(quien.length>1) bt+=`<p class="quien">¿Quién te invitó?</p>`;
+    bt+=quien.map(r=>`<a class="btn ${quien.length>1?"tint":"fill"}" data-r="${esc(r.slug)}" target="_blank" rel="noopener" href="https://wa.me/${r.whatsapp}?text=${encodeURIComponent(`Hola ${r.nombre}, estoy interesada en el evento ${e.titulo} (${cuando}).`)}">Escríbele a ${esc(r.nombre)}</a>`).join("");
+  } else if(ap.whatsapp) bt+=`<a class="btn fill" id="bWa" target="_blank" rel="noopener" href="https://wa.me/${String(ap.whatsapp).replace(/\D/g,"")}?text=${encodeURIComponent(msg)}">Apartar por WhatsApp</a>`;
+  if(ap.instagram) bt+=`<a class="btn${bt?"":" fill"}" id="bIg" target="_blank" rel="noopener" href="https://ig.me/m/${encodeURIComponent(String(ap.instagram).replace(/^@/,""))}">Apartar por Instagram</a>`;
+  if(e.boton&&e.boton.url) bt+=`<a class="btn${bt?"":" fill"}" id="bOtro" href="${esc(e.boton.url)}" target="_blank" rel="noopener">${esc(e.boton.texto||"Quiero ir")}</a>`;
+  $("btns").innerHTML=bt; if(!bt){ $("aviso").textContent="Muy pronto te decimos cómo apartar tu lugar."; $("aviso").hidden=false; }
+  $("btns").querySelectorAll("[data-r]").forEach(x=>x.onclick=()=>gc("whatsapp-"+x.dataset.r,x.textContent));
+  $("bWa")&&($("bWa").onclick=()=>gc("apartar-whatsapp","Apartar por WhatsApp")); $("bIg")&&($("bIg").onclick=()=>gc("apartar-instagram","Apartar por Instagram")); $("bOtro")&&($("bOtro").onclick=()=>gc("boton",e.boton.texto||"Botón"));
+
+  // Cuenta regresiva: primero el número
+  const tick=()=>{const n=new Date(), d=Math.round((dia(a)-dia(n))/864e5);
+    if(n>b){ $("cuenta").hidden=true; $("acc").hidden=true; $("mas").hidden=true; $("fin").hidden=false; return; }
+    if(n>=a){ $("cN").textContent="Hoy"; $("cT").textContent=mismo?"Está pasando ahora":"Ya empezó"; return; }
+    if(d<=0){ const h=Math.max(1,Math.round((a-n)/36e5)); $("cN").textContent=h; $("cT").textContent=h===1?"hora para empezar":"horas para empezar"; return; }
+    $("cN").textContent=d; $("cT").textContent=d===1?"día · es mañana":"días para el evento";};
+  tick(); setInterval(tick,60000);
+
+  // Mapa (zona aproximada)
+  if(e.mapa&&window.L){ $("mapa").hidden=false;
+    const m=L.map("mapa",{scrollWheelZoom:false,dragging:!L.Browser.mobile,attributionControl:true}).setView(e.mapa,15);
+    planoClaro(m,"claro");
+    L.circle(e.mapa,{radius:250,color:e.color||"#DB414C",weight:2,fillColor:e.color||"#DB414C",fillOpacity:.15}).addTo(m); }
+
+  // Calendario y compartir
+  const utc=d=>d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""), fin=b>a?b:new Date(+a+36e5);
+  const det=(e.resumen?e.resumen+"\n\n":"")+e.url;
+  $("gcal").href="https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(e.titulo)+"&dates="+utc(a)+"/"+utc(fin)+"&details="+encodeURIComponent(det)+(e.lugar?"&location="+encodeURIComponent(e.lugar):"");
+  $("gcal").onclick=()=>gc("calendario","Google Calendar");
+  $("ics").onclick=()=>{const t=s=>String(s||"").replace(/[\\,;]/g,x=>"\\"+x).replace(/\n/g,"\\n");
+    const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//mitienda.beauty//eventos//ES","BEGIN:VEVENT","UID:"+e.slug+"@mitienda.beauty","DTSTAMP:"+utc(new Date()),"DTSTART:"+utc(a),"DTEND:"+utc(fin),
+      "SUMMARY:"+t(e.titulo),"DESCRIPTION:"+t(det),e.lugar?"LOCATION:"+t(e.lugar):"","URL:"+e.url,"END:VEVENT","END:VCALENDAR"].filter(Boolean).join("\r\n");
+    const l=document.createElement("a"); l.href=URL.createObjectURL(new Blob([ics],{type:"text/calendar"})); l.download=e.slug+".ics"; l.click(); gc("calendario","Calendario del cel");};
+  $("share").href="https://wa.me/?text="+encodeURIComponent(e.titulo+(e.resumen?" · "+e.resumen:"")+"\n"+e.url); $("share").onclick=()=>gc("compartir","WhatsApp");
+})();
+</script>
+</body>
+</html>

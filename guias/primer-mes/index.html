@@ -1,0 +1,293 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="g-primer-mes">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tu primer mes como socia</title>
+<meta name="description" content="Los primeros 30 días de una socia nueva, uno por uno: qué haces cada día, con qué herramienta y qué revisas con tu líder. Con el reto Mis primeros 200 dentro.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Tu primer mes, día por día">
+<meta property="og:description" content="30 días: qué haces cada día, con qué herramienta y qué revisas con tu líder.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/guias/primer-mes/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-bienvenida.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 8px;max-width:36em}
+.inicio{display:flex;flex-wrap:wrap;align-items:center;gap:8px 14px;margin-top:22px}
+.inicio label{font:400 italic 21px/1 var(--serif)}
+.inicio input{width:auto;min-width:11em}
+
+/* hoy: lo único que tienes que mirar al abrir la página */
+.hoy{border:1px solid var(--line);border-radius:18px;padding:20px 18px 18px;margin:26px 0 0}
+.hoy-cab{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.hoy-cab span{font:500 12px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink)}
+.hoy-cab b{font:500 13px/1 var(--mono);color:var(--muted)}
+.hoy h2{font-size:clamp(28px,7vw,40px);margin-top:12px}
+.hoy p{margin:8px 0 0;max-width:32em}
+.hoy .acciones{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:16px}
+.hoy.listo{border-color:var(--good);background:#F2FAF6}
+
+/* los 30 cuadros: la semana 4 trae 9 días, igual que la agenda del equipo */
+.mes{margin:30px 0 0;display:grid;gap:6px}
+.sem{display:grid;grid-template-columns:2.4em repeat(9,1fr);gap:5px;align-items:center}
+.sem>span{font:500 12px/1 var(--mono);color:var(--muted)}
+.dia{aspect-ratio:1;border:0;border-radius:10px;background:var(--soft);font:500 14px/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--ink);padding:0;cursor:pointer;min-height:30px}
+.dia.hecho{background:#DDF1E7;color:#135F3F}
+.dia.hoyd{background:var(--accent);color:#fff;font-weight:600}
+.dia.hecho.hoyd{box-shadow:inset 0 0 0 3px #DDF1E7}
+.ley{display:flex;flex-wrap:wrap;gap:6px 16px;margin:10px 0 0;font-size:13px;color:var(--muted)}
+.ley i{display:inline-block;width:12px;height:12px;border-radius:4px;vertical-align:-1px;margin-right:6px;background:var(--soft)}
+.ley .l-h i{background:#DDF1E7}.ley .l-y i{background:var(--accent)}
+
+/* lo que se repite todos los días */
+.diario{margin:40px 0 0;border-top:2px solid var(--ink);padding-top:14px}
+.diario h2{font-size:clamp(26px,6.5vw,36px)}
+.diario>p{margin:6px 0 0;color:var(--muted);font-size:15px;max-width:32em}
+.tres{display:grid;grid-template-columns:repeat(3,1fr);margin:16px 0 0;border-bottom:1px solid var(--line)}
+.tres div{padding:4px 10px 14px 0}
+.tres div+div{padding-left:12px;border-left:1px solid var(--line)}
+.tres b{display:block;font:400 clamp(30px,8vw,46px)/1 var(--serif);font-variation-settings:"opsz" 144}
+.tres span{display:block;font-size:14px;line-height:1.3;color:var(--muted);margin-top:6px}
+.ritmos{margin:12px 0 0;font-size:15px}
+.ritmos a{text-underline-offset:3px}
+
+/* cada semana y sus días */
+.semana{padding:40px 0 0}
+.sem-cab{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.sem-cab .cuando{font:500 13px/1 var(--mono);color:var(--accent-ink);grid-row:1 / span 2;padding-top:6px;min-width:5.5em}
+.sem-cab h2{font-size:clamp(26px,6.5vw,38px)}
+.sem-cab p{margin:0;color:var(--muted);font-size:15px;grid-column:2}
+.dias{list-style:none;margin:0;padding:0}
+.d{display:grid;grid-template-columns:2.6em 1fr auto;gap:2px 12px;padding:16px 0;border-bottom:1px solid var(--line);scroll-margin-top:16px}
+.d .n{font:500 15px/1.5 var(--mono);color:var(--muted);grid-row:1 / span 3}
+.d h3{margin:0;font:600 18px/1.3 var(--body)}
+.d p{margin:2px 0 0;font-size:16px;line-height:1.45;grid-column:2}
+.d .con{grid-column:2;font-size:15px;margin-top:6px}
+.d .con a{font-weight:500;text-underline-offset:3px}
+.d .lider-d{grid-column:2;font-size:14px;color:var(--muted);margin-top:6px}
+.d .lider-d b{font:500 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--ink);margin-right:6px}
+.d label{grid-column:3;grid-row:1;display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);cursor:pointer;min-height:44px;margin-top:-12px}
+.d input{width:20px;height:20px;accent-color:var(--ink);margin:0}
+.d.es-hoy .n{color:var(--accent-ink);font-weight:600}
+.d.es-hoy h3::after{content:"hoy";font:500 11px/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:#fff;background:var(--accent);border-radius:6px;padding:4px 6px;margin-left:10px;vertical-align:3px}
+.d.hecho h3{color:var(--muted)}
+.d.marca{animation:marca 900ms var(--ease)}
+@keyframes marca{0%{background:var(--tint)}100%{background:transparent}}
+
+/* después del mes */
+.despues{margin:48px 0 0}
+.despues h2{font-size:clamp(28px,7vw,40px)}
+.despues>p{margin:10px 0 0;max-width:34em}
+.tipos{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid var(--line)}
+.tipos a{display:grid;text-decoration:none;color:inherit;grid-template-columns:1fr auto;gap:2px 16px;padding:16px 0;border-bottom:1px solid var(--line)}
+.tipos b{font:400 24px/1.1 var(--serif)}
+.tipos span{grid-column:1;color:var(--muted);font-size:15px}
+.tipos i{grid-column:2;grid-row:1 / span 2;align-self:center;font:500 12px/1 var(--mono);font-style:normal;color:var(--muted)}
+
+.lider{background:var(--soft);border-radius:24px;padding:24px 18px;margin:44px -16px 0}
+.lider h2{font-size:clamp(26px,6.5vw,36px)}
+.lider p{margin:10px 0 0;max-width:34em}
+.lider ul{margin:12px 0 0;padding-left:20px}
+.lider li{margin:4px 0}
+.lider .acciones{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:18px}
+
+@media (prefers-reduced-motion:reduce){.d.marca{animation:none}}
+@media (min-width:900px){
+  .arriba{display:grid;grid-template-columns:1fr 1fr;gap:0 64px;align-items:start}
+  .arriba>div{padding-top:56px}
+  .portada{padding:56px 0 0}
+  .semanas{display:grid;grid-template-columns:1fr 1fr;gap:0 56px}
+  .lider{margin:56px 0 0;padding:40px}
+  .despues{display:grid;grid-template-columns:.9fr 1.1fr;gap:0 56px}
+  .tipos{margin:0}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/guias/">Guías del equipo</a>
+  </div>
+
+  <div class="arriba">
+    <header class="portada">
+      <h1>Tu primer <em>mes</em></h1>
+      <p class="bajada">30 días, uno por uno: qué haces, con qué herramienta y qué revisas con tu líder. Pon el día que empezaste y la página te dice qué toca hoy.</p>
+      <div class="inicio">
+        <label for="inicio">Empecé el</label>
+        <input type="date" id="inicio">
+      </div>
+    </header>
+
+    <div>
+      <section class="hoy" id="hoy" aria-live="polite"></section>
+      <div class="mes" id="mes" aria-label="Los 30 días"></div>
+      <div class="ley" aria-hidden="true"><span class="l-y"><i></i>hoy</span><span class="l-h"><i></i>hecho</span><span><i></i>por hacer</span></div>
+    </div>
+  </div>
+
+  <section class="diario" aria-labelledby="dTit">
+    <h2 id="dTit">Todos los días, sin falta</h2>
+    <p>Es el método de 10 actividades del equipo en su ritmo Part Time. Lo de cada día de abajo va encima de esto, no en lugar de esto.</p>
+    <div class="tres">
+      <div><b>10</b><span>contactos nuevos o seguimientos</span></div>
+      <div><b>1</b><span>presentación o plática de producto</span></div>
+      <div><b>1</b><span>pieza de contenido publicada</span></div>
+    </div>
+    <p class="ritmos">¿Medio o Full Time? Son 20, 2 y 2, o 30, 3 y 3. Lo anotas en <a href="/mentorias/herramientas/hoja-diaria/">la hoja del día</a>.</p>
+  </section>
+
+  <div class="semanas" id="semanas"></div>
+
+  <section class="despues" aria-labelledby="pTit">
+    <div>
+      <h2 id="pTit">Y después del día 30</h2>
+      <p>Con tu líder eligen tu camino para el mes 2. No todas entran por lo mismo y no tienen que ir al mismo ritmo.</p>
+      <p class="nota"><a href="/mentorias/herramientas/que-quiere/">¿Qué quiere cada quien?</a> te ayuda a ponerle nombre.</p>
+    </div>
+    <ul class="tipos">
+      <li><a href="/guias/caminos/#le-gusta"><b>Le gusta</b><span>Usa el producto, vende a su gente y cuida sus 75 puntos.</span><i>ver →</i></a></li>
+      <li><a href="/guias/caminos/#va-por-algo"><b>Va por algo</b><span>Tiene una meta con número: un nivel, un viaje, un pago.</span><i>ver →</i></a></li>
+      <li><a href="/guias/caminos/#va-por-todo"><b>Va por todo</b><span>Quiere equipo propio y llegar a dirección.</span><i>ver →</i></a></li>
+    </ul>
+  </section>
+
+  <section class="lider" aria-labelledby="lTit">
+    <h2 id="lTit">¿Eres su líder?</h2>
+    <p>Mándale esta página el día que se inscribe. Tu parte está marcada en cada día como <b>con tu líder</b>; son cinco citas:</p>
+    <ul>
+      <li>Día 1: la agregas al grupo y le das la bienvenida.</li>
+      <li>Días 7, 14 y 21: un 1 a 1 corto para revisar la semana.</li>
+      <li>Día 29: el cierre del mes con su hoja de Mi mes.</li>
+    </ul>
+    <div class="acciones">
+      <a class="btn" id="mandar" href="#" target="_blank" rel="noopener" data-cuenta="mandar-socia">Mandar a mi socia</a>
+      <a class="enlace" href="/mentorias/herramientas/1a1/">Cómo hacer el 1 a 1</a>
+      <a class="enlace" href="/mentorias/herramientas/bienvenida/">La lista corta de bienvenida</a>
+    </div>
+  </section>
+
+  <footer>
+    <p>Equipo SVH · mitienda.beauty · El kit de $499, los 75 puntos al mes y el valor de $25 por punto salen de la guía de inscripción de México; 200 puntos de grupo son el 3%. El método de 10 actividades y los retos son del equipo. No es material oficial de Farmasi.</p>
+    <p>Lo que palomeas se guarda solo en tu celular.</p>
+  </footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(function(){
+  var T = "/mentorias/herramientas/";
+  /* t: título · x: qué haces · h: [texto, liga] herramienta · l: lo que toca con tu líder */
+  var SEM = [
+    {cuando:"Días 1 a 7", tit:"Arranca", sub:"Tu tienda lista, tu lista hecha y tus primeros mensajes.", dias:[
+      {t:"Pide tu kit y entra a tu Back Office", x:"El kit de inicio es de $499. En el Back Office ves tus puntos, tu equipo y tu programa de bienvenida. Antes de cerrar el día, escribe en una línea para qué estás haciendo esto.", h:["Checklist de bienvenida", T+"bienvenida/"], l:"Te agrega al grupo del equipo."},
+      {t:"Arma tu tienda", x:"Elige tu nombre en Mi tienda: ahí están tu link, tu tarjeta y el mensaje para contestar cada pedido. Mándate tu link a ti misma para ver cómo lo recibe una clienta.", h:["Mi tienda", T+"mi-tienda/"]},
+      {t:"Tu lista de 20 y tu reto", x:"Anota 20 personas que ya te conocen: familia, amigas, compañeras. Hoy empieza tu reto Mis primeros 200: 200 puntos de grupo en 14 días.", h:["Mi lista de 50", T+"lista/"], h2:["Reto Mis primeros 200", T+"primeros-200/"]},
+      {t:"Tus primeros 10 mensajes", x:"Escribe a 10 de tu lista ofreciendo producto, con un elogio real y distinto en cada mensaje. En la noche llena tu primera hoja del día.", h:["Mensajes listos", T+"mensajes/"]},
+      {t:"Cuenta que empezaste", x:"Una publicación sencilla: qué producto estás probando y por qué lo elegiste. Sin precios ni promesas.", h:["Qué publico hoy", T+"contenido/"]},
+      {t:"Tu pedido de 75 puntos", x:"Son tus 75 puntos personales del mes, unos $1,875 a precio FI, y cuentan para tu reto. Pide lo que vas a usar y mostrar.", h:["¿En qué nivel voy?", T+"nivel/"]},
+      {t:"Tu primera semana, en voz alta", x:"Cuenta tus números de la semana: contactos, respuestas, puntos. Después contesta para ti las preguntas de qué quieres de este negocio.", h:["¿Qué quiere cada quien?", T+"que-quiere/"], l:"Primer 1 a 1: revisan la semana y la meta del reto."}
+    ]},
+    {cuando:"Días 8 a 14", tit:"Tus primeras clientas", sub:"Seguimiento, la primera rutina y cerrar el reto.", dias:[
+      {t:"Seguimiento sin presionar", x:"Vuelve a escribir a quien no contestó. Un mensaje, sin insistir, con algo nuevo que contarle.", h:["Mensajes de seguimiento", T+"mensajes/"]},
+      {t:"Arma una rutina", x:"Elige a una clienta o amiga y arma su rutina de mañana y de noche. Mándasela por WhatsApp con sus precios.", h:["Arma su rutina", T+"rutina/"]},
+      {t:"Cuando te dicen que no", x:"Lee las respuestas a «está caro», «luego te digo» y «ya uso otra marca». Elige dos y practícalas en voz alta.", h:["¿Y si me dice que no?", T+"objeciones/"]},
+      {t:"Apunta cada pedido", x:"Quién pidió, qué, si ya pagó y si ya le llegó. Así sabes cuánto te deben sin buscar en el chat.", h:["Pedidos y cobros", T+"pedidos/"]},
+      {t:"Tu primera clienta con pedido", x:"Si ya entró, anótalo en tu reto. Si todavía no, revisa tu lista: ¿a quién le escribiste dos veces y a quién ninguna?", h:["Reto Mis primeros 200", T+"primeros-200/"]},
+      {t:"Revisa tus puntos", x:"Suma tu pedido y los de tus clientas. Ve cuánto te falta para 200 y cuánto es eso por día.", h:["Ritmo de Puntos", "/herramientas/ritmo-de-puntos/"]},
+      {t:"Tu segunda clienta", x:"Con tu pedido y dos clientas, los 200 puntos están cerca. Hoy toca la segunda.", l:"1 a 1 de la semana 2: puntos del reto y a quién falta escribir."}
+    ]},
+    {cuando:"Días 15 a 21", tit:"Que vuelvan y que se enteren", sub:"Termina tu reto y das tu primera presentación de negocio.", dias:[
+      {t:"Pide un testimonio", x:"A la clienta que ya usó su producto, pídele dos líneas sobre cómo le fue. Es lo que más ayuda a la siguiente.", h:["Lo que dicen mis clientas", T+"testimonios/"]},
+      {t:"Último día del reto", x:"Hoy se cumplen tus 14 días. Anota tus puntos finales y manda tu avance a tu líder, llegues o no.", h:["Reto Mis primeros 200", T+"primeros-200/"]},
+      {t:"Aprende la presentación", x:"Son siete pantallas con lo confirmado del negocio. Pásalas dos veces y cuéntalas con tus palabras.", h:["La presentación en 5 minutos", T+"presentacion/"]},
+      {t:"Tu primera presentación de negocio", x:"A una persona de tu lista que te haya preguntado cómo te va. Escucha más de lo que hablas.", h:["La presentación en 5 minutos", T+"presentacion/"]},
+      {t:"Una reunión pequeña", x:"Tres o cuatro amigas, producto en la mesa, 45 minutos. Hoy solo fija la fecha y manda la invitación.", h:["Mi reunión", T+"reunion/"]},
+      {t:"Tus muestras", x:"No necesitas comprar producto para vender: Farmasi le envía cada pedido a tu clienta. Si te quedaron muestras del kit, anótalas para saber qué prestar y qué ofrecer primero.", h:["Lo que tengo en casa", T+"inventario/"]},
+      {t:"Cómo te fue con el reto", x:"Si llegaste a 200, ya estás en 3%. Si no, cuenta cuánto llevas y qué te faltó: es el dato para tu siguiente reto.", l:"1 a 1 de la semana 3: cierre del reto y qué sigue."}
+    ]},
+    {cuando:"Días 22 a 30", tit:"Tu primer cierre", sub:"Recompra, tu lista completa y tu mes en una hoja.", dias:[
+      {t:"Escribe a tus primeras clientas", x:"Pregúntales cómo les va con su producto. Es el primer paso de la recompra y del reto Duplica a 400.", h:["Mensajes listos", T+"mensajes/"]},
+      {t:"Tu lista llega a 50", x:"Suma 30 nombres a tus 20: vecinas, mamás de la escuela, gente del trabajo, quien te sigue en redes.", h:["Mi lista de 50", T+"lista/"]},
+      {t:"Mira los eventos del equipo", x:"Elige uno al que puedas llevar a una invitada. Llegar con alguien cuenta más que llegar sola.", h:["Eventos", "/eventos/"]},
+      {t:"Tu reunión", x:"Sigue el guion de 45 minutos. Al terminar, anota quién pidió y quién quiere saber más.", h:["Mi reunión", T+"reunion/"]},
+      {t:"Seguimiento de la reunión", x:"A las 48 horas, un mensaje a cada asistente. El que viene en Mi reunión ya está escrito.", h:["Mi reunión", T+"reunion/"]},
+      {t:"Tu segunda presentación de negocio", x:"Otra persona de tu lista. Compara con la primera: qué preguntó, qué te costó contestar.", h:["¿Y si me dice que no?", T+"objeciones/"]},
+      {t:"¿Cuánto te falta?", x:"Revisa tus puntos del mes. Faltan pocos días: mira si te alcanza para el siguiente nivel o para tus 75 del mes que viene.", h:["¿En qué nivel voy?", T+"nivel/"]},
+      {t:"Tu mes en una hoja", x:"Llena tus números, tu nivel, si cumpliste tu reto, qué aprendiste y qué mejoras.", h:["Mi mes", T+"mi-mes/"], l:"Cierre del mes: revisan tu hoja de Mi mes juntas."},
+      {t:"Elige tu camino", x:"Con lo que aprendiste, decide cómo quieres seguir el mes 2. Abajo están los tres caminos. Y el mes que viene, búscate en la página de logros del equipo.", h:["Logros del mes", "/logros/"]}
+    ]}
+  ];
+  var DIAS = []; SEM.forEach(function(s){ s.dias.forEach(function(d){ DIAS.push(d); }); });
+
+  var KEY = "mtb-primer-mes-v1", $ = function(id){ return document.getElementById(id); };
+  var st = H.lee(KEY, null) || {inicio: H.iso(), h: {}};
+  $("inicio").value = st.inicio;
+
+  function hoyN(){ return H.dias(st.inicio, H.iso()) + 1; } /* día 1 = el día que empezaste */
+  function liga(h){ return h ? '<a href="' + h[1] + '">' + H.esc(h[0]) + '</a>' : ""; }
+
+  var n = 0;
+  $("semanas").innerHTML = SEM.map(function(s, k){
+    return '<section class="semana" aria-labelledby="s' + k + '"><div class="sem-cab"><span class="cuando">' + s.cuando + '</span><h2 id="s' + k + '">' + s.tit + '</h2><p>' + s.sub + '</p></div><ol class="dias">' +
+      s.dias.map(function(d){ n++;
+        var con = [d.h, d.h2].filter(Boolean).map(liga).join(" · ");
+        return '<li class="d" id="d' + n + '"><span class="n">' + String(n).padStart(2, "0") + '</span><h3>' + d.t + '</h3>' +
+          '<label><input type="checkbox" data-d="' + n + '" aria-label="Día ' + n + ' hecho">hecho</label>' +
+          '<p>' + d.x + '</p>' + (con ? '<div class="con">Con: ' + con + '</div>' : "") +
+          (d.l ? '<div class="lider-d"><b>con tu líder</b>' + d.l + '</div>' : "") + '</li>';
+      }).join("") + '</ol></section>';
+  }).join("");
+
+  var cortes = [[1,7],[8,14],[15,21],[22,30]];
+  $("mes").innerHTML = cortes.map(function(c, k){
+    var b = ""; for(var i = c[0]; i <= c[1]; i++) b += '<button class="dia" type="button" data-ir="' + i + '" aria-label="Ir al día ' + i + '">' + i + '</button>';
+    return '<div class="sem"><span>S' + (k + 1) + '</span>' + b + '</div>';
+  }).join("");
+
+  function pinta(){
+    var h = hoyN(), hechos = Object.keys(st.h).filter(function(k){ return st.h[k]; }).length;
+    document.querySelectorAll("[data-ir]").forEach(function(b){ var i = +b.dataset.ir; b.classList.toggle("hecho", !!st.h[i]); b.classList.toggle("hoyd", i === h); });
+    document.querySelectorAll("[data-d]").forEach(function(c){ var i = +c.dataset.d; c.checked = !!st.h[i]; var li = $("d" + i); li.classList.toggle("hecho", c.checked); li.classList.toggle("es-hoy", i === h); });
+    var box = $("hoy"), html;
+    if(h < 1){
+      html = '<div class="hoy-cab"><span>Todavía no empiezas</span><b>' + hechos + ' de 30</b></div><h2>Empiezas el ' + H.fecha(st.inicio, {weekday:"long", day:"numeric", month:"long"}) + '</h2><p>Mientras, ve la lista del día 1 para tener todo a la mano.</p>';
+    } else if(h > 30){
+      html = '<div class="hoy-cab"><span>Terminó tu primer mes</span><b>' + hechos + ' de 30</b></div><h2>Hiciste ' + hechos + ' de los 30 días</h2><p>' + (hechos < 30 ? 'Los que faltan siguen abajo; puedes hacerlos esta semana. ' : '') + 'Lo que sigue es elegir tu camino con tu líder.</p><div class="acciones"><a class="btn2" href="#pTit">Ver los caminos</a></div>';
+    } else {
+      var d = DIAS[h - 1];
+      html = '<div class="hoy-cab"><span>Hoy · día ' + h + ' de 30</span><b>' + hechos + ' hechos</b></div><h2>' + d.t + '</h2><p>' + d.x + '</p>' +
+        '<div class="acciones">' + (d.h ? '<a class="btn2" href="' + d.h[1] + '">Abrir ' + H.esc(d.h[0]) + '</a>' : '') +
+        '<button class="enlace" type="button" id="hoyOk">' + (st.h[h] ? 'Quitar hecho' : 'Marcar hecho') + '</button></div>';
+    }
+    box.innerHTML = html;
+    box.classList.toggle("listo", h >= 1 && h <= 30 && !!st.h[h]);
+    var ok = $("hoyOk"); if(ok) ok.onclick = function(){ st.h[h] = !st.h[h]; H.guarda(KEY, st); pinta(); };
+  }
+
+  $("inicio").addEventListener("change", function(){ if(this.value){ st.inicio = this.value; H.guarda(KEY, st); pinta(); } });
+  $("semanas").addEventListener("change", function(e){ var c = e.target; if(c.dataset.d){ st.h[c.dataset.d] = c.checked; H.guarda(KEY, st); pinta(); } });
+  $("mes").addEventListener("click", function(e){
+    var b = e.target.closest("[data-ir]"); if(!b) return;
+    var li = $("d" + b.dataset.ir), quieto = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    li.scrollIntoView({behavior: quieto ? "auto" : "smooth", block: "start"});
+    li.classList.remove("marca"); void li.offsetWidth; li.classList.add("marca");
+  });
+  $("mandar").href = H.wa("¡Bienvenida al equipo! Aquí está tu primer mes, día por día. Pon la fecha en que empezaste y cada día te dice qué toca:\nhttps://mitienda.beauty/guias/primer-mes/");
+  pinta();
+})();
+</script>
+</body>
+</html>

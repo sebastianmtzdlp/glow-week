@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-mi-tienda">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Mi tienda: links, seguimiento y agotados</title>
+<meta name="description" content="Tu link y tu tarjeta, el mensaje de seguimiento armado desde el pedido de tu clienta y lo que está agotado en todas las tiendas.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Mi tienda">
+<meta property="og:description" content="Tus links, el mensaje de seguimiento de cada pedido y lo agotado.">
+<meta property="og:image" content="https://mitienda.beauty/og/mentorias-herramientas.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 18px;max-width:38em}
+.tabs{position:sticky;top:0;z-index:4;background:#fff;margin:0 -16px;padding:10px 16px;border-bottom:1px solid var(--line)}
+.panel{padding:24px 0 8px}
+.panel[hidden]{display:none}
+.panel h2{font-size:clamp(28px,7vw,40px)}
+.panel .cab p{margin:6px 0 0}
+.campo{margin-top:18px}
+.liga{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-top:16px;padding:14px 16px;background:var(--tint);border-radius:14px;font:500 16px/1.3 var(--mono);word-break:break-all}
+.acciones{display:flex;flex-wrap:wrap;gap:10px 14px;margin-top:14px;align-items:center}
+.otras{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid var(--line)}
+.otras a{display:flex;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--line);text-decoration:none;font-weight:500}
+.otras a span{font:400 13px/1.4 var(--mono);color:var(--muted)}
+.texto{white-space:pre-wrap;background:var(--soft);border-radius:4px 18px 18px 18px;padding:14px 16px;font-size:16px;line-height:1.5;margin:16px 0 0;min-height:80px}
+.texto:focus{outline:2px solid var(--ink);outline-offset:2px}
+.ag{list-style:none;margin:16px 0 0;padding:0;border-top:1px solid var(--line)}
+.ag li{display:grid;grid-template-columns:48px 1fr;gap:12px;align-items:center;padding:10px 0;border-bottom:1px solid var(--line)}
+.ag img{width:48px;height:48px;object-fit:contain;border-radius:8px;background:#fff;border:1px solid var(--line)}
+.ag b{display:block;font-weight:500;line-height:1.3}
+.ag small{color:var(--muted);font-size:14px}
+@media (min-width:900px){
+  .tabs{margin:0;padding:12px 0}
+  .tabs .seg{max-width:520px}
+  .panel{max-width:640px}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/centro/">Centro de la socia</a>
+  </div>
+
+  <header class="portada">
+    <h1>Mi <em>tienda</em></h1>
+    <p class="bajada">Tu link para compartir, el mensaje para contestar cada pedido y lo que se agotó en todas las tiendas del equipo.</p>
+  </header>
+
+  <div class="tabs">
+    <div class="seg" role="tablist" aria-label="Secciones">
+      <button role="tab" aria-pressed="true" aria-selected="true" data-t="mia" id="b-mia">Mis links</button>
+      <button role="tab" aria-pressed="false" aria-selected="false" data-t="seg" id="b-seg">Seguimiento</button>
+      <button role="tab" aria-pressed="false" aria-selected="false" data-t="ago" id="b-ago">Agotados</button>
+    </div>
+  </div>
+
+  <section class="panel" id="t-mia" role="tabpanel" aria-labelledby="b-mia">
+    <div class="cab"><h2>Mis <em>links</em></h2><p>Elige tu nombre una vez; el Centro lo recuerda en este celular.</p></div>
+    <div class="campo"><label class="etq" for="who">Soy</label><select id="who"></select></div>
+    <div id="mine" hidden>
+      <div class="liga"><span id="u1"></span></div>
+      <div class="acciones">
+        <button class="btn" id="cu" type="button">Copiar mi link</button>
+        <a class="btn2" id="tj">Mi tarjeta</a>
+      </div>
+      <ul class="otras">
+        <li><a id="lCat">Mi catálogo<span>para mandar</span></a></li>
+        <li><a id="lEv">Mis eventos<span>con mi nombre</span></a></li>
+        <li><a id="lBv">Bienvenida a mi tienda<span>cómo funciona</span></a></li>
+        <li><a id="lUn">Para quien quiere entrar<span>te escribe a ti</span></a></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="panel" id="t-seg" role="tabpanel" aria-labelledby="b-seg" hidden>
+    <div class="cab"><h2>Mensaje de <em>seguimiento</em></h2><p>Pega el pedido que te llegó por WhatsApp y se arma la respuesta con el total, el 50% de apartado y tus datos de pago.</p></div>
+    <div class="campo"><label class="etq" for="ped">Pedido de tu clienta</label><textarea id="ped" rows="5" placeholder="Pega aquí el mensaje completo del pedido"></textarea></div>
+    <div class="campo"><label class="etq" for="pay">Mis datos de pago</label><textarea id="pay" rows="3" placeholder="Banco, titular, CLABE o cuenta"></textarea><p class="nota">Se guardan solo en este celular.</p></div>
+    <div class="acciones"><button class="btn2" id="mk" type="button">Armar mensaje</button></div>
+    <div id="res" hidden>
+      <div class="texto" id="out" contenteditable="true" role="textbox" aria-multiline="true" aria-label="Mensaje"></div>
+      <p class="nota">Puedes editarlo antes de mandarlo.</p>
+      <div class="acciones">
+        <button class="btn" id="cp" type="button">Copiar</button>
+        <a class="btn2" id="wa" target="_blank" rel="noopener">Abrir WhatsApp</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="panel" id="t-ago" role="tabpanel" aria-labelledby="b-ago" hidden>
+    <div class="cab"><h2>Lo <em>agotado</em></h2><p id="agSub">Cargando…</p></div>
+    <ul class="ag" id="agList"></ul>
+    <p class="nota" id="agEmpty" hidden>Por ahora no hay nada agotado.</p>
+    <p class="nota">¿Ves algo agotado que no está aquí? Avisa en el grupo y se marca en todas las tiendas.</p>
+  </section>
+
+  <section class="sigue" aria-label="Más herramientas">
+    <a class="otra" href="/herramientas/dupes/"><b>¿A cuál se parece?</b><span>Cuando te pregunten si un producto es como el de otra marca.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/herramientas/gratis/"><b>Herramientas gratis</b><span>Las 27 herramientas del equipo.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(async function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var LS = function(k, v){ try{ if(v === undefined) return localStorage.getItem(k) || ""; localStorage.setItem(k, v); }catch(_){ return ""; } };
+  var money = function(n){ return "$" + Number(n).toLocaleString("es-MX", {minimumFractionDigits: 2, maximumFractionDigits: 2}); };
+
+  /* pestañas; #mia #seg #ago siguen funcionando para las ligas viejas de /herramientas/ */
+  var TABS = ["mia", "seg", "ago"];
+  function show(t){
+    TABS.forEach(function(k){ $("t-" + k).hidden = k !== t; var b = $("b-" + k); b.setAttribute("aria-pressed", k === t); b.setAttribute("aria-selected", k === t); });
+  }
+  document.querySelectorAll("[data-t]").forEach(function(b){ b.onclick = function(){ show(b.dataset.t); history.replaceState(null, "", "#" + b.dataset.t); H.cuenta("tab-" + b.dataset.t); }; });
+  var h = location.hash.slice(1); if(TABS.indexOf(h) >= 0) show(h);
+
+  /* Mis links */
+  var C = (await H.equipo()).slice().sort(function(a, b){ return a.nombre.localeCompare(b.nombre, "es"); });
+  $("who").innerHTML = '<option value="">Elige tu nombre</option>' + C.map(function(c){ return '<option value="' + c.slug + '">' + H.esc(c.nombre) + '</option>'; }).join("");
+  function pick(s){
+    var c = C.filter(function(x){ return x.slug === s; })[0];
+    $("mine").hidden = !c; if(!c) return;
+    H.miSlug(s); $("who").value = s;
+    var u = "https://mitienda.beauty/" + s + "/";
+    $("u1").textContent = u.replace("https://", "");
+    $("tj").href = "/" + s + "/tarjeta/";
+    $("lCat").href = "/" + s + "/catalogo/";
+    $("lEv").href = "/eventos/?de=" + s;
+    $("lBv").href = "/bienvenida/?c=" + s;
+    $("lUn").href = "/unete/?de=" + s;
+    $("cu").onclick = function(){ H.copia(u, "Link copiado"); H.cuenta("copiar-link"); };
+  }
+  $("who").onchange = function(e){ pick(e.target.value); };
+  pick(H.miSlug());
+
+  /* Seguimiento */
+  $("pay").value = LS("glow_pay");
+  $("pay").addEventListener("input", function(){ LS("glow_pay", $("pay").value); });
+  function waHref(){ $("wa").href = H.wa($("out").innerText); }
+  $("mk").onclick = function(){
+    var t = $("ped").value; if(!t.trim()){ $("ped").focus(); return; }
+    var items = t.split(/\n/).map(function(l){ return l.trim(); }).filter(function(l){ return /^[•\-*]\s*\d+\s*x\s/i.test(l); }).map(function(l){ return l.replace(/^[•\-*]\s*/, "• ").replace(/\s*\(\d{6,8}\)/, ""); });
+    var tm = t.match(/Total:\s*\$?\s*([\d.,]+)/i), total = tm ? parseFloat(tm[1].replace(/,/g, "")) : NaN;
+    var nm = (t.match(/soy\s+([^,\n:]+?)(?:,|\.|\n| quiero)/i) || [])[1] || "";
+    var ent = (t.match(/Entrega:\s*(.+)/i) || [])[1] || "";
+    var pay = $("pay").value.trim();
+    var m = "Hola" + (nm ? " " + nm.trim() : "") + " 💕 ¡Gracias por tu pedido! Ya lo recibí:\n\n" + (items.length ? items.join("\n") : "(pega el pedido completo para ver aquí los productos)") + "\n";
+    if(!isNaN(total)){ var ap = Math.round(total * 50) / 100; m += "\nTotal: " + money(total) + "\nPara apartar tu pedido, el 50 %: " + money(ap) + " por transferencia o depósito.\nEl resto (" + money(total - ap) + ") se liquida antes de la entrega.\n"; }
+    if(ent) m += "\nEntrega: " + ent.trim() + "\n";
+    m += "\nTe confirmo existencias; si algo no hay, te aviso y lo cambiamos.\n";
+    if(pay) m += "\nMis datos de pago:\n" + pay + "\n";
+    m += "\nCuando hagas tu pago, mándame tu comprobante y te confirmo. ✨";
+    $("out").textContent = m; $("res").hidden = false; waHref();
+    H.cuenta("armar-seguimiento");
+  };
+  $("out").addEventListener("input", waHref);
+  $("cp").onclick = function(){ H.copia($("out").innerText, "Mensaje copiado"); };
+
+  /* Agotados */
+  var B = {}, T = {};
+  try{ B = await (await fetch("/_data/promos-base.json?v=" + Date.now())).json(); }catch(_){}
+  try{ T = await (await fetch("/_data/tonos.json?v=" + Date.now())).json(); }catch(_){}
+  var P = {}; (B.productos || []).forEach(function(p){ P[p.code] = p; });
+  var IMG = "https://content.mx.farmasi.com/Product/", rows = [];
+  (B.agotados || []).forEach(function(c){ var p = P[c]; if(p) rows.push({img: p.img, n: p.name, s: p.shade || "Producto completo"}); });
+  Object.keys(T).forEach(function(k){ var p = P[k]; if(!p) return; T[k].filter(function(x){ return !x[2]; }).forEach(function(x){ rows.push({img: x[0] + "_250", n: p.name, s: "Tono: " + x[1]}); }); });
+  var f = B.agotados_actualizado; $("agSub").textContent = f ? "Actualizado el " + f.split("-").reverse().join("/") + "." : "";
+  $("agList").innerHTML = rows.map(function(r){ return '<li><img src="' + IMG + String(r.img).replace("_250", "_400") + '.webp" alt="" loading="lazy" onerror="this.style.visibility=\'hidden\'"><span><b>' + H.esc(r.n) + '</b><small>' + H.esc(r.s) + '</small></span></li>'; }).join("");
+  $("agEmpty").hidden = rows.length > 0;
+})();
+</script>
+</body>
+</html>

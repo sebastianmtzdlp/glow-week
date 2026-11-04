@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-contenido">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Qué publico hoy</title>
+<meta name="description" content="Cada día una idea de contenido con su gancho, tres pasos y la frase del día del equipo. Treinta días que rotan, para no trabarte en qué publicar. Gratis.">
+<meta property="og:title" content="Qué publico hoy">
+<meta property="og:description" content="Una idea al día con gancho, tres pasos y la frase del equipo. Para no trabarte.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/contenido/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-contenido.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 24px;display:grid;gap:24px}
+.hoy{background:var(--navy);color:var(--cream);border-radius:24px;padding:24px 20px 22px;display:grid;gap:14px}
+.hoy .sup{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font:400 13px/1 var(--mono);color:#B9BCD8}
+.tipo{display:inline-flex;align-items:center;gap:8px;font:500 13px/1 var(--mono);color:var(--pink)}
+.tipo i{width:10px;height:10px;border-radius:50%;background:var(--pink);display:inline-block}
+.hoy h2{color:#fff;font-size:clamp(28px,7.5vw,44px);line-height:1.05}
+.pasos{list-style:none;margin:0;padding:0;display:grid;gap:0;border-top:1px solid rgba(255,255,255,.16)}
+.pasos li{display:grid;grid-template-columns:28px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:16px;color:#E3E4F0}
+.pasos li b{font:400 22px/1.1 var(--serif);font-style:italic;color:var(--pink)}
+.pie{margin:0;font:400 17px/1.4 var(--serif);font-style:italic;color:#F4F1EC;padding:12px 14px;background:rgba(255,255,255,.07);border-radius:12px}
+.pie small{display:block;font:400 12px/1 var(--mono);color:#B9BCD8;margin-top:8px;font-style:normal}
+.hoy .acc{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.hoy .btn{background:#fff;color:var(--navy)}
+.hoy .btn2{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.hoy .enlace{color:#fff}
+.hoy .btn.ok{background:var(--good);color:#fff}
+.mes{display:grid;gap:14px}
+.cal{display:grid;grid-template-columns:repeat(6,1fr);gap:6px;list-style:none;margin:0;padding:0}
+.cal li button{width:100%;aspect-ratio:1;border-radius:12px;border:1px solid var(--line);background:#fff;display:grid;place-items:center;gap:2px;padding:4px;cursor:pointer;font:500 14px/1 var(--mono);transition:transform 160ms var(--ease)}
+.cal li button:active{transform:scale(.96)}
+.cal li button i{width:8px;height:8px;border-radius:50%;display:block}
+.cal li button.hoy{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
+.cal li button.pub{background:#F2FAF6;border-color:var(--good)}
+.cal li button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.ley{display:flex;flex-wrap:wrap;gap:8px 16px;font:400 13px/1.4 var(--mono);color:var(--muted);margin:0}
+.ley span{display:inline-flex;align-items:center;gap:6px}
+.ley i{width:8px;height:8px;border-radius:50%;display:inline-block}
+.cuenta{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.cuenta div{padding:12px 10px 12px 0}
+.cuenta div+div{padding-left:12px;border-left:1px solid var(--line)}
+.cuenta b{display:block;font:500 26px/1 var(--mono)}
+.cuenta span{display:block;font-size:13px;color:var(--muted);margin-top:4px;line-height:1.3}
+/* guiones Pro */
+.filtros{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{min-height:38px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;padding:0 14px;font-size:14px;font-weight:500;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.guiones{display:grid;gap:12px;margin-top:16px}
+.guion{border:1px solid var(--line);border-radius:18px;padding:16px}
+.guion h3{margin:0;font:400 22px/1.15 var(--serif)}
+.guion .g-tipo{font:400 12px/1 var(--mono);color:var(--accent-ink);margin-bottom:6px;display:block}
+.guion .cuerpo{margin-top:10px;font-size:15px}
+.guion .cuerpo p{margin:6px 0}
+.guion .cuerpo ul,.guion .cuerpo ol{padding-left:20px;margin:6px 0}
+.guion .btns{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:10px}
+@media (min-width:900px){
+  .portada{grid-template-columns:.9fr 1.1fr;gap:56px;align-items:start;padding:56px 0 32px}
+  .hoy{padding:32px}
+  .cal{grid-template-columns:repeat(10,1fr)}
+  .dos{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+  .guiones{grid-template-columns:1fr 1fr}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Qué publico <em>hoy</em></h1>
+      <p class="bajada">Una idea al día con su gancho, tres pasos y la frase del equipo. Treinta ideas que rotan, para que publicar sea parte del método y no un trabazón.</p>
+      <div class="cuenta" style="margin-top:22px">
+        <div><b id="cPub">0</b><span>publicadas este mes</span></div>
+        <div><b id="cRacha">0</b><span>días seguidos</span></div>
+        <div><b id="cMeta">30</b><span id="cMetaTx">meta del mes · Part Time</span></div>
+      </div>
+      <div class="seg" role="group" aria-label="Tu ritmo" style="margin-top:14px"><button type="button" data-r="1" aria-pressed="true">Part · 1 al día</button><button type="button" data-r="2" aria-pressed="false">Medio · 2</button><button type="button" data-r="3" aria-pressed="false">Full · 3</button></div>
+    </div>
+    <section class="hoy" aria-label="La idea de hoy" aria-live="polite">
+      <div class="sup"><span id="hFecha">Hoy</span><span id="hNum">idea 1 de 30</span></div>
+      <span class="tipo" id="hTipo"><i></i>Valor</span>
+      <h2 id="hGancho"></h2>
+      <ol class="pasos" id="hPasos"></ol>
+      <p class="pie" id="hPie"></p>
+      <div class="acc">
+        <button class="btn" type="button" id="publique" data-cuenta="publicada">Ya la publiqué</button>
+        <button class="btn2" type="button" id="otra">Otra idea</button>
+        <button class="enlace" type="button" id="copiar">Copiar guion</button>
+      </div>
+    </section>
+  </header>
+
+  <div class="dos">
+    <section class="mes" aria-labelledby="mTit">
+      <div class="cab"><h2 id="mTit">Tus 30 días</h2><p>Toca un día para ver su idea. Los verdes ya tienen algo publicado.</p></div>
+      <ul class="cal" id="cal"></ul>
+      <p class="ley"><span><i style="background:#8FB3A0"></i>valor</span><span><i style="background:#F2B8BC"></i>producto</span><span><i style="background:#C9A27A"></i>día a día</span><span><i style="background:#9EA2C2"></i>testimonio</span><span><i style="background:#DB414C"></i>negocio</span><span><i style="background:#E6C84F"></i>antes y después</span></p>
+      <p class="nota">Lo que marcas como publicado también se suma en el marcador de <a href="/mentorias/herramientas/hoja-diaria/">la hoja del día</a> (contenido publicado).</p>
+    </section>
+    <section aria-labelledby="pTit">
+      <div class="cab"><h2 id="pTit">Noventa guiones</h2><p>La versión Pro.</p></div>
+      <div id="pro"></div>
+      <div id="proGuiones" hidden>
+        <div class="filtros" id="filtros"></div>
+        <div class="guiones" id="guiones"></div>
+      </div>
+    </section>
+  </div>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
+    <a class="otra" href="/mentorias/herramientas/hoja-diaria/" data-cuenta="ir-hoja"><b>La hoja del día</b><span>Tu marcador: contenido publicado, contactos y presentaciones.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/testimonios/" data-cuenta="ir-testimonios"><b>Lo que dicen mis clientas</b><span>Pide testimonios con un link y úsalos en tu contenido.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Las frases del día salen de la agenda del equipo. En tus publicaciones no prometas resultados en la piel ni ingresos: muestra lo que usas, lo que haces y lo que pasa. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var TIPOS = {V:["Valor","#8FB3A0"], P:["Producto","#F2B8BC"], D:["Día a día","#C9A27A"], T:["Testimonio","#9EA2C2"], N:["Negocio","#DB414C"], A:["Antes y después","#E6C84F"]};
+  var IDEAS = [
+    ["V","Tres errores al lavarte la cara que yo también cometía",["Di el error que más ves (agua caliente, tallar, dormir maquillada).","Qué haces tú ahora, en una frase.","Pregunta: ¿cuál cometes tú?"]],
+    ["P","Lo que uso cuando tengo 5 minutos en la mañana",["Muestra tus 3 productos en el orden en que los usas.","Un detalle real de textura o aroma de uno.","Cierra: «¿quieres que te arme una rutina así? Escríbeme»."]],
+    ["D","Mi bloque de 10 contactos, sin filtro",["Graba tu mesa, el café y el celular.","Di cuántos mensajes vas a mandar y a quién (sin nombres).","Termina con el número que lograste y cuántas contestaron."]],
+    ["T","Lo que me dijo una clienta hoy",["Cuenta la frase tal cual (con permiso y sin su nombre).","Qué producto usó y para qué lo quería.","«Si te pasa lo mismo, platicamos»."]],
+    ["N","Por qué empecé esto",["Una sola razón honesta, sin adornos.","Qué cambió en tu semana: un hecho, no una promesa.","«Si te late saber cómo funciona, mándame un mensaje»."]],
+    ["A","Mi cara en la mañana y mi cara con la rutina puesta",["Dos fotos a la misma luz, sin filtro.","Di lo que sientes al ponértela, no lo que promete.","Nombra los productos. Aclara que cada piel es distinta."]],
+    ["V","Cómo elegir tu tono de base sin que quede naranja",["Explica por qué se prueba en el cuello y no en la mano.","Muestra cómo lo pruebas tú a la luz del día.","«Mándame tu foto y te digo cuál es el tuyo»."]],
+    ["P","El producto que más me piden este mes",["Muéstralo en uso, no en la caja.","Una razón concreta por la que lo piden.","Precio y cómo pedirlo: tu link."]],
+    ["D","Un día en mi negocio, en 15 segundos",["Cinco clips de 3 segundos: café, contactos, pedidos, contenido, cierre.","Texto encima con la hora de cada uno.","La frase del día como pie."]],
+    ["T","Antes de comprar me preguntó esto",["La duda real de una clienta.","Tu respuesta en dos frases.","«¿Tú también lo pensabas?»"]],
+    ["N","Lo que hago cada día, sin esperar motivación",["Tus tres actividades fijas (contactar, presentar, publicar).","A qué hora las haces.","«No es magia, es método.»"]],
+    ["A","Semana 1 y semana 4 con el mismo producto",["Muestra el producto en los dos momentos.","Lo que notaste: sensación, costumbre, lo que te gusta.","Aclara: cada piel es distinta y esto es lo mío."]],
+    ["V","El orden correcto de una rutina de noche",["Enumera los 4 pasos.","Una frase de por qué el orden importa.","«Guárdalo o te lo mando por WhatsApp»."]],
+    ["P","Esto es lo que trae mi kit",["Desempaca como si fuera la primera vez.","Para qué usas cada cosa, en una frase cada una.","«Si quieres el tuyo, te explico cómo empezar»."]],
+    ["D","Mi lista de hoy: a quién le escribo",["Muestra tu lista tapando los nombres.","Cuántas contestaron ayer.","Cuántas presentaciones tienes hoy."]],
+    ["T","Su primera recompra",["Qué se le acabó y cuánto le duró.","Qué le recomendaste además, y por qué.","«Así se cuida a una clienta.»"]],
+    ["N","Tres cosas que me dijeron que no iba a poder",["Menciónalas sin drama.","Qué hiciste con cada una.","Un hecho de hoy que las contesta."]],
+    ["A","Mi maquillaje de 10 minutos",["Time-lapse de inicio a fin.","Los 4 productos, con nombre.","«¿Te armo el tuyo?»"]],
+    ["V","Qué hacer si te brilla la cara a medio día",["La causa en una frase.","Tu truco de siempre.","Un producto que ayuda y cómo lo usas."]],
+    ["P","Lo que compro con mi descuento de socia",["Tu pedido del mes, sobre la mesa.","Qué porcentaje te deja el descuento (no cifras de ganancia).","«Si compras seguido, te conviene ser socia. Te explico.»"]],
+    ["D","Mi marcador de hoy",["Foto de tu hoja del día llena.","Contactadas, presentaciones, contenido.","Qué funcionó y qué ajustas mañana."]],
+    ["T","Lo que dijo mi mamá cuando lo probó",["La reacción honesta, con risa.","Qué producto era.","Nada de venta: solo el momento."]],
+    ["N","¿Cuánto tiempo le dedico al negocio?",["Tu ritmo: Part, Medio o Full Time.","Cómo lo acomodas en tu día real.","«Se puede empezar con 10 contactos al día.»"]],
+    ["A","Mis labios antes y con el tono puesto",["Foto antes, misma luz.","Foto con el tono.","El nombre del tono y tu link."]],
+    ["V","Tres productos que no sirven si no haces esto",["El hábito base: limpiar, proteger, ser constante.","Por qué sin eso no hay producto que aguante.","Pregunta qué hábito te cuesta más."]],
+    ["P","Para regalar: tres opciones",["Muestra tres, de precio distinto, y di cada precio.","Para quién es cada una.","Tu link para pedir."]],
+    ["D","Así llega tu pedido",["Abre en cámara tu paquete de Farmasi, tal como le llega a tu clienta.","Lo primero que pruebas y por qué.","«Te llega a tu casa, sin vueltas.»"]],
+    ["T","Una clienta que se hizo socia",["Por qué se decidió, en sus palabras.","Qué hizo en su primera semana.","«Si tú también compras seguido, platicamos.»"]],
+    ["N","Lo que aprendí este mes",["Un error concreto.","Qué cambiaste.","El número que mejoró."]],
+    ["A","Mi rutina completa en 30 segundos",["Mañana en 15 segundos.","Noche en 15 segundos.","«Te la armo con tu nombre: escríbeme.»"]]
+  ];
+  var KEY = "mtb-contenido-v1", st = H.lee(KEY, {pub:{}, ritmo:1, salto:0});
+  var FR = []; fetch("/mentorias/herramientas/contenido/frases.json").then(function(r){ return r.json(); }).then(function(f){ FR = f; pinta(); }).catch(function(){});
+  var hoy = H.iso(), d0 = new Date(hoy + "T12:00:00"), diaAno = Math.floor((d0 - new Date(d0.getFullYear(), 0, 0)) / 864e5);
+  var vista = hoy;
+  function idxDe(fecha){ var d = new Date(fecha + "T12:00:00"), n = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5); return (n + (fecha === hoy ? st.salto : 0)) % IDEAS.length; }
+  function fraseDe(fecha){ var d = new Date(fecha + "T12:00:00"), n = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5); return FR.length ? FR[n % FR.length] : ""; }
+  function guion(fecha){ var i = IDEAS[idxDe(fecha)]; return i[1] + "\n\n" + i[2].map(function(p, k){ return (k + 1) + ". " + p; }).join("\n") + "\n\nPie: " + fraseDe(fecha); }
+  function pinta(){
+    var i = IDEAS[idxDe(vista)], t = TIPOS[i[0]];
+    $("hFecha").textContent = vista === hoy ? "Hoy · " + H.fecha(hoy, {weekday:"long", day:"numeric", month:"long"}) : H.fecha(vista, {weekday:"long", day:"numeric", month:"long"});
+    $("hNum").textContent = "idea " + (idxDe(vista) + 1) + " de " + IDEAS.length;
+    $("hTipo").innerHTML = '<i style="background:' + t[1] + '"></i>' + t[0];
+    $("hGancho").textContent = i[1];
+    $("hPasos").innerHTML = i[2].map(function(p, k){ return '<li><b>' + (k + 1) + '</b><span>' + H.esc(p) + '</span></li>'; }).join("");
+    $("hPie").innerHTML = '“' + H.esc(fraseDe(vista)) + '”<small>la frase del día, para el pie o la historia</small>';
+    var n = st.pub[vista] || 0;
+    $("publique").textContent = n ? "Publicada (" + n + ")" : "Ya la publiqué"; $("publique").classList.toggle("ok", n > 0);
+    // mes
+    var m = hoy.slice(0, 7), ks = Object.keys(st.pub).filter(function(k){ return k.slice(0, 7) === m; }), tot = ks.reduce(function(a, k){ return a + st.pub[k]; }, 0);
+    $("cPub").textContent = tot;
+    var racha = 0, f = hoy; if(!st.pub[hoy]) f = H.suma(hoy, -1); while(st.pub[f]){ racha++; f = H.suma(f, -1); }
+    $("cRacha").textContent = racha;
+    var dm = new Date(d0.getFullYear(), d0.getMonth() + 1, 0).getDate();
+    $("cMeta").textContent = dm * st.ritmo; $("cMetaTx").textContent = "meta del mes · " + ["","Part Time","Medio Tiempo","Full Time"][st.ritmo];
+    document.querySelectorAll("[data-r]").forEach(function(b){ b.setAttribute("aria-pressed", +b.dataset.r === st.ritmo); });
+    // calendario: 30 días desde hoy hacia atrás y adelante (hoy en medio)
+    var dias = []; for(var k = -14; k < 16; k++) dias.push(H.suma(hoy, k));
+    $("cal").innerHTML = dias.map(function(f){ var ii = IDEAS[idxDe(f)], tt = TIPOS[ii[0]]; return '<li><button type="button" data-f="' + f + '" aria-pressed="' + (f === vista) + '" class="' + (f === hoy ? 'hoy ' : '') + (st.pub[f] ? 'pub' : '') + '" aria-label="' + H.fecha(f, {weekday:"long", day:"numeric", month:"long"}) + '">' + f.slice(8).replace(/^0/, "") + '<i style="background:' + tt[1] + '"></i></button></li>'; }).join("");
+  }
+  $("cal").addEventListener("click", function(e){ var b = e.target.closest("[data-f]"); if(!b) return; vista = b.dataset.f; pinta(); });
+  $("otra").addEventListener("click", function(){ if(vista !== hoy){ vista = hoy; } st.salto = (st.salto + 7) % IDEAS.length; H.guarda(KEY, st); pinta(); });
+  $("copiar").addEventListener("click", function(){ H.copia(guion(vista), "Guion copiado"); });
+  $("publique").addEventListener("click", function(){
+    st.pub[vista] = (st.pub[vista] || 0) + 1; H.guarda(KEY, st);
+    // se suma en la hoja del día
+    try{ var hoja = H.lee("mtb-hoja-v1", {}), d = hoja[vista] || {mod:"part", met:[], cont:[], seg:[], pres:[], f:{}, en:0, extra:0}; d.f = d.f || {}; d.f.mCont = String((+d.f.mCont || 0) + 1); hoja[vista] = d; H.guarda("mtb-hoja-v1", hoja); }catch(_){ }
+    H.aviso("Una más. Llevas " + st.pub[vista] + " hoy."); pinta();
+  });
+  document.querySelector(".seg").addEventListener("click", function(e){ var b = e.target.closest("[data-r]"); if(!b) return; st.ritmo = +b.dataset.r; H.guarda(KEY, st); pinta(); });
+  pinta();
+
+  // Pro: los 90 guiones
+  PRO.caja($("pro"), "contenido", {titulo:"Noventa guiones listos", activo:"Reels, historias y carruseles, con el plan de cuatro semanas. Filtra y copia."}).then(function(r){
+    if(!r.ok) return;
+    $("proGuiones").hidden = false; $("guiones").innerHTML = '<p class="nota">Abriendo tus guiones…</p>';
+    PRO.contenido("contenido").then(function(caps){
+      var tipos = {}; caps.forEach(function(c){ var t = (c.titulo.split("·")[0] || "").replace(/\s*\d+\s*$/, "").trim(); tipos[t] = (tipos[t] || 0) + 1; });
+      var ks = Object.keys(tipos), act = "todo";
+      $("filtros").innerHTML = '<button type="button" class="chip" data-t="todo" aria-pressed="true">Todo · ' + caps.length + '</button>' + ks.map(function(t){ return '<button type="button" class="chip" data-t="' + H.esc(t) + '" aria-pressed="false">' + H.esc(t) + ' · ' + tipos[t] + '</button>'; }).join("");
+      function lista(){
+        var vis = caps.filter(function(c){ return act === "todo" || c.titulo.indexOf(act) === 0; });
+        $("guiones").innerHTML = vis.map(function(c){ var p = c.titulo.split("·"); return '<article class="guion"><span class="g-tipo">' + H.esc(p[0].trim()) + '</span><h3>' + H.esc((p[1] || p[0]).trim()) + '</h3><div class="cuerpo">' + c.html + '</div><div class="btns"><button class="btn2" type="button" data-copia="' + c.orden + '">Copiar</button></div></article>'; }).join("") || '<p class="nota">Nada con ese filtro.</p>';
+      }
+      $("filtros").addEventListener("click", function(e){ var b = e.target.closest("[data-t]"); if(!b) return; act = b.dataset.t; $("filtros").querySelectorAll("button").forEach(function(o){ o.setAttribute("aria-pressed", o === b); }); lista(); });
+      $("guiones").addEventListener("click", function(e){ var b = e.target.closest("[data-copia]"); if(!b) return; var c = caps.filter(function(x){ return String(x.orden) === b.dataset.copia; })[0]; var tmp = document.createElement("div"); tmp.innerHTML = c.html; H.copia(c.titulo + "\n\n" + tmp.textContent.replace(/\n{3,}/g, "\n\n").trim(), "Guion copiado"); });
+      lista();
+    }).catch(function(e){ $("guiones").innerHTML = '<p class="nota">' + H.esc(e.message) + '</p>'; });
+  });
+})();
+</script>
+</body>
+</html>

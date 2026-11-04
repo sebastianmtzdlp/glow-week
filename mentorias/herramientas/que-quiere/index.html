@@ -1,0 +1,445 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-que-quiere">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>¿Qué quiere cada quien?</title>
+<meta name="description" content="No todas entran a tu equipo por lo mismo. Descubre si cada persona entró por gusto, va por una meta o va por todo, y qué decirle, qué hacer y qué evitar con cada una.">
+<meta property="og:title" content="¿Qué quiere cada quien en tu equipo?">
+<meta property="og:description" content="Le gusta, va por algo o va por todo. Descubre qué busca cada persona y cómo acompañarla a su ritmo.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/que-quiere/">
+<meta property="og:image" content="https://mitienda.beauty/og/h-que-quiere.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://mitienda.beauty/og/h-que-quiere.png">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+:root{--c-gusta:#E9A1A8;--c-algo:#DB414C;--c-todo:#1B1F3B}
+.portada{display:grid;gap:30px;padding:36px 0 28px}
+.portada .bajada{max-width:28em}
+.fuente{font-size:15px;color:var(--muted);margin:14px 0 0;max-width:34em}
+
+/* de cada 100 */
+.cien{margin:0;border:1px solid var(--line);border-radius:18px;padding:20px 20px 16px}
+.cien-cab{display:flex;justify-content:space-between;align-items:baseline;padding-bottom:12px;border-bottom:2px solid var(--ink)}
+.cien-cab b{font:400 22px/1 var(--serif)}
+.cien-cab span{font:400 13px/1 var(--mono);color:var(--muted)}
+.puntos{display:grid;grid-template-columns:repeat(20,1fr);gap:5px;margin:18px 0 16px}
+.puntos i{display:block;aspect-ratio:1;border-radius:50%;background:var(--c);transition:opacity 220ms var(--ease),transform 220ms var(--ease)}
+.puntos i.g{--c:var(--c-gusta)}.puntos i.a{--c:var(--c-algo)}.puntos i.t{--c:var(--c-todo)}
+.puntos[data-ve] i{opacity:.18}
+.puntos[data-ve=gusta] i.g,.puntos[data-ve=algo] i.a,.puntos[data-ve=todo] i.t{opacity:1}
+@media (prefers-reduced-motion:no-preference){
+  .puntos i{animation:aparece 300ms var(--ease) backwards;animation-delay:calc(var(--f) * 45ms + 150ms)}
+}
+@keyframes aparece{from{opacity:0;transform:scale(.6)}}
+.leyenda{list-style:none;margin:0;padding:0}
+.leyenda li{display:grid;grid-template-columns:14px 1fr auto;gap:12px;align-items:baseline;padding:9px 0;border-top:1px solid var(--line)}
+.leyenda li::before{content:"";width:12px;height:12px;border-radius:50%;background:var(--c);align-self:center}
+.leyenda b{font-weight:600}
+.leyenda span{font:500 15px/1 var(--mono);font-variant-numeric:tabular-nums}
+.cien figcaption{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.45}
+
+/* los tres */
+.tres{padding:20px 0 8px}
+.tres .seg{margin:20px 0 0}
+.seg button{display:flex;flex-direction:column;align-items:center;gap:3px}
+.seg button small{font:400 12px/1 var(--mono);opacity:.75}
+.tipo{display:grid;gap:26px;padding:28px 0 8px}
+.tipo[hidden]{display:none}
+.tipo-cab h3{margin:0;font:400 clamp(40px,11vw,64px)/.95 var(--serif);letter-spacing:-.02em;font-variation-settings:"opsz" 144}
+.tipo-cab h3 em{font-style:italic;color:var(--accent-ink)}
+.tipo-cab .busca{font-size:19px;line-height:1.45;margin:14px 0 0;max-width:30em}
+.tipo-cab .cuantas{display:flex;gap:10px;align-items:center;margin:14px 0 0;font:500 14px/1 var(--mono);color:var(--muted)}
+.tipo-cab .cuantas i{width:12px;height:12px;border-radius:50%;background:var(--c)}
+.lados{display:grid;gap:0;border-top:2px solid var(--ink)}
+.lado{padding:16px 0;border-bottom:1px solid var(--line)}
+.lado h4{margin:0 0 8px;font:600 16px/1.3 var(--body)}
+.lado ul{margin:0;padding:0 0 0 1.1em;display:grid;gap:6px}
+.lado li::marker{color:var(--muted)}
+.lado.aleja h4{color:var(--accent-ink)}
+.nums{background:var(--soft);border-radius:18px;padding:18px 18px 16px;margin:0}
+.nums dt{font:400 13px/1.2 var(--mono);color:var(--muted);margin:0 0 8px}
+.nums dd{margin:0;font:400 clamp(22px,5.6vw,28px)/1.2 var(--serif)}
+.nums dd b{font:500 .85em/1 var(--mono);color:var(--accent-ink)}
+.nums p{margin:10px 0 0;font-size:15px}
+.nums a{font-weight:500;text-underline-offset:4px}
+.hacer h4{margin:0 0 10px;font:400 26px/1.1 var(--serif)}
+.hacer ol{list-style:none;margin:0;padding:0;counter-reset:h}
+.hacer li{display:grid;grid-template-columns:30px 1fr;gap:10px;padding:10px 0;border-bottom:1px solid var(--line);counter-increment:h}
+.hacer li::before{content:counter(h,decimal-leading-zero);font:500 13px/1.6 var(--mono);color:var(--accent-ink)}
+.decir h4{margin:0 0 10px;font:400 26px/1.1 var(--serif)}
+.texto{white-space:pre-wrap;background:var(--soft);border-radius:4px 18px 18px 18px;padding:14px 16px;font-size:16px;line-height:1.5;margin:0;max-width:34em}
+.texto .n{color:var(--accent-ink);font-weight:600}
+.decir .btns{display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;margin-top:12px}
+.decir .btn2{min-height:42px;font-size:14px}
+.ojo{margin:0;font:italic 400 19px/1.4 var(--serif);color:var(--bronze);max-width:30em}
+
+/* el test */
+.test{padding:44px 0 8px}
+.test .cab p{max-width:30em}
+.quien{display:grid;gap:14px;margin:20px 0 0;background:var(--soft);border-radius:24px;padding:20px 16px;margin-left:-16px;margin-right:-16px}
+.quien .seg{max-width:420px}
+.preg{margin:0;padding:22px 0;border:0;border-bottom:1px solid var(--line)}
+.preg legend{padding:0;font:400 clamp(22px,5.6vw,28px)/1.2 var(--serif);margin-bottom:14px;display:grid;grid-template-columns:34px 1fr;gap:6px}
+.preg legend span{font:500 13px/2.1 var(--mono);color:var(--accent-ink)}
+.opc{display:grid;gap:8px}
+.opc label{display:grid;grid-template-columns:20px 1fr;gap:12px;align-items:start;padding:12px 14px;border:1px solid #CFD2E0;border-radius:14px;cursor:pointer;line-height:1.4;transition:transform 160ms var(--ease)}
+.opc label:active{transform:scale(.985)}
+.opc input{width:20px;height:20px;margin:1px 0 0;accent-color:var(--ink)}
+.opc label:has(input:checked){border-color:var(--ink);background:#fff;box-shadow:inset 0 0 0 1px var(--ink)}
+.avance{display:flex;align-items:center;gap:12px;margin:18px 0 0;font:400 13px/1 var(--mono);color:var(--muted)}
+.avance .barra-av{flex:1}
+
+.result{margin:28px 0 0;border:1px solid var(--line);border-radius:24px;padding:24px 18px}
+.result[hidden]{display:none}
+.result .es{font:400 13px/1.2 var(--mono);color:var(--muted);margin:0}
+.result h3{margin:8px 0 0;font:400 clamp(36px,9.5vw,56px)/1 var(--serif);letter-spacing:-.02em}
+.result h3 em{font-style:italic;color:var(--accent-ink)}
+.mezcla{display:flex;height:10px;border-radius:99px;overflow:hidden;margin:18px 0 8px;background:var(--soft)}
+.mezcla i{display:block;height:100%;background:var(--c);transform-origin:left}
+@media (prefers-reduced-motion:no-preference){ .result:not([hidden]) .mezcla i{animation:llena 280ms var(--ease) backwards} }
+@keyframes llena{from{transform:scaleX(0)}}
+.mezcla-tx{display:flex;flex-wrap:wrap;gap:4px 16px;margin:0;font:400 13px/1.4 var(--mono);color:var(--muted)}
+.result .lee{font-size:17px;margin:16px 0 0;max-width:32em}
+.result .acciones{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:20px}
+.result .recuerda{font-size:14px;color:var(--muted);margin:16px 0 0;padding-top:14px;border-top:1px solid var(--line)}
+
+/* tres preguntas */
+.platica{padding:48px 0 8px}
+.platica ol{list-style:none;margin:18px 0 0;padding:0;counter-reset:p}
+.platica li{display:grid;grid-template-columns:44px 1fr;gap:4px 12px;padding:18px 0;border-bottom:1px solid var(--line);counter-increment:p}
+.platica li::before{content:counter(p,decimal-leading-zero);font:500 14px/1.9 var(--mono);color:var(--accent-ink);grid-row:1 / span 2}
+.platica li b{font:400 clamp(22px,5.6vw,28px)/1.2 var(--serif)}
+.platica li span{color:var(--muted);font-size:15px}
+.platica .acciones{display:flex;flex-wrap:wrap;gap:12px 18px;align-items:center;margin-top:20px}
+
+/* la frase, sin banda: la banda navy es solo para Pro */
+.cierre{margin:48px 0 0;padding:28px 0 0;border-top:2px solid var(--ink)}
+.cierre p{margin:0;font:400 clamp(28px,7vw,44px)/1.12 var(--serif);letter-spacing:-.01em;max-width:22em}
+.cierre em{font-style:italic;color:var(--accent-ink)}
+/* pro */
+.pro{background:var(--navy);color:var(--cream);border-radius:24px;padding:30px 18px;margin:48px -16px 0}
+.pro h2{color:#fff}
+.pro h2 em{color:var(--pink)}
+.pro .bajada{color:#DCDDEA;font-size:17px}
+.pro ul{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid rgba(255,255,255,.18)}
+.pro li{padding:11px 0;border-bottom:1px solid rgba(255,255,255,.12);font-size:16px;color:#fff}
+.pro .acciones{display:flex;flex-wrap:wrap;gap:12px 20px;align-items:center;margin-top:22px}
+.pro .precio{font:500 18px/1 var(--mono);color:#fff}
+.pro .precio small{font:400 13px var(--body);color:#B9BCD8;margin-left:6px}
+
+@media (hover:hover) and (pointer:fine){
+  .opc label:hover{border-color:var(--ink)}
+}
+@media (min-width:900px){
+  .portada{grid-template-columns:1.15fr .85fr;gap:64px;align-items:center;padding:60px 0 44px}
+  .quien{margin-left:0;margin-right:0;padding:24px 28px;grid-template-columns:1fr 1fr;align-items:end}
+  .tipo{grid-template-columns:1fr 1fr;gap:28px 56px;align-items:start}
+  .tipo-cab,.ojo{grid-column:1 / -1}
+  .test-cuerpo{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+  .result{position:sticky;top:20px;margin-top:22px}
+  .pro{margin:56px 0 0;padding:52px 56px;display:grid;grid-template-columns:1fr 1fr;gap:0 56px;align-items:start}
+  .pro ul{margin-top:0}
+}
+@media print{.barra,.pro,.sigue,footer,.decir .btns,.result .acciones{display:none!important}}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>¿Qué quiere <em>cada quien?</em></h1>
+      <p class="bajada">No todas entran a tu equipo por lo mismo que tú. Antes de pedirle algo a alguien, descubre qué vino a buscar y acompáñala a ese ritmo.</p>
+      <p class="fuente">Una regla muy usada en venta directa, la de Thompson, dice que la gran mayoría entra a disfrutar, una parte busca algo concreto y muy pocas quieren construir en grande. Aquí la usamos como punto de partida, con nuestras palabras y nuestros niveles.</p>
+    </div>
+    <figure class="cien" aria-labelledby="cienTit">
+      <div class="cien-cab"><b id="cienTit">De cada 100 que entran</b><span>referencia</span></div>
+      <div class="puntos" id="puntos" aria-hidden="true"></div>
+      <ul class="leyenda">
+        <li style="--c:var(--c-gusta)"><b>Le gusta</b><span>80</span></li>
+        <li style="--c:var(--c-algo)"><b>Va por algo</b><span>15</span></li>
+        <li style="--c:var(--c-todo)"><b>Va por todo</b><span>5</span></li>
+      </ul>
+      <figcaption>Habla de lo que cada persona quiere, no de lo que gana hoy. Tu equipo no tiene que salir exacto.</figcaption>
+    </figure>
+  </header>
+
+  <section class="tres" id="tres" aria-labelledby="tTit">
+    <div class="cab"><h2 id="tTit">Los tres</h2><p>Ninguna es mejor que otra. Cada una necesita algo distinto de ti.</p></div>
+    <div class="seg" role="tablist" aria-label="Tipo" id="tabs"></div>
+    <div id="paneles"></div>
+  </section>
+
+  <section class="test" id="test" aria-labelledby="xTit">
+    <div class="cab"><h2 id="xTit">Descúbrelo en <em>6 preguntas</em></h2><p>Piensa en una persona de tu equipo, o en ti. Contesta por lo que hace, no por lo que dice que quiere.</p></div>
+    <div class="quien">
+      <div class="seg" id="modo" aria-label="Sobre quién">
+        <button type="button" aria-pressed="true" data-m="ella">Alguien de mi equipo</button>
+        <button type="button" aria-pressed="false" data-m="yo">Yo</button>
+      </div>
+      <label id="nomWrap"><span class="etq">Su nombre</span><input type="text" id="nom" autocomplete="off" placeholder="Ana"></label>
+    </div>
+    <div class="test-cuerpo">
+      <form id="preguntas" onsubmit="return false"></form>
+      <div>
+        <div class="avance" id="avance"><div class="barra-av"><i id="avBar"></i></div><span id="avTx">0 de 6</span></div>
+        <div class="result" id="result" hidden aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="platica" id="preguntar" aria-labelledby="pTit">
+    <div class="cab"><h2 id="pTit">Mejor, <em>pregúntale</em></h2><p>El test te da una pista. La respuesta la tiene ella. Hazle estas tres en su 1 a 1 y escucha más de lo que hablas.</p></div>
+    <ol>
+      <li><b>¿Qué te gustaría que este negocio te diera en los próximos seis meses?</b><span>Lo que busca. Si dice "nada en especial", también es una respuesta.</span></li>
+      <li><b>¿Para qué lo quieres? ¿Qué cambiaría si lo logras?</b><span>El motivo de fondo. Es lo que vas a recordarle cuando se canse.</span></li>
+      <li><b>¿Cuánto tiempo a la semana le quieres dar, de verdad?</b><span>Lo que está dispuesta a poner. Ahí ves si su meta y su ritmo van juntos.</span></li>
+    </ol>
+    <div class="acciones">
+      <button class="btn2" type="button" id="copiaPregs">Copiar las tres</button>
+      <a class="enlace" href="/mentorias/herramientas/1a1/" data-cuenta="ir-1a1">Cómo hacer el 1 a 1</a>
+    </div>
+  </section>
+
+  <div class="cierre">
+    <p>Tu equipo no tiene que querer lo mismo que tú. <em>Tiene que sentir que sabes lo que quiere cada una.</em></p>
+  </div>
+
+  <section class="pro" id="pro" aria-labelledby="proTit">
+    <div>
+      <h2 id="proTit">Tu equipo, <em>persona por persona</em></h2>
+      <p class="bajada">La versión para líderes: el mapa de todo tu equipo y qué hacer con cada quien durante un mes.</p>
+      <div class="acciones">
+        <a class="btn" href="/mentorias/herramientas/pro/#equipo-por-tipo" data-cuenta="pro-equipo-tipo">Ver en Pro</a>
+        <span class="precio" id="proPrecio"></span>
+      </div>
+    </div>
+    <ul aria-label="Qué trae">
+      <li>Tu mapa: cada persona, lo que quiere, su nivel hoy y su siguiente plática</li>
+      <li>Un plan de 30 días para cada uno de los tres</li>
+      <li>Guiones de 1 a 1 y mensajes de grupo que sirven para las tres</li>
+      <li>Cómo repartir tu semana sin dejar a nadie fuera</li>
+      <li>Señales de que alguien cambió de ritmo y qué hacer</li>
+    </ul>
+  </section>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Para seguir</h2></div>
+    <a class="otra" href="/mentorias/herramientas/nivel/" data-cuenta="ir-nivel"><b>¿En qué nivel voy?</b><span>Para convertir la meta de quien va por algo en puntos y pedidos.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/plan-de-compensacion/" data-cuenta="ir-plan"><b>Entiende el plan de compensación</b><span>La dirección, los laterales y los bonos, para quien va por todo.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/" data-cuenta="mentorias"><b>¿Quieres que alguien te acompañe?</b><span>Para eso están las mentorías con Sel.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · La idea de los tres grupos viene de la regla de Thompson; las proporciones son una referencia, no una medida de tu equipo. Los niveles son los del plan de compensación en puntos de grupo al mes. No es material oficial de Farmasi.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="/mentorias/herramientas/pro/pro.js"></script>
+<script>
+(function(){
+  var $ = function(id){ return document.getElementById(id); };
+  var ORDEN = ["gusta","algo","todo"];
+  var T = {
+    gusta: {nom:"Le <em>gusta</em>", corto:"Le gusta", n:80, c:"var(--c-gusta)",
+      busca:"Entró por los productos, por el precio de socia y por el grupo. Si de paso saca un extra, qué bien, pero no es lo que la mueve.",
+      mueve:["Que la tomes en cuenta y la incluyas en lo que pasa en el grupo","Que celebres lo que sí hizo: su pedido, su primera clienta, su foto con el producto","Pasarla bien: dinámicas, eventos, platicar con otras"],
+      aleja:["Que le hables como si se hubiera comprometido a dedicarle la vida al negocio","Retos y metas que ella no pidió, con recordatorios todos los días","Que la compares con las que van más rápido"],
+      nivel:"<b>75</b> puntos personales al mes", nivelTx:"Con su propio pedido ya cobra. Si un día quiere más, 3% son <b class=\"num\">200</b> puntos de grupo y se logra con sus clientas cercanas.",
+      hacer:["Salúdala por su nombre en el grupo y reconoce en público lo que hizo","Invítala a eventos y dinámicas sin meta de puntos","Enséñale a recomendar lo que ella ya usa, con un mensaje fácil","Pregúntale cada tres meses si algo cambió"],
+      decir:"Hola {nombre}, qué gusto tenerte en el grupo. ¿Qué es lo que más te ha gustado de lo que has probado? Si algún día quieres sacar un extra con lo que ya compras, me dices y te enseño. Sin presión.",
+      ojo:"De aquí salen muchas de tus clientas más fieles y de las mejores recomendaciones. Que se quede contenta también es construir equipo."},
+    algo: {nom:"Va por <em>algo</em>", corto:"Va por algo", n:15, c:"var(--c-algo)",
+      busca:"Quiere un ingreso que sí cambie algo concreto: una deuda, la escuela, un viaje, dejar de pedir prestado. Tiene un para qué y quiere saber cómo llegar.",
+      mueve:["Una meta clara en puntos y en pesos de pedidos","Saber exactamente qué hacer hoy, mañana y esta semana","Ver su avance y que alguien le diga que va bien"],
+      aleja:["Mil instrucciones al mismo tiempo","Que le exijas sin enseñarle cómo","Compararla con otras en lugar de con ella misma el mes pasado"],
+      nivel:"De <b>9%</b> a <b>22%</b>", nivelTx:"Según su meta: 9% son <b class=\"num\">600</b> puntos de grupo al mes y 22% son <b class=\"num\">3,600</b>. <a href=\"/mentorias/herramientas/nivel/\">Haz la cuenta en ¿En qué nivel voy?</a>",
+      hacer:["Parte su meta con ella: del mes a la semana y de la semana al día","Que cierre cada plática con un compromiso de acciones para mañana, no con una intención","Dale una sola herramienta a la vez: la hoja del día o el Ritmo de Puntos","Revisa sus números cada semana, 20 minutos, siempre el mismo día"],
+      decir:"{nombre}, me contaste para qué quieres este ingreso y quiero ayudarte a llegar. Hagamos la cuenta juntas: cuántos puntos son al mes y qué te toca hacer cada día. ¿Te late el jueves, 20 minutos?",
+      ojo:"No necesita que la motives más. Necesita que el camino sea claro y que alguien le revise los números."},
+    todo: {nom:"Va por <em>todo</em>", corto:"Va por todo", n:5, c:"var(--c-todo)",
+      busca:"Quiere construir un equipo grande y llegar a dirección y más allá. Está dispuesta a dejar cosas que desde fuera no se entienden. No tienes que entenderlo para acompañarlo.",
+      mueve:["Una visión de largo plazo y saber cómo se ve el siguiente rango","Retos que le cuesten y espacio para decidir cómo los resuelve","Tener con quién resolver lo que sigue, rápido"],
+      aleja:["Que la frenes o le pidas permiso para todo","Que le quieras controlar cada paso","Que la metas en el mismo molde que a las demás"],
+      nivel:"<b>25%</b> y dirección", nivelTx:"25% son <b class=\"num\">5,000</b> puntos de grupo; dirección pide además <b class=\"num\">1,500</b> laterales y consolidarla tres meses. <a href=\"/plan-de-compensacion/\">Ver el plan de compensación</a>",
+      hacer:["Comparte con ella los números de dirección y arma juntas su ruta con fechas","Dale un reto con fecha y deja que proponga cómo lo hace","Haz su 1 a 1 de líder cada semana o cada quince días","Preséntale a alguien que ya llegó a donde ella quiere ir"],
+      decir:"{nombre}, se nota que vas en serio y me encanta. ¿Cómo te ves en un año? Armemos tu ruta a dirección con fechas, y dime qué necesitas de mí para que nada te frene.",
+      ojo:"Tu trabajo con ella no es empujar. Es quitarle piedras del camino y tener respuesta cuando pregunta qué sigue."}
+  };
+
+  // de cada 100: 20 columnas x 5 filas, coloreado por columnas para que se lea como proporción
+  var p = [], k = 0;
+  for(var f = 0; f < 5; f++) for(var c = 0; c < 20; c++){
+    var idx = c * 5 + f; // orden por columna
+    var cl = idx < 80 ? "g" : idx < 95 ? "a" : "t";
+    p.push('<i class="' + cl + '" style="--f:' + c + '"></i>');
+  }
+  $("puntos").innerHTML = p.join("");
+
+  // los tres: pestañas y paneles
+  $("tabs").innerHTML = ORDEN.map(function(s, i){
+    return '<button type="button" role="tab" id="tab-' + s + '" aria-controls="p-' + s + '" aria-selected="' + (i === 0) + '" aria-pressed="' + (i === 0) + '" tabindex="' + (i === 0 ? 0 : -1) + '">' + T[s].corto + '<small>' + T[s].n + ' de 100</small></button>';
+  }).join("");
+  function lista(a){ return "<ul>" + a.map(function(x){ return "<li>" + x + "</li>"; }).join("") + "</ul>"; }
+  function msj(s, nombre){
+    return H.esc(T[s].decir).replace(/\{nombre\}/g, '<span class="n">' + H.esc(nombre || "[su nombre]") + '</span>');
+  }
+  $("paneles").innerHTML = ORDEN.map(function(s, i){
+    var t = T[s];
+    return '<article class="tipo" role="tabpanel" id="p-' + s + '" aria-labelledby="tab-' + s + '"' + (i ? " hidden" : "") + ' style="--c:' + t.c + '">' +
+      '<div class="tipo-cab"><h3>' + t.nom + '</h3><p class="busca">' + t.busca + '</p><p class="cuantas"><i></i>' + t.n + ' de cada 100</p></div>' +
+      '<div style="display:grid;gap:22px"><div class="lados"><div class="lado"><h4>Qué la mueve</h4>' + lista(t.mueve) + '</div><div class="lado aleja"><h4>Qué la aleja</h4>' + lista(t.aleja) + '</div></div>' +
+      '<dl class="nums"><dt>A dónde suele apuntar</dt><dd>' + t.nivel + '</dd><p>' + t.nivelTx + '</p></dl></div>' +
+      '<div style="display:grid;gap:26px"><div class="hacer"><h4>Qué hacer</h4><ol>' + t.hacer.map(function(x){ return "<li>" + x + "</li>"; }).join("") + '</ol></div>' +
+      '<div class="decir"><h4>Qué decirle</h4><p class="texto" data-msj="' + s + '">' + msj(s) + '</p><div class="btns"><button class="btn2" type="button" data-copia="' + s + '">Copiar</button><a class="enlace" href="#" target="_blank" rel="noopener" data-wa="' + s + '">Mandar por WhatsApp</a></div></div></div>' +
+      '<p class="ojo">' + t.ojo + '</p></article>';
+  }).join("");
+
+  function muestra(s, foco){
+    ORDEN.forEach(function(x){
+      var on = x === s, b = $("tab-" + x);
+      b.setAttribute("aria-selected", on); b.setAttribute("aria-pressed", on); b.tabIndex = on ? 0 : -1;
+      $("p-" + x).hidden = !on;
+    });
+    $("puntos").dataset.ve = s;
+    if(foco) $("tab-" + s).focus();
+  }
+  $("tabs").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b) return;
+    var s = b.id.slice(4); muestra(s); H.cuenta("tipo-" + s);
+    try{ history.replaceState(null, "", "#" + s); }catch(_){}
+  });
+  $("tabs").addEventListener("keydown", function(e){
+    var i = ORDEN.indexOf(document.activeElement.id.slice(4)); if(i < 0) return;
+    if(e.key === "ArrowRight"){ e.preventDefault(); muestra(ORDEN[(i + 1) % 3], true); }
+    if(e.key === "ArrowLeft"){ e.preventDefault(); muestra(ORDEN[(i + 2) % 3], true); }
+  });
+  var h = location.hash.slice(1); if(T[h]){ muestra(h); }
+
+  // mensajes
+  function nombreActual(){ return modo === "ella" ? $("nom").value.trim() : ""; }
+  function textoPlano(s){ return T[s].decir.replace(/\{nombre\}/g, nombreActual() || "[su nombre]"); }
+  function pintaMsjs(){
+    document.querySelectorAll("[data-msj]").forEach(function(el){ el.innerHTML = msj(el.dataset.msj, nombreActual()); });
+    document.querySelectorAll("[data-wa]").forEach(function(a){ a.href = H.wa(textoPlano(a.dataset.wa)); });
+  }
+  document.addEventListener("click", function(e){
+    var b = e.target.closest("[data-copia]"); if(b){ H.copia(textoPlano(b.dataset.copia), "Mensaje copiado"); H.cuenta("copia-" + b.dataset.copia); }
+    var a = e.target.closest("[data-wa]"); if(a) H.cuenta("wa-" + a.dataset.wa);
+  });
+
+  // el test
+  // cada opción: [tipo, cómo se dice de ella, cómo se dice de ti]
+  var Q = [
+    {e:"¿Por qué entró?", y:"¿Por qué entraste?", o:[
+      ["gusta","Por los productos, el precio de socia o porque una amiga la invitó","Por los productos, el precio de socia o porque una amiga me invitó"],
+      ["algo","Porque necesitaba un dinero para algo específico","Porque necesitaba un dinero para algo específico"],
+      ["todo","Porque vio el negocio y quiere crecer en él","Porque vi el negocio y quiero crecer en él"]]},
+    {e:"Cuando hay un reto en el grupo…", y:"Cuando hay un reto en el grupo…", o:[
+      ["gusta","Aplaude a las demás y entra si le queda fácil","Aplaudo a las demás y entro si me queda fácil"],
+      ["algo","Pregunta qué tiene que hacer exactamente para lograrlo","Pregunto qué tengo que hacer exactamente para lograrlo"],
+      ["todo","Lo toma, lo termina y pregunta cuál sigue","Lo tomo, lo termino y pregunto cuál sigue"]]},
+    {e:"El tiempo que le da al negocio", y:"El tiempo que le das al negocio", o:[
+      ["gusta","El que le sobra, cuando se acuerda","El que me sobra, cuando me acuerdo"],
+      ["algo","Unas horas fijas a la semana","Unas horas fijas a la semana"],
+      ["todo","El que haga falta, y lo acomoda","El que haga falta, y lo acomodo"]]},
+    {e:"Cuando le hablas de niveles y puntos…", y:"Cuando te hablan de niveles y puntos…", o:[
+      ["gusta","Le da igual o se abruma","Me da igual o me abruma"],
+      ["algo","Quiere saber cuánto le falta para el siguiente","Quiero saber cuánto me falta para el siguiente"],
+      ["todo","Pregunta por la dirección y cómo armar equipo","Pregunto por la dirección y cómo armar equipo"]]},
+    {e:"Lo que más te agradece", y:"Lo que más agradeces de tu líder", o:[
+      ["gusta","Que la incluyas y la tomes en cuenta","Que me incluya y me tome en cuenta"],
+      ["algo","Que le des el paso a paso","Que me dé el paso a paso"],
+      ["todo","Que la dejes hacer y le resuelvas lo que sigue","Que me deje hacer y me resuelva lo que sigue"]]},
+    {e:"Un mes flojo, ¿cómo lo vive?", y:"Un mes flojo, ¿cómo lo vives?", o:[
+      ["gusta","Tranquila, sigue comprando lo suyo","Tranquila, sigo comprando lo mío"],
+      ["algo","Se frustra con ella misma y necesita que la ayudes a retomar","Me frustro conmigo misma y necesito que me ayuden a retomar"],
+      ["todo","Ya está buscando cómo recuperarlo antes de que le digas","Ya estoy buscando cómo recuperarlo antes de que me digan"]]}
+  ];
+  var KEY = "mtb-que-quiere-v1", modo = "ella", resp = [];
+  var guardado = H.lee(KEY, null);
+  if(guardado){ modo = guardado.modo === "yo" ? "yo" : "ella"; resp = Array.isArray(guardado.resp) ? guardado.resp : []; $("nom").value = guardado.nom || ""; }
+
+  function pintaQ(){
+    $("preguntas").innerHTML = Q.map(function(q, i){
+      return '<fieldset class="preg"><legend><span>' + String(i + 1).padStart(2, "0") + '</span>' + (modo === "yo" ? q.y : q.e) + '</legend><div class="opc">' +
+        q.o.map(function(o, j){
+          var ch = resp[i] === o[0] ? " checked" : "";
+          var tx = modo === "yo" ? o[2] : o[1];
+          return '<label><input type="radio" name="q' + i + '" value="' + o[0] + '"' + ch + '><span>' + tx + '</span></label>';
+        }).join("") + '</div></fieldset>';
+    }).join("");
+  }
+  function pintaModo(){
+    document.querySelectorAll("#modo button").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.m === modo); });
+    $("nomWrap").hidden = modo === "yo";
+  }
+  function calcula(){
+    var n = resp.filter(Boolean).length;
+    $("avBar").style.transform = "scaleX(" + (n / Q.length) + ")";
+    $("avTx").textContent = n + " de " + Q.length;
+    $("avance").querySelector(".barra-av").classList.toggle("ok", n === Q.length);
+    if(n < Q.length){ $("result").hidden = true; return; }
+    var cuenta = {gusta:0, algo:0, todo:0};
+    resp.forEach(function(r){ cuenta[r]++; });
+    var orden = ORDEN.slice().sort(function(a, b){ return cuenta[b] - cuenta[a] || ORDEN.indexOf(a) - ORDEN.indexOf(b); });
+    var top = orden[0], seg = orden[1], empate = cuenta[top] === cuenta[seg];
+    var quien = modo === "yo" ? "Tú" : (nombreActual() || "Esta persona");
+    var t = T[top], tres = cuenta[top] === cuenta[orden[2]];
+    var lee = tres
+      ? (modo === "yo" ? "Tienes un poco de las tres. Contesta las tres preguntas de abajo pensando en ti: tu para qué decide." : "Tiene un poco de las tres. Más que el test, aquí te sirve preguntarle: su para qué decide.")
+      : empate
+      ? (modo === "yo" ? "Estás entre " : "Está entre ") + T[top].corto.toLowerCase() + " y " + T[seg].corto.toLowerCase() + ". " + (modo === "yo" ? "Las tres preguntas de abajo te ayudan a decidir hacia dónde vas." : "Las tres preguntas de abajo te dicen hacia dónde se inclina.")
+      : (cuenta[seg] >= 2 ? "Con algo de " + T[seg].corto.toLowerCase() + ". " : "") + t.busca;
+    var r = $("result");
+    r.innerHTML = '<p class="es">' + H.esc(quien) + ', hoy</p><h3>' + (tres ? 'Un poco de <em>las tres</em>' : empate ? t.nom + ' <span style="font-size:.6em">o</span> ' + T[seg].nom.replace(/^Le|^Va/, function(m){ return m.toLowerCase(); }) : t.nom) + '</h3>' +
+      '<div class="mezcla" aria-hidden="true">' + ORDEN.filter(function(s){ return cuenta[s]; }).map(function(s){ return '<i style="--c:' + T[s].c + ';width:' + (cuenta[s] / Q.length * 100) + '%"></i>'; }).join("") + '</div>' +
+      '<p class="mezcla-tx num">' + ORDEN.map(function(s){ return T[s].corto + " " + cuenta[s]; }).join(" · ") + '</p>' +
+      '<p class="lee">' + lee + '</p>' +
+      '<div class="acciones"><a class="btn" href="' + (tres ? "#preguntar" : "#tres") + '" data-ir="' + (tres ? "" : top) + '">' + (tres ? "Ver las preguntas" : modo === "yo" ? "Ver lo mío" : "Cómo acompañarla") + '</a><button class="enlace" type="button" id="otra">' + (modo === "yo" ? "Empezar de nuevo" : "Otra persona") + '</button></div>' +
+      '<p class="recuerda">Es lo que ' + (modo === "yo" ? "quieres" : "quiere") + ' hoy, no lo que ' + (modo === "yo" ? "vales" : "vale") + '. Puede cambiar con la vida; vuelve a hacerlo cada tres meses.</p>';
+    r.hidden = false;
+    H.cuenta("resultado-" + top);
+  }
+  function guarda(){ H.guarda(KEY, {modo:modo, resp:resp, nom:$("nom").value}); }
+
+  $("preguntas").addEventListener("change", function(e){
+    var i = +e.target.name.slice(1); resp[i] = e.target.value; guarda(); calcula();
+    if(resp.filter(Boolean).length === Q.length && !$("result").dataset.visto){ $("result").dataset.visto = 1; if(window.innerWidth < 900) $("result").scrollIntoView({behavior: matchMedia("(prefers-reduced-motion:reduce)").matches ? "auto" : "smooth", block:"start"}); }
+  });
+  $("modo").addEventListener("click", function(e){
+    var b = e.target.closest("button"); if(!b || b.dataset.m === modo) return;
+    modo = b.dataset.m; pintaModo(); pintaQ(); guarda(); calcula(); pintaMsjs();
+  });
+  $("nom").addEventListener("input", function(){ guarda(); pintaMsjs(); if(!$("result").hidden) calcula(); });
+  $("result").addEventListener("click", function(e){
+    if(e.target.id === "otra"){ resp = []; $("nom").value = ""; delete $("result").dataset.visto; guarda(); pintaQ(); calcula(); pintaMsjs(); $("nom").focus(); return; }
+    var a = e.target.closest("[data-ir]"); if(a && a.dataset.ir){ muestra(a.dataset.ir); }
+  });
+  $("copiaPregs").addEventListener("click", function(){
+    var txt = Array.prototype.map.call(document.querySelectorAll(".platica li b"), function(b, i){ return (i + 1) + ". " + b.textContent; }).join("\n");
+    H.copia(txt, "Preguntas copiadas"); H.cuenta("copia-preguntas");
+  });
+
+  var prod = PRO.busca("equipo-por-tipo");
+  if(prod){ $("proPrecio").innerHTML = "$" + H.fmt(prod.precio) + "<small>MXN, una vez</small>"; }
+
+  pintaModo(); pintaQ(); calcula(); pintaMsjs();
+})();
+</script>
+</body>
+</html>
