@@ -1,0 +1,985 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-pdn">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Tu PDN · Presentación de negocio con tu cara</title>
+<meta name="description" content="Arma la presentación de negocio de Top Team con tu nombre y tus fotos, descárgala en PDF y estudia el guion de cada una. Sola o con hasta tres socias más.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400&family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.portada{padding:36px 0 20px;display:grid;gap:14px}
+.borrador{border-left:3px solid var(--warn);background:#FFF7EA;border-radius:0 12px 12px 0;padding:12px 16px;font-size:15px;margin:6px 0 0;max-width:46em}
+.borrador b{font-weight:600}
+
+/* pestañas: píldora sobre soft, la activa en blanco */
+.tabs{display:flex;gap:4px;background:var(--soft);border-radius:999px;padding:4px;margin:22px 0 0;position:sticky;top:8px;z-index:6;max-width:520px}
+.tabs button{flex:1;min-height:44px;border:0;border-radius:999px;background:none;font-weight:600;font-size:15px;color:var(--muted);cursor:pointer;transition:transform 160ms var(--ease)}
+.tabs button[aria-selected=true]{background:#fff;color:var(--accent-ink);box-shadow:0 1px 2px rgba(38,42,74,.08)}
+.tabs button:active{transform:scale(.97)}
+.panel{padding:26px 0 0}
+.panel[hidden]{display:none}
+
+/* armar */
+.armar{display:grid;gap:34px}
+.grupo{display:grid;gap:14px;border:0;margin:0;padding:0 0 26px;border-bottom:1px solid var(--line);min-width:0}
+.grupo legend{font:600 12px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-ink);padding:0;margin:0 0 14px}
+.grupo>p.nota{margin-top:-6px}
+.fila2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.persona{display:grid;grid-template-columns:124px minmax(0,1fr);gap:12px 16px;padding:16px;border:1px solid var(--line);border-radius:18px;background:#fff}
+.persona .campos{display:grid;gap:10px;min-width:0}
+.persona .cab-p{grid-column:1 / -1;display:flex;justify-content:space-between;align-items:center}
+.persona .cab-p b{font:500 13px/1 var(--mono);color:var(--muted)}
+.quitar{font:500 14px/1 var(--body);color:var(--accent-ink);background:none;border:0;padding:6px 0;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+.slot{display:grid;gap:8px;align-content:start;min-width:0}
+.slot .caja{position:relative;display:grid;place-items:center;border:1.5px dashed #C3C7DA;border-radius:14px;background:var(--soft);overflow:hidden;cursor:pointer;aspect-ratio:3/4;color:var(--muted);font-size:13px;text-align:center;line-height:1.25;padding:6px}
+.slot .caja.ancha{aspect-ratio:16/10}
+.slot .caja.cuadrada{aspect-ratio:1}
+.slot .caja img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.slot .caja.lleno{border-style:solid;border-color:var(--line)}
+.slot .caja svg{display:block;margin:0 auto 4px}
+.slot input[type=file]{position:absolute;width:1px;height:1px;opacity:0}
+.slot .caja:focus-within{outline:2px solid var(--ink);outline-offset:2px}
+.encuadre{display:flex;gap:4px}
+.encuadre button{flex:1 1 0;min-width:0;min-height:32px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;font-size:11.5px;cursor:pointer;padding:0 2px}
+.encuadre button[aria-pressed=true]{background:var(--ink);color:#fff;border-color:var(--ink)}
+.encuadre[hidden]{display:none}
+.mas{display:grid;gap:16px}
+.mas .item{display:grid;grid-template-columns:132px minmax(0,1fr);gap:14px;align-items:start}
+.mas .item h3{font:600 17px/1.25 var(--body);margin:2px 0 4px}
+.mas .item p{margin:0;font-size:14px;color:var(--muted);line-height:1.45}
+.mas .item p+p{margin-top:6px}
+.diapos{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:2px 16px}
+.diapos label{display:flex;gap:10px;align-items:center;min-height:40px;font-size:15px;cursor:pointer}
+.diapos input{width:18px;height:18px;accent-color:var(--ink)}
+.diapos .num{color:var(--muted);font-size:13px;width:20px}
+
+.vista{display:grid;gap:14px;align-content:start}
+.grande{width:100%;aspect-ratio:16/9;border-radius:12px;border:1px solid var(--line);display:block;background:#fff}
+.miniaturas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.miniaturas button{padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;cursor:pointer;position:relative;aspect-ratio:16/9}
+.miniaturas button[aria-current=true]{outline:2px solid var(--accent);outline-offset:1px}
+.miniaturas button.fuera{opacity:.35}
+.miniaturas canvas{width:100%;height:100%;display:block}
+.bajar{display:grid;gap:8px;padding:16px;border-radius:18px;background:var(--soft)}
+.bajar .btn{width:100%}
+.bajar p{margin:0;font-size:14px;color:var(--muted)}
+.faltan{font-size:14px;color:var(--warn);margin:0}
+.faltan:empty{display:none}
+
+/* guion */
+.reglas{border:1px solid var(--line);border-radius:18px;padding:20px 18px;margin:0 0 30px}
+.reglas h2{font-size:clamp(26px,6vw,34px)}
+.reglas ol{margin:14px 0 0;padding:0;list-style:none;display:grid;gap:0}
+.reglas li{display:grid;grid-template-columns:34px 1fr;padding:10px 0;border-top:1px solid var(--line);font-size:16px}
+.reglas li i{font:500 13px/1.6 var(--mono);color:var(--accent-ink);font-style:normal}
+.reglas .nota a{color:inherit}
+.paso{display:grid;gap:12px;padding:26px 0;border-top:1px solid var(--line)}
+.paso:first-of-type{border-top:2px solid var(--ink)}
+.paso canvas{width:100%;max-width:420px;aspect-ratio:16/9;border-radius:8px;border:1px solid var(--line);display:block}
+.paso .n{font:500 13px/1 var(--mono);color:var(--accent-ink)}
+.paso h3{font:400 clamp(26px,6vw,34px)/1.05 var(--serif);margin:0}
+.paso .min{font:400 13px/1 var(--mono);color:var(--muted)}
+.paso .di-ed{font-size:17px;line-height:1.5;max-width:34em;border-color:var(--line);background:#fff;resize:none;overflow:hidden;min-height:0}
+.paso .di-ed:hover{border-color:#CFD2E0}
+.paso .orig{font-size:14px;justify-self:start}
+.sets-t{width:100%;border-collapse:collapse;font-size:15px}
+.sets-t th{font:600 12px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 6px 8px 0}
+.sets-t td{padding:4px 6px 4px 0;vertical-align:middle}
+.sets-t td:first-child{font-weight:500;padding-right:10px}
+.sets-t input{min-height:40px;padding:6px 8px;font-family:var(--mono);font-size:15px}
+.sets-t .pct{font:500 14px/1 var(--mono);color:var(--accent-ink);white-space:nowrap}
+.paso .ojo{font-size:15px;color:var(--muted);margin:0;padding-left:14px;border-left:2px solid var(--accent);max-width:34em}
+.paso .quien{display:flex;gap:10px;align-items:center;font-size:14px}
+.paso .quien[hidden]{display:none}
+.paso .quien select{width:auto;min-height:38px;padding:4px 10px}
+.paso.fuera{opacity:.45}
+.total{font:500 14px/1.4 var(--mono);color:var(--muted);margin:0 0 16px}
+
+/* ensayar */
+.ensayo{display:grid;gap:16px}
+.ensayo .cuadro{display:grid;gap:12px}
+.ensayo .barra-e{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.reloj{font:500 34px/1 var(--mono);font-variant-numeric:tabular-nums}
+.reloj small{font-size:14px;color:var(--muted);margin-left:6px}
+.reloj.pasado{color:var(--warn)}
+.ensayo .di{font-size:18px;white-space:pre-line;margin:0;max-width:34em}
+.ensayo .t{font:400 clamp(28px,7vw,40px)/1.05 var(--serif);margin:0}
+.ensayo .n{font:500 13px/1 var(--mono);color:var(--accent-ink)}
+.ensayo .nav{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.lista-antes{margin-top:34px}
+
+@media (max-width:560px){
+  .persona{grid-template-columns:minmax(0,1fr);padding:14px}
+  .persona .slot{grid-template-columns:112px minmax(0,1fr);align-items:center;gap:8px 14px}
+  .persona .slot .caja{grid-row:1 / span 2}
+  .persona .slot .encuadre{align-self:end}
+  .persona .slot .quitar{justify-self:start;align-self:start}
+  .mas .item{grid-template-columns:112px minmax(0,1fr)}
+}
+@media (min-width:900px){
+  .portada{grid-template-columns:1.1fr .9fr;align-items:end;gap:56px;padding:56px 0 20px}
+  .armar{grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:48px;align-items:start}
+  .vista{position:sticky;top:76px}
+  .miniaturas{grid-template-columns:repeat(5,minmax(0,1fr))}
+  .paso{grid-template-columns:360px minmax(0,1fr);gap:8px 40px;align-items:start}
+  .paso canvas{grid-row:1 / span 6}
+  .ensayo{grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:40px;align-items:start}
+}
+@media (hover:hover) and (pointer:fine){
+  .tabs button:not([aria-selected=true]):hover{color:var(--ink)}
+  .slot .caja:hover{border-color:var(--ink)}
+}
+@media print{
+  .paso .di-ed{border:0;padding:0}
+  .paso .orig{display:none!important}
+  .barra,.portada,.tabs,#armar,#ensayar,.borrador,footer,.quien{display:none!important}
+  #guion{display:block!important}
+  .paso{break-inside:avoid;grid-template-columns:240px 1fr}
+  .paso canvas{max-width:240px}
+}
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <header class="portada">
+    <div>
+      <h1>Tu PDN, <em>con tu cara</em></h1>
+      <p class="bajada">La PDN de Top Team con tu nombre y tus fotos: las diapositivas en PDF, el guion de cada una y un modo para ensayar con cronómetro. Sola o con hasta tres socias más.</p>
+    </div>
+    <p class="borrador"><b>Borrador para revisar.</b> El orden, los datos de Farmasi, las reglas de oro y los sets salen de la PDN de Sel de noviembre de 2026. El guion es nuestro y falta que Sel lo revise.</p>
+  </header>
+
+  <nav class="tabs" role="tablist" aria-label="Secciones">
+    <button type="button" role="tab" id="t-armar" aria-controls="armar" aria-selected="true">Armar</button>
+    <button type="button" role="tab" id="t-guion" aria-controls="guion" aria-selected="false">Guion</button>
+    <button type="button" role="tab" id="t-ensayar" aria-controls="ensayar" aria-selected="false">Ensayar</button>
+  </nav>
+
+  <!-- ARMAR -->
+  <section class="panel" id="armar" role="tabpanel" aria-labelledby="t-armar">
+    <div class="armar">
+      <div>
+        <fieldset class="grupo">
+          <legend>Quién presenta</legend>
+          <p class="nota">Si la dan entre varias, agrega a cada una con su foto y su WhatsApp: en el cierre sale un QR por persona. Puede ser alguien que no esté en el equipo; sin foto, sale con sus iniciales.</p>
+          <div id="personas" style="display:grid;gap:12px"></div>
+          <button class="btn2" type="button" id="otraPersona">Agregar a otra persona</button>
+        </fieldset>
+
+        <fieldset class="grupo" style="padding-top:26px">
+          <legend>Portada y cierre</legend>
+          <label><span class="etq">Título de la portada (opcional)</span><input type="text" id="titulo" maxlength="48" placeholder="Si lo dejas vacío: sus nombres"></label>
+          <label><span class="etq">Cuándo y dónde (opcional)</span><input type="text" id="cuando" maxlength="60" placeholder="Jueves 6 de noviembre · 8:00 pm · Zoom"></label>
+          <label><span class="etq">Tu tienda</span><input type="text" id="tienda" maxlength="40" placeholder="mitienda.beauty/ana" autocapitalize="off"></label>
+          <label><span class="etq">Comunidad o equipo</span><input type="text" id="equipo" maxlength="32" placeholder="Top Team"></label>
+          <label><span class="etq">Tus favoritos (opcional, separados por coma)</span><input type="text" id="favs" maxlength="120" placeholder="Base de maquillaje, sérum de vitamina C, creatina"></label>
+        </fieldset>
+
+        <fieldset class="grupo" style="padding-top:26px">
+          <legend>Más fotos</legend>
+          <p class="nota">Tus fotos se quedan en tu teléfono o computadora: no se suben a ningún lado.</p>
+          <div class="mas" id="mas"></div>
+        </fieldset>
+
+        <fieldset class="grupo" style="padding-top:26px">
+          <legend>Precios de los sets</legend>
+          <p class="nota">Vienen de la PDN de Sel (noviembre 2026). Si cambian en el Back Office, corrígelos aquí; el descuento se calcula solo.</p>
+          <div style="overflow-x:auto"><table class="sets-t"><thead><tr><th>Set</th><th>Precio</th><th>Productos</th><th>Catálogo</th><th></th></tr></thead><tbody id="setsT"></tbody></table></div>
+          <button class="enlace" type="button" id="setsReset" style="justify-self:start;font-size:14px">Volver a los precios de Sel</button>
+        </fieldset>
+
+        <fieldset class="grupo" style="padding-top:26px;border-bottom:0">
+          <legend>Qué diapositivas van</legend>
+          <ul class="diapos" id="diapos"></ul>
+        </fieldset>
+      </div>
+
+      <div class="vista">
+        <canvas class="grande" id="grande" width="1920" height="1080" aria-label="Vista de la diapositiva"></canvas>
+        <div class="miniaturas" id="minis"></div>
+        <div class="bajar">
+          <button class="btn" type="button" id="bajar" data-cuenta="pdn-pdf">Descargar PDF</button>
+          <p class="faltan" id="faltan"></p>
+          <p>Un PDF de 16:9 para compartir pantalla en Zoom, conectar a la tele o imprimir. Los links del PDF se pueden tocar.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUION -->
+  <section class="panel" id="guion" role="tabpanel" aria-labelledby="t-guion" hidden>
+    <div class="reglas">
+      <h2>Reglas para <em>presentar</em></h2>
+      <ol>
+        <li><i>01</i><span>Dura 20 minutos. Empieza a la hora aunque falte alguien.</span></li>
+        <li><i>02</i><span>Una idea por diapositiva. Si te alargas en una, recorta en la siguiente.</span></li>
+        <li><i>03</i><span>Cero promesas de dinero. Nombras las formas de ganar y, si preguntan cuánto, abren juntas el plan de compensación.</span></li>
+        <li><i>04</i><span>Hechos con fecha en tu historia: "empecé en marzo", "llegué a 12 % en mi mes 4".</span></li>
+        <li><i>05</i><span>Cierras con una pregunta y agendas el seguimiento antes de colgar.</span></li>
+      </ol>
+      <p class="nota">El orden sigue la PDN de Sel. Las diapositivas marcadas "extra" no están en la de Sel y van apagadas. La biografía del Dr. Cevdet Tuna está en el <a href="https://www.farmasi.com/en-US/blog/dr-c-tuna" target="_blank" rel="noopener">blog de Farmasi</a>.</p>
+    </div>
+    <p class="total" id="total"></p>
+    <div id="pasos"></div>
+    <div style="margin-top:22px"><button class="btn2" type="button" id="imprimir">Imprimir guion</button></div>
+  </section>
+
+  <!-- ENSAYAR -->
+  <section class="panel" id="ensayar" role="tabpanel" aria-labelledby="t-ensayar" hidden>
+    <div class="ensayo">
+      <div class="cuadro">
+        <canvas class="grande" id="eCanvas" width="1920" height="1080" aria-label="Diapositiva en ensayo"></canvas>
+        <div class="nav">
+          <button class="btn2" type="button" id="eAnt">Anterior</button>
+          <button class="btn2" type="button" id="eSig">Siguiente</button>
+        </div>
+      </div>
+      <div class="cuadro">
+        <span class="n" id="eN"></span>
+        <h3 class="t" id="eT"></h3>
+        <p class="di" id="eDi"></p>
+        <p class="nota" id="eQuien"></p>
+        <div class="barra-e">
+          <span class="reloj" id="reloj">0:00<small>de 20:00</small></span>
+          <button class="btn2" type="button" id="eReloj">Empezar</button>
+          <button class="enlace" type="button" id="eReset">Reiniciar</button>
+        </div>
+        <p class="nota" id="eMeta"></p>
+      </div>
+    </div>
+    <section class="lista-antes" aria-labelledby="antesT">
+      <div class="cab"><h2 id="antesT">Antes de <em>presentar</em></h2><p>Se queda marcado en este dispositivo.</p></div>
+      <ul class="checks" id="antes" style="margin-top:8px"></ul>
+    </section>
+  </section>
+
+  <section class="sigue" aria-labelledby="sTit">
+    <div class="cab"><h2 id="sTit">Después de presentar</h2></div>
+    <a class="otra" href="/mentorias/herramientas/mensajes/#seguir" data-cuenta="ir-mensajes"><b>Mensajes de seguimiento</b><span>El mismo día: "¿Qué fue lo que más te llamó la atención?"</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/objeciones/" data-cuenta="ir-objeciones"><b>¿Y si me dice que no?</b><span>Qué contestar a "está caro", "es pirámide" y "luego te digo".</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/presentacion/" data-cuenta="ir-presentacion"><b>La presentación corta</b><span>Siete pantallas para mandar por WhatsApp, con tu link.</span><i aria-hidden="true">→</i></a>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi. Kit, puntos y niveles salen de la guía de inscripción y del Back Office de México; si algo cambia, lo que manda es el Back Office. No promete ingresos.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+<script>
+(function(){
+"use strict";
+var $ = function(id){ return document.getElementById(id); };
+var KEY = "mtb-pdn-v1";
+var st = H.lee(KEY, null) || {personas:[{nombre:"", rol:"", historia:"", fy:.3}], titulo:"", cuando:"", wa:"", tienda:"", equipo:"Top Team", favs:"", fy:{}, fuera:{}, quien:{}, antes:{}};
+st.extra = st.extra || {}; if(st.wa && st.personas[0] && !st.personas[0].wa){ st.personas[0].wa = st.wa; } delete st.wa; st.guion = st.guion || {}; st.sets = st.sets || {}; st.fy = st.fy || {}; st.fuera = st.fuera || {}; st.quien = st.quien || {}; st.antes = st.antes || {};
+var FOTOS = {};   // id -> HTMLImageElement
+var EQ = [];
+
+/* ---------- colores y tipografía (Estilo Farmasi) ---------- */
+var C = {ink:"#262A4A", muted:"#6C7090", line:"#E6E8F0", soft:"#EEF0F8", acc:"#DB414C", accInk:"#C8323F", tint:"#FDEEF0", navy:"#1B1F3B", pink:"#F2B8BC", gris:"#C9CBE0"};
+var W = 1920, HH = 1080, M = 120;
+
+/* ---------- el contenido de cada diapositiva y su guion ---------- */
+/* El orden y los datos siguen la PDN de Sel ("PRES TT OK 2026", noviembre 2026).
+   extra:true = diapositivas que no están en la de Sel; van solo si la socia las prende. */
+var D = [
+  {id:"portada", t:"Portada", min:1,
+   di:"Gracias por darte este rato. Soy {yo} y en unos 20 minutos te cuento qué es Top Team, qué es Farmasi y cómo funciona el negocio.\nAl final me dices qué te pareció. No tienes que decidir nada hoy.",
+   ojo:"Empieza a la hora. Cámara prendida, buena luz y tu nombre completo en la pantalla de Zoom."},
+  {id:"quien", t:"Quién te lo cuenta", min:2,
+   di:"Tu historia en tres frases: por qué empezaste, qué cambió y dónde estás hoy.\n\"Empecé en ___ porque ___. Lo que cambió fue ___. Hoy ___.\"",
+   ojo:"Hechos con fecha y sin cifras de dinero. En la PDN de Sel, después de la portada va un video: si tienes uno del equipo, ponlo aquí.", varias:"Si son varias, cada una dice su frase. Máximo 40 segundos por persona."},
+  {id:"topteam", t:"¿Qué es Top Team?", min:1.5,
+   di:"Top Team es una comunidad internacional dentro de Farmasi. Somos más de 10,000 personas construyendo un negocio con estructura, acompañamiento y visión.\nYo soy parte desde ___.",
+   ojo:"Si tienes foto de un evento o capacitación del equipo, súbela en \"Tu equipo\" y sale aquí."},
+  {id:"farmasi", t:"¿Qué es Farmasi?", min:2,
+   di:"Farmasi es una empresa turca con 76 años en el mercado, fundada por el Dr. Cevdet Tuna. Está en más de 40 países, tiene 2,500 productos en el catálogo y lanza unos 250 nuevos cada año.\nEstá en el Top 11 del ranking mundial de empresas y tiene su propia planta en Estambul, la más grande de Europa, donde hace todos sus productos. Por eso trabajamos con ellos.",
+   ojo:"Los datos salen de la PDN de Sel (noviembre 2026). Dilos tal cual, sin redondear hacia arriba."},
+  {id:"reglas", t:"Las reglas de oro", min:2,
+   di:"El Dr. Cevdet Tuna dejó reglas de oro que cumple cada producto: libres de sulfato de sodio, de parabenos, de metales pesados y de gluten; sin transgénicos; veganos; probados dermatológicamente, y no se prueban en animales.\n\"La que más me importa a mí es ___, porque ___.\"",
+   ojo:"No las leas como lista. Elige dos y cuéntalas con un producto en la mano."},
+  {id:"lineas", t:"4 líneas de negocio", min:2,
+   di:"Son cuatro líneas de negocio: maquillaje, nutrición, cuidado capilar y skin care.\nLo que yo más uso: {favs}. Y el primero que me enganchó fue ___.",
+   ojo:"Ten dos productos a la mano para enseñarlos en cámara."},
+  {id:"hacemos", t:"¿Qué hacemos en Top Team?", min:2,
+   di:"Construimos negocios dentro de Farmasi con un sistema claro. Vendemos productos que la gente usa, recomienda y vuelve a comprar. Formamos líderes que desarrollan equipo. Acompañamos a quien empieza desde cero, con herramientas, mentoría y comunidad. Trabajamos con presentaciones, sesiones y seguimiento constante. Y cada persona aprende a generar ingresos y a crear estructura.",
+   ojo:"Di un ejemplo tuyo de cada punto que puedas: tu primera venta, tu primera sesión, tu mentora."},
+  {id:"formas", t:"10 formas de ganar", min:2.5,
+   di:"Hay diez formas de ganar: programa de bienvenida, margen de ganancia, bono construyendo tu equipo, bono personal, bono de clientes en línea, bono de grupo, bono de liderazgo, apoyo mensual para automóvil, bono en efectivo y experiencias únicas.\nNo te las explico todas hoy. Empiezas ganando con el margen y el programa de bienvenida; lo demás llega conforme creces.",
+   ojo:"Sin cifras de lo que gana nadie. Si preguntan cuánto, abre el plan de compensación y hagan la cuenta juntas."},
+  {id:"sistema", t:"El sistema", min:1.5,
+   di:"Y no lo haces sola. Este es el sistema: capacitación constante, llamadas, chats de apoyo, coworking, reuniones sociales, incentivos, motivación y testimonios reales.",
+   ojo:"Di cuándo es la próxima capacitación y la próxima reunión, con fecha."},
+  {id:"testimonios", t:"Cómo se sienten", min:1.5, foto:"testimonios",
+   di:"Esto es lo que dicen las personas de Top Team. (Lee uno en voz alta: el que más se parezca a quien te escucha.)",
+   ojo:"Solo capturas con permiso, sin números de teléfono a la vista. Si no subes capturas, esta diapositiva no sale."},
+  {id:"cultura", t:"Nuestra cultura", min:1,
+   di:"Lo que nos define: creadoras, personas reales, líderes en construcción, personas con propósito y valientes.\nDi cuál de esas eres tú y por qué.",
+   ojo:"Una sola, con un hecho: \"Me considero valiente porque presenté por primera vez con 3 personas en la llamada\"."},
+  {id:"kit", t:"Kit de inicio", min:1,
+   di:"Para empezar solo necesitas tu kit de inicio: $499, por única ocasión. Sin mensualidad.",
+   ojo:"Si tienes tu kit, enséñalo en cámara. La foto de esta diapositiva puede ser tú con tu kit."},
+  {id:"sets", t:"Los sets de inicio", min:2,
+   di:"Y si quieres arrancar con producto, al inscribirte hay sets con descuento, por única ocasión. Por ejemplo, el Set Winner: 15 productos por $3,125, que en catálogo valen $8,090.\n¿Cuál te late más para empezar?",
+   ojo:"Los precios son de la PDN de Sel (noviembre 2026). Confírmalos en el Back Office antes de presentar: cambian."},
+  {id:"numeros", t:"Lo que vale un punto", min:2, extra:true,
+   di:"Cada punto vale unos $25 a precio de socia. Con 75 puntos personales al mes cobras tus bonos. Con 200 puntos de grupo llegas a 3 %.\nLa tabla sube hasta 25 % con 5,000 puntos; de ahí empieza la dirección.",
+   ojo:"No está en la PDN de Sel. La tabla es la del Back Office de México."},
+  {id:"tienda", t:"Tu tienda en línea", min:1.5, extra:true,
+   di:"Así se ve mi tienda. (Ábrela y comparte pantalla.) Catálogo, promociones y pedidos por WhatsApp. La tuya queda igual, con tu nombre.",
+   ojo:"No está en la PDN de Sel. Ten tu tienda abierta en otra pestaña antes de empezar."},
+  {id:"piensas", t:"¿No es una pirámide?", min:2, extra:true,
+   di:"Seguro te preguntas si esto es una pirámide. Entras una vez con $499, sin mensualidad. El bono sale de los pedidos, no de cuántas personas inscribes. Tu socia te puede rebasar. Y si ya no quieres, dejas de pedir.",
+   ojo:"No está en la PDN de Sel. Úsala si sabes que la persona trae esa duda."},
+  {id:"cierre", t:"El siguiente paso", min:1.5,
+   di:"De lo que viste, ¿qué fue lo que más te llamó la atención?\n(Escucha.) ¿Lo empezamos esta semana o prefieres que platiquemos 15 minutos con calma?",
+   ojo:"Agenda el seguimiento antes de colgar: día y hora. Esa misma noche le mandas el mensaje de seguimiento."}
+];
+var REGLAS = ["Libres de sulfato de sodio","Probados dermatológicamente","Libres de parabenos","Sin transgénicos (no GMO)","No se prueban en animales","Veganos","Libres de metales pesados","Libres de gluten"];
+var SETS = [["Set Winner","$3,125",15,"$8,090",61],["Set Top","$2,000",12,"$4,950",60],["Makeup Set","$1,850",11,"$3,975",53],["Set Salud","$2,000",7,"$4,600",57],["Set Dr. C. Tuna","$1,550",7,"$4,925",69]];
+var ANTES = ["La lista de invitadas confirmada un día antes","El link de Zoom o la dirección, enviados","El PDF descargado y abierto en pantalla completa","Dos productos a la mano","Los precios de los sets revisados en el Back Office","La calculadora del plan abierta, por si preguntan","Tu agenda a la mano para el seguimiento"];
+var MAS = [
+  {id:"grupo", t:"Tu equipo", forma:"ancha", tips:["Horizontal: un evento, una capacitación o una videollamada del equipo. Sale en \"¿Qué es Top Team?\".","Solo con permiso de quienes salen."]},
+  {id:"producto", t:"Tú con tus productos", forma:"cuadrada", tips:["Con 2 o 3 productos en la mano o sobre una mesa. Sale en \"4 líneas de negocio\".","Luz de ventana y fondo sin desorden. Sin filtros ni texto encima."]},
+  {id:"testimonios", t:"Capturas de testimonios", forma:"vertical", tips:["Una captura (o un collage) de mensajes del equipo. Sin esta foto, la diapositiva no sale.","Solo con permiso. Tapa nombres completos y teléfonos."]},
+  {id:"kit", t:"Tú con tu kit", forma:"vertical", tips:["Vertical, con la caja del kit. Si no la subes, sale tu foto de perfil."]},
+  {id:"captura", t:"Captura de tu tienda", forma:"vertical", tips:["Solo si prendes la diapositiva \"Tu tienda en línea\". Toma captura de la parte de arriba de tu tienda en el celular."]}
+];
+
+/* ---------- utilidades de dibujo ---------- */
+function F(ctx, w, s, mono){ ctx.font = w + " " + s + "px " + (mono ? '"IBM Plex Mono"' : "Outfit"); }
+function partes(ctx, txt, maxW){
+  var out = [], cur = "";
+  String(txt || "").split(/[ \t]+/).forEach(function(w){
+    if(!w) return; var t = cur ? cur + " " + w : w;
+    if(ctx.measureText(t).width <= maxW || !cur) cur = t; else { out.push(cur); cur = w; }
+  });
+  if(cur) out.push(cur); return out;
+}
+function txt(ctx, s, x, y, maxW, lh, max){
+  var ls = [];
+  String(s || "").split("\n").forEach(function(p){ ls = ls.concat(partes(ctx, p, maxW)); });
+  if(max && ls.length > max){ ls = ls.slice(0, max); var l = ls[max-1]; while(l && ctx.measureText(l + "…").width > maxW) l = l.replace(/\s*\S+$/, ""); ls[max-1] = l + "…"; }
+  ls.forEach(function(l, i){ ctx.fillText(l, x, y + i * lh); });
+  return y + (ls.length - 1) * lh;
+}
+function ajusta(ctx, s, w, size, min, mono, maxW, maxL){
+  for(var z = size; z >= min; z -= 2){ F(ctx, w, z, mono); if(partes(ctx, s, maxW).length <= maxL) return z; }
+  return min;
+}
+function esp(ctx, s, x, y, sp, der){
+  var cs = Array.from(String(s).toUpperCase()), w = 0;
+  cs.forEach(function(c){ w += ctx.measureText(c).width + sp; }); w -= sp;
+  var cx = der ? x - w : x;
+  cs.forEach(function(c){ ctx.fillText(c, cx, y); cx += ctx.measureText(c).width + sp; });
+  return w;
+}
+function rr(ctx, x, y, w, h, r){ ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x, y, w, h, r); else { ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); } }
+function iniciales(n){ return String(n || "").trim().split(/\s+/).slice(0,2).map(function(p){ return p[0] || ""; }).join("").toUpperCase(); }
+function foto(ctx, im, x, y, w, h, r, fy, ini, circ){
+  ctx.save();
+  if(circ){ ctx.beginPath(); ctx.arc(x + w/2, y + h/2, w/2, 0, Math.PI*2); } else rr(ctx, x, y, w, h, r);
+  ctx.clip();
+  if(im && im.naturalWidth){
+    var s = Math.max(w / im.naturalWidth, h / im.naturalHeight), iw = im.naturalWidth * s, ih = im.naturalHeight * s;
+    ctx.drawImage(im, x + (w - iw) / 2, y + (h - ih) * (fy == null ? .5 : fy), iw, ih);
+  } else {
+    ctx.fillStyle = C.tint; ctx.fillRect(x, y, w, h);
+    if(ini){ F(ctx, 800, Math.round(Math.min(w, h) * .34)); ctx.fillStyle = C.acc; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(ini, x + w/2, y + h/2 + 4); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic"; }
+  }
+  ctx.restore();
+}
+function contiene(ctx, im, x, y, w, h){ var s = Math.min(w / im.naturalWidth, h / im.naturalHeight), iw = im.naturalWidth * s, ih = im.naturalHeight * s; ctx.save(); rr(ctx, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih, 14); ctx.clip(); ctx.drawImage(im, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih); ctx.restore(); }
+function linea(ctx, x, y, w, color, g){ ctx.fillStyle = color || C.line; ctx.fillRect(x, y, w, g || 2); }
+function qr(ctx, texto, x, y, size, fondo){
+  if(typeof qrcode !== "function") return;
+  var q = qrcode(0, "M"); q.addData(texto); q.make();
+  var n = q.getModuleCount(), pad = 3, cell = size / (n + pad * 2);
+  ctx.fillStyle = fondo || "#fff"; rr(ctx, x, y, size, size, 14); ctx.fill();
+  ctx.fillStyle = C.ink;
+  for(var r = 0; r < n; r++) for(var c = 0; c < n; c++) if(q.isDark(r, c)) ctx.fillRect(Math.floor(x + (c + pad) * cell), Math.floor(y + (r + pad) * cell), Math.ceil(cell), Math.ceil(cell));
+}
+
+/* ---------- datos para dibujar ---------- */
+function datos(){
+  var ps = st.personas.filter(function(p){ return (p.nombre || "").trim() || FOTOS["p" + st.personas.indexOf(p)]; });
+  if(!ps.length) ps = [st.personas[0]];
+  var nombres = ps.map(function(p){ return (p.nombre || "").trim() || "tu nombre"; });
+  var junta = nombres.length > 1 ? nombres.slice(0, -1).join(", ") + " y\u00a0" + nombres[nombres.length - 1] : nombres[0];
+  var t = (st.tienda || "").trim().replace(/^https?:\/\//, "").replace(/\/$/, "");
+  if(t && t.indexOf(".") < 0) t = "mitienda.beauty/" + t.toLowerCase();
+  function nwa(v){ v = (v || "").replace(/\D/g, ""); return v.length === 10 ? "52" + v : v.length >= 12 ? v : ""; }
+  return {
+    personas: ps.map(function(p){ var i = st.personas.indexOf(p); return {wa: nwa(p.wa), nombre: (p.nombre || "").trim(), rol: (p.rol || "").trim(), historia: (p.historia || "").trim(), im: FOTOS["p" + i], fy: p.fy == null ? .3 : p.fy}; }),
+    titulo: (st.titulo || "").trim() || junta, junta: junta, yo: nombres[0],
+    cuando: (st.cuando || "").trim(), tienda: t, equipo: (st.equipo || "").trim() || "Top Team",
+    favs: (st.favs || "").split(",").map(function(s){ return s.trim(); }).filter(Boolean)
+  };
+}
+function waBonito(wa){ var n = wa.replace(/^52/, ""); return n.length === 10 ? n.slice(0,2) + " " + n.slice(2,6) + " " + n.slice(6) : wa; }
+
+/* ---------- marco común: arriba "Farmasi con…", abajo el link y la marca de agua ---------- */
+function marco(ctx, d, i, n, oscuro, L){
+  F(ctx, 500, 22); ctx.fillStyle = oscuro ? C.pink : C.muted;
+  var cab = "Farmasi con " + d.titulo; while(ctx.measureText(cab).width * 1.25 > 1300 && cab.length > 20) cab = cab.slice(0, -2);
+  esp(ctx, cab === "Farmasi con " + d.titulo ? cab : cab + "…", M, 92, 5);
+  F(ctx, 500, 22, 1); ctx.textAlign = "right"; ctx.fillText(i > 0 ? String(i).padStart(2, "0") + " / " + String(n).padStart(2, "0") : "No va en tu PDF", W - M, 92); ctx.textAlign = "left";
+  F(ctx, 400, 20, 1); ctx.fillStyle = oscuro ? "#8E92B4" : "#8A8EA8";
+  if(d.tienda){ ctx.fillText(d.tienda, M, 1020); L.push({x: M, y: 996, w: ctx.measureText(d.tienda).width, h: 32, url: "https://" + d.tienda}); }
+  ctx.globalAlpha = .75; ctx.textAlign = "right"; ctx.fillText("mitienda.beauty", W - M, 1020); ctx.textAlign = "left"; ctx.globalAlpha = 1;
+  L.push({x: W - M - 200, y: 996, w: 200, h: 32, url: "https://mitienda.beauty/"});
+}
+function etiqueta(ctx, s, x, y, color){ F(ctx, 600, 24, 1); ctx.fillStyle = color || C.accInk; esp(ctx, s, x, y, 3); }
+function titulo(ctx, s, x, y, maxW, size, color, maxL){ var z = ajusta(ctx, s, 800, size, 48, 0, maxW, maxL || 2); ctx.fillStyle = color || C.ink; return {y: txt(ctx, s, x, y, maxW, Math.round(z * 1.06), maxL || 2), z: z}; }
+
+/* ---------- las diapositivas ---------- */
+var PINTA = {
+  portada: function(ctx, d, L){
+    var ps = d.personas, n = Math.min(ps.length, 4), px = 1040, pw = W - px, g = 8;
+    var cajas = n === 1 ? [[0,0,pw,HH]] : n === 2 ? [[0,0,pw/2-g/2,HH],[pw/2+g/2,0,pw/2-g/2,HH]] : n === 3 ? [[0,0,pw/2-g/2,HH],[pw/2+g/2,0,pw/2-g/2,HH/2-g/2],[pw/2+g/2,HH/2+g/2,pw/2-g/2,HH/2-g/2]] : [[0,0,pw/2-g/2,HH/2-g/2],[pw/2+g/2,0,pw/2-g/2,HH/2-g/2],[0,HH/2+g/2,pw/2-g/2,HH/2-g/2],[pw/2+g/2,HH/2+g/2,pw/2-g/2,HH/2-g/2]];
+    cajas.forEach(function(c, k){ foto(ctx, ps[k].im, px + c[0], c[1], c[2], c[3], 0, ps[k].fy, iniciales(ps[k].nombre) || "·"); });
+    F(ctx, 500, 22); ctx.fillStyle = C.muted; esp(ctx, d.equipo + " · Todo es posible", M, 92, 5);
+    etiqueta(ctx, "Presentación de negocio", M, 330);
+    F(ctx, 800, 168); ctx.fillStyle = C.ink; ctx.fillText("Farmasi", M - 6, 500);
+    F(ctx, 300, 64); ctx.fillStyle = C.muted; ctx.fillText("con", M, 590);
+    var z = ajusta(ctx, d.titulo, 800, 104, 52, 0, 820, 3); ctx.fillStyle = C.acc;
+    var y = txt(ctx, d.titulo, M - 3, 590 + Math.round(z * 1.02), 820, Math.round(z * 1.04), 3);
+    linea(ctx, M, Math.max(y + 60, 860), 96, C.acc, 6);
+    if(d.cuando){ F(ctx, 500, 28, 1); ctx.fillStyle = C.ink; txt(ctx, d.cuando, M, Math.max(y + 60, 860) + 66, 820, 36, 2); }
+  },
+  quien: function(ctx, d, L){
+    var ps = d.personas, n = ps.length;
+    if(n === 1){
+      var p = ps[0];
+      foto(ctx, p.im, M, 150, 640, 810, 18, p.fy, iniciales(p.nombre) || "·");
+      var x = 860, mw = W - M - x;
+      etiqueta(ctx, "Quién te lo cuenta", x, 260);
+      var t = titulo(ctx, "Soy " + (p.nombre || "tu nombre"), x, 360, mw, 104, C.ink, 2);
+      var y = t.y + 64;
+      if(p.rol){ F(ctx, 500, 30, 1); ctx.fillStyle = C.accInk; y = txt(ctx, p.rol, x, y, mw, 40, 2) + 70; } else y += 10;
+      F(ctx, 400, 42); ctx.fillStyle = p.historia ? C.ink : "#A3A6BE";
+      txt(ctx, p.historia || "Aquí va tu historia en tres frases: por qué empezaste, qué cambió y dónde estás hoy.", x, y, mw, 60, 8);
+      return;
+    }
+    etiqueta(ctx, "Quiénes te lo cuentan", M, 200);
+    var gap = 36, cw = (W - 2 * M - gap * (n - 1)) / n, ph = n === 2 ? 470 : 420;
+    ps.forEach(function(p, k){
+      var x = M + k * (cw + gap);
+      foto(ctx, p.im, x, 240, cw, ph, 18, p.fy, iniciales(p.nombre) || "·");
+      ajusta(ctx, p.nombre || "Nombre", 700, 48, 30, 0, cw, 1); ctx.fillStyle = C.ink; ctx.fillText(p.nombre || "Nombre", x, 240 + ph + 70);
+      var y = 240 + ph + 70;
+      if(p.rol){ F(ctx, 500, 22, 1); ctx.fillStyle = C.accInk; y = txt(ctx, p.rol, x, y + 42, cw, 30, 1); }
+      F(ctx, 400, n === 2 ? 30 : 26); ctx.fillStyle = p.historia ? C.ink : "#A3A6BE";
+      txt(ctx, p.historia || "Su historia en una o dos frases.", x, y + 54, cw, n === 2 ? 42 : 36, n === 2 ? 4 : 5);
+    });
+  },
+  topteam: function(ctx, d, L){
+    ctx.fillStyle = C.navy; ctx.fillRect(0, 0, W, HH);
+    var im = FOTOS.grupo, mw = im ? 820 : 1500;
+    if(im) foto(ctx, im, 1040, 150, W - M - 1040, 810, 18, st.fy.grupo == null ? .4 : st.fy.grupo);
+    etiqueta(ctx, "Top Team", M, 240, C.pink);
+    var t = titulo(ctx, "¿Qué es Top Team?", M, 350, mw, 110, "#fff", 2);
+    F(ctx, 400, 34); ctx.fillStyle = C.gris; var y = txt(ctx, "Una comunidad internacional dentro de Farmasi, de más de", M, t.y + 92, mw, 46, 2);
+    F(ctx, 500, im ? 170 : 210, 1); ctx.fillStyle = C.pink; ctx.fillText("10,000", M - 8, y + (im ? 190 : 230));
+    var nx = im ? M : M + ctx.measureText("10,000").width + 40;
+    F(ctx, 600, 44); ctx.fillStyle = "#fff"; ctx.fillText("personas", nx, im ? y + 270 : y + 160);
+    F(ctx, 400, 30); ctx.fillStyle = C.gris; txt(ctx, "que construyen un negocio con estructura, acompañamiento y visión.", nx, im ? y + 330 : y + 216, im ? mw : 620, 40, 3);
+  },
+  farmasi: function(ctx, d, L){
+    etiqueta(ctx, "Y por qué trabajamos con ellos", M, 210);
+    titulo(ctx, "¿Qué es Farmasi?", M, 310, 1500, 96, C.ink, 1);
+    F(ctx, 500, 280, 1); ctx.fillStyle = C.acc; ctx.fillText("76", M - 14, 610);
+    F(ctx, 600, 40); ctx.fillStyle = C.ink; ctx.fillText("años en el mercado", M, 680);
+    F(ctx, 400, 30); ctx.fillStyle = C.muted; txt(ctx, "Empresa turca fundada por el Dr. Cevdet Tuna.", M, 732, 560, 40, 2);
+    var cf = [["40+","países"],["2,500","productos en el catálogo"],["250","productos nuevos al año"],["Top 11","del ranking mundial de empresas"]];
+    var x0 = 800, gap = 48, cw = (W - M - x0 - gap) / 2;
+    cf.forEach(function(v, k){
+      var x = x0 + (k % 2) * (cw + gap), y = 370 + Math.floor(k / 2) * 230;
+      linea(ctx, x, y, cw, C.line, 2);
+      F(ctx, 500, 84, 1); ctx.fillStyle = C.ink; ctx.fillText(v[0], x - 4, y + 104);
+      F(ctx, 400, 28); ctx.fillStyle = C.muted; txt(ctx, v[1], x, y + 152, cw, 36, 2);
+    });
+    ctx.fillStyle = C.soft; rr(ctx, M, 840, W - 2 * M, 110, 14); ctx.fill();
+    F(ctx, 500, 30); ctx.fillStyle = C.ink; txt(ctx, "Planta propia en Estambul, la más grande de Europa, donde hace todos sus productos. Control de calidad y certificaciones internacionales.", M + 36, 884, W - 2 * M - 72, 38, 2);
+  },
+  reglas: function(ctx, d, L){
+    etiqueta(ctx, "Las reglas de oro", M, 220);
+    titulo(ctx, "Del Dr. Cevdet Tuna, para cada producto", M, 320, 1600, 80, C.ink, 1);
+    var gap = 40, cw = (W - 2 * M - gap * 3) / 4, rh = 260;
+    REGLAS.forEach(function(r, k){
+      var x = M + (k % 4) * (cw + gap), y = 420 + Math.floor(k / 4) * rh;
+      ctx.fillStyle = k === 4 ? C.tint : C.soft; rr(ctx, x, y, cw, rh - 32, 18); ctx.fill();
+      F(ctx, 500, 26, 1); ctx.fillStyle = C.accInk; ctx.fillText("0" + (k + 1), x + 30, y + 58);
+      F(ctx, 600, 36); ctx.fillStyle = C.ink; txt(ctx, r, x + 30, y + 130, cw - 60, 44, 2);
+    });
+  },
+  lineas: function(ctx, d, L){
+    var im = FOTOS.producto, mw = im ? 840 : W - 2 * M;
+    if(im) foto(ctx, im, 1080, 150, W - M - 1080, 810, 18, st.fy.producto == null ? .5 : st.fy.producto);
+    etiqueta(ctx, "Lo que vendes", M, 230);
+    F(ctx, 500, 220, 1); ctx.fillStyle = C.acc; ctx.fillText("4", M - 12, 470);
+    F(ctx, 800, 84); ctx.fillStyle = C.ink; ctx.fillText("líneas", M + 170, 380); ctx.fillText("de negocio", M + 170, 468);
+    var cats = ["Maquillaje","Nutrición","Cuidado capilar","Skin care"];
+    var cols = im ? 1 : 2, cw = im ? mw : (mw - 60) / 2, rh = im ? 76 : 90, y0 = 560;
+    cats.forEach(function(c, k){
+      var cx = M + (k % cols) * (cw + 60), cy = y0 + Math.floor(k / cols) * rh;
+      linea(ctx, cx, cy, cw, C.line, 2); F(ctx, 500, 22, 1); ctx.fillStyle = C.accInk; ctx.fillText("0" + (k + 1), cx, cy + 52);
+      F(ctx, 600, 38); ctx.fillStyle = C.ink; ctx.fillText(c, cx + 70, cy + 54);
+    });
+    if(d.favs.length){
+      var fy = y0 + Math.ceil(cats.length / cols) * rh + 40;
+      F(ctx, 600, 22, 1); ctx.fillStyle = C.accInk; esp(ctx, "Mis favoritos", M, fy + 10, 3);
+      F(ctx, 500, 28); ctx.fillStyle = C.ink; txt(ctx, d.favs.join(" · "), M, fy + 56, mw, 38, 2);
+    }
+  },
+  hacemos: function(ctx, d, L){
+    etiqueta(ctx, "¿Qué hacemos en Top Team?", M, 220);
+    titulo(ctx, "Construimos negocios dentro de Farmasi con un sistema claro", M, 320, 1500, 80, C.ink, 2);
+    var it = [["Vendemos","productos de alta rotación que las personas usan, recomiendan y vuelven a comprar."],["Formamos líderes","capaces de desarrollar equipo, duplicar procesos y sostener el crecimiento."],["Acompañamos","a quien empieza desde cero, con herramientas, mentoría y comunidad."],["Trabajamos","con presentaciones, sesiones, entrenamientos y seguimiento constante."],["Cada persona aprende","a generar ingresos, crear estructura y avanzar con dirección."]];
+    var gap = 36, cw = (W - 2 * M - gap * 4) / 5;
+    it.forEach(function(v, k){
+      var x = M + k * (cw + gap), y = 560;
+      linea(ctx, x, y, cw, C.ink, 3);
+      F(ctx, 500, 24, 1); ctx.fillStyle = C.accInk; ctx.fillText("0" + (k + 1), x, y + 52);
+      F(ctx, 600, 34); ctx.fillStyle = C.ink; var yy = txt(ctx, v[0], x, y + 108, cw, 40, 2);
+      F(ctx, 400, 26); ctx.fillStyle = C.muted; txt(ctx, v[1], x, yy + 46, cw, 36, 6);
+    });
+  },
+  formas: function(ctx, d, L){
+    etiqueta(ctx, "Cómo ganas", M, 230);
+    F(ctx, 500, 300, 1); ctx.fillStyle = C.acc; ctx.fillText("10", M - 16, 560);
+    F(ctx, 800, 84); ctx.fillStyle = C.ink; ctx.fillText("formas", M, 670); ctx.fillText("de ganar", M, 760);
+    F(ctx, 400, 26); ctx.fillStyle = C.muted; txt(ctx, "Lo que da cada una y cuándo aplica, en el plan de compensación.", M, 850, 560, 36, 2);
+    var it = ["Programa de bienvenida","Margen de ganancia","Bono construyendo tu equipo","Bono personal","Bono de clientes en línea","Bono de grupo","Bono de liderazgo","Apoyo mensual para automóvil","Bono en efectivo","Experiencias únicas"];
+    var x0 = 800, gap = 56, cw = (W - M - x0 - gap) / 2, rh = 140;
+    it.forEach(function(v, k){
+      var x = x0 + Math.floor(k / 5) * (cw + gap), y = 190 + (k % 5) * rh;
+      linea(ctx, x, y, cw, C.line, 2);
+      F(ctx, 500, 30, 1); ctx.fillStyle = C.accInk; ctx.fillText(String(k + 1), x, y + 82);
+      F(ctx, 600, 36); ctx.fillStyle = C.ink; txt(ctx, v, x + 70, y + 82, cw - 70, 42, 2);
+    });
+  },
+  sistema: function(ctx, d, L){
+    ctx.fillStyle = C.navy; ctx.fillRect(0, 0, W, HH);
+    var cx = W / 2, cy = 560, rx = 700, ry = 300;
+    ctx.strokeStyle = "rgba(255,255,255,.28)"; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2); ctx.stroke();
+    etiqueta(ctx, "No empiezas sola", M, 150, C.pink);
+    F(ctx, 300, 64); ctx.fillStyle = C.gris; ctx.textAlign = "center"; ctx.fillText("Sistema", cx, cy - 40);
+    F(ctx, 800, 120); ctx.fillStyle = "#fff"; ctx.fillText(d.equipo, cx, cy + 90); ctx.textAlign = "left";
+    var it = [["Reuniones sociales",-140],["Motivación",-90],["Testimonios reales",-40],["Chats de apoyo",0],["Incentivos",40],["Llamadas",90],["Coworking",140],["Capacitación constante",180]];
+    it.forEach(function(v){
+      var a = v[1] * Math.PI / 180, x = cx + rx * Math.cos(a), y = cy + ry * Math.sin(a);
+      F(ctx, 600, 30); var w = ctx.measureText(v[0]).width + 64;
+      ctx.fillStyle = "#fff"; rr(ctx, x - w / 2, y - 36, w, 72, 36); ctx.fill();
+      ctx.fillStyle = C.ink; ctx.textAlign = "center"; ctx.fillText(v[0], x, y + 11); ctx.textAlign = "left";
+    });
+  },
+  testimonios: function(ctx, d, L){
+    var im = FOTOS.testimonios;
+    ctx.fillStyle = C.soft; ctx.fillRect(860, 0, W - 860, HH);
+    if(im) contiene(ctx, im, 920, 130, W - 920 - 60, 820);
+    etiqueta(ctx, "Cómo se sienten", M, 300);
+    var t = titulo(ctx, "Las personas que son parte de " + d.equipo, M, 400, 640, 84, C.ink, 4);
+    F(ctx, 400, 28); ctx.fillStyle = C.muted; txt(ctx, "Mensajes reales del equipo, compartidos con permiso.", M, t.y + 90, 600, 38, 2);
+  },
+  cultura: function(ctx, d, L){
+    etiqueta(ctx, "Nuestra cultura", M, 300);
+    titulo(ctx, "Valores que nos definen", M, 400, 600, 96, C.ink, 3);
+    var filas = [["Creadoras"],["Personas reales","Líderes en construcción"],["Personas con propósito"],["Valientes"]];
+    filas.forEach(function(f, r){
+      F(ctx, 600, 50); var ws = f.map(function(s){ return ctx.measureText(s).width + 96; }), tot = ws.reduce(function(a, b){ return a + b; }, 0) + 28 * (f.length - 1);
+      var x = 1290 - tot / 2 + (r % 2 ? 40 : -40), y = 200 + r * 185;
+      f.forEach(function(s, k){
+        ctx.fillStyle = r === 3 ? C.tint : C.soft; rr(ctx, x, y, ws[k], 110, 55); ctx.fill();
+        ctx.fillStyle = r === 3 ? C.accInk : C.ink; ctx.fillText(s, x + 48, y + 72); x += ws[k] + 28;
+      });
+    });
+  },
+  kit: function(ctx, d, L){
+    var im = FOTOS.kit || d.personas[0].im, fy = FOTOS.kit ? (st.fy.kit == null ? .5 : st.fy.kit) : d.personas[0].fy;
+    ctx.fillStyle = C.soft; ctx.fillRect(0, 0, 1040, HH);
+    foto(ctx, im, 1040, 0, W - 1040, HH, 0, fy, iniciales(d.yo) || "·");
+    etiqueta(ctx, "Kit de inicio", M, 300);
+    titulo(ctx, "Para empezar, solo tu kit", M, 400, 820, 88, C.ink, 2);
+    F(ctx, 500, 200, 1); ctx.fillStyle = C.acc; ctx.fillText("$499", M - 10, 760);
+    F(ctx, 500, 30, 1); ctx.fillStyle = C.ink; ctx.fillText("por única ocasión · sin mensualidad", M, 830);
+  },
+  sets: function(ctx, d, L){
+    etiqueta(ctx, "Por única ocasión", M, 210);
+    titulo(ctx, "Los sets de inicio", M, 310, 1500, 96, C.ink, 1);
+    var gap = 28, cw = (W - 2 * M - gap * 4) / 5;
+    setsHoy().forEach(function(s, k){
+      var x = M + k * (cw + gap), y = 400, h = 500;
+      ctx.fillStyle = C.soft; rr(ctx, x, y, cw, h, 18); ctx.fill();
+      F(ctx, 600, 30); ctx.fillStyle = C.ink; txt(ctx, s[0], x + 28, y + 64, cw - 56, 36, 1);
+      F(ctx, 500, 64, 1); ctx.fillStyle = C.ink; ctx.fillText(s[1], x + 24, y + 170);
+      F(ctx, 400, 26); ctx.fillStyle = C.muted; ctx.fillText(s[2] + " productos", x + 28, y + 240);
+      ctx.fillText("Catálogo " + s[3], x + 28, y + 282);
+      ctx.fillStyle = C.acc; rr(ctx, x + 28, y + 360, cw - 56, 84, 14); ctx.fill();
+      F(ctx, 600, 28); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(s[4] + " % menos", x + cw / 2, y + 412); ctx.textAlign = "left";
+    });
+    F(ctx, 400, 22); ctx.fillStyle = C.muted; ctx.fillText(Object.keys(st.sets).length ? "Precios revisados por " + d.yo + ". Confírmalos en el Back Office." : "Precios de noviembre de 2026. Revísalos en el Back Office: pueden cambiar.", M, 950);
+  },
+  numeros: function(ctx, d, L){
+    etiqueta(ctx, "Los números", M, 230);
+    titulo(ctx, "Lo que vale un punto", M, 330, 800, 96, C.ink, 2);
+    var cf = [["$25","vale cada punto, a precio de socia"],["75","puntos personales al mes para cobrar tus bonos"],["200","puntos de grupo para llegar a 3 %"]];
+    cf.forEach(function(v, k){
+      var y = 470 + k * 165;
+      linea(ctx, M, y, 640, C.line, 2);
+      F(ctx, 500, 72, 1); ctx.fillStyle = C.ink; ctx.fillText(v[0], M - 2, y + 92);
+      F(ctx, 400, 26); ctx.fillStyle = C.muted; txt(ctx, v[1], M + 230, y + 66, 410, 34, 2);
+    });
+    var nv = [["3%","200"],["6%","400"],["9%","600"],["12%","900"],["15%","1,400"],["18%","2,200"],["22%","3,600"],["25%","5,000"]];
+    var x0 = 900, base = 900, bw = 92, gap = 18;
+    nv.forEach(function(v, k){
+      var h = 110 + k * 62, x = x0 + k * (bw + gap), ult = k === nv.length - 1;
+      ctx.fillStyle = ult ? C.acc : C.soft; rr(ctx, x, base - h, bw, h, 12); ctx.fill();
+      F(ctx, 600, 30, 1); ctx.fillStyle = ult ? "#fff" : C.ink; ctx.textAlign = "center"; ctx.fillText(v[0], x + bw / 2, base - h + 48);
+      F(ctx, 400, 22, 1); ctx.fillStyle = C.muted; ctx.fillText(v[1], x + bw / 2, base + 38); ctx.textAlign = "left";
+    });
+    F(ctx, 400, 24); ctx.fillStyle = C.muted; ctx.fillText("Puntos de grupo al mes. De 5,000 en adelante, dirección.", x0, base + 84);
+  },
+  tienda: function(ctx, d, L){
+    var url = d.tienda || "mitienda.beauty/tu-nombre";
+    etiqueta(ctx, "Tu tienda en línea", M, 230);
+    var t = titulo(ctx, "Tu propia tienda, desde el día uno", M, 330, 920, 88, C.ink, 2);
+    F(ctx, 400, 34); ctx.fillStyle = C.ink; var y = txt(ctx, "Catálogo, promociones y pedidos por WhatsApp, con tu nombre. Así se ve la mía:", M, t.y + 80, 900, 48, 3);
+    F(ctx, 500, Math.min(48, ajusta(ctx, url, 500, 48, 28, 1, 900, 1)), 1); ctx.fillStyle = C.accInk; ctx.fillText(url, M, y + 90);
+    if(d.tienda) L.push({x: M, y: y + 50, w: ctx.measureText(url).width, h: 56, url: "https://" + url});
+    if(d.tienda){ qr(ctx, "https://" + url, M - 14, y + 140, 220); F(ctx, 400, 24); ctx.fillStyle = C.muted; ctx.fillText("Escanéala con tu celular", M + 230, y + 260); }
+    var px = 1250, py = 120, pw = 440, ph = 880;
+    ctx.fillStyle = C.navy; rr(ctx, px, py, pw, ph, 64); ctx.fill();
+    var sx = px + 18, sy = py + 18, sw = pw - 36, sh = ph - 36;
+    if(FOTOS.captura) foto(ctx, FOTOS.captura, sx, sy, sw, sh, 48, st.fy.captura == null ? 0 : st.fy.captura);
+    else {
+      ctx.save(); rr(ctx, sx, sy, sw, sh, 48); ctx.clip(); ctx.fillStyle = "#fff"; ctx.fillRect(sx, sy, sw, sh);
+      ctx.fillStyle = C.soft; ctx.fillRect(sx, sy, sw, 210);
+      F(ctx, 500, 18); ctx.fillStyle = C.muted; esp(ctx, "Farmasi con", sx + 34, sy + 96, 3);
+      F(ctx, 800, 40); ctx.fillStyle = C.ink; txt(ctx, d.yo, sx + 34, sy + 150, sw - 68, 44, 1);
+      for(var k = 0; k < 4; k++){ var gx = sx + 34 + (k % 2) * ((sw - 88) / 2 + 20), gy = sy + 250 + Math.floor(k / 2) * 280; ctx.fillStyle = k === 0 ? C.tint : C.soft; rr(ctx, gx, gy, (sw - 88) / 2, 200, 16); ctx.fill(); ctx.fillStyle = C.line; ctx.fillRect(gx, gy + 220, (sw - 88) / 2 - 30, 14); }
+      ctx.fillStyle = C.acc; rr(ctx, sx + 34, sy + sh - 110, sw - 68, 64, 14); ctx.fill();
+      F(ctx, 600, 24); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText("Pedir por WhatsApp", sx + sw / 2, sy + sh - 69); ctx.textAlign = "left";
+      ctx.restore();
+    }
+  },
+  piensas: function(ctx, d, L){
+    etiqueta(ctx, "Lo que seguro piensas", M, 230);
+    titulo(ctx, "¿No es una pirámide?", M, 330, 1500, 96, C.ink, 1);
+    var it = [["Entras con $499, una sola vez","Con producto que usas o vendes. Sin mensualidad ni inventario obligatorio."],["El bono sale de los pedidos","No de cuántas personas inscribes. Ganas desde tu primer pedido, aunque nunca armes equipo."],["Tu socia te puede rebasar","Gana más el grupo que hace más puntos ese mes, no quien llegó primero."],["Si ya no quieres, dejas de pedir","Sin 75 puntos en 6 meses, la cuenta se cierra sola."]];
+    var gap = 64, cw = (W - 2 * M - gap) / 2;
+    it.forEach(function(v, k){
+      var x = M + (k % 2) * (cw + gap), y = 440 + Math.floor(k / 2) * 250;
+      linea(ctx, x, y, cw, C.line, 2);
+      F(ctx, 600, 40); ctx.fillStyle = C.ink; ctx.fillText(v[0], x, y + 62);
+      F(ctx, 400, 30); ctx.fillStyle = C.muted; txt(ctx, v[1], x, y + 114, cw, 42, 2);
+    });
+  },
+  cierre: function(ctx, d, L){
+    ctx.fillStyle = C.navy; ctx.fillRect(0, 0, W, HH);
+    etiqueta(ctx, "Todo es posible", M, 250, C.pink);
+    var t = titulo(ctx, "¿Platicamos 15 minutos?", M, 370, 820, 112, "#fff", 2);
+    F(ctx, 400, 34); ctx.fillStyle = C.gris; var y = txt(ctx, "No tienes que decidir hoy. Vemos tu kit, tu set y tu primera semana.", M, t.y + 90, 800, 48, 3);
+    y += 110;
+    if(d.tienda){ F(ctx, 600, 22, 1); ctx.fillStyle = C.pink; esp(ctx, "Mi tienda", M, y, 3); F(ctx, 500, 36, 1); ctx.fillStyle = "#fff"; ctx.fillText(d.tienda, M, y + 54); L.push({x: M, y: y + 18, w: ctx.measureText(d.tienda).width, h: 48, url: "https://" + d.tienda}); }
+    // una columna por persona: foto, nombre, WhatsApp y su QR
+    var ps = d.personas, n = ps.length, x0 = 1000, aw = W - M - x0, gap = 40, cw = (aw - gap * (n - 1)) / n;
+    var r = Math.min(170, cw / 2 - 6, n === 1 ? 170 : 130), q = Math.min(n === 1 ? 240 : 200, cw - 10);
+    ps.forEach(function(p, k){
+      var cx = x0 + k * (cw + gap) + cw / 2, top = 170;
+      foto(ctx, p.im, cx - r, top, r * 2, r * 2, 0, p.fy, iniciales(p.nombre) || "·", true);
+      var ny = top + r * 2 + 58;
+      ajusta(ctx, p.nombre || "Nombre", 700, n === 1 ? 44 : 34, 22, 0, cw, 1); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(p.nombre || "Nombre", cx, ny);
+      if(p.wa){
+        var num = waBonito(p.wa); ajusta(ctx, num, 500, n === 1 ? 34 : 26, 16, 1, cw, 1); ctx.fillStyle = C.gris; ctx.fillText(num, cx, ny + 44);
+        var w = ctx.measureText(num).width; L.push({x: cx - w / 2, y: ny + 14, w: w, h: 40, url: "https://wa.me/" + p.wa});
+        qr(ctx, "https://wa.me/" + p.wa, cx - q / 2, ny + 74, q); L.push({x: cx - q / 2, y: ny + 74, w: q, h: q, url: "https://wa.me/" + p.wa});
+      }
+      ctx.textAlign = "left";
+    });
+    if(ps.some(function(p){ return p.wa; })){ F(ctx, 400, 22); ctx.fillStyle = C.gris; ctx.textAlign = "center"; ctx.fillText(n === 1 ? "Escanéalo y escríbeme" : "Escanea el de quien te invitó", x0 + aw / 2, 1000); ctx.textAlign = "left"; }
+    F(ctx, 400, 19); ctx.fillStyle = "#8E92B4";
+    ctx.fillText("Lo que avances depende de tu trabajo; nadie garantiza resultados. Material del equipo, no oficial de Farmasi.", M, 968);
+  }
+};
+var OSCURAS = {topteam:1, sistema:1, cierre:1};
+
+/* ---------- render ---------- */
+var lienzo = document.createElement("canvas"); lienzo.width = W; lienzo.height = HH;
+var lctx = lienzo.getContext("2d");
+function va(s){ if(s.foto && !FOTOS[s.foto]) return false; return s.extra ? !!st.extra[s.id] : !st.fuera[s.id]; }
+function activas(){ return D.filter(va); }
+function dibuja(id, ctx){
+  var d = datos(), L = [], act = activas(), i = act.map(function(s){ return s.id; }).indexOf(id);
+  ctx.save(); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, HH); ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
+  PINTA[id](ctx, d, L);
+  if(id !== "portada") marco(ctx, d, i + 1, act.length, !!OSCURAS[id], L);
+  else { F(ctx, 400, 20, 1); ctx.fillStyle = "#8A8EA8"; if(d.tienda){ ctx.fillText(d.tienda, M, 1020); L.push({x: M, y: 996, w: ctx.measureText(d.tienda).width, h: 32, url: "https://" + d.tienda}); } }
+  ctx.restore();
+  return L;
+}
+function aMini(id, cv){ dibuja(id, lctx); var c = cv.getContext("2d"); c.clearRect(0, 0, cv.width, cv.height); c.drawImage(lienzo, 0, 0, cv.width, cv.height); }
+
+var sel = "portada", MINIS = {};
+function pintaMinis(){
+  var box = $("minis");
+  if(!box.children.length){
+    D.forEach(function(s, k){
+      var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", (k + 1) + ". " + s.t);
+      var cv = document.createElement("canvas"); cv.width = 384; cv.height = 216; b.appendChild(cv); box.appendChild(b); MINIS[s.id] = cv;
+      b.addEventListener("click", function(){ sel = s.id; pintaGrande(); marcaSel(); });
+    });
+  }
+  D.forEach(function(s){ aMini(s.id, MINIS[s.id]); MINIS[s.id].parentNode.classList.toggle("fuera", !va(s)); });
+  marcaSel(); pintaGrande(); faltan();
+}
+function marcaSel(){ D.forEach(function(s){ MINIS[s.id].parentNode.setAttribute("aria-current", s.id === sel ? "true" : "false"); }); }
+function pintaGrande(){ dibuja(sel, $("grande").getContext("2d")); }
+var tmr; function repinta(){ clearTimeout(tmr); tmr = setTimeout(function(){ pintaMinis(); if($("diapos")._html) $("diapos")._html(); if(!$("guion").hidden) pintaGuion(); if(!$("ensayar").hidden) pintaEnsayo(); }, 180); }
+
+function faltan(){
+  var d = datos(), f = [];
+  if(!d.personas[0].nombre) f.push("tu nombre");
+  if(d.personas.some(function(p){ return !p.im; })) f.push(d.personas.length > 1 ? "una foto por persona" : "tu foto");
+  if(d.personas.some(function(p){ return !p.historia; })) f.push("la historia");
+  if(!d.personas.some(function(p){ return p.wa; })) f.push("un WhatsApp para el cierre");
+  $("faltan").textContent = f.length ? "Te falta: " + f.join(", ") + ". Puedes descargar así, pero se nota." : "";
+}
+
+/* ---------- fotos: se guardan en este dispositivo (IndexedDB) ---------- */
+var db = null;
+function abreDB(){ return new Promise(function(ok){ try{ var r = indexedDB.open("mtb-pdn", 1); r.onupgradeneeded = function(){ r.result.createObjectStore("fotos"); }; r.onsuccess = function(){ db = r.result; ok(); }; r.onerror = function(){ ok(); }; }catch(_){ ok(); } }); }
+function guardaFoto(k, blob){ try{ if(!db) return; var tx = db.transaction("fotos", "readwrite"); if(blob) tx.objectStore("fotos").put(blob, k); else tx.objectStore("fotos").delete(k); }catch(_){} }
+function leeFotos(){ return new Promise(function(ok){ if(!db) return ok(); try{ var tx = db.transaction("fotos"), s = tx.objectStore("fotos"), r = s.openCursor(), ps = []; r.onsuccess = function(){ var c = r.result; if(c){ ps.push(cargaBlob(c.key, c.value)); c.continue(); } else Promise.all(ps).then(ok); }; r.onerror = function(){ ok(); }; }catch(_){ ok(); } }); }
+function cargaBlob(k, blob){ return new Promise(function(ok){ var im = new Image(); im.onload = function(){ FOTOS[k] = im; ok(); }; im.onerror = function(){ ok(); }; im.src = URL.createObjectURL(blob); }); }
+function reduce(file){
+  return new Promise(function(ok, no){
+    var im = new Image(), u = URL.createObjectURL(file);
+    im.onload = function(){
+      var m = 1800, s = Math.min(1, m / Math.max(im.naturalWidth, im.naturalHeight)), c = document.createElement("canvas");
+      c.width = Math.round(im.naturalWidth * s); c.height = Math.round(im.naturalHeight * s);
+      c.getContext("2d").drawImage(im, 0, 0, c.width, c.height); URL.revokeObjectURL(u);
+      c.toBlob(function(b){ b ? ok(b) : no(); }, "image/jpeg", .9);
+    };
+    im.onerror = function(){ URL.revokeObjectURL(u); no(); };
+    im.src = u;
+  });
+}
+function subeFoto(k, file, listo){
+  reduce(file).then(function(b){ guardaFoto(k, b); return cargaBlob(k, b); }).then(function(){ listo(); repinta(); H.cuenta("pdn-foto"); })
+    .catch(function(){ H.aviso("No pude abrir esa foto. Prueba con JPG o PNG; en iPhone, toma captura de pantalla de la foto y sube la captura."); });
+}
+
+var ICON = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8323F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="3"/><circle cx="12" cy="12.5" r="3.5"/><path d="M8.5 5l1.5-2h4l1.5 2"/></svg>';
+function slot(k, forma, etq, fyGet, fySet){
+  var w = document.createElement("div"); w.className = "slot";
+  w.innerHTML = '<label class="caja ' + (forma || "") + '">' + '<input type="file" accept="image/*">' + '<span class="vacio">' + ICON + etq + '</span></label>' +
+    '<div class="encuadre" role="group" aria-label="Encuadre"><button type="button" data-v=".15">Arriba</button><button type="button" data-v=".5">Centro</button><button type="button" data-v=".85">Abajo</button></div>' +
+    '<button type="button" class="quitar" hidden>Quitar foto</button>';
+  var caja = w.querySelector(".caja"), inp = w.querySelector("input"), enc = w.querySelector(".encuadre"), q = w.querySelector(".quitar");
+  function pinta(){
+    var im = FOTOS[k], old = caja.querySelector("img"); if(old) old.remove();
+    caja.classList.toggle("lleno", !!im); w.querySelector(".vacio").hidden = !!im; enc.hidden = !im; q.hidden = !im;
+    if(im){ var i = document.createElement("img"); i.src = im.src; i.alt = ""; i.style.objectPosition = "50% " + Math.round(fyGet() * 100) + "%"; caja.appendChild(i); }
+    Array.prototype.forEach.call(enc.children, function(b){ b.setAttribute("aria-pressed", Math.abs(parseFloat(b.dataset.v) - fyGet()) < .2 ? "true" : "false"); });
+  }
+  inp.addEventListener("change", function(){ if(inp.files[0]) subeFoto(k, inp.files[0], pinta); inp.value = ""; });
+  enc.addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; fySet(parseFloat(b.dataset.v)); guarda(); pinta(); repinta(); });
+  q.addEventListener("click", function(){ delete FOTOS[k]; guardaFoto(k, null); pinta(); repinta(); });
+  w._pinta = pinta; pinta();
+  return w;
+}
+
+/* ---------- formulario ---------- */
+function guarda(){ H.guarda(KEY, st); }
+function pintaPersonas(){
+  var box = $("personas"); box.innerHTML = "";
+  st.personas.forEach(function(p, i){
+    var el = document.createElement("div"); el.className = "persona";
+    el.innerHTML = '<div class="cab-p"><b>Persona ' + (i + 1) + '</b>' + (i ? '<button type="button" class="quitar" data-q>Quitar</button>' : '') + '</div>' +
+      '<div class="campos">' +
+      '<label><span class="etq">Nombre</span><input type="text" data-k="nombre" maxlength="28" list="eqLista" placeholder="Como quieres que salga"></label>' +
+      '<label><span class="etq">Su WhatsApp (para su QR)</span><input type="tel" data-k="wa" inputmode="numeric" maxlength="13" placeholder="5512345678"></label>' +
+      '<label><span class="etq">Quién es (opcional)</span><input type="text" data-k="rol" maxlength="44" placeholder="Socia desde marzo 2025 · 12 %"></label>' +
+      '<label><span class="etq">' + (st.personas.length > 1 ? "Su historia en una o dos frases" : "Tu historia en tres frases") + '</span><textarea data-k="historia" maxlength="' + (st.personas.length > 1 ? 160 : 300) + '" placeholder="Empecé en marzo porque quería algo mío. Lo que cambió fue… Hoy…"></textarea></label>' +
+      '</div>';
+    var s = slot("p" + i, "", "Su foto", function(){ return p.fy == null ? .3 : p.fy; }, function(v){ p.fy = v; });
+    el.insertBefore(s, el.querySelector(".campos"));
+    el.querySelectorAll("[data-k]").forEach(function(inp){
+      inp.value = p[inp.dataset.k] || "";
+      inp.addEventListener("input", function(){
+        p[inp.dataset.k] = inp.value;
+        if(inp.dataset.k === "nombre") autollenar(p, i, s);
+        guarda(); repinta();
+      });
+    });
+    var qb = el.querySelector("[data-q]");
+    if(qb) qb.addEventListener("click", function(){
+      // corre las fotos para que cada una siga con su persona
+      for(var k = i; k < st.personas.length - 1; k++){ if(FOTOS["p" + (k + 1)]) FOTOS["p" + k] = FOTOS["p" + (k + 1)]; else delete FOTOS["p" + k]; }
+      delete FOTOS["p" + (st.personas.length - 1)];
+      st.personas.splice(i, 1); guardaTodasFotos(); guarda(); pintaPersonas(); repinta();
+    });
+    box.appendChild(el);
+  });
+  $("otraPersona").hidden = st.personas.length >= 4;
+}
+function guardaTodasFotos(){ for(var k = 0; k < 4; k++){ var im = FOTOS["p" + k]; if(!im) guardaFoto("p" + k, null); else (function(k, im){ fetch(im.src).then(function(r){ return r.blob(); }).then(function(b){ guardaFoto("p" + k, b); }); })(k, im); } }
+function autollenar(p, i, s){
+  var c = EQ.filter(function(x){ return x.nombre.toLowerCase() === (p.nombre || "").trim().toLowerCase(); })[0];
+  if(!c) return;
+  if(!p.wa && c.whatsapp){ p.wa = c.whatsapp.replace(/^52/, ""); var w = s.parentNode && s.parentNode.querySelector('[data-k="wa"]'); if(w) w.value = p.wa; }
+  if(i === 0 && !st.tienda){ st.tienda = "mitienda.beauty/" + c.slug; $("tienda").value = st.tienda; }
+  if(!FOTOS["p" + i]){ var im = new Image(); im.onload = function(){ FOTOS["p" + i] = im; fetch(im.src).then(function(r){ return r.blob(); }).then(function(b){ guardaFoto("p" + i, b); }).catch(function(){}); s._pinta(); repinta(); }; im.src = "/fotos/" + c.slug + ".jpg"; }
+}
+$("otraPersona").addEventListener("click", function(){ if(st.personas.length >= 4) return; st.personas.push({nombre:"", rol:"", historia:"", fy:.3}); guarda(); pintaPersonas(); repinta(); });
+["titulo","cuando","tienda","equipo","favs"].forEach(function(id){ var el = $(id); el.value = st[id] || ""; el.addEventListener("input", function(){ st[id] = el.value; guarda(); repinta(); }); });
+
+function pintaMas(){
+  var box = $("mas");
+  MAS.forEach(function(m){
+    var it = document.createElement("div"); it.className = "item";
+    var s = slot(m.id, m.forma === "ancha" ? "ancha" : m.forma === "cuadrada" ? "cuadrada" : "", "Subir", function(){ return st.fy[m.id] == null ? (m.id === "captura" ? 0 : .5) : st.fy[m.id]; }, function(v){ st.fy[m.id] = v; });
+    var tx = document.createElement("div"); tx.innerHTML = '<h3>' + m.t + '</h3>' + m.tips.map(function(t){ return '<p>' + t + '</p>'; }).join("");
+    it.appendChild(s); it.appendChild(tx); box.appendChild(it);
+  });
+}
+function num(v){ return parseFloat(String(v == null ? "" : v).replace(/[^\d.]/g, "")) || 0; }
+function setsHoy(){ return SETS.map(function(s, k){ var o = st.sets[k] || {}, p = o.p != null ? num(o.p) : num(s[1]), n = o.n != null ? num(o.n) : s[2], c = o.c != null ? num(o.c) : num(s[3]); return [s[0], "$" + H.fmt(p), n, "$" + H.fmt(c), c > 0 ? Math.round((1 - p / c) * 100) : 0]; }); }
+function pintaSets(){
+  var tb = $("setsT");
+  tb.innerHTML = SETS.map(function(s, k){ var h = setsHoy()[k], o = st.sets[k] || {}; return '<tr data-k="' + k + '"><td>' + s[0] + '</td><td><input type="text" inputmode="numeric" data-c="p" aria-label="Precio ' + s[0] + '" value="' + (o.p != null ? H.esc(o.p) : num(s[1])) + '"></td><td><input type="text" inputmode="numeric" data-c="n" aria-label="Productos ' + s[0] + '" value="' + (o.n != null ? H.esc(o.n) : s[2]) + '"></td><td><input type="text" inputmode="numeric" data-c="c" aria-label="Catálogo ' + s[0] + '" value="' + (o.c != null ? H.esc(o.c) : num(s[3])) + '"></td><td class="pct">' + h[4] + ' %</td></tr>'; }).join("");
+  $("setsReset").hidden = !Object.keys(st.sets).length;
+}
+$("setsT").addEventListener("input", function(e){ var tr = e.target.closest("tr"), k = tr.dataset.k; st.sets[k] = st.sets[k] || {}; st.sets[k][e.target.dataset.c] = e.target.value; tr.querySelector(".pct").textContent = setsHoy()[k][4] + " %"; $("setsReset").hidden = false; guarda(); repinta(); });
+$("setsReset").addEventListener("click", function(){ st.sets = {}; guarda(); pintaSets(); repinta(); });
+function pintaDiapos(){
+  var ul = $("diapos");
+  function html(){
+    ul.innerHTML = D.map(function(s, k){
+      var fija = s.id === "portada" || s.id === "cierre", sinFoto = s.foto && !FOTOS[s.foto];
+      return '<li><label><input type="checkbox" data-id="' + s.id + '"' + (va(s) ? " checked" : "") + (fija || sinFoto ? " disabled" : "") + '><span class="num">' + String(k + 1).padStart(2, "0") + '</span>' + s.t + (s.extra ? ' <small>(extra)</small>' : '') + (sinFoto ? ' <small>(sube las capturas)</small>' : '') + '</label></li>';
+    }).join("");
+  }
+  html(); ul._html = html;
+  ul.addEventListener("change", function(e){
+    var id = e.target.dataset.id; if(!id) return; var s = D.filter(function(x){ return x.id === id; })[0];
+    if(s.extra){ if(e.target.checked) st.extra[id] = 1; else delete st.extra[id]; }
+    else { if(e.target.checked) delete st.fuera[id]; else st.fuera[id] = 1; }
+    guarda(); repinta();
+  });
+}
+/* ---------- guion ---------- */
+function alto(t){ t.style.height = "auto"; t.style.height = (t.scrollHeight + 2) + "px"; }
+function guionDe(s, d){ return st.guion[s.id] != null ? st.guion[s.id] : rellena(s.di, d); }
+function rellena(s, d){ return s.replace(/\{yo\}/g, d.yo).replace(/\{favs\}/g, d.favs.length ? d.favs.join(", ") : "(tus favoritos)"); }
+function pintaGuion(){
+  var d = datos(), act = activas(), box = $("pasos"), tot = act.reduce(function(a, s){ return a + s.min; }, 0);
+  $("total").textContent = act.length + " diapositivas · unos " + Math.round(tot) + " minutos · Toca el texto para cambiarlo con tus palabras; se guarda en este dispositivo.";
+  if(!box.children.length){
+    box.innerHTML = D.map(function(s){ return '<article class="paso" data-id="' + s.id + '"><canvas width="640" height="360" aria-hidden="true"></canvas><span class="n"></span><h3>' + H.esc(s.t) + '</h3><span class="min">' + String(s.min).replace(".", ",") + ' min</span><textarea class="di-ed" rows="4" aria-label="Qué dices"></textarea><button type="button" class="enlace orig" hidden>Volver al guion original</button><p class="ojo"></p><div class="quien" hidden><span>La presenta</span><select></select></div></article>'; }).join("");
+    box.addEventListener("change", function(e){ var a = e.target.closest(".paso"); if(a && e.target.tagName === "SELECT"){ st.quien[a.dataset.id] = e.target.value; guarda(); } });
+    box.addEventListener("input", function(e){ var a = e.target.closest(".paso"); if(!a || !e.target.classList.contains("di-ed")) return; st.guion[a.dataset.id] = e.target.value; a.querySelector(".orig").hidden = false; alto(e.target); guarda(); });
+    box.addEventListener("click", function(e){ var a = e.target.closest(".paso"); if(!a || !e.target.classList.contains("orig")) return; delete st.guion[a.dataset.id]; guarda(); var ta = a.querySelector(".di-ed"); ta.value = guionDe(D.filter(function(x){ return x.id === a.dataset.id; })[0], datos()); alto(ta); e.target.hidden = true; });
+  }
+  var nombres = d.personas.map(function(p){ return p.nombre; }).filter(Boolean);
+  D.forEach(function(s){
+    var a = box.querySelector('[data-id="' + s.id + '"]'), i = act.indexOf(s);
+    a.classList.toggle("fuera", i < 0);
+    a.querySelector(".n").textContent = i < 0 ? "No va en tu PDF" : String(i + 1).padStart(2, "0") + " de " + act.length;
+    var ta = a.querySelector(".di-ed"); if(document.activeElement !== ta){ ta.value = guionDe(s, d); alto(ta); } a.querySelector(".orig").hidden = st.guion[s.id] == null;
+    a.querySelector(".ojo").textContent = s.ojo + (s.varias && nombres.length > 1 ? " " + s.varias : "");
+    var q = a.querySelector(".quien"); q.hidden = nombres.length < 2;
+    if(nombres.length > 1){ var sl = q.querySelector("select"); sl.innerHTML = '<option value="">Sin asignar</option>' + nombres.map(function(n){ return '<option>' + H.esc(n) + '</option>'; }).join(""); sl.value = st.quien[s.id] || ""; }
+    aMini(s.id, a.querySelector("canvas"));
+  });
+}
+$("imprimir").addEventListener("click", function(){ H.cuenta("pdn-imprimir-guion"); window.print(); });
+
+/* ---------- ensayar ---------- */
+var ei = 0, t0 = null, acum = 0, porDiapo = 0, tick = null;
+function pintaEnsayo(){
+  var act = activas(), d = datos(); ei = Math.max(0, Math.min(ei, act.length - 1)); var s = act[ei];
+  dibuja(s.id, $("eCanvas").getContext("2d"));
+  $("eN").textContent = String(ei + 1).padStart(2, "0") + " de " + act.length + " · " + String(s.min).replace(".", ",") + " min";
+  $("eT").textContent = s.t; $("eDi").textContent = guionDe(s, d);
+  $("eQuien").textContent = st.quien[s.id] ? "La presenta " + st.quien[s.id] + "." : s.ojo;
+  $("eAnt").disabled = ei === 0; $("eSig").disabled = ei === act.length - 1;
+  var meta = act.slice(0, ei + 1).reduce(function(a, x){ return a + x.min; }, 0);
+  $("eMeta").textContent = "Al terminar esta diapositiva deberías ir en " + mmss(meta * 60) + ".";
+}
+function mmss(s){ s = Math.round(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+function reloj(){
+  var s = acum + (t0 ? (Date.now() - t0) / 1000 : 0), meta = activas().reduce(function(a, x){ return a + x.min; }, 0) * 60;
+  $("reloj").innerHTML = mmss(s) + "<small>de " + mmss(meta) + "</small>"; $("reloj").classList.toggle("pasado", s > meta);
+}
+$("eReloj").addEventListener("click", function(){
+  if(t0){ acum += (Date.now() - t0) / 1000; t0 = null; clearInterval(tick); $("eReloj").textContent = "Seguir"; }
+  else { t0 = Date.now(); tick = setInterval(reloj, 500); $("eReloj").textContent = "Pausar"; H.cuenta("pdn-ensayo"); }
+  reloj();
+});
+$("eReset").addEventListener("click", function(){ acum = 0; t0 = null; clearInterval(tick); $("eReloj").textContent = "Empezar"; ei = 0; reloj(); pintaEnsayo(); });
+$("eAnt").addEventListener("click", function(){ ei--; pintaEnsayo(); });
+$("eSig").addEventListener("click", function(){ ei++; pintaEnsayo(); });
+document.addEventListener("keydown", function(e){ if($("ensayar").hidden || /INPUT|TEXTAREA|SELECT/.test(e.target.tagName)) return; if(e.key === "ArrowRight"){ ei++; pintaEnsayo(); } if(e.key === "ArrowLeft"){ ei--; pintaEnsayo(); } });
+$("antes").innerHTML = ANTES.map(function(t, k){ return '<li><label><input type="checkbox" data-k="' + k + '"' + (st.antes[k] ? " checked" : "") + '><span>' + t + '</span></label></li>'; }).join("");
+$("antes").addEventListener("change", function(e){ st.antes[e.target.dataset.k] = e.target.checked; guarda(); });
+
+/* ---------- pestañas ---------- */
+var TABS = ["armar","guion","ensayar"];
+function abre(t, push){
+  TABS.forEach(function(x){ $(x).hidden = x !== t; $("t-" + x).setAttribute("aria-selected", x === t ? "true" : "false"); });
+  if(t === "guion") pintaGuion(); if(t === "ensayar"){ pintaEnsayo(); reloj(); }
+  if(push) history.replaceState(null, "", t === "armar" ? location.pathname : "#" + t);
+}
+TABS.forEach(function(t){ $("t-" + t).addEventListener("click", function(){ abre(t, true); H.cuenta("pdn-tab-" + t); }); });
+
+/* ---------- PDF ---------- */
+function cargaJsPDF(){
+  if(window.jspdf) return Promise.resolve();
+  return new Promise(function(ok, no){ var s = document.createElement("script"); s.src = "https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"; s.onload = ok; s.onerror = no; document.head.appendChild(s); });
+}
+$("bajar").addEventListener("click", function(){
+  var b = $("bajar"); b.disabled = true; b.textContent = "Armando tu PDF…";
+  cargaJsPDF().then(function(){
+    var doc = new window.jspdf.jsPDF({orientation: "landscape", unit: "pt", format: [960, 540], compress: true}), k = .5;
+    activas().forEach(function(s, i){
+      if(i) doc.addPage([960, 540], "landscape");
+      var L = dibuja(s.id, lctx);
+      doc.addImage(lienzo.toDataURL("image/jpeg", .9), "JPEG", 0, 0, 960, 540, undefined, "FAST");
+      L.forEach(function(l){ doc.link(l.x * k, l.y * k, l.w * k, l.h * k, {url: l.url}); });
+    });
+    var d = datos(), slug = d.titulo.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
+    doc.setProperties({title: "Farmasi con " + d.titulo, subject: "Presentación de negocio", creator: "mitienda.beauty"});
+    H.descarga(doc.output("blob"), "pdn-farmasi-con-" + (slug || "socia") + ".pdf");
+    H.cuenta("pdn-pdf-ok");
+  }).catch(function(){ H.aviso("No se pudo armar el PDF. Revisa tu conexión e inténtalo otra vez."); })
+    .then(function(){ b.disabled = false; b.textContent = "Descargar PDF"; });
+});
+
+/* ---------- arranque ---------- */
+var fuentes = ["300 40px Outfit","400 40px Outfit","500 40px Outfit","600 40px Outfit","700 40px Outfit","800 40px Outfit",'400 40px "IBM Plex Mono"','500 40px "IBM Plex Mono"','600 40px "IBM Plex Mono"'];
+Promise.all([
+  Promise.all(fuentes.map(function(f){ return document.fonts.load(f, "Farmasi 0123 áé"); })).catch(function(){}),
+  abreDB().then(leeFotos),
+  H.equipo().then(function(eq){ EQ = eq; var dl = document.createElement("datalist"); dl.id = "eqLista"; dl.innerHTML = eq.map(function(c){ return '<option value="' + H.esc(c.nombre) + '">'; }).join(""); document.body.appendChild(dl); })
+]).then(function(){
+  pintaPersonas(); pintaMas(); pintaSets(); pintaDiapos(); pintaMinis();
+  var h = location.hash.replace("#", ""); if(TABS.indexOf(h) > 0) abre(h);
+});
+})();
+</script>
+</body>
+</html>
