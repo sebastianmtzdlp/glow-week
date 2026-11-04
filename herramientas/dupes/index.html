@@ -163,7 +163,7 @@ h1{font-size:clamp(32px,8vw,44px);line-height:1.04;font-weight:800;letter-spacin
 <main class="page">
   <div class="intro">
     <h1>¿A cuál se parece?</h1>
-    <p>Cuando una clienta te pregunte «¿es como el de Dior?», aquí ves a qué producto conocido se parece más, qué tan seguras estamos y cuánto cambia el precio.</p>
+    <p>Cuando una clienta te pregunte "¿es como el de Dior?", aquí ves a qué producto conocido se parece más, qué tan seguras estamos y cuánto cambia el precio.</p>
   </div>
 
   <label class="search">
@@ -242,7 +242,7 @@ function deltaTxt(p){
 function pintar(){
   const q=sinAcentos($("#q").value.trim());
   const vis=P.filter(p=>(cat==="Todos"||p.cat===cat)&&(!q||q.split(/\s+/).every(w=>p.idx.includes(w))));
-  if(!vis.length){$("#lista").innerHTML=`<p class="vacio">No encontramos «${esc($("#q").value)}». Prueba con el nombre de la marca (por ejemplo «Dior») o con el tipo de producto («gloss», «base»).</p>`;return;}
+  if(!vis.length){$("#lista").innerHTML=`<p class="vacio">No encontramos \"${esc($("#q").value)}\". Prueba con el nombre de la marca (por ejemplo \"Dior\") o con el tipo de producto (\"gloss\", \"base\").</p>`;return;}
   const grupos=[...new Set(vis.map(p=>p.cat))];
   $("#lista").innerHTML=grupos.map(g=>`<section class="grupo"><h2>${esc(g)}</h2>${vis.filter(p=>p.cat===g).map(p=>`
     <button type="button" class="fila" data-id="${p.id}" aria-current="${actual===p.id}">
@@ -287,7 +287,7 @@ function costo(p){
     <div class="barra"><div class="et"><span>${esc(r.marca)}${r.tam?` · ${esc(r.tam)}`:""}${p.porUnidad?` · ${mxn(p.pr)}`:""}</span><span>${der(vr,desde+mxn(p.pr))}</span></div><div class="pista"><i style="--w:${(vr/max).toFixed(3)}"></i></div></div>
   </div>
   <p class="resumen">${res}</p>
-  ${r.precio_desde?`<p class="fuente">* La tienda muestra «a partir de», que suele ser el tamaño más chico.</p>`:""}
+  ${r.precio_desde?`<p class="fuente">* La tienda muestra \"a partir de\", que suele ser el tamaño más chico.</p>`:""}
   ${r.nota?`<p class="fuente">${esc(r.nota)}</p>`:""}
   <p class="fuente">Farmasi: ${esc(D.precio_farmasi_fuente)}. ${esc(r.marca)}: ${fuenteRef}, revisado el ${fechaLarga(D.precios_revisados)}. Los precios cambian; confírmalos antes de citarlos.</p></div>`;
 }
@@ -329,7 +329,7 @@ async function copiar(){
   if(ok)gc(actual+"/copiar","Copiar respuesta");
 }
 
-$("#nota").innerHTML=`<p>Farmasi no tiene relación con estas marcas. Son comparaciones del equipo por tipo de producto, acabado, ingredientes publicados y opiniones públicas, no pruebas de laboratorio. Nunca digas que un producto «es igual»: di a cuál se parece.</p>
+$("#nota").innerHTML=`<p>Farmasi no tiene relación con estas marcas. Son comparaciones del equipo por tipo de producto, acabado, ingredientes publicados y opiniones públicas, no pruebas de laboratorio. Nunca digas que un producto \"es igual\": di a cuál se parece.</p>
   <p>${esc(D.sin_comparacion)}</p>
   <p>Precios de referencia revisados el ${fechaLarga(D.precios_revisados)}.</p>`;
 

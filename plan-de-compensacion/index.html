@@ -287,11 +287,11 @@ footer a{color:var(--muted)}
     <div class="ch-head">
       <div class="ch-n">05</div>
       <h2>Puntos laterales</h2>
-      <p>Son los puntos de las líneas de tu equipo que <b>no</b> son directoras, quitando la línea no directora más alta. Sirven para que la dirección no dependa de una sola persona.</p>
+      <p>Son tus propios puntos más los de las líneas de tu equipo que <b>no</b> son directoras, quitando la línea no directora más alta. Sirven para que la dirección no dependa de una sola persona.</p>
     </div>
     <ol>
       <li><b>Las líneas que ya son directoras no cuentan.</b> Sus puntos siguen en tu grupo, pero no en laterales.</li>
-      <li><b>De las que no son directoras, se quita la que más puntos tiene.</b> Esa es tu línea fuerte. Lo que queda son tus laterales.</li>
+      <li><b>De las que no son directoras, se quita la que más puntos tiene.</b> Esa es tu línea fuerte. Lo que queda, más tus propios puntos, son tus laterales.</li>
     </ol>
     <h3>Ejemplo con cinco líneas</h3>
     <table aria-label="Ejemplo de laterales">
@@ -302,15 +302,16 @@ footer a{color:var(--muted)}
         <tr class="x"><td>C</td><td>22%</td><td class="n">4,000</td><td>No, es la más alta</td></tr>
         <tr><td>D</td><td>22%</td><td class="n">3,700</td><td>Sí</td></tr>
         <tr><td>E</td><td>12%</td><td class="n">1,000</td><td>Sí</td></tr>
-        <tr class="tot"><td colspan="2">Laterales</td><td class="n">4,700</td><td></td></tr>
+        <tr><td>Tú</td><td>Tus pedidos y clientas</td><td class="n">300</td><td>Sí</td></tr>
+        <tr class="tot"><td colspan="2">Laterales</td><td class="n">5,000</td><td></td></tr>
       </tbody>
     </table>
-    <p>Con <span class="num">4,700</span> laterales alcanza para Dirección (1,500) y para Oro (2,500). En tu Back Office está el "Informe de Puntos Laterales" con tu número real.</p>
+    <p>Con <span class="num">5,000</span> laterales alcanza para Dirección (1,500) y para Oro (2,500). En tu Back Office está el "Informe de Puntos Laterales" con tu número real.</p>
     <h3>Lo que hay que cuidar</h3>
     <ul>
       <li>Una sola línea fuerte no te da laterales. Necesitas al menos dos líneas creciendo.</li>
       <li>Cuando una socia se vuelve directora, sus puntos salen de tus laterales. Antes de que suba, ya debes estar creciendo otra línea.</li>
-      <li>Si tus propios pedidos cuentan como laterales <span class="pc">por confirmar</span>. La única descripción que encontramos (una reseña de Estados Unidos, no oficial) calcula los laterales restando de tu grupo las líneas en 25% y tu línea fuerte, y así tus pedidos sí quedarían dentro. Como no es fuente oficial de México, aquí no los contamos.</li>
+      <li><b>Tus propios pedidos y los de tus clientas sí cuentan como laterales.</b> Lo confirmó el equipo en noviembre de 2026. Por eso la calculadora de abajo los suma.</li>
     </ul>
   </section>
 
@@ -448,7 +449,6 @@ footer a{color:var(--muted)}
       <p>Esto todavía no tiene una fuente oficial de México. Buscamos en la web el 2 de noviembre de 2026: las páginas de Farmasi México no publican el plan completo y las tablas de la página de registro son imágenes. Lo que sí encontramos es el plan de Estados Unidos, que dejamos como referencia. Mientras, confírmalo en tu Back Office o con tu líder.</p>
     </div>
     <ol class="faltan">
-      <li>Si tus propios pedidos cuentan como laterales. Una reseña no oficial sugiere que sí.</li>
       <li>Los porcentajes del bono de liderazgo por generación en México. Hay tabla de referencia de Estados Unidos arriba.</li>
       <li>Los montos en pesos del apoyo para auto arriba de Oro y del bono en efectivo de cada rango. Hay referencia de Estados Unidos arriba.</li>
     </ol>
@@ -539,7 +539,7 @@ footer a{color:var(--muted)}
 
     // laterales
     var nd=st.team.filter(function(m){return !leg(m)}).map(function(m){return m.p||0}).sort(function(a,b){return b-a});
-    var lat=nd.slice(1).reduce(function(a,b){return a+b},0);
+    var lat=nd.slice(1).reduce(function(a,b){return a+b},0)+(st.mine||0);
     var dirs=st.team.filter(leg).length;
     var ch=[
       [total>=5000,'5,000 puntos de grupo','llevas '+fmt(total)],
