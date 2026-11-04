@@ -64,6 +64,31 @@
 
 .vista{display:grid;gap:14px;align-content:start}
 .grande{width:100%;aspect-ratio:16/9;border-radius:12px;border:1px solid var(--line);display:block;background:#fff}
+/* edición directa sobre la diapositiva */
+.lienzo{position:relative}
+.capa{position:absolute;inset:0;border-radius:12px;overflow:hidden}
+.capa .h{position:absolute;display:block;padding:0;margin:0;border:0;background:none;border-radius:4px;cursor:text;outline:1.5px dashed transparent;outline-offset:1px;transition:outline-color 160ms var(--ease),background-color 160ms var(--ease)}
+.capa .h.foto{cursor:grab;touch-action:pan-y;outline-offset:-3px}
+.capa .h.activa{outline:2.5px solid var(--accent);outline-offset:1px;background:rgba(219,65,76,.06)}
+.capa .h.foto.activa{touch-action:none;outline-offset:-3px;background:none}
+.capa .h.foto.arrastra{cursor:grabbing}
+.lienzo.suelta .capa .h.foto{outline:2.5px dashed var(--accent);background:rgba(219,65,76,.08)}
+.pista{margin:-4px 0 0;font-size:14px;color:var(--muted);line-height:1.45}
+.pista button{font-size:14px;margin-left:4px}
+.edita{display:grid;gap:10px;padding:14px 16px;border:1.5px solid var(--accent);border-radius:16px;background:#fff}
+.edita[hidden]{display:none}
+.edita .etq{font:600 12px/1.2 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--accent-ink)}
+.edita textarea{min-height:0;resize:none;overflow:hidden;font-size:16px;line-height:1.4}
+.edita p{margin:0;font-size:14px;color:var(--muted)}
+.edita .fila{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center}
+.edita .fila .btn2{margin-left:auto;min-height:40px;padding:0 18px}
+.zoom{display:inline-flex;border:1px solid #CFD2E0;border-radius:999px;overflow:hidden}
+.zoom button{width:44px;min-height:40px;border:0;background:#fff;font:500 20px/1 var(--body);color:var(--ink);cursor:pointer}
+.zoom button+button{border-left:1px solid #CFD2E0}
+.zoom button:disabled{color:#B8BBCF;cursor:default}
+.edita .cambiar{position:relative;font:500 14px/1 var(--body);color:var(--accent-ink);text-decoration:underline;text-underline-offset:3px;cursor:pointer}
+.edita .cambiar input{position:absolute;width:1px;height:1px;opacity:0}
+.slot .caja.suelta{border-color:var(--accent);border-style:dashed;background:var(--tint)}
 .miniaturas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
 .miniaturas button{padding:0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#fff;cursor:pointer;position:relative;aspect-ratio:16/9}
 .miniaturas button[aria-current=true]{outline:2px solid var(--accent);outline-offset:1px}
@@ -151,6 +176,10 @@
 @media (hover:hover) and (pointer:fine){
   .tabs button:not([aria-selected=true]):hover{color:var(--ink)}
   .slot .caja:hover{border-color:var(--ink)}
+  .lienzo:hover .capa .h{outline-color:rgba(219,65,76,.4)}
+  .capa .h:hover{outline-color:var(--accent);background:rgba(219,65,76,.06)}
+  .capa .h.foto:hover{background:none}
+  .zoom button:not(:disabled):hover{background:var(--soft)}
 }
 @media print{
   .paso .di-ed{border:0;padding:0}
@@ -224,7 +253,17 @@
       </div>
 
       <div class="vista">
-        <canvas class="grande" id="grande" width="1920" height="1080" aria-label="Vista de la diapositiva"></canvas>
+        <div class="lienzo" id="lienzo"><canvas class="grande" id="grande" width="1920" height="1080" aria-label="Vista de la diapositiva"></canvas><div class="capa" id="capa"></div></div>
+        <p class="pista" id="pista">Toca un texto de la diapositiva para cambiarlo. Arrastra una foto para acomodarla, o suelta ahí una foto nueva desde tu computadora.<button class="enlace" type="button" id="txReset" hidden>Volver a los textos originales de esta diapositiva</button></p>
+        <div class="edita" id="edTexto" hidden>
+          <label style="display:grid;gap:8px"><span class="etq" id="edEtq">Texto</span><textarea id="edTa" rows="1"></textarea></label>
+          <div class="fila"><button class="enlace" type="button" id="edOrig" hidden>Volver al original</button><button class="btn2" type="button" id="edListo">Listo</button></div>
+        </div>
+        <div class="edita" id="edFoto" hidden>
+          <span class="etq" id="edFEtq">Foto</span>
+          <p>Arrástrala dentro del recuadro para acomodarla. Con + la acercas.</p>
+          <div class="fila"><span class="zoom"><button type="button" id="fMenos" aria-label="Alejar">−</button><button type="button" id="fMas" aria-label="Acercar">+</button></span><button class="enlace" type="button" id="fCentro">Centrar</button><label class="cambiar">Cambiar foto<input type="file" accept="image/*" id="fFile"></label><button class="btn2" type="button" id="fListo">Listo</button></div>
+        </div>
         <div class="miniaturas" id="minis"></div>
         <div class="bajar">
           <button class="btn" type="button" id="bajar" data-cuenta="pdn-pdf">Descargar PDF</button>
@@ -306,7 +345,7 @@
 var $ = function(id){ return document.getElementById(id); };
 var KEY = "mtb-pdn-v1";
 var st = H.lee(KEY, null) || {personas:[{nombre:"", rol:"", historia:"", fy:.3}], titulo:"", cuando:"", wa:"", tienda:"", equipo:"Top Team", favs:"", fy:{}, fuera:{}, quien:{}, antes:{}};
-st.extra = st.extra || {}; if(st.wa && st.personas[0] && !st.personas[0].wa){ st.personas[0].wa = st.wa; } delete st.wa; st.guion = st.guion || {}; st.sets = st.sets || {}; st.fy = st.fy || {}; st.fuera = st.fuera || {}; st.quien = st.quien || {}; st.antes = st.antes || {};
+st.extra = st.extra || {}; if(st.wa && st.personas[0] && !st.personas[0].wa){ st.personas[0].wa = st.wa; } delete st.wa; st.guion = st.guion || {}; st.sets = st.sets || {}; st.fy = st.fy || {}; st.fuera = st.fuera || {}; st.quien = st.quien || {}; st.antes = st.antes || {}; st.tx = st.tx || {}; st.fx = st.fx || {}; st.fz = st.fz || {};
 var FOTOS = {};   // id -> HTMLImageElement
 var EQ = [];
 
@@ -411,18 +450,52 @@ function esp(ctx, s, x, y, sp, der){
 }
 function rr(ctx, x, y, w, h, r){ ctx.beginPath(); if(ctx.roundRect) ctx.roundRect(x, y, w, h, r); else { ctx.moveTo(x+r,y); ctx.arcTo(x+w,y,x+w,y+h,r); ctx.arcTo(x+w,y+h,x,y+h,r); ctx.arcTo(x,y+h,x,y,r); ctx.arcTo(x,y,x+w,y,r); ctx.closePath(); } }
 function iniciales(n){ return String(n || "").trim().split(/\s+/).slice(0,2).map(function(p){ return p[0] || ""; }).join("").toUpperCase(); }
-function foto(ctx, im, x, y, w, h, r, fy, ini, circ){
+/* Posición de cada foto: x, y de 0 a 1 (qué parte se ve) y z = acercamiento. Las de persona viven en su persona. */
+function defY(k){ return /^p\d$/.test(k) ? .3 : k === "captura" ? 0 : k === "grupo" ? .4 : .5; }
+function pos(k){
+  var m = /^p(\d)$/.exec(k), p = m && st.personas[+m[1]], o = p ? {x: p.fx, y: p.fy, z: p.fz} : {x: st.fx[k], y: st.fy[k], z: st.fz[k]};
+  return {x: o.x == null ? .5 : o.x, y: o.y == null ? defY(k) : o.y, z: o.z || 1};
+}
+function ponPos(k, o){
+  var m = /^p(\d)$/.exec(k), p = m && st.personas[+m[1]];
+  if(p){ p.fx = o.x; p.fy = o.y; p.fz = o.z; } else { st.fx[k] = o.x; st.fy[k] = o.y; st.fz[k] = o.z; }
+}
+function foto(ctx, im, x, y, w, h, r, k, ini, circ){
+  var o = pos(k), iw = 0, ih = 0;
   ctx.save();
   if(circ){ ctx.beginPath(); ctx.arc(x + w/2, y + h/2, w/2, 0, Math.PI*2); } else rr(ctx, x, y, w, h, r);
   ctx.clip();
   if(im && im.naturalWidth){
-    var s = Math.max(w / im.naturalWidth, h / im.naturalHeight), iw = im.naturalWidth * s, ih = im.naturalHeight * s;
-    ctx.drawImage(im, x + (w - iw) / 2, y + (h - ih) * (fy == null ? .5 : fy), iw, ih);
+    var s = Math.max(w / im.naturalWidth, h / im.naturalHeight) * o.z; iw = im.naturalWidth * s; ih = im.naturalHeight * s;
+    ctx.drawImage(im, x + (w - iw) * o.x, y + (h - ih) * o.y, iw, ih);
   } else {
     ctx.fillStyle = C.tint; ctx.fillRect(x, y, w, h);
-    if(ini){ F(ctx, 800, Math.round(Math.min(w, h) * .34)); ctx.fillStyle = C.acc; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(ini, x + w/2, y + h/2 + 4); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic"; }
+    if(ini){ var R0 = REG; REG = null; F(ctx, 800, Math.round(Math.min(w, h) * .34)); ctx.fillStyle = C.acc; ctx.textAlign = "center"; ctx.textBaseline = "middle"; ctx.fillText(ini, x + w/2, y + h/2 + 4); ctx.textAlign = "left"; ctx.textBaseline = "alphabetic"; REG = R0; }
   }
   ctx.restore();
+  if(REG && k) REG.f.push({k: k, x: x, y: y, w: w, h: h, iw: iw, ih: ih, vacio: !(im && im.naturalWidth)});
+}
+
+/* ---------- textos que se pueden cambiar tocando la diapositiva ----------
+   T(clave, original): texto propio de la diapositiva; se guarda en st.tx["diapo.clave"].
+   TP(i, campo, visto) y TG(campo, visto): textos que vienen del formulario (nombre, historia, título…). */
+var SID = "", REG = null;
+function norm(s){ return String(s == null ? "" : s).replace(/…/g, "").replace(/\s+/g, " ").trim().toUpperCase(); }
+function T(k, def){ var key = SID + "." + k, v = st.tx[key] != null ? st.tx[key] : def; if(REG) REG.t.push({k: key, def: def, n: norm(v)}); return v; }
+function TP(i, campo, visto){ if(REG) REG.t.push({k: "@" + i + "." + campo, i: i, campo: campo, v: visto, n: norm(visto)}); return visto; }
+function TG(campo, visto){ if(REG) REG.t.push({k: "@" + campo, campo: campo, v: visto, n: norm(visto)}); return visto; }
+function corte(){ if(REG) REG.t.push({k: null, n: ""}); }
+function anota(ctx, s, x, y){
+  if(!REG) return; var n = norm(s), c = REG.t; if(!n) return;
+  for(var j = c.length - 1; j >= Math.max(0, c.length - (n.length > 1 ? 2 : 1)); j--){
+    if(!c[j].k) return;
+    if(c[j].n.indexOf(n) >= 0){
+      var w = ctx.measureText(s).width, z = parseFloat((/(\d+)px/.exec(ctx.font) || [0, 30])[1]), a = ctx.textAlign;
+      var b = {x: a === "center" ? x - w / 2 : a === "right" ? x - w : x, y: y - z * .8, w: w, h: z * 1.05}, o = c[j].box;
+      c[j].box = !o ? b : {x: Math.min(o.x, b.x), y: Math.min(o.y, b.y), w: Math.max(o.x + o.w, b.x + b.w) - Math.min(o.x, b.x), h: Math.max(o.y + o.h, b.y + b.h) - Math.min(o.y, b.y)};
+      return;
+    }
+  }
 }
 function contiene(ctx, im, x, y, w, h){ var s = Math.min(w / im.naturalWidth, h / im.naturalHeight), iw = im.naturalWidth * s, ih = im.naturalHeight * s; ctx.save(); rr(ctx, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih, 14); ctx.clip(); ctx.drawImage(im, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih); ctx.restore(); }
 function linea(ctx, x, y, w, color, g){ ctx.fillStyle = color || C.line; ctx.fillRect(x, y, w, g || 2); }
@@ -445,7 +518,7 @@ function datos(){
   if(t && t.indexOf(".") < 0) t = "mitienda.beauty/" + t.toLowerCase();
   function nwa(v){ v = (v || "").replace(/\D/g, ""); return v.length === 10 ? "52" + v : v.length >= 12 ? v : ""; }
   return {
-    personas: ps.map(function(p){ var i = st.personas.indexOf(p); return {wa: nwa(p.wa), nombre: (p.nombre || "").trim(), rol: (p.rol || "").trim(), historia: (p.historia || "").trim(), im: FOTOS["p" + i], fy: p.fy == null ? .3 : p.fy}; }),
+    personas: ps.map(function(p){ var i = st.personas.indexOf(p); return {wa: nwa(p.wa), nombre: (p.nombre || "").trim(), rol: (p.rol || "").trim(), historia: (p.historia || "").trim(), im: FOTOS["p" + i], k: "p" + i, i: i}; }),
     titulo: (st.titulo || "").trim() || junta, junta: junta, yo: nombres[0],
     cuando: (st.cuando || "").trim(), tienda: t, equipo: (st.equipo || "").trim() || "Top Team",
     favs: (st.favs || "").split(",").map(function(s){ return s.trim(); }).filter(Boolean)
@@ -464,78 +537,78 @@ function marco(ctx, d, i, n, oscuro, L){
   ctx.globalAlpha = .75; ctx.textAlign = "right"; ctx.fillText("mitienda.beauty", W - M, 1020); ctx.textAlign = "left"; ctx.globalAlpha = 1;
   L.push({x: W - M - 200, y: 996, w: 200, h: 32, url: "https://mitienda.beauty/"});
 }
-function etiqueta(ctx, s, x, y, color){ F(ctx, 600, 24, 1); ctx.fillStyle = color || C.accInk; esp(ctx, s, x, y, 3); }
-function titulo(ctx, s, x, y, maxW, size, color, maxL){ var z = ajusta(ctx, s, 800, size, 48, 0, maxW, maxL || 2); ctx.fillStyle = color || C.ink; return {y: txt(ctx, s, x, y, maxW, Math.round(z * 1.06), maxL || 2), z: z}; }
+function etiqueta(ctx, s, x, y, color){ corte(); s = T("eti", s); F(ctx, 600, 24, 1); ctx.fillStyle = color || C.accInk; esp(ctx, s, x, y, 3); }
+function titulo(ctx, s, x, y, maxW, size, color, maxL, propio){ if(!propio) s = T("tit", s); var z = ajusta(ctx, s, 800, size, 48, 0, maxW, maxL || 2); ctx.fillStyle = color || C.ink; return {y: txt(ctx, s, x, y, maxW, Math.round(z * 1.06), maxL || 2), z: z}; }
 
 /* ---------- las diapositivas ---------- */
 var PINTA = {
   portada: function(ctx, d, L){
     var ps = d.personas, n = Math.min(ps.length, 4), px = 1040, pw = W - px, g = 8;
     var cajas = n === 1 ? [[0,0,pw,HH]] : n === 2 ? [[0,0,pw/2-g/2,HH],[pw/2+g/2,0,pw/2-g/2,HH]] : n === 3 ? [[0,0,pw/2-g/2,HH],[pw/2+g/2,0,pw/2-g/2,HH/2-g/2],[pw/2+g/2,HH/2+g/2,pw/2-g/2,HH/2-g/2]] : [[0,0,pw/2-g/2,HH/2-g/2],[pw/2+g/2,0,pw/2-g/2,HH/2-g/2],[0,HH/2+g/2,pw/2-g/2,HH/2-g/2],[pw/2+g/2,HH/2+g/2,pw/2-g/2,HH/2-g/2]];
-    cajas.forEach(function(c, k){ foto(ctx, ps[k].im, px + c[0], c[1], c[2], c[3], 0, ps[k].fy, iniciales(ps[k].nombre) || "·"); });
-    F(ctx, 500, 22); ctx.fillStyle = C.muted; esp(ctx, d.equipo + " · Todo es posible", M, 92, 5);
+    cajas.forEach(function(c, k){ foto(ctx, ps[k].im, px + c[0], c[1], c[2], c[3], 0, ps[k].k, iniciales(ps[k].nombre) || "·"); });
+    F(ctx, 500, 22); ctx.fillStyle = C.muted; corte(); esp(ctx, d.equipo + " · Todo es posible", M, 92, 5);
     etiqueta(ctx, "Presentación de negocio", M, 330);
-    F(ctx, 800, 168); ctx.fillStyle = C.ink; ctx.fillText("Farmasi", M - 6, 500);
+    corte(); F(ctx, 800, 168); ctx.fillStyle = C.ink; ctx.fillText("Farmasi", M - 6, 500);
     F(ctx, 300, 64); ctx.fillStyle = C.muted; ctx.fillText("con", M, 590);
-    var z = ajusta(ctx, d.titulo, 800, 104, 52, 0, 820, 3); ctx.fillStyle = C.acc;
+    var z = ajusta(ctx, d.titulo, 800, 104, 52, 0, 820, 3); ctx.fillStyle = C.acc; TG("titulo", d.titulo);
     var y = txt(ctx, d.titulo, M - 3, 590 + Math.round(z * 1.02), 820, Math.round(z * 1.04), 3);
     linea(ctx, M, Math.max(y + 60, 860), 96, C.acc, 6);
-    if(d.cuando){ F(ctx, 500, 28, 1); ctx.fillStyle = C.ink; txt(ctx, d.cuando, M, Math.max(y + 60, 860) + 66, 820, 36, 2); }
+    if(d.cuando){ F(ctx, 500, 28, 1); ctx.fillStyle = C.ink; txt(ctx, TG("cuando", d.cuando), M, Math.max(y + 60, 860) + 66, 820, 36, 2); }
   },
   quien: function(ctx, d, L){
     var ps = d.personas, n = ps.length;
     if(n === 1){
       var p = ps[0];
-      foto(ctx, p.im, M, 150, 640, 810, 18, p.fy, iniciales(p.nombre) || "·");
+      foto(ctx, p.im, M, 150, 640, 810, 18, p.k, iniciales(p.nombre) || "·");
       var x = 860, mw = W - M - x;
       etiqueta(ctx, "Quién te lo cuenta", x, 260);
-      var t = titulo(ctx, "Soy " + (p.nombre || "tu nombre"), x, 360, mw, 104, C.ink, 2);
+      var t = titulo(ctx, TP(p.i, "nombre", "Soy " + (p.nombre || "tu nombre")), x, 360, mw, 104, C.ink, 2, true);
       var y = t.y + 64;
-      if(p.rol){ F(ctx, 500, 30, 1); ctx.fillStyle = C.accInk; y = txt(ctx, p.rol, x, y, mw, 40, 2) + 70; } else y += 10;
+      if(p.rol){ F(ctx, 500, 30, 1); ctx.fillStyle = C.accInk; y = txt(ctx, TP(p.i, "rol", p.rol), x, y, mw, 40, 2) + 70; } else y += 10;
       F(ctx, 400, 42); ctx.fillStyle = p.historia ? C.ink : "#A3A6BE";
-      txt(ctx, p.historia || "Aquí va tu historia en tres frases: por qué empezaste, qué cambió y dónde estás hoy.", x, y, mw, 60, 8);
+      txt(ctx, TP(p.i, "historia", p.historia || "Aquí va tu historia en tres frases: por qué empezaste, qué cambió y dónde estás hoy."), x, y, mw, 60, 8);
       return;
     }
     etiqueta(ctx, "Quiénes te lo cuentan", M, 200);
     var gap = 36, cw = (W - 2 * M - gap * (n - 1)) / n, ph = n === 2 ? 470 : 420;
     ps.forEach(function(p, k){
       var x = M + k * (cw + gap);
-      foto(ctx, p.im, x, 240, cw, ph, 18, p.fy, iniciales(p.nombre) || "·");
-      ajusta(ctx, p.nombre || "Nombre", 700, 48, 30, 0, cw, 1); ctx.fillStyle = C.ink; ctx.fillText(p.nombre || "Nombre", x, 240 + ph + 70);
+      foto(ctx, p.im, x, 240, cw, ph, 18, p.k, iniciales(p.nombre) || "·");
+      ajusta(ctx, p.nombre || "Nombre", 700, 48, 30, 0, cw, 1); ctx.fillStyle = C.ink; ctx.fillText(TP(p.i, "nombre", p.nombre || "Nombre"), x, 240 + ph + 70);
       var y = 240 + ph + 70;
-      if(p.rol){ F(ctx, 500, 22, 1); ctx.fillStyle = C.accInk; y = txt(ctx, p.rol, x, y + 42, cw, 30, 1); }
+      if(p.rol){ F(ctx, 500, 22, 1); ctx.fillStyle = C.accInk; y = txt(ctx, TP(p.i, "rol", p.rol), x, y + 42, cw, 30, 1); }
       F(ctx, 400, n === 2 ? 30 : 26); ctx.fillStyle = p.historia ? C.ink : "#A3A6BE";
-      txt(ctx, p.historia || "Su historia en una o dos frases.", x, y + 54, cw, n === 2 ? 42 : 36, n === 2 ? 4 : 5);
+      txt(ctx, TP(p.i, "historia", p.historia || "Su historia en una o dos frases."), x, y + 54, cw, n === 2 ? 42 : 36, n === 2 ? 4 : 5);
     });
   },
   topteam: function(ctx, d, L){
     ctx.fillStyle = C.navy; ctx.fillRect(0, 0, W, HH);
     var im = FOTOS.grupo, mw = im ? 820 : 1500;
-    if(im) foto(ctx, im, 1040, 150, W - M - 1040, 810, 18, st.fy.grupo == null ? .4 : st.fy.grupo);
+    if(im) foto(ctx, im, 1040, 150, W - M - 1040, 810, 18, "grupo");
     etiqueta(ctx, "Top Team", M, 240, C.pink);
     var t = titulo(ctx, "¿Qué es Top Team?", M, 350, mw, 110, "#fff", 2);
-    F(ctx, 400, 34); ctx.fillStyle = C.gris; var y = txt(ctx, "Una comunidad internacional dentro de Farmasi, de más de", M, t.y + 92, mw, 46, 2);
-    F(ctx, 500, im ? 170 : 210, 1); ctx.fillStyle = C.pink; ctx.fillText("10,000", M - 8, y + (im ? 190 : 230));
-    var nx = im ? M : M + ctx.measureText("10,000").width + 40;
-    F(ctx, 600, 44); ctx.fillStyle = "#fff"; ctx.fillText("personas", nx, im ? y + 270 : y + 160);
-    F(ctx, 400, 30); ctx.fillStyle = C.gris; txt(ctx, "que construyen un negocio con estructura, acompañamiento y visión.", nx, im ? y + 330 : y + 216, im ? mw : 620, 40, 3);
+    F(ctx, 400, 34); ctx.fillStyle = C.gris; var y = txt(ctx, T("t1", "Una comunidad internacional dentro de Farmasi, de más de"), M, t.y + 92, mw, 46, 2);
+    var diez = T("num", "10,000"); F(ctx, 500, im ? 170 : 210, 1); ctx.fillStyle = C.pink; ctx.fillText(diez, M - 8, y + (im ? 190 : 230));
+    var nx = im ? M : M + ctx.measureText(diez).width + 40;
+    F(ctx, 600, 44); ctx.fillStyle = "#fff"; ctx.fillText(T("t2", "personas"), nx, im ? y + 270 : y + 160);
+    F(ctx, 400, 30); ctx.fillStyle = C.gris; txt(ctx, T("t3", "que construyen un negocio con estructura, acompañamiento y visión."), nx, im ? y + 330 : y + 216, im ? mw : 620, 40, 3);
   },
   farmasi: function(ctx, d, L){
     etiqueta(ctx, "Y por qué trabajamos con ellos", M, 210);
     titulo(ctx, "¿Qué es Farmasi?", M, 310, 1500, 96, C.ink, 1);
-    F(ctx, 500, 280, 1); ctx.fillStyle = C.acc; ctx.fillText("76", M - 14, 610);
-    F(ctx, 600, 40); ctx.fillStyle = C.ink; ctx.fillText("años en el mercado", M, 680);
-    F(ctx, 400, 30); ctx.fillStyle = C.muted; txt(ctx, "Empresa turca fundada por el Dr. Cevdet Tuna.", M, 732, 560, 40, 2);
+    F(ctx, 500, 280, 1); ctx.fillStyle = C.acc; ctx.fillText(T("num", "76"), M - 14, 610);
+    F(ctx, 600, 40); ctx.fillStyle = C.ink; ctx.fillText(T("t1", "años en el mercado"), M, 680);
+    F(ctx, 400, 30); ctx.fillStyle = C.muted; txt(ctx, T("t2", "Empresa turca fundada por el Dr. Cevdet Tuna."), M, 732, 560, 40, 2);
     var cf = [["40+","países"],["2,500","productos en el catálogo"],["250","productos nuevos al año"],["Top 11","del ranking mundial de empresas"]];
     var x0 = 800, gap = 48, cw = (W - M - x0 - gap) / 2;
     cf.forEach(function(v, k){
       var x = x0 + (k % 2) * (cw + gap), y = 370 + Math.floor(k / 2) * 230;
       linea(ctx, x, y, cw, C.line, 2);
-      F(ctx, 500, 84, 1); ctx.fillStyle = C.ink; ctx.fillText(v[0], x - 4, y + 104);
-      F(ctx, 400, 28); ctx.fillStyle = C.muted; txt(ctx, v[1], x, y + 152, cw, 36, 2);
+      F(ctx, 500, 84, 1); ctx.fillStyle = C.ink; ctx.fillText(T("c" + k + "a", v[0]), x - 4, y + 104);
+      F(ctx, 400, 28); ctx.fillStyle = C.muted; txt(ctx, T("c" + k + "b", v[1]), x, y + 152, cw, 36, 2);
     });
     ctx.fillStyle = C.soft; rr(ctx, M, 840, W - 2 * M, 110, 14); ctx.fill();
-    F(ctx, 500, 30); ctx.fillStyle = C.ink; txt(ctx, "Planta propia en Estambul, la más grande de Europa, donde hace todos sus productos. Control de calidad y certificaciones internacionales.", M + 36, 884, W - 2 * M - 72, 38, 2);
+    F(ctx, 500, 30); ctx.fillStyle = C.ink; txt(ctx, T("t3", "Planta propia en Estambul, la más grande de Europa, donde hace todos sus productos. Control de calidad y certificaciones internacionales."), M + 36, 884, W - 2 * M - 72, 38, 2);
   },
   reglas: function(ctx, d, L){
     etiqueta(ctx, "Las reglas de oro", M, 220);
@@ -545,26 +618,26 @@ var PINTA = {
       var x = M + (k % 4) * (cw + gap), y = 420 + Math.floor(k / 4) * rh;
       ctx.fillStyle = k === 4 ? C.tint : C.soft; rr(ctx, x, y, cw, rh - 32, 18); ctx.fill();
       F(ctx, 500, 26, 1); ctx.fillStyle = C.accInk; ctx.fillText("0" + (k + 1), x + 30, y + 58);
-      F(ctx, 600, 36); ctx.fillStyle = C.ink; txt(ctx, r, x + 30, y + 130, cw - 60, 44, 2);
+      F(ctx, 600, 36); ctx.fillStyle = C.ink; txt(ctx, T("r" + k, r), x + 30, y + 130, cw - 60, 44, 2);
     });
   },
   lineas: function(ctx, d, L){
     var im = FOTOS.producto, mw = im ? 840 : W - 2 * M;
-    if(im) foto(ctx, im, 1080, 150, W - M - 1080, 810, 18, st.fy.producto == null ? .5 : st.fy.producto);
+    if(im) foto(ctx, im, 1080, 150, W - M - 1080, 810, 18, "producto");
     etiqueta(ctx, "Lo que vendes", M, 230);
-    F(ctx, 500, 220, 1); ctx.fillStyle = C.acc; ctx.fillText("4", M - 12, 470);
+    corte(); F(ctx, 500, 220, 1); ctx.fillStyle = C.acc; ctx.fillText("4", M - 12, 470);
     F(ctx, 800, 84); ctx.fillStyle = C.ink; ctx.fillText("líneas", M + 170, 380); ctx.fillText("de negocio", M + 170, 468);
     var cats = ["Maquillaje","Nutrición","Cuidado capilar","Skin care"];
     var cols = im ? 1 : 2, cw = im ? mw : (mw - 60) / 2, rh = im ? 76 : 90, y0 = 560;
     cats.forEach(function(c, k){
       var cx = M + (k % cols) * (cw + 60), cy = y0 + Math.floor(k / cols) * rh;
       linea(ctx, cx, cy, cw, C.line, 2); F(ctx, 500, 22, 1); ctx.fillStyle = C.accInk; ctx.fillText("0" + (k + 1), cx, cy + 52);
-      F(ctx, 600, 38); ctx.fillStyle = C.ink; ctx.fillText(c, cx + 70, cy + 54);
+      F(ctx, 600, 38); ctx.fillStyle = C.ink; ctx.fillText(T("c" + k, c), cx + 70, cy + 54);
     });
     if(d.favs.length){
       var fy = y0 + Math.ceil(cats.length / cols) * rh + 40;
-      F(ctx, 600, 22, 1); ctx.fillStyle = C.accInk; esp(ctx, "Mis favoritos", M, fy + 10, 3);
-      F(ctx, 500, 28); ctx.fillStyle = C.ink; txt(ctx, d.favs.join(" · "), M, fy + 56, mw, 38, 2);
+      F(ctx, 600, 22, 1); ctx.fillStyle = C.accInk; esp(ctx, T("fav", "Mis favoritos"), M, fy + 10, 3);
+      F(ctx, 500, 28); ctx.fillStyle = C.ink; txt(ctx, TG("favs", d.favs.join(" · ")), M, fy + 56, mw, 38, 2);
     }
   },
   hacemos: function(ctx, d, L){
@@ -576,22 +649,22 @@ var PINTA = {
       var x = M + k * (cw + gap), y = 560;
       linea(ctx, x, y, cw, C.ink, 3);
       F(ctx, 500, 24, 1); ctx.fillStyle = C.accInk; ctx.fillText("0" + (k + 1), x, y + 52);
-      F(ctx, 600, 34); ctx.fillStyle = C.ink; var yy = txt(ctx, v[0], x, y + 108, cw, 40, 2);
-      F(ctx, 400, 26); ctx.fillStyle = C.muted; txt(ctx, v[1], x, yy + 46, cw, 36, 6);
+      F(ctx, 600, 34); ctx.fillStyle = C.ink; var yy = txt(ctx, T("i" + k + "a", v[0]), x, y + 108, cw, 40, 2);
+      F(ctx, 400, 26); ctx.fillStyle = C.muted; txt(ctx, T("i" + k + "b", v[1]), x, yy + 46, cw, 36, 6);
     });
   },
   formas: function(ctx, d, L){
     etiqueta(ctx, "Cómo ganas", M, 230);
-    F(ctx, 500, 300, 1); ctx.fillStyle = C.acc; ctx.fillText("10", M - 16, 560);
+    corte(); F(ctx, 500, 300, 1); ctx.fillStyle = C.acc; ctx.fillText("10", M - 16, 560);
     F(ctx, 800, 84); ctx.fillStyle = C.ink; ctx.fillText("formas", M, 670); ctx.fillText("de ganar", M, 760);
-    F(ctx, 400, 26); ctx.fillStyle = C.muted; txt(ctx, "Lo que da cada una y cuándo aplica, en el plan de compensación.", M, 850, 560, 36, 2);
+    F(ctx, 400, 26); ctx.fillStyle = C.muted; txt(ctx, T("t1", "Lo que da cada una y cuándo aplica, en el plan de compensación."), M, 850, 560, 36, 2);
     var it = ["Programa de bienvenida","Margen de ganancia","Bono construyendo tu equipo","Bono personal","Bono de clientes en línea","Bono de grupo","Bono de liderazgo","Apoyo mensual para automóvil","Bono en efectivo","Experiencias únicas"];
     var x0 = 800, gap = 56, cw = (W - M - x0 - gap) / 2, rh = 140;
     it.forEach(function(v, k){
       var x = x0 + Math.floor(k / 5) * (cw + gap), y = 190 + (k % 5) * rh;
       linea(ctx, x, y, cw, C.line, 2);
       F(ctx, 500, 30, 1); ctx.fillStyle = C.accInk; ctx.fillText(String(k + 1), x, y + 82);
-      F(ctx, 600, 36); ctx.fillStyle = C.ink; txt(ctx, v, x + 70, y + 82, cw - 70, 42, 2);
+      F(ctx, 600, 36); ctx.fillStyle = C.ink; txt(ctx, T("i" + k, v), x + 70, y + 82, cw - 70, 42, 2);
     });
   },
   sistema: function(ctx, d, L){
@@ -599,14 +672,14 @@ var PINTA = {
     var cx = W / 2, cy = 560, rx = 700, ry = 300;
     ctx.strokeStyle = "rgba(255,255,255,.28)"; ctx.lineWidth = 2; ctx.beginPath(); ctx.ellipse(cx, cy, rx, ry, 0, 0, Math.PI * 2); ctx.stroke();
     etiqueta(ctx, "No empiezas sola", M, 150, C.pink);
-    F(ctx, 300, 64); ctx.fillStyle = C.gris; ctx.textAlign = "center"; ctx.fillText("Sistema", cx, cy - 40);
+    corte(); F(ctx, 300, 64); ctx.fillStyle = C.gris; ctx.textAlign = "center"; ctx.fillText("Sistema", cx, cy - 40);
     F(ctx, 800, 120); ctx.fillStyle = "#fff"; ctx.fillText(d.equipo, cx, cy + 90); ctx.textAlign = "left";
     var it = [["Reuniones sociales",-140],["Motivación",-90],["Testimonios reales",-40],["Chats de apoyo",0],["Incentivos",40],["Llamadas",90],["Coworking",140],["Capacitación constante",180]];
-    it.forEach(function(v){
-      var a = v[1] * Math.PI / 180, x = cx + rx * Math.cos(a), y = cy + ry * Math.sin(a);
-      F(ctx, 600, 30); var w = ctx.measureText(v[0]).width + 64;
+    it.forEach(function(v, k){
+      var a = v[1] * Math.PI / 180, x = cx + rx * Math.cos(a), y = cy + ry * Math.sin(a), s = T("i" + k, v[0]);
+      F(ctx, 600, 30); var w = ctx.measureText(s).width + 64;
       ctx.fillStyle = "#fff"; rr(ctx, x - w / 2, y - 36, w, 72, 36); ctx.fill();
-      ctx.fillStyle = C.ink; ctx.textAlign = "center"; ctx.fillText(v[0], x, y + 11); ctx.textAlign = "left";
+      ctx.fillStyle = C.ink; ctx.textAlign = "center"; ctx.fillText(s, x, y + 11); ctx.textAlign = "left";
     });
   },
   testimonios: function(ctx, d, L){
@@ -615,13 +688,14 @@ var PINTA = {
     if(im) contiene(ctx, im, 920, 130, W - 920 - 60, 820);
     etiqueta(ctx, "Cómo se sienten", M, 300);
     var t = titulo(ctx, "Las personas que son parte de " + d.equipo, M, 400, 640, 84, C.ink, 4);
-    F(ctx, 400, 28); ctx.fillStyle = C.muted; txt(ctx, "Mensajes reales del equipo, compartidos con permiso.", M, t.y + 90, 600, 38, 2);
+    F(ctx, 400, 28); ctx.fillStyle = C.muted; txt(ctx, T("t1", "Mensajes reales del equipo, compartidos con permiso."), M, t.y + 90, 600, 38, 2);
   },
   cultura: function(ctx, d, L){
     etiqueta(ctx, "Nuestra cultura", M, 300);
     titulo(ctx, "Valores que nos definen", M, 400, 600, 96, C.ink, 3);
     var filas = [["Creadoras"],["Personas reales","Líderes en construcción"],["Personas con propósito"],["Valientes"]];
     filas.forEach(function(f, r){
+      f = f.map(function(s, k){ return T("v" + r + k, s); });
       F(ctx, 600, 50); var ws = f.map(function(s){ return ctx.measureText(s).width + 96; }), tot = ws.reduce(function(a, b){ return a + b; }, 0) + 28 * (f.length - 1);
       var x = 1290 - tot / 2 + (r % 2 ? 40 : -40), y = 200 + r * 185;
       f.forEach(function(s, k){
@@ -631,13 +705,13 @@ var PINTA = {
     });
   },
   kit: function(ctx, d, L){
-    var im = FOTOS.kit || d.personas[0].im, fy = FOTOS.kit ? (st.fy.kit == null ? .5 : st.fy.kit) : d.personas[0].fy;
+    var im = FOTOS.kit || d.personas[0].im, fk = FOTOS.kit ? "kit" : d.personas[0].k;
     ctx.fillStyle = C.soft; ctx.fillRect(0, 0, 1040, HH);
-    foto(ctx, im, 1040, 0, W - 1040, HH, 0, fy, iniciales(d.yo) || "·");
+    foto(ctx, im, 1040, 0, W - 1040, HH, 0, fk, iniciales(d.yo) || "·");
     etiqueta(ctx, "Kit de inicio", M, 300);
     titulo(ctx, "Para empezar, solo tu kit", M, 400, 820, 88, C.ink, 2);
-    F(ctx, 500, 200, 1); ctx.fillStyle = C.acc; ctx.fillText("$499", M - 10, 760);
-    F(ctx, 500, 30, 1); ctx.fillStyle = C.ink; ctx.fillText("por única ocasión · sin mensualidad", M, 830);
+    F(ctx, 500, 200, 1); ctx.fillStyle = C.acc; ctx.fillText(T("num", "$499"), M - 10, 760);
+    F(ctx, 500, 30, 1); ctx.fillStyle = C.ink; ctx.fillText(T("t1", "por única ocasión · sin mensualidad"), M, 830);
   },
   sets: function(ctx, d, L){
     etiqueta(ctx, "Por única ocasión", M, 210);
@@ -653,7 +727,7 @@ var PINTA = {
       ctx.fillStyle = C.acc; rr(ctx, x + 28, y + 360, cw - 56, 84, 14); ctx.fill();
       F(ctx, 600, 28); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(s[4] + " % menos", x + cw / 2, y + 412); ctx.textAlign = "left";
     });
-    F(ctx, 400, 22); ctx.fillStyle = C.muted; ctx.fillText(Object.keys(st.sets).length ? "Precios revisados por " + d.yo + ". Confírmalos en el Back Office." : "Precios de noviembre de 2026. Revísalos en el Back Office: pueden cambiar.", M, 950);
+    corte(); F(ctx, 400, 22); ctx.fillStyle = C.muted; ctx.fillText(Object.keys(st.sets).length ? "Precios revisados por " + d.yo + ". Confírmalos en el Back Office." : "Precios de noviembre de 2026. Revísalos en el Back Office: pueden cambiar.", M, 950);
   },
   numeros: function(ctx, d, L){
     etiqueta(ctx, "Los números", M, 230);
@@ -662,31 +736,31 @@ var PINTA = {
     cf.forEach(function(v, k){
       var y = 470 + k * 165;
       linea(ctx, M, y, 640, C.line, 2);
-      F(ctx, 500, 72, 1); ctx.fillStyle = C.ink; ctx.fillText(v[0], M - 2, y + 92);
-      F(ctx, 400, 26); ctx.fillStyle = C.muted; txt(ctx, v[1], M + 230, y + 66, 410, 34, 2);
+      F(ctx, 500, 72, 1); ctx.fillStyle = C.ink; ctx.fillText(T("c" + k + "a", v[0]), M - 2, y + 92);
+      F(ctx, 400, 26); ctx.fillStyle = C.muted; txt(ctx, T("c" + k + "b", v[1]), M + 230, y + 66, 410, 34, 2);
     });
     var nv = [["3%","200"],["6%","400"],["9%","600"],["12%","900"],["15%","1,400"],["18%","2,200"],["22%","3,600"],["25%","5,000"]];
-    var x0 = 900, base = 900, bw = 92, gap = 18;
+    var x0 = 900, base = 900, bw = 92, gap = 18; corte();
     nv.forEach(function(v, k){
       var h = 110 + k * 62, x = x0 + k * (bw + gap), ult = k === nv.length - 1;
       ctx.fillStyle = ult ? C.acc : C.soft; rr(ctx, x, base - h, bw, h, 12); ctx.fill();
       F(ctx, 600, 30, 1); ctx.fillStyle = ult ? "#fff" : C.ink; ctx.textAlign = "center"; ctx.fillText(v[0], x + bw / 2, base - h + 48);
       F(ctx, 400, 22, 1); ctx.fillStyle = C.muted; ctx.fillText(v[1], x + bw / 2, base + 38); ctx.textAlign = "left";
     });
-    F(ctx, 400, 24); ctx.fillStyle = C.muted; ctx.fillText("Puntos de grupo al mes. De 5,000 en adelante, dirección.", x0, base + 84);
+    F(ctx, 400, 24); ctx.fillStyle = C.muted; ctx.fillText(T("t1", "Puntos de grupo al mes. De 5,000 en adelante, dirección."), x0, base + 84);
   },
   tienda: function(ctx, d, L){
     var url = d.tienda || "mitienda.beauty/tu-nombre";
     etiqueta(ctx, "Tu tienda en línea", M, 230);
     var t = titulo(ctx, "Tu propia tienda, desde el día uno", M, 330, 920, 88, C.ink, 2);
-    F(ctx, 400, 34); ctx.fillStyle = C.ink; var y = txt(ctx, "Catálogo, promociones y pedidos por WhatsApp, con tu nombre. Así se ve la mía:", M, t.y + 80, 900, 48, 3);
-    F(ctx, 500, Math.min(48, ajusta(ctx, url, 500, 48, 28, 1, 900, 1)), 1); ctx.fillStyle = C.accInk; ctx.fillText(url, M, y + 90);
+    F(ctx, 400, 34); ctx.fillStyle = C.ink; var y = txt(ctx, T("t1", "Catálogo, promociones y pedidos por WhatsApp, con tu nombre. Así se ve la mía:"), M, t.y + 80, 900, 48, 3);
+    corte(); F(ctx, 500, Math.min(48, ajusta(ctx, url, 500, 48, 28, 1, 900, 1)), 1); ctx.fillStyle = C.accInk; ctx.fillText(url, M, y + 90);
     if(d.tienda) L.push({x: M, y: y + 50, w: ctx.measureText(url).width, h: 56, url: "https://" + url});
-    if(d.tienda){ qr(ctx, "https://" + url, M - 14, y + 140, 220); F(ctx, 400, 24); ctx.fillStyle = C.muted; ctx.fillText("Escanéala con tu celular", M + 230, y + 260); }
+    if(d.tienda){ qr(ctx, "https://" + url, M - 14, y + 140, 220); F(ctx, 400, 24); ctx.fillStyle = C.muted; ctx.fillText(T("t2", "Escanéala con tu celular"), M + 230, y + 260); corte(); }
     var px = 1250, py = 120, pw = 440, ph = 880;
     ctx.fillStyle = C.navy; rr(ctx, px, py, pw, ph, 64); ctx.fill();
     var sx = px + 18, sy = py + 18, sw = pw - 36, sh = ph - 36;
-    if(FOTOS.captura) foto(ctx, FOTOS.captura, sx, sy, sw, sh, 48, st.fy.captura == null ? 0 : st.fy.captura);
+    if(FOTOS.captura) foto(ctx, FOTOS.captura, sx, sy, sw, sh, 48, "captura");
     else {
       ctx.save(); rr(ctx, sx, sy, sw, sh, 48); ctx.clip(); ctx.fillStyle = "#fff"; ctx.fillRect(sx, sy, sw, sh);
       ctx.fillStyle = C.soft; ctx.fillRect(sx, sy, sw, 210);
@@ -706,25 +780,25 @@ var PINTA = {
     it.forEach(function(v, k){
       var x = M + (k % 2) * (cw + gap), y = 440 + Math.floor(k / 2) * 250;
       linea(ctx, x, y, cw, C.line, 2);
-      F(ctx, 600, 40); ctx.fillStyle = C.ink; ctx.fillText(v[0], x, y + 62);
-      F(ctx, 400, 30); ctx.fillStyle = C.muted; txt(ctx, v[1], x, y + 114, cw, 42, 2);
+      F(ctx, 600, 40); ctx.fillStyle = C.ink; ctx.fillText(T("i" + k + "a", v[0]), x, y + 62);
+      F(ctx, 400, 30); ctx.fillStyle = C.muted; txt(ctx, T("i" + k + "b", v[1]), x, y + 114, cw, 42, 2);
     });
   },
   cierre: function(ctx, d, L){
     ctx.fillStyle = C.navy; ctx.fillRect(0, 0, W, HH);
     etiqueta(ctx, "Todo es posible", M, 250, C.pink);
     var t = titulo(ctx, "¿Platicamos 15 minutos?", M, 370, 820, 112, "#fff", 2);
-    F(ctx, 400, 34); ctx.fillStyle = C.gris; var y = txt(ctx, "No tienes que decidir hoy. Vemos tu kit, tu set y tu primera semana.", M, t.y + 90, 800, 48, 3);
-    y += 110;
+    F(ctx, 400, 34); ctx.fillStyle = C.gris; var y = txt(ctx, T("t1", "No tienes que decidir hoy. Vemos tu kit, tu set y tu primera semana."), M, t.y + 90, 800, 48, 3);
+    y += 110; corte();
     if(d.tienda){ F(ctx, 600, 22, 1); ctx.fillStyle = C.pink; esp(ctx, "Mi tienda", M, y, 3); F(ctx, 500, 36, 1); ctx.fillStyle = "#fff"; ctx.fillText(d.tienda, M, y + 54); L.push({x: M, y: y + 18, w: ctx.measureText(d.tienda).width, h: 48, url: "https://" + d.tienda}); }
     // una columna por persona: foto, nombre, WhatsApp y su QR
     var ps = d.personas, n = ps.length, x0 = 1000, aw = W - M - x0, gap = 40, cw = (aw - gap * (n - 1)) / n;
     var r = Math.min(170, cw / 2 - 6, n === 1 ? 170 : 130), q = Math.min(n === 1 ? 240 : 200, cw - 10);
     ps.forEach(function(p, k){
       var cx = x0 + k * (cw + gap) + cw / 2, top = 170;
-      foto(ctx, p.im, cx - r, top, r * 2, r * 2, 0, p.fy, iniciales(p.nombre) || "·", true);
+      foto(ctx, p.im, cx - r, top, r * 2, r * 2, 0, p.k, iniciales(p.nombre) || "·", true);
       var ny = top + r * 2 + 58;
-      ajusta(ctx, p.nombre || "Nombre", 700, n === 1 ? 44 : 34, 22, 0, cw, 1); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(p.nombre || "Nombre", cx, ny);
+      ajusta(ctx, p.nombre || "Nombre", 700, n === 1 ? 44 : 34, 22, 0, cw, 1); ctx.fillStyle = "#fff"; ctx.textAlign = "center"; ctx.fillText(TP(p.i, "nombre", p.nombre || "Nombre"), cx, ny); corte();
       if(p.wa){
         var num = waBonito(p.wa); ajusta(ctx, num, 500, n === 1 ? 34 : 26, 16, 1, cw, 1); ctx.fillStyle = C.gris; ctx.fillText(num, cx, ny + 44);
         var w = ctx.measureText(num).width; L.push({x: cx - w / 2, y: ny + 14, w: w, h: 40, url: "https://wa.me/" + p.wa});
@@ -732,8 +806,8 @@ var PINTA = {
       }
       ctx.textAlign = "left";
     });
-    if(ps.some(function(p){ return p.wa; })){ F(ctx, 400, 22); ctx.fillStyle = C.gris; ctx.textAlign = "center"; ctx.fillText(n === 1 ? "Escanéalo y escríbeme" : "Escanea el de quien te invitó", x0 + aw / 2, 1000); ctx.textAlign = "left"; }
-    F(ctx, 400, 19); ctx.fillStyle = "#8E92B4";
+    if(ps.some(function(p){ return p.wa; })){ F(ctx, 400, 22); ctx.fillStyle = C.gris; ctx.textAlign = "center"; ctx.fillText(n === 1 ? T("t2", "Escanéalo y escríbeme") : T("t3", "Escanea el de quien te invitó"), x0 + aw / 2, 1000); ctx.textAlign = "left"; }
+    corte(); F(ctx, 400, 19); ctx.fillStyle = "#8E92B4";
     ctx.fillText("Lo que avances depende de tu trabajo; nadie garantiza resultados. Material del equipo, no oficial de Farmasi.", M, 968);
   }
 };
@@ -744,10 +818,14 @@ var lienzo = document.createElement("canvas"); lienzo.width = W; lienzo.height =
 var lctx = lienzo.getContext("2d");
 function va(s){ if(s.foto && !FOTOS[s.foto]) return false; return s.extra ? !!st.extra[s.id] : !st.fuera[s.id]; }
 function activas(){ return D.filter(va); }
-function dibuja(id, ctx){
+/* rec = true: además anota dónde quedó cada texto y cada foto, para poder tocarlos en la vista grande. */
+function dibuja(id, ctx, rec){
   var d = datos(), L = [], act = activas(), i = act.map(function(s){ return s.id; }).indexOf(id);
+  SID = id; REG = rec ? {t: [], f: []} : null;
+  if(rec) ctx.fillText = function(s, x, y){ CanvasRenderingContext2D.prototype.fillText.apply(ctx, arguments); anota(ctx, s, x, y); };
   ctx.save(); ctx.fillStyle = "#fff"; ctx.fillRect(0, 0, W, HH); ctx.textBaseline = "alphabetic"; ctx.textAlign = "left";
   PINTA[id](ctx, d, L);
+  if(rec){ delete ctx.fillText; dibuja.reg = REG; } REG = null;
   if(id !== "portada") marco(ctx, d, i + 1, act.length, !!OSCURAS[id], L);
   else { F(ctx, 400, 20, 1); ctx.fillStyle = "#8A8EA8"; if(d.tienda){ ctx.fillText(d.tienda, M, 1020); L.push({x: M, y: 996, w: ctx.measureText(d.tienda).width, h: 32, url: "https://" + d.tienda}); } }
   ctx.restore();
@@ -762,15 +840,126 @@ function pintaMinis(){
     D.forEach(function(s, k){
       var b = document.createElement("button"); b.type = "button"; b.setAttribute("aria-label", (k + 1) + ". " + s.t);
       var cv = document.createElement("canvas"); cv.width = 384; cv.height = 216; b.appendChild(cv); box.appendChild(b); MINIS[s.id] = cv;
-      b.addEventListener("click", function(){ sel = s.id; pintaGrande(); marcaSel(); });
+      b.addEventListener("click", function(){ sel = s.id; cierraEd(); pintaGrande(); marcaSel(); });
     });
   }
   D.forEach(function(s){ aMini(s.id, MINIS[s.id]); MINIS[s.id].parentNode.classList.toggle("fuera", !va(s)); });
   marcaSel(); pintaGrande(); faltan();
 }
 function marcaSel(){ D.forEach(function(s){ MINIS[s.id].parentNode.setAttribute("aria-current", s.id === sel ? "true" : "false"); }); }
-function pintaGrande(){ dibuja(sel, $("grande").getContext("2d")); }
+function pintaGrande(){ dibuja(sel, $("grande").getContext("2d"), true); pintaCapa(); }
 var tmr; function repinta(){ clearTimeout(tmr); tmr = setTimeout(function(){ pintaMinis(); if($("diapos")._html) $("diapos")._html(); if(!$("guion").hidden) pintaGuion(); if(!$("ensayar").hidden) pintaEnsayo(); }, 180); }
+
+/* ---------- editar tocando la vista grande ---------- */
+var ED = null;   // {tipo:"t", e:entrada} o {tipo:"f", k:clave}
+var NOMBRE_FOTO = {grupo:"Tu equipo", producto:"Tú con tus productos", kit:"Tú con tu kit", captura:"Captura de tu tienda"};
+function nombreFoto(k){ var m = /^p(\d)$/.exec(k); if(m){ var p = st.personas[+m[1]]; return "Foto de " + ((p && p.nombre || "").trim() || "la persona " + (+m[1] + 1)); } return NOMBRE_FOTO[k] || "Foto"; }
+function enPct(el, b, pad){ pad = pad || 0; el.style.left = ((b.x - pad) / W * 100) + "%"; el.style.top = ((b.y - pad) / HH * 100) + "%"; el.style.width = ((b.w + pad * 2) / W * 100) + "%"; el.style.height = ((b.h + pad * 2) / HH * 100) + "%"; }
+function pintaCapa(){
+  var c = $("capa"), R = dibuja.reg; if(!R) return; c.innerHTML = "";
+  R.f.forEach(function(f){
+    var b = document.createElement("button"); b.type = "button"; b.className = "h foto" + (ED && ED.tipo === "f" && ED.k === f.k ? " activa" : "");
+    b.setAttribute("aria-label", nombreFoto(f.k) + (f.vacio ? ": subir" : ": acomodar")); b._f = f; enPct(b, f, 0); c.appendChild(b);
+  });
+  R.t.forEach(function(t){
+    if(!t.k || !t.box) return;
+    var b = document.createElement("button"); b.type = "button"; b.className = "h tx" + (ED && ED.tipo === "t" && ED.e.k === t.k ? " activa" : "");
+    b.setAttribute("aria-label", "Cambiar el texto: " + t.n.toLowerCase().slice(0, 50)); b._t = t; enPct(b, t.box, 10); c.appendChild(b);
+  });
+  var pref = sel + ".";
+  $("txReset").hidden = !Object.keys(st.tx).some(function(k){ return k.indexOf(pref) === 0; });
+}
+function cierraEd(){ ED = null; $("edTexto").hidden = true; $("edFoto").hidden = true; $("pista").hidden = false; }
+function valorDe(e){
+  if(e.i != null) return st.personas[e.i] ? st.personas[e.i][e.campo] || "" : "";
+  if(e.campo) return st[e.campo] || "";
+  return st.tx[e.k] != null ? st.tx[e.k] : e.def;
+}
+var ETQ = {nombre:"Nombre", rol:"Quién es", historia:"Historia", titulo:"Título de la portada", cuando:"Cuándo y dónde", favs:"Tus favoritos (separados por coma)"};
+function abreTexto(e){
+  ED = {tipo: "t", e: e}; $("edFoto").hidden = true; $("pista").hidden = true; $("edTexto").hidden = false;
+  var quien = e.i != null && st.personas.length > 1 ? " · " + ((st.personas[e.i].nombre || "").trim() || "Persona " + (e.i + 1)) : "";
+  $("edEtq").textContent = e.campo ? ETQ[e.campo] + quien : "Texto de esta diapositiva";
+  var ta = $("edTa"); ta.value = valorDe(e); ta.placeholder = e.campo ? String(e.v || "").replace(/^Soy /, "") : ""; alto(ta);
+  $("edOrig").hidden = !!e.campo || st.tx[e.k] == null;
+  pintaCapa(); try{ ta.focus({preventScroll: true}); }catch(_){ ta.focus(); }
+}
+$("edTa").addEventListener("input", function(){
+  var e = ED && ED.e, v = this.value; if(!e) return; alto(this);
+  if(e.i != null){
+    st.personas[e.i][e.campo] = v;
+    var el = document.querySelectorAll("#personas .persona")[e.i]; el = el && el.querySelector('[data-k="' + e.campo + '"]'); if(el) el.value = v;
+  } else if(e.campo){ st[e.campo] = v; $(e.campo).value = v; }
+  else { if(v === e.def) delete st.tx[e.k]; else st.tx[e.k] = v; $("edOrig").hidden = st.tx[e.k] == null; }
+  guarda(); repinta();
+});
+$("edTa").addEventListener("keydown", function(e){ if(e.key === "Escape"){ cierraEd(); pintaCapa(); } });
+$("edOrig").addEventListener("click", function(){ var e = ED && ED.e; if(!e) return; delete st.tx[e.k]; $("edTa").value = e.def; alto($("edTa")); this.hidden = true; guarda(); repinta(); });
+$("edListo").addEventListener("click", function(){ cierraEd(); pintaCapa(); H.cuenta("pdn-texto"); });
+$("txReset").addEventListener("click", function(){ var pref = sel + "."; Object.keys(st.tx).forEach(function(k){ if(k.indexOf(pref) === 0) delete st.tx[k]; }); cierraEd(); guarda(); repinta(); });
+
+function abreFoto(k){
+  ED = {tipo: "f", k: k}; $("edTexto").hidden = true; $("pista").hidden = true; $("edFoto").hidden = false;
+  $("edFEtq").textContent = nombreFoto(k); botonesZoom(); pintaCapa();
+}
+function botonesZoom(){ var z = ED && ED.tipo === "f" ? pos(ED.k).z : 1; $("fMenos").disabled = z <= 1.001; $("fMas").disabled = z >= 2.999; }
+function zoom(dz){ if(!ED || ED.tipo !== "f") return; var o = pos(ED.k); o.z = Math.max(1, Math.min(3, Math.round((o.z + dz) * 10) / 10)); ponPos(ED.k, o); botonesZoom(); guarda(); pintaGrande(); repinta(); if(SLOTS[ED.k]) SLOTS[ED.k]._pinta(); }
+$("fMas").addEventListener("click", function(){ zoom(.25); });
+$("fMenos").addEventListener("click", function(){ zoom(-.25); });
+$("fCentro").addEventListener("click", function(){ if(!ED || ED.tipo !== "f") return; ponPos(ED.k, {x: .5, y: defY(ED.k), z: 1}); botonesZoom(); guarda(); pintaGrande(); repinta(); if(SLOTS[ED.k]) SLOTS[ED.k]._pinta(); });
+$("fListo").addEventListener("click", function(){ cierraEd(); pintaCapa(); });
+$("fFile").addEventListener("change", function(){ var f = this.files[0], k = ED && ED.k; this.value = ""; if(f && k) subeFoto(k, f); });
+
+/* arrastrar una foto dentro de su recuadro */
+(function(){
+  var capa = $("capa"), arr = null;
+  capa.addEventListener("click", function(e){
+    var b = e.target.closest(".h"); if(!b) return;
+    if(b._t){ abreTexto(b._t); return; }
+    if(b._f && b._f.vacio){ abreFoto(b._f.k); $("fFile").click(); return; }
+    if(b._f && !(ED && ED.k === b._f.k)) abreFoto(b._f.k);
+  });
+  capa.addEventListener("pointerdown", function(e){
+    var b = e.target.closest(".h.foto"); if(!b || b._f.vacio) return;
+    // con el dedo, primero se toca la foto para elegirla (así no estorba al deslizar la página)
+    if(e.pointerType !== "mouse" && !(ED && ED.k === b._f.k)) return;
+    if(!(ED && ED.k === b._f.k)) abreFoto(b._f.k);
+    b = capa.querySelector(".h.foto.activa") || b;
+    e.preventDefault();
+    var r = $("grande").getBoundingClientRect();
+    arr = {b: b, f: b._f, x0: e.clientX, y0: e.clientY, o: pos(b._f.k), esc: W / r.width, id: e.pointerId, movio: false};
+    try{ b.setPointerCapture(e.pointerId); }catch(_){}
+    b.classList.add("arrastra");
+  });
+  capa.addEventListener("pointermove", function(e){
+    if(!arr || e.pointerId !== arr.id) return;
+    var f = arr.f, dx = (e.clientX - arr.x0) * arr.esc, dy = (e.clientY - arr.y0) * arr.esc, o = {x: arr.o.x, y: arr.o.y, z: arr.o.z};
+    if(f.iw - f.w > 1) o.x = Math.max(0, Math.min(1, arr.o.x - dx / (f.iw - f.w)));
+    if(f.ih - f.h > 1) o.y = Math.max(0, Math.min(1, arr.o.y - dy / (f.ih - f.h)));
+    ponPos(f.k, o); arr.movio = true;
+    if(!arr.raf) arr.raf = requestAnimationFrame(function(){ if(arr){ arr.raf = 0; dibuja(sel, $("grande").getContext("2d")); } });
+  });
+  function suelta(e){
+    if(!arr || e.pointerId !== arr.id) return;
+    var m = arr.movio, k = arr.f.k; arr.b.classList.remove("arrastra"); arr = null;
+    if(m){ guarda(); pintaGrande(); repinta(); if(SLOTS[k]) SLOTS[k]._pinta(); H.cuenta("pdn-arrastra"); }
+  }
+  capa.addEventListener("pointerup", suelta); capa.addEventListener("pointercancel", suelta);
+
+  /* soltar un archivo encima de una foto de la diapositiva */
+  var lz = $("lienzo");
+  function fotoEn(e){ var r = $("grande").getBoundingClientRect(), x = (e.clientX - r.left) * W / r.width, y = (e.clientY - r.top) * HH / r.height, fs = (dibuja.reg || {f: []}).f, hit = null; fs.forEach(function(f){ if(x >= f.x && x <= f.x + f.w && y >= f.y && y <= f.y + f.h) hit = f; }); return hit; }
+  ["dragenter","dragover"].forEach(function(t){ lz.addEventListener(t, function(e){ if(!hayArchivo(e)) return; e.preventDefault(); lz.classList.add("suelta"); }); });
+  lz.addEventListener("dragleave", function(e){ if(!lz.contains(e.relatedTarget)) lz.classList.remove("suelta"); });
+  lz.addEventListener("drop", function(e){
+    lz.classList.remove("suelta"); var file = archivoDe(e); if(!file) return; e.preventDefault();
+    var f = fotoEn(e);
+    if(!f){ H.aviso("Suéltala encima de una foto de la diapositiva, o en los recuadros de fotos del formulario."); return; }
+    subeFoto(f.k, file); abreFoto(f.k);
+  });
+})();
+function hayArchivo(e){ return e.dataTransfer && Array.prototype.indexOf.call(e.dataTransfer.types || [], "Files") >= 0; }
+function archivoDe(e){ var f = e.dataTransfer && e.dataTransfer.files && e.dataTransfer.files[0]; return f && /^image\//.test(f.type) ? f : null; }
 
 function faltan(){
   var d = datos(), f = [];
@@ -801,12 +990,13 @@ function reduce(file){
   });
 }
 function subeFoto(k, file, listo){
-  reduce(file).then(function(b){ guardaFoto(k, b); return cargaBlob(k, b); }).then(function(){ listo(); repinta(); H.cuenta("pdn-foto"); })
+  reduce(file).then(function(b){ guardaFoto(k, b); return cargaBlob(k, b); }).then(function(){ if(listo) listo(); if(SLOTS[k] && SLOTS[k]._pinta !== listo) SLOTS[k]._pinta(); repinta(); H.cuenta("pdn-foto"); })
     .catch(function(){ H.aviso("No pude abrir esa foto. Prueba con JPG o PNG; en iPhone, toma captura de pantalla de la foto y sube la captura."); });
 }
 
 var ICON = '<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C8323F" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="15" rx="3"/><circle cx="12" cy="12.5" r="3.5"/><path d="M8.5 5l1.5-2h4l1.5 2"/></svg>';
-function slot(k, forma, etq, fyGet, fySet){
+var SLOTS = {};
+function slot(k, forma, etq){
   var w = document.createElement("div"); w.className = "slot";
   w.innerHTML = '<label class="caja ' + (forma || "") + '">' + '<input type="file" accept="image/*">' + '<span class="vacio">' + ICON + etq + '</span></label>' +
     '<div class="encuadre" role="group" aria-label="Encuadre"><button type="button" data-v=".15">Arriba</button><button type="button" data-v=".5">Centro</button><button type="button" data-v=".85">Abajo</button></div>' +
@@ -815,13 +1005,17 @@ function slot(k, forma, etq, fyGet, fySet){
   function pinta(){
     var im = FOTOS[k], old = caja.querySelector("img"); if(old) old.remove();
     caja.classList.toggle("lleno", !!im); w.querySelector(".vacio").hidden = !!im; enc.hidden = !im; q.hidden = !im;
-    if(im){ var i = document.createElement("img"); i.src = im.src; i.alt = ""; i.style.objectPosition = "50% " + Math.round(fyGet() * 100) + "%"; caja.appendChild(i); }
-    Array.prototype.forEach.call(enc.children, function(b){ b.setAttribute("aria-pressed", Math.abs(parseFloat(b.dataset.v) - fyGet()) < .2 ? "true" : "false"); });
+    var o = pos(k);
+    if(im){ var i = document.createElement("img"); i.src = im.src; i.alt = ""; i.style.objectPosition = Math.round(o.x * 100) + "% " + Math.round(o.y * 100) + "%"; if(o.z > 1){ i.style.transformOrigin = i.style.objectPosition; i.style.transform = "scale(" + o.z + ")"; } caja.appendChild(i); }
+    Array.prototype.forEach.call(enc.children, function(b){ b.setAttribute("aria-pressed", Math.abs(parseFloat(b.dataset.v) - o.y) < .2 ? "true" : "false"); });
   }
   inp.addEventListener("change", function(){ if(inp.files[0]) subeFoto(k, inp.files[0], pinta); inp.value = ""; });
-  enc.addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; fySet(parseFloat(b.dataset.v)); guarda(); pinta(); repinta(); });
+  enc.addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; var o = pos(k); o.y = parseFloat(b.dataset.v); ponPos(k, o); guarda(); pinta(); repinta(); });
   q.addEventListener("click", function(){ delete FOTOS[k]; guardaFoto(k, null); pinta(); repinta(); });
-  w._pinta = pinta; pinta();
+  ["dragenter","dragover"].forEach(function(t){ caja.addEventListener(t, function(e){ if(!hayArchivo(e)) return; e.preventDefault(); caja.classList.add("suelta"); }); });
+  caja.addEventListener("dragleave", function(){ caja.classList.remove("suelta"); });
+  caja.addEventListener("drop", function(e){ caja.classList.remove("suelta"); var f = archivoDe(e); if(!f) return; e.preventDefault(); subeFoto(k, f, pinta); });
+  w._pinta = pinta; SLOTS[k] = w; pinta();
   return w;
 }
 
@@ -838,7 +1032,7 @@ function pintaPersonas(){
       '<label><span class="etq">Quién es (opcional)</span><input type="text" data-k="rol" maxlength="44" placeholder="Socia desde marzo 2025 · 12 %"></label>' +
       '<label><span class="etq">' + (st.personas.length > 1 ? "Su historia en una o dos frases" : "Tu historia en tres frases") + '</span><textarea data-k="historia" maxlength="' + (st.personas.length > 1 ? 160 : 300) + '" placeholder="Empecé en marzo porque quería algo mío. Lo que cambió fue… Hoy…"></textarea></label>' +
       '</div>';
-    var s = slot("p" + i, "", "Su foto", function(){ return p.fy == null ? .3 : p.fy; }, function(v){ p.fy = v; });
+    var s = slot("p" + i, "", "Su foto");
     el.insertBefore(s, el.querySelector(".campos"));
     el.querySelectorAll("[data-k]").forEach(function(inp){
       inp.value = p[inp.dataset.k] || "";
@@ -874,7 +1068,7 @@ function pintaMas(){
   var box = $("mas");
   MAS.forEach(function(m){
     var it = document.createElement("div"); it.className = "item";
-    var s = slot(m.id, m.forma === "ancha" ? "ancha" : m.forma === "cuadrada" ? "cuadrada" : "", "Subir", function(){ return st.fy[m.id] == null ? (m.id === "captura" ? 0 : .5) : st.fy[m.id]; }, function(v){ st.fy[m.id] = v; });
+    var s = slot(m.id, m.forma === "ancha" ? "ancha" : m.forma === "cuadrada" ? "cuadrada" : "", "Subir");
     var tx = document.createElement("div"); tx.innerHTML = '<h3>' + m.t + '</h3>' + m.tips.map(function(t){ return '<p>' + t + '</p>'; }).join("");
     it.appendChild(s); it.appendChild(tx); box.appendChild(it);
   });
