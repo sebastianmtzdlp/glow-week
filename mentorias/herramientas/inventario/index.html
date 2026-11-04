@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Lo que tengo en casa</title>
-<meta name="description" content="Anota el producto que tienes en casa, cuánto vale y qué ya vendiste. Siempre sabes qué te falta pedir. Gratis, se guarda en tu celular.">
+<meta name="description" content="Anota tus muestras y el producto que ya tienes en casa: cuánto vale y qué ya prestaste o vendiste. No necesitas comprar producto para vender. Gratis, se guarda en tu celular.">
 <meta property="og:title" content="Lo que tengo en casa">
-<meta property="og:description" content="Qué producto tienes, cuánto vale y qué te falta pedir.">
+<meta property="og:description" content="Tus muestras y lo que ya tienes en casa, en un solo lugar.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/inventario/">
@@ -80,7 +80,7 @@
   <header class="portada">
     <div>
       <h1>Lo que tengo <em>en casa</em></h1>
-      <p class="bajada">Tu producto en un lugar: cuántos tienes, cuánto vale y cuál se está acabando. Cuando vendes uno, tocas un botón.</p>
+      <p class="bajada">No necesitas tener producto en casa para vender: Farmasi le envía cada pedido a tu clienta. Esto es para tus muestras y lo que ya tienes: cuántos son, cuánto valen y cuál se está acabando.</p>
     </div>
     <section class="bloque" aria-label="Tu inventario">
       <h2>Tu <em>inventario</em></h2>
@@ -130,7 +130,7 @@
 
   <section class="sigue" aria-labelledby="sTit">
     <div class="cab"><h2 id="sTit">Con esto sigues</h2></div>
-    <a class="otra" href="/mentorias/herramientas/pedidos/" data-cuenta="ir-pedidos"><b>Pedidos y cobros</b><span>Cuánto te deben y qué falta por entregar.</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/pedidos/" data-cuenta="ir-pedidos"><b>Pedidos y cobros</b><span>Cuánto te deben y a quién no le ha llegado.</span><i aria-hidden="true">→</i></a>
     <a class="otra" href="/mentorias/herramientas/primeros-200/" data-cuenta="ir-200"><b>Primeros 200 puntos</b><span>El reto para quien arranca.</span><i aria-hidden="true">→</i></a>
   </section>
   <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en tu celular. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
@@ -158,7 +158,7 @@
     var tope = !pro && st.its.length >= LIM; $("lim").textContent = pro ? "Sin límite de productos." : st.its.length + " de " + LIM + " productos gratis."; $("lim").style.color = tope ? "var(--accent-ink)" : "";
     $("alta").querySelector("button").disabled = tope;
     var bajos = pro ? st.its.filter(function(i){ return i.min !== "" && i.min != null && (+i.q || 0) <= +i.min; }) : [];
-    $("alertas").innerHTML = bajos.length ? '<div class="alerta"><b>Por pedir:</b> ' + bajos.map(function(i){ return H.esc(i.n) + " (" + (+i.q || 0) + ")"; }).join(", ") + ".</div>" : "";
+    $("alertas").innerHTML = bajos.length ? '<div class="alerta"><b>Se están acabando:</b> ' + bajos.map(function(i){ return H.esc(i.n) + " (" + (+i.q || 0) + ")"; }).join(", ") + ".</div>" : "";
     $("its").innerHTML = "";
     st.its.forEach(function(i){
       var d = document.createElement("div"), bajo = pro && i.min !== "" && i.min != null && (+i.q || 0) <= +i.min;

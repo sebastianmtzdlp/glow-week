@@ -159,7 +159,7 @@
   .line .q{display:flex;align-items:center;gap:6px;background:var(--soft);border-radius:12px;padding:3px}
   .line .q .step-btn{width:28px;height:28px}
   .form{padding:14px 22px 0;display:grid;gap:10px}
-  .form label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .form label,.form .lbl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
   .form input,.form select{width:100%;margin-top:4px;height:44px;border:1px solid var(--line);border-radius:12px;padding:0 12px;font:inherit;color:var(--ink);background:var(--card)}
   .form input:focus,.form select:focus{outline:2px solid var(--ink);outline-offset:1px}
   .socia{margin:4px 22px 14px;border-radius:16px;background:var(--tint);padding:0 14px}
@@ -236,6 +236,7 @@
   .bar .wrap{flex-wrap:wrap}
   .addr{display:grid;gap:10px}
   .addr.hide{display:none}
+  .delnote{margin:2px 0 0;font-size:14px;color:var(--muted)}
   .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .form textarea{width:100%;margin-top:4px;min-height:56px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;color:var(--ink);resize:vertical}
   .form textarea:focus{outline:2px solid var(--ink);outline-offset:1px}
@@ -510,7 +511,7 @@
   /* hoja de pedido */
   .sheet{border-radius:24px 24px 0 0}
   .form{gap:14px}
-  .form label{font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600}
+  .form label,.form .lbl{font-size:13px;letter-spacing:0;text-transform:none;color:var(--ink);font-weight:600}
   .form input,.form select,.form textarea{height:50px;margin-top:6px;border:1.5px solid transparent;background:var(--soft);border-radius:14px;padding:0 14px;font-size:16px}
   .form textarea{height:auto;padding:12px 14px}
   .form input:focus,.form select:focus,.form textarea:focus{outline:0;border-color:var(--ink);background:var(--card)}
@@ -624,8 +625,8 @@
     <div class="lines" id="lines"></div>
     <div class="form">
       <div><label for="cName">Nombre y apellido</label><input id="cName" autocomplete="name" placeholder="Ej. Ana López" required></div>
-      <div><label for="cDel">Entrega</label>
-        <select id="cDel"><option>Envío a domicilio</option><option>Paso a recoger</option><option>Lo platicamos</option></select></div>
+      <div><span class="lbl">Dirección de envío</span><input type="hidden" id="cDel" value="Envío a domicilio">
+        <p class="delnote">Farmasi te lo envía directo a tu casa.</p></div>
       <div class="addr" id="addr">
         <div><label for="aStreet">Calle y número</label><input id="aStreet" autocomplete="address-line1" placeholder="Av. Siempre Viva 123, int. 4"></div>
         <div class="row2">
@@ -1313,7 +1314,7 @@
     if(hide) return; r.hidden=false; r.innerHTML=`<span>Dejaste <b>${n} ${n===1?"producto":"productos"}</b> en tu pedido.</span><button type="button" id="rsGo">Ver pedido</button><button type="button" class="rx" id="rsX" aria-label="Cerrar">×</button>`;
     $("rsGo").onclick=()=>{ openSheet(); }; $("rsX").onclick=()=>{ r.hidden=true; try{ sessionStorage.setItem("glow_rs","1"); }catch(_){} }; })();
   $("q").addEventListener("input", e=>{ qry = e.target.value; renderCatalog(); clearTimeout(window.__qt); window.__qt = setTimeout(()=>{ if(qry.trim().length>2) gc("buscar/"+norm(qry).slice(0,30), "Búsqueda"); }, 900); });
-  (function(){ const P = Object.assign({metodos:[],entrega:"Al confirmar tu pedido te digo cuándo llega.",extra:[]}, D.pago||{});
+  (function(){ const P = Object.assign({metodos:[],entrega:"Farmasi te lo envía a domicilio. Al confirmar tu pedido te digo cuándo llega.",extra:[]}, D.pago||{});
     const L = [`Mandas tu pedido por WhatsApp: no pagas nada en esta página.`, `Te confirmo existencias y el total antes de que pagues.`,
       `Con ${money(GOAL)} o más en productos el envío es gratis y te llevas ${D.meta.regalo}.`, `Si no llegas a esa meta, el envío cuesta $129.`];
     if (P.metodos.length) L.push(`Formas de pago: ${P.metodos.join(", ")}.`); else L.push("Te paso las formas de pago disponibles cuando confirmes tu pedido.");

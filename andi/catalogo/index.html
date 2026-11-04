@@ -131,7 +131,8 @@
   .gift .gi{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
   .gift .gi span{background:#fff;border-radius:999px;padding:4px 9px;font-size:12px}
   .form{display:grid;gap:10px;margin-top:12px}
-  .form label{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .form label,.form .lbl{font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);font-weight:600}
+  .delnote{margin:2px 0 0;font-size:14px;color:var(--muted)}
   .form input,.form select,.form textarea{width:100%;margin-top:4px;min-height:44px;border:1px solid var(--line);border-radius:12px;padding:10px 12px;font:inherit;color:var(--ink);background:#fff}
   .form .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
   .addr{display:grid;gap:10px} .addr.hide{display:none}
@@ -418,7 +419,7 @@
     const {n,t,r,s} = totals();
     if (!n) { closeSheet(); return; }
     const g = goalHTML(t);
-    const saved = {}; try { fields.concat("cDel").forEach(f => saved[f] = localStorage.getItem("glow_" + f) || ""); } catch(_){}
+    const saved = {}; try { fields.forEach(f => saved[f] = localStorage.getItem("glow_" + f) || ""); } catch(_){}
     openSheet("Tu pedido", `
       <div class="goal${g.done?" done":""}" style="font-size:13px;color:var(--muted)">${g.html}<div class="track"><i style="width:${g.w}%"></i></div></div>
       ${GIFT_ITEMS.length ? `<div class="gift">Con ${money(GOAL)} o más te llevas <b>${GIFT}</b> de regalo (${money(GIFT_ITEMS.reduce((a,x)=>a+x.retail,0))} en productos):<div class="gi">${GIFT_ITEMS.map(x=>`<span>${x.name}</span>`).join("")}</div></div>` : ""}
@@ -426,7 +427,7 @@
         <div class="q"><button class="sb" data-step="-1" data-c="${c}" aria-label="Quitar uno">${minus}</button><output class="num">${q}</output><button class="sb" data-step="1" data-c="${c}" aria-label="Agregar otro">${plus}</button></div></div>`).join("")}
       <div class="form">
         <div><label for="cName">Nombre y apellido</label><input id="cName" autocomplete="name" placeholder="Ej. Ana López" value="${saved.cName||""}"></div>
-        <div><label for="cDel">Entrega</label><select id="cDel"><option>Envío a domicilio</option><option>Paso a recoger</option><option>Lo platicamos</option></select></div>
+        <div><span class="lbl">Dirección de envío</span><input type="hidden" id="cDel" value="Envío a domicilio"><p class="delnote">Farmasi te lo envía directo a tu casa.</p></div>
         <div class="addr" id="addr">
           <div><label for="aStreet">Calle y número</label><input id="aStreet" autocomplete="address-line1" value="${saved.aStreet||""}"></div>
           <div class="row2"><div><label for="aCol">Colonia</label><input id="aCol" autocomplete="address-level3" value="${saved.aCol||""}"></div>

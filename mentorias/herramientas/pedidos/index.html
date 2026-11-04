@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Pedidos y cobros</title>
-<meta name="description" content="Apunta cada pedido, quién ya pagó y qué falta por entregar. Te dice cuánto te deben y arma el mensaje de cobro. Gratis, se guarda en tu celular.">
+<meta name="description" content="Apunta cada pedido, quién ya pagó y a quién no le ha llegado. Te dice cuánto te deben y arma el mensaje de cobro. Gratis, se guarda en tu celular.">
 <meta property="og:title" content="Pedidos y cobros">
-<meta property="og:description" content="Qué pedidos tienes, quién ya pagó y qué falta por entregar.">
+<meta property="og:description" content="Qué pedidos tienes, quién ya pagó y a quién no le ha llegado.">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="es_MX">
 <meta property="og:url" content="https://mitienda.beauty/mentorias/herramientas/pedidos/">
@@ -77,7 +77,7 @@
   <header class="portada">
     <div>
       <h1>Pedidos <em>y cobros</em></h1>
-      <p class="bajada">Cada pedido con su total, si ya pagó y si ya lo entregaste. Siempre sabes cuánto te deben y a quién cobrarle. Se guarda en tu celular.</p>
+      <p class="bajada">Cada pedido con su total, si ya pagó y si ya le llegó. Siempre sabes cuánto te deben y a quién cobrarle. Se guarda en tu celular.</p>
     </div>
     <section class="caja" aria-label="Cómo vas este mes">
       <h2>Este mes <em id="mesNom"></em></h2>
@@ -86,7 +86,7 @@
         <div><b id="cVen">$0</b><span>vendido</span></div>
         <div><b id="cCob">$0</b><span>ya cobrado</span></div>
         <div class="debe"><b id="cDebe">$0</b><span>te deben</span></div>
-        <div><b id="cEnt">0</b><span>por entregar</span></div>
+        <div><b id="cEnt">0</b><span>por llegar</span></div>
       </div>
     </section>
   </header>
@@ -161,7 +161,7 @@
     var tope = !pro && st.peds.length >= LIM;
     $("lim").textContent = pro ? "Sin límite de pedidos." : st.peds.length + " de " + LIM + " pedidos gratis."; $("lim").style.color = tope ? "var(--accent-ink)" : "";
     $("alta").querySelector("button").disabled = tope;
-    var F = [["todos", "Todos"], ["debe", "Me deben"], ["entregar", "Por entregar"], ["listo", "Listos"]];
+    var F = [["todos", "Todos"], ["debe", "Me deben"], ["entregar", "Por llegar"], ["listo", "Listos"]];
     $("filtros").innerHTML = F.map(function(f){ return '<button class="chip" type="button" data-f="' + f[0] + '" aria-pressed="' + (filtro === f[0]) + '">' + f[1] + "</button>"; }).join("");
     $("filtros").querySelectorAll("button").forEach(function(b){ b.addEventListener("click", function(){ filtro = b.dataset.f; pinta(); }); });
     var vis = st.peds.filter(function(p){ return filtro === "todos" || (filtro === "debe" && debe(p) > 0) || (filtro === "entregar" && !p.e) || (filtro === "listo" && debe(p) === 0 && p.e); }).sort(function(a, b){ return (b.f || "").localeCompare(a.f || ""); });
@@ -169,11 +169,11 @@
     vis.forEach(function(p){
       var li = document.createElement("li"), d = debe(p), est = d > 0 ? "debe" : "pagado";
       li.className = "ped " + est;
-      li.innerHTML = '<details><summary><b>' + H.esc(p.n) + '</b><small>' + H.fecha(p.f) + (p.q ? " · " + H.esc(p.q) : "") + (p.e ? " · entregado" : " · por entregar") + '</small><span class="m">' + money(p.t) + '<span>' + (d > 0 ? "debe " + money(d) : "pagado") + '</span></span></summary>' +
+      li.innerHTML = '<details><summary><b>' + H.esc(p.n) + '</b><small>' + H.fecha(p.f) + (p.q ? " · " + H.esc(p.q) : "") + (p.e ? " · ya le llegó" : " · por llegar") + '</small><span class="m">' + money(p.t) + '<span>' + (d > 0 ? "debe " + money(d) : "pagado") + '</span></span></summary>' +
         '<div class="ficha"><div class="fila"><label><span class="etq">Ya pagó $</span><input type="number" inputmode="decimal" min="0" data-k="pg" value="' + (+p.pg || 0) + '"></label>' +
         '<label><span class="etq">Mi ganancia $</span><input type="number" inputmode="decimal" min="0" data-k="g" value="' + (p.g === "" || p.g == null ? "" : p.g) + '" placeholder="opcional"></label></div>' +
-        '<label style="display:flex;gap:10px;align-items:center"><input type="checkbox" data-k="e"' + (p.e ? " checked" : "") + ' style="width:20px;height:20px;min-height:0;accent-color:var(--ink)"> Ya lo entregué</label>' +
-        '<div class="btns"><a class="btn2" target="_blank" rel="noopener" data-cuenta="cobrar" href="' + H.wa(d > 0 ? "Hola " + p.n + ", ¿cómo estás? Te recuerdo tu pedido de " + money(p.t) + (+p.pg ? " (ya me diste " + money(p.pg) + ", faltan " + money(d) + ")" : "") + ". ¿Me confirmas cuándo te acomoda pagarlo? ¡Gracias!" : "Hola " + p.n + ", ya está listo tu pedido. ¿Cuándo te lo llevo?") + '">' + (d > 0 ? "Cobrar por WhatsApp" : "Avisar que está listo") + '</a><button class="enlace" type="button" data-x>Quitar</button></div></div></details>';
+        '<label style="display:flex;gap:10px;align-items:center"><input type="checkbox" data-k="e"' + (p.e ? " checked" : "") + ' style="width:20px;height:20px;min-height:0;accent-color:var(--ink)"> Ya le llegó</label>' +
+        '<div class="btns"><a class="btn2" target="_blank" rel="noopener" data-cuenta="cobrar" href="' + H.wa(d > 0 ? "Hola " + p.n + ", ¿cómo estás? Te recuerdo tu pedido de " + money(p.t) + (+p.pg ? " (ya me diste " + money(p.pg) + ", faltan " + money(d) + ")" : "") + ". ¿Me confirmas cuándo te acomoda pagarlo? ¡Gracias!" : "Hola " + p.n + ", ya salió tu pedido y Farmasi te lo envía a tu casa. Te aviso cuando tenga la guía.") + '">' + (d > 0 ? "Cobrar por WhatsApp" : "Avisar que ya salió") + '</a><button class="enlace" type="button" data-x>Quitar</button></div></div></details>';
       li.querySelectorAll("[data-k]").forEach(function(i){ i.addEventListener("change", function(){ p[i.dataset.k] = i.type === "checkbox" ? i.checked : (i.value === "" ? "" : +i.value); guarda(); pinta(); }); });
       li.querySelector("[data-x]").addEventListener("click", function(){ if(confirm("¿Quitar el pedido de " + p.n + "?")){ st.peds = st.peds.filter(function(x){ return x !== p; }); guarda(); pinta(); } });
       $("peds").appendChild(li);
@@ -208,7 +208,7 @@
       }, function(e){ $("tabNota").textContent = e.message; });
     });
     $("exp").addEventListener("click", function(){
-      var cab = ["Fecha", "Clienta", "Qué lleva", "Total", "Pagó", "Debe", "Ganancia", "Entregado"], filas = st.peds.slice().sort(function(a, b){ return (a.f || "").localeCompare(b.f || ""); }).map(function(p){ return [p.f, p.n, p.q, p.t, p.pg || 0, debe(p), p.g, p.e ? "sí" : "no"]; });
+      var cab = ["Fecha", "Clienta", "Qué lleva", "Total", "Pagó", "Debe", "Ganancia", "Le llegó"], filas = st.peds.slice().sort(function(a, b){ return (a.f || "").localeCompare(b.f || ""); }).map(function(p){ return [p.f, p.n, p.q, p.t, p.pg || 0, debe(p), p.g, p.e ? "sí" : "no"]; });
       var csv = [cab].concat(filas).map(function(r){ return r.map(function(c){ return '"' + String(c == null ? "" : c).replace(/"/g, '""') + '"'; }).join(","); }).join("\n");
       H.descarga(new Blob(["﻿" + csv], {type: "text/csv;charset=utf-8"}), "pedidos-" + H.iso() + ".csv"); H.cuenta("pedidos-exporta");
     });
