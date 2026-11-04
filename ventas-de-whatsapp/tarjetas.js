@@ -177,7 +177,9 @@
   $("pdfTit").oninput = function(){ S.pdfTit = this.value === PDF_AUTO ? "" : this.value; save(); clearTimeout(tm); tm = setTimeout(pintaPDF, 300); };
   $("pdfSub").oninput = function(){ S.pdfSub = this.value; save(); clearTimeout(tm); tm = setTimeout(pintaPDF, 300); };
 
-  function ligaProd(p){ if(!YO) return ""; return "https://mitienda.beauty/" + YO.slug + "/" + (ENT[p.code] ? "?p=" + encodeURIComponent(p.code) : ""); }
+  /* ?agrega= abre su tienda con el producto ya en el pedido de la clienta (lo lee el tablero) */
+  function ligaProd(p){ if(!YO) return ""; return "https://mitienda.beauty/" + YO.slug + "/" + (ENT[p.code] ? "?agrega=" + encodeURIComponent(p.code) : ""); }
+  function ligaTodos(l){ var c = l.filter(function(p){ return ENT[p.code]; }).map(function(p){ return p.code; }); return YO && c.length > 1 ? "https://mitienda.beauty/" + YO.slug + "/?agrega=" + c.join(",") : ""; }
   function ligaTienda(){ return YO ? "https://mitienda.beauty/" + YO.slug + "/" : ""; }
   function ligaCorta(){ return YO ? "mitienda.beauty/" + YO.slug : "mitienda.beauty"; }
   function off(pr){ return pr.fin < pr.pub ? Math.round((1 - pr.fin / pr.pub) * 100) : 0; }
@@ -387,7 +389,12 @@
   function mensaje(){
     var l = S.sel.map(function(c){ return IDX[c]; });
     var t = l.map(function(p){ var pr = precioDe(p); return "• " + nombreDe(p) + ": " + money(pr.fin) + (pr.fin < pr.pub ? " (antes " + money(pr.pub) + ")" : "") + "\n  " + ligaProd(p); }).join("\n");
-    return (S.frase ? S.frase + "\n\n" : "") + t + "\n\nTe lo aparto por aquí o lo pides directo en mi tienda.";
+    var todos = ligaTodos(l), alguno = l.some(function(p){ return ENT[p.code]; });
+    var cierre = !YO ? "Te lo aparto por aquí o lo pides directo en mi tienda."
+      : todos ? "Para pedir todo de una vez, toca aquí y se agrega solo a tu pedido:\n" + todos + "\n\nO dime por aquí y te lo aparto."
+      : alguno ? "Toca el link y se agrega solo a tu pedido. O dime por aquí y te lo aparto."
+      : "Te lo aparto por aquí o lo pides directo en mi tienda.";
+    return (S.frase ? S.frase + "\n\n" : "") + t + "\n\n" + cierre;
   }
   function slug(s){ return norm(s).replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 40) || "tarjeta"; }
   function blob(c){ return new Promise(function(ok){ try{ c.toBlob(function(b){ ok(b); }, "image/png"); }catch(_){ ok(null); } }); }
