@@ -119,6 +119,12 @@
       "nombre": "Sam",
       "whatsapp": "525624758663",
       "ig": ""
+    },
+    {
+      "slug": "dona",
+      "nombre": "Dona",
+      "whatsapp": "",
+      "ig": ""
     }
   ]
 }

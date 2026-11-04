@@ -93,5 +93,10 @@
   "title": "Farmasi con Sam",
   "desc": "Pronto llega un nuevo evento, y siempre hay promos para ti. Arma tu pedido y mándalo por WhatsApp.",
   "eyebrow": "Farmasi"
+ },
+ "dona": {
+  "title": "Farmasi con Dona",
+  "desc": "Pronto llega un nuevo evento, y siempre hay promos para ti. Arma tu pedido y mándalo por WhatsApp.",
+  "eyebrow": "Farmasi"
  }
 }
