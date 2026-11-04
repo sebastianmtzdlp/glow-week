@@ -159,7 +159,7 @@
   if(e.boton&&e.boton.url) bt+=`<a class="btn${bt?"":" fill"}" id="bOtro" href="${esc(e.boton.url)}" target="_blank" rel="noopener">${esc(e.boton.texto||"Quiero ir")}</a>`;
   $("btns").innerHTML=bt; if(!bt){ $("aviso").textContent="Muy pronto te decimos cómo apartar tu lugar."; $("aviso").hidden=false; }
   // Quién le escribió a quién y quién la invitó (?de=): tabla privada eventos_interesadas en Supabase
-  const anota=(ev,r,origen)=>{ try{ const K="sb_publishable_ltaNA7nnVozoSCOcZIjg", inv=new URLSearchParams(location.search).get("de");
+  const anota=(ev,r,origen)=>{ try{ const K="sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk", inv=new URLSearchParams(location.search).get("de");
     let d=null; try{ d=localStorage.getItem("eventos_disp")||crypto.randomUUID(); localStorage.setItem("eventos_disp",d); }catch(_){}
     fetch("https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/eventos_interesadas",{method:"POST",keepalive:true,
       headers:{"Content-Type":"application/json",apikey:K,Authorization:"Bearer "+K,Prefer:"return=minimal"},

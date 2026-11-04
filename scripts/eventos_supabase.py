@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DATOS = ROOT / "_data" / "eventos.json"
 # La misma llave pública que usan los catálogos; la tabla solo deja leer los eventos publicados
 URL = "https://ctutqqstqjdngxdjzckf.supabase.co/rest/v1/eventos?select=*&order=desde"
-KEY = "sb_publishable_ltaNA7nnVozoSCOcZIjg"
+KEY = "sb_publishable_dcR_57QYkwvWbfqwkdXpcA_BaSX2yrk"
 MX = ZoneInfo("America/Mexico_City")
 SLUG = re.compile(r"[a-z0-9]+(-[a-z0-9]+)*")
 # Columnas que pasan tal cual al JSON (las vacías no se escriben)
