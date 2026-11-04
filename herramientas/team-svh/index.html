@@ -81,7 +81,7 @@ h2{font:600 20px/1.2 var(--body);letter-spacing:-.01em}
 
 /* 03 objeción */
 .dice{font:500 20px/1.25 var(--body);margin:2px 0 0}
-.dice::before{content:"«"}.dice::after{content:"»"}
+.dice::before{content:"\""}.dice::after{content:"\""}
 .porque{font-size:15px;color:var(--muted)}
 
 /* 04 actividades */
@@ -306,7 +306,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
     <p class="chico">Se guarda en tu celular, sin registrarte. Guárdala en tu pantalla de inicio.</p>
     <nav class="atajos" aria-label="Atajos">
       <a href="/herramientas/ritmo-de-puntos/" data-c="ritmo"><b>Ritmo de Puntos</b><span>Tu meta del mes, día por día</span></a>
-      <a href="/herramientas/gratis/" data-c="todas"><b>Las 27 herramientas</b><span>Con buscador, por momento</span></a>
+      <a href="/herramientas/gratis/" data-c="todas"><b>Las 28 herramientas</b><span>Con buscador, por momento</span></a>
     </nav>
   </header>
 
@@ -547,7 +547,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
       {h:"Cuando ella pregunta por un producto", c:"Para pasar de la venta a la invitación.", x:"¡Claro, {nombre}! Te lo aparto. Por cierto, yo lo pido a precio de socia y tú también podrías: hay gente que entra solo para comprar más barato y otras que lo hacen negocio. ¿Te cuento cómo funciona en 10 minutos?"}
     ]},
     {k:"seguir", t:"Seguimiento", d:"Seguimiento orgánico, sin intensear: felicitar, reaccionar, hacerte presente. Anota a cada una como tibia, caliente o lista.", m:[
-      {h:"Te dijo «luego te digo»", c:"Dos o tres días después.", x:"Hola {nombre}, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode."},
+      {h:"Te dijo \"luego te digo\"", c:"Dos o tres días después.", x:"Hola {nombre}, ¿pudiste ver lo que te mandé? Si te quedó alguna duda, la vemos en 10 minutos cuando te acomode."},
       {h:"Hacerte presente", c:"Cuando publica algo suyo. Sin hablar del negocio.", x:"{nombre}, ¡qué bonito lo que publicaste! Me dio mucho gusto verlo."},
       {h:"Después de la presentación", c:"El mismo día o al siguiente.", x:"{nombre}, gracias por tu tiempo hoy. ¿Qué fue lo que más te llamó la atención?"},
       {h:"Si dijo que no", c:"La puerta queda abierta.", x:"Gracias por decírmelo, {nombre}, de verdad. Si más adelante cambia algo, aquí estoy. Y si un día quieres algún producto, con gusto te lo consigo."}
@@ -596,7 +596,7 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
 
   /* 04 objeciones (las 12 de ¿Y si me dice que no?) */
   var O = [
-    {o:"Está caro", r:"No ve el valor todavía, o lo compara con algo que ya usa y le funciona «más o menos».", x:"Te entiendo, {nombre}. Dime qué usas hoy para eso y cuánto te dura: a veces sale igual o menos por mes. Y si quieres, empezamos con uno solo para que lo pruebes.", s:"¿Qué usas hoy para eso?"},
+    {o:"Está caro", r:"No ve el valor todavía, o lo compara con algo que ya usa y le funciona \"más o menos\".", x:"Te entiendo, {nombre}. Dime qué usas hoy para eso y cuánto te dura: a veces sale igual o menos por mes. Y si quieres, empezamos con uno solo para que lo pruebes.", s:"¿Qué usas hoy para eso?"},
     {o:"No uso maquillaje", r:"Cree que solo vendes maquillaje. Lo que más se vende es cuidado de la piel.", x:"Perfecto, {nombre}, yo tampoco todos los días. Lo que más vendo es cuidado de la piel y del cuerpo: limpiador, crema, protector. Eso sí lo usas, ¿no?", s:"¿Qué es lo que sí usas en la mañana?"},
     {o:"Ya uso otra marca", r:"Costumbre, no rechazo. No le pidas que cambie todo.", x:"Qué bueno que ya te cuidas, {nombre}. No te pido que cambies nada: prueba el paso que te falta en tu rutina y compáralo. Si no te convence, no pasa nada.", s:"¿Qué paso te falta: limpiar, hidratar o proteger?"},
     {o:"Luego te digo", r:"No hay urgencia, o no quiere decir que no. Dale una fecha concreta con dos opciones.", x:"Claro, {nombre}. ¿Te escribo {dias}? Así no se me pasa a mí ni a ti.", s:"¿Cuál de los dos días te acomoda?"},
@@ -654,35 +654,35 @@ footer{padding:36px 0 40px;font-size:13px;color:var(--muted)}
   var TIPOS = {V:["Valor","#8FB3A0"], P:["Producto","#F2B8BC"], D:["Día a día","#C9A27A"], T:["Testimonio","#9EA2C2"], N:["Negocio","#DB414C"], A:["Antes y después","#E6C84F"]};
   var IDEAS = [
     ["V","Tres errores al lavarte la cara que yo también cometía",["Di el error que más ves (agua caliente, tallar, dormir maquillada).","Qué haces tú ahora, en una frase.","Pregunta: ¿cuál cometes tú?"]],
-    ["P","Lo que uso cuando tengo 5 minutos en la mañana",["Muestra tus 3 productos en el orden en que los usas.","Un detalle real de textura o aroma de uno.","Cierra: «¿quieres que te arme una rutina así? Escríbeme»."]],
+    ["P","Lo que uso cuando tengo 5 minutos en la mañana",["Muestra tus 3 productos en el orden en que los usas.","Un detalle real de textura o aroma de uno.","Cierra: \"¿quieres que te arme una rutina así? Escríbeme\"."]],
     ["D","Mi bloque de 10 contactos, sin filtro",["Graba tu mesa, el café y el celular.","Di cuántos mensajes vas a mandar y a quién (sin nombres).","Termina con el número que lograste y cuántas contestaron."]],
-    ["T","Lo que me dijo una clienta hoy",["Cuenta la frase tal cual (con permiso y sin su nombre).","Qué producto usó y para qué lo quería.","«Si te pasa lo mismo, platicamos»."]],
-    ["N","Por qué empecé esto",["Una sola razón honesta, sin adornos.","Qué cambió en tu semana: un hecho, no una promesa.","«Si te late saber cómo funciona, mándame un mensaje»."]],
+    ["T","Lo que me dijo una clienta hoy",["Cuenta la frase tal cual (con permiso y sin su nombre).","Qué producto usó y para qué lo quería.","\"Si te pasa lo mismo, platicamos\"."]],
+    ["N","Por qué empecé esto",["Una sola razón honesta, sin adornos.","Qué cambió en tu semana: un hecho, no una promesa.","\"Si te late saber cómo funciona, mándame un mensaje\"."]],
     ["A","Mi cara en la mañana y mi cara con la rutina puesta",["Dos fotos a la misma luz, sin filtro.","Di lo que sientes al ponértela, no lo que promete.","Nombra los productos. Aclara que cada piel es distinta."]],
-    ["V","Cómo elegir tu tono de base sin que quede naranja",["Explica por qué se prueba en el cuello y no en la mano.","Muestra cómo lo pruebas tú a la luz del día.","«Mándame tu foto y te digo cuál es el tuyo»."]],
+    ["V","Cómo elegir tu tono de base sin que quede naranja",["Explica por qué se prueba en el cuello y no en la mano.","Muestra cómo lo pruebas tú a la luz del día.","\"Mándame tu foto y te digo cuál es el tuyo\"."]],
     ["P","El producto que más me piden este mes",["Muéstralo en uso, no en la caja.","Una razón concreta por la que lo piden.","Precio y cómo pedirlo: tu link."]],
     ["D","Un día en mi negocio, en 15 segundos",["Cinco clips de 3 segundos: café, contactos, pedidos, contenido, cierre.","Texto encima con la hora de cada uno.","La frase del día como pie."]],
-    ["T","Antes de comprar me preguntó esto",["La duda real de una clienta.","Tu respuesta en dos frases.","«¿Tú también lo pensabas?»"]],
-    ["N","Lo que hago cada día, sin esperar motivación",["Tus tres actividades fijas (contactar, presentar, publicar).","A qué hora las haces.","«No es magia, es método.»"]],
+    ["T","Antes de comprar me preguntó esto",["La duda real de una clienta.","Tu respuesta en dos frases.","\"¿Tú también lo pensabas?\""]],
+    ["N","Lo que hago cada día, sin esperar motivación",["Tus tres actividades fijas (contactar, presentar, publicar).","A qué hora las haces.","\"No es magia, es método.\""]],
     ["A","Semana 1 y semana 4 con el mismo producto",["Muestra el producto en los dos momentos.","Lo que notaste: sensación, costumbre, lo que te gusta.","Aclara: cada piel es distinta y esto es lo mío."]],
-    ["V","El orden correcto de una rutina de noche",["Enumera los 4 pasos.","Una frase de por qué el orden importa.","«Guárdalo o te lo mando por WhatsApp»."]],
-    ["P","Esto es lo que trae mi kit",["Desempaca como si fuera la primera vez.","Para qué usas cada cosa, en una frase cada una.","«Si quieres el tuyo, te explico cómo empezar»."]],
+    ["V","El orden correcto de una rutina de noche",["Enumera los 4 pasos.","Una frase de por qué el orden importa.","\"Guárdalo o te lo mando por WhatsApp\"."]],
+    ["P","Esto es lo que trae mi kit",["Desempaca como si fuera la primera vez.","Para qué usas cada cosa, en una frase cada una.","\"Si quieres el tuyo, te explico cómo empezar\"."]],
     ["D","Mi lista de hoy: a quién le escribo",["Muestra tu lista tapando los nombres.","Cuántas contestaron ayer.","Cuántas presentaciones tienes hoy."]],
-    ["T","Su primera recompra",["Qué se le acabó y cuánto le duró.","Qué le recomendaste además, y por qué.","«Así se cuida a una clienta.»"]],
+    ["T","Su primera recompra",["Qué se le acabó y cuánto le duró.","Qué le recomendaste además, y por qué.","\"Así se cuida a una clienta.\""]],
     ["N","Tres cosas que me dijeron que no iba a poder",["Menciónalas sin drama.","Qué hiciste con cada una.","Un hecho de hoy que las contesta."]],
-    ["A","Mi maquillaje de 10 minutos",["Time-lapse de inicio a fin.","Los 4 productos, con nombre.","«¿Te armo el tuyo?»"]],
+    ["A","Mi maquillaje de 10 minutos",["Time-lapse de inicio a fin.","Los 4 productos, con nombre.","\"¿Te armo el tuyo?\""]],
     ["V","Qué hacer si te brilla la cara a medio día",["La causa en una frase.","Tu truco de siempre.","Un producto que ayuda y cómo lo usas."]],
-    ["P","Lo que compro con mi descuento de socia",["Tu pedido del mes, sobre la mesa.","Qué porcentaje te deja el descuento (no cifras de ganancia).","«Si compras seguido, te conviene ser socia. Te explico.»"]],
+    ["P","Lo que compro con mi descuento de socia",["Tu pedido del mes, sobre la mesa.","Qué porcentaje te deja el descuento (no cifras de ganancia).","\"Si compras seguido, te conviene ser socia. Te explico.\""]],
     ["D","Mi marcador de hoy",["Foto de tu hoja del día llena.","Contactadas, presentaciones, contenido.","Qué funcionó y qué ajustas mañana."]],
     ["T","Lo que dijo mi mamá cuando lo probó",["La reacción honesta, con risa.","Qué producto era.","Nada de venta: solo el momento."]],
-    ["N","¿Cuánto tiempo le dedico al negocio?",["Tu ritmo: Part, Medio o Full Time.","Cómo lo acomodas en tu día real.","«Se puede empezar con 10 contactos al día.»"]],
+    ["N","¿Cuánto tiempo le dedico al negocio?",["Tu ritmo: Part, Medio o Full Time.","Cómo lo acomodas en tu día real.","\"Se puede empezar con 10 contactos al día.\""]],
     ["A","Mis labios antes y con el tono puesto",["Foto antes, misma luz.","Foto con el tono.","El nombre del tono y tu link."]],
     ["V","Tres productos que no sirven si no haces esto",["El hábito base: limpiar, proteger, ser constante.","Por qué sin eso no hay producto que aguante.","Pregunta qué hábito te cuesta más."]],
     ["P","Para regalar: tres opciones",["Muestra tres, de precio distinto, y di cada precio.","Para quién es cada una.","Tu link para pedir."]],
-    ["D","Así llega tu pedido",["Abre en cámara tu paquete de Farmasi, tal como le llega a tu clienta.","Lo primero que pruebas y por qué.","«Te llega a tu casa, sin vueltas.»"]],
-    ["T","Una clienta que se hizo socia",["Por qué se decidió, en sus palabras.","Qué hizo en su primera semana.","«Si tú también compras seguido, platicamos.»"]],
+    ["D","Así llega tu pedido",["Abre en cámara tu paquete de Farmasi, tal como le llega a tu clienta.","Lo primero que pruebas y por qué.","\"Te llega a tu casa, sin vueltas.\""]],
+    ["T","Una clienta que se hizo socia",["Por qué se decidió, en sus palabras.","Qué hizo en su primera semana.","\"Si tú también compras seguido, platicamos.\""]],
     ["N","Lo que aprendí este mes",["Un error concreto.","Qué cambiaste.","El número que mejoró."]],
-    ["A","Mi rutina completa en 30 segundos",["Mañana en 15 segundos.","Noche en 15 segundos.","«Te la armo con tu nombre: escríbeme.»"]]
+    ["A","Mi rutina completa en 30 segundos",["Mañana en 15 segundos.","Noche en 15 segundos.","\"Te la armo con tu nombre: escríbeme.\""]]
   ];
   var CS = lee("mtb-contenido-v1", {pub:{}, ritmo:1, salto:0}); CS.pub = CS.pub || {};
   function idx(){ var d = new Date(H + "T12:00:00"), n = Math.floor((d - new Date(d.getFullYear(), 0, 0)) / 864e5); return (n + (CS.salto || 0)) % IDEAS.length; }

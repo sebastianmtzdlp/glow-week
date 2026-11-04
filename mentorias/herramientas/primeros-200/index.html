@@ -125,7 +125,7 @@
         <li><label><input type="checkbox" data-c="cli2">Segunda clienta con pedido</label></li>
       </ul>
       <div class="despues">
-        <p><b>Cuando llegues a 200:</b> sigue con «Duplica a 400», rumbo a 6%, en 3 semanas.</p>
+        <p><b>Cuando llegues a 200:</b> sigue con "Duplica a 400", rumbo a 6%, en 3 semanas.</p>
         <p>Recompra de tus primeras clientas, 3 clientas nuevas y tu primera presentación de negocio. El plan completo viene en la <a href="/mentorias/herramientas/pro/">versión Pro</a>.</p>
       </div>
     </section>
@@ -181,7 +181,7 @@
   $("dias").addEventListener("click", function(e){ var b = e.target.closest("[data-d]"); if(!b) return; var i = +b.dataset.d; st.dias[i] = !st.dias[i]; b.setAttribute("aria-pressed", !!st.dias[i]); pinta(); });
   $("checks").addEventListener("change", function(e){ var c = e.target; if(c.dataset.c){ st.c[c.dataset.c] = c.checked; pinta(); } });
   $("inicio").addEventListener("change", function(){ if(this.value){ st.inicio = this.value; pintaDias(); pinta(); } });
-  $("invitar").href = H.wa("¡Hola! Este mes hacemos el reto «Mis primeros 200»: 200 puntos en 14 días, rumbo a 3%. Con marcador para ver tu avance cada día:\nhttps://mitienda.beauty/mentorias/herramientas/primeros-200/\n¿Le entras? Empezamos el lunes.");
+  $("invitar").href = H.wa("¡Hola! Este mes hacemos el reto \"Mis primeros 200\": 200 puntos en 14 días, rumbo a 3%. Con marcador para ver tu avance cada día:\nhttps://mitienda.beauty/mentorias/herramientas/primeros-200/\n¿Le entras? Empezamos el lunes.");
   pintaDias(); pinta();
 })();
 </script>

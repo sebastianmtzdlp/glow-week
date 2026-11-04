@@ -12,7 +12,7 @@
  "aviso": {
   "texto": "Venta de Día de Muertos: Nutriplus, skincare y maquillaje",
   "desde": null,
-  "hasta": null,
+  "hasta": "2026-11-02T23:59:59-06:00",
   "filtro": "Venta de Día de Muertos"
  },
  "especial": {
@@ -20,7 +20,7 @@
   "titulo": "Venta de Día de Muertos",
   "texto": "Lo que elegimos para Día de Muertos: Nutriplus, cuidado de la piel y maquillaje, con precios de la venta. Arma tu pedido y me llega por WhatsApp.",
   "desde": null,
-  "hasta": null,
+  "hasta": "2026-11-02T23:59:59-06:00",
   "productos": [
    {
     "grupo": "Nutriplus",
