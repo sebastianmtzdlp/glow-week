@@ -28,7 +28,7 @@
 .soy select{min-height:44px}
 .soy-nota{margin:8px 0 0;font-size:14px;color:var(--muted)}
 
-/* Seis puertas: cada una lleva a un solo lugar */
+/* Cinco puertas: cada una agrupa lo que va junto */
 .puertas{list-style:none;margin:32px 0 0;padding:0;border-top:2px solid var(--ink)}
 .puerta{border-bottom:1px solid var(--line)}
 .puerta>a{display:grid;grid-template-columns:34px 1fr auto;gap:4px 12px;align-items:baseline;padding:22px 0;text-decoration:none}
@@ -71,7 +71,7 @@
   .principal{grid-column:1;grid-row:1 / span 2}
   .principal>a{padding-top:28px}
   .abanico{height:200px}
-  .abanico img{width:124px;margin-right:-34px}
+  .abanico img{width:112px;margin-right:-30px}
 }
 /* Escritorio ancho: portada a lo ancho y las puertas en tres columnas, la de herramientas grande a la izquierda */
 @media (min-width:1100px){
@@ -104,6 +104,29 @@
 .pide p a{color:var(--ink);text-underline-offset:3px}
 @media (min-width:1100px){.pide{grid-column:2;max-width:none}}
 .dudas-mlm{margin-top:14px;font-size:14px;color:var(--muted)}
+
+/* cada puerta: título y sus destinos */
+.puerta .cab-p{display:grid;grid-template-columns:34px minmax(0,1fr);gap:4px 12px}
+.puertas .entrar{padding:0}
+.principal .sub i{display:block}
+@media (min-width:1100px){.puerta>.cab-p{padding:26px 0 28px}.principal>.cab-p{padding-top:30px}.principal .abanico img{width:100px;margin-right:-22px}}
+/* sublistas dentro de cada puerta */
+.sub{list-style:none;margin:14px 0 0;padding:0;grid-column:2 / -1;border-top:1px solid var(--line)}
+.sub a{display:grid;grid-template-columns:1fr auto;gap:2px 12px;align-items:baseline;padding:12px 0;border-bottom:1px solid var(--line);text-decoration:none}
+.sub li:last-child a{border-bottom:0}
+.sub b{font-weight:600;font-size:17px}
+.sub span{grid-column:1;color:var(--muted);font-size:15px}
+.sub i{grid-row:1 / span 2;grid-column:2;font:500 16px/1 var(--mono);font-style:normal;color:var(--muted);align-self:center}
+.sub a:active b{transform:translateX(2px)}
+.puerta>.cab-p{padding:22px 0}
+.principal .cab-p .btn{grid-column:2;justify-self:start;margin-top:22px}
+.principal .abanico{grid-column:2;text-decoration:none}
+.logros{display:grid;grid-template-columns:1fr auto;gap:4px 16px;align-items:center;margin:28px 0 0;padding:18px 20px;background:var(--soft);border-radius:18px;text-decoration:none}
+.logros b{font:400 22px/1.1 var(--serif)}
+.logros span{grid-column:1;color:var(--muted);font-size:15px}
+.logros i{grid-row:1 / span 2;grid-column:2;font:500 18px/1 var(--mono);font-style:normal}
+@media (hover:hover) and (pointer:fine){.sub a:hover b,.logros:hover b{text-decoration:underline;text-underline-offset:4px;text-decoration-thickness:1px}}
+@media (min-width:900px){.logros{grid-column:2}}
 </style>
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
@@ -132,50 +155,49 @@
 
     <ol class="puertas">
       <li class="puerta principal">
-        <a href="/herramientas/gratis/" data-cuenta="puerta-herramientas">
+        <div class="cab-p">
           <span class="n">01</span>
           <h2>Herramientas <em>gratis</em></h2>
           <p>27 herramientas para tu día, tu tienda y tu equipo. Sin registrarte; lo que llenas se queda en tu celular.</p>
-          <div class="abanico" aria-hidden="true">
+          <a class="abanico" href="/herramientas/gratis/" aria-hidden="true" tabindex="-1">
             <img src="/mentorias/herramientas/vistas/hoja.webp" alt="" style="--r:-6deg;--y:6px;--k:0">
             <img src="/mentorias/herramientas/vistas/nivel.webp" alt="" style="--r:-2deg;--y:0px;--k:1">
             <img src="/mentorias/herramientas/vistas/primeros-200.webp" alt="" style="--r:2deg;--y:0px;--k:2">
             <img src="/mentorias/herramientas/vistas/mensajes.webp" alt="" style="--r:6deg;--y:6px;--k:3">
-          </div>
-          <span class="btn">Ver las herramientas</span>
-        </a>
+          </a>
+          <a class="btn" href="/herramientas/gratis/" data-cuenta="puerta-herramientas">Ver las herramientas</a>
+          <ul class="sub">
+            <li><a href="/herramientas/team-svh/" data-cuenta="puerta-team-svh"><b>Todo en una página</b><span>tu nivel, tu lista, mensajes y tu día sin cambiar de página</span><i aria-hidden="true">→</i></a></li>
+            <li><a href="/mentorias/herramientas/pro/" data-cuenta="puerta-pro"><b>Planes Pro</b><span>semana por semana, del 3% a Directora Oro</span><i aria-hidden="true">→</i></a></li>
+          </ul>
+        </div>
       </li>
 
       <li class="puerta">
-        <a href="/herramientas/team-svh/" data-cuenta="puerta-team-svh">
-          <span class="n">02</span><h2>Lo del equipo, <em>en una página</em></h2><i aria-hidden="true">→</i>
-          <p>Tu nivel, tu lista de hoy, mensajes, qué contestar, tu día y qué publicar, sin cambiar de página.</p>
-        </a>
-      </li>
-      <li class="puerta">
-        <a href="/guias/" data-cuenta="puerta-guias">
-          <span class="n">03</span><h2>Guías del <em>equipo</em></h2><i aria-hidden="true">→</i>
-          <p>Tu primer mes día por día, tu camino y las estrategias del equipo, en orden.</p>
-        </a>
+        <div class="cab-p">
+          <span class="n">02</span><h2>Tu <em>tienda</em></h2>
+          <p>Lo que mandas a tus clientas.</p>
+          <ul class="sub">
+            <li><a href="/mentorias/herramientas/mi-tienda/" data-cuenta="puerta-tienda"><b>Mi tienda</b><span>tu link, tu tarjeta, el mensaje de cada pedido y lo agotado</span><i aria-hidden="true">→</i></a></li>
+            <li><a href="/ventas-de-whatsapp/" data-cuenta="puerta-ventas-wa"><b>Ventas por WhatsApp</b><span>tarjetas y catálogo en PDF con tu precio, tu link y tu QR</span><i aria-hidden="true">→</i></a></li>
+          </ul>
+        </div>
       </li>
 
       <li class="puerta">
-        <a href="/mentorias/herramientas/mi-tienda/" data-cuenta="puerta-tienda">
-          <span class="n">04</span><h2>Mi <em>tienda</em></h2><i aria-hidden="true">→</i>
-          <p>Tu link y tu tarjeta, el mensaje para contestar cada pedido y lo agotado.</p>
-        </a>
-      </li>
-
-      <li class="puerta">
-        <a href="/ventas-de-whatsapp/" data-cuenta="puerta-ventas-wa">
-          <span class="n">05</span><h2>Ventas por <em>WhatsApp</em></h2><i aria-hidden="true">→</i>
-          <p>Tarjetas de producto y catálogo en PDF con tu precio, tu link y tu QR.</p>
-        </a>
+        <div class="cab-p">
+          <span class="n">03</span><h2><em>Aprende</em></h2>
+          <p>En orden, para no perderte.</p>
+          <ul class="sub">
+            <li><a href="/guias/" data-cuenta="puerta-guias"><b>Guías del equipo</b><span>tu primer mes día por día, tu camino y las estrategias</span><i aria-hidden="true">→</i></a></li>
+            <li><a href="/dudas/" data-cuenta="puerta-dudas"><b>¿Qué necesitas hoy?</b><span>escríbelo con tus palabras y te llevo a lo que lo resuelve</span><i aria-hidden="true">→</i></a></li>
+          </ul>
+        </div>
       </li>
 
       <li class="puerta entrar" id="entrar">
         <div class="cab-p">
-          <span class="n">06</span><h2>Para quien quiere <em>entrar</em></h2>
+          <span class="n">04</span><h2>Para quien quiere <em>entrar</em></h2>
           <p>Mándale la primera página; las otras siguen solas y al final te escribe a ti.</p>
           <ol class="ruta-mini">
             <li><a href="/unete/" data-r="/unete/">Lo que te pierdes</a></li>
@@ -191,19 +213,13 @@
       </li>
 
       <li class="puerta">
-        <a href="/mentorias/herramientas/pro/" data-cuenta="puerta-pro">
-          <span class="n">07</span><h2>Planes <em>Pro</em></h2><i aria-hidden="true">→</i>
-          <p>Semana por semana, del 3% a Directora Oro. Pagas una vez y son tuyos.</p>
-        </a>
-      </li>
-
-      <li class="puerta">
         <a href="/mentorias/1a1/" data-cuenta="puerta-sel">
-          <span class="n">08</span><h2>Con <em>Sel</em><svg class="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></h2><i aria-hidden="true">→</i>
+          <span class="n">05</span><h2>Con <em>Sel</em><svg class="candado" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4.5" y="10.5" width="15" height="10" rx="2.5"/><path d="M8 10.5V7.5a4 4 0 0 1 8 0v3"/></svg></h2><i aria-hidden="true">→</i>
           <p>El material de sus mentorías, con la contraseña que te da en tu sesión.</p>
         </a>
       </li>
     </ol>
+    <a class="logros" href="/logros/" data-cuenta="logros"><b>Logros del equipo</b><span>Quiénes subieron de nivel cada mes, con sus certificados.</span><i aria-hidden="true">→</i></a>
   </div>
 
   <footer><p>Equipo SVH · mitienda.beauty · No es material oficial de Farmasi. Lo que manda es lo vigente en tu Back Office.</p></footer>
