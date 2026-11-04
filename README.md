@@ -33,5 +33,10 @@ Eventos presenciales de todo tipo. `mitienda.beauty/eventos` los lista (ahora, p
 - Al subir el cambio a `main`, la acción **Eventos** genera las páginas sola (y borra las de eventos que ya no están). A mano: `python3 scripts/eventos.py`. No edites a mano las páginas generadas.
 - Fechas con hora de México, p. ej. `"2026-10-31T11:00:00-06:00"`.
 
+## Precios al día
+Las tiendas, los catálogos y /ventas-de-whatsapp/ leen los precios de `_data/` al abrir la página (no hace falta `build.py`).
+- **Farmasi no deja que GitHub lea su tienda** (responde 403 a servidores), así que no se pueden bajar solos. Se actualizan en un paso: pega en el proyecto el texto de la tienda de Farmasi (o una lista código y precio) y pide "Actualiza los precios". Por dentro corre `python3 scripts/precios.py actualiza <archivo>`: reconoce cada producto por código o por nombre, actualiza `catalogo-farmasi.json`, `fuera-de-catalogo.json` y `catalogo.json`, y deja el resumen (subieron, bajaron, promos, nuevos) en `precios-cambios.md`. Las promos del equipo en `promos-base.json` no se tocan solas: el resumen dice cuáles revisar.
+- La acción **Precios** (lunes y jueves, y cada vez que cambian esos archivos) corre `python3 scripts/precios.py revisa`: si los precios tienen más de 14 días o algún archivo no cuadra con otro, abre el aviso "Revisar precios de las tiendas" en Issues asignado a Pasha (llega por correo). Cuando todo cuadra, lo cierra sola.
+
 ## Fuera del catálogo
 `_data/fuera-de-catalogo.json` lista los productos de la tienda de Farmasi que no salen en el catálogo impreso (se muestran como el chip "Fuera del catálogo" dentro del catálogo). Se regenera revisando la tienda de Selene (mx.farmasi.com/selenevehe): cada categoría se lee paginada y se compara contra los códigos de `catalogo-farmasi.json`. Se oculta lo agotado.
