@@ -108,6 +108,18 @@
 .chip{flex:none;min-height:40px;padding:0 14px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;font-size:15px;cursor:pointer;transition:transform 160ms var(--ease)}
 .chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
 .rango{display:grid;grid-template-columns:96px 1fr 44px;gap:12px;align-items:center;font-size:15px}
+.foto-acc .zoom{flex:1 1 100%}
+.pest{display:grid;grid-auto-flow:column;grid-auto-columns:1fr;gap:4px;padding:4px;background:var(--soft);border-radius:999px}
+.pest button{min-height:40px;border:0;border-radius:999px;background:none;font:500 15px/1 var(--body);color:var(--muted);cursor:pointer}
+.pest button[aria-selected=true]{background:#fff;color:var(--accent-ink);font-weight:600;box-shadow:0 1px 2px rgba(38,42,74,.08)}
+.panel{display:grid;gap:14px}
+.panel[hidden]{display:none}
+.looks{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px 8px}
+.look{display:grid;justify-items:center;gap:6px;border:0;background:none;padding:0;cursor:pointer;font-size:12px;line-height:1.2;color:var(--ink);text-align:center;transition:transform 160ms var(--ease)}
+.look:active{transform:scale(.97)}
+.look canvas{width:100%;max-width:68px;aspect-ratio:1;border-radius:50%;background:var(--soft);outline:2px solid transparent;outline-offset:2px}
+.look[aria-pressed=true] canvas{outline-color:var(--ink)}
+.look[aria-pressed=true]{font-weight:600}
 .rango output{font:500 13px/1 var(--mono);color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
 input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
 .tamanos{display:flex;align-items:flex-end;gap:22px;padding:16px 18px;border-radius:18px;background:var(--soft)}
@@ -270,20 +282,38 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
           </div>
           <input type="file" id="archivo" accept="image/*" class="sr">
           <div class="foto-acc" id="fotoAcc" hidden>
+            <label class="rango zoom"><span>Acercar</span><input type="range" id="a-zoom" min="100" max="300" value="100"><output id="o-zoom">1.0x</output></label>
             <button type="button" class="btn" id="bajaFoto">Descargar foto</button>
             <label class="enlace" for="archivo" style="font-size:15px">Cambiar foto</label>
           </div>
         </div>
         <div class="ajustes">
-          <div>
-            <span class="etq">Estilo</span>
-            <div class="estilos" id="estilos"></div>
+          <div class="pest" role="tablist" aria-label="Edición">
+            <button type="button" role="tab" id="tb-look" aria-selected="true" aria-controls="pn-look" data-t="look">Look</button>
+            <button type="button" role="tab" id="tb-ajuste" aria-selected="false" aria-controls="pn-ajuste" data-t="ajuste">Ajustes</button>
+            <button type="button" role="tab" id="tb-fondo" aria-selected="false" aria-controls="pn-fondo" data-t="fondo">Fondo</button>
           </div>
-          <label class="rango"><span>Acercar</span><input type="range" id="a-zoom" min="100" max="300" value="100"><output id="o-zoom">1.0x</output></label>
-          <label class="rango"><span>Luz</span><input type="range" id="a-luz" min="-40" max="40" value="0"><output id="o-luz">0</output></label>
-          <label class="rango"><span>Contraste</span><input type="range" id="a-con" min="-40" max="40" value="0"><output id="o-con">0</output></label>
-          <label class="rango"><span>Calidez</span><input type="range" id="a-cal" min="-30" max="30" value="0"><output id="o-cal">0</output></label>
-          <label class="rango"><span>Color</span><input type="range" id="a-sat" min="-50" max="40" value="0"><output id="o-sat">0</output></label>
+          <div class="panel" role="tabpanel" id="pn-look" aria-labelledby="tb-look">
+            <div class="looks" id="looks"></div>
+            <label class="rango"><span>Intensidad</span><input type="range" id="a-k" min="0" max="100" value="80"><output id="o-k">80%</output></label>
+            <p class="nota" style="margin:0"><label class="enlace" for="cube" style="font-size:14px">Subir mi LUT (.cube)</label> · el archivo de Lightroom, CapCut o Photoshop que ya usas.</p>
+            <input type="file" id="cube" accept=".cube" class="sr">
+          </div>
+          <div class="panel" role="tabpanel" id="pn-ajuste" aria-labelledby="tb-ajuste" hidden>
+            <label class="rango"><span>Luz</span><input type="range" id="a-luz" min="-40" max="40" value="0"><output id="o-luz">0</output></label>
+            <label class="rango"><span>Contraste</span><input type="range" id="a-con" min="-40" max="40" value="0"><output id="o-con">0</output></label>
+            <label class="rango"><span>Calidez</span><input type="range" id="a-cal" min="-30" max="30" value="0"><output id="o-cal">0</output></label>
+            <label class="rango"><span>Color</span><input type="range" id="a-sat" min="-50" max="40" value="0"><output id="o-sat">0</output></label>
+            <label class="rango"><span>Sombras</span><input type="range" id="a-som" min="-50" max="50" value="0"><output id="o-som">0</output></label>
+            <label class="rango"><span>Altas luces</span><input type="range" id="a-alt" min="-50" max="50" value="0"><output id="o-alt">0</output></label>
+            <label class="rango"><span>Nitidez</span><input type="range" id="a-nit" min="0" max="100" value="0"><output id="o-nit">0</output></label>
+            <label class="rango"><span>Viñeta</span><input type="range" id="a-vin" min="0" max="100" value="0"><output id="o-vin">0</output></label>
+            <button type="button" class="enlace" id="reinicia" style="font-size:14px;justify-self:start">Dejar ajustes en cero</button>
+          </div>
+          <div class="panel" role="tabpanel" id="pn-fondo" aria-labelledby="tb-fondo" hidden>
+            <div class="estilos" id="fondos"></div>
+            <p class="nota" id="fondoEstado" style="margin:0" aria-live="polite">El recorte se hace aquí en tu teléfono. La primera vez tarda unos segundos.</p>
+          </div>
           <div class="tamanos" aria-label="Así se ve en distintos tamaños">
             <figure><canvas id="t150" width="240" height="240" style="width:110px;height:110px"></canvas><figcaption>tu perfil</figcaption></figure>
             <figure><canvas id="t56" width="112" height="112" style="width:56px;height:56px"></canvas><figcaption>historias</figcaption></figure>
@@ -484,30 +514,164 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
   /* ---------- 02 foto (todo en el teléfono, en un canvas) ---------- */
   var img = null, ed = $("editor"), ectx = ed.getContext("2d");
   var pro = document.createElement("canvas"); pro.width = pro.height = 840;
-  var f = st.f || {zoom:100, luz:0, con:0, cal:0, sat:0}; f.ox = 0; f.oy = 0;
-  var ESTILOS = {
-    natural:{n:"Natural", luz:0, con:0, cal:0, sat:0},
-    ventana:{n:"Luz de ventana", luz:14, con:6, cal:-4, sat:4},
-    calida:{n:"Cálida", luz:6, con:4, cal:14, sat:6},
-    suave:{n:"Suave", luz:10, con:-12, cal:6, sat:-10},
-    viva:{n:"Más color", luz:4, con:12, cal:2, sat:22}
+  var CERO = {zoom:100, look:"natural", k:80, luz:0, con:0, cal:0, sat:0, som:0, alt:0, nit:0, vin:0};
+  var f = Object.assign({}, CERO, st.f || {}); f.ox = 0; f.oy = 0; f.fondo = "nada";
+
+  /* ---------- looks: LUT 3D de 17 x 17 x 17 hechas aquí, o la .cube que suba ella ---------- */
+  var LOOKS = {
+    natural:{n:"Natural"},
+    luminoso:{n:"Luminoso", exp:.12, con:.25, fade:.02, sat:1.05, temp:-.2},
+    dorado:{n:"Dorado", exp:.05, con:.3, sat:1.08, temp:.7, hi:[.04,.02,-.03], sh:[.02,0,-.02]},
+    rosado:{n:"Rosado", exp:.08, con:.15, fade:.04, sat:.95, tint:.6, hi:[.04,0,.02]},
+    mate:{n:"Mate suave", con:-.25, fade:.08, sat:.88, temp:.2},
+    editorial:{n:"Editorial", con:.55, sat:.78, temp:-.15, sh:[-.01,.01,.03], hi:[.02,.01,-.01]},
+    tarde:{n:"Tarde", exp:.03, con:.35, sat:1.15, temp:.9, sh:[.03,0,-.03]},
+    bn:{n:"Blanco y negro", exp:.05, con:.4, fade:.03, bw:1}
   };
-  $("estilos").innerHTML = Object.keys(ESTILOS).map(function(k){ return '<button type="button" class="chip" data-e="'+k+'" aria-pressed="false">'+ESTILOS[k].n+'</button>'; }).join("");
-  $("estilos").addEventListener("click", function(e){
-    var b = e.target.closest("[data-e]"); if(!b) return;
-    var s = ESTILOS[b.dataset.e]; ["luz","con","cal","sat"].forEach(function(k){ f[k] = s[k]; });
-    syncRangos(); pintaFoto(); H.cuenta("foto-estilo-" + b.dataset.e);
+  function curva(x, c){ return x - c * Math.sin(2 * Math.PI * x) / (2 * Math.PI); }
+  function c01(x){ return x < 0 ? 0 : x > 1 ? 1 : x; }
+  function hazLut(L){
+    var N = 17, out = new Float32Array(N * N * N * 3), i = 0, e = Math.pow(2, L.exp || 0);
+    for(var bi = 0; bi < N; bi++) for(var gi = 0; gi < N; gi++) for(var ri = 0; ri < N; ri++){
+      var r = ri / (N - 1) * e, g = gi / (N - 1) * e, b = bi / (N - 1) * e;
+      var t = L.temp || 0, ti = L.tint || 0;
+      r += t * .06; b -= t * .06; g -= ti * .04; r += ti * .015; b += ti * .02;
+      if(L.con){ r = curva(c01(r), L.con); g = curva(c01(g), L.con); b = curva(c01(b), L.con); }
+      var l = .299 * r + .587 * g + .114 * b, ws = (1 - c01(l)) * (1 - c01(l)), wh = c01(l) * c01(l);
+      if(L.sh){ r += L.sh[0] * ws; g += L.sh[1] * ws; b += L.sh[2] * ws; }
+      if(L.hi){ r += L.hi[0] * wh; g += L.hi[1] * wh; b += L.hi[2] * wh; }
+      var sa = L.sat == null ? 1 : L.sat; l = .299 * r + .587 * g + .114 * b;
+      r = l + (r - l) * sa; g = l + (g - l) * sa; b = l + (b - l) * sa;
+      if(L.bw){ r = g = b = l; }
+      var fd = L.fade || 0; r = fd + r * (1 - fd); g = fd + g * (1 - fd); b = fd + b * (1 - fd);
+      out[i++] = c01(r); out[i++] = c01(g); out[i++] = c01(b);
+    }
+    return {N:N, d:out};
+  }
+  var LUTS = {};
+  function lutDe(k){ if(k === "natural") return null; if(k === "mia") return LUTS.mia || null; return LUTS[k] || (LUTS[k] = hazLut(LOOKS[k])); }
+  function leeCube(txt){
+    var N = 0, v = [];
+    txt.split(/\r?\n/).forEach(function(l){
+      l = l.trim(); if(!l || l[0] === "#") return;
+      var m = l.match(/^LUT_3D_SIZE\s+(\d+)/i); if(m){ N = +m[1]; return; }
+      if(/^[A-Z_]/i.test(l)) return;
+      var x = l.split(/\s+/).map(Number); if(x.length >= 3 && !isNaN(x[0])) v.push(x[0], x[1], x[2]);
+    });
+    if(!N || v.length !== N * N * N * 3) return null;
+    return {N:N, d:new Float32Array(v)};
+  }
+  /* aplica la LUT con interpolación trilineal; k = intensidad 0..1 */
+  function aplicaLut(p, lut, k){
+    var N = lut.N, d = lut.d, M = N - 1, NN = N * N;
+    for(var i = 0; i < p.length; i += 4){
+      var r = p[i] / 255 * M, g = p[i+1] / 255 * M, b = p[i+2] / 255 * M;
+      var r0 = r | 0, g0 = g | 0, b0 = b | 0, r1 = r0 < M ? r0 + 1 : M, g1 = g0 < M ? g0 + 1 : M, b1 = b0 < M ? b0 + 1 : M;
+      var fr = r - r0, fg = g - g0, fb = b - b0;
+      for(var c = 0; c < 3; c++){
+        var c000 = d[(b0*NN + g0*N + r0)*3 + c], c100 = d[(b0*NN + g0*N + r1)*3 + c], c010 = d[(b0*NN + g1*N + r0)*3 + c], c110 = d[(b0*NN + g1*N + r1)*3 + c];
+        var c001 = d[(b1*NN + g0*N + r0)*3 + c], c101 = d[(b1*NN + g0*N + r1)*3 + c], c011 = d[(b1*NN + g1*N + r0)*3 + c], c111 = d[(b1*NN + g1*N + r1)*3 + c];
+        var x0 = c000 + (c100 - c000) * fr, x1 = c010 + (c110 - c010) * fr, x2 = c001 + (c101 - c001) * fr, x3 = c011 + (c111 - c011) * fr;
+        var y0 = x0 + (x1 - x0) * fg, y1 = x2 + (x3 - x2) * fg, v = (y0 + (y1 - y0) * fb) * 255;
+        p[i + c] = p[i + c] + (v - p[i + c]) * k;
+      }
+    }
+  }
+
+  /* ---------- fondo: recorte con un modelo que corre en el navegador ---------- */
+  var FONDOS = {nada:{n:"Tal cual"}, difuso:{n:"Difuminado"}, rosa:{n:"Rosa", c:"#F6D9DC"}, blanco:{n:"Blanco", c:"#FFFFFF"}, gris:{n:"Gris suave", c:"#E9EAF1"}, marino:{n:"Marino", c:"#262A4A"}, coral:{n:"Coral", c:"#DB414C"}};
+  var MP = "https://cdn.jsdelivr.net/npm/@mediapipe/tasks-vision@0.10.14";
+  var seg = null, mascara = null, mascaraDe = null;
+  function cargaSeg(){
+    if(seg) return seg;
+    seg = import(MP + "/vision_bundle.mjs").then(function(m){
+      return m.FilesetResolver.forVisionTasks(MP + "/wasm").then(function(fs){
+        return m.ImageSegmenter.createFromOptions(fs, {baseOptions:{modelAssetPath:"/mentorias/herramientas/perfil-ig/selfie_segmenter.tflite", delegate:"CPU"}, runningMode:"IMAGE", outputCategoryMask:false, outputConfidenceMasks:true});
+      });
+    });
+    seg.catch(function(){ seg = null; });
+    return seg;
+  }
+  function haceMascara(){
+    if(mascara && mascaraDe === img) return Promise.resolve(mascara);
+    return cargaSeg().then(function(s){
+      var lado = 512, esc = Math.min(1, lado / Math.max(img.width, img.height));
+      var cv = document.createElement("canvas"); cv.width = Math.round(img.width * esc); cv.height = Math.round(img.height * esc);
+      cv.getContext("2d").drawImage(img, 0, 0, cv.width, cv.height);
+      var r = s.segment(cv), m = r.confidenceMasks[0], a = m.getAsFloat32Array(), w = m.width, h = m.height;
+      var mk = document.createElement("canvas"); mk.width = w; mk.height = h;
+      var c = mk.getContext("2d"), d = c.createImageData(w, h);
+      for(var i = 0; i < a.length; i++){ var v = a[i]; v = v < .25 ? 0 : v > .75 ? 1 : (v - .25) / .5; d.data[i*4] = d.data[i*4+1] = d.data[i*4+2] = 0; d.data[i*4+3] = v * 255; }
+      c.putImageData(d, 0, 0); if(r.close) r.close();
+      /* suaviza el borde: al doble de tamaño y con un difuminado leve */
+      var mk2 = document.createElement("canvas"); mk2.width = w * 2; mk2.height = h * 2;
+      var c2 = mk2.getContext("2d"); c2.imageSmoothingQuality = "high"; c2.filter = "blur(" + Math.max(1, Math.round(w / 220)) + "px)"; c2.drawImage(mk, 0, 0, w * 2, h * 2);
+      mascara = mk2; mascaraDe = img; return mk2;
+    });
+  }
+  $("fondos").innerHTML = Object.keys(FONDOS).map(function(k){
+    var x = FONDOS[k], dot = x.c ? '<i style="width:14px;height:14px;border-radius:50%;background:'+x.c+';box-shadow:inset 0 0 0 1px rgba(38,42,74,.2)"></i>' : "";
+    return '<button type="button" class="chip" data-f="'+k+'" aria-pressed="'+(k === "nada")+'" style="display:inline-flex;align-items:center;gap:8px">'+dot+x.n+'</button>';
+  }).join("");
+  $("fondos").addEventListener("click", function(e){
+    var b = e.target.closest("[data-f]"); if(!b || !img) return;
+    var k = b.dataset.f, est = $("fondoEstado");
+    function pon(){ f.fondo = k; $("fondos").querySelectorAll("[data-f]").forEach(function(x){ x.setAttribute("aria-pressed", String(x.dataset.f === k)); }); pintaFoto(); pintaLooks(); }
+    if(k === "nada"){ pon(); return; }
+    est.textContent = "Recortando tu foto aquí en el teléfono…";
+    haceMascara().then(function(){ est.textContent = "Listo. Si se ve un borde raro, prueba \"Difuminado\" o una foto con fondo más liso."; pon(); H.cuenta("fondo-" + k); },
+      function(){ est.textContent = "No se pudo recortar en este teléfono. Prueba con otra foto o desde la computadora."; });
   });
-  function estiloActual(){ var r = ""; Object.keys(ESTILOS).forEach(function(k){ var s = ESTILOS[k]; if(s.luz === f.luz && s.con === f.con && s.cal === f.cal && s.sat === f.sat) r = k; }); return r; }
-  var RANGOS = ["zoom","luz","con","cal","sat"], ABREV = {zoom:"zoom", luz:"luz", con:"con", cal:"cal", sat:"sat"};
+
+  /* ---------- pestañas ---------- */
+  document.querySelector(".pest").addEventListener("click", function(e){
+    var b = e.target.closest("[data-t]"); if(!b) return;
+    document.querySelectorAll(".pest [data-t]").forEach(function(x){ var on = x === b; x.setAttribute("aria-selected", String(on)); $("pn-" + x.dataset.t).hidden = !on; });
+  });
+
+  /* ---------- controles ---------- */
+  var RANGOS = ["zoom","k","luz","con","cal","sat","som","alt","nit","vin"];
   function syncRangos(){
-    RANGOS.forEach(function(k){ $("a-" + k).value = f[k]; $("o-" + k).textContent = k === "zoom" ? (f.zoom / 100).toFixed(1) + "x" : (f[k] > 0 ? "+" : "") + f[k]; });
-    var e = estiloActual();
-    $("estilos").querySelectorAll("[data-e]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.e === e)); });
+    RANGOS.forEach(function(k){ $("a-" + k).value = f[k]; $("o-" + k).textContent = k === "zoom" ? (f.zoom / 100).toFixed(1) + "x" : k === "k" ? f.k + "%" : (f[k] > 0 && k !== "nit" && k !== "vin" ? "+" : "") + f[k]; });
+    $("looks").querySelectorAll("[data-l]").forEach(function(b){ b.setAttribute("aria-pressed", String(b.dataset.l === f.look)); });
   }
   RANGOS.forEach(function(k){
-    $("a-" + k).addEventListener("input", function(){ f[k] = +this.value; syncRangos(); pintaFoto(); });
+    $("a-" + k).addEventListener("input", function(){ f[k] = +this.value; syncRangos(); pintaFoto(); if(k === "zoom") pintaLooksLuego(); });
   });
+  $("reinicia").addEventListener("click", function(){ ["luz","con","cal","sat","som","alt","nit","vin"].forEach(function(k){ f[k] = 0; }); syncRangos(); pintaFoto(); });
+  function listaLooks(){ var l = Object.keys(LOOKS); if(LUTS.mia) l.push("mia"); return l; }
+  function armaLooks(){
+    $("looks").innerHTML = listaLooks().map(function(k){
+      return '<button type="button" class="look" data-l="'+k+'" aria-pressed="false"><canvas width="136" height="136"></canvas><span>'+(k === "mia" ? H.esc(LUTS.mia.n) : LOOKS[k].n)+'</span></button>';
+    }).join("");
+    syncRangos(); pintaLooks();
+  }
+  $("looks").addEventListener("click", function(e){
+    var b = e.target.closest("[data-l]"); if(!b) return;
+    f.look = b.dataset.l; syncRangos(); pintaFoto(); H.cuenta("look-" + f.look);
+  });
+  $("cube").addEventListener("change", function(){
+    var a = this.files && this.files[0]; this.value = ""; if(!a) return;
+    a.text().then(function(t){
+      var l = leeCube(t); if(!l) return H.aviso("Ese archivo no es una LUT 3D .cube");
+      l.n = a.name.replace(/\.cube$/i, "").slice(0, 14) || "Mi LUT"; LUTS.mia = l; f.look = "mia"; f.k = 100;
+      armaLooks(); pintaFoto(); H.aviso("Tu LUT ya está en tus looks"); H.cuenta("lut-propia");
+    });
+  });
+  /* miniaturas de cada look con la foto ya acomodada */
+  var tLooks;
+  function pintaLooksLuego(){ clearTimeout(tLooks); tLooks = setTimeout(pintaLooks, 220); }
+  function pintaLooks(){
+    var base = document.createElement("canvas"); base.width = base.height = 136; dibujaBase(base);
+    var bd = base.getContext("2d").getImageData(0, 0, 136, 136);
+    $("looks").querySelectorAll("[data-l]").forEach(function(b){
+      var cv = b.querySelector("canvas"), c = cv.getContext("2d"), lut = lutDe(b.dataset.l);
+      if(!img){ c.fillStyle = "#F3F4F9"; c.fillRect(0, 0, 136, 136); return; }
+      var d = new ImageData(new Uint8ClampedArray(bd.data), 136, 136);
+      if(lut) aplicaLut(d.data, lut, 1);
+      c.putImageData(d, 0, 0);
+    });
+  }
 
   function limita(S){
     if(!img) return;
@@ -517,34 +681,72 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
     f.ox = Math.max(-mx / S, Math.min(mx / S, f.ox));
     f.oy = Math.max(-my / S, Math.min(my / S, f.oy));
   }
-  /* dibuja la foto con los ajustes en un canvas cuadrado de S px; ox/oy van en fracciones del lado */
-  function render(cv){
+  /* la foto acomodada (y con su fondo nuevo) sin ajustes de color */
+  /* sinColor: deja el fondo transparente para pintar el color liso al final, sin que el look lo cambie */
+  function dibujaBase(cv, sinColor){
     var S = cv.width, c = cv.getContext("2d");
-    c.fillStyle = img ? "#fff" : "#F3F4F9"; c.fillRect(0, 0, S, S);
+    c.clearRect(0, 0, S, S);
+    if(!sinColor){ c.fillStyle = img ? "#fff" : "#F3F4F9"; c.fillRect(0, 0, S, S); }
     if(!img) return;
     limita(S);
     var esc = Math.max(S / img.width, S / img.height) * f.zoom / 100;
-    var w = img.width * esc, h = img.height * esc;
+    var w = img.width * esc, h = img.height * esc, x = (S - w) / 2 + f.ox * S, y = (S - h) / 2 + f.oy * S;
     c.imageSmoothingQuality = "high";
-    c.drawImage(img, (S - w) / 2 + f.ox * S, (S - h) / 2 + f.oy * S, w, h);
-    if(!f.luz && !f.con && !f.cal && !f.sat) return;
+    var fo = FONDOS[f.fondo];
+    if(f.fondo === "nada" || !mascara || mascaraDe !== img){ c.drawImage(img, x, y, w, h); return; }
+    if(fo.c){ if(!sinColor){ c.fillStyle = fo.c; c.fillRect(0, 0, S, S); } }
+    else { /* difuminado: se achica y se vuelve a agrandar */
+      var t = document.createElement("canvas"), q = Math.max(8, Math.round(S / 28)); t.width = t.height = q;
+      var tc = t.getContext("2d"); tc.imageSmoothingQuality = "high"; tc.drawImage(img, x * q / S, y * q / S, w * q / S, h * q / S);
+      var t2 = document.createElement("canvas"); t2.width = t2.height = q * 4; var t2c = t2.getContext("2d"); t2c.imageSmoothingQuality = "high"; t2c.drawImage(t, 0, 0, q * 4, q * 4);
+      c.drawImage(t2, 0, 0, S, S);
+    }
+    var per = document.createElement("canvas"); per.width = per.height = S;
+    var pc = per.getContext("2d"); pc.imageSmoothingQuality = "high";
+    pc.drawImage(img, x, y, w, h);
+    pc.globalCompositeOperation = "destination-in"; pc.drawImage(mascara, x, y, w, h);
+    c.drawImage(per, 0, 0);
+  }
+  /* dibuja la foto con todo en un canvas cuadrado de S px; ox/oy van en fracciones del lado */
+  function render(cv){
+    var color = img && FONDOS[f.fondo].c && mascara && mascaraDe === img ? FONDOS[f.fondo].c : "";
+    dibujaBase(cv, !!color);
+    if(!img) return;
+    var S = cv.width, c = cv.getContext("2d"), lut = lutDe(f.look);
+    function alFinal(){ if(color){ c.save(); c.globalCompositeOperation = "destination-over"; c.fillStyle = color; c.fillRect(0, 0, S, S); c.restore(); } }
+    var ajusta = f.luz || f.con || f.cal || f.sat || f.som || f.alt || f.vin;
+    if(!lut && !ajusta && !f.nit) return alFinal();
     var d = c.getImageData(0, 0, S, S), p = d.data;
-    var br = f.luz * 1.6, cf = (259 * (f.con * 2.2 + 255)) / (255 * (259 - f.con * 2.2)), sa = 1 + f.sat / 100, wr = f.cal * .9, wb = f.cal * 1.1;
-    for(var i = 0; i < p.length; i += 4){
-      var r = p[i], g = p[i+1], b = p[i+2];
-      r = cf * (r - 128) + 128 + br; g = cf * (g - 128) + 128 + br; b = cf * (b - 128) + 128 + br;
-      var l = .299 * r + .587 * g + .114 * b;
-      r = l + (r - l) * sa; g = l + (g - l) * sa; b = l + (b - l) * sa;
-      r += wr; g += wr * .35; b -= wb;
-      p[i] = r < 0 ? 0 : r > 255 ? 255 : r; p[i+1] = g < 0 ? 0 : g > 255 ? 255 : g; p[i+2] = b < 0 ? 0 : b > 255 ? 255 : b;
+    if(lut && f.k) aplicaLut(p, lut, f.k / 100);
+    if(ajusta){
+      var br = f.luz * 1.6, cf = (259 * (f.con * 2.2 + 255)) / (255 * (259 - f.con * 2.2)), sa = 1 + f.sat / 100, wr = f.cal * .9, wb = f.cal * 1.1;
+      var so = f.som / 50 * 70, al = f.alt / 50 * 55, vi = f.vin / 100 * .5, h2 = S / 2;
+      for(var i = 0, px = 0; i < p.length; i += 4, px++){
+        var r = p[i], g = p[i+1], b = p[i+2];
+        r = cf * (r - 128) + 128 + br; g = cf * (g - 128) + 128 + br; b = cf * (b - 128) + 128 + br;
+        var l = .299 * r + .587 * g + .114 * b;
+        r = l + (r - l) * sa; g = l + (g - l) * sa; b = l + (b - l) * sa;
+        r += wr; g += wr * .35; b -= wb;
+        if(so || al){ var ln = c01(l / 255), ws = (1 - ln) * (1 - ln) * (1 - ln), wh = ln * ln * ln, ad = so * ws + al * wh; r += ad; g += ad; b += ad; }
+        if(vi){ var xx = (px % S - h2) / h2, yy = ((px / S | 0) - h2) / h2, dd = Math.sqrt(xx * xx + yy * yy), sm = c01((dd - .5) / .5), m = 1 - vi * sm * sm; r *= m; g *= m; b *= m; }
+        p[i] = r < 0 ? 0 : r > 255 ? 255 : r; p[i+1] = g < 0 ? 0 : g > 255 ? 255 : g; p[i+2] = b < 0 ? 0 : b > 255 ? 255 : b;
+      }
+    }
+    if(f.nit){ /* nitidez: máscara de enfoque con los 4 vecinos */
+      var a = f.nit / 100 * .7 * (S / 840), o = new Uint8ClampedArray(p), W = S * 4;
+      for(var yy2 = 1; yy2 < S - 1; yy2++) for(var xx2 = 1; xx2 < S - 1; xx2++){
+        var j = (yy2 * S + xx2) * 4;
+        for(var ch = 0; ch < 3; ch++){ var v = o[j+ch]; p[j+ch] = v + a * (4 * v - o[j+ch-4] - o[j+ch+4] - o[j+ch-W] - o[j+ch+W]); }
+      }
     }
     c.putImageData(d, 0, 0);
+    alFinal();
   }
   var raf = 0;
   function pintaFoto(){
     cancelAnimationFrame(raf);
     raf = requestAnimationFrame(function(){
-      st.f = {zoom:f.zoom, luz:f.luz, con:f.con, cal:f.cal, sat:f.sat}; guarda();
+      st.f = {}; Object.keys(CERO).forEach(function(k){ st.f[k] = f[k] === "mia" ? "natural" : f[k]; }); guarda();
       render(pro);
       var S = ed.width;
       ectx.clearRect(0, 0, S, S); ectx.drawImage(pro, 0, 0);
@@ -566,7 +768,7 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
   function cargaFoto(src, deTienda){
     var i = new Image();
     i.onload = function(){
-      img = i; f.ox = 0; f.oy = 0; f.zoom = 100; syncRangos();
+      img = i; f.ox = 0; f.oy = 0; f.zoom = 100; f.fondo = "nada"; $("fondos").querySelectorAll("[data-f]").forEach(function(x){ x.setAttribute("aria-pressed", String(x.dataset.f === "nada")); }); syncRangos(); pintaLooks();
       $("lienzo").classList.remove("vacio"); $("lienzoVacio").hidden = true; $("fotoAcc").hidden = false;
       pintaFoto(); H.cuenta(deTienda ? "foto-de-tienda" : "foto-elegida");
     };
@@ -587,7 +789,7 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
   var arr = null;
   ed.addEventListener("pointerdown", function(e){ if(!img) return; arr = {x:e.clientX, y:e.clientY, ox:f.ox, oy:f.oy, w:ed.getBoundingClientRect().width}; ed.setPointerCapture(e.pointerId); $("lienzo").style.cursor = "grabbing"; });
   ed.addEventListener("pointermove", function(e){ if(!arr) return; f.ox = arr.ox + (e.clientX - arr.x) / arr.w; f.oy = arr.oy + (e.clientY - arr.y) / arr.w; pintaFoto(); });
-  function suelta(){ arr = null; $("lienzo").style.cursor = ""; }
+  function suelta(){ if(arr) pintaLooksLuego(); arr = null; $("lienzo").style.cursor = ""; }
   ed.addEventListener("pointerup", suelta); ed.addEventListener("pointercancel", suelta);
 
   $("bajaFoto").addEventListener("click", function(){
@@ -846,7 +1048,7 @@ input[type=range]{width:100%;accent-color:var(--ink);height:28px;margin:0}
     visto.observe($("vista"));
   }
 
-  syncRangos(); pintaRevision(); pintaDest(); pintaTodo(); pintaFoto();
+  armaLooks(); pintaRevision(); pintaDest(); pintaTodo(); pintaFoto();
 })();
 </script>
 </body>
