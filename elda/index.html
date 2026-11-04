@@ -1324,6 +1324,16 @@
   $("wafab").href = `https://wa.me/${WA}?text=${encodeURIComponent("Hola "+SELLER+", tengo una duda sobre tu tablero.")}`;
   renderChips(); renderTop(); renderCatalog(); syncForm(); update(); tick();
   { const pq = new URLSearchParams(location.search).get("p"); if (pq) { const k = ALL.findIndex(x=>x.code===pq); if (k>=0) showProduct(k); } }
+  // ?agrega=1000991 (o varios: ?agrega=1000991,1002724) mete esos productos al pedido al abrir la liga.
+  // Sale en el mensaje de /ventas-de-whatsapp/. No duplica si la clienta vuelve a abrir la liga.
+  { const aq = new URLSearchParams(location.search).get("agrega"); if (aq) {
+      const ks = aq.split(/[,\s]+/).map(c=>ALL.findIndex(x=>x.code===c)).filter((k,j,a)=>k>=0 && a.indexOf(k)===j);
+      const ok = ks.filter(k=>!ALL[k].agotado);
+      ok.forEach(k=>{ if(!cart[k]) cart[k]=1; gc("agrega/"+ALL[k].code, ALL[k].name); gcs("agrega", ALL[k].code, ALL[k].name); refreshCard(k); });
+      if (ok.length) update();
+      if (ks.length===1) showProduct(ks[0]); else if (ok.length) openSheet();
+      try{ const u = new URL(location.href); u.searchParams.delete("agrega"); history.replaceState(null, "", u.pathname+u.search+u.hash); }catch(_){}
+  } }
 })();
 </script>
 </body>
