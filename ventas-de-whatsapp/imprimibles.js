@@ -95,10 +95,15 @@
       var w = im.naturalWidth, h = im.naturalHeight, c = document.createElement("canvas"); c.width = w; c.height = h;
       var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, w, h); x.drawImage(im, 0, 0);
       var d = x.getImageData(0, 0, w, h).data, x0 = w, y0 = h, x1 = -1, y1 = -1;
+      /* cuenta pixeles con producto por fila y columna; ignora polvito y sombras sueltas en la orilla */
+      var fil = new Array(h).fill(0), col = new Array(w).fill(0);
       for(var j = 0; j < h; j += 2) for(var i = 0; i < w; i += 2){
         var k = (j * w + i) * 4;
-        if(d[k] < 236 || d[k + 1] < 236 || d[k + 2] < 236){ if(i < x0) x0 = i; if(i > x1) x1 = i; if(j < y0) y0 = j; if(j > y1) y1 = j; }
+        if(d[k] < 230 || d[k + 1] < 230 || d[k + 2] < 230){ fil[j]++; col[i]++; }
       }
+      var mf = Math.max(3, w / 2 * .012), mc = Math.max(3, h / 2 * .012);
+      for(j = 0; j < h; j += 2) if(fil[j] > mf){ if(y0 > j) y0 = j; y1 = j; }
+      for(i = 0; i < w; i += 2) if(col[i] > mc){ if(x0 > i) x0 = i; x1 = i; }
       if(x1 < 0) return c;
       var m = 6; x0 = Math.max(0, x0 - m); y0 = Math.max(0, y0 - m); x1 = Math.min(w, x1 + m); y1 = Math.min(h, y1 + m);
       var o = document.createElement("canvas"); o.width = x1 - x0; o.height = y1 - y0;
@@ -188,8 +193,13 @@
       M.rr(x, "#FFFFFF", lx, ly, lw, lh, 26);
       if(im){
         var nw = im.naturalWidth || im.width, nh2 = im.naturalHeight || im.height;
-        var sc = Math.min((lw - 44) / nw, (lh - 60) / nh2), iw = nw * sc, ih = nh2 * sc;
-        x.drawImage(im, lx + (lw - iw) / 2, ly + (lh - ih) / 2, iw, ih);
+        /* mismo peso visual para todos: el área del producto es igual en cada tarjeta (sin pasarse del panel),
+           y todos se paran en la misma línea de piso */
+        var mw = lw - 44, mh = lh - 90, area = mw * mh * .5;
+        var sc = Math.min(mw / nw, mh * .76 / nh2, Math.sqrt(area / (nw * nh2))), iw = nw * sc, ih = nh2 * sc;
+        var piso = ly + lh - 56;
+        x.drawImage(im, lx + (lw - iw) / 2, piso - ih, iw, ih);
+        x.fillStyle = "rgba(0,0,0,.06)"; x.beginPath(); x.ellipse(lx + lw / 2, piso + 6, iw * .42, 7, 0, 0, Math.PI * 2); x.fill();
       } else {
         x.fillStyle = mezcla(c.bg, .85, 1); x.textAlign = "center"; x.textBaseline = "middle"; x.font = "400 120px Fraunces";
         x.fillText((p.nombre || "?").charAt(0), lx + lw / 2, ly + lh / 2);
