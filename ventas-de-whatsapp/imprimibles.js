@@ -52,6 +52,43 @@
     return FOTO[key];
   }
 
+  /* el color del empaque: el tono con más presencia entre los pixeles con color (sin blancos, grises ni negros).
+     De ahí sale el fondo (oscuro, para que el texto blanco se lea) y el acento (claro). */
+  function hsl(r, g, b){
+    r /= 255; g /= 255; b /= 255;
+    var mx = Math.max(r, g, b), mn = Math.min(r, g, b), l = (mx + mn) / 2, h = 0, s = 0, d = mx - mn;
+    if(d){ s = l > .5 ? d / (2 - mx - mn) : d / (mx + mn);
+      h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h *= 60; }
+    return [h, s, l];
+  }
+  function css(h, s, l){ /* hsl -> #hex (mezcla() trabaja con hex) */
+    var a = s * Math.min(l, 1 - l), f = function(n){ var k = (n + h / 30) % 12, v = l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1)); return ("0" + Math.round(v * 255).toString(16)).slice(-2); };
+    return "#" + f(0) + f(8) + f(4);
+  }
+  function colorEmpaque(d, w, h){
+    var cub = {}, total = 0, con = 0;
+    for(var j = 0; j < h; j += 3) for(var i = 0; i < w; i += 3){
+      var k = (j * w + i) * 4, r = d[k], g = d[k + 1], b = d[k + 2];
+      if(r > 236 && g > 236 && b > 236) continue;
+      total++;
+      var c = hsl(r, g, b);
+      if(c[1] < .2 || c[2] < .1 || c[2] > .9) continue;
+      con++;
+      var n = Math.floor(c[0] / 15), u = cub[n] || (cub[n] = {w: 0, h: 0, s: 0, l: 0, hx: 0, hy: 0});
+      var wt = c[1];
+      u.w += wt; u.s += c[1] * wt; u.l += c[2] * wt;
+      u.hx += Math.cos(c[0] * Math.PI / 180) * wt; u.hy += Math.sin(c[0] * Math.PI / 180) * wt;
+    }
+    if(!total || con / total < .006) return null; /* empaque blanco o neutro: se queda el color de su línea */
+    var best = null; Object.keys(cub).forEach(function(n){ if(!best || cub[n].w > best.w) best = cub[n]; });
+    var H2 = (Math.atan2(best.hy, best.hx) * 180 / Math.PI + 360) % 360, S2 = best.s / best.w;
+    var amarillo = H2 > 40 && H2 < 75;
+    return {
+      bg: css(H2, Math.min(Math.max(S2, .3), .62), amarillo ? .26 : .3),
+      ac: css(H2, Math.min(S2 + .15, .85), .82)
+    };
+  }
+
   /* quita el blanco de alrededor de la foto para que el producto llene su espacio */
   function recorta(im){
     try{
@@ -66,6 +103,7 @@
       var m = 6; x0 = Math.max(0, x0 - m); y0 = Math.max(0, y0 - m); x1 = Math.min(w, x1 + m); y1 = Math.min(h, y1 + m);
       var o = document.createElement("canvas"); o.width = x1 - x0; o.height = y1 - y0;
       o.getContext("2d").drawImage(c, x0, y0, o.width, o.height, 0, 0, o.width, o.height);
+      o._col = colorEmpaque(d, w, h);
       return o;
     }catch(_){ return im; }
   }
@@ -118,7 +156,8 @@
   }
 
   async function dibuja(x, p, ox, oy){
-    var c = col(p), W = CW, Hh = CH, pad = 46;
+    var im = await foto(p);
+    var c = (im && im._col) || col(p), W = CW, Hh = CH, pad = 46;
     x.save(); x.translate(ox || 0, oy || 0);
     x.beginPath(); x.rect(0, 0, W, Hh); x.clip();
     x.fillStyle = c.bg; x.fillRect(0, 0, W, Hh);
@@ -145,7 +184,6 @@
       x.restore();
     } else {
       M.rr(x, "#FFFFFF", lx, ly, lw, lh, 26);
-      var im = await foto(p);
       if(im){
         var nw = im.naturalWidth || im.width, nh2 = im.naturalHeight || im.height;
         var sc = Math.min((lw - 44) / nw, (lh - 60) / nh2), iw = nw * sc, ih = nh2 * sc;
