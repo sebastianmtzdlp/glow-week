@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-11-05",
- "hora": "08:43",
+ "hora": "09:38",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1182,
+  "visitas": 1190,
   "agregados": 34,
   "pedidos": 7,
   "wa": 4
@@ -95,7 +95,7 @@
   },
   {
    "d": "2026-11-05",
-   "v": 2
+   "v": 10
   }
  ],
  "consultoras": [
@@ -184,6 +184,13 @@
    "pedidos": 0
   },
   {
+   "slug": "silvia",
+   "nombre": "Silvia",
+   "visitas": 2,
+   "catalogo": 1,
+   "pedidos": 0
+  },
+  {
    "slug": "gaby",
    "nombre": "Gaby",
    "visitas": 2,
@@ -203,13 +210,6 @@
    "visitas": 1,
    "catalogo": 0,
    "pedidos": 1
-  },
-  {
-   "slug": "silvia",
-   "nombre": "Silvia",
-   "visitas": 1,
-   "catalogo": 0,
-   "pedidos": 0
   },
   {
    "slug": "andi",
@@ -482,16 +482,16 @@
   }
  },
  "ritmo": {
-  "visitas": 95,
+  "visitas": 96,
   "nueva": 80,
-  "registro": 36,
-  "abrir": 27,
+  "registro": 37,
+  "abrir": 28,
   "empezar": 16,
   "importar-omitido": 3,
   "importado": 2
  },
  "eventos": {
-  "hub": 204,
+  "hub": 205,
   "series": {
    "flowers-to-go": 7
   },
@@ -565,10 +565,10 @@
   "herramientas": {
    "hub": 0,
    "dupes": 11,
-   "ritmo": 95,
+   "ritmo": 96,
    "paginas": {
+    "que-publico": 5,
     "pdn": 4,
-    "que-publico": 3,
     "con-claude": 3,
     "pro": 3,
     "perfil-ig": 2,
