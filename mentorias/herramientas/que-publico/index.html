@@ -21,6 +21,9 @@
 <style>
 .wrap{max-width:1200px}
 .portada{padding:34px 0 22px}
+.portada h1 em{color:var(--accent)}
+.parte-cab h2 em,.cuenta h2 em,.panel-cab h3 em{color:var(--accent-ink)}
+.hoy-es b:last-of-type{color:var(--accent-ink)}
 .hoy-es{margin:14px 0 0;font-size:19px;line-height:1.45;max-width:30em}
 .hoy-es b{font-weight:600}
 
@@ -97,11 +100,11 @@
 .extra{margin:4px 0 0;font-size:14px;color:var(--muted)}
 
 /* fórmula */
-.barra7{display:flex;height:44px;border-radius:12px;overflow:hidden;margin:20px 0 0}
-.barra7 div{display:flex;align-items:center;padding:0 12px;font:600 14px/1 var(--mono);font-variant-numeric:tabular-nums}
+.barra7{display:flex;gap:4px;height:44px;margin:20px 0 0}
+.barra7 div{display:flex;align-items:center;padding:0 12px;border-radius:10px;min-width:0;font:600 14px/1 var(--mono);font-variant-numeric:tabular-nums}
 .barra7 .A{flex:70;background:var(--ink);color:#fff}
 .barra7 .C{flex:20;background:#F6C9CD;color:var(--ink)}
-.barra7 .V{flex:10;background:#fff;box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink);justify-content:center;padding:0}
+.barra7 .V{flex:10;min-width:54px;background:#fff;box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink);justify-content:center;padding:0}
 .tres{display:grid;gap:0;margin:8px 0 0}
 .tres article{padding:16px 0;border-bottom:1px solid var(--line)}
 .tres h3{margin:8px 0 0;font:600 18px/1.3 var(--body)}
