@@ -812,7 +812,7 @@
       ALL.push({...p, code:c, shade:l, img:c+"_250", agotado: p.agotado || !st, par:pi, tonoLbl:l, nuevo:false, flashEnds:null}); FAM[pi].push(ALL.length-1); });
     p.ntonos = t.length; });
   const famOf = i => ALL[i].par!=null ? ALL[i].par : i;
-  // Precio especial de la socia: llega en la liga de /ventas-de-whatsapp/ (?agrega=1000991:899) y se guarda en este navegador.
+  // Precio especial de la socia: llega en la liga de /ventas-de-whatsapp/ (?agrega=1000991:899) y se guarda en este dispositivo.
   // Solo baja hasta el precio público y nunca a 0. La socia confirma el total por WhatsApp antes de cobrar.
   const EK = "glow_esp_" + location.pathname.split("/").filter(Boolean)[0];
   const ESPP = (()=>{ try{ return JSON.parse(localStorage.getItem(EK)||"{}"); }catch(_){ return {}; } })();

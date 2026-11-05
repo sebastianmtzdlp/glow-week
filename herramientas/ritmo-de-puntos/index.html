@@ -253,7 +253,7 @@ html,body{margin:0}
         <input id="wlogo" type="file" accept="image/*" hidden>
         <span id="wlogoprev"></span>
       </div>
-      <div class="sub">Descarga el logo desde tu Back Office y súbelo aquí. Se guarda solo en tu navegador.</div>
+      <div class="sub">Descarga el logo desde tu Back Office y súbelo aquí. Se guarda solo en este dispositivo.</div>
     </div>
     <div class="sub" id="wmsg" style="color:var(--bad)"></div>
     <div><button class="primary" data-act="start">Empezar</button></div>
@@ -351,7 +351,7 @@ html,body{margin:0}
           </div>
           <div class="sec">
             <p class="h">Respaldo</p>
-            <p class="sub" style="margin:0">Tus datos viven en este navegador y se guarda una copia privada de tus registros para Mi Tienda Beauty. Copia el respaldo para pasarlos a otro dispositivo.</p>
+            <p class="sub" style="margin:0">Tus datos viven en este dispositivo y se guarda una copia privada de tus registros para Mi Tienda Beauty. Copia el respaldo para pasarlos a otro dispositivo.</p>
             <textarea class="bx" id="bk" aria-label="Respaldo en texto" spellcheck="false"></textarea>
             <div class="btns" style="margin:0">
               <button class="ghost" data-act="copy">Copiar respaldo</button>
@@ -422,7 +422,7 @@ const gc=(path,title)=>{const go=()=>{try{window.goatcounter.count({path:'ritmo-
     const s=JSON.parse(decodeURIComponent(Array.from(b,c=>'%'+c.charCodeAt(0).toString(16).padStart(2,'0')).join('')));
     if(!s||typeof s.months!=='object'||!Array.isArray(s.weights)||s.weights.length!==7)throw 0;
     const mine=Object.values(S.months).some(x=>x&&x.entries&&Object.keys(x.entries).length);
-    if(mine&&S.profile){box.textContent='Ya tenías datos en este navegador, así que no los reemplacé. Si quieres los de Claude, usa Ajustes › Respaldo.';box.hidden=false;gc('importar-omitido','Importar omitido');return;}
+    if(mine&&S.profile){box.textContent='Ya tenías datos en este dispositivo, así que no los reemplacé. Si quieres los de Claude, usa Ajustes › Respaldo.';box.hidden=false;gc('importar-omitido','Importar omitido');return;}
     S=s;save();box.textContent='Listo, trajimos tus datos. Desde ahora usa esta página.';box.hidden=false;gc('importado','Datos importados');setTimeout(()=>sb('importado'),0);
     setTimeout(()=>{box.hidden=true;},8000);
   }catch(e){box.textContent='No pude traer tus datos. Ábrelo en Claude, copia el respaldo en Ajustes y pégalo aquí.';box.hidden=false;}
@@ -816,7 +816,7 @@ const HOW=[
   '<b>Cada día te dice</b> cuántos puntos te tocan y cuánto te falta para ir al ritmo. Si te atrasas o te adelantas, se reajusta.',
   '<b>Calendario de colores</b>, gráfica del plan contra lo real con proyección al cierre, rachas e historial de meses.',
   '<b>Resumen para WhatsApp</b> en un toque y copia a hoja de cálculo.',
-  '<b>Tus datos viven en tu navegador</b>, con respaldo para pasarlos a otro dispositivo. Se guarda una copia privada de tus registros (nombre, meta y puntos) que nadie más del equipo puede ver.'
+  '<b>Tus datos viven en este dispositivo</b>, con respaldo para pasarlos a otro dispositivo. Se guarda una copia privada de tus registros (nombre, meta y puntos) que nadie más del equipo puede ver.'
 ];
 function ensureVisible(){
   const r=$('#hero').getBoundingClientRect();
@@ -910,7 +910,7 @@ document.addEventListener('change',e=>{
   }else if(e.target.id==='plogo'){
     const f=e.target.files&&e.target.files[0];if(!f||!S.profile)return;
     const msg=$('#logomsg');
-    processLogo(f,data=>{S.profile.logo=data;msg.textContent=save()?'Logo guardado.':'No se pudo guardar el logo en este navegador.';render();},()=>{msg.textContent='No se pudo leer esa imagen.';});
+    processLogo(f,data=>{S.profile.logo=data;msg.textContent=save()?'Logo guardado.':'No se pudo guardar el logo en este dispositivo.';render();},()=>{msg.textContent='No se pudo leer esa imagen.';});
   }else if(e.target.id==='wlogo'){
     const f=e.target.files&&e.target.files[0];if(!f)return;
     processLogo(f,data=>{welcomeLogo=data;$('#wlogoprev').innerHTML='<img alt="Logo elegido" src="'+data+'">';},()=>{$('#wmsg').textContent='No se pudo leer esa imagen.';});

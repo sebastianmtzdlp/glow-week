@@ -189,7 +189,7 @@
 
     <form class="datos" id="datos" onsubmit="return false" aria-labelledby="dT">
       <h2 id="dT">Tus <em>datos</em></h2>
-      <p class="ayuda">Se guardan solo en tu teléfono.</p>
+      <p class="ayuda">Se guardan solo en este dispositivo.</p>
       <div class="campos">
         <label><span class="etq">Tu nombre</span><input type="text" id="v-yo" autocomplete="given-name" placeholder="Tu nombre"></label>
         <label><span class="etq">Tu tienda</span><select id="v-slug"><option value="">Elige</option></select></label>
@@ -306,7 +306,7 @@
     i.addEventListener("input", function(){
       st[k] = i.value.trim(); H.guarda(KEY, st);
       if(k === "slug" && st.slug) H.miSlug(st.slug);
-      clearTimeout(tGuard); var g = document.getElementById("guardado"); g.textContent = "Guardado en este teléfono"; tGuard = setTimeout(function(){ g.textContent = ""; }, 1600);
+      clearTimeout(tGuard); var g = document.getElementById("guardado"); g.textContent = "Guardado en este dispositivo"; tGuard = setTimeout(function(){ g.textContent = ""; }, 1600);
       pinta();
     });
   });

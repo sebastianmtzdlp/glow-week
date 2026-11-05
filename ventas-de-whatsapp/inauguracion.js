@@ -160,7 +160,7 @@
         '<aside class="in-lado">' +
           '<section class="in-datos" aria-labelledby="in-datos-t">' +
             '<h3 id="in-datos-t">Datos de tu venta</h3>' +
-            '<p>Se guardan en este teléfono.</p>' +
+            '<p>Se guardan en este dispositivo.</p>' +
             '<div class="in-campo"><label for="in-fecha">Fecha de tu venta</label><input id="in-fecha" type="date" value="' + esc(st.fecha) + '" min="' + hoyISO() + '"></div>' +
             '<div class="in-campo"><label for="in-enlace">Enlace de tu grupo</label><input id="in-enlace" type="url" inputmode="url" autocomplete="off" placeholder="https://chat.whatsapp.com/…" value="' + esc(st.enlace) + '"><small id="in-enlace-ayuda">' + ayudaEnlace() + '</small></div>' +
           '</section>' +

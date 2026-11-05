@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mi lista de 50</title>
-<meta name="description" content="Tu lista de contactos con su etapa (por contactar, tibia, caliente, lista, clienta, socia), su siguiente paso y la fecha. Cada día te dice a quién le toca. Gratis, se guarda en tu celular.">
+<meta name="description" content="Tu lista de contactos con su etapa (por contactar, tibia, caliente, lista, clienta, socia), su siguiente paso y la fecha. Cada día te dice a quién le toca. Gratis, se guarda en este dispositivo.">
 <meta property="og:title" content="Mi lista de 50">
 <meta property="og:description" content="A quién le toca hoy: tu lista con etapa, siguiente paso y fecha.">
 <meta property="og:type" content="website">
@@ -100,7 +100,7 @@
   <header class="portada">
     <div>
       <h1>Mi lista <em>de 50</em></h1>
-      <p class="bajada">Las personas a las que les vas a escribir, con su etapa, su siguiente paso y la fecha. Cada día te digo a quién le toca. Se guarda en tu celular.</p>
+      <p class="bajada">Las personas a las que les vas a escribir, con su etapa, su siguiente paso y la fecha. Cada día te digo a quién le toca. Se guarda en este dispositivo.</p>
       <ul class="etapas" id="etapas" aria-label="Cuántas en cada etapa"></ul>
     </div>
     <section class="hoy" aria-label="A quién le toca hoy">
@@ -156,7 +156,7 @@
     <a class="otra" href="/mentorias/herramientas/objeciones/" data-cuenta="ir-objeciones"><b>¿Y si me dice que no?</b><span>Qué contestar y con qué pregunta sigues.</span><i aria-hidden="true">→</i></a>
   </section>
 
-  <footer><p>Equipo SVH · mitienda.beauty · Los nombres se quedan en tu celular. Con Pro, se guardan con tu código y solo tú los ves. No es material oficial de Farmasi.</p></footer>
+  <footer><p>Equipo SVH · mitienda.beauty · Los nombres se quedan en este dispositivo. Con Pro, se guardan con tu código y solo tú los ves. No es material oficial de Farmasi.</p></footer>
 </div>
 <script src="/mentorias/herramientas/base.js"></script>
 <script src="/mentorias/herramientas/pro/pro.js"></script>
@@ -182,7 +182,7 @@
   function recompra(p){ if(!pro || !p.prods || !p.prods.length) return null; var best = null; p.prods.forEach(function(x){ var f = H.suma(x.f, +x.d || 30); if(!best || f < best.f) best = {f:f, n:x.n}; }); return best; }
   function guarda(){
     st.ts = Date.now(); H.guarda(KEY, st);
-    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour:"2-digit", minute:"2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour:"2-digit", minute:"2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en este dispositivo."; }); }, 1500); }
   }
   function pinta(){
     var P = st.personas;

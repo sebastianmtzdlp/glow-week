@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mapa de mi equipo</title>
-<meta name="description" content="Tus líneas, tus puntos del mes, tu nivel y tus puntos laterales en una sola pantalla. Te dice cuánto falta para el siguiente nivel y a quién escribirle. Gratis, se guarda en tu celular.">
+<meta name="description" content="Tus líneas, tus puntos del mes, tu nivel y tus puntos laterales en una sola pantalla. Te dice cuánto falta para el siguiente nivel y a quién escribirle. Gratis, se guarda en este dispositivo.">
 <meta property="og:title" content="Mapa de mi equipo">
 <meta property="og:description" content="Tus líneas, tu nivel y tus laterales del mes, y a quién escribirle.">
 <meta property="og:type" content="website">
@@ -78,7 +78,7 @@
   <header class="portada">
     <div>
       <h1>Mapa de <em>mi equipo</em></h1>
-      <p class="bajada">Tus líneas y tus puntos del mes en una sola pantalla. Ves tu nivel, tus puntos laterales y cuánto te falta para el siguiente. Se guarda en tu celular.</p>
+      <p class="bajada">Tus líneas y tus puntos del mes en una sola pantalla. Ves tu nivel, tus puntos laterales y cuánto te falta para el siguiente. Se guarda en este dispositivo.</p>
       <label class="etq" for="mes" style="margin-top:18px">Mes</label>
       <input type="month" id="mes" style="max-width:220px">
     </div>
@@ -134,7 +134,7 @@
     <a class="otra" href="/mentorias/herramientas/nivel/" data-cuenta="ir-nivel"><b>Calculadora de nivel</b><span>Tu nivel con solo tus puntos.</span><i aria-hidden="true">→</i></a>
   </section>
 
-  <footer><p>Equipo SVH · mitienda.beauty · Los nombres y los puntos se quedan en tu celular. Los niveles y los laterales son una guía, no el cálculo oficial de Farmasi. No es material oficial de Farmasi.</p></footer>
+  <footer><p>Equipo SVH · mitienda.beauty · Los nombres y los puntos se quedan en este dispositivo. Los niveles y los laterales son una guía, no el cálculo oficial de Farmasi. No es material oficial de Farmasi.</p></footer>
 </div>
 <script src="/mentorias/herramientas/base.js"></script>
 <script src="/mentorias/herramientas/pro/pro.js"></script>
@@ -161,7 +161,7 @@
   }
   function guarda(){
     st.ts = Date.now(); H.guarda(KEY, st);
-    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour:"2-digit", minute:"2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour:"2-digit", minute:"2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en este dispositivo."; }); }, 1500); }
   }
 
   function pinta(){

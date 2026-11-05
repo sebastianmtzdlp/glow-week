@@ -299,7 +299,7 @@ function metaHTML(){
   if(s.n)h+='<p style="color:var(--muted);font-size:14px">'+esc(s.n)+'</p>';
   s.i.forEach(function(it,ii){var k="m"+si+"_"+ii;h+='<label class="check"><input type="checkbox" data-k="'+k+'"'+(state[k]?" checked":"")+'><span>'+esc(it)+'</span></label>'});
  });
- return h+'<p style="font-size:13px;color:var(--muted);margin-top:14px">Tus marcas se guardan en este navegador.</p>';
+ return h+'<p style="font-size:13px;color:var(--muted);margin-top:14px">Tus marcas se guardan en este dispositivo.</p>';
 }
 var lastFocus=null;
 function openCard(colId,i){

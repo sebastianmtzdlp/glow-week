@@ -429,7 +429,7 @@ footer{padding:36px 0 48px;font-size:13px;color:var(--muted)}
   <section class="hoja" id="hoja" aria-labelledby="hojaTit">
     <div class="hoja-cab">
       <h2 id="hojaTit">La hoja del 1 a 1</h2>
-      <p>Llénala con tu líder durante la reunión. Se guarda solo en este teléfono, y al final se la mandas por WhatsApp para que se lleve su plan.</p>
+      <p>Llénala con tu líder durante la reunión. Se guarda solo en este dispositivo, y al final se la mandas por WhatsApp para que se lleve su plan.</p>
       <p class="solo-print" id="printCab"></p>
     </div>
 
@@ -600,7 +600,7 @@ $("#bloqueos").innerHTML = BLOQUEOS.map(([k,a,b]) =>
 
 let tGuard;
 function guardar(){
-  try{ localStorage.setItem(CLAVE, JSON.stringify(st)); $("#guardado").textContent = "Guardado en este teléfono"; }
+  try{ localStorage.setItem(CLAVE, JSON.stringify(st)); $("#guardado").textContent = "Guardado en este dispositivo"; }
   catch(_){ $("#guardado").textContent = "No se pudo guardar aquí; no cierres la página hasta mandarla"; }
   clearTimeout(tGuard); tGuard = setTimeout(()=>{ $("#guardado").textContent = ""; }, 2200);
 }
@@ -677,7 +677,7 @@ $("#imprimir").addEventListener("click", () => {
   cuenta("imprimir", "Imprimir hoja"); window.print();
 });
 $("#borrar").addEventListener("click", () => {
-  if(!confirm("¿Empezar una hoja nueva? Se borra la que tienes en este teléfono.")) return;
+  if(!confirm("¿Empezar una hoja nueva? Se borra la que tienes en este dispositivo.")) return;
   st = {}; try{ localStorage.removeItem(CLAVE); }catch(_){}
   pintar(); toast("Hoja nueva"); $("#f-lider").focus();
 });

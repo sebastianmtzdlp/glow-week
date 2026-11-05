@@ -168,7 +168,7 @@
 
     <form class="cuenta" id="cuenta" onsubmit="return false" aria-labelledby="cT">
       <details id="cuentaD"><summary><h2 id="cT">Tu <em>cuenta</em></h2><span class="resumen" id="resumen"></span><span class="cambiar" aria-hidden="true">Cambiar</span></summary>
-      <p class="ayuda">Se guarda solo en tu teléfono. Lo que dejes vacío, la IA te lo pregunta.</p>
+      <p class="ayuda">Se guarda solo en este dispositivo. Lo que dejes vacío, la IA te lo pregunta.</p>
       <div class="campos">
         <label><span class="etq">¿De qué hablas?</span><input type="text" id="v-tema" autocomplete="off" placeholder="maquillaje fácil para el diario"></label>
         <label><span class="etq">¿A quién le hablas?</span><input type="text" id="v-quien" autocomplete="off" placeholder="mamás de 30 a 45 sin tiempo para arreglarse"></label>
@@ -310,7 +310,7 @@
 
   /* ---------- campos ---------- */
   var tG;
-  function guardado(){ H.guarda(KEY, st); clearTimeout(tG); var g = document.getElementById("guardado"); g.textContent = "Guardado en este teléfono"; tG = setTimeout(function(){ g.textContent = ""; }, 1600); }
+  function guardado(){ H.guarda(KEY, st); clearTimeout(tG); var g = document.getElementById("guardado"); g.textContent = "Guardado en este dispositivo"; tG = setTimeout(function(){ g.textContent = ""; }, 1600); }
   ["tema","quien","oferta","palabra"].forEach(function(k){
     var i = document.getElementById("v-" + k); if(st[k]) i.value = st[k];
     i.addEventListener("input", function(){ st[k] = i.value.trim(); guardado(); pintaPanel(); pintaPlan(); });

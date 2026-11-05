@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Mi mes</title>
-<meta name="description" content="El cierre de tu mes en una hoja: tus números de la hoja del día, tu nivel, si cumpliste tu reto, qué aprendiste y qué mejoras. Lo mandas a tu líder o lo imprimes. Gratis, todo en tu celular.">
+<meta name="description" content="El cierre de tu mes en una hoja: tus números de la hoja del día, tu nivel, si cumpliste tu reto, qué aprendiste y qué mejoras. Lo mandas a tu líder o lo imprimes. Gratis, se guarda en este dispositivo.">
 <meta property="og:title" content="Mi mes">
 <meta property="og:description" content="El cierre del mes en una hoja: números, reto, aprendizaje y mejora.">
 <meta property="og:type" content="website">
@@ -103,7 +103,7 @@
     </section>
 
     <section aria-labelledby="nTit">
-      <div class="cab"><h2 id="nTit">De dónde sale</h2><p>Lo que guardaste en este celular.</p></div>
+      <div class="cab"><h2 id="nTit">De dónde sale</h2><p>Lo que guardaste en este dispositivo.</p></div>
       <ul class="checks" id="de" style="margin-top:8px"></ul>
       <div class="tasas" id="tasas" hidden></div>
     </section>
@@ -126,7 +126,7 @@
     <a class="otra" href="/mentorias/herramientas/nivel/" data-cuenta="ir-nivel"><b>Calculadora de nivel</b><span>Cuánto te falta para el siguiente.</span><i aria-hidden="true">→</i></a>
   </section>
 
-  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en tu celular. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
+  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en este dispositivo. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
 </div>
 <script src="/mentorias/herramientas/base.js"></script>
 <script src="/mentorias/herramientas/pro/pro.js"></script>
@@ -200,9 +200,9 @@
   }
   function guarda(){
     st.ts = Date.now();
-    $("guardado").textContent = H.guarda(KEY, st) ? "Guardado en este teléfono" : "No se pudo guardar en este navegador";
+    $("guardado").textContent = H.guarda(KEY, st) ? "Guardado en este dispositivo" : "No se pudo guardar en este dispositivo";
     $("mandar").href = H.wa(texto());
-    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en este dispositivo."; }); }, 1500); }
   }
   [["meta"], ["apr"], ["mej"], ["cel"]].forEach(function(c){ $(c[0]).addEventListener("input", function(e){ mesDe(mesSel)[c[0]] = e.target.value; guarda(); }); });
   $("reto").addEventListener("click", function(e){ var b = e.target.closest("button"); if(!b) return; mesDe(mesSel).reto = b.dataset.v; guarda(); pinta(); });
