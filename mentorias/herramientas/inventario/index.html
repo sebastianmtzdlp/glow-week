@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Lo que tengo en casa</title>
-<meta name="description" content="Anota tus muestras y el producto que ya tienes en casa: cuánto vale y qué ya prestaste o vendiste. No necesitas comprar producto para vender. Gratis, se guarda en tu celular.">
+<meta name="description" content="Anota tus muestras y el producto que ya tienes en casa: cuánto vale y qué ya prestaste o vendiste. No necesitas comprar producto para vender. Gratis, se guarda en este dispositivo.">
 <meta property="og:title" content="Lo que tengo en casa">
 <meta property="og:description" content="Tus muestras y lo que ya tienes en casa, en un solo lugar.">
 <meta property="og:type" content="website">
@@ -133,7 +133,7 @@
     <a class="otra" href="/mentorias/herramientas/pedidos/" data-cuenta="ir-pedidos"><b>Pedidos y cobros</b><span>Cuánto te deben y a quién no le ha llegado.</span><i aria-hidden="true">→</i></a>
     <a class="otra" href="/mentorias/herramientas/primeros-200/" data-cuenta="ir-200"><b>Primeros 200 puntos</b><span>El reto para quien arranca.</span><i aria-hidden="true">→</i></a>
   </section>
-  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en tu celular. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
+  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en este dispositivo. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
 </div>
 <script src="/mentorias/herramientas/base.js"></script>
 <script src="/mentorias/herramientas/pro/pro.js"></script>
@@ -147,7 +147,7 @@
   var money = function(n){ return "$" + H.fmt(n || 0); }, id = function(){ return Math.random().toString(36).slice(2, 9); };
   function guarda(){
     st.ts = Date.now(); st.ventas = st.ventas.slice(-400); H.guarda(KEY, st);
-    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en este dispositivo."; }); }, 1500); }
   }
   function pinta(){
     var pz = 0, val = 0, inv = 0;

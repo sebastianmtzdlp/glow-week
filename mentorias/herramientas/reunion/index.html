@@ -118,7 +118,7 @@
     <a class="otra" href="/eventos/" data-cuenta="ir-eventos"><b>Eventos del equipo</b><span>La cartelera donde puede aparecer tu reunión.</span><i aria-hidden="true">→</i></a>
   </section>
 
-  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en tu celular. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
+  <footer><p>Equipo SVH · mitienda.beauty · Lo que escribes se queda en este dispositivo. Con Pro se guarda con tu código y solo tú lo ves. No es material oficial de Farmasi.</p></footer>
 </div>
 <script src="/mentorias/herramientas/base.js"></script>
 <script src="/mentorias/herramientas/pro/pro.js"></script>
@@ -132,7 +132,7 @@
   Object.keys(F).forEach(function(k){ var e = $(F[k]); e.value = st[k] || e.value; e.addEventListener("input", function(){ st[k] = e.value; guarda(); pinta(); }); e.addEventListener("change", function(){ st[k] = e.value; guarda(); pinta(); }); });
   function guarda(){
     st.ts = Date.now(); H.guarda(KEY, st);
-    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en este dispositivo."; }); }, 1500); }
   }
   function inv(){
     var d = st.dia ? new Date(st.dia + "T12:00:00").toLocaleDateString("es-MX", {weekday: "long", day: "numeric", month: "long"}) : "[día]";

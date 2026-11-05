@@ -241,7 +241,7 @@
       "\n¿Me ayudas a armar el plan?";
     $("mandar").href = H.wa(txt);
     st = {g:g.value,p:p.value,l:l.value,d:d.value}; H.guarda(KEY, st);
-    $("guardado").textContent = (g.value || p.value) ? "Guardado en este teléfono" : "";
+    $("guardado").textContent = (g.value || p.value) ? "Guardado en este dispositivo" : "";
   }
   [g,p,l,d].forEach(function(i){ i.addEventListener("input", calc); });
   calc();

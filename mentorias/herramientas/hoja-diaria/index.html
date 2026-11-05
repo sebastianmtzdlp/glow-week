@@ -125,7 +125,7 @@
 
   <header class="portada">
     <h1>La hoja <em>del día</em></h1>
-    <p class="bajada">El método de 10 actividades en una sola hoja. Elige tu ritmo, palomea lo que vas haciendo y cierra el día con tu marcador. Se guarda en tu celular, día por día.</p>
+    <p class="bajada">El método de 10 actividades en una sola hoja. Elige tu ritmo, palomea lo que vas haciendo y cierra el día con tu marcador. Se guarda en este dispositivo, día por día.</p>
     <div class="acciones">
       <a class="btn" href="#hoja" data-cuenta="empezar">Llenar la de hoy</a>
       <button class="enlace" type="button" id="blanco" data-cuenta="imprimir-blanco">Imprimir en blanco</button>
@@ -288,7 +288,7 @@
   function guarda(){
     todo[fecha] = dia;
     var ks = Object.keys(todo).sort(); while(ks.length > 60){ delete todo[ks.shift()]; }
-    $("guardado").textContent = H.guarda(KEY, todo) ? "Guardado en este teléfono" : "No se pudo guardar en este navegador";
+    $("guardado").textContent = H.guarda(KEY, todo) ? "Guardado en este dispositivo" : "No se pudo guardar en este dispositivo";
     resumen(); semana();
   }
   var form = $("hoja");

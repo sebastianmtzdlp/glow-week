@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Pedidos y cobros</title>
-<meta name="description" content="Apunta cada pedido, quién ya pagó y a quién no le ha llegado. Te dice cuánto te deben y arma el mensaje de cobro. Gratis, se guarda en tu celular.">
+<meta name="description" content="Apunta cada pedido, quién ya pagó y a quién no le ha llegado. Te dice cuánto te deben y arma el mensaje de cobro. Gratis, se guarda en este dispositivo.">
 <meta property="og:title" content="Pedidos y cobros">
 <meta property="og:description" content="Qué pedidos tienes, quién ya pagó y a quién no le ha llegado.">
 <meta property="og:type" content="website">
@@ -77,7 +77,7 @@
   <header class="portada">
     <div>
       <h1>Pedidos <em>y cobros</em></h1>
-      <p class="bajada">Cada pedido con su total, si ya pagó y si ya le llegó. Siempre sabes cuánto te deben y a quién cobrarle. Se guarda en tu celular.</p>
+      <p class="bajada">Cada pedido con su total, si ya pagó y si ya le llegó. Siempre sabes cuánto te deben y a quién cobrarle. Se guarda en este dispositivo.</p>
     </div>
     <section class="caja" aria-label="Cómo vas este mes">
       <h2>Este mes <em id="mesNom"></em></h2>
@@ -134,7 +134,7 @@
     <a class="otra" href="/mentorias/herramientas/lista/" data-cuenta="ir-lista"><b>Mi lista de 50</b><span>A quién le toca recomprar.</span><i aria-hidden="true">→</i></a>
   </section>
 
-  <footer><p>Equipo SVH · mitienda.beauty · Los nombres y montos se quedan en tu celular. Con Pro, se guardan con tu código y solo tú los ves. No es material oficial de Farmasi.</p></footer>
+  <footer><p>Equipo SVH · mitienda.beauty · Los nombres y montos se quedan en este dispositivo. Con Pro, se guardan con tu código y solo tú los ves. No es material oficial de Farmasi.</p></footer>
 </div>
 <script src="/mentorias/herramientas/base.js"></script>
 <script src="/mentorias/herramientas/pro/pro.js"></script>
@@ -149,7 +149,7 @@
   function debe(p){ return Math.max(0, (+p.t || 0) - (+p.pg || 0)); }
   function guarda(){
     st.ts = Date.now(); H.guarda(KEY, st);
-    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en tu celular."; }); }, 1500); }
+    if(pro && nube){ clearTimeout(tSave); tSave = setTimeout(function(){ nube.guarda(st).then(function(){ $("nube").textContent = "Guardado en la nube " + new Date().toLocaleTimeString("es-MX", {hour: "2-digit", minute: "2-digit"}); }).catch(function(){ $("nube").textContent = "No se pudo guardar en la nube; sigue en este dispositivo."; }); }, 1500); }
   }
   function pinta(){
     var m = delMes(), ven = 0, cob = 0, dbe = 0, ent = 0, gan = 0;

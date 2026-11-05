@@ -168,7 +168,7 @@
     document.querySelectorAll("[data-c]").forEach(function(c){ c.checked = !!st.c[c.dataset.c]; });
     var txt = "Reto Mis primeros 200 · " + (h >= 0 && h < 14 ? "día " + (h + 1) + " de 14" : "") + "\nLlevo " + H.fmt(tot) + " de 200 puntos.\nDías con marcador: " + hechos + "\n" + (tot >= 200 ? "¡Ya llegué a 3%!" : "Me faltan " + H.fmt(falta) + ".");
     $("mandar").href = H.wa(txt);
-    $("guardado").textContent = H.guarda(KEY, st) ? "Guardado en este teléfono" : "";
+    $("guardado").textContent = H.guarda(KEY, st) ? "Guardado en este dispositivo" : "";
   }
   $("pedido").addEventListener("submit", function(e){
     e.preventDefault(); var q = $("quien").value.trim(), p = Math.round(+$("pts").value);
