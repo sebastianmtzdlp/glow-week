@@ -1,0 +1,408 @@
+<!doctype html>
+<html lang="es-MX" data-cuenta="h-que-publico">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>¿Qué publico hoy?</title>
+<meta name="robots" content="noindex">
+<meta name="description" content="Tu semana de Instagram día por día: qué toca hoy (atracción, conexión o venta) y el texto listo para pedírselo a ChatGPT o a Claude con tu tema y tu voz.">
+<meta property="og:title" content="¿Qué publico hoy?">
+<meta property="og:description" content="Lo que toca publicar hoy y el texto listo para pedírselo a la IA.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/que-publico/">
+<meta name="theme-color" content="#FFFFFF">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;1,9..144,400;1,9..144,500&family=Outfit:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="/mentorias/herramientas/base.css">
+<style>
+.wrap{max-width:1200px}
+.portada{padding:34px 0 22px}
+.hoy-es{margin:14px 0 0;font-size:19px;line-height:1.45;max-width:30em}
+.hoy-es b{font-weight:600}
+
+/* tipos */
+.tipo{display:inline-flex;align-items:center;min-height:24px;padding:0 9px;border-radius:999px;font:600 11px/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.tipo.A{background:var(--ink);color:#fff}
+.tipo.C{background:var(--tint);color:var(--accent-ink)}
+.tipo.V{background:#fff;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--ink)}
+
+/* tu cuenta */
+.cuenta{border:1px solid var(--line);border-radius:18px;padding:18px 16px 16px;background:#fff}
+.cuenta h2{font-size:clamp(26px,6.5vw,34px)}
+.cuenta .ayuda{margin:6px 0 14px;color:var(--muted);font-size:15px}
+.campos{display:grid;gap:12px}
+.campos label{display:flex;flex-direction:column;min-width:0}
+.etq small{font-weight:400;color:var(--muted)}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chip{min-height:40px;padding:0 14px;border:1px solid #CFD2E0;border-radius:999px;background:#fff;font-size:15px;cursor:pointer;transition:transform 160ms var(--ease)}
+.chip[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:#fff}
+.chip:active{transform:scale(.97)}
+.guardado{min-height:1.4em}
+.cuenta summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:4px 12px;align-items:baseline}
+.cuenta summary::-webkit-details-marker{display:none}
+.cuenta .resumen{grid-column:1;grid-row:2;font-size:15px;color:var(--muted);line-height:1.4}
+.cuenta .cambiar{grid-column:2;grid-row:1;font:500 14px/1 var(--body);text-decoration:underline;text-underline-offset:4px}
+.cuenta details[open] .resumen,.cuenta details[open] .cambiar{display:none}
+.falta{margin:14px 0 0;padding:12px 14px;border-radius:14px;background:var(--tint);font-size:15px}
+.falta a{font-weight:600;text-underline-offset:3px}
+
+/* semana */
+.parte{padding:40px 0 6px}
+.parte-cab{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;align-items:baseline;border-bottom:2px solid var(--ink);padding-bottom:12px}
+.parte-cab .n{font:500 14px/1 var(--mono);color:var(--accent-ink)}
+.parte-cab p{grid-column:2;margin:4px 0 0;color:var(--muted);font-size:15px;max-width:46em}
+.dias{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:4px;margin:18px 0 0;padding:0;list-style:none}
+.dia{display:flex;flex-direction:column;align-items:center;gap:6px;width:100%;padding:9px 0 8px;border:0;border-radius:12px;background:var(--soft);cursor:pointer;color:var(--ink)}
+.dia .d{font:500 12px/1 var(--mono);text-transform:uppercase;letter-spacing:.04em}
+.dia .m{display:flex;gap:3px}
+.dia .m i{display:block;width:9px;height:9px;border-radius:3px}
+.dia .m i.A{background:var(--ink)}
+.dia .m i.C{background:#EFA9AF}
+.dia .m i.V{box-shadow:inset 0 0 0 1.5px var(--ink)}
+.dia .m i.dup{opacity:.45}
+.dia .ok{font:500 11px/1 var(--mono);color:var(--good);min-height:11px}
+.dia.es-hoy .d{color:var(--accent-ink);font-weight:600}
+.dia[aria-selected=true]{background:#fff;box-shadow:inset 0 0 0 1.5px var(--ink)}
+.clave{display:flex;flex-wrap:wrap;gap:6px 14px;margin:10px 0 0;font-size:13px;color:var(--muted)}
+.clave span{display:inline-flex;align-items:center;gap:6px}
+.clave i{display:inline-block;width:9px;height:9px;border-radius:3px}
+
+.panel-cab{display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:22px 0 0}
+.panel-cab h3{margin:0;font:400 clamp(26px,6.5vw,34px)/1.05 var(--serif)}
+.panel-cab h3 em{font-style:italic}
+.panel-cab span{font:500 13px/1 var(--mono);color:var(--muted)}
+.pubs{display:grid;gap:14px;margin-top:14px}
+.pub{border:1px solid var(--line);border-radius:18px;background:#fff;overflow:hidden;min-width:0}
+.pub.dup{border:1.5px dashed #B9BCCF}
+.pub-cab{padding:14px 16px 0}
+.pub-cab .fila{display:flex;align-items:center;justify-content:space-between;gap:10px}
+.pub-cab .cual{font:500 12px/1.3 var(--mono);color:var(--muted)}
+.pub h4{margin:10px 0 0;font:600 19px/1.3 var(--body)}
+.pub .que{margin:6px 0 0;font-size:15px;color:var(--ink)}
+.pub .mide{margin:6px 0 0;font-size:13px;color:var(--muted)}
+.prompt{position:relative;margin:12px 16px 0;padding:12px 14px;background:var(--soft);border-radius:12px;font:400 15px/1.5 var(--body);white-space:pre-wrap;color:var(--ink);max-height:10.5em;overflow:hidden}
+.prompt::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3em;background:linear-gradient(rgba(243,244,249,0),var(--soft))}
+.pub.abierto .prompt{max-height:none}
+.pub.abierto .prompt::after{display:none}
+.prompt mark{background:var(--tint);color:var(--accent-ink);border-radius:4px;padding:0 3px}
+.pub .btns{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;padding:12px 16px 0}
+.pub .ver{display:block;margin:8px 16px 0;font-size:14px;color:var(--muted)}
+.pub .btns .btn,.pub .btns .btn2{min-height:46px;font-size:15px}
+.pub .hecho{display:flex;gap:10px;align-items:center;margin:12px 16px 0;padding:12px 0 14px;border-top:1px solid var(--line);font-size:15px;cursor:pointer}
+.pub .hecho input{width:20px;height:20px;margin:0;accent-color:var(--good)}
+.extra{margin:4px 0 0;font-size:14px;color:var(--muted)}
+
+/* fórmula */
+.barra7{display:flex;height:44px;border-radius:12px;overflow:hidden;margin:20px 0 0}
+.barra7 div{display:flex;align-items:center;padding:0 12px;font:600 14px/1 var(--mono);font-variant-numeric:tabular-nums}
+.barra7 .A{flex:70;background:var(--ink);color:#fff}
+.barra7 .C{flex:20;background:#F6C9CD;color:var(--ink)}
+.barra7 .V{flex:10;background:#fff;box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink);justify-content:center;padding:0}
+.tres{display:grid;gap:0;margin:8px 0 0}
+.tres article{padding:16px 0;border-bottom:1px solid var(--line)}
+.tres h3{margin:8px 0 0;font:600 18px/1.3 var(--body)}
+.tres p{margin:6px 0 0;font-size:15px}
+.tres .mide{color:var(--muted);font-size:14px}
+.cuenta7{margin:14px 0 0;font-size:16px;padding:12px 14px;border-radius:14px;background:var(--soft)}
+
+/* rápido */
+.pasos{display:grid;gap:0;margin:8px 0 0;padding:0;list-style:none}
+.pasos li{display:grid;grid-template-columns:96px 1fr;gap:4px 14px;padding:14px 0;border-bottom:1px solid var(--line)}
+.pasos .t{font:500 13px/1.4 var(--mono);color:var(--accent-ink);text-transform:uppercase;letter-spacing:.04em}
+.pasos b{display:block;font:600 17px/1.3 var(--body)}
+.pasos p{margin:3px 0 0;font-size:15px}
+.plan-wrap{margin-top:18px}
+.plan-wrap .pub{border-color:var(--line)}
+
+/* cierre */
+.siete{background:var(--navy);color:#fff;border-radius:24px;padding:28px 20px 24px;margin:48px 0 0}
+.siete h2{color:#fff}
+.siete h2 em{color:var(--pink)}
+.siete p{margin:10px 0 0;color:#D5D7E6;font-size:16px;max-width:34em}
+.siete .cifra{font:600 clamp(44px,12vw,60px)/1 var(--mono);font-variant-numeric:tabular-nums;color:var(--pink);margin:20px 0 0}
+.siete .cifra small{font-family:var(--body);font-size:.36em;color:#D5D7E6;font-weight:500;letter-spacing:0}
+.siete .btns{display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;margin-top:18px}
+.siete .btn2{background:transparent;color:#fff;border-color:#fff}
+.siete .smm{margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.16);font-size:15px}
+.siete .smm b{color:#fff}
+
+@media (min-width:900px){
+  .portada{padding:54px 0 30px}
+  .arriba{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:56px;align-items:start}
+  .arriba .cuenta{margin-top:54px}
+  .campos{grid-template-columns:1fr 1fr}
+  .campos .ancho{grid-column:1 / -1}
+  .dias{gap:8px}
+  .dia{padding:12px 0 10px}
+  .pubs{grid-template-columns:1fr 1fr;align-items:start}
+  .tres{grid-template-columns:repeat(3,minmax(0,1fr));gap:0 32px}
+  .rapido{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:40px;align-items:start}
+  .plan-wrap{margin-top:8px}
+  .siete{padding:44px 48px 36px}
+}
+@media (hover:hover) and (pointer:fine){ .chip:hover,.dia:hover{box-shadow:inset 0 0 0 1px var(--ink)} .dia[aria-selected=true]:hover{box-shadow:inset 0 0 0 1.5px var(--ink)} }
+@media (prefers-reduced-motion:reduce){ .chip,.btn,.btn2{transition:none} }
+</style>
+<script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</head>
+<body>
+<div class="wrap">
+  <div class="barra">
+    <a class="marca" href="/">EQUIPO SVH</a>
+    <a class="volver" href="/herramientas/gratis/">Herramientas gratis</a>
+  </div>
+
+  <div class="arriba">
+    <header class="portada">
+      <h1>¿Qué publico <em>hoy?</em></h1>
+      <p class="hoy-es" id="hoyEs"></p>
+      <p class="bajada" style="font-size:17px;color:var(--muted)">Cada día trae lo que toca y el texto para pedírselo a ChatGPT o a Claude. Cuéntale una vez de qué va tu cuenta y todo sale con tu tema y tu voz.</p>
+    </header>
+
+    <form class="cuenta" id="cuenta" onsubmit="return false" aria-labelledby="cT">
+      <details id="cuentaD"><summary><h2 id="cT">Tu <em>cuenta</em></h2><span class="resumen" id="resumen"></span><span class="cambiar" aria-hidden="true">Cambiar</span></summary>
+      <p class="ayuda">Se guarda solo en tu teléfono. Lo que dejes vacío, la IA te lo pregunta.</p>
+      <div class="campos">
+        <label><span class="etq">¿De qué hablas?</span><input type="text" id="v-tema" autocomplete="off" placeholder="maquillaje fácil para el diario"></label>
+        <label><span class="etq">¿A quién le hablas?</span><input type="text" id="v-quien" autocomplete="off" placeholder="mamás de 30 a 45 sin tiempo para arreglarse"></label>
+        <div class="ancho"><span class="etq" id="vozT">¿Cómo hablas?</span><div class="chips" id="voz" role="group" aria-labelledby="vozT"></div></div>
+        <label><span class="etq">¿Qué ofreces cuando vendes?</span><input type="text" id="v-oferta" autocomplete="off" placeholder="mis sets de maquillaje y skincare"></label>
+        <label><span class="etq">Palabra para que te escriban <small>(viernes)</small></span><input type="text" id="v-palabra" autocomplete="off" placeholder="GLOW" maxlength="20"></label>
+        <div class="ancho"><span class="etq" id="iaT">¿Con cuál IA?</span><div class="chips" id="ia" role="group" aria-labelledby="iaT"></div></div>
+      </div>
+      <p class="nota guardado" id="guardado" aria-live="polite"></p>
+      </details>
+    </form>
+  </div>
+
+  <!-- 1. LA SEMANA -->
+  <section class="parte" id="semana" aria-labelledby="sT">
+    <div class="parte-cab"><span class="n">01</span><h2 id="sT">Tu semana, <em>día por día</em></h2><p>Una publicación base al día. La segunda, con borde punteado, es para duplicar y crecer más rápido.</p></div>
+    <div class="dias" id="dias" role="tablist" aria-label="Días de la semana"></div>
+    <p class="clave"><span><i style="background:var(--ink)"></i>Atracción</span><span><i style="background:#EFA9AF"></i>Conexión</span><span><i style="box-shadow:inset 0 0 0 1.5px var(--ink)"></i>Venta</span></p>
+    <div id="panel" role="tabpanel" aria-live="polite"></div>
+  </section>
+
+  <!-- 2. LA FÓRMULA -->
+  <section class="parte" id="formula" aria-labelledby="fT">
+    <div class="parte-cab"><span class="n">02</span><h2 id="fT">Tres tipos <em>de contenido</em></h2><p>No necesitas más contenido, necesitas un plan. Cada semana: 4 de atracción, 2 de conexión y 1 de venta.</p></div>
+    <div class="barra7" role="img" aria-label="70% atracción, 20% conexión, 10% venta"><div class="A">70%</div><div class="C">20%</div><div class="V">10%</div></div>
+    <div class="tres">
+      <article><span class="tipo A">Atracción</span><h3>Que te encuentre gente nueva</h3><p>No lo inventas: replicas un reel que ya funcionó, con tu voz y tu tema. Un solo mensaje y un gancho en los primeros 3 segundos.</p><p class="mide">Se mide en vistas, compartidos y seguidores nuevos.</p></article>
+      <article><span class="tipo C">Conexión</span><h3>Que piensen "soy yo"</h3><p>Un momento del día, un antes y después o lo que mucha gente piensa y nadie dice. No busca vender: busca vínculo.</p><p class="mide">Se mide en mensajes, comentarios y guardados, no en likes.</p></article>
+      <article><span class="tipo V">Venta</span><h3>Que den un paso</h3><p>Un solo llamado a la acción, claro y fácil: escribirte una palabra, apuntarse a una plática o pedir un producto.</p><p class="mide">Se mide en mensajes, registros y compras.</p></article>
+    </div>
+    <p class="cuenta7" id="cuenta7"></p>
+  </section>
+
+  <!-- 3. RÁPIDO -->
+  <section class="parte" id="rapido" aria-labelledby="rT">
+    <div class="parte-cab"><span class="n">03</span><h2 id="rT">Rápido <em>y fácil</em></h2><p>Dos horas a la semana y media hora al día. Hecho es mejor que perfecto.</p></div>
+    <div class="rapido">
+      <ol class="pasos">
+        <li><span class="t">Domingo<br>30 min</span><div><b>Planea</b><p>Define a quién le hablas, revisa qué toca cada día y guarda ideas de reels que ya funcionaron.</p></div></li>
+        <li><span class="t">Un día<br>1 hora</span><div><b>Graba en bloque</b><p>Todos los reels de la semana de una vez, y tus textos de conexión con ayuda de la IA.</p></div></li>
+        <li><span class="t">Cada día<br>30 min</span><div><b>Publica y responde</b><p>Publica lo que toca y contesta tus mensajes: ahí empiezan las ventas.</p></div></li>
+      </ol>
+      <div class="plan-wrap" id="planWrap"></div>
+    </div>
+  </section>
+
+  <!-- CIERRE -->
+  <section class="siete" aria-labelledby="zT">
+    <h2 id="zT">Tus primeros <em>7 días</em></h2>
+    <p>Sigue el calendario una semana completa, una publicación al día. Cuando lo tengas claro, sube a dos.</p>
+    <div class="cifra" id="cifra7"></div>
+    <div class="btns">
+      <button type="button" class="btn2" id="comparte">Pasar a mi equipo</button>
+    </div>
+    <p class="smm">¿Quieres el paso a paso de cada contenido? Entra a <b>Social Money Maker</b> con 100 puntos personales este mes.</p>
+  </section>
+
+  <footer><p>Equipo SVH · mitienda.beauty · Página de prueba. Calendario basado en "Tu semana de contenido, sin hacerte bolas" de Social Money Maker. ChatGPT es de OpenAI y Claude es de Anthropic; esta página no está hecha por Farmasi, OpenAI ni Anthropic.</p></footer>
+</div>
+<script src="/mentorias/herramientas/base.js"></script>
+<script>
+(function(){
+  var KEY = "mtb-que-publico-v1", st = H.lee(KEY, {voz:"cercana", ia:"chatgpt"});
+  var hoy = new Date(); hoy.setHours(12,0,0,0);
+  var hoyI = (hoy.getDay() + 6) % 7; // 0 = lunes
+  var lunes = new Date(hoy); lunes.setDate(hoy.getDate() - hoyI);
+  var SEM = "mtb-que-publico-hecho-" + H.iso(lunes), hecho = H.lee(SEM, {});
+  var DIAS = ["Lunes","Martes","Miércoles","Jueves","Viernes","Sábado","Domingo"];
+  var CORTO = ["Lun","Mar","Mié","Jue","Vie","Sáb","Dom"];
+  var TIPO = {A:"Atracción", C:"Conexión", V:"Venta"};
+  var MIDE = {A:"Se mide en vistas, compartidos y seguidores nuevos.", C:"Se mide en mensajes, comentarios y guardados.", V:"Se mide en mensajes, registros y compras."};
+  var VOCES = [
+    {k:"cercana", t:"Cercana", d:"cercana y cálida, como si le hablara a una amiga"},
+    {k:"divertida", t:"Divertida", d:"con humor ligero, sin burlarme de nadie"},
+    {k:"directa", t:"Directa", d:"al grano, con frases cortas"},
+    {k:"tranquila", t:"Tranquila", d:"tranquila y honesta, sin gritar ni exagerar"},
+    {k:"experta", t:"Que explica", d:"clara, como quien sabe del tema, sin palabras técnicas de más"}
+  ];
+  var IAS = [{k:"chatgpt", t:"ChatGPT", u:"https://chatgpt.com/?q="}, {k:"claude", t:"Claude", u:"https://claude.ai/new?q="}];
+
+  var REEL = "Hoy toca un reel de atracción: no lo invento, replico uno que ya funcionó para que me encuentre gente nueva.\n\n"+
+    "Este es el reel que encontré (lo que dice, lo que se ve y el texto en pantalla):\n[PEGA AQUÍ EL REEL O DESCRÍBELO]\n\n"+
+    "Si no te pegué ninguno, primero dime qué buscar en Instagram para encontrarlo: 5 frases para el buscador sobre {tema} y en qué fijarme (cuentas de menos de 100 mil seguidores, más de 1 millón de vistas y miles de compartidos). Luego sigue con lo demás usando una idea que sepas que funciona en ese formato.\n\n";
+  var FORMATO = "Dame:\n1. Por qué funcionó, en una línea (el gancho, el formato o la emoción).\n2. Mi versión: el gancho de los primeros 3 segundos (lo que digo y el texto en pantalla), el guion de máximo 30 segundos con un solo mensaje y qué se ve en cada toma.\n3. La descripción, corta, con una pregunta al final.";
+
+  /* La semana: [base, duplicar] por día, como en el calendario */
+  var S = [
+    [{t:"A", h:"Replica un reel comprobado de tu tema", q:"Busca uno que ya funcionó y hazlo tuyo.",
+       x: REEL + FORMATO + "\nQue se note que es mío, no una copia."},
+     {t:"C", h:"Un momento del día que tu audiencia reconozca", q:"Algo que le pasa a quien te ve y que la hace pensar \"soy yo\".",
+       x:"Hoy toca conexión: que {quien} piense \"soy yo\" al verme.\n\nDame 5 momentos de un día normal que {quien} reconocería al instante (la hora, dónde está, lo que piensa en ese momento), relacionados con {tema}.\n\nAntes de escribir, pregúntame cuál de esos momentos me ha pasado de verdad a mí, y escríbelo con lo que te conteste: no inventes que me pasó algo.\n\nCon eso dame:\n1. Una historia de 4 a 6 frases en primera persona.\n2. La versión para 3 historias de Instagram (una frase por historia) y una pregunta o encuesta en la última.\nSin vender nada. Mejor real que perfecto."}],
+    [{t:"A", h:"Replica otro reel comprobado, con tu voz", q:"Otro reel que ya funcionó, dicho como lo dirías tú.",
+       x: REEL + "Para que suene a mí, te pego 2 o 3 cosas que yo he dicho o escrito (un mensaje, una historia, un audio pasado a texto):\n[PEGA AQUÍ CÓMO HABLAS TÚ]\n\n" + FORMATO + "\nUsa mis palabras y mi forma de decir las cosas. Dame dos versiones: una hablando a cámara y otra solo con texto en pantalla y música."},
+     {t:"A", h:"Misma idea, otro gancho", q:"El reel de hoy con otra entrada, para llegar a más gente.",
+       x:"Ya tengo este reel de hoy:\n[PEGA AQUÍ EL GUION O LO QUE DICE TU REEL]\n\nNo cambies el reel: escríbeme 10 ganchos distintos para los primeros 3 segundos, para grabar la misma idea otra vez.\n- 3 que empiecen con una pregunta.\n- 3 que señalen un error común de {quien}.\n- 2 que muestren el resultado primero.\n- 2 que den una opinión clara.\nCada uno con lo que digo y el texto en pantalla, de máximo 8 palabras. Marca los 2 que tú usarías y por qué."}],
+    [{t:"C", h:"Antes y después: cómo se sentía y cómo se siente", q:"Un cambio real, contado por cómo se siente, no solo por cómo se ve.",
+       x:"Hoy toca conexión con un antes y después real sobre {tema}: mío, o de una clienta que me dio permiso.\n\nHazme 6 preguntas cortas, una por una, esperando mi respuesta: cómo me sentía antes, qué me pasaba, qué cambió, qué hice, cómo me siento hoy y qué le diría a quien está como yo estaba.\n\nCon mis respuestas escribe:\n1. Un carrusel de 6 láminas: antes, el momento que cambió, lo que hice, hoy, lo que aprendí y una pregunta.\n2. La descripción, con una pregunta al final.\nQue el cambio esté en cómo se siente, no solo en cómo se ve. No exageres nada de lo que te cuente."},
+     {t:"A", h:"Replica un reel comprobado corto", q:"De 7 segundos o menos, para que lo vean dos veces.",
+       x: REEL + "Quiero mi versión en corto: máximo 7 segundos, una sola toma y que se pueda ver en repetición sin que se note el corte.\n\nDame:\n1. Por qué funcionó, en una línea.\n2. El texto en pantalla (máximo 10 palabras), qué hago en la toma y qué canción o sonido tipo buscar.\n3. La descripción, de una línea, con una pregunta."}],
+    [{t:"A", h:"Reel comprobado con un tip rápido", q:"Algo que se pueda usar hoy, en menos de 15 segundos.",
+       x:"Hoy toca un reel de atracción con un tip rápido de {tema}, siguiendo el formato de uno que ya funcionó:\n[PEGA AQUÍ EL REEL QUE QUIERES REPLICAR, SI TIENES UNO]\n\n1. Dame 10 tips que {quien} pueda usar hoy mismo y que quepan en 15 segundos. Solo cosas ciertas: nada de beneficios de producto que no estén en su etiqueta.\n2. Con el mejor: el gancho de 3 segundos, los pasos (máximo 3) y el cierre \"guárdalo para después\".\n3. La descripción, corta, con una pregunta.\nAl final dime cuáles otros 3 tips me sirven para las próximas semanas."},
+     {t:"C", h:"Lo que mucha gente piensa y nadie dice", q:"Una verdad incómoda de tu tema, dicha con cariño.",
+       x:"Hoy toca conexión: decir en voz alta algo que mucha gente piensa sobre {tema} y casi nadie dice.\n\n1. Dame 8 frases de cosas que {quien} piensa y no dice: ciertas, un poco incómodas y sin burlarse de nadie.\n2. Pregúntame con cuál me identifico yo y por qué.\n3. Con mi respuesta escribe un video hablando a cámara de 30 segundos (empieza con la frase, luego mi experiencia y termina con una pregunta) y la misma idea como texto para un post.\nPostura clara, sin pelear con nadie."}],
+    [{t:"V", h:"Pide un paso: \"escríbeme la palabra {palabra}\"", q:"Un solo llamado a la acción: que te escriban una palabra.",
+       x:"Hoy toca venta: un solo llamado a la acción. Quiero que me escriban la palabra \"{palabra}\" por mensaje directo para mandarles {oferta}.\n\nEscríbeme:\n1. Un reel de 20 a 30 segundos: el problema de {quien}, qué les mando si me escriben y cómo pedirlo (\"escríbeme {palabra}\"). Gancho en los primeros 3 segundos.\n2. 3 historias para el mismo día que terminen en \"escríbeme {palabra}\".\n3. El mensaje que contesto cuando alguien me escribe la palabra: corto, con una pregunta para seguir platicando, sin mandar todo de golpe.\nNo inventes precios ni promociones (si los necesitas, pregúntame) y sin urgencia falsa: nada de \"últimos lugares\" si no es cierto."},
+     {t:"A", h:"Replica un reel comprobado para el fin de semana", q:"Algo de planes, descanso o arreglarse para salir.",
+       x: REEL + "Quiero mi versión pensada para el fin de semana: planes, salir, descansar o arreglarse rápido, según lo que le pase a {quien} un sábado.\n\n" + FORMATO}],
+    [{t:"C", h:"Muestra por qué sabes del tema", q:"Lo que has vivido y aprendido, sin presumir.",
+       x:"Hoy toca conexión: que vean por qué me pueden preguntar de {tema}.\n\nHazme 6 preguntas, una por una: cuánto tiempo llevo en esto, qué he aprendido, un error que cometí al inicio, qué hago distinto hoy, a quién he ayudado y qué me siguen preguntando.\n\nCon mis respuestas escribe un post en tono humilde con 3 datos concretos de mi experiencia, el error del inicio y lo que hago distinto. Termina invitando a que me pregunten. No pongas títulos, cifras ni logros que yo no te haya dicho."},
+     {t:"V", h:"Producto o negocio: resultado y cómo pedirlo", q:"El resultado de algo que ofreces y el paso para pedirlo.",
+       x:"Hoy toca venta. Pregúntame primero si hoy hablo de un producto o de unirse a mi equipo.\n\nSi es producto ({oferta}): pídeme el producto, un resultado real en palabras de una clienta (te pego su mensaje) y el precio si quiero ponerlo. Escribe un post o reel con lo que resuelve, ese resultado y cómo pedirlo.\n\nSi es el negocio: pídeme qué cambió para mí desde que empecé. Escribe un post con eso, sin decir cuánto se gana ni que es fácil o rápido, y que invite a platicar 15 minutos.\n\nEn los dos casos: un solo llamado a la acción, claro y fácil, y nada de frases como \"oportunidad única\" o \"cambia tu vida\"."}],
+    [{t:"A", h:"Replica un reel comprobado para empezar la semana", q:"Para el domingo en la noche: organizarse, el lunes, empezar de nuevo.",
+       x: REEL + "Quiero mi versión pensada para empezar la semana: organizarse, prepararse para el lunes o empezar algo nuevo, ligado a {tema}.\n\n" + FORMATO},
+     {t:"A", h:"Repite una idea que ya te funcionó", q:"Lo que mejor te fue, contado otra vez de otra forma.",
+       x:"Hoy repito algo que ya me funcionó. Te pego mis 3 publicaciones con más vistas o compartidos de las últimas semanas, con sus números:\n[PEGA AQUÍ TUS 3 MEJORES PUBLICACIONES Y SUS NÚMEROS]\n\n1. Dime qué tienen en común (tema, gancho, formato).\n2. Hazme una versión nueva de la mejor: la misma idea con otro gancho y otro escenario, para que no se sienta repetida.\n3. Dime qué cambiarías si tuvo muchas vistas pero pocos comentarios."}]
+  ];
+
+  var ETQ = {tema:"tu tema", quien:"a quién le hablas", oferta:"lo que ofreces", palabra:"TU PALABRA"};
+  function vozTxt(){ var v = VOCES.filter(function(x){ return x.k === st.voz; })[0]; return v ? v.d : ""; }
+  function contexto(){
+    return "Te voy a pedir ideas para mi Instagram. Para que no sean genéricas, esto es lo que necesitas saber:\n"+
+      "- Mi cuenta habla de: {tema}.\n- Le hablo a: {quien}.\n- Así hablo: " + (vozTxt() || "[CÓMO HABLAS]") + ".\n- Lo que ofrezco cuando vendo: {oferta}.\n"+
+      "Si algo dice entre corchetes, pregúntamelo antes de seguir. Escribe en español de México, tuteando. No inventes testimonios, resultados, precios ni datos; si te falta algo, pregúntame. No prometas ganancias. Sin frases de vendedora y sin emojis de más.\n\n";
+  }
+  function llena(x, html){
+    var V = {tema:st.tema, quien:st.quien, oferta:st.oferta, palabra:(st.palabra||"").toUpperCase()};
+    if(html) x = H.esc(x);
+    x = x.replace(/\{(\w+)\}/g, function(_, k){ var v = V[k]; if(html) return v ? H.esc(v) : '<mark>'+ETQ[k]+'</mark>'; return v || "[" + ETQ[k].toUpperCase() + "]"; });
+    if(html) x = x.replace(/\[([^\]<]+)\]/g, '<mark>[$1]</mark>');
+    return x;
+  }
+  function textoDe(p){ return llena(contexto() + p.x, false); }
+  function ia(){ return IAS.filter(function(x){ return x.k === st.ia; })[0] || IAS[0]; }
+  function abre(p, cual){
+    var t = textoDe(p); H.copia(t, "Copiado. Si no aparece, pégalo en " + cual.t);
+    var u = cual.u + encodeURIComponent(t); if(u.length > 7000) u = cual.u.split("?")[0];
+    window.open(u, "_blank", "noopener");
+  }
+
+  /* ---------- campos ---------- */
+  var tG;
+  function guardado(){ H.guarda(KEY, st); clearTimeout(tG); var g = document.getElementById("guardado"); g.textContent = "Guardado en este teléfono"; tG = setTimeout(function(){ g.textContent = ""; }, 1600); }
+  ["tema","quien","oferta","palabra"].forEach(function(k){
+    var i = document.getElementById("v-" + k); if(st[k]) i.value = st[k];
+    i.addEventListener("input", function(){ st[k] = i.value.trim(); guardado(); pintaPanel(); pintaPlan(); });
+  });
+  function chipsDe(id, lista, campo){
+    var el = document.getElementById(id);
+    function p(){ el.innerHTML = lista.map(function(v){ return '<button type="button" class="chip" data-k="'+v.k+'" aria-pressed="'+(st[campo]===v.k)+'">'+v.t+'</button>'; }).join(""); }
+    p();
+    el.addEventListener("click", function(e){ var b = e.target.closest(".chip"); if(!b) return; st[campo] = b.dataset.k; p(); guardado(); pintaPanel(); pintaPlan(); H.cuenta(campo + "/" + b.dataset.k); });
+  }
+  chipsDe("voz", VOCES, "voz"); chipsDe("ia", IAS, "ia");
+  var cD = document.getElementById("cuentaD");
+  if(!st.tema) cD.open = true;
+  function resumen(){ var v = VOCES.filter(function(x){ return x.k === st.voz; })[0]; document.getElementById("resumen").textContent = [st.tema || "Sin tema todavía", v ? v.t : "", ia().t].filter(Boolean).join(" · "); }
+  resumen();
+  document.getElementById("cuenta").addEventListener("input", resumen); document.getElementById("cuenta").addEventListener("click", function(){ setTimeout(resumen, 0); });
+
+  /* ---------- hoy ---------- */
+  var base = S[hoyI][0];
+  document.getElementById("hoyEs").innerHTML = "Hoy es <b>" + DIAS[hoyI].toLowerCase() + "</b> y toca <b>" + TIPO[base.t].toLowerCase() + "</b>: " + H.esc(llena(base.h, false).replace(/"\[TU PALABRA\]"/, "___")).replace(/^./, function(c){ return c.toLowerCase(); }) + ".";
+
+  /* ---------- semana ---------- */
+  var sel = hoyI;
+  function pintaDias(){
+    document.getElementById("dias").innerHTML = S.map(function(d, i){
+      var n = (hecho[i+"-0"]?1:0) + (hecho[i+"-1"]?1:0);
+      return '<button type="button" role="tab" class="dia'+(i===hoyI?' es-hoy':'')+'" data-i="'+i+'" aria-selected="'+(i===sel)+'" aria-label="'+DIAS[i]+(i===hoyI?' (hoy)':'')+': '+TIPO[d[0].t]+' y '+TIPO[d[1].t]+(n?', '+n+' publicada'+(n>1?'s':''):'')+'">'+
+        '<span class="d">'+(i===hoyI?'Hoy':CORTO[i])+'</span><span class="m" aria-hidden="true"><i class="'+d[0].t+'"></i><i class="'+d[1].t+' dup"></i></span><span class="ok" aria-hidden="true">'+(n?'✓'.repeat(n):'')+'</span></button>';
+    }).join("");
+  }
+  document.getElementById("dias").addEventListener("click", function(e){ var b = e.target.closest(".dia"); if(!b) return; sel = +b.dataset.i; pintaDias(); pintaPanel(); H.cuenta("dia/" + sel); });
+  function tarjeta(p, i, j){
+    var dup = j === 1, id = i + "-" + j;
+    return '<article class="pub'+(dup?' dup':'')+'" data-id="'+id+'"><div class="pub-cab"><div class="fila"><span class="tipo '+p.t+'">'+TIPO[p.t]+'</span><span class="cual">'+(dup?'Para duplicar':'Publicación base')+'</span></div>'+
+      '<h4>'+llena(p.h, true)+'</h4><p class="que">'+H.esc(p.q)+'</p><p class="mide">'+MIDE[p.t]+'</p></div>'+
+      '<div class="prompt">'+llena(p.x, true)+'</div>'+
+      '<button type="button" class="enlace ver" data-ver aria-expanded="false">Ver todo el texto</button>'+
+      '<div class="btns"><button type="button" class="'+(dup?'btn2':'btn')+'" data-abre>Abrir en '+ia().t+'</button><button type="button" class="enlace" data-copia>Copiar</button></div>'+
+      '<label class="hecho"><input type="checkbox" data-h="'+id+'"'+(hecho[id]?' checked':'')+'> Ya la publiqué</label></article>';
+  }
+  function pintaPanel(){
+    var d = S[sel];
+    document.getElementById("panel").innerHTML = '<div class="panel-cab"><h3>'+(sel===hoyI?'Hoy, <em>'+DIAS[sel].toLowerCase()+'</em>':DIAS[sel])+'</h3></div>'+
+      (st.tema ? '' : '<p class="falta">Para que salga con tu tema, <a href="#cuenta" data-llenar>cuéntale de qué va tu cuenta</a>. Toma un minuto.</p>')+
+      '<div class="pubs">'+tarjeta(d[0], sel, 0)+tarjeta(d[1], sel, 1)+'</div>'+
+      '<p class="nota">Toca "Abrir en '+ia().t+'": el texto se copia con lo de tu cuenta al inicio y se abre ya escrito. Si llega vacío, mantén presionado y pega. Lo que va entre corchetes lo cambias tú o te lo pregunta la IA.</p>';
+  }
+  function pubDe(el){ var id = el.closest(".pub").dataset.id.split("-"); return S[+id[0]][+id[1]]; }
+  document.getElementById("panel").addEventListener("click", function(e){
+    var b;
+    if((b = e.target.closest("[data-abre]"))){ abre(pubDe(b), ia()); H.cuenta("abrir/" + ia().k + "/" + b.closest(".pub").dataset.id); return; }
+    if((b = e.target.closest("[data-copia]"))){ H.copia(textoDe(pubDe(b)), "Copiado"); H.cuenta("copiar/" + b.closest(".pub").dataset.id); return; }
+    if((b = e.target.closest("[data-ver]"))){ var c = b.closest(".pub"), ab = c.classList.toggle("abierto"); b.textContent = ab ? "Ver menos" : "Ver todo el texto"; b.setAttribute("aria-expanded", ab); return; }
+    if(e.target.closest("[data-llenar]")){ cD.open = true; setTimeout(function(){ document.getElementById("v-tema").focus(); }, 50); }
+  });
+  document.getElementById("panel").addEventListener("change", function(e){
+    var k = e.target.dataset.h; if(!k) return; hecho[k] = e.target.checked; H.guarda(SEM, hecho); if(e.target.checked) H.cuenta("hecho/" + k); pintaDias(); pinta7();
+  });
+
+  /* ---------- fórmula ---------- */
+  document.getElementById("cuenta7").innerHTML = "Con la fila base son <b>7 publicaciones</b>: 4 de atracción, 2 de conexión y 1 de venta. Si duplicas, son 14 con la misma proporción.";
+
+  /* ---------- plan del domingo ---------- */
+  var PLAN = {t:"A", h:"Planea toda tu semana", q:"Para el domingo: la semana completa y la lista de tomas para grabar en una hora.",
+    x:"Quiero planear mi semana de Instagram con este calendario:\n" +
+      S.map(function(d, i){ return "- " + DIAS[i] + ": " + TIPO[d[0].t].toLowerCase() + ", " + d[0].h.charAt(0).toLowerCase() + d[0].h.slice(1) + ". Para duplicar: " + TIPO[d[1].t].toLowerCase() + ", " + d[1].h.charAt(0).toLowerCase() + d[1].h.slice(1) + "."; }).join("\n") +
+      "\n\nLa palabra para que me escriban el viernes es \"{palabra}\".\n\nPara cada día dame una idea concreta, el gancho de los primeros 3 segundos y el formato (reel, carrusel o historias). Para los reels de atracción dime qué buscar en Instagram para encontrar uno que ya funcionó.\n\nAl final:\n1. La lista de tomas para grabar todos los reels de la semana en una sola hora, en orden y agrupadas por lugar y ropa.\n2. Qué textos de conexión necesitan una historia mía, para que me los preguntes antes de escribirlos."};
+  function pintaPlan(){
+    var w = document.getElementById("planWrap");
+    w.innerHTML = '<article class="pub" data-plan><div class="pub-cab"><div class="fila"><span class="cual">Domingo · 30 min</span></div><h4>'+PLAN.h+'</h4><p class="que">'+PLAN.q+'</p></div>'+
+      '<div class="prompt">'+llena(PLAN.x, true)+'</div>'+
+      '<button type="button" class="enlace ver" data-ver aria-expanded="false">Ver todo el texto</button>'+
+      '<div class="btns" style="padding-bottom:16px"><button type="button" class="btn2" data-abre>Abrir en '+ia().t+'</button><button type="button" class="enlace" data-copia>Copiar</button></div></article>';
+  }
+  document.getElementById("planWrap").addEventListener("click", function(e){
+    var b;
+    if((b = e.target.closest("[data-abre]"))){ abre(PLAN, ia()); H.cuenta("abrir/" + ia().k + "/plan"); return; }
+    if((b = e.target.closest("[data-copia]"))){ H.copia(textoDe(PLAN), "Copiado"); H.cuenta("copiar/plan"); return; }
+    if((b = e.target.closest("[data-ver]"))){ var c = b.closest(".pub"), ab = c.classList.toggle("abierto"); b.textContent = ab ? "Ver menos" : "Ver todo el texto"; b.setAttribute("aria-expanded", ab); }
+  });
+
+  /* ---------- 7 días ---------- */
+  function pinta7(){
+    var n = 0; for(var i = 0; i < 7; i++){ if(hecho[i+"-0"] || hecho[i+"-1"]) n++; }
+    document.getElementById("cifra7").innerHTML = n + ' <small>de 7 días publicados esta semana</small>';
+  }
+  document.getElementById("comparte").addEventListener("click", function(){
+    var url = "https://mitienda.beauty/que-publico/", txt = "Esto es lo que vamos a publicar esta semana, día por día, con el texto para pedírselo a la IA: " + url;
+    H.cuenta("compartir");
+    if(navigator.share){ navigator.share({title:"¿Qué publico hoy?", text:txt}).catch(function(){}); }
+    else window.open(H.wa(txt), "_blank", "noopener");
+  });
+
+  pintaDias(); pintaPanel(); pintaPlan(); pinta7();
+})();
+</script>
+</body>
+</html>
