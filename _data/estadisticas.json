@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-11-05",
- "hora": "00:47",
+ "hora": "08:43",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1181,
+  "visitas": 1182,
   "agregados": 34,
   "pedidos": 7,
   "wa": 4
@@ -95,7 +95,7 @@
   },
   {
    "d": "2026-11-05",
-   "v": 1
+   "v": 2
   }
  ],
  "consultoras": [
@@ -599,7 +599,13 @@
     "objetivo": 1
    }
   },
-  "cursos": [],
+  "cursos": [
+   {
+    "slug": "tu-era-creator",
+    "nombre": "Tu era Creator",
+    "visitas": 1
+   }
+  ],
   "dupes_ver": [
    {
     "slug": "lip-oil",
