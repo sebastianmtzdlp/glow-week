@@ -1,5 +1,5 @@
 /* Ventas por WhatsApp · pestaña "Para imprimir": tarjetas de producto para imprimir y repartir.
-   Cada tarjeta lleva el color de su línea, nombre, beneficios tomados de la ficha oficial, la foto
+   Cada tarjeta lleva el color de su empaque, nombre, beneficios tomados de la ficha oficial, la foto
    (o un espacio para pegar una muestra), el QR a la tienda de la socia y sus redes al pie.
    Datos: /_data/tarjetas-imprimibles.json (lo arma scripts/tarjetas_imprimibles.py).
    Usa base.js (H), marca.js (MarcaSVH) y ventas.js (VentasWA). */
@@ -131,6 +131,8 @@
     var w = String(t || "").split(/\s+/), out = [], cur = "";
     w.forEach(function(p){ var tt = cur ? cur + " " + p : p; if(anchoTrack(x, tt, sp) <= max || !cur) cur = tt; else { out.push(cur); cur = p; } });
     if(cur) out.push(cur);
+    var k = out.length - 1; /* sin palabra huérfana: "SPF / 6" pasa a "OIL / SPF 6" */
+    if(k > 0 && out[k].length <= 3 && out[k - 1].indexOf(" ") > 0){ var a = out[k - 1].split(" "), u = a.pop(); out[k - 1] = a.join(" "); out[k] = u + " " + out[k]; }
     return n ? out.slice(0, n) : out;
   }
   function mezcla(hex, a, con){ /* hex con blanco (con=1) o negro (con=0) */
@@ -214,11 +216,11 @@
     /* beneficios: se achican si no caben */
     var qr = 168, qy = pieY - (R.length ? 26 : 0) - qr - 30, tope = qy - 22;
     var bs = (p.beneficios || []).slice(0, 6), fs = 21, filas;
-    function arma(){ x.font = "500 " + fs + "px Outfit"; filas = bs.map(function(b){ return M.lineas(x, b, rw - 26, 4); }); return filas.reduce(function(a, f){ return a + f.length * fs * 1.24 + fs * .5; }, 0); }
+    function arma(){ x.font = "500 " + fs + "px Outfit"; filas = bs.map(function(b){ return M.lineas(x, b, rw - 26, 7); }); return filas.reduce(function(a, f){ return a + f.length * fs * 1.24 + fs * .5; }, 0); }
     var by = y + 40, alto = arma();
     while(by + 34 + alto > tope && fs > 15) { fs -= 1; alto = arma(); }
     while(by + 34 + alto > tope && bs.length > 2){ bs.pop(); alto = arma(); }
-    x.fillStyle = "#FFFFFF"; x.font = "800 22px Outfit"; track(x, "BENEFICIOS", rx, by, 2.4); by += 14;
+    x.fillStyle = "#FFFFFF"; x.font = "800 22px Outfit"; track(x, p.titulo || "BENEFICIOS", rx, by, 2.4); by += 14;
     filas.forEach(function(f){
       by += fs * .5;
       f.forEach(function(l, i){

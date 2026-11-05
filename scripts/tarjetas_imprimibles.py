@@ -115,6 +115,7 @@ def bonito(n):
     if n == n.upper() and re.search("[A-Z]", n):
         n = " ".join(w if KEEP.match(w) or (re.search(r"\d", w) and len(w) <= 4) else w[:1] + w[1:].lower() for w in n.split())
     n = re.sub(r"(\d)\s?ML\b", r"\1 ml", n, flags=re.I)
+    n = re.sub(r"\s+\d+(?:[.,]\d+)?\s?(ml|g|gr)\.?$", "", n, flags=re.I)  # el tamaño va en el subtítulo
     return re.sub(r"\s+", " ", n).strip(" .")
 
 def marca_nombre(n):
@@ -132,33 +133,48 @@ def marca_nombre(n):
 # ---------- texto oficial ----------
 def oraciones(t):
     t = re.sub(r"\s+", " ", t or "").strip()
+    t = re.sub(r"\b([A-Z])\. (?=[A-Z])", "\\1.§", t)  # "Dr. C. Tuna" no corta oración
+    t = re.sub(r"\b(Dr|Sra|Sr)\. ", "\\1.§", t)
     partes = re.split(r"(?<=[.!?])\s+(?=[¡¿A-ZÁÉÍÓÚÑ])", t)
-    return [p.strip() for p in partes if p.strip()]
+    return [p.replace("§", " ").strip() for p in partes if p.strip()]
 
 def limpia(b):
     b = re.sub(r"^[\-•·*✓✔]\s*", "", b.strip())
     b = re.sub(r"\s+", " ", b)
-    return b.rstrip(".") if len(b) < 90 else b
+    b = re.sub(r"^(?:[A-ZÁÉÍÓÚÑ¡!]{2,}[\s!.,]+){2,}(?=[A-ZÁÉÍÓÚÑ][a-záéíóúñ])", "", b)  # quita gritos al inicio: "TU DOSIS DIARIA DE GLOW Efecto..."
+    return b.rstrip(".").strip()
+
+CLAIM = re.compile(r"^(vegan|libre|sin |no (probado|testado)|apto para vegan|f[oó]rmula vegana|non gmo|materias primas veganas|100% vegana|dermatol|probado|seguro para la piel|hipoalerg|elaborado bajo|con ingredientes naturales y f)", re.I)
 
 def beneficios(code):
+    """Devuelve (lista, fuente, titulo). Kits: lo que incluye. Resto: frases de la descripción + puntos de la ficha."""
     f = FIC.get(code) or {}
     d = DET.get(code) or {}
-    out, fuente = [], ""
-    bl = [limpia(x) for x in (f.get("bullets") or []) if x and 3 < len(x.strip()) <= 110]
-    if len(bl) >= 3:
-        return bl[:6], "lista de la ficha"
+    bl = [limpia(x) for x in (f.get("bullets") or []) if x and 3 < len(x.strip()) <= 110
+          and not re.match(r"^(contenido|modo de uso|uso:|ingredientes)", x.strip(), re.I)]
+    if f.get("kit"):
+        return (bl[:6], "contenido del kit en la ficha", "INCLUYE") if bl else ([], "", "")
     desc = f.get("desc") or d.get("b") or ""
-    sello = d.get("s") or ""
-    cand = bl + [limpia(o) for o in oraciones(desc) if 12 <= len(o) <= 120]
-    cand += [limpia(o) for o in oraciones(sello) if 8 <= len(o) <= 110]
-    vis = set()
-    for c in cand:
-        k = c.lower()
-        if k in vis or c.isupper():
-            continue
-        vis.add(k)
-        out.append(c)
-    return out[:5], ("descripción de la ficha" if f.get("desc") else "descripción oficial" if d.get("b") else "")
+    frases = [limpia(o) for o in oraciones(desc) if 12 <= len(o) <= 260 and not o.isupper()
+              and not re.search(r"(formato|contenido|cont\.|size)\s*:?\s*\d", o, re.I)]
+    puntos = [b for b in bl if not CLAIM.match(b)]
+    sellos = [b for b in bl if CLAIM.match(b)]
+    sellos += [limpia(o) for o in oraciones(d.get("s") or "") if 8 <= len(o) <= 110]
+    out, vis = [], set()
+    def mete(lst, tope):
+        for c in lst:
+            k = c.lower()
+            if k in vis or len(out) >= tope:
+                continue
+            vis.add(k)
+            out.append(c)
+    mete(puntos, 4)
+    mete(frases, 4 if puntos else 3)
+    if out:
+        mete(sellos, len(out) + 2)
+    if len(out) < 2:
+        return [], "", ""
+    return out[:6], ("ficha oficial" if f else "descripción oficial"), "BENEFICIOS"
 
 def subtitulo(code):
     f = FIC.get(code) or {}
@@ -181,7 +197,7 @@ for p in prods:
                                           "Cabello", "Hombre", "Masaje", "Brochas", "Kits") else ""
         if not linea:
             low = nm.lower()
-            linea = ("Nutriplus" if marca in ("Nutriplus", "Delish Café") or re.search(r"gumm|powder|omega|spirulina|turmeric|sambucus|matcha|electrolyte|collagen|shaker", low)
+            linea = ("Nutriplus" if marca in ("Nutriplus", "Delish Café") or re.search(r"gumm|(guaran|citrus).*powder|omega|spirulina|turmeric|sambucus|matcha|electrolyte|collagen|shaker", low)
                      else "Skincare" if marca == "Dr. C. Tuna" and not re.search(r"sun|masaje|massage|aceite|oil|bronce", low)
                      else "Masaje" if re.search(r"masaje|massage", low)
                      else "Cuidado personal" if re.search(r"jab[oó]n|soap|crema|cream|body|depil|toothpaste|butter|wash", low)
@@ -193,9 +209,9 @@ for p in prods:
 
 salida, sin = [], []
 for t in tarjetas:
-    ben, fuente, src = [], "", None
+    ben, fuente, src, tit = [], "", None, ""
     for c in t["codes"]:  # el primer tono que tenga texto oficial
-        ben, fuente = beneficios(c)
+        ben, fuente, tit = beneficios(c)
         if ben:
             src = c
             break
@@ -203,6 +219,8 @@ for t in tarjetas:
     t["sub"] = subtitulo(src or t["codes"][0]) if not t["tonos"] else ""
     t["beneficios"] = ben
     t["fuente"] = fuente
+    if tit == "INCLUYE":
+        t["titulo"] = tit
     t["foto"] = t["codes"][0]
     (salida if ben else sin).append(t)
 
