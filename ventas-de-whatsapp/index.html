@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="/mentorias/herramientas/base.css">
 <link rel="stylesheet" href="/ventas-de-whatsapp/tarjetas.css">
 <link rel="stylesheet" href="/ventas-de-whatsapp/inauguracion.css">
+<link rel="stylesheet" href="/ventas-de-whatsapp/imprimibles.css">
 <script data-goatcounter="https://sebastianmtzdlp.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
@@ -38,6 +39,7 @@
     <div class="seg" role="tablist" aria-label="Secciones">
       <button role="tab" aria-pressed="true" aria-selected="true" data-t="tarjetas" id="b-tarjetas">Tarjetas y catálogo</button>
       <button role="tab" aria-pressed="false" aria-selected="false" data-t="inauguracion" id="b-inauguracion">Venta de inauguración</button>
+      <button role="tab" aria-pressed="false" aria-selected="false" data-t="imprimir" id="b-imprimir">Para imprimir</button>
     </div>
   </div>
 
@@ -112,10 +114,50 @@
     <div id="inauguracion"></div>
   </section>
 
+  <section class="panel" id="t-imprimir" role="tabpanel" aria-labelledby="b-imprimir" hidden>
+    <div id="imprimibles" class="cuerpo im">
+      <div class="principal">
+        <section class="paso" aria-labelledby="hi1">
+          <div class="cab"><h2 id="hi1"><span class="n">1</span>Tarjetas para <em>repartir</em></h2><p>Una tarjeta por producto, del color de su empaque, con sus beneficios, tu QR y tus redes. Hay <b id="imTotal">0</b> listas para imprimir.</p></div>
+          <p class="im-aviso" id="imAviso">Elige tu nombre arriba para que el QR abra tu tienda.</p>
+          <div class="chips" id="imLineas" role="group" aria-label="Líneas"></div>
+          <div class="im-barra"><p class="cuantos" id="imCuantas"></p><button type="button" class="enlace" id="imTodas">Elegir todas</button></div>
+          <div class="im-lista" id="imLista"></div>
+        </section>
+      </div>
+      <aside class="lado">
+        <section class="paso" aria-labelledby="hi2">
+          <div class="cab"><h2 id="hi2"><span class="n">2</span>Tus datos al <em>pie</em></h2><p>Solo sale lo que escribas. Se guarda en este dispositivo.</p></div>
+          <div class="opts">
+            <div class="fila"><label class="etq" for="imWa">WhatsApp</label><input type="tel" id="imWa" inputmode="tel" maxlength="16" autocomplete="off"></div>
+            <div class="fila"><label class="etq" for="imIg">Instagram <span class="opc">(opcional)</span></label><input type="text" id="imIg" maxlength="30" placeholder="@tuusuario" autocomplete="off" autocapitalize="off"></div>
+            <div class="fila"><label class="etq" for="imTt">TikTok <span class="opc">(opcional)</span></label><input type="text" id="imTt" maxlength="30" placeholder="@tuusuario" autocomplete="off" autocapitalize="off"></div>
+            <div class="fila"><span class="etq">Lado izquierdo</span>
+              <div class="seg" role="group" aria-label="Lado izquierdo" id="imLado">
+                <button type="button" data-v="foto">Foto del producto</button>
+                <button type="button" data-v="muestra">Espacio para muestra</button>
+              </div>
+            </div>
+            <div class="fila"><span class="etq">Impresión</span>
+              <div class="seg" role="group" aria-label="Impresión" id="imHoja">
+                <button type="button" data-v="carta">4 por hoja carta</button>
+                <button type="button" data-v="una">Una por hoja</button>
+              </div>
+            </div>
+          </div>
+          <div class="im-vista"><canvas id="imVista" width="800" height="1050" aria-label="Vista de la tarjeta"></canvas></div>
+          <p class="cuantos" id="imVistaN"></p>
+          <div class="salida"><button class="btn" id="imPdf" type="button" disabled>Descargar PDF</button></div>
+          <p class="nota">Cada tarjeta mide 10.2 × 13.3 cm. En hoja carta salen 4 con marcas de corte; imprime al 100% (sin "ajustar a la página"). "Una por hoja" es para mandarlas a una imprenta. El QR abre el producto en tu tienda.</p>
+        </section>
+      </aside>
+    </div>
+  </section>
+
   <section class="sigue" aria-label="Más herramientas">
     <a class="otra" href="/mentorias/herramientas/mi-tienda/#seg"><b>Contestar un pedido</b><span>Pega el pedido y se arma la respuesta con el total y el apartado.</span><i aria-hidden="true">→</i></a>
     <a class="otra" href="/mentorias/herramientas/pedidos/"><b>Pedidos y cobros</b><span>Quién ya pagó, qué falta entregar y el mensaje de cobro.</span><i aria-hidden="true">→</i></a>
-    <a class="otra" href="/mentorias/herramientas/objeciones/"><b>¿Y si me dice que no?</b><span>Qué contestar cuando te dicen «está caro» o «luego te digo».</span><i aria-hidden="true">→</i></a>
+    <a class="otra" href="/mentorias/herramientas/objeciones/"><b>¿Y si me dice que no?</b><span>Qué contestar cuando te dicen "está caro" o "luego te digo".</span><i aria-hidden="true">→</i></a>
   </section>
   <footer><p>Equipo SVH · mitienda.beauty · Uso interno. No es material oficial de Farmasi. Precios públicos del catálogo México 2026; confirma existencias antes de cobrar.</p></footer>
 </div>
@@ -126,5 +168,6 @@
 <script src="/ventas-de-whatsapp/ventas.js"></script>
 <script src="/ventas-de-whatsapp/tarjetas.js"></script>
 <script src="/ventas-de-whatsapp/inauguracion.js"></script>
+<script src="/ventas-de-whatsapp/imprimibles.js"></script>
 </body>
 </html>

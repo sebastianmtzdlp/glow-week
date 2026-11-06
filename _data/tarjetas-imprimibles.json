@@ -1,0 +1,3907 @@
+{
+"_nota": "Lo arma scripts/tarjetas_imprimibles.py. Beneficios copiados de la ficha oficial de Farmasi México, sin reescribir. No editar a mano.",
+"productos": [
+{
+"id": "delish-cafe-instantaneo-mezcla-de-hongos-y-achicoria-1002736",
+"marca": "Delish Café",
+"nombre": "Instantáneo Mezcla de Hongos y Achicoria",
+"linea": "Nutriplus",
+"codes": [
+"1002736"
+],
+"tonos": 0,
+"sub": "105 g",
+"beneficios": [
+"Claridad mental y concentración",
+"Apoyo al sistema inmunológico",
+"Bienestar digestivo",
+"Está elaborado con ingredientes limpios y funcionales, sin azúcares añadidos"
+],
+"fuente": "ficha oficial",
+"foto": "1002736"
+},
+{
+"id": "delish-cafe-mezcla-de-achicoria-9000850",
+"marca": "Delish Café",
+"nombre": "Mezcla de Achicoria",
+"linea": "Nutriplus",
+"codes": [
+"9000850"
+],
+"tonos": 0,
+"sub": "100 g",
+"beneficios": [
+"No GMO",
+"Nutriplus Café Achicoria es un café vegano de origen indio, elaborado con un 60 % de raíz de achicoria",
+"Su mezcla soluble combina el auténtico sabor del café con el toque tostado y sutilmente dulce de la achicoria, brindando una experiencia suave, equilibrada y única en cada taza",
+"Gracias a su contenido natural de achicoria, contiene menos cafeína que el café convencional, lo que lo convierte en una excelente alternativa para quienes desean disfrutar de su café diario con un perfil más ligero y equilibrado",
+"Sin lácteos",
+"Sin azúcar"
+],
+"fuente": "ficha oficial",
+"foto": "9000850"
+},
+{
+"id": "delish-cafe-mezcla-de-achicoria-con-colageno-9000852",
+"marca": "Delish Café",
+"nombre": "Mezcla de Achicoria con Colágeno",
+"linea": "Nutriplus",
+"codes": [
+"9000852"
+],
+"tonos": 0,
+"sub": "100 g",
+"beneficios": [
+"Nutriplus Delish Café con Achicoria y Colágeno es una mezcla soluble de origen indio que combina extracto de raíz de achicoria (51 %), café instantáneo (34 %) y colágeno hidrolizado tipo I y III de origen bovino (15 %)",
+"Con menos cafeína que el café tradicional, esta bebida ofrece un sabor suave, tostado y ligeramente amaderado, con sutiles notas a nuez que la convierten en una opción ideal para disfrutar caliente o fría, en cualquier momento del día"
+],
+"fuente": "ficha oficial",
+"foto": "9000852"
+},
+{
+"id": "delish-cafe-mezcla-de-achicoria-en-sobres-9000700",
+"marca": "Delish Café",
+"nombre": "Mezcla de Achicoria en Sobres",
+"linea": "Nutriplus",
+"codes": [
+"9000700"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"No GMO",
+"Nutriplus Café Achicoria es un café vegano de origen indio, elaborado con un 60 % de raíz de achicoria",
+"Gracias a su contenido natural de achicoria, contiene menos cafeína que el café convencional",
+"Ideal en cualquier momento del día, tanto caliente como en versión fría",
+"Sin lácteos",
+"Sin azúcar"
+],
+"fuente": "ficha oficial",
+"foto": "9000700"
+},
+{
+"id": "delish-cafe-mezcla-de-fibra-9000851",
+"marca": "Delish Café",
+"nombre": "Mezcla de Fibra",
+"linea": "Nutriplus",
+"codes": [
+"9000851"
+],
+"tonos": 0,
+"sub": "100 g",
+"beneficios": [
+"Una alternativa saludable al café tradicional, elaborada con granos de cebada y centeno ricos en nutrientes",
+"Su mezcla incluye achicoria y fibra para mejorar la digestión y brindar energía en una bebida deliciosa y balanceada.Aporta energía sin exceso de cafeína",
+"Contiene fibra y achicoria que favorecen la digestión",
+"Sin crueldad animal",
+"Sin conservadores"
+],
+"fuente": "ficha oficial",
+"foto": "9000851"
+},
+{
+"id": "lily-shaker-9000689",
+"marca": "Farmasi",
+"nombre": "Lily Shaker",
+"linea": "Nutriplus",
+"codes": [
+"9000689"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"El Lily Shaker de Farmasi es el aliado perfecto para una nutrición práctica y deliciosa",
+"Ideal para preparar batidos de manera rápida y sin grumos, su diseño moderno, tapa hermética y material libre de BPA garantizan comodidad y seguridad en cada uso",
+"Su capacidad es perfecta para tus preparaciones diarias, es fácil de limpiar y puedes llevarlo contigo al gimnasio, la oficina o donde lo necesites"
+],
+"fuente": "ficha oficial",
+"foto": "9000689"
+},
+{
+"id": "matcha-tea-1001892",
+"marca": "Farmasi",
+"nombre": "Matcha Tea",
+"linea": "Nutriplus",
+"codes": [
+"1001892"
+],
+"tonos": 0,
+"sub": "100 g",
+"beneficios": [
+"Producto natural de origen vegetal",
+"Disfruta del delicioso sabor suave y aterciopelado de Matcha Nutriplus",
+"Su origen de grado orgánico y premium se traduce en un polvo ultrafino con una textura exquisitamente suave para deleitar tus sentidos",
+"Sin conservadores ni aditivos artificiales",
+"Sin azúcar"
+],
+"fuente": "ficha oficial",
+"foto": "1001892"
+},
+{
+"id": "absolute-super-elixir-dr-c-tuna-1000991",
+"marca": "Dr. C. Tuna",
+"nombre": "Absolute Super Elixir",
+"linea": "Skincare",
+"codes": [
+"1000991"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Un aceite ligero y nutritivo formulado con extractos 100% naturales, que hidrata, protege y restaura tanto la piel como el cabello",
+"Su textura sedosa se absorbe rápidamente sin dejar sensación grasa, aportando un acabado luminoso y saludable. \"Piel con brillo radiante y saludable",
+"Refuerza la barrera hidrolipídica con hidratación de larga duración",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000991"
+},
+{
+"id": "dr-c-tuna-aceite-de-calendula-1000287",
+"marca": "Dr. C. Tuna",
+"nombre": "Aceite de Caléndula",
+"linea": "Skincare",
+"codes": [
+"1000287"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Nutrición e hidratación para pieles sensibles!",
+"Un aceite facial que ayuda a prevenir la resequedad provocada por los factores ambientales, además de hidratar la piel gracias a su fórmula con caléndula",
+"Nutre la piel y deja una sensación suave y sedosa",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000287"
+},
+{
+"id": "dr-c-tuna-age-reversist-crema-hidratante-1000271",
+"marca": "Dr. C. Tuna",
+"nombre": "Age Reversist Crema Hidratante",
+"linea": "Skincare",
+"codes": [
+"1000271"
+],
+"tonos": 0,
+"sub": "30 ml",
+"beneficios": [
+"La crema hidratante Age Reversist suaviza la superficie de la piel, absorbiéndose rápido para dejar la piel con apariencia sedosa,firme y radiante",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000271"
+},
+{
+"id": "dr-c-tuna-age-reversist-crema-perfeccionadora-instantanea-1000275",
+"marca": "Dr. C. Tuna",
+"nombre": "Age Reversist Crema Perfeccionadora Instantánea",
+"linea": "Skincare",
+"codes": [
+"1000275"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¿Tienes un evento importante?",
+"Utiliza la crema perfeccionadora instantánea",
+"Formulada con extracto de plancton, esta crema en gel se funde en la piel y libera propiedades para rellenar y tensar las líneas finas y las arrugas al instante",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000275"
+},
+{
+"id": "dr-c-tuna-age-reversist-crema-de-contorno-de-ojos-1000273",
+"marca": "Dr. C. Tuna",
+"nombre": "Age Reversist Crema de Contorno de Ojos",
+"linea": "Skincare",
+"codes": [
+"1000273"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"La crema para contorno de ojos de Age Reversist brinda luminosidad a la piel del contorno de los ojos gracias a sus ingredientes especiales",
+"Ayuda a hidratar la piel sensible y a combatir los signos de envejecimiento",
+"Una fórmula ligera que ayuda a suavizar la apariencia de líneas finas de expresión y arrugas",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000273"
+},
+{
+"id": "dr-c-tuna-age-reversist-limpiador-exfoliante-1000276",
+"marca": "Dr. C. Tuna",
+"nombre": "Age Reversist Limpiador Exfoliante",
+"linea": "Skincare",
+"codes": [
+"1000276"
+],
+"tonos": 0,
+"sub": "80 ml",
+"beneficios": [
+"¡Prevención de arrugas y líneas finas!",
+"El limpiador exfoliante de Age Reversist limpia suavemente la piel sin dañarla, gracias a sus micro partículas de exfoliación",
+"Ayuda a mantener el rostro hidratado, fresco y terso",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000276"
+},
+{
+"id": "dr-c-tuna-age-reversist-mascarilla-de-noche-1000269",
+"marca": "Dr. C. Tuna",
+"nombre": "Age Reversist Mascarilla de Noche",
+"linea": "Skincare",
+"codes": [
+"1000269"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Prevención de arrugas y líneas finas!",
+"Mascarilla de belleza de noche que proporciona un 52% de aumento de colágeno, aprobado por un laboratorio reconocido internacionalmente",
+"Contiene vitamina C, una mezcla de ácido ascórbico, que ayuda a mejorar dramáticamente la penetración de los ingredientes en la piel, con propiedades antioxidantes, brindando ultra-nutrición mientras duermes",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000269"
+},
+{
+"id": "dr-c-tuna-age-reversist-spray-tonico-1000270",
+"marca": "Dr. C. Tuna",
+"nombre": "Age Reversist Spray Tónico",
+"linea": "Skincare",
+"codes": [
+"1000270"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"El tónico Age Reversist brinda tonicidad, disminuye el tamaño de los poros y reafirma la piel",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000270"
+},
+{
+"id": "dr-c-tuna-age-reversist-suero-1000272",
+"marca": "Dr. C. Tuna",
+"nombre": "Age Reversist Suero",
+"linea": "Skincare",
+"codes": [
+"1000272"
+],
+"tonos": 0,
+"sub": "30 ml",
+"beneficios": [
+"El Sérum Age Reversist ayuda a suavizar la piel y mejorar su textura , su fórmula ligera penetra fácilmente, dejando un cutis suave y con un aspecto más joven",
+"Cont: 30 ml /1 fl.oz",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000272"
+},
+{
+"id": "dr-c-tuna-aqua-crema-hidratante-1000267",
+"marca": "Dr. C. Tuna",
+"nombre": "Aqua Crema Hidratante",
+"linea": "Skincare",
+"codes": [
+"1000267"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Hidratación y humectación para pieles deshidratadas",
+"Su textura en gel ayuda a lograr una hidratación duradera, manteniendo la piel suave",
+"Probado Dermatológicamente",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000267"
+},
+{
+"id": "dr-c-tuna-aqua-crema-de-ojos-revitalizante-1000268",
+"marca": "Dr. C. Tuna",
+"nombre": "Aqua Crema de Ojos Revitalizante",
+"linea": "Skincare",
+"codes": [
+"1000268"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Hidratación y humectación, para pieles deshidratadas",
+"Una crema para ojos altamente humectante que ayuda a disminuir la apariencia de líneas finas y arrugas logrando una tez suave",
+"Probada Dermatológicamente",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000268"
+},
+{
+"id": "dr-c-tuna-aqua-gel-limpiador-1000265",
+"marca": "Dr. C. Tuna",
+"nombre": "Aqua Gel Limpiador",
+"linea": "Skincare",
+"codes": [
+"1000265"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Un limpiador suave pero eficaz que ayuda a eliminar la suciedad, las impurezas y los residuos de maquillaje, sin resecar la piel, dejándola limpia y suave",
+"Ideal para pieles deshidratadas",
+"Probado Dermatológicamente",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000265"
+},
+{
+"id": "dr-c-tuna-aqua-gotas-de-hidratacion-1000266",
+"marca": "Dr. C. Tuna",
+"nombre": "Aqua Gotas de Hidratación",
+"linea": "Skincare",
+"codes": [
+"1000266"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Un suero facial ligero y de absorción rápida que ayuda a lograr una hidratación profunda y a proteger la piel de la contaminación",
+"Tez visiblemente más radiante y de aspecto saludable",
+"Ideal para pieles deshidratadas",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000266"
+},
+{
+"id": "dr-c-tuna-calendula-balsamo-crema-1000286",
+"marca": "Dr. C. Tuna",
+"nombre": "Caléndula Bálsamo Crema",
+"linea": "Skincare",
+"codes": [
+"1000286"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Nutrición e hidratación para pieles sensibles y secas!",
+"Un bálsamo que brinda una nutrición profunda, además de calmar la piel, evitando que se reseque",
+"Crea una barrera para proteger el cuti contra factores ambientales",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000286"
+},
+{
+"id": "dr-c-tuna-calendula-crema-facial-1000285",
+"marca": "Dr. C. Tuna",
+"nombre": "Caléndula Crema Facial",
+"linea": "Skincare",
+"codes": [
+"1000285"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Nutrición e hidratación para pieles sensibles!",
+"Un rico humectante de rápida absorción que proporciona hidratación para pieles secas y sensibles",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000285"
+},
+{
+"id": "dr-c-tuna-calendula-limpiador-facial-1000283",
+"marca": "Dr. C. Tuna",
+"nombre": "Caléndula Limpiador Facial",
+"linea": "Skincare",
+"codes": [
+"1000283"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Nutrición e hidratación para pieles secas y sensibles de todas las edades!",
+"Un limpiador suave especialmente formulado para piel seca y sensible",
+"Elimina el maquillaje y limpia los poros en profundidad, además de remover impurezas y exceso de grasa sin resecar la piel, manteniendo la piel suave y flexible",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "descripción oficial",
+"foto": "1000283"
+},
+{
+"id": "dr-c-tuna-calendula-tonico-facial-1000284",
+"marca": "Dr. C. Tuna",
+"nombre": "Caléndula Tónico Facial",
+"linea": "Skincare",
+"codes": [
+"1000284"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Nutrición e hidratación para pieles sensibles y secas de todas las edades!",
+"Un tónico facial calmante que tonifica, ayuda a suavizar, calmar y refrescar la piel",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000284"
+},
+{
+"id": "dr-c-tuna-cleansing-balm-1000649",
+"marca": "Dr. C. Tuna",
+"nombre": "Cleansing Balm",
+"linea": "Skincare",
+"codes": [
+"1000649"
+],
+"tonos": 0,
+"sub": "95 ml",
+"beneficios": [
+"Bálsamo Desmaquillante elimina eficazmente el maquillaje facial de larga duración, el maquillaje para ojos resistente al agua, protectores solares y contaminantes",
+"Su fórmula en bálsamo de aceite hidrata gracias a la Manteca de Karité y una selección única de aceites y mantecas",
+"Dermatológicamente probado",
+"Libre de parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1000649"
+},
+{
+"id": "dr-c-tuna-glow-face-mist-1002871",
+"marca": "Dr. C. Tuna",
+"nombre": "Glow Face Mist",
+"linea": "Skincare",
+"codes": [
+"1002871"
+],
+"tonos": 0,
+"sub": "80 mL",
+"beneficios": [
+"Efecto piel jugosa al instante",
+"Una bruma ultraligera",
+"Un boost instantáneo de hidratación",
+"Libre de crueldad animal",
+"Vegano"
+],
+"fuente": "ficha oficial",
+"foto": "1002871"
+},
+{
+"id": "dr-c-tuna-lumi-radiance-crema-contorno-de-ojos-iluminadora-1000299",
+"marca": "Dr. C. Tuna",
+"nombre": "Lumi Radiance Crema Contorno de Ojos Iluminadora",
+"linea": "Skincare",
+"codes": [
+"1000299"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Una poderosa crema para ojos que combate las ojeras e hidrata el contorno de los ojos, además brinda un aspecto más suave y radiante con el uso diario",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000299"
+},
+{
+"id": "dr-c-tuna-lumi-radiance-crema-iluminadora-1000297",
+"marca": "Dr. C. Tuna",
+"nombre": "Lumi Radiance Crema Iluminadora",
+"linea": "Skincare",
+"codes": [
+"1000297"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Ilumina e iguala el tono de la piel: más abundante, más fuerte y más efectivo!",
+"La crema iluminadora de Dr. C. Tuna Brightening Cream con protección UV FPS 22 ayuda a mantener el brillo de la piel y equilibrar el tono desigual con su uso regular",
+"Contribuye a la luminosidad de la piel y proporciona una hidratación profunda",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000297"
+},
+{
+"id": "dr-c-tuna-lumi-radiance-gel-limpiador-iluminador-1000300",
+"marca": "Dr. C. Tuna",
+"nombre": "Lumi Radiance Gel Limpiador Iluminador",
+"linea": "Skincare",
+"codes": [
+"1000300"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Ilumina e iguala el tono de la piel: más abundante, más fuerte y más efectivo!",
+"Un gel limpiador de uso diario que elimina impurezas e ilumina el tono de la piel",
+"Deja la piel con una sensación suave, flexible y confortable",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000300"
+},
+{
+"id": "dr-c-tuna-lumi-radiance-suero-iluminador-1000298",
+"marca": "Dr. C. Tuna",
+"nombre": "Lumi Radiance Suero Iluminador",
+"linea": "Skincare",
+"codes": [
+"1000298"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Un suero iluminador que ayuda a reducir las manchas oscuras y equilibra el tono desigual de la piel con el uso diario regular",
+"Se absorbe rápidamente brindando el nivel perfecto de humedad",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000298"
+},
+{
+"id": "dr-c-tuna-lumi-radiance-tonico-iluminador-1000295",
+"marca": "Dr. C. Tuna",
+"nombre": "Lumi Radiance Tónico Iluminador",
+"linea": "Skincare",
+"codes": [
+"1000295"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"El tónico iluminador Dr. C. Tuna Lumi Radiance ayuda a eliminar residuos dejandola con una apariencia fresca y suave",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000295"
+},
+{
+"id": "dr-c-tuna-micellar-cleansing-water-1002189",
+"marca": "Dr. C. Tuna",
+"nombre": "Micellar Cleansing Water",
+"linea": "Skincare",
+"codes": [
+"1002189"
+],
+"tonos": 0,
+"sub": "225 ml",
+"beneficios": [
+"Agua micelar suave que elimina maquillaje e impurezas sin necesidad de frotar ni enjuagar, dejando la piel fresca y revitalizada",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002189"
+},
+{
+"id": "protector-solar-corporal-fps-50-dr-c-tuna-1001333",
+"marca": "Dr. C. Tuna",
+"nombre": "Protector Solar Corporal FPS 50",
+"linea": "Skincare",
+"codes": [
+"1001333"
+],
+"tonos": 0,
+"sub": "150 ml",
+"beneficios": [
+"Dr. C. Tuna Sun Body Lotion SPF 50 ofrece alta protección contra rayos UVA y UVB",
+"Su textura ultraligera, no grasa y de rápida absorción, deja la piel fresca, luminosa y perfectamente protegida bajo el sol",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001333"
+},
+{
+"id": "protector-solar-facial-fps-50-dr-c-tuna-1001330",
+"marca": "Dr. C. Tuna",
+"nombre": "Protector Solar Facial FPS 50+",
+"linea": "Skincare",
+"codes": [
+"1001330"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Protección facial SPF 50 sin efecto blanquecino",
+"Su fórmula transparente y no grasa es ideal para el uso diario, incluso debajo del maquillaje",
+"Vegano",
+"Libre crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001330"
+},
+{
+"id": "dr-c-tuna-resurface-crema-contorno-de-ojos-avanzada-1000282",
+"marca": "Dr. C. Tuna",
+"nombre": "Resurface Crema Contorno de Ojos Avanzada",
+"linea": "Skincare",
+"codes": [
+"1000282"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Régimen para signos visibles de envejecimiento, líneas finas y arrugas!",
+"Una crema para el contorno de ojos que ayuda a iluminar, hidratar y suavizar el área, mientras ayuda a reducir la apariencia de líneas finas a lo largo del tiempo",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000282"
+},
+{
+"id": "dr-c-tuna-resurface-limpiador-1000277",
+"marca": "Dr. C. Tuna",
+"nombre": "Resurface Limpiador",
+"linea": "Skincare",
+"codes": [
+"1000277"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Mejora la elasticidad y firmeza de la piel",
+"Limpiador facial cremoso que limpia los poros y extrae la suciedad, el aceite y las impurezas sin resecar la piel",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "descripción oficial",
+"foto": "1000277"
+},
+{
+"id": "dr-c-tuna-resurface-tonico-calmante-1000278",
+"marca": "Dr. C. Tuna",
+"nombre": "Resurface Tónico Calmante",
+"linea": "Skincare",
+"codes": [
+"1000278"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"¡Régimen para signos visibles de envejecimiento, líneas finas y arrugas!",
+"Una esencia suave pero poderosa que ayuda a disminuir la apariencia opaca causada por la resequedad",
+"El tónico calmante Hydrasooth Essence ayuda a calmar e hidratar la piel, al tiempo que le da un aspecto saludable y luminoso",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000278"
+},
+{
+"id": "dr-c-tuna-tea-tree-balsamo-crema-1000291",
+"marca": "Dr. C. Tuna",
+"nombre": "Tea Tree Bálsamo Crema",
+"linea": "Skincare",
+"codes": [
+"1000291"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Prueba el bálsamo en crema de nutrición intensa que humecta la piel a profundidad, ya sea del rostro o del cuerpo y crea una barrera contra los efectos negativos del medio ambiente",
+"Su textura en bálsamo ayuda a deslizarse suavemente sobre la piel mientras la protege y la restaura",
+"La piel con tendencia mixta-grasa también puede tener sensibilidad, resequedad ó deshidratación, éste bálsamo facial en crema la ayuda a recuperar su equilibrio y suavidad",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "descripción oficial",
+"foto": "1000291"
+},
+{
+"id": "dr-c-tuna-tea-tree-tonico-facial-1000289",
+"marca": "Dr. C. Tuna",
+"nombre": "Tea Tree Tónico Facial",
+"linea": "Skincare",
+"codes": [
+"1000289"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Ayuda a controlar y prevenir el exceso de grasa en pieles mixtas de todas las edades",
+"Un tónico facial que purifica suavemente la piel, al mismo tiempo que ayuda a afinar los poros, dejándola con un aspecto mate, sin resecarla",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000289"
+},
+{
+"id": "vitamina-c-glow-serum-dr-c-tuna-1002167",
+"marca": "Dr. C. Tuna",
+"nombre": "Vitamina C Glow Serum",
+"linea": "Skincare",
+"codes": [
+"1002167"
+],
+"tonos": 0,
+"sub": "30 ml",
+"beneficios": [
+"Suero hidratante con vitamina C que ayuda a iluminar e hidratar la piel, protege la piel de los rayos ultravioleta, ayuda a unificar el tono al bloquear la producción anormal de pigmentos, atenúa las manchas y mejora la elasticidad de la piel",
+"Probado dermatológicamente y fabricado en un entorno libre de OGM",
+"Libre de parabenos, SLS, gluten, metales pesados y ingredientes de origen animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002167"
+},
+{
+"id": "resurface-crema-facial-de-dia-spf30-1000280",
+"marca": "Farmasi",
+"nombre": "Resurface Crema Facial de Día SPF30",
+"linea": "Skincare",
+"codes": [
+"1000280"
+],
+"tonos": 0,
+"sub": "50 ml",
+"beneficios": [
+"Una crema hidratante y única con SPF 30 que se absorbe rápidamente y combate la sequedad y los signos del envejecimiento de la piel",
+"Proporciona una piel radiante mientras protege del sol",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000280"
+},
+{
+"id": "resurface-crema-de-noche-1000551",
+"marca": "Farmasi",
+"nombre": "Resurface Crema de Noche",
+"linea": "Skincare",
+"codes": [
+"1000551"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Una crema de noche nutritiva que ayuda a mejorar la firmeza e hidratación de la piel, reduce la apariencia de arrugas y líneas finas mientras duermes para lucir una piel suave y radiante",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000551"
+},
+{
+"id": "resurface-suero-revitalizador-1000279",
+"marca": "Farmasi",
+"nombre": "Resurface Suero Revitalizador",
+"linea": "Skincare",
+"codes": [
+"1000279"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"La ciencia del cuidado de la piel comienza con el retinol",
+"Este suero facial ayuda a mantener una tez suave y radiante logrando que la piel luzca hidratada e uniforme al mismo tiempo que reduce líneas finas y los signos visibles de envejecimiento",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000279"
+},
+{
+"id": "tea-tree-crema-facial-1000290",
+"marca": "Farmasi",
+"nombre": "Tea Tree Crema Facial",
+"linea": "Skincare",
+"codes": [
+"1000290"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Ayuda a controlar y prevenir el exceso de grasa en las pieles mixtas de todas las edades",
+"Una crema humectante facial que ayuda a hidratar y equilibrar la piel",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000290"
+},
+{
+"id": "tea-tree-limpiador-facial-1000288",
+"marca": "Farmasi",
+"nombre": "Tea Tree Limpiador Facial",
+"linea": "Skincare",
+"codes": [
+"1000288"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Controla el exceso de grasa en pieles mixtas",
+"Un limpiador en gel especialmente formulado para las pieles grasas y mixtas que limpia los poros y ayuda a equilibrar y reducir el exceso de sebo",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000288"
+},
+{
+"id": "tea-tree-suero-1000292",
+"marca": "Farmasi",
+"nombre": "Tea Tree Suero",
+"linea": "Skincare",
+"codes": [
+"1000292"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Controla el exceso de sebo en pieles grasas a mixtas de todas las edades",
+"Este suero facial purificante ayuda a tratar el exceso de sebo, las impurezas e imperfecciones focalizadas de la piel y a restaurar su equilibrio",
+"Libre de crueldad animal",
+"Con ingredientes naturales y fórmulas sin parabenos ni sulfatos"
+],
+"fuente": "ficha oficial",
+"foto": "1000292"
+},
+{
+"id": "bb-glaze-lipstick-03-black-cherry-1001425",
+"marca": "Farmasi",
+"nombre": "BB Glaze Lipstick 03 Black Cherry",
+"linea": "Labios",
+"codes": [
+"1001425"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Apto para todo tipo de piel",
+"Formulado con pigmentos orgánicos y emolientes responsables",
+"Labial que combina color translúcido y brillo con propiedades nutritivas y reparadoras",
+"Vegano y libre de parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1001425"
+},
+{
+"id": "creamy-lipstick",
+"marca": "Farmasi",
+"nombre": "Creamy Lipstick",
+"linea": "Labios",
+"codes": [
+"1001387",
+"1001393",
+"1001394",
+"1001402",
+"1001401",
+"1001399",
+"1001398",
+"1001397",
+"1001390",
+"1001391",
+"1001392"
+],
+"tonos": 11,
+"sub": "",
+"beneficios": [
+"Apto para todo tipo de piel",
+"Barra de labios con fórmula super cremosa que hidrata y aporta color intenso de larga duración",
+"Libre SLS",
+"Libre crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001387"
+},
+{
+"id": "glowy-peptide-lip-balm",
+"marca": "Farmasi",
+"nombre": "Glowy Peptide Lip Balm",
+"linea": "Labios",
+"codes": [
+"1002609",
+"1002603",
+"1002605",
+"1002607",
+"PK11112"
+],
+"tonos": 5,
+"sub": "",
+"beneficios": [
+"Fórmula ultra nutritiva con péptidos, escualeno y vitamina E",
+"Acabado glaseado y sin sensación pegajosa",
+"Un bálsamo labial suave y cremoso que se funde al contacto, brindando hidratación inmediata, brillo natural y un acabado saludable y luminoso"
+],
+"fuente": "ficha oficial",
+"foto": "1002609"
+},
+{
+"id": "latina-lip-liquor",
+"marca": "Farmasi",
+"nombre": "Latina Lip Liquor",
+"linea": "Labios",
+"codes": [
+"1001963",
+"1001964",
+"1001965",
+"1001967",
+"1001968",
+"1001966",
+"1002280",
+"1002281",
+"1002283",
+"1002284"
+],
+"tonos": 10,
+"sub": "",
+"beneficios": [
+"Labial Líquido evoca el espíritu de la mujer latina, proporcionando un color impactante, el cual le hará lucir un tono único al combinarse con su tono natural y PH",
+"Libre crueldad animal",
+"Libre de parabenos"
+],
+"fuente": "descripción oficial",
+"foto": "1001963"
+},
+{
+"id": "lip-liner",
+"marca": "Farmasi",
+"nombre": "Lip Liner",
+"linea": "Labios",
+"codes": [
+"1001461"
+],
+"tonos": 1,
+"sub": "",
+"beneficios": [
+"Delineador automático de textura suave que perfila los labios con precisión y prolonga el color del labial",
+"Libre de crueldad animal",
+"Libre de parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1001461"
+},
+{
+"id": "lip-oil",
+"marca": "Farmasi",
+"nombre": "Lip Oil",
+"linea": "Labios",
+"codes": [
+"1002515",
+"1002516",
+"1002517"
+],
+"tonos": 3,
+"sub": "",
+"beneficios": [
+"Aceite labial ligero que aporta brillo e hidratación al instante",
+"TRANSPARENT es tu opción ideal para humedad pura y acabado brillante, sin color añadido",
+"Enriquecido con aceites vegetales naturales y Vitamina E, nutre y protege tus labios, realzando su brillo natural con un aroma limpio y sutil, y una textura suave y no pegajosa. 6 ml (0.20 oz.)",
+"Libre de crueldad, vegano, sin parabenos y sin metales pesados"
+],
+"fuente": "descripción oficial",
+"foto": "1002515"
+},
+{
+"id": "lip-stylo",
+"marca": "Farmasi",
+"nombre": "Lip Stylo",
+"linea": "Labios",
+"codes": [
+"PK101667",
+"1002551",
+"1002552",
+"1002553",
+"1002554",
+"1002555",
+"1002556",
+"1002557",
+"1002558",
+"1002559",
+"1002560"
+],
+"tonos": 11,
+"sub": "",
+"beneficios": [
+"Su fórmula satinada y cremosa se desliza sin esfuerzo, entregando un color intenso que realza los labios con profundidad natural y un acabado satinado",
+"La silueta estilizada permite una definición precisa y contornos limpios",
+"Libre de crueldad animal",
+"Libre de metales pesados"
+],
+"fuente": "ficha oficial",
+"foto": "PK101667"
+},
+{
+"id": "matte-liquid-lipstick",
+"marca": "Farmasi",
+"nombre": "Matte Liquid Lipstick",
+"linea": "Labios",
+"codes": [
+"1001801",
+"1001923",
+"1001414",
+"1001410",
+"1001416",
+"1001415",
+"1001419",
+"1001412",
+"1001413",
+"1001418",
+"1001417",
+"1001409",
+"1001924",
+"1001411",
+"1001887",
+"1001802",
+"1001804",
+"1001805",
+"1002287",
+"1001925",
+"1001928"
+],
+"tonos": 21,
+"sub": "",
+"beneficios": [
+"Color de gran impacto y larga duración",
+"Pigmentos orgánicos y puros que proporcionan un efecto mate impresionante que se mantiene durante todo el día",
+"Fácil de usar, pincel en forma de almendra",
+"Libre de crueldad animal",
+"Libre de parabenos"
+],
+"fuente": "descripción oficial",
+"foto": "1001801"
+},
+{
+"id": "rich-lip-oil-stick",
+"marca": "Farmasi",
+"nombre": "Rich Lip Oil Stick",
+"linea": "Labios",
+"codes": [
+"1002590",
+"1002591",
+"1002592",
+"1002593",
+"1002594",
+"1002595"
+],
+"tonos": 6,
+"sub": "",
+"beneficios": [
+"Su aplicador inteligente libera la cantidad exacta de producto en cada aplicación, activando color HD con acabado ultra gloss: alta pigmentación, textura infusionada con aceites y una sensación aterciopelada desde la primera pasada",
+"Su fórmula ayuda a proteger los labios de la resequedad y a reforzar su barrera natural, dejándolos suaves, nutridos y cómodos durante todo el día",
+"Libre de crueldad animal",
+"Fórmula vegana"
+],
+"fuente": "ficha oficial",
+"foto": "1002590"
+},
+{
+"id": "tinted-lip-plumper",
+"marca": "Farmasi",
+"nombre": "Tinted Lip Plumper",
+"linea": "Labios",
+"codes": [
+"1001497",
+"1001521",
+"1002601",
+"1001499",
+"1002602",
+"1001498"
+],
+"tonos": 6,
+"sub": "",
+"beneficios": [
+"Apto para todo tipo de piel",
+"Volumizador de labios con color",
+"Iluminador y volumizador de labiosque brinda un toque de color y una apariencia de labios más gruesos",
+"Su aplicador es fácil de usar y proporciona una textura uniforme",
+"Libre de crueldad animal",
+"Apto para Veganos"
+],
+"fuente": "ficha oficial",
+"foto": "1001497"
+},
+{
+"id": "ultimate-shine-gloss",
+"marca": "Farmasi",
+"nombre": "Ultimate Shine Lip Gloss",
+"linea": "Labios",
+"codes": [
+"1001405",
+"1001408",
+"1002306",
+"1001406",
+"1001407",
+"1002307"
+],
+"tonos": 6,
+"sub": "",
+"beneficios": [
+"Gloss de alta hidratación con aceites y mantecas naturales que aportan brillo intenso sin sensación pegajosa",
+"Libre de gluten, parabenos, metales pesados",
+"Dermatologicamente testeado"
+],
+"fuente": "descripción oficial",
+"foto": "1001405"
+},
+{
+"id": "royal-cherry-lip-gloss",
+"marca": "Royal Cherry",
+"nombre": "Lip Gloss",
+"linea": "Labios",
+"codes": [
+"1002548",
+"1002549"
+],
+"tonos": 2,
+"sub": "",
+"beneficios": [
+"El Royal Cherry Lip Gloss Cranberry Pie aporta un tono rosa baya vibrante y fresco con un brillo luminoso",
+"Su pigmento cremoso se desliza con suavidad, dando a los labios un aspecto juvenil y radiante mientras los mantiene suaves, sedosos e intensamente hidratados",
+"Un tono alegre y favorecedor que añade dulzura y energía instantánea a cualquier look",
+"Vegano",
+"Libre de alcohol"
+],
+"fuente": "ficha oficial",
+"foto": "1002548"
+},
+{
+"id": "eye-pencil",
+"marca": "Farmasi",
+"nombre": "Eye Pencil",
+"linea": "Ojos",
+"codes": [
+"1001451",
+"1001456",
+"1001452",
+"1001454",
+"1001455",
+"1001460",
+"1001458"
+],
+"tonos": 7,
+"sub": "",
+"beneficios": [
+"Producto cruelty free, Vegano y libre de parabenos. desarrollado bajo principios de belleza consciente",
+"Lápiz delineador de textura cremosa que permite crear líneas precisas, suaves y de larga duración, adaptable a looks naturales o intensos"
+],
+"fuente": "ficha oficial",
+"foto": "1001451"
+},
+{
+"id": "infinilash-mascara-1002705",
+"marca": "Farmasi",
+"nombre": "Infinilash Mascara",
+"linea": "Ojos",
+"codes": [
+"1002705"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Máscara de pestañas de fórmula flexible que ofrece alargamiento y definición natural, disponible en negro y café para looks versátiles",
+"No testado en animales",
+"Sin parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1002705"
+},
+{
+"id": "ink-liner-black-1002537",
+"marca": "Farmasi",
+"nombre": "Ink Liner Black",
+"linea": "Ojos",
+"codes": [
+"1002537"
+],
+"tonos": 0,
+"sub": "1.2 ml",
+"beneficios": [
+"Cruelty free",
+"Contenido neto: 1.2 ml",
+"Vegano",
+"Sin BHT"
+],
+"fuente": "ficha oficial",
+"foto": "1002537"
+},
+{
+"id": "intense-lift-mascara-1002596",
+"marca": "Farmasi",
+"nombre": "Intense Lift Mascara",
+"linea": "Ojos",
+"codes": [
+"1002596"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Cruelty-free",
+"Mascara activa de alto impacto que ofrece lift instantáneo, volumen impactante y longitud definida desde la primera aplicación",
+"Su fórmula ligera entrega resultados impactantes mientras fortalece las pestañas con el tiempo Diseñada para uso prolongado, resiste manchas y descamación por más de 12 horas",
+"El cepillo de silicona de precisión garantiza una aplicación suave y una separación sin esfuerzo",
+"Vegano",
+"Sin parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1002596"
+},
+{
+"id": "lost-lagoon-eyeshadow-1002352",
+"marca": "Farmasi",
+"nombre": "Lost Lagoon Eyeshadow",
+"linea": "Ojos",
+"codes": [
+"1002352"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Paletas inspiradas en los paisajes del desierto, con 9 tonos mate en fórmulas ligeras, libres de talco y respetuosas con la piel",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002352"
+},
+{
+"id": "mascara-de-extensiones-de-pestanas-zen-1301322",
+"marca": "Farmasi",
+"nombre": "Máscara de Extensiones de Pestañas Zen",
+"linea": "Ojos",
+"codes": [
+"1301322"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Máscara de pestañas que combina definición y volumen ligero con un cepillo ergonómico para una aplicación uniforme",
+"No testado en animales",
+"Sin parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1301322"
+},
+{
+"id": "mascara-de-extension-double-lash-1301518",
+"marca": "Farmasi",
+"nombre": "Máscara de Extensión Double Lash",
+"linea": "Ojos",
+"codes": [
+"1301518"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Máscara de pestañas con cepillo doble de silicón que aporta volumen y definición desde la raíz hasta la punta, logrando una mirada intensa y duradera",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1301518"
+},
+{
+"id": "new-styling-eyebrow-wax-1000930",
+"marca": "Farmasi",
+"nombre": "New Styling Eyebrow Wax",
+"linea": "Ojos",
+"codes": [
+"1000930"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Cera fijadora enriquecida con Capixyl™ y aceite de almendras, diseñada para dar forma, fijar y nutrir las cejas",
+"Libre de crueldad animal",
+"Vegano, seguro para todo tipo de piel, libre de parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1000930"
+},
+{
+"id": "precision-brow-pencil",
+"marca": "Farmasi",
+"nombre": "Precision Brow Pencil",
+"linea": "Ojos",
+"codes": [
+"1002598",
+"1002600",
+"1002599"
+],
+"tonos": 3,
+"sub": "",
+"beneficios": [
+"PRECISION BROW PENCIL - SOFT BROWN Logra unas cejas perfectamente definidas con el nuevo Precision Brow Pencil",
+"Con una fórmula mejorada de larga duración y un elegante diseño renovado, se desliza suavemente para dar forma y rellenar sin esfuerzo",
+"La punta ultrafina crea trazos naturales similares al vello, mientras que el cepillo integrado difumina para un acabado impecable y natural"
+],
+"fuente": "ficha oficial",
+"foto": "1002598"
+},
+{
+"id": "suero-para-cejas-y-pestanas-1301292",
+"marca": "Farmasi",
+"nombre": "Suero para Cejas y Pestañas",
+"linea": "Ojos",
+"codes": [
+"1301292"
+],
+"tonos": 0,
+"sub": "12 ml",
+"beneficios": [
+"Un suero intensivo diseñado para nutrir y fortalecer tus cejas y pestañas, promoviendo un crecimiento más saludable y un aspecto más denso y definido",
+"Su fórmula ligera se absorbe rápidamente, dejando un acabado suave y sin sensación grasosa",
+"No testado en animales",
+"Sin parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1301292"
+},
+{
+"id": "oasis-collection-desert-sands-palette-1002483",
+"marca": "Oasis Collection",
+"nombre": "Desert Sands Palette",
+"linea": "Ojos",
+"codes": [
+"1002483"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Fórmula responsable y con enfoque en el cuidado de tu piel",
+"Inspírate y reinventa tu mirada con la Colección Oasis, una línea de paletas de sombras inspiradas en los enigmáticos paisajes del desierto",
+"Con cinco variantes llenas de tonos versátiles, encantadores y multifacéticos, cada paleta combina acabados mate, brillantes y glitter para crear infinitos looks",
+"Su nueva fórmula libre de talco es más respetuosa con la piel, mientras que sus texturas sedosas se aplican y difuminan fácilmente, ofreciendo un acabado impecable que cautivará tus sentidos y realzará tu mirada"
+],
+"fuente": "ficha oficial",
+"foto": "1002483"
+},
+{
+"id": "oasis-collection-mirage-eyeshadow-palette-1002442",
+"marca": "Oasis Collection",
+"nombre": "Mirage Eyeshadow Palette",
+"linea": "Ojos",
+"codes": [
+"1002442"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Paletas inspiradas en los paisajes del desierto, con 9 tonos mate en fórmulas ligeras, libres de talco y respetuosas con la piel",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002442"
+},
+{
+"id": "oasis-collection-rose-dune-sands-palette-1002484",
+"marca": "Oasis Collection",
+"nombre": "Rose Dune Sands Palette",
+"linea": "Ojos",
+"codes": [
+"1002484"
+],
+"tonos": 0,
+"sub": "8.1 g",
+"beneficios": [
+"Fórmula libre de talco",
+"Una línea de paletas de sombras inspiradas en los enigmáticos paisajes del desierto",
+"Cada paleta combina acabados mate, brillantes y glitter para crear infinitos looks",
+"Sus texturas sedosas se aplican y difuminan fácilmente, ofreciendo un acabado impecable"
+],
+"fuente": "ficha oficial",
+"foto": "1002484"
+},
+{
+"id": "oasis-collection-velvet-dusk-eyeshadow-palette-1002354",
+"marca": "Oasis Collection",
+"nombre": "Velvet Dusk Eyeshadow Palette",
+"linea": "Ojos",
+"codes": [
+"1002354"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Paletas inspiradas en los paisajes del desierto, con 9 tonos mate en fórmulas ligeras, libres de talco y respetuosas con la piel",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002354"
+},
+{
+"id": "oasis-collection-violet-skies-eyeshadow-palette-1002353",
+"marca": "Oasis Collection",
+"nombre": "Violet Skies Eyeshadow Palette",
+"linea": "Ojos",
+"codes": [
+"1002353"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Paletas inspiradas en los paisajes del desierto, con 9 tonos mate en fórmulas ligeras, libres de talco y respetuosas con la piel",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002353"
+},
+{
+"id": "royal-cherry-eyeshadow-1002547",
+"marca": "Royal Cherry",
+"nombre": "Eyeshadow",
+"linea": "Ojos",
+"codes": [
+"1002547"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"La Royal Cherry Palette destaca 9 tonos intensos inspirados en cerezas, con acabados mate, satinado y metálico en gamas cereza, vino, burdeos y neutros cálidos",
+"Su fórmula sedosa permite una fácil aplicación y larga duración, ideal para crear desde looks suaves de día hasta maquillajes sofisticados y glamorosos de noche",
+"Una colección pensada para mujeres que expresan fuerza, elegancia y confianza a través del color",
+"Vegano.Probado dermatológicamente.Libre de alcohol",
+"Libre de metales pesados.No testado en animales"
+],
+"fuente": "descripción oficial",
+"foto": "1002547"
+},
+{
+"id": "royal-cherry-mascara-1002545",
+"marca": "Royal Cherry",
+"nombre": "Mascara",
+"linea": "Ojos",
+"codes": [
+"1002545"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Ofrece volumen, longitud y rizo desde la primera aplicación",
+"Su innovador cepillo de silicona garantiza una cobertura uniforme y una separación perfecta de las pestañas para un acabado limpio y definido",
+"Ligera y cómoda, resiste manchas y descamación, manteniendo la intensidad por más de 12 horas",
+"Vegano",
+"Probado oftalmológicamente"
+],
+"fuente": "ficha oficial",
+"foto": "1002545"
+},
+{
+"id": "air-blush-duo",
+"marca": "Farmasi",
+"nombre": "Air Blush Duo",
+"linea": "Rostro",
+"codes": [
+"1002616",
+"1002617",
+"1002618"
+],
+"tonos": 3,
+"sub": "",
+"beneficios": [
+"Dos texturas complementarias para personalizar tu acabado",
+"Color modulable, desde un toque sutil de color hasta un look más intenso",
+"Color de larga duración con un acabado fresco y natural",
+"Fórmula apta para veganos",
+"Dermatológicamente probado",
+"No probado en animales"
+],
+"fuente": "ficha oficial",
+"foto": "1002616"
+},
+{
+"id": "air-bronzer-duo",
+"marca": "Farmasi",
+"nombre": "Air Bronzer Duo",
+"linea": "Rostro",
+"codes": [
+"1002615",
+"1002614"
+],
+"tonos": 2,
+"sub": "",
+"beneficios": [
+"Dos texturas complementarias para personalizar tu nivel de calidez y definición",
+"Color modulable, desde un toque sutil de calidez hasta un look más definido",
+"Aplicación suave y uniforme que se difumina naturalmente sobre la piel",
+"Acabado naturalmente bronceado y de larga duración",
+"Dermatológicamente probado",
+"No probado en animales"
+],
+"fuente": "ficha oficial",
+"foto": "1002615"
+},
+{
+"id": "all-in-one-palette",
+"marca": "Farmasi",
+"nombre": "All in One Palette",
+"linea": "Rostro",
+"codes": [
+"1002157",
+"1002161"
+],
+"tonos": 2,
+"sub": "",
+"beneficios": [
+"Paleta versátil que incluye rubor, bronzer e iluminador en tonos diseñados para piel clara a media",
+"VeganoLibre de crueldad animal",
+"Libre de metales pesados Libre de gluten Libre de parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1002157"
+},
+{
+"id": "bb-cream",
+"marca": "Farmasi",
+"nombre": "BB Cream",
+"linea": "Rostro",
+"codes": [
+"1001485",
+"1001490",
+"1001486",
+"1001487",
+"1001488",
+"1001489"
+],
+"tonos": 6,
+"sub": "",
+"beneficios": [
+"Aplicar 15 minutos antes de la exposición al sol",
+"Limitar el tiempo de exposición al sol, especialmente entre las 10:00 a. m. y las 2:00 p. m",
+"Usar camisas de manga larga, pantalones, sombreros y gafas de sol",
+"Es una crema de belleza multifuncional que combina maquillaje y cuidado de la piel en un solo paso",
+"Libre de metales pesados",
+"Seguro para la piel"
+],
+"fuente": "ficha oficial",
+"foto": "1001485"
+},
+{
+"id": "bb-powder",
+"marca": "Farmasi",
+"nombre": "BB Powder",
+"linea": "Rostro",
+"codes": [
+"1001346",
+"1001348",
+"1001349",
+"1001347"
+],
+"tonos": 4,
+"sub": "",
+"beneficios": [
+"Polvos compactos todo en uno que fijan el maquillaje, cubren imperfecciones y dejan un acabado mate aterciopelado con efecto soft focus",
+"Apto para Veganos",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001346"
+},
+{
+"id": "blusher-07-peach-perfect-1002132",
+"marca": "Farmasi",
+"nombre": "Blusher 07 Peach Perfect",
+"linea": "Rostro",
+"codes": [
+"1002132"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Contiene minerales naturales",
+"Descubre la suavidad y el color natural con nuestro Blush Powder Peach Perfect, inspirado en los tonos cálidos y jugosos del melocotón",
+"Su fórmula sedosa se difumina fácilmente, aportando un acabado radiante y saludable que realza tus mejillas con frescura",
+"Libre de crueldad animal",
+"Libre de parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1002132"
+},
+{
+"id": "cc-cream",
+"marca": "Farmasi",
+"nombre": "CC Cream",
+"linea": "Rostro",
+"codes": [
+"1001491",
+"1001492",
+"1001493",
+"1001496",
+"1001494",
+"1001495"
+],
+"tonos": 6,
+"sub": "",
+"beneficios": [
+"Aplicar 15 minutos antes de la exposición al sol",
+"Use regularmente un protector solar de amplio espectro con un valor SPF/FPS de 15 o superior",
+"Use camisas de manga larga, pantalones, sombreros y otros elementos de protección",
+"Con una infusión de extracto de Lirio de Arena, esta exquisita fórmula ilumina inmediatamente la piel, dando como resultado una tez notablemente uniforme y resplandeciente",
+"Libre de metales pesados",
+"Seguro para la piel"
+],
+"fuente": "ficha oficial",
+"foto": "1001491"
+},
+{
+"id": "creamy-stick-blush",
+"marca": "Farmasi",
+"nombre": "Creamy Stick Blush",
+"linea": "Rostro",
+"codes": [
+"1001705",
+"1001708",
+"1001707",
+"1001706"
+],
+"tonos": 4,
+"sub": "",
+"beneficios": [
+"Con vitamina E y aceites nutritivos",
+"Rubor en crema para labios y mejillas",
+"Logra un look espectacular con este rubor en crema que le dará frescura y vitalidad a tu piel para dar un toque de color a tu rostro y labios en segundos",
+"Apto para Veganos",
+"Libre de metales pesados"
+],
+"fuente": "ficha oficial",
+"foto": "1001705"
+},
+{
+"id": "creamy-stick-contour",
+"marca": "Farmasi",
+"nombre": "Creamy Stick Contour",
+"linea": "Rostro",
+"codes": [
+"1001710",
+"1001709"
+],
+"tonos": 2,
+"sub": "",
+"beneficios": [
+"Con vitamina E y aceites nutritivos",
+"Bronceador en barra de textura cremosa que realza y define tus facciones de forma fácil y rápida",
+"Apto para Veganos",
+"Libre de metales pesados"
+],
+"fuente": "ficha oficial",
+"foto": "1001710"
+},
+{
+"id": "effortless-glow-palette-1002163",
+"marca": "Farmasi",
+"nombre": "Effortless Glow Palette",
+"linea": "Rostro",
+"codes": [
+"1002163"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Una paleta diseñada para aportar un brillo multidimensional y natural al rostro",
+"Su fórmula ligera se difumina fácilmente, realzando los puntos de luz con un acabado luminoso y sofisticado",
+"Ideal para todo tipo de piel, permite crear desde un resplandor sutil hasta un efecto más intenso, adaptándose a cualquier ocasión",
+"Libre de crueldad animal",
+"Libre de parabenos"
+],
+"fuente": "descripción oficial",
+"foto": "1002163"
+},
+{
+"id": "glam-up-eyeshadow-palette-1002351",
+"marca": "Farmasi",
+"nombre": "Glam Up Eyeshadow Palette",
+"linea": "Rostro",
+"codes": [
+"1002351"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Glam Up Palette, reformulada y libre de talco con 12 tonos icónicos (8 tonos matte + 4 tonos brillantes)",
+"Crea distintos estilos de maquillaje desde un look fresco y ligero, hasta un maquillaje más elaborado para un evento importante de noche",
+"Un básico de maquillaje con pigmentación intensa y seguro para tu piel",
+"Vegano",
+"Libre de talco"
+],
+"fuente": "ficha oficial",
+"foto": "1002351"
+},
+{
+"id": "glow-beauty-box-1000395",
+"marca": "Farmasi",
+"nombre": "Glow Beauty Box",
+"linea": "Rostro",
+"codes": [
+"1000395"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Trio brillante de sombras para jos Naughty Or Nice",
+"Tinte para mejillas y labios Merry & Bright",
+"Labial líquido mate Sleigh All The Way"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "1000395"
+},
+{
+"id": "infinit-face-palette-talc-free-1002569",
+"marca": "Farmasi",
+"nombre": "Infinit Face Palette Talc Free",
+"linea": "Rostro",
+"codes": [
+"1002569"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"INFINIT Face Palette libre de talco, tu esencial favorito de maquillaje todo en uno",
+"Tonos atemporales diseñados para esculpir, iluminar, definir y realzar el rostro",
+"La fórmula se difumina sin esfuerzo, ofrece intensidad suave y permite crear desde una dimensión natural hasta looks más sofisticados",
+"Libre de crueldad animal",
+"Libre de OMG"
+],
+"fuente": "ficha oficial",
+"foto": "1002569"
+},
+{
+"id": "loose-powder-1002355",
+"marca": "Farmasi",
+"nombre": "Loose Powder",
+"linea": "Rostro",
+"codes": [
+"1002355"
+],
+"tonos": 0,
+"sub": "5 g",
+"beneficios": [
+"Polvo suelto traslúcido que fija el maquillaje al instante, dejando la piel mate y con un acabado uniforme e impecable",
+"Libre de crueldad animal",
+"Vegano"
+],
+"fuente": "ficha oficial",
+"foto": "1002355"
+},
+{
+"id": "midnight-touch-blush-1001537",
+"marca": "Farmasi",
+"nombre": "Midnight Touch Blush",
+"linea": "Rostro",
+"codes": [
+"1001537"
+],
+"tonos": 0,
+"sub": "12 ml",
+"beneficios": [
+"Apto para todo tipo de piel",
+"Con ácido hialurónico y vitaminas C + E",
+"Evoca un resplandor rosado en tus mejillas con Pinky Cloud",
+"Su fórmula aterciopelada se aplica sin esfuerzo, impartiendo un rubor naturalmente favorecedor que se adapta a todos los tonos de piel",
+"Libre de metales pesados",
+"Seguro para la piel"
+],
+"fuente": "ficha oficial",
+"foto": "1001537"
+},
+{
+"id": "midnight-touch-highlighter-drizzled-bronze-1001536",
+"marca": "Farmasi",
+"nombre": "Midnight Touch Highlighter - Drizzled Bronze",
+"linea": "Rostro",
+"codes": [
+"1001536"
+],
+"tonos": 0,
+"sub": "12 ml",
+"beneficios": [
+"Apto para todo tipo de piel",
+"Con ácido hialurónico y vitaminas C + E",
+"Bronzer líquido con textura sedosa que brinda un bronceado cálido y natural en cualquier época del año",
+"Perfecto para dar calidez al rostro o definir las facciones con un acabado radiante",
+"Libre de metales pesados",
+"Seguro para la piel"
+],
+"fuente": "ficha oficial",
+"foto": "1001536"
+},
+{
+"id": "frm-peach-perfect-palette-13gr-1002156",
+"marca": "Farmasi",
+"nombre": "Peach Perfect Palette",
+"linea": "Rostro",
+"codes": [
+"1002156"
+],
+"tonos": 0,
+"sub": "13GR",
+"beneficios": [
+"Contiene minerales naturales",
+"Una paleta versátil que combina rubor, bronzer e iluminador en tonos cuidadosamente diseñados para realzar la belleza de pieles clara a medias",
+"Su fórmula sedosa y pigmentación equilibrada permite crear looks naturales o intensos, adaptándose a cualquier ocasión",
+"Libre de crueldad animal",
+"Libre de parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1002156"
+},
+{
+"id": "vfx-pro-blur-primer-1001516",
+"marca": "VFX Pro",
+"nombre": "Blur Primer",
+"linea": "Rostro",
+"codes": [
+"1001516"
+],
+"tonos": 0,
+"sub": "25 ml",
+"beneficios": [
+"Prebase ligera con efecto blur que suaviza líneas finas y poros, dejando la piel mate y aterciopelada para una aplicación impecable del maquillaje",
+"Libre de metales pesados",
+"Seguro para la piel"
+],
+"fuente": "ficha oficial",
+"foto": "1001516"
+},
+{
+"id": "vfx-pro-foundation",
+"marca": "VFX Pro",
+"nombre": "Foundation",
+"linea": "Rostro",
+"codes": [
+"1002024",
+"1002040",
+"1002032",
+"1002034",
+"1002036",
+"1002037",
+"1002038",
+"1002039",
+"1002029",
+"1002033",
+"1002025",
+"1002026",
+"1002027",
+"1002028",
+"1002035",
+"1002030",
+"1002031",
+"1001356",
+"1001369",
+"1001360"
+],
+"tonos": 20,
+"sub": "",
+"beneficios": [
+"Nuestra base de maquillaje líquida de nivel profesional ofrece cobertura total, ayudando a refinar el tono y la textura de la piel para un acabado mate e impecable que dura todo el día",
+"Enriquecida con Earth Marine Water, una fuente marina rica en minerales, esta fórmula ligera y libre de aceites aporta luminosidad instantánea, reduce la apariencia de los poros y protege la piel con defensa antioxidante",
+"Libre de metales pesados",
+"Libre de fragancias alergenicas.Libre de crueldad animal"
+],
+"fuente": "descripción oficial",
+"foto": "1002024"
+},
+{
+"id": "vfx-pro-illuminating-primer-1001517",
+"marca": "VFX Pro",
+"nombre": "Illuminating Primer",
+"linea": "Rostro",
+"codes": [
+"1001517"
+],
+"tonos": 0,
+"sub": "25 ml",
+"beneficios": [
+"Prebase con pigmentos iridiscentes que suaviza la textura de la piel y aporta un resplandor natural, dejando un acabado luminoso que prolonga la duración del maquillaje",
+"Libre de metales pesados",
+"Seguro para la piel"
+],
+"fuente": "ficha oficial",
+"foto": "1001517"
+},
+{
+"id": "vfx-pro-concealer",
+"marca": "VFX Pro",
+"nombre": "Liquid Concealer",
+"linea": "Rostro",
+"codes": [
+"1001375",
+"1001379",
+"1001376",
+"1001378"
+],
+"tonos": 4,
+"sub": "",
+"beneficios": [
+"Corrector todo en uno para disimular sombras e imperfecciones, realzar la plenitud de la piel y reducir el aspecto de líneas finas, arrugas y bolsas, gracias a su exclusiva mezcla de extractos marinos y botánicos",
+"Vegano",
+"Libre crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001375"
+},
+{
+"id": "vfx-pro-time-locker-fix-spray-1001519",
+"marca": "VFX Pro",
+"nombre": "Time Locker Fix Spray",
+"linea": "Rostro",
+"codes": [
+"1001519"
+],
+"tonos": 0,
+"sub": "125 ml",
+"beneficios": [
+"Spray fijador ligero que prolonga la duración del maquillaje con un acabado fresco y uniforme, sin rigidez ni residuos",
+"Vegano: formulado sin ingredientes de origen animal",
+"Libre de crueldad animal: no testado en animales en ninguna etapa de desarrollo"
+],
+"fuente": "ficha oficial",
+"foto": "1001519"
+},
+{
+"id": "her-passion-1000490",
+"marca": "Farmasi",
+"nombre": "Her Passion",
+"linea": "Fragancias",
+"codes": [
+"1000490"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Ideal para cualquier momento del día",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000490"
+},
+{
+"id": "hera-1107491",
+"marca": "Farmasi",
+"nombre": "Hera",
+"linea": "Fragancias",
+"codes": [
+"1107491"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Hera EDP es una fragancia femenina intensa y envolvente que combina frescura, sensualidad y sofisticación",
+"Notas de salida: Grosella, mandarina, neroli",
+"Notas de corazón: Jazmín, flor de naranja, notas amaderadas",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1107491"
+},
+{
+"id": "reina-1000874",
+"marca": "Farmasi",
+"nombre": "Reina",
+"linea": "Fragancias",
+"codes": [
+"1000874"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Reina Eau de Parfum es una fragancia floral oriental que combina notas gourmand dulces con especias cálidas, creando un aroma sofisticado y envolvente que perdura en la piel",
+"Su empaque rediseñado refleja lujo y elegancia atemporal, ofreciendo una experiencia sensorial única",
+"Libre de crueldad animal",
+"Libre de parabenos y metales pesados"
+],
+"fuente": "ficha oficial",
+"foto": "1000874"
+},
+{
+"id": "dr-c-tuna-sun-butter-spf-15-1000159",
+"marca": "Dr. C. Tuna",
+"nombre": "Sun Butter SPF 15",
+"linea": "Cuidado personal",
+"codes": [
+"1000159"
+],
+"tonos": 0,
+"sub": "250 ml",
+"beneficios": [
+"Su fórmula enriquecida con Aceite de Zanahoria, rico en Vitamina A, envuelve la piel en una hidratación profunda mientras ofrece una protección ligera frente a los rayos UV",
+"Su textura sedosa se funde al instante, dejando la piel suave y radiante, incluso después de tomar el sol",
+"Apta para todo tipo de piel",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000159"
+},
+{
+"id": "cc-body-lotion",
+"marca": "Farmasi",
+"nombre": "CC Body Lotion",
+"linea": "Cuidado personal",
+"codes": [
+"1002877",
+"1002887",
+"PK11109"
+],
+"tonos": 3,
+"sub": "",
+"beneficios": [
+"Efecto perfeccionador instantáneo gracias a sus pigmentos adaptables",
+"Acabado natural con efecto de segunda piel",
+"Hidratación y confort duradero",
+"Potencia la luminosidad sin brillo artificial",
+"Dermatológicamente probado",
+"No probado en animales"
+],
+"fuente": "ficha oficial",
+"foto": "1002877"
+},
+{
+"id": "crema-depilatoria-1000306",
+"marca": "Farmasi",
+"nombre": "Crema Depilatoria",
+"linea": "Cuidado personal",
+"codes": [
+"1000306"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Enriquecido con extracto natural de papaya y vitamina E",
+"Crema depilatoria de acción rápida que elimina el vello no deseado en 3 a 6 minutos, dejando la piel suave, hidratada y con sensación de frescura",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000306"
+},
+{
+"id": "crema-para-manos-cereza-y-manteca-de-karite-1000635",
+"marca": "Farmasi",
+"nombre": "Crema para Manos Cereza y Manteca de Karité",
+"linea": "Cuidado personal",
+"codes": [
+"1000635"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Contiene manteca de karité de origen vegetal",
+"Gracias a su fórmula ligera y de rápida absorción, enriquecida con manteca de karité, esta lujosa crema de manos aporta una suavidad sedosa",
+"Ideal para el uso diario",
+"Perfecta para manos secas o expuestas a factores que resecan, como el frío o el lavado frecuente",
+"Libre de parabenos y SLS",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000635"
+},
+{
+"id": "crema-para-manos-coco-vainilla-1109234",
+"marca": "Farmasi",
+"nombre": "Crema para Manos Coco & Vainilla",
+"linea": "Cuidado personal",
+"codes": [
+"1109234"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Contiene manteca de karité de origen vegetal",
+"Disfruta de la armonía única del coco y la vainilla en tus manos",
+"Su fórmula de rápida absorción nutre sin dejar residuos grasos, aportando hidratación inmediata y dejando tus manos irresistiblemente suaves",
+"Libre de parabenos y SLS",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1109234"
+},
+{
+"id": "crema-para-manos-almendra-1000404",
+"marca": "Farmasi",
+"nombre": "Crema para manos Almendra",
+"linea": "Cuidado personal",
+"codes": [
+"1000404"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Contiene manteca de karité de origen vegetal",
+"Hidrata y protege las manos formando una película delicada y perfumada sobre la piel",
+"Suaviza y protege la piel de la resequedad",
+"Con proteínas de leche y aceite de almendras dulces",
+"Libre de parabenos y SLS",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000404"
+},
+{
+"id": "crema-para-manos-moringa-y-manteca-de-karite-1109235",
+"marca": "Farmasi",
+"nombre": "Crema para manos Moringa y Manteca de Karité",
+"linea": "Cuidado personal",
+"codes": [
+"1109235"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Contiene manteca de karité de origen vegetal",
+"Hidratación y nutrición ligera de rápida absorción",
+"Suavidad sedosa sin sensación pegajosa",
+"Con manteca de karité para proteger y reparar la piel",
+"Libre de parabenos y SLS",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1109235"
+},
+{
+"id": "hand-cream-aromas",
+"marca": "Farmasi",
+"nombre": "Hand Cream",
+"linea": "Cuidado personal",
+"codes": [
+"1002796",
+"1002797",
+"1002798",
+"1002799"
+],
+"tonos": 0,
+"sub": "30 ml",
+"beneficios": [
+"Hidratación duradera y absorción instantánea",
+"Inspirada en la frescura mediterránea, las notas de cítricos y romero que se abren sobre tu piel para un acabado limpio, ligero y elegante",
+"100% vegana",
+"Sin ingredientes de origen animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002796"
+},
+{
+"id": "jabon-arbol-de-te-1000330",
+"marca": "Farmasi",
+"nombre": "Jabon árbol de té",
+"linea": "Cuidado personal",
+"codes": [
+"1000330"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Jabón de Árbol de té que elimina suavemente la suciedad y el exceso de grasa sin resecar la piel",
+"Deja la piel fresca, limpia y equilibrada desde el primer uso",
+"Ayuda a prevenir imperfecciones y mantiene una sensación de pureza duradera",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000330"
+},
+{
+"id": "jabon-madreselva-1000331",
+"marca": "Farmasi",
+"nombre": "Jabón Madreselva",
+"linea": "Cuidado personal",
+"codes": [
+"1000331"
+],
+"tonos": 0,
+"sub": "50 g",
+"beneficios": [
+"Un jabón en barra delicadamente perfumado con extracto de madreselva, que limpia suavemente la piel mientras la hidrata",
+"Limpieza suave y efectiva",
+"Aporta hidratación y suavidad",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000331"
+},
+{
+"id": "jabon-moringa-1000333",
+"marca": "Farmasi",
+"nombre": "Jabón Moringa",
+"linea": "Cuidado personal",
+"codes": [
+"1000333"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Apto para uso diario en rostro, manos y cuerpo",
+"Protección antioxidante contra agresiones externas",
+"Jabón en barra enriquecido con extracto de moringa, reconocido por su alto contenido en antioxidantes, vitaminas y minerales",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000333"
+},
+{
+"id": "jabon-tradicional-hammam-1119097",
+"marca": "Farmasi",
+"nombre": "Jabón Tradicional Hammam",
+"linea": "Cuidado personal",
+"codes": [
+"1119097"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Representando la cultura tradicional del baño turco, el Jabón Hammam tiene una fragancia limpia y está formulado para ofrecer un baño agradable",
+"Limpia la piel en profundidad con su intensa espuma y deja una sedosa suavidad",
+"Apto para rostro y cuerpo",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1119097"
+},
+{
+"id": "jabon-de-calendula-1000329",
+"marca": "Farmasi",
+"nombre": "Jabón de Caléndula",
+"linea": "Cuidado personal",
+"codes": [
+"1000329"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Envase reciclable",
+"Jabón de calendula suave que elimina la suciedad y el exceso de grasa sin resecar la piel",
+"Puede utilizarse en rostro y cuerpo",
+"Adecuado para pieles secas y sensibles",
+"Vegano",
+"Libre crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000329"
+},
+{
+"id": "lavanta-jabon-1000332",
+"marca": "Farmasi",
+"nombre": "Lavanta Jabón",
+"linea": "Cuidado personal",
+"codes": [
+"1000332"
+],
+"tonos": 0,
+"sub": "50 g",
+"beneficios": [
+"Un jabón en barra enriquecido con extracto de lavanda, que limpia suavemente la piel mientras aporta una sensación de frescura y relajación",
+"Limpieza suave sin resecar",
+"Propiedades calmantes y relajantes de la lavanda",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000332"
+},
+{
+"id": "farmasi-pearl-powder-soap-1000594",
+"marca": "Farmasi",
+"nombre": "Pearl Powder Soap",
+"linea": "Cuidado personal",
+"codes": [
+"1000594"
+],
+"tonos": 0,
+"sub": "125 g",
+"beneficios": [
+"Jabón tradicional enriquecido con polvo de perla que limpia suavemente la piel sin resecarla",
+"Ayuda a eliminar suciedad e impurezas, dejando la piel fresca y suave",
+"Apto para rostro y cuerpo",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000594"
+},
+{
+"id": "farmasi-whitening-toothpaste-112g-1000390",
+"marca": "Farmasi",
+"nombre": "Whitening Toothpaste",
+"linea": "Cuidado personal",
+"codes": [
+"1000390"
+],
+"tonos": 0,
+"sub": "112g",
+"beneficios": [
+"Pasta dental que ayuda a eliminar las manchas superficiales de los dientes mientras mantiene saludables las encías y la boca",
+"Formulada con sílice hidratada y flúor, limpia eficazmente la placa, mejora la apariencia de la sonrisa y protege contra las caries",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000390"
+},
+{
+"id": "flaunt-it-body-sculpting-gel-1000866",
+"marca": "Flaunt It!",
+"nombre": "Body Sculpting Gel",
+"linea": "Cuidado personal",
+"codes": [
+"1000866"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Gel reafirmante corporal que combina extractos naturales para tensar y mejorar la apariencia de la piel",
+"Contiene extracto de eucalipto y romero que ayudan a reafirmar y tonificar, mientras el aceite de gaulteria facilita el masaje y favorece el drenaje de grasa localizada",
+"Libre de SLS",
+"Libre de parabenos"
+],
+"fuente": "descripción oficial",
+"foto": "1000866"
+},
+{
+"id": "flaunt-it-body-sculpting-scrub-1000867",
+"marca": "Flaunt It!",
+"nombre": "Body Sculpting Scrub",
+"linea": "Cuidado personal",
+"codes": [
+"1000867"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Exfoliante corporal enriquecido con extracto de tomillo que ayuda a estimular el flujo sanguíneo",
+"Elimina células muertas y prepara la piel para el tratamiento reafirmante",
+"Contiene hueso de chabacano para una exfoliación efectiva y extractos botánicos revitalizantes",
+"Vegano",
+"Libre de SLS"
+],
+"fuente": "ficha oficial",
+"foto": "1000867"
+},
+{
+"id": "royal-cherry-body-butter-1002500",
+"marca": "Royal Cherry",
+"nombre": "Body Butter",
+"linea": "Cuidado personal",
+"codes": [
+"1002500"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Crema corporal con textura rica y sedosa que se funde con la piel, proporcionando una nutrición intensa gracias a la manteca de karité y aceites exquisitos",
+"Ideal para hidratar y dejar la piel aterciopelada después del baño",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002500"
+},
+{
+"id": "royal-cherry-body-wash-1002505",
+"marca": "Royal Cherry",
+"nombre": "Body Wash",
+"linea": "Cuidado personal",
+"codes": [
+"1002505"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Gel corporal que transforma la ducha en un instante de frescura",
+"Su fórmula limpia suavemente sin resecar y envuelve la piel en una espuma delicada con aroma vibrante de cereza y notas florales",
+"Un ritual diario que se convierte en lujo para los sentidos",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002505"
+},
+{
+"id": "shea-almond-crema-de-ducha-1002341",
+"marca": "Shea & Almond",
+"nombre": "Crema de Ducha",
+"linea": "Cuidado personal",
+"codes": [
+"1002341"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Crema de ducha con manteca de karité y aceite de almendras dulces que hidrata y perfuma con un aroma suave y reconfortante",
+"Limpieza delicada que calma los sentidos y aporta hidratación intensa, incluso en las pieles más secas",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002341"
+},
+{
+"id": "shea-almond-crema-de-manos-1002343",
+"marca": "Shea & Almond",
+"nombre": "Crema de Manos",
+"linea": "Cuidado personal",
+"codes": [
+"1002343"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Crema ligera para manos, de rápida absorción, formulada con manteca de karité y aceites naturales para brindar hidratación intensa incluso en las pieles más secas",
+"Ideal para pieles secas, sensibles o maduras",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002343"
+},
+{
+"id": "stay-fresh-women",
+"marca": "Stay Fresh",
+"nombre": "Deo Roll On Women",
+"linea": "Cuidado personal",
+"codes": [
+"1000787",
+"1000786",
+"1000788"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"El Stay Fresh Deo Roll On Pure Women ofrece protección eficaz y duradera contra el mal olor, manteniendo la piel fresca y cuidada a lo largo del día",
+"Su fragancia ligera y limpia proporciona una sensación de pureza y bienestar, ideal para quienes prefieren aromas sutiles y frescos en su cuidado diario",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000787"
+},
+{
+"id": "dr-c-tuna-intensive-repair-hair-mask-1000886",
+"marca": "Dr. C. Tuna",
+"nombre": "Intensive Repair Hair Mask",
+"linea": "Cabello",
+"codes": [
+"1000886"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"La mascarilla capilar Dr. C. Tuna Intensive Repair protege el cabello de los daños externos y ayuda a recuperar la elasticidad perdida.Ayuda a prevenir las puntas abiertas y reduce los daños futuros en la superficie del cabello",
+"Repara el cabello sobreprocesado y dañado y le devuelve el brillo al tiempo que fortalece los folículos debilitados",
+"Vegano Libre de crueldad animal",
+"Libre de parabenos, SLS y metales pesados Dermatológicamente probado"
+],
+"fuente": "ficha oficial",
+"foto": "1000886"
+},
+{
+"id": "dr-c-tuna-intensive-repair-leave-in-cond-1000887",
+"marca": "Dr. C. Tuna",
+"nombre": "Intensive Repair Leave in Cond",
+"linea": "Cabello",
+"codes": [
+"1000887"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Protege el cabello quebradizo y procesado,sella las puntas abiertas y renueva su brillo",
+"Repara la fibra capilar dañada",
+"Fortalece y reduce el quiebre",
+"Vegano Libre de crueldad animal",
+"Libre de parabenos, SLS y metales pesados Dermatológicamente probado"
+],
+"fuente": "ficha oficial",
+"foto": "1000887"
+},
+{
+"id": "dr-c-tuna-intensive-repair-shampoo-1000885",
+"marca": "Dr. C. Tuna",
+"nombre": "Intensive Repair Shampoo",
+"linea": "Cabello",
+"codes": [
+"1000885"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Envase reciclable",
+"Champú reparador que fortalece y devuelve el brillo al cabello quebradizo y maltratado",
+"Sella puntas abiertas y renueva la vitalidad del cabello procesado",
+"Fortalece los folículos y aporta brillo al cabello procesado y dañado",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000885"
+},
+{
+"id": "dr-c-tuna-reviving-aceite-capilar-1000311",
+"marca": "Dr. C. Tuna",
+"nombre": "Reviving Aceite Capilar",
+"linea": "Cabello",
+"codes": [
+"1000311"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Repara la fibra capilar dañada",
+"Nutre intensamente sin dejar sensación pesada",
+"Reduce el quiebre y las puntas abiertas",
+"Devuelve suavidad, brillo y elasticidad",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000311"
+},
+{
+"id": "reviving-mascarilla-capilar-1000310",
+"marca": "Farmasi",
+"nombre": "Reviving Mascarilla Capilar",
+"linea": "Cabello",
+"codes": [
+"1000310"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Dermatólogicamente probados",
+"No contienen parabenos",
+"Fórmula libre de SLS",
+"Mascarilla capilar ligera para todo tipo de cabello, especialmente fino, enriquecida con ajo, Capixyl™ y Trichogen™",
+"Libre de crueldad animal",
+"Libre de metales pesados"
+],
+"fuente": "ficha oficial",
+"foto": "1000310"
+},
+{
+"id": "reviving-shampoo-1000309",
+"marca": "Farmasi",
+"nombre": "Reviving Shampoo",
+"linea": "Cabello",
+"codes": [
+"1000309"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Dermatólogicamente probados",
+"No contienen parabenos",
+"Fórmula libre de SLS",
+"Champú revitalizante que ayuda a fortalecer y suavizar el cabello frágil, manteniéndolo brillante y saludable",
+"Libre de crueldad animal",
+"Libre de metales pesados"
+],
+"fuente": "ficha oficial",
+"foto": "1000309"
+},
+{
+"id": "shooter-s-man-1000674",
+"marca": "Farmasi",
+"nombre": "Shooter's Man",
+"linea": "Hombre",
+"codes": [
+"1000674"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Shooter’s Man EDP combina notas cítricas y frutales con un corazón amaderado y acuático, para finalmente envolver la piel en un fondo cálido y elegante de almizcle, vainilla, tonka y maderas blancas",
+"Una fragancia moderna que equilibra frescura y sensualidad",
+"Elaborado bajo procesos responsables con el medio ambiente",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000674"
+},
+{
+"id": "masculine-after-shave-balm-100-ml-1001835",
+"marca": "Masculine",
+"nombre": "After Shave Balm",
+"linea": "Hombre",
+"codes": [
+"1001835"
+],
+"tonos": 0,
+"sub": "100 ml",
+"beneficios": [
+"Un bálsamo ligero y calmante diseñado para usar después del afeitado",
+"Su fórmula con alantoína, vitamina E y mentol hidrata, refresca y ayuda a reducir la irritación, dejando la piel suave y confortable",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001835"
+},
+{
+"id": "masculine-hair-wax-1002510",
+"marca": "Masculine",
+"nombre": "Hair Wax",
+"linea": "Hombre",
+"codes": [
+"1002510"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Define tu estilo con control flexible y brillo natural",
+"Esta cera ligera y no grasosa ofrece una fijación duradera que mantiene tu peinado con un acabado natural y fácil de moldear",
+"Sin parabenos ni siliconas",
+"Libre de residuos pesados"
+],
+"fuente": "ficha oficial",
+"foto": "1002510"
+},
+{
+"id": "masculine-jabon-de-manos-1001830",
+"marca": "Masculine",
+"nombre": "Jabón de Manos",
+"linea": "Hombre",
+"codes": [
+"1001830"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Limpieza eficaz que elimina impurezas",
+"Fórmula suave que no reseca la piel",
+"Un jabón para manos especialmente formulado para limpiar profundamente la piel sin resecarla, mientras hidrata y suaviza, brindando un cuidado diario esencial",
+"Vegano",
+"No testado en animales"
+],
+"fuente": "ficha oficial",
+"foto": "1001830"
+},
+{
+"id": "masculine-1001834",
+"marca": "Masculine",
+"nombre": "Masculine",
+"linea": "Hombre",
+"codes": [
+"1001834"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Una fragancia intensa que refleja fuerza, elegancia y carácter atemporal, ideal para destacar en ocasiones especiales",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001834"
+},
+{
+"id": "masculine-massage-oil-1001874",
+"marca": "Masculine",
+"nombre": "Massage Oil",
+"linea": "Hombre",
+"codes": [
+"1001874"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Un aceite de masaje lujoso que combina notas cítricas, herbales y cálidas de canela y flores, diseñado para brindar una experiencia sensorial única de bienestar y relajación",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001874"
+},
+{
+"id": "masculine-roll-on-for-men-50-ml-1001833",
+"marca": "Masculine",
+"nombre": "Roll On For Men",
+"linea": "Hombre",
+"codes": [
+"1001833"
+],
+"tonos": 0,
+"sub": "50 ml",
+"beneficios": [
+"Un desodorante en formato roll-on diseñado para neutralizar los olores y reducir la producción de sudor, manteniendo una sensación de frescura y protección durante todo el día",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001833"
+},
+{
+"id": "masculine-shampoo-body-wash-360-ml-1001832",
+"marca": "Masculine",
+"nombre": "Shampoo & Body Wash",
+"linea": "Hombre",
+"codes": [
+"1001832"
+],
+"tonos": 0,
+"sub": "360 ml",
+"beneficios": [
+"Limpiador versátil 2 en 1 diseñado para cabello y cuerpo, con una fórmula que elimina impurezas suavemente mientras deja una sensación fresca y revitalizante",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001832"
+},
+{
+"id": "stay-fresh-men",
+"marca": "Stay Fresh",
+"nombre": "Deo Roll On Men",
+"linea": "Hombre",
+"codes": [
+"1000789",
+"1000790"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"El Stay Fresh Deo Roll On Day Control Men ofrece protección eficaz y duradera contra el mal olor, manteniendo la piel fresca y seca durante todo el día",
+"Su fragancia masculina aporta una sensación de limpieza y confianza, ideal para quienes buscan frescura prolongada y comodidad en su rutina diaria",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000789"
+},
+{
+"id": "dr-c-tuna-gel-para-masaje-alaska-1000812",
+"marca": "Dr. C. Tuna",
+"nombre": "Gel para Masaje Alaska",
+"linea": "Masaje",
+"codes": [
+"1000812"
+],
+"tonos": 0,
+"sub": "210 ml",
+"beneficios": [
+"Dr. C. Tuna Alaska Gel para Masaje enriquecido con Aceite de Eucalipto que se absorbe rápidamente y da una sensación refrescante",
+"Protege el equilibrio hídrico de la piel",
+"El gel tiene un efecto refrescante y relajante",
+"Vegano",
+"Libre crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000812"
+},
+{
+"id": "crema-de-masaje-con-glucosamina-1001990",
+"marca": "Farmasi",
+"nombre": "Crema de masaje con Glucosamina",
+"linea": "Masaje",
+"codes": [
+"1001990"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Crema de masaje corporal formulada para aliviar molestias musculares y articulares",
+"Contiene glucosamina, castaña silvestre y mentol, que generan un efecto calmante, refrescante y antiinflamatorio sobre las zonas aplicadas",
+"Ideal para usar después de la actividad física o cuando se perciba tensión en músculos o articulaciones",
+"Libre de parabenos",
+"Hipoalergénica"
+],
+"fuente": "ficha oficial",
+"foto": "1001990"
+},
+{
+"id": "gel-de-masaje-balsamo-de-castano-de-indias-pferde-1000304",
+"marca": "Farmasi",
+"nombre": "Gel de Masaje Bálsamo de Castaño de Indias Pferde",
+"linea": "Masaje",
+"codes": [
+"1000304"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"No GMO",
+"Gel ideal para masajes relajantes después de entrenamientos o largas jornadas de pie",
+"Enriquecido con extracto de castaño de indias, menta, mentol y aceites esenciales que ayudan a aliviar la tensión muscular",
+"Los extractos de árnica y romero contribuyen a hidratar y nutrir la piel",
+"Vegano",
+"Libre de parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1000304"
+},
+{
+"id": "gel-de-masaje-balsamo-de-pimenton-y-chile-1000305",
+"marca": "Farmasi",
+"nombre": "Gel de Masaje Bálsamo de Pimentón y Chile",
+"linea": "Masaje",
+"codes": [
+"1000305"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Ideal para un masaje vigorizante",
+"Una fuerte combinación de chile rojo, jengibre, ortiga, mentol y numerosos aceites esenciales que vigorizan tu cuerpo después de un largo día",
+"Calmante y energético, ayuda a facilitar cualquier tipo de masaje",
+"Vegano.Libre de crueldad animal",
+"Libre de parabenos y SLS"
+],
+"fuente": "descripción oficial",
+"foto": "1000305"
+},
+{
+"id": "blending-brush-9000939",
+"marca": "Farmasi",
+"nombre": "Blending Brush",
+"linea": "Brochas",
+"codes": [
+"9000939"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables",
+"Estuche reutilizable que protege tus brochas y minimiza el uso de empaques adicionales",
+"Un pincel de mayor tamaño y ligeramente cónico con fibras suaves para aplicar y difuminar las sombras de ojos a la perfección",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "9000939"
+},
+{
+"id": "blush-and-powder-brush-9000935",
+"marca": "Farmasi",
+"nombre": "Blush and Powder Brush",
+"linea": "Brochas",
+"codes": [
+"9000935"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Esta brocha para polvo y rubor es tu herramienta multitareas para una aplicación impecable, dejando tu cutis con un acabado natural",
+"Libre de crueldad animal",
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables"
+],
+"fuente": "descripción oficial",
+"foto": "9000935"
+},
+{
+"id": "concealer-brush-9000936",
+"marca": "Farmasi",
+"nombre": "Concealer Brush",
+"linea": "Brochas",
+"codes": [
+"9000936"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables",
+"Estuche reutilizable que protege tus brochas y minimiza el uso de empaques adicionales",
+"El pincel corrector Buffer Brush es un especialista a la hora de difuminar texturas en crema sobre la piel",
+"Este pincel ayuda a camuflar las ojeras y a disimular decoloraciones, manchas e imperfecciones para conseguir un acabado impecable y de aspecto natural",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "9000936"
+},
+{
+"id": "cut-end-eye-crease-brush-9000937",
+"marca": "Farmasi",
+"nombre": "Cut End Eye-Crease Brush",
+"linea": "Brochas",
+"codes": [
+"9000937"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables",
+"Estuche reutilizable que protege tus brochas y minimiza el uso de empaques adicionales",
+"La brocha Cut-end Eye-Crease Brush es tu secreto para lucir unos ojos cautivadores",
+"Diseñado para trazar líneas precisas, este pincel presenta un corte único que te permite definir y difuminar como experta la sombra sobre los párpados",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "9000937"
+},
+{
+"id": "eyeliner-brush-9000940",
+"marca": "Farmasi",
+"nombre": "Eyeliner Brush",
+"linea": "Brochas",
+"codes": [
+"9000940"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables",
+"Estuche reutilizable que protege tus brochas y minimiza el uso de empaques adicionales",
+"Pincel delineador de ojos, con una punta ultrafina y afilada para lograr una precisión inigualable en la creación de líneas suaves y elegantes looks dramáticos con alas",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "9000940"
+},
+{
+"id": "flat-definer-brush-9000941",
+"marca": "Farmasi",
+"nombre": "Flat Definer Brush",
+"linea": "Brochas",
+"codes": [
+"9000941"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables",
+"Estuche reutilizable que protege tus brochas y minimiza el uso de empaques adicionales",
+"Con un diseño de cerdas planas y gruesas, este pincel te permite aplicar y difuminar sin esfuerzo la sombra de ojos o el delineador a lo largo de la línea de las pestañas, creando líneas nítidas y bordes sin manchas",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "9000941"
+},
+{
+"id": "foundation-brush-9000934",
+"marca": "Farmasi",
+"nombre": "Foundation Brush",
+"linea": "Brochas",
+"codes": [
+"9000934"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables",
+"Estuche reutilizable que protege tus brochas y minimiza el uso de empaques adicionales",
+"Luce un cutis impecable con nuestra brocha de maquillaje meticulosamente diseñada por expertos para una aplicación suave y uniforme de tu base de maquillaje líquida o en crema favorita",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "9000934"
+},
+{
+"id": "highlighter-brush-9000933",
+"marca": "Farmasi",
+"nombre": "Highlighter Brush",
+"linea": "Brochas",
+"codes": [
+"9000933"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables",
+"Estuche reutilizable que protege tus brochas y minimiza el uso de empaques adicionales",
+"La herramienta perfecta para conseguir un cutis luminoso y radiante",
+"Diseñada con precisión, esta brocha cuenta con cerdas suaves y afiladas que permiten aplicar y difuminar sin esfuerzo el iluminador en los pómulos, el hueso de la ceja y otros puntos destacados del rostro",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "9000933"
+},
+{
+"id": "makeup-blending-sponge-9000942",
+"marca": "Farmasi",
+"nombre": "Makeup Blending Sponge",
+"linea": "Brochas",
+"codes": [
+"9000942"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables",
+"Estuche reutilizable que protege tus brochas y minimiza el uso de empaques adicionales",
+"Esta esponja ultra suave, exclusiva y sin látex difumina rápidamente el maquillaje para lograr una base impecable",
+"Se recomienda utilizarla húmeda, aunque también se puede usar seca con productos como polvos y cremas",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "9000942"
+},
+{
+"id": "shader-brush-9000938",
+"marca": "Farmasi",
+"nombre": "Shader Brush",
+"linea": "Brochas",
+"codes": [
+"9000938"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Durabilidad: diseñado para acompañarte por mucho tiempo, reduciendo el desperdicio de brochas desechables",
+"Estuche reutilizable que protege tus brochas y minimiza el uso de empaques adicionales",
+"Brocha plana para aplicar sombras en el párpado móvil",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "9000938"
+},
+{
+"id": "dr-c-tuna-autobronceador-para-cuerpo-1000696",
+"marca": "Dr. C. Tuna",
+"nombre": "Autobronceador para Cuerpo",
+"linea": "Kits",
+"codes": [
+"1000696"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Mousse ligero que proporciona un bronceado natural sin exposición al sol",
+"Su textura fresca y aroma tropical hacen que la aplicación sea agradable, dejando la piel con un tono uniforme y radiante",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000696"
+},
+{
+"id": "dr-c-tuna-set-de-8-aceites-esenciales-1000946",
+"marca": "Dr. C. Tuna",
+"nombre": "Set de 8 Aceites Esenciales",
+"linea": "Kits",
+"codes": [
+"1000946"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Aceites esenciales 100% puros",
+"Caja con ocho aceites esenciales puros, ideales para aromaterapia, difusión o mezclas de bienestar",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000946"
+},
+{
+"id": "dr-c-tuna-sun-aloe-soothing-gel-after-sun-1000301",
+"marca": "Dr. C. Tuna",
+"nombre": "Sun Aloe Soothing Gel After Sun",
+"linea": "Kits",
+"codes": [
+"1000301"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Gel refrescante para rostro y cuerpo con 93% de Jugo de Aloe Vera, ideal para calmar e hidratar la piel después del sol",
+"Textura ligera, no pegajosa y de rápida absorción que deja la piel fresca, suave y revitalizada",
+"Apto para piel sensible",
+"Materias primas veganas",
+"Dermatológicamente probado"
+],
+"fuente": "ficha oficial",
+"foto": "1000301"
+},
+{
+"id": "dr-c-tuna-sun-bronzing-oil-spf-6-1000303",
+"marca": "Dr. C. Tuna",
+"nombre": "Sun Bronzing Oil SPF 6",
+"linea": "Kits",
+"codes": [
+"1000303"
+],
+"tonos": 0,
+"sub": "115 ml",
+"beneficios": [
+"Dr. C. Tuna SPF 6 Bronzing Oil es un aceite corporal de textura ligera y absorción rápida que acompaña el bronceado, intensificándolo suavemente mientras aporta hidratación",
+"Enriquecido con Aceite de Baobab, Tamanu, Zanahoria y BetaCaroteno, deja la piel suave, luminosa y con un brillo dorado sutil",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000303"
+},
+{
+"id": "advent-calendar-2026-1002993",
+"marca": "Farmasi",
+"nombre": "Advent Calendar 2026",
+"linea": "Kits",
+"codes": [
+"1002993"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Detrás de sus 24 puertas encontrarás una selección especial de maquillaje, cuidado de la piel, cuidado del cabello, cuidado corporal, bienestar y accesorios, elegidos para llenar esta temporada de confianza, cuidado personal y alegría",
+"Descubre favoritos de FARMASI junto con productos exclusivos de edición limitada, disponibles únicamente dentro de la Edición 2026",
+"Dermatológicamente probado",
+"No testado en animales"
+],
+"fuente": "ficha oficial",
+"foto": "1002993"
+},
+{
+"id": "farmasi-baoli-holiday-set-1002981",
+"marca": "Farmasi",
+"nombre": "Baoli - Holiday Set",
+"linea": "Kits",
+"codes": [
+"1002981"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Baoli Eau de Parfum — 90 ml",
+"Baoli Body Wash — 100 ml",
+"Baoli After Shave Balm — 100 ml",
+"Neceser azul oscuro"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "1002981"
+},
+{
+"id": "farmasi-blackout-set-1000901",
+"marca": "Farmasi",
+"nombre": "Blackout Set",
+"linea": "Kits",
+"codes": [
+"1000901"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Grim black lipgloss: 4,5 ml",
+"Bitten metalic purple lipgloss: 4,5 ml",
+"Black spell nail polish: 11 ml"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "1000901"
+},
+{
+"id": "balsamo-hidratante-arandanos-1000241",
+"marca": "Farmasi",
+"nombre": "Bálsamo Hidratante Arándanos",
+"linea": "Kits",
+"codes": [
+"1000241"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Apto para todo tipo de piel",
+"Bálsamo reconfortante que contiene ingredientes naturales que proporcionan un cuidado eficaz para los labios, nudillos y codos",
+"Contiene vitamina E, que ayuda a hidratar y nutrir",
+"Libre de crueldad animal",
+"Vegano y libre de parabenos"
+],
+"fuente": "ficha oficial",
+"foto": "1000241"
+},
+{
+"id": "desmaquillante-bifasico-1302712",
+"marca": "Farmasi",
+"nombre": "Desmaquillante Bifásico",
+"linea": "Kits",
+"codes": [
+"1302712"
+],
+"tonos": 0,
+"sub": "225 ml",
+"beneficios": [
+"Con este desmaquillante bifásico, elimina maquillaje de larga duración y resistente al agua sin dejar sensación grasa",
+"Su fórmula combina una fase acuosa y una fase oleosa que, al mezclarse, ayudan a retirar eficazmente el maquillaje, dejando la piel fresca, suave y con sensación de confort",
+"Enriquecido con extracto de té verde, vitamina E y glicerina, ayuda a mantener el equilibrio de la piel durante la limpieza",
+"Libre de crueldad animal",
+"Libre de OMG"
+],
+"fuente": "ficha oficial",
+"foto": "1302712"
+},
+{
+"id": "farmasi-her-passion-holiday-set-1002984",
+"marca": "Farmasi",
+"nombre": "Her Passion - Holiday Set",
+"linea": "Kits",
+"codes": [
+"1002984"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Her Passion Eau de Parfum — 60 ml",
+"Lip Oil — Cherry",
+"Intense Lift Mascara",
+"Cosmetiquera Plateada"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "1002984"
+},
+{
+"id": "farmasi-hera-holiday-set-1002982",
+"marca": "Farmasi",
+"nombre": "Hera - Holiday Set",
+"linea": "Kits",
+"codes": [
+"1002982"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Hera Eau de Parfum — 65 ml",
+"Hera Body Wash— 100 ml",
+"Hera Body Lotion — 100 ml",
+"Rose Gold Pouch"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "1002982"
+},
+{
+"id": "lavender-essential-oil-1001762",
+"marca": "Farmasi",
+"nombre": "Lavender Essential Oil",
+"linea": "Kits",
+"codes": [
+"1001762"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Aceite esencial 100% puro de Lavandula angustifolia, con aroma dulce, floral, suave y relajante",
+"Su fragancia natural envuelve los sentidos, aportando serenidad y bienestar",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001762"
+},
+{
+"id": "midnight-muse-1001790",
+"marca": "Farmasi",
+"nombre": "Midnight Muse",
+"linea": "Kits",
+"codes": [
+"1001790"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Su esencia combina la dulzura frutal de la manzana y la mandarina con la profundidad seductora del jazmín, la vainilla y el sándalo, envolviendo la piel en un aroma cálido y encantador que perdura",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001790"
+},
+{
+"id": "midnight-touch-1001535",
+"marca": "Farmasi",
+"nombre": "Midnight Touch",
+"linea": "Kits",
+"codes": [
+"1001535"
+],
+"tonos": 0,
+"sub": "12 ml",
+"beneficios": [
+"Apto para todo tipo de piel",
+"Con ácido hialurónico y vitaminas C + E",
+"Iluminador líquido que aporta un brillo intenso y modulable para realzar tus facciones con un resplandor sofisticado",
+"Libre de metales pesados",
+"Seguro para la piel"
+],
+"fuente": "ficha oficial",
+"foto": "1001535"
+},
+{
+"id": "noir-temptation-1001792",
+"marca": "Farmasi",
+"nombre": "Noir Temptation",
+"linea": "Kits",
+"codes": [
+"1001792"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Con acordes de limón, lavanda y hojas verdes, su salida es fresca y vibrante",
+"En el corazón, el cardamomo, el ruibarbo y la piña aportan un carácter intrigante y sensual, mientras que su fondo de cedro, vetiver y haba tonka deja una estela cálida, viril y envolvente",
+"Libre de crueldad animal",
+"Libre de parabenos y metales pesados"
+],
+"fuente": "ficha oficial",
+"foto": "1001792"
+},
+{
+"id": "farmasi-reina-holiday-set-1002983",
+"marca": "Farmasi",
+"nombre": "Reina - Holiday Set",
+"linea": "Kits",
+"codes": [
+"1002983"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Reina Midnight Eau de Parfum — 45 ml",
+"Reina Midnight Body Wash — 100 ml",
+"Reina Midnight Body Lotion — 100 ml",
+"Burgundy Pouch"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "1002983"
+},
+{
+"id": "set-age-reversist-pk95208",
+"marca": "Farmasi",
+"nombre": "Set Age Reversist",
+"linea": "Kits",
+"codes": [
+"PK95208"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Age Reversist Limpiador Exfoliante 80 ml",
+"Age Reversist Suero 30 ml",
+"Age Reversist Crema de Contorno de Ojos 15 ml",
+"Age Reversist Crema Hidratante 30 ml",
+"Age Reversist Mascarilla de Belleza de Noche 50 ml",
+"Age Reversist Crema Perfeccionadora Instantanea 30 Sachets 0.3 ml c/u"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "PK95208"
+},
+{
+"id": "set-aqua-pk95207",
+"marca": "Farmasi",
+"nombre": "Set Aqua",
+"linea": "Kits",
+"codes": [
+"PK95207"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Aqua Gel Limpiador y Restaurador 100 ml",
+"Aqua Gotas Impulsantes de Hidratación 30 ml",
+"Aqua Crema Hidratante 50 ml",
+"Aqua Crema de Ojos Revitalizante 20 ml"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "PK95207"
+},
+{
+"id": "set-calendula-pk95212",
+"marca": "Farmasi",
+"nombre": "Set Caléndula",
+"linea": "Kits",
+"codes": [
+"PK95212"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Calendula Bálsamo Crema 80 ml",
+"Calendula Aceite de Caléndula 30 ml",
+"Calendula Limpiador Facial 100 ml",
+"Calendula Crema Facial 50 ml",
+"Calendula Tónico Facial 125 ml"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "PK95212"
+},
+{
+"id": "set-hand-cream-pk101572",
+"marca": "Farmasi",
+"nombre": "Set Hand Cream",
+"linea": "Kits",
+"codes": [
+"PK101572"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Hand Cream 30 ml Mediterranean Breeze",
+"Hand Cream 30 ml Verbena Burst",
+"Hand Cream 30 ml Velvet Fig",
+"Hand Cream 30 ml Warm Vanilla"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "PK101572"
+},
+{
+"id": "set-resurface-pk95206",
+"marca": "Farmasi",
+"nombre": "Set Resurface",
+"linea": "Kits",
+"codes": [
+"PK95206"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Resurface Suero Revitalizador 30 ml",
+"Resurface Limpiador Refinador 100 ml",
+"Resurface Crema de Día Esencial 50 ml",
+"Resurface Crema Contorno de Ojos Avanzada 15 ml",
+"Resurface Tónico Calmante 100 ml",
+"Resurface Crema de Noche 50 ml"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "PK95206"
+},
+{
+"id": "set-reviving-pk98022",
+"marca": "Farmasi",
+"nombre": "Set Reviving",
+"linea": "Kits",
+"codes": [
+"PK98022"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Dr. C. Tuna Reviving Shampoo",
+"Dr. C. Tuna Reviving Hair Mask",
+"Dr. C. Tuna Reviving Hair Oil"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "PK98022"
+},
+{
+"id": "set-rich-oil-lip-stick-pk1015479",
+"marca": "Farmasi",
+"nombre": "Set Rich Oil Lip Stick",
+"linea": "Kits",
+"codes": [
+"PK1015479"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Rich Oil Stick de Farmasi redefine el cuidado de los labios a través de un formato moderno en barra infundida con aceite que ofrece color, comodidad y brillo en un solo clic",
+"Libre de crueldad animal",
+"Fórmula vegana"
+],
+"fuente": "ficha oficial",
+"foto": "PK1015479"
+},
+{
+"id": "set-arbol-de-te-pk95211",
+"marca": "Farmasi",
+"nombre": "Set Árbol de Té",
+"linea": "Kits",
+"codes": [
+"PK95211"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Tea Tree Suero 10 ml",
+"Tea Tree Limpiador Facial 100 ml",
+"Tea Tree Crema Facial 50 ml",
+"Tea Tree Bálsamo Crema 80 ml",
+"Tea Tree Tónico Facial 125 ml"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "PK95211"
+},
+{
+"id": "shooter-s-man-black-1000856",
+"marca": "Farmasi",
+"nombre": "Shooter's Man Black",
+"linea": "Kits",
+"codes": [
+"1000856"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Una sinfonía de elegantes y masculinas notas amaderadas que proyectan fuerza y sofisticación",
+"Shooter’s Man Black pertenece a la familia olfativa Oriental , Afrutado ,Amaderado, ideal para el hombre seguro de sí mismo que busca un aroma vigorosamente elegante",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1000856"
+},
+{
+"id": "farmasi-shooters-man-holiday-set-1002980",
+"marca": "Farmasi",
+"nombre": "Shooters Man - Holiday Set",
+"linea": "Kits",
+"codes": [
+"1002980"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Shooter's Man Eau de Parfum - 100 ml",
+"Shooter’s Man Body Wash - 100 ml",
+"Shooter’s Man After Shave Balm - 100 ml",
+"Neceser Café"
+],
+"fuente": "contenido del kit en la ficha",
+"titulo": "INCLUYE",
+"foto": "1002980"
+},
+{
+"id": "sunkiss-drop-1002775",
+"marca": "Farmasi",
+"nombre": "Sunkiss Drop",
+"linea": "Kits",
+"codes": [
+"1002775"
+],
+"tonos": 0,
+"sub": "30 ML",
+"beneficios": [
+"Resistente al agua",
+"SUNKISS DROPS aporta una calidez sutil con una textura sedosa tipo sérum que se difumina fácilmente, dejando el rostro con un aspecto fresco saludable y un efecto besado por el sol",
+"Su fórmula modulable realza el tono natural de la piel, sola o combinada con maquillaje, para un acabado uniforme y sin destellos",
+"Dermatológicamente probado",
+"Vegano"
+],
+"fuente": "ficha oficial",
+"foto": "1002775"
+},
+{
+"id": "velvet-blossom-1001789",
+"marca": "Farmasi",
+"nombre": "Velvet Blossom",
+"linea": "Kits",
+"codes": [
+"1001789"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Velvet Blossom es una delicada combinación de esencias florales con un elegante toque de avellana",
+"Romántica, dulce y seductora, ideal para ocasiones de día y noche",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1001789"
+},
+{
+"id": "shea-almond-exfoliante-corporal-1002347",
+"marca": "Shea & Almond",
+"nombre": "Exfoliante Corporal",
+"linea": "Kits",
+"codes": [
+"1002347"
+],
+"tonos": 0,
+"sub": "",
+"beneficios": [
+"Exfoliante corporal enriquecido con manteca de karité y aceite de almendras dulces que elimina suavemente las células muertas mientras nutre e hidrata la piel, revelando una textura más suave y radiante",
+"Vegano",
+"Libre de crueldad animal"
+],
+"fuente": "ficha oficial",
+"foto": "1002347"
+}
+],
+"sin_datos": [
+{
+"codes": [
+"1002691",
+"1002690",
+"1002839",
+"1002915"
+],
+"nombre": "Nutriplus Complete Blend"
+},
+{
+"codes": [
+"1002724"
+],
+"nombre": "Nutriplus Creatina"
+},
+{
+"codes": [
+"1002732"
+],
+"nombre": "Nutriplus Pre-Workout"
+},
+{
+"codes": [
+"1002770",
+"1002795"
+],
+"nombre": "Nutriplus L-Carnitina"
+},
+{
+"codes": [
+"1001900"
+],
+"nombre": "Nutriplus Gomitas de Vinagre de Manzana"
+},
+{
+"codes": [
+"1001319",
+"1002302"
+],
+"nombre": "Nutriplus Aloe Glow"
+},
+{
+"codes": [
+"1001038"
+],
+"nombre": "Nutriplus Shot de Colágeno"
+},
+{
+"codes": [
+"1000904"
+],
+"nombre": "Nutriplus Colágeno en Tabletas"
+},
+{
+"codes": [
+"1001901"
+],
+"nombre": "Farmasi Red&Green Gummy"
+},
+{
+"codes": [
+"1001902"
+],
+"nombre": "Farmasi Focus Gummy"
+},
+{
+"codes": [
+"1001974"
+],
+"nombre": "Farmasi Deligomy Kids Gummy"
+},
+{
+"codes": [
+"1002326"
+],
+"nombre": "Farmasi Cycle Gummy"
+},
+{
+"codes": [
+"1001862"
+],
+"nombre": "Farmasi Guarana & Taurine Powder"
+},
+{
+"codes": [
+"1001898"
+],
+"nombre": "Farmasi Citrus & Mineral Powder"
+},
+{
+"codes": [
+"1002177"
+],
+"nombre": "Farmasi CA - MG + Collagen II"
+},
+{
+"codes": [
+"1001046"
+],
+"nombre": "Farmasi Sambucus"
+},
+{
+"codes": [
+"1002179"
+],
+"nombre": "Farmasi Electrolyte"
+},
+{
+"codes": [
+"1001894"
+],
+"nombre": "Farmasi Turmeric"
+},
+{
+"codes": [
+"1000997"
+],
+"nombre": "Farmasi Spirulina"
+},
+{
+"codes": [
+"1000996"
+],
+"nombre": "Farmasi Omega 3"
+},
+{
+"codes": [
+"PK102800"
+],
+"nombre": "Farmasi Brillo de Navidad"
+},
+{
+"codes": [
+"PK102801"
+],
+"nombre": "Farmasi Glamour Festivo"
+},
+{
+"codes": [
+"PK102802"
+],
+"nombre": "Farmasi Magia de Medianoche"
+},
+{
+"codes": [
+"PK102803"
+],
+"nombre": "Farmasi Mimos de Invierno"
+},
+{
+"codes": [
+"PK102804"
+],
+"nombre": "Farmasi Frescura Invernal"
+},
+{
+"codes": [
+"PK102806"
+],
+"nombre": "Farmasi Energía para Celebrar"
+},
+{
+"codes": [
+"PK102807"
+],
+"nombre": "Farmasi Bienestar bajo el Árbol"
+},
+{
+"codes": [
+"PK102808"
+],
+"nombre": "Farmasi Regalo para Dos"
+},
+{
+"codes": [
+"PK102767"
+],
+"nombre": "Farmasi Body System"
+},
+{
+"codes": [
+"PK102551"
+],
+"nombre": "Farmasi Morning Glow System"
+},
+{
+"codes": [
+"PK102552"
+],
+"nombre": "Farmasi Beautiful System"
+},
+{
+"codes": [
+"PK102553"
+],
+"nombre": "Farmasi Inner System"
+},
+{
+"codes": [
+"PK102554"
+],
+"nombre": "Farmasi Calm System"
+},
+{
+"codes": [
+"PK102555"
+],
+"nombre": "Farmasi Clear System"
+},
+{
+"codes": [
+"PK102681",
+"PK102682",
+"PK102683",
+"PK102684",
+"PK102685",
+"PK102686",
+"PK102687"
+],
+"nombre": "Delish Café Horizonte V"
+},
+{
+"codes": [
+"PK101942"
+],
+"nombre": "Farmasi Set Relajante Paprika Gel de Masaje + Jabon"
+},
+{
+"codes": [
+"PK99905"
+],
+"nombre": "Farmasi Set Lumi Radiance"
+},
+{
+"codes": [
+"PK102392"
+],
+"nombre": "Farmasi Set Morning Glow C"
+},
+{
+"codes": [
+"1001576"
+],
+"nombre": "Farmasi Sachet Beauty Balm"
+},
+{
+"codes": [
+"1002855"
+],
+"nombre": "Farmasi Paprika Massage Soap"
+},
+{
+"codes": [
+"1000957",
+"1000958"
+],
+"nombre": "Nutriplus Serenity"
+}
+]
+}
