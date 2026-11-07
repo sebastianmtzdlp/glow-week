@@ -1,9 +1,9 @@
 {
  "actualizado": "2026-11-06",
- "hora": "19:31",
+ "hora": "20:21",
  "desde": "2026-10-16",
  "totales": {
-  "visitas": 1239,
+  "visitas": 1241,
   "agregados": 34,
   "pedidos": 7,
   "wa": 4
@@ -99,7 +99,7 @@
   },
   {
    "d": "2026-11-06",
-   "v": 21
+   "v": 23
   }
  ],
  "consultoras": [
@@ -486,10 +486,10 @@
   }
  },
  "ritmo": {
-  "visitas": 115,
+  "visitas": 116,
   "nueva": 97,
   "registro": 41,
-  "abrir": 31,
+  "abrir": 32,
   "empezar": 18,
   "importar-omitido": 3,
   "importado": 2
@@ -569,7 +569,7 @@
   "herramientas": {
    "hub": 0,
    "dupes": 11,
-   "ritmo": 115,
+   "ritmo": 116,
    "paginas": {
     "que-publico": 5,
     "pdn": 4,
