@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="es-MX">
+<head>
+<meta charset="utf-8">
+<link rel="icon" href="/favicon.svg?v=3" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png?v=3" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png?v=3">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<meta name="description" content="Qué llevar, qué no, horario, acceso, cómo sacar tu QR y preguntas frecuentes para Horizonte 2026.">
+<meta name="robots" content="noindex">
+<meta property="og:title" content="Cómo entrar a Horizonte 2026">
+<meta property="og:description" content="Qué llevar, qué no, horario, acceso y cómo sacar tu QR.">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="es_MX">
+<meta property="og:url" content="https://mitienda.beauty/horizonte/">
+<title>Cómo entrar a Horizonte 2026 · Mi Tienda Beauty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Una columna para celular: cabecera, "antes de salir", horario, llegada, boleto, prohibido, permitido, vestimenta, preguntas, por confirmar */
+:root{
+  --bg:#FFFFFF; --ink:#262A4A; --muted:#6C7090; --line:#E6E8F0; --soft:#EEF0F8;
+  --accent:#DB414C; --accent-text:#C8323F; --tint:#FDEEF0; --good:#1B8A5A; --warn:#B26A00; --warn-bg:#FFF5E5;
+  --sans:"Outfit",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:16px;line-height:1.5;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:0 40px}
+.wrap{max-width:560px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+header{background:var(--soft);border-radius:0 0 18px 18px;padding:20px 18px 18px;margin:0 -2px;display:flex;flex-direction:column;gap:10px}
+.brand{font-weight:300;letter-spacing:.32em;font-size:12px;color:var(--muted)}
+.brand b{font-weight:600;letter-spacing:.08em;color:var(--accent-text)}
+h1{font-size:30px;line-height:1.1;font-weight:800;margin:0;text-wrap:balance}
+.sub{color:var(--muted);margin:0}
+.facts{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.fact{background:var(--bg);border-radius:14px;padding:10px 12px;min-width:0}
+.fact .k{font-size:11px;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);font-weight:600}
+.fact .v{font-weight:600;font-size:15px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+nav{display:flex;gap:6px;overflow-x:auto;padding:4px 0;scrollbar-width:none}
+nav a{flex:none;background:var(--soft);color:var(--ink);text-decoration:none;font-size:13px;font-weight:500;padding:7px 12px;border-radius:999px}
+nav a:focus-visible,summary:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+section{border:1px solid var(--line);border-radius:18px;padding:16px 16px 14px;display:flex;flex-direction:column;gap:10px;scroll-margin-top:12px}
+h2{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--accent-text);margin:0;font-weight:700}
+h3{font-size:19px;margin:0;font-weight:700;line-height:1.25;text-wrap:balance}
+p{margin:0}
+ul,ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.urgent{background:var(--tint);border-color:transparent}
+.urgent ol{gap:8px}
+.tag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;padding:2px 8px;border-radius:999px;vertical-align:2px}
+.tag.tbc{background:var(--warn-bg);color:var(--warn)}
+.tag.chat{background:var(--soft);color:var(--muted)}
+.tag.ok{background:#E7F5EE;color:var(--good)}
+.times{display:flex;flex-direction:column;gap:0}
+.row{display:grid;grid-template-columns:64px 1fr;gap:12px;padding:9px 0;border-top:1px solid var(--line)}
+.row:first-child{border-top:0}
+.row .t{font-family:var(--mono);font-weight:500;font-variant-numeric:tabular-nums;color:var(--accent-text)}
+.row div{min-width:0}
+.nolist{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:0;list-style:none}
+.nolist li{background:var(--soft);border-radius:14px;padding:10px 12px;display:flex;gap:8px;align-items:flex-start;font-size:14px;line-height:1.35;min-width:0}
+.nolist svg{flex:none;margin-top:1px}
+.note{font-size:14px;color:var(--muted)}
+.camera{background:var(--soft);border-radius:14px;padding:12px 14px;display:flex;flex-direction:column;gap:6px}
+details{border-top:1px solid var(--line)}
+details:first-of-type{border-top:0}
+summary{cursor:pointer;list-style:none;padding:11px 28px 11px 0;font-weight:600;position:relative}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"";position:absolute;right:4px;top:18px;width:8px;height:8px;border-right:2px solid var(--accent);border-bottom:2px solid var(--accent);transform:rotate(45deg);transition:transform .2s ease-out}
+details[open] summary::after{transform:rotate(-135deg);top:21px}
+details .a{padding:0 0 12px;display:flex;flex-direction:column;gap:6px;color:var(--ink)}
+.legend{display:flex;flex-wrap:wrap;gap:8px;align-items:center;font-size:13px;color:var(--muted)}
+footer{font-size:13px;color:var(--muted);text-align:left;padding:4px 2px}
+@media (prefers-reduced-motion:reduce){summary::after{transition:none}}
+</style>
+
+</head>
+<body>
+<div class="wrap">
+<header>
+  <div class="brand">MI EQUIPO <b>Farmasi</b></div>
+  <h1>Cómo entrar a Horizonte 2026</h1>
+  <p class="sub">Lo importante del chat de Top Team y de la infografía oficial, en una sola página.</p>
+  <div class="facts">
+    <div class="fact"><div class="k">Fecha</div><div class="v">Sábado 7 nov</div></div>
+    <div class="fact"><div class="k">Lugar</div><div class="v">Estadio Alfredo Harp Helú, CDMX</div></div>
+    <div class="fact"><div class="k">Inicio</div><div class="v"><span class="mono">2:00</span> p. m.</div></div>
+    <div class="fact"><div class="k">Cierre</div><div class="v">Concierto de Gloria Trevi</div></div>
+  </div>
+  <div class="legend"><span class="tag chat">Dicho en el chat</span> lo dijeron asistentes o líderes, no Farmasi. <span class="tag tbc">Por confirmar</span> nadie lo aclaró.</div>
+</header>
+
+<nav aria-label="Secciones">
+  <a href="#antes">Antes de salir</a><a href="#horario">Horario</a><a href="#llegar">Cómo llegar</a><a href="#boleto">Tu boleto</a><a href="#no">No llevar</a><a href="#si">Sí llevar</a><a href="#ropa">Qué ponerte</a><a href="#faq">Preguntas</a>
+</nav>
+
+<section id="antes" class="urgent">
+  <h2>Antes de salir de casa</h2>
+  <ol>
+    <li><b>Toma captura de tu QR ahora.</b> Desde esta mañana los boletos aparecen en "Eventos pasados" y no abren en la app. Ábrelos desde la web en <a href="https://mx.farmasi.com/" style="color:var(--accent-text);font-weight:600">mx.farmasi.com</a> (Safari o Chrome) y cambia la sesión a Horizonte.</li>
+    <li><b>Lleva tu pulsera</b> si tienes VIP o VIP Plus.</li>
+    <li><b>Bolsa chica</b>: máximo 41 × 41 × 20 cm. No hay guardarropa.</li>
+    <li><b>Tenis o zapato cómodo</b>: son muchas horas de pie, escaleras y gradas.</li>
+    <li><b>Receta</b> si llevas medicinas.</li>
+    <li><b>Dinero o tarjeta</b> para comer: venden comida adentro. <span class="tag chat">Dicho en el chat</span></li>
+  </ol>
+</section>
+
+<section id="horario">
+  <h2>Horario</h2>
+  <div class="times">
+    <div class="row"><span class="t">11:00</span><div>Abren accesos y registro. Top Team recomienda llegar a esta hora para entrar juntas y ver stands y experiencias. <span class="tag chat">Dicho en el chat</span></div></div>
+    <div class="row"><span class="t">14:00</span><div>Empieza el evento. Si llegas a esta hora, entre fila y registro entrarías como a las 3 o 4.</div></div>
+    <div class="row"><span class="t">18:00</span><div>Cierran la entrada al estadio, según Mariana Quintana. Otra persona dijo 4 p. m. Llega antes de las 5. <span class="tag tbc">Por confirmar</span></div></div>
+    <div class="row"><span class="t">Noche</span><div>Reconocimientos y concierto de Gloria Trevi. Aparta todo el día. La hora del concierto no se dijo. <span class="tag tbc">Por confirmar</span></div></div>
+  </div>
+  <p class="note">El programa minuto a minuto viene en la "Guía Horizonte 2026" (PDF de 18 páginas) que se mandó al chat; no venía en la exportación, así que no está aquí.</p>
+</section>
+
+<section id="llegar">
+  <h2>Cómo llegar</h2>
+  <ul>
+    <li><b>Metro:</b> estación Puebla (Línea 9), como a 15 minutos caminando.</li>
+    <li><b>Acceso a pie:</b> puerta 8; ahí se divide en filas de VIP, VIP Plus y General. <span class="tag chat">Dicho en el chat</span></li>
+    <li><b>Estacionamiento:</b> subterráneo, unos 500 lugares, <span class="mono">$350</span> tiempo libre. Varias dijeron puerta 15; hoy temprano Yuyu dijo que la entrada de autos también es por la puerta 8. <span class="tag tbc">Por confirmar</span></li>
+    <li>Se esperan miles de personas y el estacionamiento no alcanza: mejor metro, Uber o compartir auto.</li>
+  </ul>
+</section>
+
+<section id="boleto">
+  <h2>Tu boleto</h2>
+  <ul>
+    <li><b>VIP y VIP Plus:</b> entras con tu pulsera (la que te dieron en Farmafit o en tu caja).</li>
+    <li><b>General:</b> entras con el código QR. Cada boleto trae dos QR distintos, uno de Farmafit y otro de Horizonte, con distinto número de pedido. En el chat dijeron que era el mismo, pero en la web se ven diferentes: asegúrate de que diga Horizonte.</li>
+  </ul>
+  <h3>Para sacar tu QR</h3>
+  <ol>
+    <li>Abre <a href="https://mx.farmasi.com/" style="color:var(--accent-text);font-weight:600">mx.farmasi.com</a> en Safari o Chrome, no en la app, e inicia sesión.</li>
+    <li>Toca tu círculo con iniciales arriba a la derecha y entra a <b>My Events</b>.</li>
+    <li>Cambia a la pestaña <b>Eventos Pasados</b>. Ahí está Horizonte Mexico 2026.</li>
+    <li>Toca <b>Detalles de la entrada</b>.</li>
+    <li>En <b>Select Session</b> elige <b>Horizonte</b> (si dice Farmafit, cámbialo).</li>
+    <li>Toma captura de pantalla del QR.</li>
+  </ol>
+  <ul>
+    <li><b>Boleto transferido o VIP sin pulsera:</b> habrá una carpa en la entrada. Llevas tu QR o el correo, y si eres invitada das el nombre y número de FI de quien te lo pasó. <span class="tag chat">Dicho en el chat</span></li>
+    <li>Un boleto transferido va a un solo correo; para 3 personas se necesitan 3 correos.</li>
+  </ul>
+</section>
+
+<section id="no">
+  <h2>No puedes llevar</h2>
+  <p class="note">De la infografía oficial "¿Qué no puedo llevar?"</p>
+  <ul class="nolist">
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Bolsos de más de 41 × 41 × 20 cm</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Agua embotellada</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Latas o aerosoles</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Paraguas</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Perfumes</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Alimentos y bebidas</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Bloqueador de más de 100 ml</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Cualquier líquido con atomizador</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Monopié o tripié; cámara, video o micrófonos profesionales o semiprofesionales</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Mascotas, salvo de servicio</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Drones</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Armas</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Bocinas</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Cigarros y encendedores</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Vape</li>
+    <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#DB414C" stroke-width="1.75" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M5.6 5.6l12.8 12.8"/></svg>Producto Farmasi y bultos <span class="tag chat">Dicho en el chat</span></li>
+  </ul>
+  <p class="note">El inmueble no tiene guardarropa: lo que no pase, se queda afuera. En el chat se mencionaron otras medidas (15 × 15 y 45 × 45 cm); la de 15 cm era de Farmafit. La oficial de Horizonte es 41 × 41 × 20 cm. Si dudas, lleva la más chica que tengas y nada de mochila.</p>
+</section>
+
+<section id="si">
+  <h2>Sí puedes llevar</h2>
+  <ul>
+    <li>La chamarra de Top Team. <span class="tag chat">Dicho en el chat</span></li>
+    <li>La mano de hule espuma, silbatos y props de béisbol. <span class="tag chat">Dicho en el chat</span></li>
+    <li>Tus medicinas, de preferencia con receta. Con insulina o tratamiento sin receta, explícalo en la revisión. <span class="tag tbc">Por confirmar</span></li>
+    <li>Gorra o visera: el sol pega fuerte y en la noche refresca.</li>
+  </ul>
+  <div class="camera">
+    <h3>¿La cámara Osmo Pocket 3?</h3>
+    <p>En el chat, Mariana Quintana dijo: "No dejan llevar nada de eso. Solo osmo pocket". Es lo más claro que hay, pero lo dijo una líder, no Farmasi. <span class="tag tbc">Por confirmar</span></p>
+    <p>La infografía prohíbe equipo "profesional y semiprofesional" de cámara y video, y monopiés o tripiés. Llévala sin extensiones, bastón ni base. El accesorio de tu foto parece la tapa protectora del gimbal, no un tripié. La decisión final es de seguridad en la puerta y no hay guardarropa: si no la dejan pasar, no tendrás dónde dejarla.</p>
+    <p><b>Selfie stick y tripié de mano: no.</b> Lo dijo Mariana Quintana y entra en "monopié o tripié" de la infografía.</p>
+  </div>
+</section>
+
+<section id="ropa">
+  <h2>Qué ponerte</h2>
+  <ul>
+    <li><b>Top Team va de ivory con azul marino.</b> Si tienes la chamarra, póntela encima.</li>
+    <li>Sin chamarra: ropa ivory o beige y, si quieres, un detalle azul marino.</li>
+    <li>El coral que mencionó Farmasi no es necesario.</li>
+    <li>Ir con otros colores también está bien: la ropa del equipo es opcional.</li>
+  </ul>
+</section>
+
+<section id="faq">
+  <h2>Preguntas frecuentes</h2>
+  <details><summary>¿Si tengo pulsera VIP, también necesito el QR?</summary><div class="a"><p>Nadie lo respondió en el chat. Lleva las dos cosas: la pulsera puesta y la captura del QR. <span class="tag tbc">Por confirmar</span></p></div></details>
+  <details><summary>¿Puedo entrar y salir del estadio?</summary><div class="a"><p>Rebeca Ojeda contestó: "No debería de haber tema con tu pulsera". No hay confirmación oficial para boleto general. <span class="tag tbc">Por confirmar</span></p></div></details>
+  <details><summary>¿Puedo llevar batería portátil para el celular?</summary><div class="a"><p>Mariana Quintana dijo que "según ella sí dejan", pero pidió revisar la guía. No está en la lista de prohibidos de la infografía. <span class="tag tbc">Por confirmar</span></p></div></details>
+  <details><summary>¿Puedo llevar termo o agua?</summary><div class="a"><p>El agua embotellada y las bebidas están prohibidas. Del termo nadie respondió para Horizonte; preguntaron sobre Farmafit. Sobre bebederos tampoco hubo respuesta. <span class="tag tbc">Por confirmar</span></p></div></details>
+  <details><summary>¿Y si llueve?</summary><div class="a"><p>El paraguas está prohibido. Rebeca sugirió un impermeable ligero como opción. Hay partes techadas en general; en VIP y VIP Plus no hay techo, según una asistente. <span class="tag chat">Dicho en el chat</span></p></div></details>
+  <details><summary>¿Hay comida adentro?</summary><div class="a"><p>Sí, venden comida. No puedes entrar con comida ni bebidas.</p></div></details>
+  <details><summary>¿Pueden ir menores de edad?</summary><div class="a"><p>Sí, con su propio boleto. Las que ya han ido no lo recomiendan por el sol y las horas.</p></div></details>
+  <details><summary>Mi invitada no recibió el correo del boleto</summary><div class="a"><p>Que revise spam y que lo vea en la app o la web de Farmasi. Si no aparece, mándale la captura del QR y que pase a la carpa de la entrada con tu nombre y número de FI. Si sigue sin funcionar, abre un ticket.</p></div></details>
+  <details><summary>¿Todavía se pueden conseguir boletos?</summary><div class="a"><p>Los generales se siguieron vendiendo en la página de Farmasi y varias en el chat regalaron o transfirieron boletos. Pide siempre la transferencia por la plataforma.</p></div></details>
+  <details><summary>¿Dónde se junta Top Team?</summary><div class="a"><p>Hay chats por zona creados por socias (VIP, VIP Plus y General); no son oficiales de Top Team. Varias llegaron desde las 5:30 a. m. para apartar filas juntas.</p></div></details>
+  <details><summary>¿A quién le pregunto lo que no está aquí?</summary><div class="a"><p>Rebeca Ojeda pidió no mandarle mensajes. Para dudas: el Instagram de Farmasi México (contestan en historias), el call center o un ticket en la plataforma.</p></div></details>
+</section>
+
+<footer>Armado el 7 de noviembre de 2026 con el chat "HORIZONTE TOP TEAM 2026" (hasta las 10:00 a. m.) y la infografía oficial de objetos prohibidos. No es material oficial de Farmasi.</footer>
+</div>
+</body>
+</html>
